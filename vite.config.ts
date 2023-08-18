@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import fs from "fs/promises";
+import commonjs from "vite-plugin-commonjs";
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
@@ -14,6 +15,7 @@ export default ({ mode }) => {
     resolve: {
       alias: {
         src: resolve(__dirname, "src"),
+        "@shared": resolve(__dirname, "shared"),
       },
     },
     esbuild: {
@@ -39,13 +41,21 @@ export default ({ mode }) => {
         ],
       },
     },
-    plugins: [react()],
+    plugins: [react(), commonjs()],
     server: {
       proxy: {
         "/api": {
           target: `http://localhost:${process.env.PORT || 8080}`,
           changeOrigin: true,
           secure: false,
+        },
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // Provide path to your main SCSS file
+          additionalData: `@import "@/styles/main.scss";`,
         },
       },
     },

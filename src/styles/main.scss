@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url(/assets/fonts/Roboto-Regular.ttf) format("truetype");
+}
+body {
+  font-family: "Exo", exo;
+  color: white;
+  background: #111111;
+  margin: 0;
+  // height: 100%;
+}
+#root {
+  // position: absolute;
+  // width: 100%;
+  // overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #bbb;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.ReactModal__Overlay {
+  padding: 0;
+  opacity: 0;
+  /* transform: translateX(-100px); */
+  transition: all 400ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  /* transform: translateX(0px); */
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  /* transform: translateX(-100px); */
+}
+
+/*
+// red B30000
+// orange F27500
+// yellow FFD500
+// green 1D9E00
+// blue 0030A8
+// purple 760078
+*/

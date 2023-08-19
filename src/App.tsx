@@ -146,6 +146,10 @@ import {
   // Redirect,
 } from "react-router-dom";
 
+import "@fontsource/exo";
+import "@fontsource/exo/400-italic.css";
+import "@fontsource/exo/700-italic.css";
+
 // Import your components/pages here
 import { FrontPage } from "././pages/frontPage/FrontPage";
 

@@ -13,7 +13,16 @@ class UnwrappedFrontPage extends React.Component {
   }
 
   render() {
-    return <div>TEST ONE FRONT PAGE</div>;
+    return (
+      <div>
+        <div className="panel">
+          <i className="hero-text">TACTORIUS</i>
+          <h2>hello</h2>
+          tactorius is an extension of chess where you get to use powers to
+          influence the outcome of the game.
+        </div>
+      </div>
+    );
   }
 }
 

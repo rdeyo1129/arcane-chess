@@ -1,11 +1,14 @@
-@font-face {
-  font-family: "Roboto";
-  src: local("Roboto"), url(/assets/fonts/Roboto-Regular.ttf) format("truetype");
-}
+@import "base";
+@import "variables";
+@import "mixins";
+@import "reset";
+@import "typography";
+@import "layout";
+
 body {
   font-family: "Exo", exo;
   color: white;
-  background: #333333;
+  background: #111111;
   margin: 0;
 }
 
@@ -20,6 +23,29 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.hero-text {
+  font-size: 48px;
+  font-weight: 800;
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 36px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
 }
 
 .ReactModal__Overlay {
@@ -38,12 +64,3 @@ body {
   opacity: 0;
   /* transform: translateX(-100px); */
 }
-
-/*
-// red B30000
-// orange F27500
-// yellow FFD500
-// green 1D9E00
-// blue 0030A8
-// purple 760078
-*/

@@ -1,14 +1,14 @@
 // import reducer from "../reducers";
 // import logger from "./logger";
-import { configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { composeWithDevTools } from "redux-devtools-extension";
+// import { configureStore } from "@reduxjs/toolkit";
+// import { persistStore, persistReducer } from "redux-persist";
+// import storage from "redux-persist/lib/storage";
+// import { composeWithDevTools } from "redux-devtools-extension";
 
-const persistConfig = {
-  key: "root",
-  storage,
-};
+// const persistConfig = {
+//   key: "root",
+//   storage,
+// };
 
 // const persistedReducer = persistReducer(persistConfig, reducer);
 

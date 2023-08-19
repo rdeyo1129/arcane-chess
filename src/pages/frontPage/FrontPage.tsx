@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+// import { Link, withRouter } from "react-router-dom";
+// import { connect } from "react-redux";
 
 // import "../styles/front-page.css";
 
@@ -17,9 +17,9 @@ class UnwrappedFrontPage extends React.Component {
   }
 }
 
-function mapStateToProps({}) {
-  return {};
-}
+// function mapStateToProps({}) {
+//   return {};
+// }
 
 export const FrontPage = UnwrappedFrontPage;
 // connect(mapStateToProps)(

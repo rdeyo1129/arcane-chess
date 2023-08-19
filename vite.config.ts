@@ -51,13 +51,5 @@ export default ({ mode }) => {
         },
       },
     },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          // Provide path to your main SCSS file
-          additionalData: `@import "@/styles/main.scss";`,
-        },
-      },
-    },
   });
 };

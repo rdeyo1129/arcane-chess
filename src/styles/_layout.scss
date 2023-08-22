@@ -1,7 +1,26 @@
+.menu {
+  // subtract for padding 6px?
+  height: 484px;
+  width: 1180px;
+}
+
 .panel {
   height: 468px;
   width: 336px;
   padding: 6px;
   background: #333333;
   border: #555555 solid 6px;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media (min-width: 1024px) {
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
 }

@@ -1,66 +1,7 @@
 @import "base";
 @import "variables";
+@import "components";
 @import "mixins";
 @import "reset";
 @import "typography";
 @import "layout";
-
-body {
-  font-family: "Exo", exo;
-  color: white;
-  background: #111111;
-  margin: 0;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #bbb;
-}
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-.hero-text {
-  font-size: 48px;
-  font-weight: 800;
-}
-h1 {
-  font-size: 48px;
-}
-h2 {
-  font-size: 36px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 20px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-
-.ReactModal__Overlay {
-  padding: 0;
-  opacity: 0;
-  /* transform: translateX(-100px); */
-  transition: all 400ms ease-in-out;
-}
-
-.ReactModal__Overlay--after-open {
-  opacity: 1;
-  /* transform: translateX(0px); */
-}
-
-.ReactModal__Overlay--before-close {
-  opacity: 0;
-  /* transform: translateX(-100px); */
-}

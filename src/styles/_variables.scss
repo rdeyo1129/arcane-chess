@@ -1,15 +1,13 @@
-// FONT SIZES
-$FONT_12: 12px;
-$FONT_16: 16px;
-$FONT_20: 20px;
-$FONT_24: 24px;
-$FONT_36: 36px;
-$FONT_48: 48px;
-
-// FONT WEIGHTS
+// MOBLILE VARIABLES
+$M_WDTH: 100vw;
 
 // THEMES
-$blue: #3f48cc;
+$R_MENU: #c53939;
+$O_MENU: #c77c35;
+$Y_MENU: #d6be44;
+$G_MENU: #34aa48;
+$B_MENU: #3f48cc;
+$P_MENU: #a043a2;
 
 // GREYSCALE
 $GS_1: #111111;
@@ -27,33 +25,39 @@ $R_LGHT: #a7333f;
 $R_DARK: #74121d;
 $R_FACT: #b30000;
 $R_GLOW: red;
+$R_BACK: #480000;
 
 // ORANGE
 $O_LGHT: #b87d48;
 $O_DARK: #7f4f1a;
 $O_FACT: #f27500;
 $O_GLOW: orange;
+$O_BACK: #582a00;
 
 // YELLOW
 $Y_LGHT: #c0a409;
 $Y_DARK: #957f07;
 $Y_FACT: #ffd500;
 $Y_GLOW: yellow;
+$Y_BACK: #635300;
 
 // GREEN
 $G_LGHT: #588157;
 $G_DARK: #3a5a40;
 $G_FACT: #1d9e00;
 $G_GLOW: greenyellow;
+$G_BACK: #0c4000;
 
 // BLUE
 $B_LGHT: #1c7293;
 $B_DARK: #065a82;
 $B_FACT: #0030a8;
 $B_GLOW: blue;
+$B_BACK: #001343;
 
 // PURPLE
 $P_LGHT: #7b2cbf;
 $P_DARK: #5a189a;
 $P_FACT: #760078;
 $P_GLOW: darkorchid;
+$P_BACK: #380039;

@@ -1,0 +1,36 @@
+body {
+  font-family: "Exo", exo;
+  color: white;
+  background: #111111;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #bbb;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.ReactModal__Overlay {
+  padding: 0;
+  opacity: 0;
+  /* transform: translateX(-100px); */
+  transition: all 400ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  /* transform: translateX(0px); */
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  /* transform: translateX(-100px); */
+}

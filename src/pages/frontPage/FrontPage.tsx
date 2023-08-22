@@ -34,3 +34,8 @@ export const FrontPage = UnwrappedFrontPage;
 // connect(mapStateToProps)(
 //   withRouter(UnwrappedFrontPage)
 // );
+
+// .hero-text {
+//   font-size: 48px;
+//   font-weight: 800;
+// }

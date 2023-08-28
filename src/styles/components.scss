@@ -1,0 +1,97 @@
+@import "variables";
+
+$colors: R, O, Y, G, B, V;
+
+$menu_colors: (
+  R: $R_MENU,
+  O: $O_MENU,
+  Y: $Y_MENU,
+  G: $G_MENU,
+  B: $B_MENU,
+  V: $V_MENU,
+);
+
+@each $color in $colors {
+  $color_var: map-get($menu_colors, $color);
+
+  .primary-#{$color} {
+    background: $color_var;
+    border: $color_var 1px solid;
+    border-radius: 5px;
+    transition: border-radius 0.2s ease-in, border 0.2s ease-in;
+  }
+  .primary-#{$color}:hover {
+    cursor: pointer;
+    background: $color_var;
+    border: $color_var 2px solid;
+    border-radius: 15px;
+    transition: border-radius 0.2s ease-in, border 0.2s ease-in,
+      background 0.2s ease-in;
+  }
+  .primary-#{$color}-disabled {
+    color: #aaaaaa;
+    background: #333333;
+    border-radius: 5px;
+  }
+  .primary-#{$color}-disabled:hover {
+    cursor: auto;
+  }
+
+  .secondary-#{$color} {
+    background: #444444;
+    border-radius: 5px;
+    border: $color_var 1px solid;
+    transition: border-radius 0.2s ease-in, border 0.2s ease-in;
+  }
+  .secondary-#{$color}:hover {
+    cursor: pointer;
+    background: #444444;
+    border: $color_var 2px solid;
+    border-radius: 15px;
+    transition: border-radius 0.2s ease-in, border 0.2s ease-in,
+      background 0.2s ease-in;
+  }
+  .secondary-#{$color}-disabled {
+    color: #aaaaaa;
+    background: #333333;
+    border: #555555 1px solid;
+    border-radius: 5px;
+  }
+  .secondary-#{$color}-disabled:hover {
+    cursor: auto;
+  }
+
+  .tertiary-#{$color} {
+    background: #444444;
+    border: none;
+    border-radius: 0;
+    transition: background 0.2s ease-in;
+  }
+  .tertiary-#{$color}:hover {
+    background: #555555;
+    border: none;
+    border-radius: 0;
+    transition: background 0.2s ease-in;
+  }
+  .tertiary-#{$color}-disabled {
+    color: #aaaaaa;
+    background: #333333;
+    border: #222222 1px solid;
+  }
+  .tertiary-#{$color}-disabled:hover {
+    cursor: auto;
+  }
+}
+
+.header-buttons .tertiary-button {
+  background: #444444;
+  border: none;
+  border-radius: 0;
+  transition: background 0.2s ease-in;
+}
+.header-buttons .tertiary-button:hover {
+  background: #555555;
+  border: none;
+  border-radius: 0;
+  transition: background 0.2s ease-in;
+}

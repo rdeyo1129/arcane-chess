@@ -9,7 +9,6 @@ a,
 p,
 span,
 i,
-strong,
 blockquote,
 fieldset {
   margin: 0;
@@ -23,6 +22,7 @@ button {
   appearance: none;
   border: none;
   padding: 0;
+  color: white;
   background: transparent;
   font: inherit;
   cursor: pointer;

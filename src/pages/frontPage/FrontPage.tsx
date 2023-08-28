@@ -6,6 +6,8 @@ import React from "react";
 
 // import Hero from "../components/Hero";
 
+import Button from "../../components/Button/Button";
+
 class UnwrappedFrontPage extends React.Component {
   constructor(props: any) {
     super(props);
@@ -20,6 +22,54 @@ class UnwrappedFrontPage extends React.Component {
           <h2>hello</h2>
           tactorius is an extension of chess where you get to use powers to
           influence the outcome of the game.
+          <Button
+            text="PLAY"
+            onClick={() => console.log("clicked")}
+            className="primary"
+            color="B"
+            disabled={false}
+            // strong={true}
+          />
+          <Button
+            text="PLAY"
+            onClick={() => console.log("clicked")}
+            className="primary"
+            color="Y"
+            disabled={true}
+            // strong={true}
+          />
+          <Button
+            text="PLAY"
+            onClick={() => console.log("clicked")}
+            className="secondary"
+            color="Y"
+            disabled={false}
+            // strong={true}
+          />
+          <Button
+            text="PLAY"
+            onClick={() => console.log("clicked")}
+            className="secondary"
+            color="Y"
+            disabled={true}
+            // strong={true}
+          />
+          <Button
+            text="PLAY"
+            onClick={() => console.log("clicked")}
+            className="tertiary"
+            color="Y"
+            disabled={false}
+            // strong={true}
+          />
+          <Button
+            text="PLAY"
+            onClick={() => console.log("clicked")}
+            className="tertiary"
+            color="Y"
+            disabled={true}
+            // strong={true}
+          />
         </div>
       </div>
     );

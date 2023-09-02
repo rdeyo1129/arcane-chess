@@ -10,9 +10,18 @@ $menu_colors: (
   B: $B_MENU,
   V: $V_MENU,
 );
+$hover_colors: (
+  R: $R_FACT,
+  O: $O_FACT,
+  Y: $Y_FACT,
+  G: $G_FACT,
+  B: $B_FACT,
+  V: $V_FACT,
+);
 
 @each $color in $colors {
   $color_var: map-get($menu_colors, $color);
+  $hover_var: map-get($hover_colors, $color);
 
   .primary-#{$color} {
     background: $color_var;
@@ -22,8 +31,8 @@ $menu_colors: (
   }
   .primary-#{$color}:hover {
     cursor: pointer;
-    background: $color_var;
-    border: $color_var 2px solid;
+    background: $hover_var;
+    border: $hover_var 2px solid;
     border-radius: 15px;
     transition: border-radius 0.2s ease-in, border 0.2s ease-in,
       background 0.2s ease-in;
@@ -45,8 +54,8 @@ $menu_colors: (
   }
   .secondary-#{$color}:hover {
     cursor: pointer;
-    background: #444444;
-    border: $color_var 2px solid;
+    background: #555555;
+    border: $hover_var 2px solid;
     border-radius: 15px;
     transition: border-radius 0.2s ease-in, border 0.2s ease-in,
       background 0.2s ease-in;

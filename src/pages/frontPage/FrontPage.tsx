@@ -7,6 +7,7 @@ import React from "react";
 // import Hero from "../components/Hero";
 
 import Button from "../../components/Button/Button";
+import Toggle from "../../components/Toggle/Toggle";
 
 class UnwrappedFrontPage extends React.Component {
   constructor(props: any) {
@@ -70,6 +71,7 @@ class UnwrappedFrontPage extends React.Component {
             disabled={true}
             // strong={true}
           />
+          <Toggle />
         </div>
       </div>
     );

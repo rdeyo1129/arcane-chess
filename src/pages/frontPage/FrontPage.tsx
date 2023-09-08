@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // import { Link, withRouter } from "react-router-dom";
 // import { connect } from "react-redux";
 
@@ -6,13 +6,30 @@ import React from "react";
 
 // import Hero from "../components/Hero";
 
-import Button from "../../components/Button/Button";
-import Toggle from "../../components/Toggle/Toggle";
+// import arcaneChess from "./././validation-engine/arcaneChess";
+
+// import engine
+import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
+
+// import arcaneChess correctly
+// import arcaneChess from "@shared/arcaneChess/arcaneChess";
+
+import Button from '../../components/Button/Button';
+import Toggle from '../../components/Toggle/Toggle';
+
+// interface FrontPageProps {
+//   // whiteFaction: Faction;
+//   // blackFaction: Faction;
+//   // arcaneChess: () => void;
+// }
 
 class UnwrappedFrontPage extends React.Component {
-  constructor(props: any) {
+  arcaneChess;
+
+  constructor(props: object) {
     super(props);
     this.state = {};
+    this.arcaneChess = arcaneChess();
   }
 
   render() {
@@ -25,7 +42,7 @@ class UnwrappedFrontPage extends React.Component {
           influence the outcome of the game.
           <Button
             text="PLAY"
-            onClick={() => console.log("clicked")}
+            onClick={() => console.log('clicked')}
             className="primary"
             color="B"
             disabled={false}
@@ -33,7 +50,7 @@ class UnwrappedFrontPage extends React.Component {
           />
           <Button
             text="PLAY"
-            onClick={() => console.log("clicked")}
+            onClick={() => console.log('clicked')}
             className="primary"
             color="Y"
             disabled={true}
@@ -41,7 +58,7 @@ class UnwrappedFrontPage extends React.Component {
           />
           <Button
             text="PLAY"
-            onClick={() => console.log("clicked")}
+            onClick={() => console.log('clicked')}
             className="secondary"
             color="Y"
             disabled={false}
@@ -49,7 +66,7 @@ class UnwrappedFrontPage extends React.Component {
           />
           <Button
             text="PLAY"
-            onClick={() => console.log("clicked")}
+            onClick={() => console.log('clicked')}
             className="secondary"
             color="Y"
             disabled={true}
@@ -57,7 +74,7 @@ class UnwrappedFrontPage extends React.Component {
           />
           <Button
             text="PLAY"
-            onClick={() => console.log("clicked")}
+            onClick={() => console.log('clicked')}
             className="tertiary"
             color="Y"
             disabled={false}
@@ -65,7 +82,7 @@ class UnwrappedFrontPage extends React.Component {
           />
           <Button
             text="PLAY"
-            onClick={() => console.log("clicked")}
+            onClick={() => console.log('clicked')}
             className="tertiary"
             color="Y"
             disabled={true}

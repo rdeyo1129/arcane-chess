@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 
 interface ButtonProps {
   className: string;
@@ -11,7 +11,7 @@ interface ButtonProps {
   strong?: boolean;
 }
 
-const Button: FC<ButtonProps> = ({
+const Button: React.FC<ButtonProps> = ({
   text = "hello test",
   width = 120,
   height = 40,

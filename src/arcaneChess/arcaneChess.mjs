@@ -54,29 +54,38 @@
 // understanding plys, half plys, history and messages in between them
 
 // import { START_FEN } from "./defs.mjs";
-import { InitFilesRanksBrd, InitHashKeys, InitSq120To64 } from './main';
+import {
+  InitFilesRanksBrd,
+  InitHashKeys,
+  InitSq120To64,
+  InitBoardVars,
+} from './main';
 import { PrintMoveList } from './io';
 import { GenerateMoves, generatePowers } from './movegen';
 import {
+  GameBoard,
   randomize,
   ParseFen,
   CheckBoard,
   PrintBoard,
   PrintPieceLists,
 } from './board';
+import { MakeMove, TakeMove } from './makemove';
 
 export default function arcaneChess(
   // todo react input
   whiteConfig = {},
   blackConfig = {},
-  fen = 'rnbvkbnr/pppppppp/8/8/r2R3K/p7/PPPPPPPP/RNBV1BNR w KQkq - 0 1'
+  fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+  // rnbvkbnr/pppppppp/8/8/r2R4/p7/PPPPPPPP/RNBVKBNR w KQkq - 0 1'
   // handicaps
 ) {
   InitFilesRanksBrd();
   InitHashKeys();
   InitSq120To64();
+  InitBoardVars();
 
-  generatePowers();
+  // generatePowers();
 
   // randomize before parse fen
   randomize();
@@ -86,8 +95,16 @@ export default function arcaneChess(
   PrintBoard();
 
   GenerateMoves();
-  PrintMoveList();
-  PrintPieceLists();
+  // PrintMoveList();
+  // PrintPieceLists();
+  CheckBoard();
+
+  MakeMove(GameBoard.moveList[0]);
+  PrintBoard();
+  CheckBoard();
+
+  TakeMove();
+  PrintBoard();
   CheckBoard();
 
   const activateDyad = (type) => {

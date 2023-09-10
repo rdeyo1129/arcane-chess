@@ -639,11 +639,11 @@ export const LoopDyadPrime = [
 ];
 export const LoopIndexPrime = [0, 11];
 
-export const PieceKeys = new Array(24 * 120);
+export const PieceKeys = new Array(25 * 120);
 export const CastleKeys = new Array(16);
 
 export let SideKey;
-export function udpateSideKey(newKey) {
+export function updateSideKey(newKey) {
   SideKey = newKey;
 }
 
@@ -651,11 +651,11 @@ export const Sq120ToSq64 = new Array(BRD_SQ_NUM);
 export const Sq64ToSq120 = new Array(64);
 
 export function RAND_32() {
-  return (
+  return BigInt(
     (Math.floor(Math.random() * 255 + 1) << 23) |
-    (Math.floor(Math.random() * 255 + 1) << 16) |
-    (Math.floor(Math.random() * 255 + 1) << 8) |
-    Math.floor(Math.random() * 255 + 1)
+      (Math.floor(Math.random() * 255 + 1) << 16) |
+      (Math.floor(Math.random() * 255 + 1) << 8) |
+      Math.floor(Math.random() * 255 + 1)
   );
 }
 
@@ -666,3 +666,20 @@ export function SQ64(sq120) {
 export function SQ120(sq64) {
   return Sq64ToSq120[sq64];
 }
+
+export function PCEINDEX(pce, pceNum) {
+  return pce * 16 + pceNum;
+}
+
+export const Kings = [PIECES.wK, PIECES.bK];
+export const CastlePerm = [
+  15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,
+  15, 15, 13, 15, 15, 15, 12, 15, 15, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15,
+  15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,
+  15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,
+  15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 7, 15, 15, 15, 3,
+  15, 15, 11, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,
+  15, 15, 15, 15, 15,
+];
+
+export const NOMOVE = 0;

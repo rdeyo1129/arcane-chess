@@ -39,16 +39,10 @@ import {
   SideChar,
   SQ120,
   updateStartFen,
+  PCEINDEX,
 } from './defs';
 import { PrSq } from './io';
-import { whiteArcane, blackArcane } from './tactoriusDefs';
-// import {
-
-// }
-
-export function PCEINDEX(pce, pceNum) {
-  return pce * 16 + pceNum;
-}
+import { whiteArcane, blackArcane } from './arcaneDefs';
 
 export function FROMSQ(m) {
   return m & 0x7fn;
@@ -124,32 +118,30 @@ export const MFLAGCAP = 0x7c000n;
 export const MFLAGPROM = 0x3f00000n;
 export const MFLAGSUMN = 0x3fffd00000000000n;
 
-export const NOMOVE = 0;
-
 export function SQOFFBOARD(sq) {
   if (FilesBrd[sq] == SQUARES.OFFBOARD) return BOOL.TRUE;
   return BOOL.FALSE;
 }
 
 export function HASH_PCE(pce, sq) {
-  GameBoard.posKey ^= PieceKeys[pce * 120 + sq];
+  GameBoard.posKey ^= BigInt(PieceKeys[pce * 120n + sq]);
 }
 export function HASH_CA() {
-  GameBoard.posKey ^= CastleKeys[GameBoard.castlePerm];
+  GameBoard.posKey ^= BigInt(CastleKeys[GameBoard.castlePerm]);
 }
 export function HASH_SIDE() {
-  GameBoard.posKey ^= SideKey;
+  GameBoard.posKey ^= BigInt(SideKey);
 }
 export function HASH_EP() {
-  GameBoard.posKey ^= PieceKeys[GameBoard.enPas];
+  GameBoard.posKey ^= BigInt(PieceKeys[GameBoard.enPas]);
 }
 
-var GameController = {};
+export const GameController = {};
 GameController.EngineSide = COLOURS.BOTH;
 GameController.PlayerSide = COLOURS.BOTH;
 GameController.GameOver = BOOL.FALSE;
 
-var UserMove = {};
+export const UserMove = {};
 UserMove.from = SQUARES.NO_SQ;
 UserMove.to = SQUARES.NO_SQ;
 
@@ -160,12 +152,14 @@ GameBoard.side = COLOURS.WHITE;
 GameBoard.fiftyMove = 0;
 GameBoard.hisPly = 0;
 GameBoard.history = [];
+GameBoard.PvTable = [];
 GameBoard.ply = 0;
-GameBoard.enPas = 0;
-GameBoard.castlePerm = 0;
+// Gameboard.SubPly = 0;
+GameBoard.enPas = 0n;
+GameBoard.castlePerm = 0n;
 GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
 GameBoard.pceNum = new Array(24); // indexed by Pce
-GameBoard.pList = new Array(24 * 16);
+GameBoard.pList = new Array(25 * 10);
 GameBoard.whiteArcane = 0n;
 GameBoard.blackArcane = 0n;
 
@@ -179,7 +173,7 @@ GameBoard.royaltyU = [];
 GameBoard.royaltyV = [];
 GameBoard.royaltyE = [];
 
-GameBoard.posKey = 0;
+GameBoard.posKey = 0n;
 GameBoard.moveList = new Array(MAXDEPTH * MAXPOSITIONMOVES);
 GameBoard.moveScores = new Array(MAXDEPTH * MAXPOSITIONMOVES);
 GameBoard.moveListStart = new Array(MAXDEPTH);
@@ -187,11 +181,11 @@ GameBoard.moveListStart = new Array(MAXDEPTH);
 GameBoard.dyad = 0n;
 
 export function CheckBoard() {
-  var t_pceNum = [
+  let t_pceNum = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ];
-  var t_material = [0, 0];
-  var sq64, t_piece, t_pce_num, sq120, colour, pcount;
+  let t_material = [0, 0];
+  let sq64, t_piece, t_pce_num, sq120, colour, pcount;
 
   for (t_piece = PIECES.wP; t_piece <= PIECES.bV; t_piece++) {
     for (t_pce_num = 0; t_pce_num < GameBoard.pceNum[t_piece]; t_pce_num++) {
@@ -211,7 +205,7 @@ export function CheckBoard() {
   }
 
   for (t_piece = PIECES.wP; t_piece <= PIECES.bV; t_piece++) {
-    if (t_pceNum[t_piece] != GameBoard.pceNum[t_piece]) {
+    if (t_pceNum[t_piece] !== GameBoard.pceNum[t_piece]) {
       console.log('Error t_pceNum');
       return BOOL.FALSE;
     }
@@ -262,16 +256,16 @@ export function PrintBoard() {
   console.log('enPas:' + GameBoard.enPas);
   line = '';
 
-  if (GameBoard.castlePerm & CASTLEBIT.WKCA) line += 'K';
-  if (GameBoard.castlePerm & CASTLEBIT.WQCA) line += 'Q';
-  if (GameBoard.castlePerm & CASTLEBIT.BKCA) line += 'k';
-  if (GameBoard.castlePerm & CASTLEBIT.BQCA) line += 'q';
+  if (GameBoard.castlePerm & BigInt(CASTLEBIT.WKCA)) line += 'K';
+  if (GameBoard.castlePerm & BigInt(CASTLEBIT.WQCA)) line += 'Q';
+  if (GameBoard.castlePerm & BigInt(CASTLEBIT.BKCA)) line += 'k';
+  if (GameBoard.castlePerm & BigInt(CASTLEBIT.BQCA)) line += 'q';
   console.log('castle:' + line);
   console.log('key:' + GameBoard.posKey.toString(16));
 }
 
 export function GeneratePosKey() {
-  let finalKey = 0;
+  let finalKey = 0n;
   let piece = PIECES.EMPTY;
 
   for (let sq = 0; sq < BRD_SQ_NUM; sq++) {
@@ -281,7 +275,7 @@ export function GeneratePosKey() {
     }
   }
 
-  if (GameBoard.side == COLOURS.WHITE) {
+  if (GameBoard.side === COLOURS.WHITE) {
     finalKey ^= SideKey;
   }
 
@@ -351,12 +345,12 @@ export function ResetBoard() {
   }
 
   GameBoard.side = COLOURS.BOTH;
-  GameBoard.enPas = SQUARES.NO_SQ;
+  GameBoard.enPas = BigInt(SQUARES.NO_SQ);
   GameBoard.fiftyMove = 0;
   GameBoard.ply = 0;
   GameBoard.hisPly = 0;
-  GameBoard.castlePerm = 0;
-  GameBoard.posKey = 0;
+  GameBoard.castlePerm = 0n;
+  GameBoard.posKey = 0n;
   GameBoard.moveListStart[GameBoard.ply] = 0;
   // todo reset powers to given config
 }
@@ -370,8 +364,8 @@ export function randomize() {
       return Math.floor(Math.random() * ++num);
     }
     function emptySquares() {
-      var arr = [];
-      for (var i = 0; i < 8; i++) if (rank[i] == undefined) arr.push(i);
+      const arr = [];
+      for (let i = 0; i < 8; i++) if (rank[i] == undefined) arr.push(i);
       return arr;
     }
 
@@ -384,7 +378,7 @@ export function randomize() {
           queenTypesMap[blackArcane().modsQTY].toLowerCase();
         rank[emptySquares()[d(4)]] = 'n';
         rank[emptySquares()[d(3)]] = 'n';
-        for (var x = 1; x <= 3; x++) {
+        for (let x = 1; x <= 3; x++) {
           rank[emptySquares()[0]] = x === 2 ? 'k' : 'r';
         }
         return rank.join('');
@@ -544,16 +538,16 @@ export function ParseFen(fen) {
     }
     switch (fen[fenCnt]) {
       case 'K':
-        GameBoard.castlePerm |= CASTLEBIT.WKCA;
+        GameBoard.castlePerm |= BigInt(CASTLEBIT.WKCA);
         break;
       case 'Q':
-        GameBoard.castlePerm |= CASTLEBIT.WQCA;
+        GameBoard.castlePerm |= BigInt(CASTLEBIT.WQCA);
         break;
       case 'k':
-        GameBoard.castlePerm |= CASTLEBIT.BKCA;
+        GameBoard.castlePerm |= BigInt(CASTLEBIT.BKCA);
         break;
       case 'q':
-        GameBoard.castlePerm |= CASTLEBIT.BQCA;
+        GameBoard.castlePerm |= BigInt(CASTLEBIT.BQCA);
         break;
       default:
         break;

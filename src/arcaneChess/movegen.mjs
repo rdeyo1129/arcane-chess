@@ -9,9 +9,8 @@ import {
   MFLAGCON,
   MFLAGPS,
   MFLAGEP,
-  PCEINDEX,
 } from './board';
-import { whiteArcane, blackArcane, POWERBIT } from './tactoriusDefs';
+import { whiteArcane, blackArcane, POWERBIT } from './arcaneDefs';
 import {
   COLOURS,
   BOOL,
@@ -36,6 +35,7 @@ import {
   RkDir,
   BiDir,
   KiDir,
+  PCEINDEX,
 } from './defs';
 
 export function MOVE(from, to, captured, promoted, summoned, flag) {
@@ -466,7 +466,7 @@ export function GenerateMoves() {
     }
 
     // WARNING, this will only work in a vanilla setup, no extra rooks
-    if (GameBoard.castlePerm & CASTLEBIT.WKCA && !areHerringsAttacked) {
+    if (GameBoard.castlePerm & BigInt(CASTLEBIT.WKCA) && !areHerringsAttacked) {
       if (blackArcane().modsRAN) {
         const getKingPos = _.indexOf(GameBoard.pieces, 6, 22);
         const getRookPos = _.lastIndexOf(GameBoard.pieces, 4);
@@ -542,7 +542,7 @@ export function GenerateMoves() {
       }
     }
 
-    if (GameBoard.castlePerm & CASTLEBIT.WQCA && !areHerringsAttacked) {
+    if (GameBoard.castlePerm & BigInt(CASTLEBIT.WQCA) && !areHerringsAttacked) {
       if (blackArcane().modsRAN) {
         const getKingPos = _.indexOf(GameBoard.pieces, 6, 22);
         const getRookPos = _.indexOf(GameBoard.pieces, 4, 21);
@@ -774,7 +774,7 @@ export function GenerateMoves() {
       }
     }
 
-    if (GameBoard.castlePerm & CASTLEBIT.BKCA && !areHerringsAttacked) {
+    if (GameBoard.castlePerm & BigInt(CASTLEBIT.BKCA) && !areHerringsAttacked) {
       if (whiteArcane().modsRAN) {
         const getKingPos = _.indexOf(GameBoard.pieces, 12, 92);
         const getRookPos = _.lastIndexOf(GameBoard.pieces, 10);
@@ -850,7 +850,7 @@ export function GenerateMoves() {
       }
     }
 
-    if (GameBoard.castlePerm & CASTLEBIT.BQCA && !areHerringsAttacked) {
+    if (GameBoard.castlePerm & BigInt(CASTLEBIT.BQCA) && !areHerringsAttacked) {
       if (whiteArcane().modsRAN) {
         const getKingPos = _.indexOf(GameBoard.pieces, 12, 92);
         const getRookPos = _.indexOf(GameBoard.pieces, 10, 91);
@@ -980,16 +980,16 @@ export function GenerateMoves() {
         // KING WITH CASTLING RIGHTS NO ROYALTY
         if (
           GameBoard.side === COLOURS.WHITE &&
-          GameBoard.castlePerm & CASTLEBIT.WKCA &&
-          GameBoard.castlePerm & CASTLEBIT.WQCA &&
+          GameBoard.castlePerm & BigInt(CASTLEBIT.WKCA) &&
+          GameBoard.castlePerm & BigInt(CASTLEBIT.WQCA) &&
           pce === PIECES.wK
         ) {
           continue;
         }
         if (
           GameBoard.side === COLOURS.BLACK &&
-          GameBoard.castlePerm & CASTLEBIT.BKCA &&
-          GameBoard.castlePerm & CASTLEBIT.BQCA &&
+          GameBoard.castlePerm & BigInt(CASTLEBIT.BKCA) &&
+          GameBoard.castlePerm & BigInt(CASTLEBIT.BQCA) &&
           pce === PIECES.bK
         ) {
           continue;
@@ -1411,14 +1411,14 @@ export function GenerateMoves() {
                 PieceCol[GameBoard.pieces[t_sq]] === GameBoard.side &&
                 !PieceKing[GameBoard.pieces[t_sq]]
               ) {
-                console.log('consume?');
+                // console.log('consume?');
                 if (
                   GameBoard.side === COLOURS.WHITE &&
                   GameBoard.whiteArcane & (8n << 32n) &&
                   !(
                     pce === PIECES.wK &&
-                    GameBoard.castlePerm & CASTLEBIT.WKCA &&
-                    GameBoard.castlePerm & CASTLEBIT.WQCA
+                    GameBoard.castlePerm & BigInt(CASTLEBIT.WKCA) &&
+                    GameBoard.castlePerm & BigInt(CASTLEBIT.WQCA)
                   )
                 ) {
                   console.log('test');
@@ -1438,8 +1438,8 @@ export function GenerateMoves() {
                   GameBoard.blackArcane & (8n << 32n) &&
                   !(
                     pce === PIECES.bK &&
-                    GameBoard.castlePerm & CASTLEBIT.BKCA &&
-                    GameBoard.castlePerm & CASTLEBIT.BQCA
+                    GameBoard.castlePerm & BigInt(CASTLEBIT.BKCA) &&
+                    GameBoard.castlePerm & BigInt(CASTLEBIT.BQCA)
                   )
                 ) {
                   AddCaptureMove(

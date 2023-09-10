@@ -55,8 +55,6 @@ export function PrintMoveList() {
   var num = 1;
   console.log('MoveList:');
 
-  console.log(GameBoard.moveList);
-
   for (
     index = GameBoard.moveListStart[GameBoard.ply];
     index < GameBoard.moveListStart[GameBoard.ply + 1];
@@ -64,7 +62,7 @@ export function PrintMoveList() {
   ) {
     move = GameBoard.moveList[index];
     console.log(
-      'IMove:' +
+      'Move:' +
         num +
         ':(' +
         index +

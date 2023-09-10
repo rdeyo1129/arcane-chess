@@ -8,13 +8,17 @@ import {
   BRD_SQ_NUM,
   PieceKeys,
   SideKey,
-  udpateSideKey,
+  updateSideKey,
   CastleKeys,
   RANKS,
   FILES,
   Sq120ToSq64,
   Sq64ToSq120,
+  MAXGAMEMOVES,
+  NOMOVE,
+  PVENTRIES,
 } from './defs';
+import { GameBoard } from './board';
 
 export function InitFilesRanksBrd() {
   for (let index = 0; index < BRD_SQ_NUM; index++) {
@@ -36,7 +40,7 @@ export function InitHashKeys() {
     PieceKeys[index] = RAND_32();
   }
 
-  udpateSideKey(RAND_32());
+  updateSideKey(RAND_32());
 
   for (let index = 0; index < 16; index++) {
     CastleKeys[index] = RAND_32();
@@ -66,11 +70,23 @@ export function InitSq120To64() {
   }
 }
 
-// MAIN.mjs
-// ParseFen(START_FEN);
-// PrintBoard();
+export function InitBoardVars() {
+  var index = 0;
+  for (index = 0; index < MAXGAMEMOVES; ++index) {
+    GameBoard.history.push({
+      move: NOMOVE,
+      castlePerm: 0,
+      enPas: 0,
+      fiftyMove: 0,
+      posKey: 0n,
+      // arcanes?
+    });
+  }
 
-// GenerateMoves();
-// PrintMoveList();
-// PrintPieceLists();
-// CheckBoard();
+  for (index = 0; index < PVENTRIES; ++index) {
+    GameBoard.PvTable.push({
+      move: NOMOVE,
+      posKey: 0n,
+    });
+  }
+}

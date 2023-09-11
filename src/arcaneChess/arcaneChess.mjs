@@ -71,6 +71,7 @@ import {
   PrintPieceLists,
 } from './board';
 import { MakeMove, TakeMove } from './makemove';
+import { PerftTest } from './perft';
 
 export default function arcaneChess(
   // todo react input
@@ -90,22 +91,24 @@ export default function arcaneChess(
   // randomize before parse fen
   randomize();
 
-  // MAIN.mjs
+  GenerateMoves();
+
+  // gui?
   ParseFen(fen);
   PrintBoard();
+  PerftTest(5);
 
-  GenerateMoves();
   // PrintMoveList();
   // PrintPieceLists();
-  CheckBoard();
+  // CheckBoard();
 
-  MakeMove(GameBoard.moveList[0]);
-  PrintBoard();
-  CheckBoard();
+  // MakeMove(GameBoard.moveList[0]);
+  // PrintBoard();
+  // CheckBoard();
 
-  TakeMove();
-  PrintBoard();
-  CheckBoard();
+  // TakeMove();
+  // PrintBoard();
+  // CheckBoard();
 
   const activateDyad = (type) => {
     console.log(type);

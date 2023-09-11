@@ -102,7 +102,6 @@ export function MakeMove(move) {
   const getBlackKingRookPos = _.lastIndexOf(GameBoard.pieces, 10);
   const getBlackQueenRookPos = _.indexOf(GameBoard.pieces, 10, 92);
 
-  console.log(move.toString(2), MFLAGEP.toString(2), move & MFLAGEP);
   if ((move & MFLAGEP) !== 0n) {
     if (side == COLOURS.WHITE) {
       ClearPiece(to - 10n);
@@ -240,9 +239,9 @@ export function TakeMove() {
 
   if ((MFLAGEP & move) !== 0n) {
     if (GameBoard.side == COLOURS.WHITE) {
-      AddPiece(to - 10, PIECES.bP);
+      AddPiece(to - 10n, PIECES.bP);
     } else {
-      AddPiece(to + 10, PIECES.wP);
+      AddPiece(to + 10n, PIECES.wP);
     }
   } else if ((MFLAGCA & move) !== 0n) {
     switch (to) {
@@ -270,11 +269,6 @@ export function TakeMove() {
     AddPiece(to, captured);
   }
 
-  console.log(
-    PROMOTED(move),
-    PIECES.EMPTY,
-    PROMOTED(move) !== BigInt(PIECES.EMPTY)
-  );
   if (PROMOTED(move) !== BigInt(PIECES.EMPTY)) {
     ClearPiece(from);
     AddPiece(

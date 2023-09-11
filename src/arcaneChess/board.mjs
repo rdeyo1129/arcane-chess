@@ -169,7 +169,7 @@ GameBoard.blackArcane = 0n;
 // ^ if any other royalties _.include square num, then remove them from that royalty array to override
 GameBoard.royaltyQ = [];
 GameBoard.royaltyZ = [];
-GameBoard.royaltyU = [];
+GameBoard.royaltyU = [44];
 GameBoard.royaltyV = [];
 GameBoard.royaltyE = [];
 
@@ -185,7 +185,7 @@ export function CheckBoard() {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ];
   let t_material = [0, 0];
-  let sq64, t_piece, t_pce_num, sq120, colour, pcount;
+  let sq64, t_piece, t_pce_num, sq120;
 
   for (t_piece = PIECES.wP; t_piece <= PIECES.bV; t_piece++) {
     for (t_pce_num = 0; t_pce_num < GameBoard.pceNum[t_piece]; t_pce_num++) {
@@ -309,7 +309,7 @@ export function UpdateListsMaterial() {
   let piece, sq, index, colour;
 
   for (index = 0; index < 24 * 120; index++) {
-    GameBoard.pList[index] = PIECES.EMPTY;
+    GameBoard.pList[index] = BigInt(PIECES.EMPTY);
   }
 
   for (index = 0; index < 2; index++) {
@@ -328,7 +328,7 @@ export function UpdateListsMaterial() {
 
       GameBoard.material[colour] += PieceVal[piece];
 
-      GameBoard.pList[PCEINDEX(piece, GameBoard.pceNum[piece])] = sq;
+      GameBoard.pList[PCEINDEX(piece, GameBoard.pceNum[piece])] = BigInt(sq);
       GameBoard.pceNum[piece]++;
     }
   }
@@ -597,6 +597,8 @@ export function SqAttacked(sq, side) {
   let t_sq;
   let index;
 
+  sq = BigInt(sq);
+
   let overridePresent = (t_sq) =>
     _.includes(GameBoard.royaltyQ, t_sq) ||
     _.includes(GameBoard.royaltyZ, t_sq) ||
@@ -608,13 +610,13 @@ export function SqAttacked(sq, side) {
 
   // note UNICORN ZEALOT
   for (index = 0; index < 8; index++) {
-    pce = GameBoard.pieces[sq + KnDir[index]];
+    pce = GameBoard.pieces[sq + BigInt(KnDir[index])];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
-      (_.includes(GameBoard.royaltyZ, sq + KnDir[index]) ||
-        _.includes(GameBoard.royaltyU, sq + KnDir[index])) &&
-      !_.includes(GameBoard.royaltyE, sq + KnDir[index])
+      (_.includes(GameBoard.royaltyZ, sq + BigInt(KnDir[index])) ||
+        _.includes(GameBoard.royaltyU, sq + BigInt(KnDir[index]))) &&
+      !_.includes(GameBoard.royaltyE, sq + BigInt(KnDir[index]))
     ) {
       return BOOL.TRUE;
     }
@@ -622,7 +624,7 @@ export function SqAttacked(sq, side) {
 
   // note QUEEN ZEALOT
   for (index = 0; index < 4; index++) {
-    dir = RkDir[index];
+    dir = BigInt(RkDir[index]);
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
 
@@ -645,7 +647,7 @@ export function SqAttacked(sq, side) {
 
   // note QUEEN UNICORN
   for (index = 0; index < 4; index++) {
-    dir = BiDir[index];
+    dir = BigInt(BiDir[index]);
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
 
@@ -668,12 +670,12 @@ export function SqAttacked(sq, side) {
 
   // vanguard
   for (index = 0; index < 24; index++) {
-    pce = GameBoard.pieces[sq + VaDir[index]];
+    pce = GameBoard.pieces[sq + BigInt(VaDir[index])];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
-      _.includes(GameBoard.royaltyV, sq + VaDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + VaDir[index])
+      _.includes(GameBoard.royaltyV, sq + BigInt(VaDir[index])) &&
+      !_.includes(GameBoard.royaltyE, sq + BigInt(VaDir[index]))
     ) {
       return BOOL.TRUE;
     }
@@ -683,13 +685,13 @@ export function SqAttacked(sq, side) {
 
   // knight unicorn zealot
   for (index = 0; index < 8; index++) {
-    pce = GameBoard.pieces[sq + KnDir[index]];
+    pce = GameBoard.pieces[sq + BigInt(KnDir[index])];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceKnight[pce] === BOOL.TRUE &&
-      !overridePresent(sq + KnDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + VaDir[index])
+      !overridePresent(sq + BigInt(KnDir[index])) &&
+      !_.includes(GameBoard.royaltyE, sq + BigInt(VaDir[index]))
     ) {
       return BOOL.TRUE;
     }
@@ -697,7 +699,7 @@ export function SqAttacked(sq, side) {
 
   // rook queen zealot
   for (index = 0; index < 4; index++) {
-    dir = RkDir[index];
+    dir = BigInt(RkDir[index]);
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
 
@@ -720,7 +722,7 @@ export function SqAttacked(sq, side) {
 
   // bishop queen unicorn
   for (index = 0; index < 4; index++) {
-    dir = BiDir[index];
+    dir = BigInt(BiDir[index]);
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
 
@@ -743,13 +745,13 @@ export function SqAttacked(sq, side) {
 
   // vanguard
   for (index = 0; index < 24; index++) {
-    pce = GameBoard.pieces[sq + VaDir[index]];
+    pce = GameBoard.pieces[sq + BigInt(VaDir[index])];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceVanguard[pce] === BOOL.TRUE &&
-      !overridePresent(sq + VaDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + VaDir[index])
+      !overridePresent(sq + BigInt(VaDir[index])) &&
+      !_.includes(GameBoard.royaltyE, sq + BigInt(VaDir[index]))
     ) {
       return BOOL.TRUE;
     }
@@ -757,13 +759,13 @@ export function SqAttacked(sq, side) {
 
   // king
   for (index = 0; index < 8; index++) {
-    pce = GameBoard.pieces[sq + KiDir[index]];
+    pce = GameBoard.pieces[sq + BigInt(KiDir[index])];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceKing[pce] === BOOL.TRUE &&
-      !overridePresent(sq + KiDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + KiDir[index])
+      !overridePresent(sq + BigInt(KiDir[index])) &&
+      !_.includes(GameBoard.royaltyE, sq + BigInt(KiDir[index]))
     ) {
       return BOOL.TRUE;
     }
@@ -772,37 +774,37 @@ export function SqAttacked(sq, side) {
   // pawn
   if (side == COLOURS.WHITE) {
     if (
-      (GameBoard.pieces[sq - 11] === PIECES.wP &&
-        !overridePresent(sq - 11) &&
-        !_.includes(GameBoard.royaltyE, sq - 11)) ||
-      (GameBoard.pieces[sq - 9] === PIECES.wP &&
-        !overridePresent(sq - 9) &&
-        !_.includes(GameBoard.royaltyE, sq - 9))
+      (GameBoard.pieces[sq - BigInt(11)] === PIECES.wP &&
+        !overridePresent(sq - BigInt(11)) &&
+        !_.includes(GameBoard.royaltyE, sq - BigInt(11))) ||
+      (GameBoard.pieces[sq - BigInt(9)] === PIECES.wP &&
+        !overridePresent(sq - BigInt(9)) &&
+        !_.includes(GameBoard.royaltyE, sq - BigInt(9)))
     ) {
       return BOOL.TRUE;
     }
   } else {
     if (
-      (GameBoard.pieces[sq + 11] === PIECES.bP &&
-        !overridePresent(sq + 11) &&
-        !_.includes(GameBoard.royaltyE, sq + 11)) ||
-      (GameBoard.pieces[sq + 9] === PIECES.bP &&
-        !overridePresent(sq + 9) &&
-        !_.includes(GameBoard.royaltyE, sq + 9))
+      (GameBoard.pieces[sq + BigInt(11)] === PIECES.bP &&
+        !overridePresent(sq + BigInt(11)) &&
+        !_.includes(GameBoard.royaltyE, sq + BigInt(11))) ||
+      (GameBoard.pieces[sq + BigInt(9)] === PIECES.bP &&
+        !overridePresent(sq + BigInt(9)) &&
+        !_.includes(GameBoard.royaltyE, sq + BigInt(9)))
     ) {
       return BOOL.TRUE;
     }
   }
 
   // spectre
-  for (index = 0; index < 8; index++) {
-    pce = GameBoard.pieces[sq + SpDir[index]];
+  for (index = 0; index < 6; index++) {
+    pce = GameBoard.pieces[sq + BigInt(SpDir[index])];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceSpectre[pce] === BOOL.TRUE &&
-      !overridePresent(sq + SpDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + SpDir[index])
+      !overridePresent(sq + BigInt(SpDir[index])) &&
+      !_.includes(GameBoard.royaltyE, sq + BigInt(SpDir[index]))
     ) {
       return BOOL.TRUE;
     }
@@ -810,13 +812,13 @@ export function SqAttacked(sq, side) {
 
   // herring
   for (index = 0; index < 4; index++) {
-    pce = GameBoard.pieces[sq + HrDir[index]];
+    pce = GameBoard.pieces[sq + BigInt(HrDir[index])];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceHerring[pce] === BOOL.TRUE &&
-      !overridePresent(sq + HrDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + HrDir[index])
+      !overridePresent(sq + BigInt(HrDir[index])) &&
+      !_.includes(GameBoard.royaltyE, sq + BigInt(HrDir[index]))
     ) {
       return BOOL.TRUE;
     }

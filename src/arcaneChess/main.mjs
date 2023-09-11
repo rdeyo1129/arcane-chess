@@ -7,7 +7,6 @@ import {
   RAND_32,
   BRD_SQ_NUM,
   PieceKeys,
-  SideKey,
   updateSideKey,
   CastleKeys,
   RANKS,
@@ -45,7 +44,6 @@ export function InitHashKeys() {
   for (let index = 0; index < 16; index++) {
     CastleKeys[index] = RAND_32();
   }
-  console.log(SideKey);
 }
 
 export function InitSq120To64() {

@@ -325,7 +325,7 @@ export function GenerateMoves() {
     pceType = PIECES.wP;
 
     for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; pceNum++) {
-      sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
+      sq = BigInt(GameBoard.pList[PCEINDEX(pceType, pceNum)]);
 
       if (
         _.includes(GameBoard.royaltyQ, sq) ||
@@ -343,20 +343,20 @@ export function GenerateMoves() {
         GameBoard.dyad === 2n
       ) {
         // note WHITE PAWN QUIET MOVES
-        if (GameBoard.pieces[sq + 10] === PIECES.EMPTY) {
+        if (GameBoard.pieces[sq + 10n] === PIECES.EMPTY) {
           if (areHerringsAttacked) {
             continue;
           }
 
-          AddWhitePawnQuietMove(sq, sq + 10, GameBoard.dyad << 27n);
+          AddWhitePawnQuietMove(sq, sq + 10n, GameBoard.dyad << 27n);
           if (
             RanksBrd[sq] === RANKS.RANK_2 &&
-            GameBoard.pieces[sq + 20] === PIECES.EMPTY
+            GameBoard.pieces[sq + 20n] === PIECES.EMPTY
           ) {
             AddQuietMove(
               MOVE(
                 sq,
-                sq + 20,
+                sq + 20n,
                 PIECES.EMPTY,
                 PIECES.EMPTY,
                 PIECES.EMPTY,
@@ -372,24 +372,24 @@ export function GenerateMoves() {
             continue;
           }
 
-          if (GameBoard.pieces[sq - 1] === PIECES.EMPTY) {
+          if (GameBoard.pieces[sq - 1n] === PIECES.EMPTY) {
             AddWhitePawnQuietMove(
               sq,
-              sq - 1,
+              sq - 1n,
               (1n << 39n) | (GameBoard.dyad << 27n)
             );
           }
-          if (GameBoard.pieces[sq + 1] === PIECES.EMPTY) {
+          if (GameBoard.pieces[sq + 1n] === PIECES.EMPTY) {
             AddWhitePawnQuietMove(
               sq,
-              sq + 1,
+              sq + 1n,
               (1n << 39n) | (GameBoard.dyad << 27n)
             );
           }
-          if (GameBoard.pieces[sq - 10] === PIECES.EMPTY) {
+          if (GameBoard.pieces[sq - 10n] === PIECES.EMPTY) {
             AddWhitePawnQuietMove(
               sq,
-              sq - 10,
+              sq - 10n,
               (1n << 39n) | (GameBoard.dyad << 27n)
             );
           }
@@ -402,44 +402,49 @@ export function GenerateMoves() {
         // if square is not off board and if square then continue to next condition:
         // if square does not include a herring, and there is an attacked herring, then contiu=nue to next from square iteration
         // if piece or pawn is pinned and is only , then how to determine
-        if (SQOFFBOARD(sq + 9) === BOOL.FALSE) {
-          if (areHerringsAttacked && !_.includes(herrings, sq + 9)) {
+        if (SQOFFBOARD(sq + 9n) === BOOL.FALSE) {
+          if (areHerringsAttacked && !_.includes(herrings, sq + 9n)) {
             continue;
           }
 
-          if (PieceCol[GameBoard.pieces[sq + 9]] === COLOURS.BLACK) {
-            AddWhitePawnCaptureMove(sq, sq + 9, GameBoard.pieces[sq + 9]),
+          if (PieceCol[GameBoard.pieces[sq + 9n]] === BigInt(COLOURS.BLACK)) {
+            AddWhitePawnCaptureMove(sq, sq + 9n, GameBoard.pieces[sq + 9]),
               false;
           }
           if (
-            PieceCol[GameBoard.pieces[sq + 9]] === COLOURS.WHITE &&
+            PieceCol[GameBoard.pieces[sq + 9n]] === COLOURS.WHITE &&
             // consume
             GameBoard.whiteArcane & (8n << 32n) &&
-            !PieceKing[GameBoard.pieces[sq + 9]]
-          ) {
-            AddWhitePawnCaptureMove(sq, sq + 9, GameBoard.pieces[sq + 9], true);
-          }
-        }
-
-        if (SQOFFBOARD(sq + 11) === BOOL.FALSE) {
-          if (areHerringsAttacked && !_.includes(herrings, sq + 11)) {
-            continue;
-          }
-
-          if (PieceCol[GameBoard.pieces[sq + 11]] === COLOURS.BLACK) {
-            AddWhitePawnCaptureMove(sq, sq + 11, GameBoard.pieces[sq + 11]),
-              false;
-          }
-          if (
-            PieceCol[GameBoard.pieces[sq + 11]] === COLOURS.WHITE &&
-            // consume
-            GameBoard.whiteArcane & (8n << 32n) &&
-            !PieceKing[GameBoard.pieces[sq + 11]]
+            !PieceKing[GameBoard.pieces[sq + 9n]]
           ) {
             AddWhitePawnCaptureMove(
               sq,
-              sq + 11,
-              GameBoard.pieces[sq + 11],
+              sq + 9n,
+              GameBoard.pieces[sq + 9n],
+              true
+            );
+          }
+        }
+
+        if (SQOFFBOARD(sq + 11n) === BOOL.FALSE) {
+          if (areHerringsAttacked && !_.includes(herrings, sq + 11n)) {
+            continue;
+          }
+
+          if (PieceCol[GameBoard.pieces[sq + 11n]] === COLOURS.BLACK) {
+            AddWhitePawnCaptureMove(sq, sq + 11n, GameBoard.pieces[sq + 11n]),
+              false;
+          }
+          if (
+            PieceCol[GameBoard.pieces[sq + 11n]] === COLOURS.WHITE &&
+            // consume
+            GameBoard.whiteArcane & (8n << 32n) &&
+            !PieceKing[GameBoard.pieces[sq + 11n]]
+          ) {
+            AddWhitePawnCaptureMove(
+              sq,
+              sq + 11n,
+              GameBoard.pieces[sq + 11n],
               true
             );
           }
@@ -449,16 +454,30 @@ export function GenerateMoves() {
           continue;
         }
 
-        if (GameBoard.enPas !== SQUARES.NO_SQ) {
-          if (sq + 9 === GameBoard.enPas) {
+        if (GameBoard.enPas !== BigInt(SQUARES.NO_SQ)) {
+          if (sq + 9n === GameBoard.enPas) {
             AddEnPassantMove(
-              MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+              MOVE(
+                sq,
+                sq + 9n,
+                PIECES.EMPTY,
+                PIECES.EMPTY,
+                PIECES.EMPTY,
+                MFLAGEP
+              )
             );
           }
 
-          if (sq + 11 === GameBoard.enPas) {
+          if (sq + 11n === GameBoard.enPas) {
             AddEnPassantMove(
-              MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+              MOVE(
+                sq,
+                sq + 11n,
+                PIECES.EMPTY,
+                PIECES.EMPTY,
+                PIECES.EMPTY,
+                MFLAGEP
+              )
             );
           }
         }
@@ -474,7 +493,7 @@ export function GenerateMoves() {
         for (let sq = GameBoard.pieces.indexOf(6); sq <= 27; sq++) {
           const getPiece = _.get(GameBoard.pieces, sq);
 
-          if (sq === 27 && getPiece === PIECES.wK) {
+          if (sq === 27n && getPiece === PIECES.wK) {
             AddQuietMove(
               MOVE(
                 SQUARES.G1,
@@ -498,13 +517,13 @@ export function GenerateMoves() {
 
           if (
             SqAttacked(sq, COLOURS.BLACK) &&
-            sq !== 27 &&
+            sq !== 27n &&
             !GameBoard.whiteArcane & (4n << 35n)
           ) {
             break;
           }
 
-          if (sq === 27) {
+          if (sq === 27n) {
             AddQuietMove(
               MOVE(
                 getKingPos,
@@ -566,10 +585,10 @@ export function GenerateMoves() {
             }
           }
         } else {
-          for (let sq = GameBoard.pieces.indexOf(6); sq >= 23; sq--) {
+          for (let sq = GameBoard.pieces.indexOf(6); sq >= 23n; sq--) {
             const getPiece = _.get(GameBoard.pieces, sq);
 
-            if (sq === 23 && getPiece === PIECES.wK) {
+            if (sq === 23n && getPiece === PIECES.wK) {
               AddQuietMove(
                 MOVE(
                   SQUARES.C1,
@@ -593,13 +612,13 @@ export function GenerateMoves() {
 
             if (
               SqAttacked(sq, COLOURS.BLACK) &&
-              sq !== 23 &&
+              sq !== 23n &&
               !GameBoard.whiteArcane & (4n << 35n)
             ) {
               break;
             }
 
-            if (sq === 23) {
+            if (sq === 23n) {
               AddQuietMove(
                 MOVE(
                   getKingPos,
@@ -665,16 +684,16 @@ export function GenerateMoves() {
           continue;
         }
 
-        if (GameBoard.pieces[sq - 10] === PIECES.EMPTY) {
-          AddBlackPawnQuietMove(sq, sq - 10, GameBoard.dyad << 27n);
+        if (GameBoard.pieces[sq - 10n] === PIECES.EMPTY) {
+          AddBlackPawnQuietMove(sq, sq - 10n, GameBoard.dyad << 27n);
           if (
             RanksBrd[sq] === RANKS.RANK_7 &&
-            GameBoard.pieces[sq - 20] === PIECES.EMPTY
+            GameBoard.pieces[sq - 20n] === PIECES.EMPTY
           ) {
             AddQuietMove(
               MOVE(
                 sq,
-                sq - 20,
+                sq - 20n,
                 PIECES.EMPTY,
                 PIECES.EMPTY,
                 PIECES.EMPTY,
@@ -686,24 +705,24 @@ export function GenerateMoves() {
 
         // note BLACK PAWN SHIFTS
         if (GameBoard.blackArcane & (1n << 12n)) {
-          if (GameBoard.pieces[sq - 1] === PIECES.EMPTY) {
+          if (GameBoard.pieces[sq - 1n] === PIECES.EMPTY) {
             AddBlackPawnQuietMove(
               sq,
-              sq - 1,
+              sq - 1n,
               (1n << 39n) | (GameBoard.dyad << 27n)
             );
           }
-          if (GameBoard.pieces[sq + 1] === PIECES.EMPTY) {
+          if (GameBoard.pieces[sq + 1n] === PIECES.EMPTY) {
             AddBlackPawnQuietMove(
               sq,
-              sq + 1,
+              sq + 1n,
               (1n << 39n) | (GameBoard.dyad << 27n)
             );
           }
-          if (GameBoard.pieces[sq + 10] === PIECES.EMPTY) {
+          if (GameBoard.pieces[sq + 10n] === PIECES.EMPTY) {
             AddBlackPawnQuietMove(
               sq,
-              sq + 10,
+              sq + 10n,
               (1n << 39n) | (GameBoard.dyad << 27n)
             );
           }
@@ -712,43 +731,48 @@ export function GenerateMoves() {
 
       // note BLACK PAWN CAPTURES
       if (GameBoard.dyad === 0n) {
-        if (SQOFFBOARD(sq - 9) === BOOL.FALSE) {
-          if (areHerringsAttacked && !_.includes(herrings, sq - 9)) {
+        if (SQOFFBOARD(sq - 9n) === BOOL.FALSE) {
+          if (areHerringsAttacked && !_.includes(herrings, sq - 9n)) {
             continue;
           }
 
-          if (PieceCol[GameBoard.pieces[sq - 9]] === COLOURS.WHITE) {
-            AddBlackPawnCaptureMove(sq, sq - 9, GameBoard.pieces[sq - 9]),
+          if (PieceCol[GameBoard.pieces[sq - 9n]] === COLOURS.WHITE) {
+            AddBlackPawnCaptureMove(sq, sq - 9n, GameBoard.pieces[sq - 9n]),
               false;
           }
           if (
-            PieceCol[GameBoard.pieces[sq - 9]] === COLOURS.BLACK &&
+            PieceCol[GameBoard.pieces[sq - 9n]] === COLOURS.BLACK &&
             GameBoard.blackArcane & (8n << 32n) &&
-            !PieceKing[GameBoard.pieces[sq - 9]]
-          ) {
-            AddBlackPawnCaptureMove(sq, sq - 9, GameBoard.pieces[sq - 9], true);
-          }
-        }
-
-        if (SQOFFBOARD(sq - 11) === BOOL.FALSE) {
-          if (areHerringsAttacked && !_.includes(herrings, sq - 11)) {
-            continue;
-          }
-
-          if (PieceCol[GameBoard.pieces[sq - 11]] === COLOURS.WHITE) {
-            AddBlackPawnCaptureMove(sq, sq - 11, GameBoard.pieces[sq - 11]),
-              false;
-          }
-
-          if (
-            PieceCol[GameBoard.pieces[sq - 11]] === COLOURS.BLACK &&
-            GameBoard.blackArcane & (8n << 32n) &&
-            !PieceKing[GameBoard.pieces[sq - 11]]
+            !PieceKing[GameBoard.pieces[sq - 9n]]
           ) {
             AddBlackPawnCaptureMove(
               sq,
-              sq - 11,
-              GameBoard.pieces[sq - 11],
+              sq - 9n,
+              GameBoard.pieces[sq - 9n],
+              true
+            );
+          }
+        }
+
+        if (SQOFFBOARD(sq - 11n) === BOOL.FALSE) {
+          if (areHerringsAttacked && !_.includes(herrings, sq - 11n)) {
+            continue;
+          }
+
+          if (PieceCol[GameBoard.pieces[sq - 11n]] === COLOURS.WHITE) {
+            AddBlackPawnCaptureMove(sq, sq - 11n, GameBoard.pieces[sq - 11n]),
+              false;
+          }
+
+          if (
+            PieceCol[GameBoard.pieces[sq - 11n]] === COLOURS.BLACK &&
+            GameBoard.blackArcane & (8n << 32n) &&
+            !PieceKing[GameBoard.pieces[sq - 11n]]
+          ) {
+            AddBlackPawnCaptureMove(
+              sq,
+              sq - 11n,
+              GameBoard.pieces[sq - 11n],
               true
             );
           }
@@ -758,16 +782,30 @@ export function GenerateMoves() {
           continue;
         }
 
-        if (GameBoard.enPas !== SQUARES.NO_SQ) {
-          if (sq - 9 === GameBoard.enPas) {
+        if (GameBoard.enPas !== BigInt(SQUARES.NO_SQ)) {
+          if (sq - 9n === GameBoard.enPas) {
             AddEnPassantMove(
-              MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+              MOVE(
+                sq,
+                sq - 9n,
+                PIECES.EMPTY,
+                PIECES.EMPTY,
+                PIECES.EMPTY,
+                MFLAGEP
+              )
             );
           }
 
-          if (sq - 11 === GameBoard.enPas) {
+          if (sq - 11n === GameBoard.enPas) {
             AddEnPassantMove(
-              MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+              MOVE(
+                sq,
+                sq - 11n,
+                PIECES.EMPTY,
+                PIECES.EMPTY,
+                PIECES.EMPTY,
+                MFLAGEP
+              )
             );
           }
         }
@@ -779,10 +817,10 @@ export function GenerateMoves() {
         const getKingPos = _.indexOf(GameBoard.pieces, 12, 92);
         const getRookPos = _.lastIndexOf(GameBoard.pieces, 10);
 
-        for (let sq = GameBoard.pieces.indexOf(12); sq <= 97; sq++) {
+        for (let sq = GameBoard.pieces.indexOf(12); sq <= 97n; sq++) {
           const getPiece = _.get(GameBoard.pieces, sq);
 
-          if (sq === 97 && getPiece === PIECES.bK) {
+          if (sq === 97n && getPiece === PIECES.bK) {
             AddQuietMove(
               MOVE(
                 SQUARES.G8,
@@ -806,13 +844,13 @@ export function GenerateMoves() {
 
           if (
             SqAttacked(sq, COLOURS.WHITE) &&
-            sq !== 97 &&
+            sq !== 97n &&
             !GameBoard.blackArcane & (4n << 35n)
           ) {
             break;
           }
 
-          if (sq === 97) {
+          if (sq === 97n) {
             AddQuietMove(
               MOVE(
                 getKingPos,
@@ -874,10 +912,10 @@ export function GenerateMoves() {
             }
           }
         } else {
-          for (let sq = GameBoard.pieces.indexOf(12); sq >= 93; sq--) {
+          for (let sq = GameBoard.pieces.indexOf(12); sq >= 93n; sq--) {
             const getPiece = _.get(GameBoard.pieces, sq);
 
-            if (sq === 93 && getPiece === PIECES.bK) {
+            if (sq === 93n && getPiece === PIECES.bK) {
               AddQuietMove(
                 MOVE(
                   SQUARES.C8,
@@ -901,13 +939,13 @@ export function GenerateMoves() {
 
             if (
               SqAttacked(sq, COLOURS.WHITE) &&
-              sq !== 93 &&
+              sq !== 93n &&
               !GameBoard.blackArcane & (4n << 35n)
             ) {
               break;
             }
 
-            if (sq === 93) {
+            if (sq === 93n) {
               AddQuietMove(
                 MOVE(
                   getKingPos,
@@ -1188,16 +1226,16 @@ export function GenerateMoves() {
         // KING WITH CASTLING RIGHTS NO ROYALTY
         if (
           GameBoard.side === COLOURS.WHITE &&
-          GameBoard.castlePerm & CASTLEBIT.WKCA &&
-          GameBoard.castlePerm & CASTLEBIT.WQCA &&
+          GameBoard.castlePerm & BigInt(CASTLEBIT.WKCA) &&
+          GameBoard.castlePerm & BigInt(CASTLEBIT.WQCA) &&
           pce === PIECES.wK
         ) {
           continue;
         }
         if (
           GameBoard.side === COLOURS.BLACK &&
-          GameBoard.castlePerm & CASTLEBIT.BKCA &&
-          GameBoard.castlePerm & CASTLEBIT.BQCA &&
+          GameBoard.castlePerm & BigInt(CASTLEBIT.BKCA) &&
+          GameBoard.castlePerm & BigInt(CASTLEBIT.BQCA) &&
           pce === PIECES.bK
         ) {
           continue;
@@ -1379,11 +1417,16 @@ export function GenerateMoves() {
 
       if (!isOverrided) {
         for (index = 0; index < DirNum[pce]; index++) {
-          dir = PceDir[pce][index];
-          let kDir = KiDir[index];
+          let kDir, shft_t_N_sq;
+
+          dir = BigInt(PceDir[pce][index]);
+
+          if (pce !== PIECES.wN && pce !== PIECES.bN) {
+            kDir = BigInt(KiDir[index]);
+            shft_t_N_sq = sq + kDir;
+          }
 
           t_sq = sq + dir;
-          let shft_t_N_sq = sq + kDir;
 
           // note NON-SLIDERS CAPTURES
           if (SQOFFBOARD(t_sq) === BOOL.FALSE) {
@@ -1421,7 +1464,6 @@ export function GenerateMoves() {
                     GameBoard.castlePerm & BigInt(CASTLEBIT.WQCA)
                   )
                 ) {
-                  console.log('test');
                   AddCaptureMove(
                     MOVE(
                       sq,
@@ -1543,13 +1585,18 @@ export function GenerateMoves() {
 
       if (!isOverrided) {
         for (index = 0; index < DirNum[pce]; index++) {
-          dir = PceDir[pce][index];
-          let rDir = RkDir[index];
-          let bDir = BiDir[index];
+          let rDir, bDir, shft_t_R_sq, shft_t_B_sq;
+          dir = BigInt(PceDir[pce][index]);
+
+          if (pce !== PIECES.wQ && pce !== PIECES.bQ) {
+            rDir = BigInt(RkDir[index]);
+            bDir = BigInt(BiDir[index]);
+
+            shft_t_B_sq = sq + rDir;
+            shft_t_R_sq = sq + bDir;
+          }
 
           t_sq = sq + dir;
-          let shft_t_B_sq = sq + rDir;
-          let shft_t_R_sq = sq + bDir;
 
           while (SQOFFBOARD(t_sq) === BOOL.FALSE) {
             if (

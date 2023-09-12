@@ -6,19 +6,20 @@ import { GameBoard } from './board';
 // get status for each player from configs
 export const whiteArcane = (
   config = {
-    dyadP: 3,
+    // dyadP: 3,
     // dyadZ: 5,
     // sumnP: 2,
     // sumnRV: 7,
-    shftP: 4,
-    shftN: 4,
-    shftB: 4,
-    shftR: 4,
+    // shftP: 4,
+    // shftN: 4,
+    // shftB: 4,
+    // shftR: 4,
     // modsSIG: 2,
-    modsCON: 4,
+    // modsCON: 4,
     // modsRAN: 1,
-    modsFUG: 1,
-    modsQTY: 2,
+    // modsFUG: 1,
+    modsQTY: 1,
+    // showEngineRating for campaign power (for 3 turns?)
   }
 ) => {
   _.forOwn(config, (value, key) => {
@@ -29,14 +30,14 @@ export const whiteArcane = (
 
 export const blackArcane = (
   config = {
-    dyadP: 3,
-    dyadZ: 5,
-    sumnP: 2,
-    sumnRV: 7,
-    shftP: 4,
-    modsSIG: 2,
-    modsCON: 4,
-    modsFUG: 1,
+    // dyadP: 3,
+    // dyadZ: 5,
+    // sumnP: 2,
+    // sumnRV: 7,
+    // shftP: 4,
+    // modsSIG: 2,
+    // modsCON: 4,
+    // modsFUG: 1,
     // modsRAN: 1,
     modsQTY: 1,
   }

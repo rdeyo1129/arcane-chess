@@ -38,6 +38,8 @@ export function PerftTest(depth) {
   console.log('Starting Test To Depth:' + depth);
   perft_leafNodes = 0;
 
+  console.log('TEST:::::', GameBoard.moveListStart[GameBoard.ply + 1]);
+
   let index;
   let move;
   let moveNum = 0;

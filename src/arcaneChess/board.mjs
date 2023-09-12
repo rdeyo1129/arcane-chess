@@ -169,7 +169,7 @@ GameBoard.blackArcane = 0n;
 // ^ if any other royalties _.include square num, then remove them from that royalty array to override
 GameBoard.royaltyQ = [];
 GameBoard.royaltyZ = [];
-GameBoard.royaltyU = [44];
+GameBoard.royaltyU = [];
 GameBoard.royaltyV = [];
 GameBoard.royaltyE = [];
 
@@ -299,7 +299,7 @@ export function PrintPieceLists() {
         'Piece ' +
           PceChar[piece] +
           ' on ' +
-          PrSq(GameBoard.pList[PCEINDEX(piece, pceNum)])
+          PrSq(GameBoard.pList[PCEINDEX(BigInt(piece), BigInt(pceNum))])
       );
     }
   }
@@ -328,7 +328,9 @@ export function UpdateListsMaterial() {
 
       GameBoard.material[colour] += PieceVal[piece];
 
-      GameBoard.pList[PCEINDEX(piece, GameBoard.pceNum[piece])] = BigInt(sq);
+      GameBoard.pList[
+        PCEINDEX(BigInt(piece), BigInt(GameBoard.pceNum[piece]))
+      ] = BigInt(sq);
       GameBoard.pceNum[piece]++;
     }
   }

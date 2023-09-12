@@ -77,7 +77,8 @@ export default function arcaneChess(
   // todo react input
   whiteConfig = {},
   blackConfig = {},
-  fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+  // fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+  fen
   // rnbvkbnr/pppppppp/8/8/r2R4/p7/PPPPPPPP/RNBVKBNR w KQkq - 0 1'
   // handicaps
 ) {
@@ -86,17 +87,14 @@ export default function arcaneChess(
   InitSq120To64();
   InitBoardVars();
 
-  // generatePowers();
+  ParseFen(fen);
 
   // randomize before parse fen
   randomize();
 
-  GenerateMoves();
+  // generatePowers();
 
-  // gui?
-  ParseFen(fen);
-  PrintBoard();
-  PerftTest(5);
+  GenerateMoves();
 
   // PrintMoveList();
   // PrintPieceLists();

@@ -9,7 +9,9 @@ import React from 'react';
 // import arcaneChess from "./././validation-engine/arcaneChess";
 
 // import engine
-import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
+// import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
+
+import { UIValidationHouse } from '../../components/UIValidationHouse/UIValidationHouse';
 
 // import arcaneChess correctly
 // import arcaneChess from "@shared/arcaneChess/arcaneChess";
@@ -24,17 +26,18 @@ import Toggle from '../../components/Toggle/Toggle';
 // }
 
 class UnwrappedFrontPage extends React.Component {
-  arcaneChess;
+  // arcaneChess;
 
   constructor(props: object) {
     super(props);
     this.state = {};
-    this.arcaneChess = arcaneChess();
+    // this.arcaneChess = arcaneChess();
   }
 
   render() {
     return (
       <div>
+        <UIValidationHouse />
         <div className="panel">
           <i className="hero-text">TACTORIUS</i>
           <h2>hello</h2>

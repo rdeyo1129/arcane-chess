@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ButtonProps {
   className: string;
@@ -12,7 +12,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  text = "hello test",
+  text = 'hello test',
   width = 120,
   height = 40,
   ...props
@@ -21,12 +21,12 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${className}-${color}${disabled ? "-disabled" : ""}`}
+      className={`${className}-${color}${disabled ? '-disabled' : ''}`}
       style={{
         height: `${height}px`,
         width: `${width}px`,
       }}
-      onClick={disabled ? () => null : () => onClick()}
+      onClick={disabled ? undefined : onClick}
       disabled={disabled}
     >
       {strong ? <strong>{text}</strong> : <span>{text}</span>}

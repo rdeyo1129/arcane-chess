@@ -668,7 +668,7 @@ export function SQ120(sq64) {
 }
 
 export function PCEINDEX(pce, pceNum) {
-  return pce * 16 + pceNum;
+  return BigInt(pce) * 16n + BigInt(pceNum);
 }
 
 export const Kings = [PIECES.wK, PIECES.bK];

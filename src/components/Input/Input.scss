@@ -1,4 +1,4 @@
-.search-column input {
+.input {
   width: 260px;
   border: none;
   background: #333333;
@@ -7,11 +7,13 @@
   padding: 10px;
   color: white;
   border-radius: 5px;
-  font-family: "Exo", exo;
+  font-family: 'Exo', exo;
   border: #555555 2px solid;
+  transition: border 0.2s ease-in-out;
+  cursor: text;
 }
-.search-column input:focus {
+.input:focus {
   border: #3f48cc 2px solid;
   transition: border 0.2s ease-in-out;
-  font-family: "Exo", exo;
+  font-family: 'Exo', exo;
 }

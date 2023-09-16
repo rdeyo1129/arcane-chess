@@ -112,12 +112,12 @@ export function PROMOTED(m) {
     );
   */
 
-export const MFLAGEP = 0x40000;
-export const MFLAGPS = 0x80000;
-export const MFLAGCA = 0x1000000;
+export const MFLAGEP = 0x80000;
+export const MFLAGPS = 0x100000;
+export const MFLAGCA = 0x4000000;
 
 export const MFLAGCAP = 0x7c000;
-export const MFLAGPROM = 0xf00000;
+export const MFLAGPROM = 0x3f00000;
 
 // export const MFLAGDYAD = 0xfff0000000n;
 // export const MFLAGSHFT = 0xf0000000000n;

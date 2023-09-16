@@ -112,12 +112,12 @@ export function PROMOTED(m) {
     );
   */
 
-export const MFLAGEP = 0x80000;
-export const MFLAGPS = 0x100000;
-export const MFLAGCA = 0x4000000;
+export const MFLAGEP = 0x40000;
+export const MFLAGPS = 0x80000;
+export const MFLAGCA = 0x1000000;
 
 export const MFLAGCAP = 0x7c000;
-export const MFLAGPROM = 0x3f00000;
+export const MFLAGPROM = 0xf00000;
 
 // export const MFLAGDYAD = 0xfff0000000n;
 // export const MFLAGSHFT = 0xf0000000000n;
@@ -169,8 +169,8 @@ GameBoard.castlePerm = 0;
 GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
 GameBoard.pceNum = new Array(24); // indexed by Pce
 GameBoard.pList = new Array(25 * 10);
-GameBoard.whiteArcane = 0;
-GameBoard.blackArcane = 0;
+GameBoard.whiteArcane = [0, 0, 0, 0, 0];
+GameBoard.blackArcane = [0, 0, 0, 0, 0];
 
 // todo square conditions
 // [ 23, 52, 88 ] ?
@@ -317,7 +317,7 @@ export function PrintPieceLists() {
 export function UpdateListsMaterial() {
   let piece, sq, index, colour;
 
-  for (index = 0; index < 24 * 120; index++) {
+  for (index = 0; index < 25 * 120; index++) {
     GameBoard.pList[index] = PIECES.EMPTY;
   }
 

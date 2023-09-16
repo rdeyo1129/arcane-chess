@@ -93,9 +93,9 @@ export default function arcaneChess(
   ParseFen(fen);
 
   // randomize before parse fen
-  randomize();
+  // randomize();
 
-  generatePowers();
+  // generatePowers();
 
   GenerateMoves();
 

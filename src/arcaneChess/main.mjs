@@ -35,7 +35,7 @@ export function InitFilesRanksBrd() {
 }
 
 export function InitHashKeys() {
-  for (let index = 0; index < 24 * 120; index++) {
+  for (let index = 0; index < 25 * 120; index++) {
     PieceKeys[index] = RAND_32();
   }
 

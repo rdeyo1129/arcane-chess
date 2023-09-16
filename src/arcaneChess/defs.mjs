@@ -80,7 +80,7 @@ export const BOOL = { FALSE: 0, TRUE: 1 };
 
 export const MAXGAMEMOVES = 2048;
 export const MAXPOSITIONMOVES = 256;
-export const MAXDEPTH = 64;
+export const MAXDEPTH = 3;
 export const INFINITE = 30000;
 export const MATE = 29000;
 export const PVENTRIES = 10000;
@@ -539,6 +539,7 @@ export const LoopNonSlidePce = [
 export const LoopNonSlideDyad = [
   16, 256, 4, 8, 512, 1024, 2048, 0, 16, 256, 4, 8, 512, 1024, 2048, 0,
 ];
+// export const LoopNonSlideIndex = [0, 3];
 export const LoopNonSlideIndex = [0, 8];
 export const LoopSlidePce = [
   PIECES.wB,
@@ -557,6 +558,7 @@ export const LoopSlidePce = [
 export const LoopSlideDyad = [
   32, 64, 128, 512, 1024, 0, 32, 64, 128, 512, 1024, 0,
 ];
+// export const LoopSlideIndex = [0, 4];
 export const LoopSlideIndex = [0, 6];
 
 export const LoopPcePrime = [
@@ -589,7 +591,7 @@ export const LoopDyadPrime = [
   2, 16, 256, 4, 8, 512, 1024, 2048, 32, 64, 128, 0, 2, 16, 256, 4, 8, 512,
   1024, 2048, 32, 64, 128, 0,
 ];
-export const LoopIndexPrime = [0, 11];
+export const LoopIndexPrime = [0, 12];
 
 export const Mirror64 = [
   56, 57, 58, 59, 60, 61, 62, 63, 48, 49, 50, 51, 52, 53, 54, 55, 40, 41, 42,

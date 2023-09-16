@@ -13,7 +13,7 @@ export function Perft(depth) {
     return;
   }
 
-  generatePowers();
+  // generatePowers();
 
   GenerateMoves();
 

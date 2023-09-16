@@ -35,13 +35,13 @@ export function ClearPiece(sq) {
   var index;
   var t_pceNum = -1;
 
-  HASH_PCE(BigInt(pce), BigInt(sq));
+  HASH_PCE(pce, sq);
 
   GameBoard.pieces[sq] = PIECES.EMPTY;
   GameBoard.material[col] -= PieceVal[pce];
 
   for (index = 0; index < GameBoard.pceNum[pce]; index++) {
-    if (GameBoard.pList[PCEINDEX(pce, index)] === BigInt(sq)) {
+    if (GameBoard.pList[PCEINDEX(pce, index)] === sq) {
       t_pceNum = index;
       break;
     }
@@ -59,7 +59,7 @@ export function AddPiece(sq, pce) {
 
   // video 33 use for summons and swaps?
 
-  HASH_PCE(BigInt(pce), BigInt(sq));
+  HASH_PCE(pce, sq);
 
   GameBoard.pieces[sq] = pce;
   GameBoard.material[col] += PieceVal[pce];
@@ -71,15 +71,15 @@ export function MovePiece(from, to) {
   let index = 0;
   let pce = GameBoard.pieces[from];
 
-  HASH_PCE(BigInt(pce), BigInt(from));
+  HASH_PCE(pce, from);
   GameBoard.pieces[from] = PIECES.EMPTY;
 
-  HASH_PCE(BigInt(pce), BigInt(to));
+  HASH_PCE(pce, to);
   GameBoard.pieces[to] = pce;
 
   for (index = 0; index < GameBoard.pceNum[pce]; index++) {
-    if (BigInt(GameBoard.pList[PCEINDEX(pce, index)]) === BigInt(from)) {
-      GameBoard.pList[PCEINDEX(pce, index)] = BigInt(to);
+    if (GameBoard.pList[PCEINDEX(pce, index)] === from) {
+      GameBoard.pList[PCEINDEX(pce, index)] = to;
       break;
     }
   }
@@ -102,15 +102,15 @@ export function MakeMove(move) {
   const getBlackKingRookPos = _.lastIndexOf(GameBoard.pieces, 10);
   const getBlackQueenRookPos = _.indexOf(GameBoard.pieces, 10, 92);
 
-  if ((move & MFLAGEP) !== 0n) {
+  if ((move & MFLAGEP) !== 0) {
     if (side == COLOURS.WHITE) {
-      ClearPiece(to - 10n);
+      ClearPiece(to - 10);
     } else {
-      ClearPiece(to + 10n);
+      ClearPiece(to + 10);
     }
-  } else if ((move & MFLAGCA) !== 0n) {
+  } else if ((move & MFLAGCA) !== 0) {
     // if black casts randomize on white
-    if (GameBoard.blackArcane & (8n << 35n)) {
+    if (GameBoard.blackArcane[4] & 8) {
       switch (to) {
         case getWhiteQueenRookPos:
           MovePiece(getWhiteQueenRookPos, SQUARES.D1);
@@ -131,7 +131,7 @@ export function MakeMove(move) {
           break;
       }
     }
-    if (GameBoard.whiteArcane & (8n << 35n)) {
+    if (GameBoard.whiteArcane[4] & 8) {
       switch (to) {
         case getBlackQueenRookPos:
           MovePiece(getBlackQueenRookPos, SQUARES.D8);
@@ -156,7 +156,7 @@ export function MakeMove(move) {
     }
   }
 
-  if (GameBoard.enPas !== BigInt(SQUARES.NO_SQ)) HASH_EP();
+  if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
   HASH_CA();
 
   GameBoard.history[GameBoard.hisPly].move = move;
@@ -164,16 +164,16 @@ export function MakeMove(move) {
   GameBoard.history[GameBoard.hisPly].enPas = GameBoard.enPas;
   GameBoard.history[GameBoard.hisPly].castlePerm = GameBoard.castlePerm;
 
-  GameBoard.castlePerm &= BigInt(CastlePerm[from]);
-  GameBoard.castlePerm &= BigInt(CastlePerm[to]);
-  GameBoard.enPas = BigInt(SQUARES.NO_SQ);
+  GameBoard.castlePerm &= CastlePerm[from];
+  GameBoard.castlePerm &= CastlePerm[to];
+  GameBoard.enPas = SQUARES.NO_SQ;
 
   HASH_CA();
 
   let captured = CAPTURED(move);
   GameBoard.fiftyMove++;
 
-  if (captured !== BigInt(PIECES.EMPTY)) {
+  if (captured !== PIECES.EMPTY) {
     ClearPiece(to);
     GameBoard.fiftyMove = 0;
   }
@@ -183,11 +183,11 @@ export function MakeMove(move) {
 
   if (PiecePawn[GameBoard.pieces[from]] === BOOL.TRUE) {
     GameBoard.fiftyMove = 0;
-    if ((move & MFLAGPS) !== 0n) {
+    if ((move & MFLAGPS) !== 0) {
       if (side === COLOURS.WHITE) {
-        GameBoard.enPas = from + 10n;
+        GameBoard.enPas = from + 10;
       } else {
-        GameBoard.enPas = from - 10n;
+        GameBoard.enPas = from - 10;
       }
       HASH_EP();
     }
@@ -196,7 +196,7 @@ export function MakeMove(move) {
   MovePiece(from, to);
 
   let prPce = PROMOTED(move);
-  if (prPce !== BigInt(PIECES.EMPTY)) {
+  if (prPce !== PIECES.EMPTY) {
     ClearPiece(to);
     AddPiece(to, prPce);
   }
@@ -206,7 +206,7 @@ export function MakeMove(move) {
   GameBoard.side ^= 1;
   HASH_SIDE();
 
-  // note this is what prevents you from putting yourself in check
+  // note this is what prevents you from putting yourself in check with pins too?
   // so on dyads, they can probably use when in check
   if (SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], GameBoard.side)) {
     TakeMove();
@@ -224,26 +224,26 @@ export function TakeMove() {
   var from = FROMSQ(move);
   var to = TOSQ(move);
 
-  if (GameBoard.enPas !== BigInt(SQUARES.NO_SQ)) HASH_EP();
+  if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
   HASH_CA();
 
   GameBoard.castlePerm = GameBoard.history[GameBoard.hisPly].castlePerm;
   GameBoard.fiftyMove = GameBoard.history[GameBoard.hisPly].fiftyMove;
   GameBoard.enPas = GameBoard.history[GameBoard.hisPly].enPas;
 
-  if (GameBoard.enPas !== BigInt(SQUARES.NO_SQ)) HASH_EP();
+  if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
   HASH_CA();
 
   GameBoard.side ^= 1;
   HASH_SIDE();
 
-  if ((MFLAGEP & move) !== 0n) {
+  if ((MFLAGEP & move) !== 0) {
     if (GameBoard.side == COLOURS.WHITE) {
-      AddPiece(to - 10n, PIECES.bP);
+      AddPiece(to - 10, PIECES.bP);
     } else {
-      AddPiece(to + 10n, PIECES.wP);
+      AddPiece(to + 10, PIECES.wP);
     }
-  } else if ((MFLAGCA & move) !== 0n) {
+  } else if ((MFLAGCA & move) !== 0) {
     switch (to) {
       case SQUARES.C1:
         MovePiece(SQUARES.D1, SQUARES.A1);
@@ -265,15 +265,15 @@ export function TakeMove() {
   MovePiece(to, from);
 
   var captured = CAPTURED(move);
-  if (captured !== BigInt(PIECES.EMPTY)) {
+  if (captured !== PIECES.EMPTY) {
     AddPiece(to, captured);
   }
 
-  if (PROMOTED(move) !== BigInt(PIECES.EMPTY)) {
+  if (PROMOTED(move) !== PIECES.EMPTY) {
     ClearPiece(from);
     AddPiece(
       from,
-      PieceCol[PROMOTED(BigInt(move))] === COLOURS.WHITE ? PIECES.wP : PIECES.bP
+      PieceCol[PROMOTED(move)] === COLOURS.WHITE ? PIECES.wP : PIECES.bP
     );
   }
 }

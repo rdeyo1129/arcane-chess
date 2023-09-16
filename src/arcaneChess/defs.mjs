@@ -537,22 +537,7 @@ export const LoopNonSlidePce = [
   0,
 ];
 export const LoopNonSlideDyad = [
-  16n,
-  256n,
-  4n,
-  8n,
-  512n,
-  1024n,
-  2048n,
-  0n,
-  16n,
-  256n,
-  4n,
-  8n,
-  512n,
-  1024n,
-  2048n,
-  0n,
+  16, 256, 4, 8, 512, 1024, 2048, 0, 16, 256, 4, 8, 512, 1024, 2048, 0,
 ];
 export const LoopNonSlideIndex = [0, 7];
 export const LoopSlidePce = [
@@ -570,18 +555,7 @@ export const LoopSlidePce = [
   0,
 ];
 export const LoopSlideDyad = [
-  32n,
-  64n,
-  128n,
-  512n,
-  1024n,
-  0n,
-  32n,
-  64n,
-  128n,
-  512n,
-  1024n,
-  0n,
+  32, 64, 128, 512, 1024, 0, 32, 64, 128, 512, 1024, 0,
 ];
 export const LoopSlideIndex = [0, 6];
 
@@ -612,32 +586,17 @@ export const LoopPcePrime = [
   0,
 ];
 export const LoopDyadPrime = [
-  2n,
-  16n,
-  256n,
-  4n,
-  8n,
-  512n,
-  1024n,
-  2048n,
-  32n,
-  64n,
-  128n,
-  0n,
-  2n,
-  16n,
-  256n,
-  4n,
-  8n,
-  512n,
-  1024n,
-  2048n,
-  32n,
-  64n,
-  128n,
-  0n,
+  2, 16, 256, 4, 8, 512, 1024, 2048, 32, 64, 128, 0, 2, 16, 256, 4, 8, 512,
+  1024, 2048, 32, 64, 128, 0,
 ];
 export const LoopIndexPrime = [0, 11];
+
+export const Mirror64 = [
+  56, 57, 58, 59, 60, 61, 62, 63, 48, 49, 50, 51, 52, 53, 54, 55, 40, 41, 42,
+  43, 44, 45, 46, 47, 32, 33, 34, 35, 36, 37, 38, 39, 24, 25, 26, 27, 28, 29,
+  30, 31, 16, 17, 18, 19, 20, 21, 22, 23, 8, 9, 10, 11, 12, 13, 14, 15, 0, 1, 2,
+  3, 4, 5, 6, 7,
+];
 
 export const PieceKeys = new Array(25 * 120);
 export const CastleKeys = new Array(16);
@@ -651,11 +610,11 @@ export const Sq120ToSq64 = new Array(BRD_SQ_NUM);
 export const Sq64ToSq120 = new Array(64);
 
 export function RAND_32() {
-  return BigInt(
+  return (
     (Math.floor(Math.random() * 255 + 1) << 23) |
-      (Math.floor(Math.random() * 255 + 1) << 16) |
-      (Math.floor(Math.random() * 255 + 1) << 8) |
-      Math.floor(Math.random() * 255 + 1)
+    (Math.floor(Math.random() * 255 + 1) << 16) |
+    (Math.floor(Math.random() * 255 + 1) << 8) |
+    Math.floor(Math.random() * 255 + 1)
   );
 }
 
@@ -668,7 +627,11 @@ export function SQ120(sq64) {
 }
 
 export function PCEINDEX(pce, pceNum) {
-  return BigInt(pce) * 16n + BigInt(pceNum);
+  return pce * 16 + pceNum;
+}
+
+export function MIRROR64(sq) {
+  return Mirror64[sq];
 }
 
 export const Kings = [PIECES.wK, PIECES.bK];

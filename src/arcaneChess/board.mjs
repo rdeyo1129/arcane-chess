@@ -40,36 +40,37 @@ import {
   SQ120,
   updateStartFen,
   PCEINDEX,
+  Kings,
 } from './defs';
 import { PrSq } from './io';
 import { whiteArcane, blackArcane } from './arcaneDefs';
 
 export function FROMSQ(m) {
-  return m & 0x7fn;
+  return m & 0x7f;
 }
 export function TOSQ(m) {
-  return (m >> 7n) & 0x7fn;
+  return (m >> 7) & 0x7f;
 }
 export function CAPTURED(m) {
-  return (m >> 14n) & 0xfn;
+  return (m >> 14) & 0x1f;
 }
 export function PROMOTED(m) {
-  return (m >> 20n) & 0xfn;
+  return (m >> 21) & 0xf;
 }
 
 // todo might need shifting
-export function DYAD(m) {
-  return (m >> 27n) & 0xfffn;
-}
-export function SHIFT(m) {
-  return (m >> 39n) & 0xfn;
-}
-export function SWAP(m) {
-  return (m >> 43n) & 0x7n;
-}
-export function SUMMON(m) {
-  return (m >> 46n) & 0xffffn;
-}
+// export function DYAD(m) {
+//   return m & 0xfff;
+// }
+// export function SHIFT(m) {
+//   return m & 0xf;
+// }
+// export function SWAP(m) {
+//   return m & 0x7;
+// }
+// export function SUMMON(m) {
+//   return m & 0xffff;
+// }
 
 /*
     dyad << 27 hex?
@@ -79,13 +80,20 @@ export function SUMMON(m) {
     con flag
     off flag
 
+    // 9/15/23 note dyads
+    // for dyads we just need a no captures flag
+    // 
+
     0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0111 1111 -> From 0x7F
     0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0011 1111 1000 0000 -> To >> 7, 0x7F
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0011 1100 0000 0000 0000 -> Captured >> 14, 0xF
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0100 0000 0000 0000 0000 -> EP 0x40000
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 1000 0000 0000 0000 0000 -> pawn start 0x80000
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0011 1111 0000 0000 0000 0000 0000 -> prom >> 20, 0xF
+    todo this needs to be shifted in this diagram because of 23 pieces not 12 see vars
+    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0111 1100 0000 0000 0000 -> Captured >> 14, 0x1F
+    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 1000 0000 0000 0000 0000 -> EP 0x80000
+    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0001 0000 0000 0000 0000 0000 -> pawn start 0x100000
+    0000 0000 0000 0000 0000 0000 0000 0000 0000 0011 1110 0000 0000 0000 0000 0000 -> prom >> 21, 0x4E
     0000 0000 0000 0000 0000 0000 0000 0000 0000 0100 0000 0000 0000 0000 0000 0000 -> Castle 0x4000000
+
+    // trash?
     0000 0000 0000 0000 0000 0000 0111 1111 1111 1000 0000 0000 0000 0000 0000 0000 -> dyad 0xeff8000000
     0000 0000 0000 0000 0000 0111 1000 0000 0000 0000 0000 0000 0000 0000 0000 0000 -> shft 0xe8000000000
     0000 0000 0000 0000 0011 1000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 -> swap 0x380000000000
@@ -104,19 +112,20 @@ export function SUMMON(m) {
     );
   */
 
-export const MFLAGEP = 0x40000n;
-export const MFLAGPS = 0x80000n;
-export const MFLAGCA = 0x4000000n;
+export const MFLAGEP = 0x80000;
+export const MFLAGPS = 0x100000;
+export const MFLAGCA = 0x8000000;
 
-export const MFLAGDYAD = 0xeff8000000n;
-export const MFLAGSHFT = 0xe8000000000n;
-export const MFLAGSWAP = 0x380000000000n;
-export const MFLAGCON = 0x4000000000000000n;
-export const MFLAGOFF = 0x8000000000000000n;
+export const MFLAGCAP = 0x7c000;
+export const MFLAGPROM = 0x3f00000;
 
-export const MFLAGCAP = 0x7c000n;
-export const MFLAGPROM = 0x3f00000n;
-export const MFLAGSUMN = 0x3fffd00000000000n;
+// export const MFLAGDYAD = 0xfff0000000n;
+// export const MFLAGSHFT = 0xf0000000000n;
+// export const MFLAGSWAP = 0x700000000000n;
+// export const MFLAGCON = 0x8000000000000000n;
+// export const MFLAGOFF = 0x10000000000000000n;
+
+// export const MFLAGSUMN = 0x7fff800000000000n;
 
 export function SQOFFBOARD(sq) {
   if (FilesBrd[sq] == SQUARES.OFFBOARD) return BOOL.TRUE;
@@ -124,16 +133,16 @@ export function SQOFFBOARD(sq) {
 }
 
 export function HASH_PCE(pce, sq) {
-  GameBoard.posKey ^= BigInt(PieceKeys[pce * 120n + sq]);
+  GameBoard.posKey ^= PieceKeys[pce * 120 + sq];
 }
 export function HASH_CA() {
-  GameBoard.posKey ^= BigInt(CastleKeys[GameBoard.castlePerm]);
+  GameBoard.posKey ^= CastleKeys[GameBoard.castlePerm];
 }
 export function HASH_SIDE() {
-  GameBoard.posKey ^= BigInt(SideKey);
+  GameBoard.posKey ^= SideKey;
 }
 export function HASH_EP() {
-  GameBoard.posKey ^= BigInt(PieceKeys[GameBoard.enPas]);
+  GameBoard.posKey ^= PieceKeys[GameBoard.enPas];
 }
 
 export const GameController = {};
@@ -155,13 +164,13 @@ GameBoard.history = [];
 GameBoard.PvTable = [];
 GameBoard.ply = 0;
 // Gameboard.SubPly = 0;
-GameBoard.enPas = 0n;
-GameBoard.castlePerm = 0n;
+GameBoard.enPas = 0;
+GameBoard.castlePerm = 0;
 GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
 GameBoard.pceNum = new Array(24); // indexed by Pce
 GameBoard.pList = new Array(25 * 10);
-GameBoard.whiteArcane = 0n;
-GameBoard.blackArcane = 0n;
+GameBoard.whiteArcane = 0;
+GameBoard.blackArcane = 0;
 
 // todo square conditions
 // [ 23, 52, 88 ] ?
@@ -173,12 +182,12 @@ GameBoard.royaltyU = [];
 GameBoard.royaltyV = [];
 GameBoard.royaltyE = [];
 
-GameBoard.posKey = 0n;
+GameBoard.posKey = 0;
 GameBoard.moveList = new Array(MAXDEPTH * MAXPOSITIONMOVES);
 GameBoard.moveScores = new Array(MAXDEPTH * MAXPOSITIONMOVES);
 GameBoard.moveListStart = new Array(MAXDEPTH);
 
-GameBoard.dyad = 0n;
+GameBoard.dyad = 0;
 
 export function CheckBoard() {
   let t_pceNum = [
@@ -256,16 +265,16 @@ export function PrintBoard() {
   console.log('enPas:' + GameBoard.enPas);
   line = '';
 
-  if (GameBoard.castlePerm & BigInt(CASTLEBIT.WKCA)) line += 'K';
-  if (GameBoard.castlePerm & BigInt(CASTLEBIT.WQCA)) line += 'Q';
-  if (GameBoard.castlePerm & BigInt(CASTLEBIT.BKCA)) line += 'k';
-  if (GameBoard.castlePerm & BigInt(CASTLEBIT.BQCA)) line += 'q';
+  if (GameBoard.castlePerm & CASTLEBIT.WKCA) line += 'K';
+  if (GameBoard.castlePerm & CASTLEBIT.WQCA) line += 'Q';
+  if (GameBoard.castlePerm & CASTLEBIT.BKCA) line += 'k';
+  if (GameBoard.castlePerm & CASTLEBIT.BQCA) line += 'q';
   console.log('castle:' + line);
   console.log('key:' + GameBoard.posKey.toString(16));
 }
 
 export function GeneratePosKey() {
-  let finalKey = 0n;
+  let finalKey = 0;
   let piece = PIECES.EMPTY;
 
   for (let sq = 0; sq < BRD_SQ_NUM; sq++) {
@@ -299,7 +308,7 @@ export function PrintPieceLists() {
         'Piece ' +
           PceChar[piece] +
           ' on ' +
-          PrSq(GameBoard.pList[PCEINDEX(BigInt(piece), BigInt(pceNum))])
+          PrSq(GameBoard.pList[PCEINDEX(piece, pceNum)])
       );
     }
   }
@@ -309,7 +318,7 @@ export function UpdateListsMaterial() {
   let piece, sq, index, colour;
 
   for (index = 0; index < 24 * 120; index++) {
-    GameBoard.pList[index] = BigInt(PIECES.EMPTY);
+    GameBoard.pList[index] = PIECES.EMPTY;
   }
 
   for (index = 0; index < 2; index++) {
@@ -328,9 +337,7 @@ export function UpdateListsMaterial() {
 
       GameBoard.material[colour] += PieceVal[piece];
 
-      GameBoard.pList[
-        PCEINDEX(BigInt(piece), BigInt(GameBoard.pceNum[piece]))
-      ] = BigInt(sq);
+      GameBoard.pList[PCEINDEX(piece, GameBoard.pceNum[piece])] = sq;
       GameBoard.pceNum[piece]++;
     }
   }
@@ -347,12 +354,12 @@ export function ResetBoard() {
   }
 
   GameBoard.side = COLOURS.BOTH;
-  GameBoard.enPas = BigInt(SQUARES.NO_SQ);
+  GameBoard.enPas = SQUARES.NO_SQ;
   GameBoard.fiftyMove = 0;
   GameBoard.ply = 0;
   GameBoard.hisPly = 0;
-  GameBoard.castlePerm = 0n;
-  GameBoard.posKey = 0n;
+  GameBoard.castlePerm = 0;
+  GameBoard.posKey = 0;
   GameBoard.moveListStart[GameBoard.ply] = 0;
   // todo reset powers to given config
 }
@@ -540,16 +547,16 @@ export function ParseFen(fen) {
     }
     switch (fen[fenCnt]) {
       case 'K':
-        GameBoard.castlePerm |= BigInt(CASTLEBIT.WKCA);
+        GameBoard.castlePerm |= CASTLEBIT.WKCA;
         break;
       case 'Q':
-        GameBoard.castlePerm |= BigInt(CASTLEBIT.WQCA);
+        GameBoard.castlePerm |= CASTLEBIT.WQCA;
         break;
       case 'k':
-        GameBoard.castlePerm |= BigInt(CASTLEBIT.BKCA);
+        GameBoard.castlePerm |= CASTLEBIT.BKCA;
         break;
       case 'q':
-        GameBoard.castlePerm |= BigInt(CASTLEBIT.BQCA);
+        GameBoard.castlePerm |= CASTLEBIT.BQCA;
         break;
       default:
         break;
@@ -592,14 +599,19 @@ export function PrintSqAttacked() {
   console.log('');
 }
 
+export let InCheck = () => {
+  return SqAttacked(
+    GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
+    GameBoard.side ^ 1
+  );
+};
+
 // todo royalty, herring, entangle
 export function SqAttacked(sq, side) {
   let pce;
   let dir;
   let t_sq;
   let index;
-
-  sq = BigInt(sq);
 
   let overridePresent = (t_sq) =>
     _.includes(GameBoard.royaltyQ, t_sq) ||
@@ -612,13 +624,13 @@ export function SqAttacked(sq, side) {
 
   // note UNICORN ZEALOT
   for (index = 0; index < 8; index++) {
-    pce = GameBoard.pieces[sq + BigInt(KnDir[index])];
+    pce = GameBoard.pieces[sq + KnDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
-      (_.includes(GameBoard.royaltyZ, sq + BigInt(KnDir[index])) ||
-        _.includes(GameBoard.royaltyU, sq + BigInt(KnDir[index]))) &&
-      !_.includes(GameBoard.royaltyE, sq + BigInt(KnDir[index]))
+      (_.includes(GameBoard.royaltyZ, sq + KnDir[index]) ||
+        _.includes(GameBoard.royaltyU, sq + KnDir[index])) &&
+      !_.includes(GameBoard.royaltyE, sq + KnDir[index])
     ) {
       return BOOL.TRUE;
     }
@@ -626,7 +638,7 @@ export function SqAttacked(sq, side) {
 
   // note QUEEN ZEALOT
   for (index = 0; index < 4; index++) {
-    dir = BigInt(RkDir[index]);
+    dir = RkDir[index];
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
 
@@ -649,7 +661,7 @@ export function SqAttacked(sq, side) {
 
   // note QUEEN UNICORN
   for (index = 0; index < 4; index++) {
-    dir = BigInt(BiDir[index]);
+    dir = BiDir[index];
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
 
@@ -672,12 +684,12 @@ export function SqAttacked(sq, side) {
 
   // vanguard
   for (index = 0; index < 24; index++) {
-    pce = GameBoard.pieces[sq + BigInt(VaDir[index])];
+    pce = GameBoard.pieces[sq + VaDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
-      _.includes(GameBoard.royaltyV, sq + BigInt(VaDir[index])) &&
-      !_.includes(GameBoard.royaltyE, sq + BigInt(VaDir[index]))
+      _.includes(GameBoard.royaltyV, sq + VaDir[index]) &&
+      !_.includes(GameBoard.royaltyE, sq + VaDir[index])
     ) {
       return BOOL.TRUE;
     }
@@ -687,13 +699,13 @@ export function SqAttacked(sq, side) {
 
   // knight unicorn zealot
   for (index = 0; index < 8; index++) {
-    pce = GameBoard.pieces[sq + BigInt(KnDir[index])];
+    pce = GameBoard.pieces[sq + KnDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceKnight[pce] === BOOL.TRUE &&
-      !overridePresent(sq + BigInt(KnDir[index])) &&
-      !_.includes(GameBoard.royaltyE, sq + BigInt(VaDir[index]))
+      !overridePresent(sq + KnDir[index]) &&
+      !_.includes(GameBoard.royaltyE, sq + VaDir[index])
     ) {
       return BOOL.TRUE;
     }
@@ -701,7 +713,7 @@ export function SqAttacked(sq, side) {
 
   // rook queen zealot
   for (index = 0; index < 4; index++) {
-    dir = BigInt(RkDir[index]);
+    dir = RkDir[index];
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
 
@@ -724,7 +736,7 @@ export function SqAttacked(sq, side) {
 
   // bishop queen unicorn
   for (index = 0; index < 4; index++) {
-    dir = BigInt(BiDir[index]);
+    dir = BiDir[index];
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
 
@@ -747,13 +759,13 @@ export function SqAttacked(sq, side) {
 
   // vanguard
   for (index = 0; index < 24; index++) {
-    pce = GameBoard.pieces[sq + BigInt(VaDir[index])];
+    pce = GameBoard.pieces[sq + VaDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceVanguard[pce] === BOOL.TRUE &&
-      !overridePresent(sq + BigInt(VaDir[index])) &&
-      !_.includes(GameBoard.royaltyE, sq + BigInt(VaDir[index]))
+      !overridePresent(sq + VaDir[index]) &&
+      !_.includes(GameBoard.royaltyE, sq + VaDir[index])
     ) {
       return BOOL.TRUE;
     }
@@ -761,38 +773,38 @@ export function SqAttacked(sq, side) {
 
   // king
   for (index = 0; index < 8; index++) {
-    pce = GameBoard.pieces[sq + BigInt(KiDir[index])];
+    pce = GameBoard.pieces[sq + KiDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceKing[pce] === BOOL.TRUE &&
-      !overridePresent(sq + BigInt(KiDir[index])) &&
-      !_.includes(GameBoard.royaltyE, sq + BigInt(KiDir[index]))
+      !overridePresent(sq + KiDir[index]) &&
+      !_.includes(GameBoard.royaltyE, sq + KiDir[index])
     ) {
       return BOOL.TRUE;
     }
   }
 
   // pawn
-  if (side == COLOURS.WHITE) {
+  if (side === COLOURS.WHITE) {
     if (
-      (GameBoard.pieces[sq - BigInt(11)] === PIECES.wP &&
-        !overridePresent(sq - BigInt(11)) &&
-        !_.includes(GameBoard.royaltyE, sq - BigInt(11))) ||
-      (GameBoard.pieces[sq - BigInt(9)] === PIECES.wP &&
-        !overridePresent(sq - BigInt(9)) &&
-        !_.includes(GameBoard.royaltyE, sq - BigInt(9)))
+      (GameBoard.pieces[sq - 11] === PIECES.wP &&
+        !overridePresent(sq - 11) &&
+        !_.includes(GameBoard.royaltyE, sq - 11)) ||
+      (GameBoard.pieces[sq - 9] === PIECES.wP &&
+        !overridePresent(sq - 9) &&
+        !_.includes(GameBoard.royaltyE, sq - 9))
     ) {
       return BOOL.TRUE;
     }
   } else {
     if (
-      (GameBoard.pieces[sq + BigInt(11)] === PIECES.bP &&
-        !overridePresent(sq + BigInt(11)) &&
-        !_.includes(GameBoard.royaltyE, sq + BigInt(11))) ||
-      (GameBoard.pieces[sq + BigInt(9)] === PIECES.bP &&
-        !overridePresent(sq + BigInt(9)) &&
-        !_.includes(GameBoard.royaltyE, sq + BigInt(9)))
+      (GameBoard.pieces[sq + 11] === PIECES.bP &&
+        !overridePresent(sq + 11) &&
+        !_.includes(GameBoard.royaltyE, sq + 11)) ||
+      (GameBoard.pieces[sq + 9] === PIECES.bP &&
+        !overridePresent(sq + 9) &&
+        !_.includes(GameBoard.royaltyE, sq + 9))
     ) {
       return BOOL.TRUE;
     }
@@ -800,13 +812,13 @@ export function SqAttacked(sq, side) {
 
   // spectre
   for (index = 0; index < 6; index++) {
-    pce = GameBoard.pieces[sq + BigInt(SpDir[index])];
+    pce = GameBoard.pieces[sq + SpDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceSpectre[pce] === BOOL.TRUE &&
-      !overridePresent(sq + BigInt(SpDir[index])) &&
-      !_.includes(GameBoard.royaltyE, sq + BigInt(SpDir[index]))
+      !overridePresent(sq + SpDir[index]) &&
+      !_.includes(GameBoard.royaltyE, sq + SpDir[index])
     ) {
       return BOOL.TRUE;
     }
@@ -814,13 +826,13 @@ export function SqAttacked(sq, side) {
 
   // herring
   for (index = 0; index < 4; index++) {
-    pce = GameBoard.pieces[sq + BigInt(HrDir[index])];
+    pce = GameBoard.pieces[sq + HrDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceHerring[pce] === BOOL.TRUE &&
-      !overridePresent(sq + BigInt(HrDir[index])) &&
-      !_.includes(GameBoard.royaltyE, sq + BigInt(HrDir[index]))
+      !overridePresent(sq + HrDir[index]) &&
+      !_.includes(GameBoard.royaltyE, sq + HrDir[index])
     ) {
       return BOOL.TRUE;
     }

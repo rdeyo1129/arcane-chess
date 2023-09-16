@@ -18,7 +18,7 @@ export const whiteArcane = (
     // modsCON: 4,
     // modsRAN: 1,
     // modsFUG: 1,
-    modsQTY: 1,
+    // modsQTY: 1,
     // showEngineRating for campaign power (for 3 turns?)
   }
 ) => {
@@ -39,7 +39,7 @@ export const blackArcane = (
     // modsCON: 4,
     // modsFUG: 1,
     // modsRAN: 1,
-    modsQTY: 1,
+    // modsQTY: 1,
   }
 ) => {
   _.forOwn(config, (value, key) => {
@@ -49,7 +49,7 @@ export const blackArcane = (
 };
 
 export const activateDyad = (type) => {
-  GameBoard.dyad = type;
+  // GameBoard.dyad = type;
 };
 
 // todo convert from obj to bitwise to check for presence of a power
@@ -60,6 +60,11 @@ export const activateDyad = (type) => {
 // 0000 0000 0000 0000 0000 0000 0000 0111 0000 0000 0000 0000 swap
 // 0000 0000 0000 0111 1111 1111 1111 1000 0000 0000 0000 0000 sumn
 // 0001 1111 1111 1000 0000 0000 0000 0000 0000 0000 0000 0000 mods
+
+// 0000 0000 0000 0000 0000 0000 0000 0000 1111 dyad
+// 0000 0000 0000 0000 0000 0000 0000 0111 0000 shft
+// 0000 0000 0000 0000 0000 0000 0011 1000 0000 swap
+// 0000 0000 0000 0000 0000 0111 1100 0000 0000
 
 // todo should be represented as array of arrays of ints?
 
@@ -77,17 +82,8 @@ export const POWERBIT = {
   dyadZ: 512,
   dyadU: 1024,
   dyadV: 2048,
-  // 4
-  shftP: 1,
-  shftN: 2,
-  shftB: 4,
-  shftR: 8,
-  // 3
-  swapATK: 1,
-  swapDEP: 2,
-  swapADJ: 4,
   // 16
-  sumnP: 1, //27 29
+  sumnP: 1,
   sumnS: 2,
   sumnH: 4,
   sumnN: 8,
@@ -102,6 +98,16 @@ export const POWERBIT = {
   sumnRZ: 4096,
   sumnRU: 8192,
   sumnRV: 16384,
+  // 4
+  shftP: 1,
+  shftN: 2,
+  shftB: 4,
+  shftR: 8,
+  // 3
+  swapATK: 1,
+  swapDEP: 2,
+  swapADJ: 4,
+
   // note entangle, not to be confused with exile (X)
   sumnE: 32768,
   // 10
@@ -110,11 +116,11 @@ export const POWERBIT = {
   modsFUG: 4,
   modsRAN: 8,
   modsINH: 16,
-  modsINV: 32,
-  modsSIG: 64,
-  modsIMP: 128,
-  modsSUS: 256,
-  modsQTY: 512,
+  // modsINV: 32,
+  // modsSIG: 64,
+  // modsIMP: 128,
+  modsSUS: 32,
+  // modsQTY: 512,
   // off
   // add time, glitch (rand comp move), add random arcana / mana
 };
@@ -122,9 +128,9 @@ export const POWERBIT = {
 export const POWERS = (config) => {
   return (
     config.dyad |
-    (config.sumn << 12n) |
-    (config.shft << 28n) |
-    (config.swap << 32n) |
-    (config.mods << 35n)
+    (config.sumn << 12) |
+    (config.shft << 28) |
+    (config.swap << 32) |
+    (config.mods << 35)
   );
 };

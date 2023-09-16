@@ -76,7 +76,7 @@ export function InitBoardVars() {
       castlePerm: 0,
       enPas: 0,
       fiftyMove: 0,
-      posKey: 0n,
+      posKey: 0,
       // arcanes?
     });
   }
@@ -84,7 +84,7 @@ export function InitBoardVars() {
   for (index = 0; index < PVENTRIES; ++index) {
     GameBoard.PvTable.push({
       move: NOMOVE,
-      posKey: 0n,
+      posKey: 0,
     });
   }
 }

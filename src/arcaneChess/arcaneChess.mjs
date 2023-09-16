@@ -81,7 +81,7 @@ export default function arcaneChess(
   // 4k3/8/8/K2P3r/8/8/8/8 w - - 0 1
   fen
   // normal starting position
-  // fen = rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+  // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   // rnbqkbnr/pppppppp/8/2nRn3/3P4/pp6/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   // handicaps
 ) {

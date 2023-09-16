@@ -55,7 +55,7 @@ export function CAPTURED(m) {
   return (m >> 14) & 0x1f;
 }
 export function PROMOTED(m) {
-  return (m >> 21) & 0xf;
+  return (m >> 21) & 0x1f;
 }
 
 // todo might need shifting
@@ -114,7 +114,7 @@ export function PROMOTED(m) {
 
 export const MFLAGEP = 0x80000;
 export const MFLAGPS = 0x100000;
-export const MFLAGCA = 0x8000000;
+export const MFLAGCA = 0x4000000;
 
 export const MFLAGCAP = 0x7c000;
 export const MFLAGPROM = 0x3f00000;

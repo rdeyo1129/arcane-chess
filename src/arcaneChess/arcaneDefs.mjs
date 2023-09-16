@@ -19,7 +19,7 @@ export const whiteArcane = (
     // modsRAN: 1,
     // modsFUG: 1,
     // modsQTY: 1,
-    // showEngineRating for campaign power (for 3 turns?)
+    // note showEngineRating (not recommended move? different from implant) for campaign power (for 3 turns?)
   }
 ) => {
   _.forOwn(config, (value, key) => {
@@ -107,9 +107,9 @@ export const POWERBIT = {
   swapATK: 1,
   swapDEP: 2,
   swapADJ: 4,
-
   // note entangle, not to be confused with exile (X)
   sumnE: 32768,
+
   // 10
   modsCON: 1,
   modsOFF: 2,

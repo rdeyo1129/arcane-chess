@@ -539,7 +539,7 @@ export const LoopNonSlidePce = [
 export const LoopNonSlideDyad = [
   16, 256, 4, 8, 512, 1024, 2048, 0, 16, 256, 4, 8, 512, 1024, 2048, 0,
 ];
-export const LoopNonSlideIndex = [0, 7];
+export const LoopNonSlideIndex = [0, 8];
 export const LoopSlidePce = [
   PIECES.wB,
   PIECES.wR,

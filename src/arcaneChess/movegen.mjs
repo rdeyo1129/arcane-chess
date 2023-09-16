@@ -43,7 +43,7 @@ export function MOVE(from, to, captured, promoted, flag) {
 
 export function AddCaptureMove(move) {
   GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
-  GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]++];
+  GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]++] = 543;
   //  =
   //   MvvLvaScores[CAPTURED(move) * 14 + GameBoard.pieces[FROMSQ(move)]] +
   //   1000000;
@@ -196,6 +196,8 @@ export const generatePowers = () => {
 
     GameBoard.blackArcane = powerBits;
   }
+
+  console.log(GameBoard.blackArcane, GameBoard.whiteArcane);
 };
 
 // todo generate summons
@@ -410,7 +412,7 @@ export function GenerateMoves(withHerrings = true) {
           if (
             SqAttacked(sq, COLOURS.BLACK) &&
             sq !== 28 &&
-            !(GameBoard.whiteArcane & 4)
+            !(GameBoard.whiteArcane[4] & 4)
           ) {
             break;
           }
@@ -663,7 +665,7 @@ export function GenerateMoves(withHerrings = true) {
           if (
             SqAttacked(sq, COLOURS.WHITE) &&
             sq !== 97 &&
-            !(GameBoard.blackArcane & 4)
+            !(GameBoard.blackArcane[4] & 4)
           ) {
             break;
           }
@@ -682,7 +684,7 @@ export function GenerateMoves(withHerrings = true) {
           if (
             SqAttacked(SQUARES.F8, COLOURS.WHITE) === BOOL.FALSE &&
             SqAttacked(SQUARES.E8, COLOURS.WHITE) === BOOL.FALSE &&
-            !GameBoard.blackArcane & 4
+            !GameBoard.blackArcane[4] & 4
           ) {
             AddQuietMove(
               MOVE(SQUARES.E8, SQUARES.G8, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA)
@@ -858,13 +860,15 @@ export function GenerateMoves(withHerrings = true) {
           dir = PceDir[pce][index];
           t_sq = sq + dir;
 
+          if (SQOFFBOARD(t_sq) === BOOL.TRUE) {
+            continue;
+          }
+
           if (GameBoard.dyad === 0 && GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
             // note ROYALTY NON-SLIDERS CAPTURES
             if (
-              (SQOFFBOARD(t_sq) === BOOL.FALSE && !herrings.length) ||
-              (SQOFFBOARD(t_sq) === BOOL.FALSE &&
-                herrings.length &&
-                _.includes(herrings, t_sq))
+              !herrings.length ||
+              (herrings.length && _.includes(herrings, t_sq))
             ) {
               if (
                 PieceCol[GameBoard.pieces[t_sq]] !== GameBoard.side &&
@@ -883,7 +887,7 @@ export function GenerateMoves(withHerrings = true) {
             }
 
             // note ROYALTY NON-SLIDERS CONSUME
-            if (SQOFFBOARD(t_sq) === BOOL.FALSE && !herrings.length) {
+            if (!herrings.length) {
               if (
                 PieceCol[GameBoard.pieces[t_sq]] === GameBoard.side &&
                 !PieceKing[GameBoard.pieces[t_sq]]
@@ -921,8 +925,7 @@ export function GenerateMoves(withHerrings = true) {
             (GameBoard.dyad === 0 ||
               GameBoard.dyad === 1 ||
               GameBoard.dyad === dyadPrimeVar) &&
-            !herrings.length &&
-            SQOFFBOARD(t_sq) === BOOL.FALSE
+            !herrings.length
           ) {
             if (pcePrimeVar === PIECES.wP) {
               AddWhitePawnQuietMove(sq, t_sq, 0);
@@ -1045,7 +1048,7 @@ export function GenerateMoves(withHerrings = true) {
               ) {
                 if (
                   GameBoard.side === COLOURS.WHITE &&
-                  GameBoard.whiteArcane & 1
+                  GameBoard.whiteArcane[4] & 1
                 ) {
                   if (pcePrimeVar === PIECES.wP) {
                     AddWhitePawnCaptureMove(sq, t_sq, GameBoard.pieces[t_sq]);
@@ -1057,7 +1060,7 @@ export function GenerateMoves(withHerrings = true) {
                 }
                 if (
                   GameBoard.side === COLOURS.BLACK &&
-                  GameBoard.blackArcane & 1
+                  GameBoard.blackArcane[4] & 1
                 ) {
                   if (pcePrimeVar === PIECES.bP) {
                     AddWhitePawnCaptureMove(sq, t_sq, GameBoard.pieces[t_sq]);
@@ -1116,63 +1119,68 @@ export function GenerateMoves(withHerrings = true) {
 
           dir = PceDir[pce][index];
 
-          if (pce !== PIECES.wN && pce !== PIECES.bN) {
+          if (pce === PIECES.wN || pce === PIECES.bN) {
             kDir = KiDir[index];
             shft_t_N_sq = sq + kDir;
           }
 
           t_sq = sq + dir;
 
-          if (GameBoard.dyad === 0 && GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
-            // note NON-SLIDERS CAPTURES
+          if (SQOFFBOARD(t_sq) === BOOL.TRUE) {
+            continue;
+          }
+
+          if (
+            !herrings.length ||
+            (herrings.length && _.includes(herrings, t_sq))
+          ) {
             if (
-              SQOFFBOARD(t_sq) === BOOL.FALSE ||
-              (SQOFFBOARD(t_sq) === BOOL.FALSE &&
-                herrings.length &&
-                _.includes(herrings, t_sq))
+              GameBoard.dyad === 0 &&
+              GameBoard.pieces[t_sq] !== PIECES.EMPTY
             ) {
+              const targetPieceColor = PieceCol[GameBoard.pieces[t_sq]];
+
               if (
-                PieceCol[GameBoard.pieces[t_sq]] !== GameBoard.side &&
-                PieceCol[GameBoard.pieces[t_sq]] !== COLOURS.BOTH
+                targetPieceColor !== GameBoard.side &&
+                targetPieceColor !== COLOURS.BOTH
               ) {
                 AddCaptureMove(
                   MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
                 );
               }
             }
-
-            // note NON-SLIDERS CONSUME
-            if (SQOFFBOARD(t_sq) === BOOL.FALSE && !herrings.length) {
+          }
+          // note NON-SLIDERS CONSUME
+          if (SQOFFBOARD(t_sq) === BOOL.FALSE && !herrings.length) {
+            if (
+              PieceCol[GameBoard.pieces[t_sq]] === GameBoard.side &&
+              !PieceKing[GameBoard.pieces[t_sq]]
+            ) {
               if (
-                PieceCol[GameBoard.pieces[t_sq]] === GameBoard.side &&
-                !PieceKing[GameBoard.pieces[t_sq]]
+                GameBoard.side === COLOURS.WHITE &&
+                GameBoard.whiteArcane[4] & 1 &&
+                !(
+                  pce === PIECES.wK &&
+                  GameBoard.castlePerm & CASTLEBIT.WKCA &&
+                  GameBoard.castlePerm & CASTLEBIT.WQCA
+                )
               ) {
-                if (
-                  GameBoard.side === COLOURS.WHITE &&
-                  GameBoard.whiteArcane[4] & 1 &&
-                  !(
-                    pce === PIECES.wK &&
-                    GameBoard.castlePerm & CASTLEBIT.WKCA &&
-                    GameBoard.castlePerm & CASTLEBIT.WQCA
-                  )
-                ) {
-                  AddCaptureMove(
-                    MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
-                  );
-                }
-                if (
-                  GameBoard.side === COLOURS.BLACK &&
-                  GameBoard.blackArcane & 1 &&
-                  !(
-                    pce === PIECES.bK &&
-                    GameBoard.castlePerm & CASTLEBIT.BKCA &&
-                    GameBoard.castlePerm & CASTLEBIT.BQCA
-                  )
-                ) {
-                  AddCaptureMove(
-                    MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
-                  );
-                }
+                AddCaptureMove(
+                  MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
+                );
+              }
+              if (
+                GameBoard.side === COLOURS.BLACK &&
+                GameBoard.blackArcane[4] & 1 &&
+                !(
+                  pce === PIECES.bK &&
+                  GameBoard.castlePerm & CASTLEBIT.BKCA &&
+                  GameBoard.castlePerm & CASTLEBIT.BQCA
+                )
+              ) {
+                AddCaptureMove(
+                  MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
+                );
               }
             }
           }
@@ -1357,6 +1365,373 @@ export function GenerateMoves(withHerrings = true) {
     dyad = LoopSlideDyad[pceIndex++];
   }
 }
+
+export const bookmark = 'bookmark';
+
+// NOTE THIS IS A FASTER ONE USED WITH TUTORIAL
+// export function GenerateMoves() {
+//   GameBoard.moveListStart[GameBoard.ply + 1] =
+//     GameBoard.moveListStart[GameBoard.ply];
+
+//   var pceType;
+//   var pceNum;
+//   var sq;
+//   var pceIndex;
+//   var pce;
+//   var t_sq;
+//   var dir;
+
+//   if (GameBoard.side == COLOURS.WHITE) {
+//     pceType = PIECES.wP;
+
+//     for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; ++pceNum) {
+//       sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
+//       if (GameBoard.pieces[sq + 10] == PIECES.EMPTY) {
+//         AddWhitePawnQuietMove(sq, sq + 10);
+//         if (
+//           RanksBrd[sq] == RANKS.RANK_2 &&
+//           GameBoard.pieces[sq + 20] == PIECES.EMPTY
+//         ) {
+//           AddQuietMove(MOVE(sq, sq + 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS));
+//         }
+//       }
+
+//       if (
+//         SQOFFBOARD(sq + 9) == BOOL.FALSE &&
+//         PieceCol[GameBoard.pieces[sq + 9]] == COLOURS.BLACK
+//       ) {
+//         AddWhitePawnCaptureMove(sq, sq + 9, GameBoard.pieces[sq + 9]);
+//       }
+
+//       if (
+//         SQOFFBOARD(sq + 11) == BOOL.FALSE &&
+//         PieceCol[GameBoard.pieces[sq + 11]] == COLOURS.BLACK
+//       ) {
+//         AddWhitePawnCaptureMove(sq, sq + 11, GameBoard.pieces[sq + 11]);
+//       }
+
+//       if (GameBoard.enPas != SQUARES.NO_SQ) {
+//         if (sq + 9 == GameBoard.enPas) {
+//           AddEnPassantMove(
+//             MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+//           );
+//         }
+
+//         if (sq + 11 == GameBoard.enPas) {
+//           AddEnPassantMove(
+//             MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+//           );
+//         }
+//       }
+//     }
+
+//     if (GameBoard.castlePerm & CASTLEBIT.WKCA) {
+//       if (
+//         GameBoard.pieces[SQUARES.F1] == PIECES.EMPTY &&
+//         GameBoard.pieces[SQUARES.G1] == PIECES.EMPTY
+//       ) {
+//         if (
+//           SqAttacked(SQUARES.F1, COLOURS.BLACK) == BOOL.FALSE &&
+//           SqAttacked(SQUARES.E1, COLOURS.BLACK) == BOOL.FALSE
+//         ) {
+//           AddQuietMove(
+//             MOVE(SQUARES.E1, SQUARES.G1, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA)
+//           );
+//         }
+//       }
+//     }
+
+//     if (GameBoard.castlePerm & CASTLEBIT.WQCA) {
+//       if (
+//         GameBoard.pieces[SQUARES.D1] == PIECES.EMPTY &&
+//         GameBoard.pieces[SQUARES.C1] == PIECES.EMPTY &&
+//         GameBoard.pieces[SQUARES.B1] == PIECES.EMPTY
+//       ) {
+//         if (
+//           SqAttacked(SQUARES.D1, COLOURS.BLACK) == BOOL.FALSE &&
+//           SqAttacked(SQUARES.E1, COLOURS.BLACK) == BOOL.FALSE
+//         ) {
+//           AddQuietMove(
+//             MOVE(SQUARES.E1, SQUARES.C1, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA)
+//           );
+//         }
+//       }
+//     }
+//   } else {
+//     pceType = PIECES.bP;
+
+//     for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; ++pceNum) {
+//       sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
+//       if (GameBoard.pieces[sq - 10] == PIECES.EMPTY) {
+//         AddBlackPawnQuietMove(sq, sq - 10);
+//         if (
+//           RanksBrd[sq] == RANKS.RANK_7 &&
+//           GameBoard.pieces[sq - 20] == PIECES.EMPTY
+//         ) {
+//           AddQuietMove(MOVE(sq, sq - 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS));
+//         }
+//       }
+
+//       if (
+//         SQOFFBOARD(sq - 9) == BOOL.FALSE &&
+//         PieceCol[GameBoard.pieces[sq - 9]] == COLOURS.WHITE
+//       ) {
+//         AddBlackPawnCaptureMove(sq, sq - 9, GameBoard.pieces[sq - 9]);
+//       }
+
+//       if (
+//         SQOFFBOARD(sq - 11) == BOOL.FALSE &&
+//         PieceCol[GameBoard.pieces[sq - 11]] == COLOURS.WHITE
+//       ) {
+//         AddBlackPawnCaptureMove(sq, sq - 11, GameBoard.pieces[sq - 11]);
+//       }
+
+//       if (GameBoard.enPas != SQUARES.NO_SQ) {
+//         if (sq - 9 == GameBoard.enPas) {
+//           AddEnPassantMove(
+//             MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+//           );
+//         }
+
+//         if (sq - 11 == GameBoard.enPas) {
+//           AddEnPassantMove(
+//             MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+//           );
+//         }
+//       }
+//     }
+//     if (GameBoard.castlePerm & CASTLEBIT.BKCA) {
+//       if (
+//         GameBoard.pieces[SQUARES.F8] == PIECES.EMPTY &&
+//         GameBoard.pieces[SQUARES.G8] == PIECES.EMPTY
+//       ) {
+//         if (
+//           SqAttacked(SQUARES.F8, COLOURS.WHITE) == BOOL.FALSE &&
+//           SqAttacked(SQUARES.E8, COLOURS.WHITE) == BOOL.FALSE
+//         ) {
+//           AddQuietMove(
+//             MOVE(SQUARES.E8, SQUARES.G8, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA)
+//           );
+//         }
+//       }
+//     }
+
+//     if (GameBoard.castlePerm & CASTLEBIT.BQCA) {
+//       if (
+//         GameBoard.pieces[SQUARES.D8] == PIECES.EMPTY &&
+//         GameBoard.pieces[SQUARES.C8] == PIECES.EMPTY &&
+//         GameBoard.pieces[SQUARES.B8] == PIECES.EMPTY
+//       ) {
+//         if (
+//           SqAttacked(SQUARES.D8, COLOURS.WHITE) == BOOL.FALSE &&
+//           SqAttacked(SQUARES.E8, COLOURS.WHITE) == BOOL.FALSE
+//         ) {
+//           AddQuietMove(
+//             MOVE(SQUARES.E8, SQUARES.C8, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA)
+//           );
+//         }
+//       }
+//     }
+//   }
+
+//   pceIndex = LoopNonSlideIndex[GameBoard.side];
+//   pce = LoopNonSlidePce[pceIndex++];
+
+//   while (pce != 0) {
+//     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+//       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+
+//       for (let index = 0; index < DirNum[pce]; index++) {
+//         dir = PceDir[pce][index];
+//         t_sq = sq + dir;
+
+//         if (SQOFFBOARD(t_sq) == BOOL.TRUE) {
+//           continue;
+//         }
+
+//         if (GameBoard.pieces[t_sq] != PIECES.EMPTY) {
+//           if (PieceCol[GameBoard.pieces[t_sq]] != GameBoard.side) {
+//             AddCaptureMove(
+//               MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
+//             );
+//           }
+//         } else {
+//           AddQuietMove(MOVE(sq, t_sq, PIECES.EMPTY, PIECES.EMPTY, 0));
+//         }
+//       }
+//     }
+//     pce = LoopNonSlidePce[pceIndex++];
+//   }
+
+//   pceIndex = LoopSlideIndex[GameBoard.side];
+//   pce = LoopSlidePce[pceIndex++];
+
+//   while (pce != 0) {
+//     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+//       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+
+//       for (let index = 0; index < DirNum[pce]; index++) {
+//         dir = PceDir[pce][index];
+//         t_sq = sq + dir;
+
+//         while (SQOFFBOARD(t_sq) == BOOL.FALSE) {
+//           if (GameBoard.pieces[t_sq] != PIECES.EMPTY) {
+//             if (PieceCol[GameBoard.pieces[t_sq]] != GameBoard.side) {
+//               AddCaptureMove(
+//                 MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
+//               );
+//             }
+//             break;
+//           }
+//           AddQuietMove(MOVE(sq, t_sq, PIECES.EMPTY, PIECES.EMPTY, 0));
+//           t_sq += dir;
+//         }
+//       }
+//     }
+//     pce = LoopSlidePce[pceIndex++];
+//   }
+// }
+
+// function GenerateCaptures() {
+//   GameBoard.moveListStart[GameBoard.ply + 1] =
+//     GameBoard.moveListStart[GameBoard.ply];
+
+//   var pceType;
+//   var pceNum;
+//   var sq;
+//   var pceIndex;
+//   var pce;
+//   var t_sq;
+//   var dir;
+
+//   if (GameBoard.side == COLOURS.WHITE) {
+//     pceType = PIECES.wP;
+
+//     for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; ++pceNum) {
+//       sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
+
+//       if (
+//         SQOFFBOARD(sq + 9) == BOOL.FALSE &&
+//         PieceCol[GameBoard.pieces[sq + 9]] == COLOURS.BLACK
+//       ) {
+//         AddWhitePawnCaptureMove(sq, sq + 9, GameBoard.pieces[sq + 9]);
+//       }
+
+//       if (
+//         SQOFFBOARD(sq + 11) == BOOL.FALSE &&
+//         PieceCol[GameBoard.pieces[sq + 11]] == COLOURS.BLACK
+//       ) {
+//         AddWhitePawnCaptureMove(sq, sq + 11, GameBoard.pieces[sq + 11]);
+//       }
+
+//       if (GameBoard.enPas != SQUARES.NO_SQ) {
+//         if (sq + 9 == GameBoard.enPas) {
+//           AddEnPassantMove(
+//             MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+//           );
+//         }
+
+//         if (sq + 11 == GameBoard.enPas) {
+//           AddEnPassantMove(
+//             MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+//           );
+//         }
+//       }
+//     }
+//   } else {
+//     pceType = PIECES.bP;
+
+//     for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; ++pceNum) {
+//       sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
+
+//       if (
+//         SQOFFBOARD(sq - 9) == BOOL.FALSE &&
+//         PieceCol[GameBoard.pieces[sq - 9]] == COLOURS.WHITE
+//       ) {
+//         AddBlackPawnCaptureMove(sq, sq - 9, GameBoard.pieces[sq - 9]);
+//       }
+
+//       if (
+//         SQOFFBOARD(sq - 11) == BOOL.FALSE &&
+//         PieceCol[GameBoard.pieces[sq - 11]] == COLOURS.WHITE
+//       ) {
+//         AddBlackPawnCaptureMove(sq, sq - 11, GameBoard.pieces[sq - 11]);
+//       }
+
+//       if (GameBoard.enPas != SQUARES.NO_SQ) {
+//         if (sq - 9 == GameBoard.enPas) {
+//           AddEnPassantMove(
+//             MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+//           );
+//         }
+
+//         if (sq - 11 == GameBoard.enPas) {
+//           AddEnPassantMove(
+//             MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+//           );
+//         }
+//       }
+//     }
+//   }
+
+//   pceIndex = LoopNonSlideIndex[GameBoard.side];
+//   pce = LoopNonSlidePce[pceIndex++];
+
+//   while (pce != 0) {
+//     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+//       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+
+//       for (let index = 0; index < DirNum[pce]; index++) {
+//         dir = PceDir[pce][index];
+//         t_sq = sq + dir;
+
+//         console.log('hello');
+
+//         if (SQOFFBOARD(t_sq) == BOOL.TRUE) {
+//           continue;
+//         }
+
+//         if (GameBoard.pieces[t_sq] != PIECES.EMPTY) {
+//           if (PieceCol[GameBoard.pieces[t_sq]] != GameBoard.side) {
+//             AddCaptureMove(
+//               MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
+//             );
+//           }
+//         }
+//       }
+//     }
+//     pce = LoopNonSlidePce[pceIndex++];
+//   }
+
+//   pceIndex = LoopSlideIndex[GameBoard.side];
+//   pce = LoopSlidePce[pceIndex++];
+
+//   while (pce != 0) {
+//     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+//       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+
+//       for (let index = 0; index < DirNum[pce]; index++) {
+//         dir = PceDir[pce][index];
+//         t_sq = sq + dir;
+
+//         while (SQOFFBOARD(t_sq) == BOOL.FALSE) {
+//           if (GameBoard.pieces[t_sq] != PIECES.EMPTY) {
+//             if (PieceCol[GameBoard.pieces[t_sq]] != GameBoard.side) {
+//               AddCaptureMove(
+//                 MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
+//               );
+//             }
+//             break;
+//           }
+//           t_sq += dir;
+//         }
+//       }
+//     }
+//     pce = LoopSlidePce[pceIndex++];
+//   }
+// }
+
+export const bookmark2 = 'bookmark';
 
 // function GenerateCaptures() {
 //   GameBoard.moveListStart[GameBoard.ply + 1] =

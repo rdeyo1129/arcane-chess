@@ -241,7 +241,6 @@ export function GenerateMoves(withHerrings = true) {
   let dir;
   let dyad;
 
-  let herringsAttacked;
   let herrings = [];
 
   const herringArray = getHerrings(GameBoard.side);
@@ -254,7 +253,7 @@ export function GenerateMoves(withHerrings = true) {
   // if move list === 0? and not in check does this take care of these edge cases?
 
   if (withHerrings) {
-    herringsAttacked = () => {
+    const herringsAttacked = () => {
       const tempHerrings = [];
       _.forEach(herringArray, (herringSq) => {
         if (SqAttacked(herringSq, GameBoard.side)) {

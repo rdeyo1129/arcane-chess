@@ -10,7 +10,7 @@ export const whiteArcane = (
     // dyadZ: 5,
     // sumnP: 2,
     // sumnRV: 7,
-    // shftP: 4,
+    shftP: 4,
     // shftN: 4,
     // shftB: 4,
     // shftR: 4,
@@ -18,7 +18,7 @@ export const whiteArcane = (
     // modsCON: 4,
     // modsRAN: 1,
     // modsFUG: 1,
-    // modsQTY: 1,
+    modsINH: 1,
     // note showEngineRating (not recommended move? different from implant) for campaign power (for 3 turns?)
   }
 ) => {
@@ -34,9 +34,9 @@ export const blackArcane = (
     // dyadZ: 5,
     // sumnP: 2,
     // sumnRV: 7,
-    // shftP: 4,
+    shftN: 4,
     // modsSIG: 2,
-    // modsCON: 4,
+    modsCON: 4,
     // modsFUG: 1,
     // modsRAN: 1,
     // modsQTY: 1,

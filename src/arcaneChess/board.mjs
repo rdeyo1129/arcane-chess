@@ -421,6 +421,10 @@ export function randomize() {
       )} w KQkq - 0 1`
     );
   }
+
+  return `${randomizer(COLOURS.BLACK)}/pppppppp/8/8/8/8/PPPPPPPP/${randomizer(
+    COLOURS.WHITE
+  )} w KQkq - 0 1`;
 }
 
 export function ParseFen(fen) {

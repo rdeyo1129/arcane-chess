@@ -18,10 +18,10 @@ export function Perft(depth) {
   GenerateMoves();
 
   // should take care of herrings but what about stalemate?
-  // if (GameBoard.moveList.length === 0 && !InCheck()) {
-  //   // false here meaning don't count the existing herrings being attacked because the capture would be illegal
-  //   // GenerateMoves(false);
-  // }
+  if (GameBoard.moveList.length === 0 && !InCheck()) {
+    // false here meaning don't count the existing herrings being attacked because the capture would be illegal
+    GenerateMoves(false);
+  }
 
   let index;
   let move;

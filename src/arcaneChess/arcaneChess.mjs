@@ -82,7 +82,7 @@ export default function arcaneChess(
   fen
   // normal starting position
   // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  // rnbqkbnr/pppppppp/8/2nRn3/3P4/pp6/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+  // rnbqkbnr/pppppppp/8/2nRn2h/3P4/ph6/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   // handicaps
 ) {
   InitFilesRanksBrd();
@@ -90,10 +90,10 @@ export default function arcaneChess(
   InitSq120To64();
   InitBoardVars();
 
-  ParseFen(fen);
-
   // randomize before parse fen
-  // randomize();
+  randomize();
+
+  ParseFen(fen);
 
   // generatePowers();
 

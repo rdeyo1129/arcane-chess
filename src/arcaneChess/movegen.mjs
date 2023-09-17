@@ -255,19 +255,21 @@ export function GenerateMoves(withHerrings = true) {
 
   if (withHerrings) {
     herringsAttacked = () => {
-      const herrings = [];
+      const tempHerrings = [];
       _.forEach(herringArray, (herringSq) => {
         if (SqAttacked(herringSq, GameBoard.side)) {
-          herrings.push(herringSq);
+          tempHerrings.push(herringSq);
         }
       });
-      return herrings;
+      return tempHerrings;
     };
 
     herrings = herringsAttacked();
   } else {
     herrings = [];
   }
+
+  // console.log(herrings);
 
   // NOTE WHITE PAWN AND SPECIAL MOVES
   if (GameBoard.side === COLOURS.WHITE) {
@@ -875,7 +877,7 @@ export function GenerateMoves(withHerrings = true) {
             }
 
             // note ROYALTY NON-SLIDERS CONSUME
-            if (!herrings.length) {
+            if (SQOFFBOARD(t_sq) === BOOL.FALSE && !herrings.length) {
               if (
                 PieceCol[GameBoard.pieces[t_sq]] === GameBoard.side &&
                 !PieceKing[GameBoard.pieces[t_sq]]
@@ -1256,20 +1258,23 @@ export function GenerateMoves(withHerrings = true) {
           while (SQOFFBOARD(t_sq) === BOOL.FALSE) {
             // note SLIDERS CAPTURE
             if (
-              GameBoard.dyad === 0 &&
-              GameBoard.pieces[t_sq] !== PIECES.EMPTY &&
-              herrings.length &&
-              _.includes(herrings, t_sq)
+              !herrings.length ||
+              (herrings.length && _.includes(herrings, t_sq))
             ) {
               if (
-                PieceCol[GameBoard.pieces[t_sq]] !== GameBoard.side &&
-                PieceCol[GameBoard.pieces[t_sq]] !== COLOURS.BOTH
+                GameBoard.dyad === 0 &&
+                GameBoard.pieces[t_sq] !== PIECES.EMPTY
               ) {
-                AddCaptureMove(
-                  MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
-                );
+                if (
+                  PieceCol[GameBoard.pieces[t_sq]] !== GameBoard.side &&
+                  PieceCol[GameBoard.pieces[t_sq]] !== COLOURS.BOTH
+                ) {
+                  AddCaptureMove(
+                    MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, 0)
+                  );
+                }
+                break;
               }
-              break;
             }
 
             // note SLIDERS CONSUME

@@ -177,7 +177,7 @@ GameBoard.blackArcane = [0, 0, 0, 0, 0];
 // todo override with the last placed condition
 // ^ if any other royalties _.include square num, then remove them from that royalty array to override
 GameBoard.royaltyQ = [];
-GameBoard.royaltyZ = [];
+GameBoard.royaltyZ = [64];
 GameBoard.royaltyU = [];
 GameBoard.royaltyV = [];
 GameBoard.royaltyE = [];

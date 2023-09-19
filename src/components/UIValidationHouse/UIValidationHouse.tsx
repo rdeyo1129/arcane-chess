@@ -28,7 +28,9 @@ class UnwrappedUIValidationHouse extends React.Component<object, UIVState> {
     this.state = {
       fen: '',
     };
-    this.arcaneChess = (fen: string) => arcaneChess({}, {}, fen);
+    this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
+
+    // this.arcaneChess();
   }
 
   initializeArcaneChessAndTest = () => {
@@ -39,8 +41,8 @@ class UnwrappedUIValidationHouse extends React.Component<object, UIVState> {
   perftTest = (fen: string) => {
     // gui?
     ParseFen(fen);
-    PrintBoard();
-    PerftTest(5);
+    // PrintBoard();
+    PerftTest(1);
   };
 
   setFen = (fen: string) => {

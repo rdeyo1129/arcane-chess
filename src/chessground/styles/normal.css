@@ -1,0 +1,42 @@
+.cg-wrap piece.p-piece.white.normal {
+  background-image: url('../images/pieces/tactorius/normal/wP.svg');
+}
+.cg-wrap piece.b-piece.white.normal {
+  background-image: url('../images/pieces/tactorius/normal/wB.svg');
+}
+.cg-wrap piece.n-piece.white.normal {
+  background-image: url('../images/pieces/tactorius/normal/wN.svg');
+}
+.cg-wrap piece.r-piece.white.normal {
+  background-image: url('../images/pieces/tactorius/normal/wR.svg');
+}
+.cg-wrap piece.q-piece.white.normal {
+  background-image: url('../images/pieces/tactorius/normal/wQ.svg');
+}
+.cg-wrap piece.k-piece.white.normal {
+  background-image: url('../images/pieces/tactorius/normal/wK.svg');
+}
+.cg-wrap piece.s-piece.white.normal {
+  background-image: url('../images/pieces/tactorius/normal/wS.svg')
+}
+.cg-wrap piece.p-piece.black.normal {
+  background-image: url('../images/pieces/tactorius/normal/bP.svg');
+}
+.cg-wrap piece.b-piece.black.normal {
+  background-image: url('../images/pieces/tactorius/normal/bB.svg');
+}
+.cg-wrap piece.n-piece.black.normal {
+  background-image: url('../images/pieces/tactorius/normal/bN.svg');
+}
+.cg-wrap piece.r-piece.black.normal {
+  background-image: url('../images/pieces/tactorius/normal/bR.svg');
+}
+.cg-wrap piece.q-piece.black.normal {
+  background-image: url('../images/pieces/tactorius/normal/bQ.svg');
+}
+.cg-wrap piece.k-piece.black.normal {
+  background-image: url('../images/pieces/tactorius/normal/bK.svg');
+}
+.cg-wrap piece.s-piece.black.normal {
+  background-image: url('../images/pieces/tactorius/normal/bS.svg')
+}

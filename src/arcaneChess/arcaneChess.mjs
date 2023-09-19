@@ -69,9 +69,11 @@ import {
   CheckBoard,
   PrintBoard,
   PrintPieceLists,
+  InCheck,
 } from './board';
 import { MakeMove, TakeMove } from './makemove';
 import { PerftTest } from './perft';
+import { validMoves, validGroundMoves } from './gui';
 
 export default function arcaneChess(
   // todo react input
@@ -79,11 +81,18 @@ export default function arcaneChess(
   blackConfig = {},
   // fen = 'rnbqkbnr/pppppppp/8/8/8/4h3/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
   // 4k3/8/8/K2P3r/8/8/8/8 w - - 0 1
-  fen
   // normal starting position
   // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+  // rnbqkbnr/pppppppp/8/B6h/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+  // rnbqkbnr/pppppppp/8/7h/5N2/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   // rnbqkbnr/pppppppp/8/2nRn2h/3P4/ph6/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  // handicaps
+  fen
+  // '8/8/8/r2R3K/3h5/8/8/8 w - - 0 1'
+  // 8/8/8/r2R3K/3p5/8/8/8 w - - 0 1
+  // generate random fen with white king in check
+  // fen = '8/4r3/8/8/8/8/PPPP4/4K3 w - - 0 1'
+
+  // handicaps parameter
 ) {
   InitFilesRanksBrd();
   InitHashKeys();
@@ -94,16 +103,27 @@ export default function arcaneChess(
   randomize();
 
   ParseFen(fen);
+  PrintBoard();
 
-  // generatePowers();
+  generatePowers();
 
   GenerateMoves();
 
-  // PrintMoveList();
+  // should take care of herrings but what about stalemate?
+  // todo assign generate moves with herrings to a variable and check here
+  if (validMoves().length === 0 && !InCheck()) {
+    GenerateMoves(false);
+    console.log(validGroundMoves());
+  }
+
+  PrintMoveList();
+
+  console.log(validGroundMoves());
+
   // PrintPieceLists();
   // CheckBoard();
 
-  PrintMoveList();
+  // PrintMoveList();
   // MakeMove(GameBoard.moveList[0]);
   // PrintBoard();
   // CheckBoard();

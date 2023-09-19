@@ -10,7 +10,7 @@ export const whiteArcane = (
     // dyadZ: 5,
     // sumnP: 2,
     // sumnRV: 7,
-    shftP: 4,
+    shftR: 4,
     // shftN: 4,
     // shftB: 4,
     // shftR: 4,

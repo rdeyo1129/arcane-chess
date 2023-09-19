@@ -1,0 +1,8 @@
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="5wb" transform="matrix(0.888889 0 0 0.888889 0 0)">
+            <path transform="matrix(1 0 0 1 0 0)" d="M9 36C 12.39 35.03 19.11 36.43 22.5 34C 25.89 36.43 32.61 35.03 36 36C 36 36 37.65 36.54 39 38C 38.32 38.97 37.35 38.99 36 38.5C 32.61 37.53 25.89 38.96 22.5 37.5C 19.11 38.96 12.39 37.53 9 38.5C 7.65 38.99 6.68 38.97 6 38C 7.35 36.54 9 36 9 36z" stroke-width="1.5" fill-rule="nonzero" style="stroke: rgb(255, 255, 255); fill: rgb(255, 255, 255); stroke-linejoin: round;"/>
+            <path transform="matrix(1 0 0 1 0 0)" d="M15 32C 17.5 34.5 27.5 34.5 30 32C 30.5 30.5 30 30 30 30C 30 27.5 27.5 26 27.5 26C 33 24.5 33.5 14.5 22.5 10.5C 11.5 14.5 12 24.5 17.5 26C 17.5 26 15 27.5 15 30C 15 30 14.5 30.5 15 32z" stroke-width="1.5" fill-rule="nonzero" style="stroke: rgb(255, 255, 255); fill: rgb(255, 255, 255);"/>
+            <path transform="matrix(1 0 0 1 0 0)" d="M25 8C 25 8.893164 24.5235 9.718482 23.75 10.16506C 22.9765 10.61165 22.0235 10.61165 21.25 10.16506C 20.4765 9.718481 20 8.893164 20 8C 20 7.106836 20.4765 6.281518 21.25 5.834936C 22.0235 5.388354 22.9765 5.388354 23.75 5.834937C 24.5235 6.281519 25 7.106836 25 8z" stroke-width="1.5" fill-rule="nonzero" style="stroke: rgb(255, 255, 255); fill: rgb(255, 255, 255);"/>
+            <path transform="matrix(1 0 0 1 0 0)" d="M17.5 26L27.5 26L17.5 26zM15 30L30 30zM22.5 15.5L22.5 20.5zM20 18L25 18" stroke-width="1.5" fill="none" style="stroke: rgb(0, 48, 168); stroke-linejoin: round; stroke-linecap: round;"/>
+        </g>
+</svg>

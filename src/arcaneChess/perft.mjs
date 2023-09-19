@@ -1,9 +1,10 @@
 import { GameBoard, PrintBoard } from './board';
-import { PrMove } from './io';
+import { PrMove, PrintMoveList } from './io';
 import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { BOOL } from './defs';
 import { InCheck } from './board';
+import { validMoves, validGroundMoves } from './gui';
 
 let perft_leafNodes;
 
@@ -13,14 +14,15 @@ export function Perft(depth) {
     return;
   }
 
-  // generatePowers();
+  generatePowers();
 
   GenerateMoves();
 
   // should take care of herrings but what about stalemate?
-  if (GameBoard.moveList.length === 0 && !InCheck()) {
-    // false here meaning don't count the existing herrings being attacked because the capture would be illegal
+  // todo assign generate moves with herrings to a variable and check here
+  if (validMoves().length === 0 && !InCheck()) {
     GenerateMoves(false);
+    console.log(validGroundMoves());
   }
 
   let index;
@@ -46,6 +48,13 @@ export function PerftTest(depth) {
   PrintBoard();
   console.log('Starting Test To Depth:' + depth);
   perft_leafNodes = 0;
+
+  // should take care of herrings but what about stalemate?
+  // todo assign generate moves with herrings to a variable and check here
+  if (validMoves().length === 0 && !InCheck()) {
+    GenerateMoves(false);
+    console.log(validGroundMoves());
+  }
 
   let index;
   let move;

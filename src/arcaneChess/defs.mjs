@@ -80,7 +80,7 @@ export const BOOL = { FALSE: 0, TRUE: 1 };
 
 export const MAXGAMEMOVES = 2048;
 export const MAXPOSITIONMOVES = 256;
-export const MAXDEPTH = 3;
+export const MAXDEPTH = 64;
 export const INFINITE = 30000;
 export const MATE = 29000;
 export const PVENTRIES = 10000;
@@ -490,7 +490,7 @@ export let VaDir = [
   ]
 
 export const DirNum = [
-  0, 0, 8, 4, 4, 8, 8, 0, 8, 4, 4, 8, 8, 0, 6, 4, 12, 12, 24, 6, 4, 12, 12, 24,
+  0, 0, 8, 4, 4, 8, 8, 0, 8, 4, 4, 8, 8, 0, 6, 4, 4, 4, 24, 6, 4, 4, 4, 24,
 ];
 export const PceDir = [
   0,
@@ -509,13 +509,13 @@ export const PceDir = [
   0,
   SpDir,
   HrDir,
-  [...RkDir, ...KnDir],
-  [...BiDir, ...KnDir],
+  RkDir, // zealot
+  BiDir, // unicorn
   VaDir,
   SpDir,
   HrDir,
-  [...RkDir, ...KnDir],
-  [...BiDir, ...KnDir],
+  RkDir, // zealot
+  BiDir, // unicorn
   VaDir,
 ];
 export const LoopNonSlidePce = [

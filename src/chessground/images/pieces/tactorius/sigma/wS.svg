@@ -1,0 +1,6 @@
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="1ws" transform="matrix(1.538462 0 0 1.538462 0 0)">
+            <path transform="matrix(1 0 0 1 0 0)" d="M13 2.5C 13 4.5 7.5 4.5 7.5 11.5C 7.5 15.328 7.4461 20.5 6 20.5C 4 20.5 2.9548 22.5 4.5 22.5L4.5 22.5L13 22.5L21.5 22.5C 23.045 22.5 22 20.5 20 20.5C 18.554 20.5 18.5 15.328 18.5 11.5C 18.5 4.5 13 4.5 13 2.5z" stroke-width="1" style="stroke: rgb(255, 255, 255); fill: rgb(255, 255, 255);"/>
+            <path transform="matrix(1 0 0 1 0 0)" d="M13 12L13 18L13 12zM10 12L16 12" stroke-width="2" style="fill: rgb(255, 255, 255); stroke: rgb(255, 213, 0);"/>
+        </g>
+</svg>

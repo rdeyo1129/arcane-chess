@@ -52,6 +52,7 @@ export function PerftTest(depth) {
   // should take care of herrings but what about stalemate?
   // todo assign generate moves with herrings to a variable and check here
   if (validMoves().length === 0 && !InCheck()) {
+    generatePowers();
     GenerateMoves(false);
     console.log(validGroundMoves());
   }

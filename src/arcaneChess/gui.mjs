@@ -4,24 +4,12 @@ import { NOMOVE, BOOL } from './defs';
 import { PrMove } from './io';
 
 export function validGroundMoves() {
-  // note PASS TURN?
-  // THIS IS WHERE WE INCLUDE PASSING SUMMON AND SWAP MOVES
-
-  // recorded
-  // summon @ -> t_sq (for map)
-  // promotion
-  // swap &
-
-  //
-  // turn handler: pass, dyad
-  // move / message board handler
-  // caslte, dyads, arcane usage
-
   const moveMap = new Map();
   const validMovesReturn = validMoves();
 
   // moves
   // click button on UI = setCurrentArcane
+  // is this for dyads?
   // if (GameBoard.currentArcane & POWERBITS[substr(sumn, 4)]) substring of box notation? {
   for (let move of validMovesReturn) {
     const from = PrMove(move).substring(0, 2);

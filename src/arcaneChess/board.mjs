@@ -119,6 +119,8 @@ export const MFLAGCA = 0x4000000;
 export const MFLAGCAP = 0x7c000;
 export const MFLAGPROM = 0x3f00000;
 
+export const MFLAGSHFT = 0x8000000;
+
 // export const MFLAGDYAD = 0xfff0000000n;
 // export const MFLAGSHFT = 0xf0000000000n;
 // export const MFLAGSWAP = 0x700000000000n;
@@ -181,6 +183,8 @@ GameBoard.royaltyZ = [64];
 GameBoard.royaltyU = [];
 GameBoard.royaltyV = [];
 GameBoard.royaltyE = [];
+
+GameBoard.suspend = 0;
 
 GameBoard.posKey = 0;
 GameBoard.moveList = new Array(MAXDEPTH * MAXPOSITIONMOVES);

@@ -15,7 +15,7 @@ export const whiteArcane = (
     // shftB: 4,
     // shftR: 4,
     // modsSIG: 2,
-    // modsCON: 4,
+    modsCON: 4,
     // modsRAN: 1,
     // modsFUG: 1,
     modsINH: 1,

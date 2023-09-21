@@ -29,6 +29,8 @@ import {
   SQUARES,
 } from './defs';
 
+// note subtract arcane for shifts on pieces type = capture param
+
 export function ClearPiece(sq) {
   var pce = GameBoard.pieces[sq];
   var col = PieceCol[pce];

@@ -25,6 +25,8 @@ export const PIECES = {
   bV: 23,
 };
 
+export const now = () => new Date();
+
 export const BRD_SQ_NUM = 120;
 
 export const FILES = {
@@ -81,8 +83,8 @@ export const BOOL = { FALSE: 0, TRUE: 1 };
 export const MAXGAMEMOVES = 2048;
 export const MAXPOSITIONMOVES = 256;
 export const MAXDEPTH = 64;
-export const INFINITE = 30000;
-export const MATE = 29000;
+export const INFINITE = 100000;
+export const MATE = 99000;
 export const PVENTRIES = 10000;
 
 export const FilesBrd = new Array(BRD_SQ_NUM);
@@ -183,7 +185,7 @@ export const PieceMin = [
   BOOL.FALSE,
 ];
 export const PieceVal = [
-  0, 100, 325, 325, 550, 1000, 50000, 100, 325, 325, 550, 1000, 50000, 0, 250,
+  0, 100, 325, 325, 550, 1000, 150000, 100, 325, 325, 550, 1000, 150000, 0, 250,
   200, 1000, 900, 1400, 250, 200, 1000, 900, 1400,
 ];
 export const PieceCol = [
@@ -629,7 +631,7 @@ export function SQ120(sq64) {
 }
 
 export function PCEINDEX(pce, pceNum) {
-  return pce * 16 + pceNum;
+  return pce * 18 + pceNum;
 }
 
 export function MIRROR64(sq) {

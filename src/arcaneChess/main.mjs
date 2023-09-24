@@ -70,7 +70,7 @@ export function InitSq120To64() {
 
 export function InitBoardVars() {
   var index = 0;
-  for (index = 0; index < MAXGAMEMOVES; ++index) {
+  for (index = 0; index < MAXGAMEMOVES; index++) {
     GameBoard.history.push({
       move: NOMOVE,
       castlePerm: 0,
@@ -81,7 +81,7 @@ export function InitBoardVars() {
     });
   }
 
-  for (index = 0; index < PVENTRIES; ++index) {
+  for (index = 0; index < PVENTRIES; index++) {
     GameBoard.PvTable.push({
       move: NOMOVE,
       posKey: 0,

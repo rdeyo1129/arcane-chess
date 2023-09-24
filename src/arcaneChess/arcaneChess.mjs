@@ -41,7 +41,7 @@ import {
   InitBoardVars,
 } from './main';
 import { PrintMoveList } from './io';
-import { GenerateMoves, generatePowers } from './movegen';
+import { InitMvvLva, GenerateMoves, generatePowers } from './movegen';
 import {
   GameBoard,
   randomize,
@@ -54,6 +54,7 @@ import {
 import { MakeMove, TakeMove } from './makemove';
 import { PerftTest } from './perft';
 import { validMoves, validGroundMoves } from './gui';
+import { SearchPosition } from './search';
 
 export default function arcaneChess(
   // todo react input
@@ -66,7 +67,7 @@ export default function arcaneChess(
   // rnbqkbnr/pppppppp/8/B6h/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   // rnbqkbnr/pppppppp/8/7h/5N2/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   // rnbqkbnr/pppppppp/8/2nRn2h/3P4/ph6/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  fen
+  fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
   // '8/8/8/r2R3K/3h5/8/8/8 w - - 0 1'
   // 8/8/8/r2R3K/3p5/8/8/8 w - - 0 1
   // generate random fen with white king in check
@@ -78,27 +79,9 @@ export default function arcaneChess(
   InitHashKeys();
   InitSq120To64();
   InitBoardVars();
+  InitMvvLva();
 
-  // randomize before parse fen
-  randomize();
-
-  ParseFen(fen);
-  PrintBoard();
-
-  generatePowers();
-
-  GenerateMoves();
-
-  // should take care of herrings but what about stalemate?
-  // todo assign generate moves with herrings to a variable and check here
-  if (validMoves().length === 0 && !InCheck()) {
-    GenerateMoves(false);
-    console.log(validGroundMoves());
-  }
-
-  PrintMoveList();
-
-  console.log(validGroundMoves());
+  // console.log(validGroundMoves());
 
   // PrintPieceLists();
   // CheckBoard();
@@ -116,8 +99,30 @@ export default function arcaneChess(
     console.log(type);
   };
 
+  const startGame = (fen) => {
+    randomize();
+
+    ParseFen(fen);
+
+    generatePowers();
+
+    GenerateMoves();
+
+    // should take care of herrings but what about stalemate?
+    // todo assign generate moves with herrings to a variable and check here
+    if (validMoves().length === 0 && !InCheck()) {
+      GenerateMoves(false);
+      console.log(validGroundMoves());
+    }
+
+    PrintBoard();
+
+    SearchPosition(fen);
+  };
+
   return {
     // filesRanksBoard: () => InitFilesRanksBrd(),
     activateDyad: (type) => activateDyad(type),
+    startGame: (fen) => startGame(fen),
   };
 }

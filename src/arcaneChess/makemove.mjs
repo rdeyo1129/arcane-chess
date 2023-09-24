@@ -105,7 +105,7 @@ export function MakeMove(move) {
   const getBlackQueenRookPos = _.indexOf(GameBoard.pieces, 10, 92);
 
   if ((move & MFLAGEP) !== 0) {
-    if (side == COLOURS.WHITE) {
+    if (side === COLOURS.WHITE) {
       ClearPiece(to - 10);
     } else {
       ClearPiece(to + 10);

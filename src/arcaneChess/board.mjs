@@ -45,19 +45,6 @@ import {
 import { PrSq } from './io';
 import { whiteArcane, blackArcane } from './arcaneDefs';
 
-export function FROMSQ(m) {
-  return m & 0x7f;
-}
-export function TOSQ(m) {
-  return (m >> 7) & 0x7f;
-}
-export function CAPTURED(m) {
-  return (m >> 14) & 0x1f;
-}
-export function PROMOTED(m) {
-  return (m >> 21) & 0x1f;
-}
-
 // todo might need shifting
 // export function DYAD(m) {
 //   return m & 0xfff;
@@ -72,44 +59,28 @@ export function PROMOTED(m) {
 //   return m & 0xffff;
 // }
 
+export function FROMSQ(m) {
+  return m & 0x7f;
+}
+export function TOSQ(m) {
+  return (m >> 7) & 0x7f;
+}
+export function CAPTURED(m) {
+  return (m >> 14) & 0x1f;
+}
+export function PROMOTED(m) {
+  return (m >> 21) & 0x1f;
+}
+
 /*
-    dyad << 27 hex?
-    shft << 39 
-    swap << 43
-    sumn << 46
-    con flag
-    off flag
-
-    // 9/15/23 note dyads
-    // for dyads we just need a no captures flag
-    // 
-
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0111 1111 -> From 0x7F
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0011 1111 1000 0000 -> To >> 7, 0x7F
+    0000 0000 0000 0000 0000 0000 0111 1111 -> From 0x7F
+    0000 0000 0000 0000 0011 1111 1000 0000 -> To >> 7, 0x7F
     todo this needs to be shifted in this diagram because of 23 pieces not 12 see vars
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0111 1100 0000 0000 0000 -> Captured >> 14, 0x1F
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 1000 0000 0000 0000 0000 -> EP 0x80000
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0001 0000 0000 0000 0000 0000 -> pawn start 0x100000
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0011 1110 0000 0000 0000 0000 0000 -> prom >> 21, 0x4E
-    0000 0000 0000 0000 0000 0000 0000 0000 0000 0100 0000 0000 0000 0000 0000 0000 -> Castle 0x4000000
-
-    // trash?
-    0000 0000 0000 0000 0000 0000 0111 1111 1111 1000 0000 0000 0000 0000 0000 0000 -> dyad 0xeff8000000
-    0000 0000 0000 0000 0000 0111 1000 0000 0000 0000 0000 0000 0000 0000 0000 0000 -> shft 0xe8000000000
-    0000 0000 0000 0000 0011 1000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 -> swap 0x380000000000
-    0011 1111 1111 1111 1100 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 -> sumn 0x3fffd00000000000
-    0100 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 -> con 0x4000000000000000
-    1000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 -> off 0x8000000000000000
-
-    move
-    return (
-      from |
-      (to << 7) |
-      (captured << 14) |
-      (promoted << 20) |
-      (summoned << 46) |
-      flag
-    );
+    0000 0000 0000 0111 1100 0000 0000 0000 -> Captured >> 14, 0x1F
+    0000 0000 0000 1000 0000 0000 0000 0000 -> EP 0x80000
+    0000 0000 0001 0000 0000 0000 0000 0000 -> pawn start 0x100000
+    0000 0011 1110 0000 0000 0000 0000 0000 -> prom >> 21, 0x3E00000
+    0000 0100 0000 0000 0000 0000 0000 0000 -> Castle 0x4000000
   */
 
 export const MFLAGEP = 0x80000;
@@ -117,7 +88,7 @@ export const MFLAGPS = 0x100000;
 export const MFLAGCA = 0x4000000;
 
 export const MFLAGCAP = 0x7c000;
-export const MFLAGPROM = 0x3f00000;
+export const MFLAGPROM = 0x3e00000;
 
 export const MFLAGSHFT = 0x8000000;
 
@@ -163,14 +134,13 @@ GameBoard.side = COLOURS.WHITE;
 GameBoard.fiftyMove = 0;
 GameBoard.hisPly = 0;
 GameBoard.history = [];
-GameBoard.PvTable = [];
 GameBoard.ply = 0;
 // Gameboard.SubPly = 0;
 GameBoard.enPas = 0;
 GameBoard.castlePerm = 0;
 GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
 GameBoard.pceNum = new Array(24); // indexed by Pce
-GameBoard.pList = new Array(25 * 10);
+GameBoard.pList = new Array(25 * 18);
 GameBoard.whiteArcane = [0, 0, 0, 0, 0];
 GameBoard.blackArcane = [0, 0, 0, 0, 0];
 
@@ -179,7 +149,7 @@ GameBoard.blackArcane = [0, 0, 0, 0, 0];
 // todo override with the last placed condition
 // ^ if any other royalties _.include square num, then remove them from that royalty array to override
 GameBoard.royaltyQ = [];
-GameBoard.royaltyZ = [64];
+GameBoard.royaltyZ = [];
 GameBoard.royaltyU = [];
 GameBoard.royaltyV = [];
 GameBoard.royaltyE = [];
@@ -190,6 +160,11 @@ GameBoard.posKey = 0;
 GameBoard.moveList = new Array(MAXDEPTH * MAXPOSITIONMOVES);
 GameBoard.moveScores = new Array(MAXDEPTH * MAXPOSITIONMOVES);
 GameBoard.moveListStart = new Array(MAXDEPTH);
+
+GameBoard.PvTable = [];
+GameBoard.PvArray = new Array(MAXDEPTH);
+GameBoard.searchHistory = new Array(25 * BRD_SQ_NUM);
+GameBoard.searchKillers = new Array(3 * MAXDEPTH);
 
 GameBoard.dyad = 0;
 
@@ -298,7 +273,7 @@ export function GeneratePosKey() {
 
   finalKey ^= CastleKeys[GameBoard.castlePerm];
 
-  console.log('final key', finalKey);
+  // console.log('final key', finalKey);
 
   return finalKey;
 }
@@ -345,8 +320,7 @@ export function UpdateListsMaterial() {
       GameBoard.pceNum[piece]++;
     }
   }
-
-  PrintPieceLists();
+  // PrintPieceLists();
 }
 
 export function ResetBoard() {
@@ -584,7 +558,7 @@ export function ParseFen(fen) {
 
   GameBoard.posKey = GeneratePosKey();
   UpdateListsMaterial();
-  PrintSqAttacked();
+  // PrintSqAttacked();
 }
 
 export function PrintSqAttacked() {
@@ -614,7 +588,6 @@ export let InCheck = () => {
   );
 };
 
-// todo royalty, herring, entangle
 export function SqAttacked(sq, side) {
   let pce;
   let dir;

@@ -17,7 +17,7 @@
   background-image: url('../images/pieces/tactorius/normal/wK.svg');
 }
 .cg-wrap piece.s-piece.white.normal {
-  background-image: url('../images/pieces/tactorius/normal/wS.svg')
+  background-image: url('../images/pieces/tactorius/normal/wS.svg');
 }
 .cg-wrap piece.p-piece.black.normal {
   background-image: url('../images/pieces/tactorius/normal/bP.svg');
@@ -38,5 +38,5 @@
   background-image: url('../images/pieces/tactorius/normal/bK.svg');
 }
 .cg-wrap piece.s-piece.black.normal {
-  background-image: url('../images/pieces/tactorius/normal/bS.svg')
+  background-image: url('../images/pieces/tactorius/normal/bS.svg');
 }

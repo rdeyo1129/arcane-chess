@@ -11,7 +11,7 @@ import React from 'react';
 // import engine
 // import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
-import { UIValidationHouse } from '../../components/UIValidationHouse/UIValidationHouse';
+import { SinglePlayer } from '../singlePlayer/SinglePlayer';
 
 // import arcaneChess correctly
 // import arcaneChess from "@shared/arcaneChess/arcaneChess";
@@ -37,7 +37,7 @@ class UnwrappedFrontPage extends React.Component {
   render() {
     return (
       <div>
-        <UIValidationHouse />
+        <SinglePlayer />
         <div className="panel">
           <i className="hero-text">TACTORIUS</i>
           <h2>hello</h2>

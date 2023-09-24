@@ -21,7 +21,7 @@ type UIVState = {
   fen: string;
 };
 
-class UnwrappedUIValidationHouse extends React.Component<object, UIVState> {
+class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
   arcaneChess;
   constructor(props: object) {
     super(props);
@@ -33,16 +33,18 @@ class UnwrappedUIValidationHouse extends React.Component<object, UIVState> {
     // this.arcaneChess();
   }
 
-  initializeArcaneChessAndTest = () => {
-    this.arcaneChess(this.state.fen);
-    this.perftTest(this.state.fen);
+  initializeArcaneChessAndTest = (fen: string) => {
+    const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+    // rnbqk2r/p1pp1ppp/1p2pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR w KQkq - 0 1
+    this.arcaneChess().startGame(fen);
+    // this.perftTest(fen);
   };
 
   perftTest = (fen: string) => {
     // gui?
     ParseFen(fen);
     // PrintBoard();
-    PerftTest(1);
+    PerftTest(3);
   };
 
   setFen = (fen: string) => {
@@ -64,7 +66,7 @@ class UnwrappedUIValidationHouse extends React.Component<object, UIVState> {
         />
         <Button
           text="SET FEN"
-          onClick={() => this.initializeArcaneChessAndTest()}
+          onClick={() => this.initializeArcaneChessAndTest(this.state.fen)}
           className="primary"
           color="B"
           disabled={this.state.fen === ''}
@@ -79,7 +81,7 @@ class UnwrappedUIValidationHouse extends React.Component<object, UIVState> {
 //   return {};
 // }
 
-export const UIValidationHouse = UnwrappedUIValidationHouse;
+export const SinglePlayer = UnwrappedSinglePlayer;
 // connect(mapStateToProps)(
 //   withRouter(UnwrappedFrontPage)
 // );

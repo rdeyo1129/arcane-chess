@@ -73,15 +73,15 @@ export function PROMOTED(m) {
 }
 
 /*
-    0000 0000 0000 0000 0000 0000 0111 1111 -> From 0x7F
-    0000 0000 0000 0000 0011 1111 1000 0000 -> To >> 7, 0x7F
-    todo this needs to be shifted in this diagram because of 23 pieces not 12 see vars
-    0000 0000 0000 0111 1100 0000 0000 0000 -> Captured >> 14, 0x1F
-    0000 0000 0000 1000 0000 0000 0000 0000 -> EP 0x80000
-    0000 0000 0001 0000 0000 0000 0000 0000 -> pawn start 0x100000
-    0000 0011 1110 0000 0000 0000 0000 0000 -> prom >> 21, 0x3E00000
-    0000 0100 0000 0000 0000 0000 0000 0000 -> Castle 0x4000000
-  */
+  0000 0000 0000 0000 0000 0000 0111 1111 -> From 0x7F
+  0000 0000 0000 0000 0011 1111 1000 0000 -> To >> 7, 0x7F
+  todo this needs to be shifted in this diagram because of 23 pieces not 12 see vars
+  0000 0000 0000 0111 1100 0000 0000 0000 -> Captured >> 14, 0x1F
+  0000 0000 0000 1000 0000 0000 0000 0000 -> EP 0x80000
+  0000 0000 0001 0000 0000 0000 0000 0000 -> pawn start 0x100000
+  0000 0011 1110 0000 0000 0000 0000 0000 -> prom >> 21, 0x3E00000
+  0000 0100 0000 0000 0000 0000 0000 0000 -> Castle 0x4000000
+*/
 
 export const MFLAGEP = 0x80000;
 export const MFLAGPS = 0x100000;
@@ -91,14 +91,10 @@ export const MFLAGCAP = 0x7c000;
 export const MFLAGPROM = 0x3e00000;
 
 export const MFLAGSHFT = 0x8000000;
-
-// export const MFLAGDYAD = 0xfff0000000n;
-// export const MFLAGSHFT = 0xf0000000000n;
-// export const MFLAGSWAP = 0x700000000000n;
-// export const MFLAGCON = 0x8000000000000000n;
-// export const MFLAGOFF = 0x10000000000000000n;
-
-// export const MFLAGSUMN = 0x7fff800000000000n;
+export const MFLAGCNSM = 0x10000000;
+export const MFLAGOFFR = 0x20000000;
+export const MFLAGSUMN = 0x40000000;
+export const MFLAGSWAP = 0x80000000;
 
 export function SQOFFBOARD(sq) {
   if (FilesBrd[sq] == SQUARES.OFFBOARD) return BOOL.TRUE;
@@ -140,7 +136,7 @@ GameBoard.enPas = 0;
 GameBoard.castlePerm = 0;
 GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
 GameBoard.pceNum = new Array(24); // indexed by Pce
-GameBoard.pList = new Array(25 * 18);
+GameBoard.pList = new Array(25 * 36);
 GameBoard.whiteArcane = [0, 0, 0, 0, 0];
 GameBoard.blackArcane = [0, 0, 0, 0, 0];
 
@@ -148,11 +144,11 @@ GameBoard.blackArcane = [0, 0, 0, 0, 0];
 // [ 23, 52, 88 ] ?
 // todo override with the last placed condition
 // ^ if any other royalties _.include square num, then remove them from that royalty array to override
-GameBoard.royaltyQ = [];
-GameBoard.royaltyZ = [];
-GameBoard.royaltyU = [];
-GameBoard.royaltyV = [];
-GameBoard.royaltyE = [];
+GameBoard.royaltyQ = {};
+GameBoard.royaltyZ = {};
+GameBoard.royaltyU = { 54: 1 };
+GameBoard.royaltyV = {};
+GameBoard.royaltyE = {};
 
 GameBoard.suspend = 0;
 
@@ -595,11 +591,11 @@ export function SqAttacked(sq, side) {
   let index;
 
   let overridePresent = (t_sq) =>
-    _.includes(GameBoard.royaltyQ, t_sq) ||
-    _.includes(GameBoard.royaltyZ, t_sq) ||
-    _.includes(GameBoard.royaltyU, t_sq) ||
-    _.includes(GameBoard.royaltyV, t_sq) ||
-    _.includes(GameBoard.royaltyE, t_sq);
+    GameBoard.royaltyQ[t_sq] > 0 ||
+    GameBoard.royaltyZ[t_sq] > 0 ||
+    GameBoard.royaltyU[t_sq] > 0 ||
+    GameBoard.royaltyV[t_sq] > 0 ||
+    GameBoard.royaltyE[t_sq] > 0;
 
   // note OVERRIDES
 
@@ -609,9 +605,9 @@ export function SqAttacked(sq, side) {
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
-      (_.includes(GameBoard.royaltyZ, sq + KnDir[index]) ||
-        _.includes(GameBoard.royaltyU, sq + KnDir[index])) &&
-      !_.includes(GameBoard.royaltyE, sq + KnDir[index])
+      (GameBoard.royaltyZ[sq + KnDir[index]] > 0 ||
+        GameBoard.royaltyU[sq + KnDir[index]] > 0) &&
+      !(GameBoard.royaltyE[sq + KnDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }
@@ -626,10 +622,9 @@ export function SqAttacked(sq, side) {
     while (pce !== SQUARES.OFFBOARD) {
       if (pce !== PIECES.EMPTY) {
         if (
-          (_.includes(GameBoard.royaltyQ, t_sq) ||
-            _.includes(GameBoard.royaltyZ, t_sq)) &&
+          (GameBoard.royaltyQ[t_sq] > 0 || GameBoard.royaltyZ[t_sq] > 0) &&
           PieceCol[pce] === side &&
-          !_.includes(GameBoard.royaltyE, t_sq)
+          !(GameBoard.royaltyE[t_sq] > 0)
         ) {
           return BOOL.TRUE;
         }
@@ -649,10 +644,9 @@ export function SqAttacked(sq, side) {
     while (pce !== SQUARES.OFFBOARD) {
       if (pce !== PIECES.EMPTY) {
         if (
-          (_.includes(GameBoard.royaltyQ, t_sq) ||
-            _.includes(GameBoard.royaltyU, t_sq)) &&
+          (GameBoard.royaltyQ[t_sq] > 0 || GameBoard.royaltyU[t_sq] > 0) &&
           PieceCol[pce] === side &&
-          !_.includes(GameBoard.royaltyE, t_sq)
+          !(GameBoard.royaltyE[t_sq] > 0)
         ) {
           return BOOL.TRUE;
         }
@@ -669,8 +663,8 @@ export function SqAttacked(sq, side) {
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
-      _.includes(GameBoard.royaltyV, sq + VaDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + VaDir[index])
+      GameBoard.royaltyV[sq + VaDir[index]] > 0 &&
+      !(GameBoard.royaltyE[sq + VaDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }
@@ -686,7 +680,7 @@ export function SqAttacked(sq, side) {
       PieceCol[pce] === side &&
       PieceKnight[pce] === BOOL.TRUE &&
       !overridePresent(sq + KnDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + VaDir[index])
+      !(GameBoard.royaltyE[sq + VaDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }
@@ -704,7 +698,7 @@ export function SqAttacked(sq, side) {
           PieceRookQueen[pce] === BOOL.TRUE &&
           PieceCol[pce] === side &&
           !overridePresent(t_sq) &&
-          !_.includes(GameBoard.royaltyE, t_sq)
+          !(GameBoard.royaltyE[t_sq] > 0)
         ) {
           return BOOL.TRUE;
         }
@@ -727,7 +721,7 @@ export function SqAttacked(sq, side) {
           PieceBishopQueen[pce] === BOOL.TRUE &&
           PieceCol[pce] === side &&
           !overridePresent(t_sq) &&
-          !_.includes(GameBoard.royaltyE, t_sq)
+          !(GameBoard.royaltyE[t_sq] > 0)
         ) {
           return BOOL.TRUE;
         }
@@ -746,7 +740,7 @@ export function SqAttacked(sq, side) {
       PieceCol[pce] === side &&
       PieceVanguard[pce] === BOOL.TRUE &&
       !overridePresent(sq + VaDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + VaDir[index])
+      !(GameBoard.royaltyE[sq + VaDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }
@@ -760,7 +754,7 @@ export function SqAttacked(sq, side) {
       PieceCol[pce] === side &&
       PieceKing[pce] === BOOL.TRUE &&
       !overridePresent(sq + KiDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + KiDir[index])
+      !(GameBoard.royaltyE[sq + KiDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }
@@ -771,10 +765,10 @@ export function SqAttacked(sq, side) {
     if (
       (GameBoard.pieces[sq - 11] === PIECES.wP &&
         !overridePresent(sq - 11) &&
-        !_.includes(GameBoard.royaltyE, sq - 11)) ||
+        !(GameBoard.royaltyE[sq - 11] > 0)) ||
       (GameBoard.pieces[sq - 9] === PIECES.wP &&
         !overridePresent(sq - 9) &&
-        !_.includes(GameBoard.royaltyE, sq - 9))
+        !(GameBoard.royaltyE[sq - 9] > 0))
     ) {
       return BOOL.TRUE;
     }
@@ -782,10 +776,10 @@ export function SqAttacked(sq, side) {
     if (
       (GameBoard.pieces[sq + 11] === PIECES.bP &&
         !overridePresent(sq + 11) &&
-        !_.includes(GameBoard.royaltyE, sq + 11)) ||
+        !(GameBoard.royaltyE[sq + 11] > 0)) ||
       (GameBoard.pieces[sq + 9] === PIECES.bP &&
         !overridePresent(sq + 9) &&
-        !_.includes(GameBoard.royaltyE, sq + 9))
+        !(GameBoard.royaltyE[sq + 9] > 0))
     ) {
       return BOOL.TRUE;
     }
@@ -799,7 +793,7 @@ export function SqAttacked(sq, side) {
       PieceCol[pce] === side &&
       PieceSpectre[pce] === BOOL.TRUE &&
       !overridePresent(sq + SpDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + SpDir[index])
+      !(GameBoard.royaltyE[sq + SpDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }
@@ -813,7 +807,7 @@ export function SqAttacked(sq, side) {
       PieceCol[pce] === side &&
       PieceHerring[pce] === BOOL.TRUE &&
       !overridePresent(sq + HrDir[index]) &&
-      !_.includes(GameBoard.royaltyE, sq + HrDir[index])
+      !(GameBoard.royaltyE[sq + HrDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }

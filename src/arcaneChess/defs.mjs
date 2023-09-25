@@ -631,7 +631,7 @@ export function SQ120(sq64) {
 }
 
 export function PCEINDEX(pce, pceNum) {
-  return pce * 18 + pceNum;
+  return pce * 36 + pceNum;
 }
 
 export function MIRROR64(sq) {

@@ -30,7 +30,7 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
 
-    // this.arcaneChess();
+    this.arcaneChess();
   }
 
   initializeArcaneChessAndTest = (fen: string) => {

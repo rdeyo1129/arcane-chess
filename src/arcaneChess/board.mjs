@@ -71,6 +71,9 @@ export function CAPTURED(m) {
 export function PROMOTED(m) {
   return (m >> 21) & 0x1f;
 }
+export function ARCANEFLAG(m) {
+  return (m >> 27) & 0x3f;
+}
 
 /*
   0000 0000 0000 0000 0000 0000 0111 1111 -> From 0x7F
@@ -90,11 +93,15 @@ export const MFLAGCA = 0x4000000;
 export const MFLAGCAP = 0x7c000;
 export const MFLAGPROM = 0x3e00000;
 
+export const MFLAGSATK = 0x4000;
+export const MFLAGSDEP = 0x8000;
+export const MFLAGSADJ = 0x10000;
+
 export const MFLAGSHFT = 0x8000000;
 export const MFLAGCNSM = 0x10000000;
-export const MFLAGOFFR = 0x20000000;
+export const MFLAGOFFR = 0x80000000;
 export const MFLAGSUMN = 0x40000000;
-export const MFLAGSWAP = 0x80000000;
+export const MFLAGSWAP = 0x20000000;
 
 export function SQOFFBOARD(sq) {
   if (FilesBrd[sq] == SQUARES.OFFBOARD) return BOOL.TRUE;
@@ -140,10 +147,10 @@ GameBoard.pList = new Array(25 * 36);
 GameBoard.whiteArcane = [0, 0, 0, 0, 0];
 GameBoard.blackArcane = [0, 0, 0, 0, 0];
 
-// todo square conditions
-// [ 23, 52, 88 ] ?
-// todo override with the last placed condition
-// ^ if any other royalties _.include square num, then remove them from that royalty array to override
+GameBoard.summonRankLimits = [8, 8];
+GameBoard.summonList = [];
+GameBoard.crazyHouse = [false, false];
+
 GameBoard.royaltyQ = {};
 GameBoard.royaltyZ = {};
 GameBoard.royaltyU = { 54: 1 };

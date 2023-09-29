@@ -1,4 +1,4 @@
-import { GameBoard, PrintBoard } from './board';
+import { GameBoard, PrintBoard, ParseFen, randomize } from './board';
 import { PrMove, PrintMoveList } from './io';
 import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
@@ -48,14 +48,6 @@ export function PerftTest(depth) {
   PrintBoard();
   console.log('Starting Test To Depth:' + depth);
   perft_leafNodes = 0;
-
-  // should take care of herrings but what about stalemate?
-  // todo assign generate moves with herrings to a variable and check here
-  if (validMoves().length === 0 && !InCheck()) {
-    generatePowers();
-    GenerateMoves(false);
-    console.log(validGroundMoves());
-  }
 
   let index;
   let move;

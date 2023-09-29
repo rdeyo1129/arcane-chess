@@ -25,6 +25,17 @@ export const PIECES = {
   bV: 23,
 };
 
+export const ARCANE_BIT_VALUES = {
+  RQ: 24,
+  RZ: 25,
+  RU: 26,
+  RV: 27,
+  RE: 28,
+  AK: 29,
+  DP: 30,
+  AD: 31,
+};
+
 export const now = () => new Date();
 
 export const BRD_SQ_NUM = 120;
@@ -97,7 +108,7 @@ export function updateStartFen(newFen) {
   START_FEN = newFen;
 }
 
-export let PceChar = '.PNBRQKpnbrqkXSHZUVshzuv';
+export let PceChar = '.PNBRQKpnbrqkXSHZUVshzuvQZUVE';
 export let SideChar = 'wb-';
 export let RankChar = '12345678';
 export let FileChar = 'abcdefgh';
@@ -594,6 +605,49 @@ export const LoopDyadPrime = [
   1024, 2048, 32, 64, 128, 0,
 ];
 export const LoopIndexPrime = [0, 12];
+
+export const loopSummon = [
+  PIECES.wP,
+  PIECES.wS,
+  PIECES.wH,
+  PIECES.wN,
+  PIECES.wB,
+  PIECES.wR,
+  PIECES.wQ,
+  PIECES.wZ,
+  PIECES.wU,
+  PIECES.wV,
+  PIECES.EXILE,
+  ARCANE_BIT_VALUES.RQ,
+  ARCANE_BIT_VALUES.RZ,
+  ARCANE_BIT_VALUES.RU,
+  ARCANE_BIT_VALUES.RV,
+  ARCANE_BIT_VALUES.RE,
+  0,
+  PIECES.bP,
+  PIECES.bS,
+  PIECES.bH,
+  PIECES.bN,
+  PIECES.bB,
+  PIECES.bR,
+  PIECES.bQ,
+  PIECES.bZ,
+  PIECES.bU,
+  PIECES.bV,
+  PIECES.EXILE,
+  ARCANE_BIT_VALUES.RQ,
+  ARCANE_BIT_VALUES.RZ,
+  ARCANE_BIT_VALUES.RU,
+  ARCANE_BIT_VALUES.RV,
+  ARCANE_BIT_VALUES.RE,
+  0,
+];
+export const loopSummonFlag = [
+  1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768,
+  0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384,
+  32768, 0,
+];
+export const loopSummonIndex = [0, 17];
 
 export const Mirror64 = [
   56, 57, 58, 59, 60, 61, 62, 63, 48, 49, 50, 51, 52, 53, 54, 55, 40, 41, 42,

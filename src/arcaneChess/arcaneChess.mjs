@@ -67,7 +67,8 @@ export default function arcaneChess(
   // rnbqkbnr/pppppppp/8/B6h/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   // rnbqkbnr/pppppppp/8/7h/5N2/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   // rnbqkbnr/pppppppp/8/2nRn2h/3P4/ph6/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+  // fen = 'n1n5/PPPk4/8/8/8/7N/4Kppp/5N1N w - - 0 1'
+  fen = '3k4/8/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
   // '8/8/8/r2R3K/3h5/8/8/8 w - - 0 1'
   // 8/8/8/r2R3K/3p5/8/8/8 w - - 0 1
   // generate random fen with white king in check
@@ -80,6 +81,29 @@ export default function arcaneChess(
   InitSq120To64();
   InitBoardVars();
   InitMvvLva();
+
+  //
+
+  randomize();
+
+  ParseFen(fen);
+
+  generatePowers();
+
+  GenerateMoves();
+
+  // should take care of herrings but what about stalemate?
+  // todo assign generate moves with herrings to a variable and check here
+  if (validMoves().length === 0 && !InCheck()) {
+    GenerateMoves(false);
+    console.log(validGroundMoves());
+  }
+
+  PrintBoard();
+
+  // PerftTest(5);
+
+  //
 
   // console.log(validGroundMoves());
 

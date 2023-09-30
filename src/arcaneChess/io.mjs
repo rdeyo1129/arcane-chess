@@ -34,14 +34,11 @@ export function PrSq(sq) {
 }
 
 // todo update to allow swapping your pawns into promotion, but not your opponents
+// todo # for mate koh mate
 
 export function PrMove(move) {
   const getPceChar = (pieceNum) => {
-    if (pieceNum < 24) {
-      return PceChar.split('')[pieceNum];
-    } else {
-      return PceChar.split('')[pieceNum];
-    }
+    return PceChar.split('')[pieceNum];
   };
 
   let MvStr;
@@ -103,7 +100,6 @@ export function PrMove(move) {
   }
   // summon
   if (move & MFLAGSUMN) {
-    console.log(pieceEpsilon, ARCANE_BIT_VALUES);
     if (
       pieceEpsilon === ARCANE_BIT_VALUES.RQ ||
       pieceEpsilon === ARCANE_BIT_VALUES.RZ ||
@@ -134,8 +130,9 @@ export function PrMove(move) {
       getPceChar(GameBoard.pieces[FROMSQ(move)]) +
       FileChar[ff] +
       RankChar[rf] +
-      (CAPTURED(move) & 0 || !(move & MFLAGCNSM) ? '' : 'x') +
-      getPceChar(GameBoard.pieces[TOSQ(move)]) +
+      (CAPTURED(move) & 0 || !(move & MFLAGCNSM)
+        ? ''
+        : `x${getPceChar(GameBoard.pieces[TOSQ(move)])}`) +
       FileChar[ft] +
       RankChar[rt];
 

@@ -31,9 +31,9 @@ export const ARCANE_BIT_VALUES = {
   RU: 26,
   RV: 27,
   RE: 28,
-  AK: 29,
-  DP: 30,
-  AD: 31,
+  ATK: 29,
+  DEP: 30,
+  ADJ: 31,
 };
 
 export const now = () => new Date();

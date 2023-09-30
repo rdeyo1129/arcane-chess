@@ -104,7 +104,7 @@ export const MFLAGSUMN = 0x40000000;
 export const MFLAGSWAP = 0x20000000;
 
 export function SQOFFBOARD(sq) {
-  if (FilesBrd[sq] == SQUARES.OFFBOARD) return BOOL.TRUE;
+  if (FilesBrd[sq] === SQUARES.OFFBOARD) return BOOL.TRUE;
   return BOOL.FALSE;
 }
 
@@ -150,6 +150,8 @@ GameBoard.blackArcane = [0, 0, 0, 0, 0];
 GameBoard.summonRankLimits = [8, 8];
 GameBoard.summonList = [];
 GameBoard.crazyHouse = [false, false];
+
+GameBoard.kohSquares = [36];
 
 GameBoard.royaltyQ = {};
 GameBoard.royaltyZ = {};

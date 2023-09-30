@@ -12,9 +12,6 @@ import {
   MFLAGSUMN,
   MFLAGCNSM,
   MFLAGSWAP,
-  MFLAGSATK,
-  MFLAGSDEP,
-  MFLAGSADJ,
   CAPTURED,
   FROMSQ,
   TOSQ,
@@ -52,6 +49,7 @@ import {
   NOMOVE,
   MAXDEPTH,
   BRD_SQ_NUM,
+  ARCANE_BIT_VALUES,
 } from './defs';
 import { MakeMove, TakeMove } from './makemove';
 import { PrMove } from './io.mjs';
@@ -111,6 +109,7 @@ export function MOVE(from, to, captured, promoted, flag) {
 export function AddCaptureMove(move, consume = false, capturesOnly = false) {
   if ((capturesOnly && !consume) || !capturesOnly) {
     if (GameBoard.suspend <= 0) {
+      console.log(PrMove(move));
       GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
       GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]++] =
         MvvLvaScores[CAPTURED(move) * 25 + GameBoard.pieces[FROMSQ(move)]] -
@@ -522,7 +521,14 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
         GameBoard.whiteArcane[2] & 4
       ) {
         AddCaptureMove(
-          MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, MFLAGSWAP),
+          MOVE(
+            sq,
+            t_sq,
+            GameBoard.pieces[t_sq],
+            // ARCANE_BIT_VALUES.ADJ,
+            0,
+            MFLAGSWAP
+          ),
           false,
           capturesOnly
         );
@@ -535,7 +541,14 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
         GameBoard.blackArcane[2] & 4
       ) {
         AddCaptureMove(
-          MOVE(sq, t_sq, GameBoard.pieces[t_sq], PIECES.EMPTY, MFLAGSWAP),
+          MOVE(
+            sq,
+            t_sq,
+            GameBoard.pieces[t_sq],
+            // ARCANE_BIT_VALUES.ADJ,
+            0,
+            MFLAGSWAP
+          ),
           false,
           capturesOnly
         );
@@ -572,7 +585,8 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
             NBRSQS[COLOURS.WHITE][i],
             NBRSQS[COLOURS.BLACK][j],
             GameBoard.pieces[NBRSQS[COLOURS.BLACK][j]],
-            PIECES.EMPTY,
+            // ARCANE_BIT_VALUES.ATK,
+            0,
             MFLAGSWAP
           ),
           capturesOnly
@@ -582,7 +596,8 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
             NBRSQS[COLOURS.BLACK][j],
             NBRSQS[COLOURS.WHITE][i],
             GameBoard.pieces[NBRSQS[COLOURS.WHITE][i]],
-            PIECES.EMPTY,
+            // ARCANE_BIT_VALUES.ATK,
+            0,
             MFLAGSWAP
           ),
           capturesOnly
@@ -597,7 +612,8 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
             NBRSQS[COLOURS.BLACK][i],
             NBRSQS[COLOURS.WHITE][j],
             GameBoard.pieces[NBRSQS[COLOURS.WHITE][j]],
-            PIECES.EMPTY,
+            // ARCANE_BIT_VALUES.ATK,
+            0,
             MFLAGSWAP
           ),
           capturesOnly
@@ -607,7 +623,8 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
             NBRSQS[COLOURS.WHITE][j],
             NBRSQS[COLOURS.BLACK][i],
             GameBoard.pieces[NBRSQS[COLOURS.BLACK][i]],
-            PIECES.EMPTY,
+            // ARCANE_BIT_VALUES.ATK,
+            0,
             MFLAGSWAP
           ),
           capturesOnly
@@ -636,7 +653,8 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
             NBRSQS[COLOURS.WHITE][i],
             NBRSQS[COLOURS.WHITE][j],
             GameBoard.pieces[NBRSQS[COLOURS.WHITE][j]],
-            PIECES.EMPTY,
+            // ARCANE_BIT_VALUES.DEP,
+            0,
             MFLAGSWAP
           ),
           capturesOnly
@@ -651,7 +669,8 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
             NBRSQS[COLOURS.BLACK][i],
             NBRSQS[COLOURS.BLACK][j],
             GameBoard.pieces[NBRSQS[COLOURS.BLACK][j]],
-            PIECES.EMPTY,
+            // ARCANE_BIT_VALUES.DEP,
+            0,
             MFLAGSWAP
           ),
           capturesOnly

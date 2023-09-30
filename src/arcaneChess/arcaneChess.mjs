@@ -60,7 +60,7 @@ export default function arcaneChess(
   // todo react input
   whiteConfig = {},
   blackConfig = {},
-  // fen = 'rnbqkbnr/pppppppp/8/8/8/4h3/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+  fen = '4k3/8/8/nbr5/8/8/PPPPPPPP/RNBQKBNR w - - 0 1'
   // 4k3/8/8/K2P3r/8/8/8/8 w - - 0 1
   // normal starting position
   // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
@@ -68,7 +68,7 @@ export default function arcaneChess(
   // rnbqkbnr/pppppppp/8/7h/5N2/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   // rnbqkbnr/pppppppp/8/2nRn2h/3P4/ph6/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   // fen = 'n1n5/PPPk4/8/8/8/7N/4Kppp/5N1N w - - 0 1'
-  fen = '3k4/8/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+  // fen = '3k4/8/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
   // '8/8/8/r2R3K/3h5/8/8/8 w - - 0 1'
   // 8/8/8/r2R3K/3p5/8/8/8 w - - 0 1
   // generate random fen with white king in check
@@ -101,22 +101,22 @@ export default function arcaneChess(
 
   PrintBoard();
 
-  // PerftTest(5);
+  // PerftTest(3);
 
-  //
+  // SearchPosition(fen);
 
   // console.log(validGroundMoves());
 
-  // PrintPieceLists();
+  PrintPieceLists();
   // CheckBoard();
 
-  // PrintMoveList();
+  PrintMoveList();
   // MakeMove(GameBoard.moveList[0]);
   // PrintBoard();
   // CheckBoard();
 
   // TakeMove();
-  // PrintBoard();
+  PrintBoard();
   // CheckBoard();
 
   const activateDyad = (type) => {

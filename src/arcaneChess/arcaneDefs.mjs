@@ -8,10 +8,12 @@ export const whiteArcane = (
   config = {
     // dyadP: 3,
     // dyadZ: 5,
-    // sumnR: 4,
+    sumnR: 4,
+    sumnRE: 4,
+    sumnRZ: 4,
     // sumnRV: 7,
-    sumnP: 2,
-    sumnX: 1,
+    // sumnP: 2,
+    // sumnX: 1,
     // shftR: 4,
     // shftN: 4,
     // shftB: 4,
@@ -19,12 +21,12 @@ export const whiteArcane = (
     // modsSIG: 2,
     // modsCON: 4,
     // swapADJ: 1,
-    // swapATK: 1,
+    // swapATK: 4,
     // swapDEP: 1,
     // modsRAN: 1,
     // modsFUG: 1,
     // modsINH: 1,
-    // note showEngineRating (not recommended move? different from implant) for campaign power (for 3 turns?)
+    // note showEngineRating handicap (not recommended move? different from implant) for campaign power (for 3 turns?)
   }
 ) => {
   _.forOwn(config, (value, key) => {
@@ -107,7 +109,7 @@ export const POWERBIT = {
   sumnRZ: 4096,
   sumnRU: 8192,
   sumnRV: 16384,
-  sumnE: 32768,
+  sumnRE: 32768,
   // 4
   shftP: 1,
   shftN: 2,

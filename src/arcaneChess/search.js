@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { GameBoard, SqAttacked, MFLAGCAP, FROMSQ, TOSQ } from './board';
 import {
   BOOL,
@@ -10,6 +11,7 @@ import {
   Kings,
   BRD_SQ_NUM,
   now,
+  PIECES,
 } from './defs';
 import { EvalPosition } from './evaluate';
 import { GenerateMoves } from './movegen';
@@ -233,6 +235,15 @@ export function AlphaBeta(alpha, beta, depth) {
 
     if (SearchController.stop === BOOL.TRUE) {
       return 0;
+    }
+
+    if (
+      (GameBoard.pieces[FROMSQ(Move)] === PIECES.wK ||
+        GameBoard.pieces[FROMSQ(Move)] === PIECES.bK) &&
+      _.includes(GameBoard.kohSquares, TOSQ(Move))
+    ) {
+      BestMove = Move;
+      alpha = MATE;
     }
 
     if (Score > alpha) {

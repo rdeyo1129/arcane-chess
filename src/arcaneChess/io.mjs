@@ -8,7 +8,6 @@ import {
   ARCANEFLAG,
   MFLAGSHFT,
   MFLAGCNSM,
-  MFLAGOFFR,
   MFLAGSUMN,
   MFLAGSWAP,
   MFLAGCA,
@@ -34,7 +33,6 @@ export function PrSq(sq) {
 }
 
 // todo update to allow swapping your pawns into promotion, but not your opponents
-// todo # for mate koh mate
 
 export function PrMove(move) {
   const getPceChar = (pieceNum) => {
@@ -66,8 +64,9 @@ export function PrMove(move) {
   if (
     !(CAPTURED(move) & 0) &&
     pieceEpsilon !== 0 &&
-    !(move & MFLAGSWAP) &&
-    !(move & MFLAGOFFR)
+    !(move & MFLAGSWAP)
+    // &&
+    // !(move & MFLAGOFFR)
   ) {
     MvStr =
       getPceChar(GameBoard.pieces[FROMSQ(move)]) +
@@ -113,9 +112,9 @@ export function PrMove(move) {
     }
   }
   // offer
-  if (move & MFLAGOFFR) {
-    MvStr = getPceChar(CAPTURED(move)) + '%' + PrSq(FROMSQ(move));
-  }
+  // if (move & MFLAGOFFR) {
+  //   MvStr = getPceChar(CAPTURED(move)) + '%' + PrSq(FROMSQ(move));
+  // }
   // shift
   if (move & MFLAGSHFT) {
     MvStr =

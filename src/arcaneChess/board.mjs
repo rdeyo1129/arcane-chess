@@ -76,14 +76,14 @@ export function ARCANEFLAG(m) {
 }
 
 /*
-  0000 0000 0000 0000 0000 0000 0111 1111 -> From 0x7F
-  0000 0000 0000 0000 0011 1111 1000 0000 -> To >> 7, 0x7F
+  000 0000 0000 0000 0000 0000 0111 1111 -> From 0x7F
+  000 0000 0000 0000 0011 1111 1000 0000 -> To >> 7, 0x7F
   todo this needs to be shifted in this diagram because of 23 pieces not 12 see vars
-  0000 0000 0000 0111 1100 0000 0000 0000 -> Captured >> 14, 0x1F
-  0000 0000 0000 1000 0000 0000 0000 0000 -> EP 0x80000
-  0000 0000 0001 0000 0000 0000 0000 0000 -> pawn start 0x100000
-  0000 0011 1110 0000 0000 0000 0000 0000 -> prom >> 21, 0x3E00000
-  0000 0100 0000 0000 0000 0000 0000 0000 -> Castle 0x4000000
+  000 0000 0000 0111 1100 0000 0000 0000 -> Captured >> 14, 0x1F
+  000 0000 0000 1000 0000 0000 0000 0000 -> EP 0x80000
+  000 0000 0001 0000 0000 0000 0000 0000 -> pawn start 0x100000
+  000 0011 1110 0000 0000 0000 0000 0000 -> prom >> 21, 0x3E00000
+  000 0100 0000 0000 0000 0000 0000 0000 -> Castle 0x4000000
 */
 
 export const MFLAGEP = 0x80000;
@@ -93,15 +93,15 @@ export const MFLAGCA = 0x4000000;
 export const MFLAGCAP = 0x7c000;
 export const MFLAGPROM = 0x3e00000;
 
-export const MFLAGSATK = 0x4000;
-export const MFLAGSDEP = 0x8000;
-export const MFLAGSADJ = 0x10000;
+// export const MFLAGSATK = 0x4000;
+// export const MFLAGSDEP = 0x8000;
+// export const MFLAGSADJ = 0x10000;
 
 export const MFLAGSHFT = 0x8000000;
 export const MFLAGCNSM = 0x10000000;
-export const MFLAGOFFR = 0x80000000;
-export const MFLAGSUMN = 0x40000000;
 export const MFLAGSWAP = 0x20000000;
+export const MFLAGSUMN = 0x40000000;
+// export const MFLAGOFFR = 0x80000000;
 
 export function SQOFFBOARD(sq) {
   if (FilesBrd[sq] === SQUARES.OFFBOARD) return BOOL.TRUE;
@@ -153,13 +153,23 @@ GameBoard.crazyHouse = [false, false];
 
 GameBoard.kohSquares = [36];
 
+// value = clock
 GameBoard.royaltyQ = {};
 GameBoard.royaltyZ = {};
 GameBoard.royaltyU = { 54: 1 };
 GameBoard.royaltyV = {};
 GameBoard.royaltyE = {};
 
+// no caps checks, click to extend time += 3 not = 3
 GameBoard.suspend = 0;
+GameBoard.invisibility = [];
+
+GameBoard.xCheckLimit = [0, 0];
+GameBoard.checks = [0, 0];
+
+GameBoard.dyad = 0;
+GameBoard.dyadMax = [2, 2];
+GameBoard.dyadClock = 0;
 
 GameBoard.posKey = 0;
 GameBoard.moveList = new Array(MAXDEPTH * MAXPOSITIONMOVES);
@@ -170,8 +180,6 @@ GameBoard.PvTable = [];
 GameBoard.PvArray = new Array(MAXDEPTH);
 GameBoard.searchHistory = new Array(25 * BRD_SQ_NUM);
 GameBoard.searchKillers = new Array(3 * MAXDEPTH);
-
-GameBoard.dyad = 0;
 
 export function CheckBoard() {
   let t_pceNum = [

@@ -10,6 +10,10 @@ import {
   MFLAGEP,
   MFLAGCA,
   MFLAGPS,
+  MFLAGSHFT,
+  MFLAGCNSM,
+  MFLAGSWAP,
+  MFLAGSUMN,
   HASH_PCE,
   HASH_CA,
   HASH_EP,
@@ -32,10 +36,10 @@ import {
 // note subtract arcane for shifts on pieces type = capture param
 
 export function ClearPiece(sq) {
-  var pce = GameBoard.pieces[sq];
-  var col = PieceCol[pce];
-  var index;
-  var t_pceNum = -1;
+  let pce = GameBoard.pieces[sq];
+  let col = PieceCol[pce];
+  let index;
+  let t_pceNum = -1;
 
   HASH_PCE(pce, sq);
 
@@ -57,7 +61,7 @@ export function ClearPiece(sq) {
 }
 
 export function AddPiece(sq, pce) {
-  var col = PieceCol[pce];
+  let col = PieceCol[pce];
 
   // video 33 use for summons and swaps?
 
@@ -87,12 +91,13 @@ export function MovePiece(from, to) {
   }
 }
 
-// export function handleDyad() { ? }
+// todo: turn clocks, minus arcana
 
 export function MakeMove(move) {
-  var from = FROMSQ(move);
-  var to = TOSQ(move);
-  var side = GameBoard.side;
+  let from = FROMSQ(move);
+  let to = TOSQ(move);
+  let side = GameBoard.side;
+  let swapPiece;
 
   GameBoard.history[GameBoard.hisPly].posKey = GameBoard.posKey;
 
@@ -157,74 +162,96 @@ export function MakeMove(move) {
       }
     }
   }
+  if (move & MFLAGSHFT) {
+  } else if (move & MFLAGCNSM) {
+  } else if (move & MFLAGSWAP) {
+  } else if (move & MFLAGSUMN) {
+    // crazyhouse
+  } else {
+    if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
+    HASH_CA();
 
-  if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
-  HASH_CA();
+    GameBoard.history[GameBoard.hisPly].move = move;
+    GameBoard.history[GameBoard.hisPly].fiftyMove = GameBoard.fiftyMove;
+    GameBoard.history[GameBoard.hisPly].enPas = GameBoard.enPas;
+    GameBoard.history[GameBoard.hisPly].castlePerm = GameBoard.castlePerm;
 
-  GameBoard.history[GameBoard.hisPly].move = move;
-  GameBoard.history[GameBoard.hisPly].fiftyMove = GameBoard.fiftyMove;
-  GameBoard.history[GameBoard.hisPly].enPas = GameBoard.enPas;
-  GameBoard.history[GameBoard.hisPly].castlePerm = GameBoard.castlePerm;
+    GameBoard.castlePerm &= CastlePerm[from];
+    GameBoard.castlePerm &= CastlePerm[to];
+    GameBoard.enPas = SQUARES.NO_SQ;
 
-  GameBoard.castlePerm &= CastlePerm[from];
-  GameBoard.castlePerm &= CastlePerm[to];
-  GameBoard.enPas = SQUARES.NO_SQ;
+    HASH_CA();
 
-  HASH_CA();
+    let captured = CAPTURED(move);
+    GameBoard.fiftyMove++;
 
-  let captured = CAPTURED(move);
-  GameBoard.fiftyMove++;
-
-  if (captured !== PIECES.EMPTY) {
-    ClearPiece(to);
-    GameBoard.fiftyMove = 0;
-  }
-
-  GameBoard.hisPly++;
-  GameBoard.ply++;
-
-  if (PiecePawn[GameBoard.pieces[from]] === BOOL.TRUE) {
-    GameBoard.fiftyMove = 0;
-    if ((move & MFLAGPS) !== 0) {
-      if (side === COLOURS.WHITE) {
-        GameBoard.enPas = from + 10;
-      } else {
-        GameBoard.enPas = from - 10;
-      }
-      HASH_EP();
+    // consume
+    if (captured !== PIECES.EMPTY) {
+      ClearPiece(to);
+      GameBoard.fiftyMove = 0;
     }
+
+    GameBoard.hisPly++;
+    GameBoard.ply++;
+
+    if (PiecePawn[GameBoard.pieces[from]] === BOOL.TRUE) {
+      GameBoard.fiftyMove = 0;
+      if ((move & MFLAGPS) !== 0) {
+        if (side === COLOURS.WHITE) {
+          GameBoard.enPas = from + 10;
+        } else {
+          GameBoard.enPas = from - 10;
+        }
+        HASH_EP();
+      }
+    }
+
+    MovePiece(from, to);
+
+    let pieceEpsilon = PROMOTED(move);
+    if (pieceEpsilon !== PIECES.EMPTY) {
+      ClearPiece(to);
+      AddPiece(to, pieceEpsilon);
+    }
+
+    // todo you might need to expand this conditional to include the code above
+    if (GameBoard.dyad > 0) {
+      GameBoard.dyadClock += 1;
+    } else {
+      GameBoard.side ^= 1;
+      HASH_SIDE();
+    }
+
+    if (GameBoard.dyadClock === GameBoard.dyadMax[GameBoard.side]) {
+      GameBoard.dyad = 0;
+      GameBoard.dyadClock = 0;
+      GameBoard.side ^= 1;
+      HASH_SIDE();
+    }
+
+    // note this is what prevents you from putting yourself in check with pins too?
+    // so on dyads, they can probably use when in check
+    if (
+      SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], GameBoard.side) ||
+      GameBoard.suspend > 0
+    ) {
+      TakeMove();
+      return BOOL.FALSE;
+    }
+
+    GameBoard.dyadClock++;
+
+    return BOOL.TRUE;
   }
-
-  MovePiece(from, to);
-
-  let prPce = PROMOTED(move);
-  if (prPce !== PIECES.EMPTY) {
-    ClearPiece(to);
-    AddPiece(to, prPce);
-  }
-
-  // dyad here somewhere? conditonal on switching sides?
-
-  GameBoard.side ^= 1;
-  HASH_SIDE();
-
-  // note this is what prevents you from putting yourself in check with pins too?
-  // so on dyads, they can probably use when in check
-  if (SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], GameBoard.side)) {
-    TakeMove();
-    return BOOL.FALSE;
-  }
-
-  return BOOL.TRUE;
 }
 
 export function TakeMove() {
   GameBoard.hisPly--;
   GameBoard.ply--;
 
-  var move = GameBoard.history[GameBoard.hisPly].move;
-  var from = FROMSQ(move);
-  var to = TOSQ(move);
+  let move = GameBoard.history[GameBoard.hisPly].move;
+  let from = FROMSQ(move);
+  let to = TOSQ(move);
 
   if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
   HASH_CA();
@@ -266,7 +293,7 @@ export function TakeMove() {
 
   MovePiece(to, from);
 
-  var captured = CAPTURED(move);
+  let captured = CAPTURED(move);
   if (captured !== PIECES.EMPTY) {
     AddPiece(to, captured);
   }

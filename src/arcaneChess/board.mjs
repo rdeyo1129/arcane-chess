@@ -47,20 +47,6 @@ import {
 import { PrSq } from './io';
 import { whiteArcaneConfig, blackArcaneConfig } from './arcaneDefs';
 
-// todo might need shifting
-// export function DYAD(m) {
-//   return m & 0xfff;
-// }
-// export function SHIFT(m) {
-//   return m & 0xf;
-// }
-// export function SWAP(m) {
-//   return m & 0x7;
-// }
-// export function SUMMON(m) {
-//   return m & 0xffff;
-// }
-
 export function FROMSQ(m) {
   return m & 0x7f;
 }
@@ -147,24 +133,26 @@ GameBoard.castlePerm = 0;
 GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
 GameBoard.pceNum = new Array(24); // indexed by Pce
 GameBoard.pList = new Array(25 * 36);
+
 GameBoard.whiteArcane = [0, 0, 0, 0, 0];
 GameBoard.blackArcane = [0, 0, 0, 0, 0];
 
 GameBoard.summonRankLimits = [8, 8];
-GameBoard.summonList = [];
 GameBoard.crazyHouse = [false, false];
+
+GameBoard.summonMoveList = [];
+GameBoard.swapMoveList = [];
 
 GameBoard.kohSquares = [];
 
-// value = clock
 GameBoard.royaltyQ = {};
 GameBoard.royaltyZ = {};
 GameBoard.royaltyU = {};
 GameBoard.royaltyV = {};
 GameBoard.royaltyE = {};
 
-// no caps checks, click to extend time += 3 not = 3
-GameBoard.suspend = 0;
+GameBoard.suspend = 0; // += not =
+GameBoard.racingKings = false;
 GameBoard.invisibility = [0, 0];
 
 GameBoard.xCheckLimit = [0, 0];
@@ -358,7 +346,37 @@ export function ResetBoard() {
   GameBoard.castlePerm = 0;
   GameBoard.posKey = 0;
   GameBoard.moveListStart[GameBoard.ply] = 0;
-  // todo reset powers to given config
+
+  GameBoard.whiteArcane = [0, 0, 0, 0, 0];
+  GameBoard.blackArcane = [0, 0, 0, 0, 0];
+
+  GameBoard.summonRankLimits = [8, 8];
+  GameBoard.crazyHouse = [false, false];
+
+  GameBoard.summonMoveList = [];
+  GameBoard.swapMoveList = [];
+
+  GameBoard.kohSquares = [];
+
+  GameBoard.royaltyQ = {};
+  GameBoard.royaltyZ = {};
+  GameBoard.royaltyU = {};
+  GameBoard.royaltyV = {};
+  GameBoard.royaltyE = {};
+
+  GameBoard.suspend = 0; // += not =
+  GameBoard.racingKings = false;
+  GameBoard.invisibility = [0, 0];
+
+  GameBoard.xCheckLimit = [0, 0];
+  GameBoard.checks = [0, 0];
+
+  GameBoard.dyadName = '';
+  GameBoard.dyad = 0;
+  GameBoard.dyadMax = [2, 2];
+  GameBoard.dyadClock = 0;
+
+  GameBoard.pass = false;
 }
 
 export function randomize() {
@@ -426,6 +444,8 @@ export function randomize() {
 
 export function ParseFen(fen) {
   ResetBoard();
+
+  // todo repopulate the board with arcanes?
 
   let rank = RANKS.RANK_8;
   let file = FILES.FILE_A;
@@ -589,7 +609,7 @@ export function PrintSqAttacked() {
     let line = rank + 1 + '  ';
     for (file = FILES.FILE_A; file <= FILES.FILE_H; file++) {
       sq = FR2SQ(file, rank);
-      // todo  ^ 1
+      // GameBoard.side ^ 1
       if (SqAttacked(sq, GameBoard.side ^ 1) === BOOL.TRUE) piece = 'X';
       else piece = '-';
       line += ' ' + piece + ' ';

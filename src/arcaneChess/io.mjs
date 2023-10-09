@@ -24,7 +24,7 @@ import {
   COLOURS,
   PceChar,
 } from './defs';
-import { GenerateMoves } from './movegen';
+import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { ARCANE_BIT_VALUES } from './defs.mjs';
 
@@ -238,6 +238,7 @@ export function PrintMoveList() {
 }
 
 export function ParseMove(from, to) {
+  generatePowers();
   GenerateMoves();
 
   let Move = NOMOVE;

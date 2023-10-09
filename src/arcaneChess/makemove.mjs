@@ -96,7 +96,6 @@ export function MakeMove(move) {
   let from = FROMSQ(move);
   let to = TOSQ(move);
   let side = GameBoard.side;
-  let swapPiece = CAPTURED(move);
 
   GameBoard.history[GameBoard.hisPly].posKey = GameBoard.posKey;
 
@@ -173,13 +172,14 @@ export function MakeMove(move) {
   // todo put a loop for dyad takebacks
   // todo pretty history for all other moves and events
   // todo io check checkmate draw
-  // todo ncheck ending
+  // todo variant endings
   // todo arcane brain
   // todo testing
   // todo start ui
 
   GameBoard.invisibility[0] -= 1;
   GameBoard.invisibility[1] -= 1;
+  // if > 0 ?
   GameBoard.suspend -= 1;
 
   _.forEach(GameBoard.royaltyQ, (value, key) => {
@@ -330,9 +330,11 @@ export function MakeMove(move) {
       ] -= 1;
     }
   } else if (move & MFLAGSWAP) {
+    // PrintBoard()
     ClearPiece(to);
     MovePiece(from, to);
-    AddPiece(from, swapPiece);
+    AddPiece(from, captured);
+    // PrintBoard();
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig.swapATK -= 1;
       whiteArcaneConfig.swapDEP -= 1;
@@ -368,7 +370,6 @@ export function MakeMove(move) {
     GameBoard.ply++;
   }
 
-  // todo error catchers
   if (!move) {
     console.log('make move error');
   }
@@ -378,8 +379,17 @@ export function MakeMove(move) {
       GameBoard.pList[PCEINDEX(Kings[GameBoard.side ^ 1], 0)],
       GameBoard.side
     ) ||
-    // todo racing kings here
     GameBoard.suspend > 0
+  ) {
+    TakeMove();
+    return BOOL.FALSE;
+  }
+  if (
+    SqAttacked(
+      GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
+      GameBoard.side ^ 1
+    ) &&
+    GameBoard.racingKings
   ) {
     TakeMove();
     return BOOL.FALSE;
@@ -475,6 +485,7 @@ export function TakeMove() {
     }
   } else if ((MFLAGCA & move) !== 0) {
     // get original rook positions? todo randomize
+    // this might be easy because the to square should always be the rook which gives you the original square in the move int
     switch (to) {
       case SQUARES.C1:
         MovePiece(SQUARES.D1, SQUARES.A1);
@@ -553,10 +564,11 @@ export function TakeMove() {
         ].toUpperCase()}`
       ] += 1;
     }
-  } else if (captured !== PIECES.EMPTY && move & MFLAGSWAP) {
+  } else if (move & MFLAGSWAP) {
     ClearPiece(from);
     MovePiece(to, from);
     AddPiece(to, captured);
+    // PrintBoard();
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig.swapATK += 1;
       whiteArcaneConfig.swapDEP += 1;

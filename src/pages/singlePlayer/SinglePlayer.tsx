@@ -33,8 +33,8 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
   }
 
   initializeArcaneChessAndTest = (fen: string) => {
-    // const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-    const start = '6pk/3K2p1/1ppp2p1/6p1/8/8/8/7R b - - 0 1';
+    const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+    // const start = '6pk/3K2p1/6p1/6p1/8/8/8/7P w - - 0 1';
     // const start = '8/8/8/4X3/8/8/8/8 w - - 0 1';
     // koh
     // const start = 'k7/8/8/8/8/8/8/7K w - - 0 1';

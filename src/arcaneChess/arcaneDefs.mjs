@@ -8,7 +8,7 @@ export const whiteArcaneConfig = {
   // sumnR: 4,
   // sumnRE: 4,
   // sumnRZ: 1,
-  // sumnRU: 1,
+  sumnRU: 1,
   // sumnRV: 7,
   // sumnP: 2,
   // sumnX: 1,
@@ -35,7 +35,8 @@ export const blackArcaneConfig = {
   // shftN: 4,
   // modsSIG: 2,
   // modsCON: 4,
-  swapADJ: 3,
+  swapADJ: 1,
+  // sumnRU: 1,
   // swapATK: 1,
   // swapDEP: 1,
   // modsCON: 4,
@@ -68,9 +69,6 @@ export const activateDyad = (type) => {
   // GameBoard.dyad = type;
 };
 
-// todo convert from obj to bitwise to check for presence of a power
-// todo inc and dec
-
 // 0000 0000 0000 0000 0000 0000 0000 0000 0000 1111 1111 1111 dyad
 // 0000 0000 0000 0000 0000 0000 0000 0000 1111 0000 0000 0000 shft
 // 0000 0000 0000 0000 0000 0000 0000 0111 0000 0000 0000 0000 swap
@@ -81,8 +79,6 @@ export const activateDyad = (type) => {
 // 0000 0000 0000 0000 0000 0000 0000 0111 0000 shft
 // 0000 0000 0000 0000 0000 0000 0011 1000 0000 swap
 // 0000 0000 0000 0000 0000 0111 1100 0000 0000
-
-// todo should be represented as array of arrays of ints?
 
 export const POWERBIT = {
   // 12
@@ -124,7 +120,6 @@ export const POWERBIT = {
   swapATK: 1,
   swapDEP: 2,
   swapADJ: 4,
-  // note entangle, not to be confused with exile (X)
 
   // 10
   modsCON: 1,

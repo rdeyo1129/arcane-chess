@@ -58,7 +58,6 @@ import { SearchPosition } from './search';
 import { PrintSqAttacked } from './board.mjs';
 
 export default function arcaneChess(
-  // todo react input
   whiteConfig = {},
   blackConfig = {},
   fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'

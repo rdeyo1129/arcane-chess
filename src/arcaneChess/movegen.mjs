@@ -54,7 +54,7 @@ import {
   Kings,
 } from './defs';
 import { MakeMove, TakeMove } from './makemove';
-import { PrMove } from './io.mjs';
+import { PrMove, PrintMoveList } from './io.mjs';
 import { ARCANEFLAG } from './board.mjs';
 
 // prettier-ignore
@@ -82,7 +82,10 @@ export function InitMvvLva() {
 }
 
 export function MoveExists(move) {
+  generatePowers();
   GenerateMoves();
+
+  // todo regenerate for herring edge cases
 
   let index;
   let moveFound = NOMOVE;
@@ -107,10 +110,6 @@ export function MOVE(from, to, captured, promoted, flag) {
   return from | (to << 7) | (captured << 14) | (promoted << 21) | flag;
 }
 
-// todo koh. ncheck in move exists
-
-// export function Sq
-
 export function AddCaptureMove(move, consume = false, capturesOnly = false) {
   if ((capturesOnly && !consume) || !capturesOnly) {
     if (move & MFLAGSWAP) {
@@ -123,18 +122,7 @@ export function AddCaptureMove(move, consume = false, capturesOnly = false) {
         MvvLvaScores[CAPTURED(move) * 25 + GameBoard.pieces[FROMSQ(move)]] -
         1000000;
 
-      // console.log(
-      //   GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]]
-      // );
-
-      // if (
-      //   GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
-      //   SqChecksOpposingKing(TOSQ(move), GameBoard.pieces[FROMSQ(move)])
-      // ) {
-      //   GameBoard.moveScores[
-      //     GameBoard.moveListStart[GameBoard.ply + 1]
-      //   ] = 2200000;
-      // }
+      // todo
 
       // if (consume) {
 
@@ -152,7 +140,6 @@ export function AddQuietMove(move, capturesOnly) {
   if (!capturesOnly) {
     GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
     GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 0;
-
     if (move === GameBoard.searchKillers[GameBoard.ply]) {
       GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 900000;
     } else if (move === GameBoard.searchKillers[GameBoard.ply + MAXDEPTH]) {
@@ -163,16 +150,6 @@ export function AddQuietMove(move, capturesOnly) {
           GameBoard.pieces[FROMSQ(move)] * BRD_SQ_NUM + TOSQ(move)
         ];
     }
-
-    // if (
-    //   GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
-    //   SqChecksOpposingKing(TOSQ(move), GameBoard.pieces[FROMSQ(move)])
-    // ) {
-    //   GameBoard.moveScores[
-    //     GameBoard.moveListStart[GameBoard.ply + 1]
-    //   ] = 2200000;
-    // }
-
     GameBoard.moveListStart[GameBoard.ply + 1]++;
   }
 }
@@ -181,14 +158,6 @@ export function AddEnPassantMove(move) {
   GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
   GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] =
     105 + 1000000;
-
-  // if (
-  //   GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
-  //   SqChecksOpposingKing(TOSQ(move), GameBoard.pieces[FROMSQ(move)])
-  // ) {
-  //   GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 2200000;
-  // }
-
   GameBoard.moveListStart[GameBoard.ply + 1]++;
 }
 
@@ -204,7 +173,7 @@ export function addSummonMove(move) {
   } else if (move === GameBoard.searchKillers[GameBoard.ply + MAXDEPTH]) {
     GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 800000;
   } else {
-    // todo update to tread like pieces on that square
+    // todo update to treat like pieces on that square
     if (PROMOTED(move) < 24) {
       GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] =
         GameBoard.searchHistory[
@@ -570,6 +539,10 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
           RanksBrd[t_sq] === RANKS.RANK_1) ||
         (pce === PIECES.bP && RanksBrd[sq] === RANKS.RANK_1)
       ) {
+        continue;
+      }
+
+      if (GameBoard.pieces[sq] === GameBoard.pieces[t_sq]) {
         continue;
       }
 

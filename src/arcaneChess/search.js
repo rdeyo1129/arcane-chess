@@ -1,5 +1,17 @@
 import _ from 'lodash';
-import { GameBoard, SqAttacked, MFLAGCAP, FROMSQ, TOSQ } from './board';
+import {
+  GameBoard,
+  SqAttacked,
+  MFLAGCAP,
+  FROMSQ,
+  TOSQ,
+  CAPTURED,
+  ARCANEFLAG,
+  InCheck,
+  MFLAGSUMN,
+  PrintBoard,
+  PROMOTED,
+} from './board';
 import {
   BOOL,
   PVENTRIES,
@@ -14,10 +26,14 @@ import {
   PIECES,
 } from './defs';
 import { EvalPosition } from './evaluate';
-import { GenerateMoves } from './movegen';
+import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { PrMove } from './io';
 import { StorePvMove, ProbePvTable, GetPvLine } from './pvtable';
+import { PrintMoveList } from './io.mjs';
+import { PrintPieceLists, PrintSqAttacked } from './board.mjs';
+import { validMoves, validGroundMoves } from './gui.mjs';
+import { whiteArcane, blackArcane } from './arcaneDefs.mjs';
 
 export const SearchController = {};
 
@@ -30,6 +46,11 @@ SearchController.start;
 SearchController.stop;
 SearchController.best;
 SearchController.thinking;
+
+// if summon royalty just happened, then we need to regenerate moves...?
+// export const isSummonMove = (move) => {
+//   return move & MFLAGSUMN;
+// };
 
 export function PickNextMove(MoveNum) {
   let index = 0;
@@ -113,10 +134,13 @@ export function Quiescence(alpha, beta) {
     alpha = Score;
   }
 
+  generatePowers();
+
   GenerateMoves(true, true);
 
   let MoveNum = 0;
   let Legal = 0;
+  let CheckCount = 0;
   let OldAlpha = alpha;
   let BestMove = NOMOVE;
   let Move = NOMOVE;
@@ -134,12 +158,33 @@ export function Quiescence(alpha, beta) {
       continue;
     }
     Legal++;
+
+    if (InCheck() === BOOL.TRUE) {
+      CheckCount++;
+      if (
+        GameBoard.xCheckLimit[GameBoard.side] > 0 &&
+        CheckCount >= GameBoard.xCheckLimit[GameBoard.side]
+      ) {
+        TakeMove();
+        break;
+      }
+    }
+
     Score = -Quiescence(-beta, -alpha);
 
     TakeMove();
 
     if (SearchController.stop === BOOL.TRUE) {
       return 0;
+    }
+
+    if (
+      (GameBoard.pieces[FROMSQ(Move)] === PIECES.wK ||
+        GameBoard.pieces[FROMSQ(Move)] === PIECES.bK) &&
+      _.includes(GameBoard.kohSquares, TOSQ(Move))
+    ) {
+      BestMove = Move;
+      alpha = MATE - GameBoard.ply;
     }
 
     if (Score > alpha) {
@@ -153,6 +198,13 @@ export function Quiescence(alpha, beta) {
       alpha = Score;
       BestMove = Move;
     }
+  }
+
+  if (
+    GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
+    CheckCount >= GameBoard.xCheckLimit[GameBoard.side ^ 1]
+  ) {
+    return MATE - GameBoard.ply;
   }
 
   if (alpha !== OldAlpha) {
@@ -181,22 +233,33 @@ export function AlphaBeta(alpha, beta, depth) {
     return EvalPosition();
   }
 
-  let InCheck = SqAttacked(
+  let InCheckA = SqAttacked(
     GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
     GameBoard.side ^ 1
   );
 
-  if (InCheck === BOOL.TRUE) {
+  if (InCheckA === BOOL.TRUE) {
     depth++;
   }
 
   let Score = -INFINITE;
 
+  generatePowers();
   // todo make function that generates moves summons and swaps
   GenerateMoves();
+  // todo regenerate if herring edge case hit
+
+  // should take care of herrings but what about stalemate?
+  // todo assign generate moves with herrings to a variable and check here
+  // if (validMoves().length === 0 && !InCheck()) {
+  //   console.log('valid moves false');
+  //   GenerateMoves(false);
+  //   console.log(validGroundMoves());
+  // }
 
   let MoveNum = 0;
   let Legal = 0;
+  let CheckCount = 0;
   let OldAlpha = alpha;
   let BestMove = NOMOVE;
   let Move = NOMOVE;
@@ -227,8 +290,20 @@ export function AlphaBeta(alpha, beta, depth) {
     if (MakeMove(Move) === BOOL.FALSE) {
       continue;
     }
-
     Legal++;
+
+    if (InCheck() === BOOL.TRUE) {
+      CheckCount++;
+      if (
+        GameBoard.xCheckLimit[GameBoard.side] > 0 &&
+        CheckCount >= GameBoard.xCheckLimit[GameBoard.side]
+      ) {
+        TakeMove();
+        break;
+      }
+    }
+
+    // this is the black box, it will give you a magical score that you can assume is correct at the deepest level
     Score = -AlphaBeta(-beta, -alpha, depth - 1);
 
     TakeMove();
@@ -243,7 +318,7 @@ export function AlphaBeta(alpha, beta, depth) {
       _.includes(GameBoard.kohSquares, TOSQ(Move))
     ) {
       BestMove = Move;
-      alpha = MATE;
+      alpha = MATE - GameBoard.ply;
     }
 
     if (Score > alpha) {
@@ -269,8 +344,25 @@ export function AlphaBeta(alpha, beta, depth) {
     }
   }
 
+  if (
+    GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
+    CheckCount >= GameBoard.xCheckLimit[GameBoard.side ^ 1]
+  ) {
+    return MATE - GameBoard.ply;
+  }
+
+  // rook entangled mate
+  // future sight should be the last one
+  // implant (from sq)
+  // vision (from and to sq)
+  // future sight (computer line)
+  // hints and arrows soon, find out how to draw them automatically
+  // insert elements onto chessboard that are sent to the dom?
+  // insert using jsx interpolation for the
+  // more thinking time for the computer
+
   if (Legal === 0) {
-    if (InCheck === BOOL.TRUE) {
+    if (InCheckA === BOOL.TRUE) {
       return -MATE + GameBoard.ply;
     } else {
       return 0;
@@ -287,7 +379,7 @@ export function AlphaBeta(alpha, beta, depth) {
 export function ClearForSearch() {
   let index = 0;
 
-  for (index = 0; index < 14 * BRD_SQ_NUM; index++) {
+  for (index = 0; index < 25 * BRD_SQ_NUM; index++) {
     GameBoard.searchHistory[index] = 0;
   }
 
@@ -319,7 +411,7 @@ export function SearchPosition() {
   for (
     currentDepth = 1;
     // currentDepth <= SearchController.depth;
-    currentDepth <= 5;
+    currentDepth <= 6;
     currentDepth++
   ) {
     Score = AlphaBeta(-INFINITE, INFINITE, currentDepth);

@@ -2,58 +2,63 @@ import _ from 'lodash';
 
 import { GameBoard } from './board';
 
+export const whiteArcaneConfig = {
+  // dyadP: 3,
+  // dyadZ: 5,
+  // sumnR: 4,
+  // sumnRE: 4,
+  // sumnRZ: 1,
+  // sumnRU: 1,
+  // sumnRV: 7,
+  // sumnP: 2,
+  // sumnX: 1,
+  // shftR: 4,
+  // shftN: 4,
+  // shftB: 4,
+  // shftR: 4,
+  // modsSIG: 2,
+  // modsCON: 4,
+  // swapADJ: 1,
+  // swapATK: 4,
+  // swapDEP: 1,
+  // modsRAN: 1,
+  // modsFUG: 1,
+  // modsINH: 1,
+  // note showEngineRating handicap (not recommended move? different from implant) for campaign power (for 3 turns?)
+};
+
+export const blackArcaneConfig = {
+  // dyadP: 3,
+  // dyadZ: 5,
+  // sumnP: 2,
+  // sumnRV: 7,
+  // shftN: 4,
+  // modsSIG: 2,
+  // modsCON: 4,
+  swapADJ: 3,
+  // swapATK: 1,
+  // swapDEP: 1,
+  // modsCON: 4,
+  // modsFUG: 1,
+  // modsRAN: 1,
+  // modsQTY: 1,
+  // sumnRE: 1,
+  // sumnX: 1,
+};
+
 // tactorius: needs external defs in order to generate moves with
 // get status for each player from configs
-export const whiteArcane = (
-  config = {
-    // dyadP: 3,
-    // dyadZ: 5,
-    sumnR: 4,
-    sumnRE: 4,
-    sumnRZ: 4,
-    // sumnRV: 7,
-    // sumnP: 2,
-    // sumnX: 1,
-    // shftR: 4,
-    // shftN: 4,
-    // shftB: 4,
-    // shftR: 4,
-    // modsSIG: 2,
-    // modsCON: 4,
-    // swapADJ: 1,
-    // swapATK: 4,
-    // swapDEP: 1,
-    // modsRAN: 1,
-    // modsFUG: 1,
-    // modsINH: 1,
-    // note showEngineRating handicap (not recommended move? different from implant) for campaign power (for 3 turns?)
-  }
-) => {
-  _.forOwn(config, (value, key) => {
+export const whiteArcane = () => {
+  const config = {};
+  _.forOwn(whiteArcaneConfig, (value, key) => {
     config[key] = value;
   });
   return config;
 };
 
-export const blackArcane = (
-  config = {
-    // dyadP: 3,
-    // dyadZ: 5,
-    // sumnP: 2,
-    // sumnRV: 7,
-    // shftN: 4,
-    // modsSIG: 2,
-    // modsCON: 4,
-    // swapADJ: 1,
-    // swapATK: 1,
-    // swapDEP: 1,
-    // modsCON: 4,
-    // modsFUG: 1,
-    // modsRAN: 1,
-    // modsQTY: 1,
-  }
-) => {
-  _.forOwn(config, (value, key) => {
+export const blackArcane = () => {
+  const config = {};
+  _.forOwn(blackArcaneConfig, (value, key) => {
     config[key] = value;
   });
   return config;
@@ -127,13 +132,11 @@ export const POWERBIT = {
   modsFUG: 4,
   modsRAN: 8,
   modsINH: 16,
-  // modsINV: 32,
-  // modsSIG: 64,
-  // modsIMP: 128,
   modsSUS: 32,
-  // modsQTY: 512,
-  // off
-  // add time, glitch (rand comp move), add random arcana / mana
+  modsINV: 64,
+  modsSIG: 128,
+  modsIMP: 256,
+  // modsOFF: 512, add time, glitch (rand comp move), add random arcana / mana
 };
 
 export const POWERS = (config) => {

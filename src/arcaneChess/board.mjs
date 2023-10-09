@@ -30,6 +30,8 @@ import {
   VaDir,
   SpDir,
   HrDir,
+  PceDir,
+  PieceSlides,
   PieceVanguard,
   PieceHerring,
   PieceSpectre,
@@ -43,7 +45,7 @@ import {
   Kings,
 } from './defs';
 import { PrSq } from './io';
-import { whiteArcane, blackArcane } from './arcaneDefs';
+import { whiteArcaneConfig, blackArcaneConfig } from './arcaneDefs';
 
 // todo might need shifting
 // export function DYAD(m) {
@@ -90,7 +92,7 @@ export const MFLAGEP = 0x80000;
 export const MFLAGPS = 0x100000;
 export const MFLAGCA = 0x4000000;
 
-export const MFLAGCAP = 0x7c000;
+export const MFLAGCAP = 0xfc000;
 export const MFLAGPROM = 0x3e00000;
 
 // export const MFLAGSATK = 0x4000;
@@ -131,6 +133,7 @@ UserMove.from = SQUARES.NO_SQ;
 UserMove.to = SQUARES.NO_SQ;
 
 export const GameBoard = {};
+export const SideText = GameBoard.side === COLOURS.WHITE ? 'White' : 'Black';
 
 GameBoard.pieces = new Array(BRD_SQ_NUM);
 GameBoard.side = COLOURS.WHITE;
@@ -151,25 +154,28 @@ GameBoard.summonRankLimits = [8, 8];
 GameBoard.summonList = [];
 GameBoard.crazyHouse = [false, false];
 
-GameBoard.kohSquares = [36];
+GameBoard.kohSquares = [];
 
 // value = clock
 GameBoard.royaltyQ = {};
 GameBoard.royaltyZ = {};
-GameBoard.royaltyU = { 54: 1 };
+GameBoard.royaltyU = {};
 GameBoard.royaltyV = {};
 GameBoard.royaltyE = {};
 
 // no caps checks, click to extend time += 3 not = 3
 GameBoard.suspend = 0;
-GameBoard.invisibility = [];
+GameBoard.invisibility = [0, 0];
 
 GameBoard.xCheckLimit = [0, 0];
 GameBoard.checks = [0, 0];
 
+GameBoard.dyadName = '';
 GameBoard.dyad = 0;
 GameBoard.dyadMax = [2, 2];
 GameBoard.dyadClock = 0;
+
+GameBoard.pass = false;
 
 GameBoard.posKey = 0;
 GameBoard.moveList = new Array(MAXDEPTH * MAXPOSITIONMOVES);
@@ -371,11 +377,11 @@ export function randomize() {
 
     // white has arcane, randomize black
     if (side === COLOURS.BLACK) {
-      if (whiteArcane().modsRAN) {
+      if (whiteArcaneConfig.modsRAN) {
         rank[d(2) * 2] = 'b';
         rank[d(2) * 2 + 1] = 'b';
         rank[emptySquares()[d(5)]] =
-          queenTypesMap[blackArcane().modsQTY].toLowerCase();
+          queenTypesMap[blackArcane.modsQTY].toLowerCase();
         rank[emptySquares()[d(4)]] = 'n';
         rank[emptySquares()[d(3)]] = 'n';
         for (let x = 1; x <= 3; x++) {
@@ -389,10 +395,10 @@ export function randomize() {
 
     // black has arcane, randomize white
     if (side === COLOURS.WHITE) {
-      if (blackArcane().modsRAN) {
+      if (blackArcaneConfig.modsRAN) {
         rank[d(2) * 2] = 'B';
         rank[d(2) * 2 + 1] = 'B';
-        rank[emptySquares()[d(5)]] = queenTypesMap[whiteArcane().modsQTY];
+        rank[emptySquares()[d(5)]] = queenTypesMap[whiteArcaneConfig.modsQTY];
         rank[emptySquares()[d(4)]] = 'N';
         rank[emptySquares()[d(3)]] = 'N';
         for (let x = 1; x <= 3; x++) {
@@ -400,12 +406,12 @@ export function randomize() {
         }
         return rank.join('');
       } else {
-        return `RNB${queenTypesMap[whiteArcane().modsQTY]}KBNR`;
+        return `RNB${queenTypesMap[whiteArcaneConfig.modsQTY]}KBNR`;
       }
     }
   };
 
-  if (whiteArcane().modsRAN || blackArcane().modsRAN) {
+  if (whiteArcaneConfig.modsRAN || blackArcaneConfig.modsRAN) {
     updateStartFen(
       `${randomizer(COLOURS.BLACK)}/pppppppp/8/8/8/8/PPPPPPPP/${randomizer(
         COLOURS.WHITE
@@ -584,7 +590,7 @@ export function PrintSqAttacked() {
     for (file = FILES.FILE_A; file <= FILES.FILE_H; file++) {
       sq = FR2SQ(file, rank);
       // todo  ^ 1
-      if (SqAttacked(sq, GameBoard.side) === BOOL.TRUE) piece = 'X';
+      if (SqAttacked(sq, GameBoard.side ^ 1) === BOOL.TRUE) piece = 'X';
       else piece = '-';
       line += ' ' + piece + ' ';
     }

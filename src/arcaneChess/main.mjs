@@ -68,7 +68,7 @@ export function InitSq120To64() {
   }
 }
 
-export function InitBoardVars() {
+export function InitBoardVars(varVars, whiteArcanes, blackArcanes) {
   var index = 0;
   for (index = 0; index < MAXGAMEMOVES; index++) {
     GameBoard.history.push({

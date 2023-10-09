@@ -24,7 +24,7 @@ export function GetPvLine(depth) {
   return count;
 }
 
-export function ProbePvTable(depth = 555, count = 555) {
+export function ProbePvTable() {
   let index = GameBoard.posKey % PVENTRIES;
 
   if (GameBoard.PvTable[index].posKey === GameBoard.posKey) {

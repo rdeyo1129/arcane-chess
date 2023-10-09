@@ -37,7 +37,7 @@ export class Chessground extends React.Component {
     this.cg = NativeChessground(this.el, this.buildConfigFromProps(this.props));
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: object) {
     if (prevProps !== this.props) {
       this.cg.set(this.buildConfigFromProps(this.props));
     }
@@ -60,6 +60,6 @@ export class Chessground extends React.Component {
     //   props.style.height = this.props.height;
     // }
 
-    return <div ref={(el) => (this.el = el)} {...props} />;
+    return <div ref={(el) => (this.el = el)} {...props}></div>;
   }
 }

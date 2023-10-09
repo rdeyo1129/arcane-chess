@@ -1,4 +1,5 @@
 import { GameBoard } from './board';
+import { MoveExists } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { NOMOVE, BOOL } from './defs';
 import { PrMove } from './io';

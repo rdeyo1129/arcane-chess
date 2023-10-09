@@ -55,12 +55,14 @@ import { MakeMove, TakeMove } from './makemove';
 import { PerftTest } from './perft';
 import { validMoves, validGroundMoves } from './gui';
 import { SearchPosition } from './search';
+import { PrintSqAttacked } from './board.mjs';
 
 export default function arcaneChess(
   // todo react input
   whiteConfig = {},
   blackConfig = {},
-  fen = '4k3/8/8/nbr5/8/8/PPPPPPPP/RNBQKBNR w - - 0 1'
+  fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+  // fen = 'n1n5/PPPk4/8/8/8/8/4Kppp/5N1N b - - 0 1'
   // 4k3/8/8/K2P3r/8/8/8/8 w - - 0 1
   // normal starting position
   // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
@@ -82,24 +84,22 @@ export default function arcaneChess(
   InitBoardVars();
   InitMvvLva();
 
-  //
+  // randomize();
 
-  randomize();
+  // ParseFen(fen);
 
-  ParseFen(fen);
+  // generatePowers();
 
-  generatePowers();
-
-  GenerateMoves();
+  // GenerateMoves();
 
   // should take care of herrings but what about stalemate?
   // todo assign generate moves with herrings to a variable and check here
-  if (validMoves().length === 0 && !InCheck()) {
-    GenerateMoves(false);
-    console.log(validGroundMoves());
-  }
+  // if (validMoves().length === 0 && !InCheck()) {
+  //   GenerateMoves(false);
+  //   console.log(validGroundMoves());
+  // }
 
-  PrintBoard();
+  // PrintBoard();
 
   // PerftTest(3);
 
@@ -107,16 +107,16 @@ export default function arcaneChess(
 
   // console.log(validGroundMoves());
 
-  PrintPieceLists();
+  // PrintPieceLists();
   // CheckBoard();
 
-  PrintMoveList();
+  // PrintMoveList();
   // MakeMove(GameBoard.moveList[0]);
   // PrintBoard();
   // CheckBoard();
 
   // TakeMove();
-  PrintBoard();
+  // PrintBoard();
   // CheckBoard();
 
   const activateDyad = (type) => {
@@ -132,15 +132,20 @@ export default function arcaneChess(
 
     GenerateMoves();
 
-    // should take care of herrings but what about stalemate?
-    // todo assign generate moves with herrings to a variable and check here
-    if (validMoves().length === 0 && !InCheck()) {
-      GenerateMoves(false);
-      console.log(validGroundMoves());
-    }
+    // // should take care of herrings but what about stalemate?
+    // // todo assign generate moves with herrings to a variable and check here
+    // if (validMoves().length === 0 && !InCheck()) {
+    //   GenerateMoves(false);
+    //   console.log(validGroundMoves());
+    // }
 
     PrintBoard();
 
+    // PrintSqAttacked();
+
+    // PrintMoveList();
+
+    // PerftTest(3);
     SearchPosition(fen);
   };
 

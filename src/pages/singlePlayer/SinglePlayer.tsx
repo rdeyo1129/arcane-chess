@@ -29,14 +29,22 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
       fen: '',
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
-
-    this.arcaneChess();
+    // this.arcaneChess();
   }
 
   initializeArcaneChessAndTest = (fen: string) => {
-    const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+    // const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+    const start = '6pk/3K2p1/1ppp2p1/6p1/8/8/8/7R b - - 0 1';
+    // const start = '8/8/8/4X3/8/8/8/8 w - - 0 1';
+    // koh
+    // const start = 'k7/8/8/8/8/8/8/7K w - - 0 1';
+    // royalty mate
+    // const start = '6Xk/6p1/6p1/8/8/8/7P/7K w - - 0 1';
+    // promote to unicorn
+    // const start = '4pk2/4ppp1/6XP/8/8/8/8/7K w - - 0 1';
+    // const start = '5pk1/5XX1/6XP/6X1/8/8/8/7K w - - 0 1';
     // rnbqk2r/p1pp1ppp/1p2pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR w KQkq - 0 1
-    this.arcaneChess().startGame(fen);
+    this.arcaneChess().startGame(start);
     // this.perftTest(fen);
   };
 
@@ -69,7 +77,8 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
           onClick={() => this.initializeArcaneChessAndTest(this.state.fen)}
           className="primary"
           color="B"
-          disabled={this.state.fen === ''}
+          // disabled={this.state.fen === ''}
+          disabled={false}
           // strong={true}
         />
       </div>

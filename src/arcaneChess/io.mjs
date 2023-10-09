@@ -62,8 +62,8 @@ export function PrMove(move) {
   }
   // normal capture
   if (
-    !(CAPTURED(move) & 0) &&
-    pieceEpsilon !== 0 &&
+    CAPTURED(move) > 0 &&
+    pieceEpsilon === 0 &&
     !(move & MFLAGSWAP)
     // &&
     // !(move & MFLAGOFFR)
@@ -219,7 +219,7 @@ export function PrintMoveList() {
   for (
     index = GameBoard.moveListStart[GameBoard.ply];
     index < GameBoard.moveListStart[GameBoard.ply + 1];
-    ++index
+    index++
   ) {
     move = GameBoard.moveList[index];
     console.log(

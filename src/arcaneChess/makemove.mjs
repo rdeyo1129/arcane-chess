@@ -19,7 +19,9 @@ import {
   HASH_EP,
   HASH_SIDE,
   SqAttacked,
+  InCheck,
 } from './board';
+import { whiteArcaneConfig, blackArcaneConfig } from './arcaneDefs';
 import {
   COLOURS,
   PIECES,
@@ -31,9 +33,10 @@ import {
   PieceVal,
   PieceCol,
   SQUARES,
+  PceChar,
 } from './defs';
-
-// note subtract arcane for shifts on pieces type = capture param
+import { ARCANEFLAG, PrintBoard, SideText } from './board.mjs';
+import { PrMove, PrintMoveList } from './io';
 
 export function ClearPiece(sq) {
   let pce = GameBoard.pieces[sq];
@@ -53,8 +56,6 @@ export function ClearPiece(sq) {
     }
   }
 
-  // ~ video 32 todo use this for swaps?
-
   GameBoard.pceNum[pce]--;
   GameBoard.pList[PCEINDEX(pce, t_pceNum)] =
     GameBoard.pList[PCEINDEX(pce, GameBoard.pceNum[pce])];
@@ -62,8 +63,6 @@ export function ClearPiece(sq) {
 
 export function AddPiece(sq, pce) {
   let col = PieceCol[pce];
-
-  // video 33 use for summons and swaps?
 
   HASH_PCE(pce, sq);
 
@@ -97,7 +96,7 @@ export function MakeMove(move) {
   let from = FROMSQ(move);
   let to = TOSQ(move);
   let side = GameBoard.side;
-  let swapPiece;
+  let swapPiece = CAPTURED(move);
 
   GameBoard.history[GameBoard.hisPly].posKey = GameBoard.posKey;
 
@@ -162,96 +161,244 @@ export function MakeMove(move) {
       }
     }
   }
-  if (move & MFLAGSHFT) {
-  } else if (move & MFLAGCNSM) {
-  } else if (move & MFLAGSWAP) {
-  } else if (move & MFLAGSUMN) {
-    // crazyhouse
-  } else {
-    if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
-    HASH_CA();
 
-    GameBoard.history[GameBoard.hisPly].move = move;
-    GameBoard.history[GameBoard.hisPly].fiftyMove = GameBoard.fiftyMove;
-    GameBoard.history[GameBoard.hisPly].enPas = GameBoard.enPas;
-    GameBoard.history[GameBoard.hisPly].castlePerm = GameBoard.castlePerm;
+  if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
+  HASH_CA();
 
-    GameBoard.castlePerm &= CastlePerm[from];
-    GameBoard.castlePerm &= CastlePerm[to];
-    GameBoard.enPas = SQUARES.NO_SQ;
+  // here to include arcane flags and a move array to account for dayd messaging
+  // use GameBoard.dyadClock to access move array
+  // history to also include messages about arcanes being used, property somehow?
 
-    HASH_CA();
+  // take move
+  // todo put a loop for dyad takebacks
+  // todo pretty history for all other moves and events
+  // todo io check checkmate draw
+  // todo ncheck ending
+  // todo arcane brain
+  // todo testing
+  // todo start ui
 
-    let captured = CAPTURED(move);
-    GameBoard.fiftyMove++;
+  GameBoard.invisibility[0] -= 1;
+  GameBoard.invisibility[1] -= 1;
+  GameBoard.suspend -= 1;
 
-    // consume
-    if (captured !== PIECES.EMPTY) {
-      ClearPiece(to);
-      GameBoard.fiftyMove = 0;
+  _.forEach(GameBoard.royaltyQ, (value, key) => {
+    if (value > 0) {
+      GameBoard.royaltyQ[key] -= 1;
     }
-
-    GameBoard.hisPly++;
-    GameBoard.ply++;
-
-    if (PiecePawn[GameBoard.pieces[from]] === BOOL.TRUE) {
-      GameBoard.fiftyMove = 0;
-      if ((move & MFLAGPS) !== 0) {
-        if (side === COLOURS.WHITE) {
-          GameBoard.enPas = from + 10;
-        } else {
-          GameBoard.enPas = from - 10;
-        }
-        HASH_EP();
-      }
+  });
+  _.forEach(GameBoard.royaltyZ, (value, key) => {
+    if (value > 0) {
+      GameBoard.royaltyZ[key] -= 1;
     }
-
-    MovePiece(from, to);
-
-    let pieceEpsilon = PROMOTED(move);
-    if (pieceEpsilon !== PIECES.EMPTY) {
-      ClearPiece(to);
-      AddPiece(to, pieceEpsilon);
+  });
+  _.forEach(GameBoard.royaltyU, (value, key) => {
+    if (value > 0) {
+      GameBoard.royaltyU[key] -= 1;
     }
-
-    // todo you might need to expand this conditional to include the code above
-    if (GameBoard.dyad > 0) {
-      GameBoard.dyadClock += 1;
-    } else {
-      GameBoard.side ^= 1;
-      HASH_SIDE();
+  });
+  _.forEach(GameBoard.royaltyV, (value, key) => {
+    if (value > 0) {
+      GameBoard.royaltyV[key] -= 1;
     }
-
-    if (GameBoard.dyadClock === GameBoard.dyadMax[GameBoard.side]) {
-      GameBoard.dyad = 0;
-      GameBoard.dyadClock = 0;
-      GameBoard.side ^= 1;
-      HASH_SIDE();
+  });
+  _.forEach(GameBoard.royaltyE, (value, key) => {
+    if (value > 0) {
+      GameBoard.royaltyE[key] -= 1;
     }
+  });
 
-    // note this is what prevents you from putting yourself in check with pins too?
-    // so on dyads, they can probably use when in check
-    if (
-      SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], GameBoard.side) ||
-      GameBoard.suspend > 0
-    ) {
-      TakeMove();
+  if (GameBoard.pass) {
+    GameBoard.history[GameBoard.hisPly].move = 0;
+    GameBoard.history[GameBoard.hisPly].prettyHistory = [
+      SideText + ' passes turn.',
+    ];
+
+    console.log('passes');
+
+    if (InCheck()) {
+      GameBoard.pass = false;
       return BOOL.FALSE;
     }
 
-    GameBoard.dyadClock++;
+    HASH_CA();
+    GameBoard.pass = false;
+    GameBoard.side ^= 1;
+    HASH_SIDE();
 
     return BOOL.TRUE;
   }
+
+  if (GameBoard.dyad > 0) {
+    GameBoard.history[GameBoard.hisPly].move = move;
+    GameBoard.history[GameBoard.hisPly].prettyHistory = [];
+    GameBoard.history[GameBoard.hisPly].prettyHistory.push(PrMove(move));
+  } else {
+    // to have mutiple moves in one turn like invisibility and and swap
+    GameBoard.history[GameBoard.hisPly].move = move;
+    GameBoard.history[GameBoard.hisPly].prettyHistory = [];
+    // GameBoard.history[GameBoard.hisPly].prettyHistory.push(PrMove(move));
+  }
+  GameBoard.history[GameBoard.hisPly].fiftyMove = GameBoard.fiftyMove;
+  GameBoard.history[GameBoard.hisPly].enPas = GameBoard.enPas;
+  GameBoard.history[GameBoard.hisPly].castlePerm = GameBoard.castlePerm;
+
+  GameBoard.castlePerm &= CastlePerm[from];
+  GameBoard.castlePerm &= CastlePerm[to];
+  GameBoard.enPas = SQUARES.NO_SQ;
+
+  HASH_CA();
+
+  let captured = CAPTURED(move);
+  let pieceEpsilon = PROMOTED(move);
+
+  GameBoard.fiftyMove++;
+
+  if (captured !== PIECES.EMPTY && (move & MFLAGSWAP) === 0) {
+    ClearPiece(to);
+    GameBoard.fiftyMove = 0;
+    if (GameBoard.crazyHouse[GameBoard.side]) {
+      if (GameBoard.side === COLOURS.WHITE) {
+        whiteArcaneConfig[
+          `sumn${PceChar.split('')[captured].toUpperCase()}`
+        ] += 1;
+      } else {
+        blackArcaneConfig[
+          `sumn${PceChar.split('')[captured].toUpperCase()}`
+        ] += 1;
+      }
+    }
+  }
+
+  if (PiecePawn[GameBoard.pieces[from]] === BOOL.TRUE) {
+    GameBoard.fiftyMove = 0;
+    if ((move & MFLAGPS) !== 0) {
+      if (side === COLOURS.WHITE) {
+        GameBoard.enPas = from + 10;
+      } else {
+        GameBoard.enPas = from - 10;
+      }
+      HASH_EP();
+    }
+  }
+
+  if (ARCANEFLAG(move) === 0 || move & MFLAGCNSM || move & MFLAGSHFT) {
+    MovePiece(from, to);
+  }
+  if (move & MFLAGCNSM) {
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig.modsCON -= 1;
+    } else {
+      blackArcaneConfig.modsCON -= 1;
+    }
+  }
+  if (move & MFLAGSHFT) {
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig[
+        `shft${PceChar.split('')[GameBoard.pieces[from]].toUpperCase()}`
+      ] -= 1;
+    } else {
+      blackArcaneConfig[
+        `shft${PceChar.split('')[GameBoard.pieces[from]].toUpperCase()}`
+      ] -= 1;
+    }
+  }
+
+  if (
+    pieceEpsilon !== PIECES.EMPTY &&
+    (ARCANEFLAG(move) === 0 || move === MFLAGCNSM)
+  ) {
+    ClearPiece(from);
+    AddPiece(to, pieceEpsilon);
+  } else if (move & MFLAGSUMN) {
+    if (pieceEpsilon > 23) {
+      GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = 4;
+    } else {
+      AddPiece(to, pieceEpsilon);
+    }
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig[
+        `sumn${pieceEpsilon > 23 ? 'R' : ''}${PceChar.split('')[
+          pieceEpsilon
+        ].toUpperCase()}`
+      ] -= 1;
+    } else {
+      blackArcaneConfig[
+        `sumn${pieceEpsilon > 23 ? 'R' : ''}${PceChar.split('')[
+          pieceEpsilon
+        ].toUpperCase()}`
+      ] -= 1;
+    }
+  } else if (move & MFLAGSWAP) {
+    ClearPiece(to);
+    MovePiece(from, to);
+    AddPiece(from, swapPiece);
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig.swapATK -= 1;
+      whiteArcaneConfig.swapDEP -= 1;
+      whiteArcaneConfig.swapADJ -= 1;
+    } else {
+      blackArcaneConfig.swapATK -= 1;
+      blackArcaneConfig.swapDEP -= 1;
+      blackArcaneConfig.swapADJ -= 1;
+    }
+  }
+
+  if (
+    SqAttacked(
+      GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
+      GameBoard.side ^ 1
+    )
+  ) {
+    GameBoard.checks[GameBoard.side]++;
+  }
+
+  if (GameBoard.dyad > 0) {
+    GameBoard.dyadClock += 1;
+  } else {
+    GameBoard.side ^= 1;
+    HASH_SIDE();
+  }
+
+  if (
+    GameBoard.dyad === 0 ||
+    GameBoard.dyadClock === GameBoard.dyadMax[GameBoard.side]
+  ) {
+    GameBoard.hisPly++;
+    GameBoard.ply++;
+  }
+
+  // todo error catchers
+  if (!move) {
+    console.log('make move error');
+  }
+
+  if (
+    SqAttacked(
+      GameBoard.pList[PCEINDEX(Kings[GameBoard.side ^ 1], 0)],
+      GameBoard.side
+    ) ||
+    // todo racing kings here
+    GameBoard.suspend > 0
+  ) {
+    TakeMove();
+    return BOOL.FALSE;
+  }
+
+  return BOOL.TRUE;
 }
 
+// take move
 export function TakeMove() {
-  GameBoard.hisPly--;
-  GameBoard.ply--;
+  if (GameBoard.dyad === 0) {
+    GameBoard.hisPly--;
+    GameBoard.ply--;
+  }
 
   let move = GameBoard.history[GameBoard.hisPly].move;
   let from = FROMSQ(move);
   let to = TOSQ(move);
+  // let swapPiece = GameBoard.pieces[to];
 
   if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
   HASH_CA();
@@ -263,16 +410,71 @@ export function TakeMove() {
   if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
   HASH_CA();
 
-  GameBoard.side ^= 1;
-  HASH_SIDE();
+  GameBoard.invisibility[0] += 1;
+  GameBoard.invisibility[1] += 1;
+  GameBoard.suspend += 1;
+
+  _.forEach(GameBoard.royaltyQ, (value, key) => {
+    if (value >= 0) {
+      GameBoard.royaltyQ[key] += 1;
+    }
+  });
+  _.forEach(GameBoard.royaltyZ, (value, key) => {
+    if (value >= 0) {
+      GameBoard.royaltyZ[key] += 1;
+    }
+  });
+  _.forEach(GameBoard.royaltyU, (value, key) => {
+    if (value >= 0) {
+      GameBoard.royaltyU[key] += 1;
+    }
+  });
+  _.forEach(GameBoard.royaltyV, (value, key) => {
+    if (value >= 0) {
+      GameBoard.royaltyV[key] += 1;
+    }
+  });
+  _.forEach(GameBoard.royaltyE, (value, key) => {
+    if (value >= 0) {
+      GameBoard.royaltyE[key] += 1;
+    }
+  });
+
+  if (move & MFLAGCNSM) {
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig.modsCON += 1;
+    } else {
+      blackArcaneConfig.modsCON += 1;
+    }
+  }
+  if (move & MFLAGSHFT) {
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig[
+        `shft${PceChar.split('')[GameBoard.pieces[from]].toUpperCase()}`
+      ] += 1;
+    } else {
+      blackArcaneConfig[
+        `shft${PceChar.split('')[GameBoard.pieces[from]].toUpperCase()}`
+      ] += 1;
+    }
+  }
+
+  let captured = CAPTURED(move);
+  let pieceEpsilon = PROMOTED(move);
+
+  if (GameBoard.dyad === 0) {
+    GameBoard.side ^= 1;
+    HASH_SIDE();
+  }
 
   if ((MFLAGEP & move) !== 0) {
-    if (GameBoard.side == COLOURS.WHITE) {
+    if (GameBoard.side === COLOURS.WHITE) {
       AddPiece(to - 10, PIECES.bP);
     } else {
       AddPiece(to + 10, PIECES.wP);
     }
   } else if ((MFLAGCA & move) !== 0) {
+    // get original rook positions? todo randomize
     switch (to) {
       case SQUARES.C1:
         MovePiece(SQUARES.D1, SQUARES.A1);
@@ -291,18 +493,78 @@ export function TakeMove() {
     }
   }
 
-  MovePiece(to, from);
-
-  let captured = CAPTURED(move);
-  if (captured !== PIECES.EMPTY) {
-    AddPiece(to, captured);
+  if (
+    (ARCANEFLAG(move) === 0 || move & MFLAGCNSM || move & MFLAGSHFT) &&
+    (move & MFLAGSWAP) === 0
+  ) {
+    MovePiece(to, from);
   }
 
-  if (PROMOTED(move) !== PIECES.EMPTY) {
+  if (captured !== PIECES.EMPTY && (move & MFLAGSWAP) === 0) {
+    AddPiece(to, captured);
+    if (GameBoard.crazyHouse[GameBoard.side]) {
+      if (GameBoard.side === COLOURS.WHITE) {
+        whiteArcaneConfig[
+          `sumn${PceChar.split('')[captured].toUpperCase()}`
+        ] -= 1;
+      } else {
+        blackArcaneConfig[
+          `sumn${PceChar.split('')[captured].toUpperCase()}`
+        ] -= 1;
+      }
+    }
+  }
+
+  if (
+    SqAttacked(
+      GameBoard.pList[PCEINDEX(Kings[GameBoard.side ^ 1], 0)],
+      GameBoard.side
+    )
+  ) {
+    GameBoard.checks[GameBoard.side ^ 1]--;
+  }
+
+  if (
+    pieceEpsilon !== PIECES.EMPTY &&
+    (move & MFLAGSUMN) === 0 &&
+    (move & MFLAGSWAP) === 0
+  ) {
     ClearPiece(from);
     AddPiece(
       from,
-      PieceCol[PROMOTED(move)] === COLOURS.WHITE ? PIECES.wP : PIECES.bP
+      PieceCol[pieceEpsilon] === COLOURS.WHITE ? PIECES.wP : PIECES.bP
     );
+  } else if (pieceEpsilon !== PIECES.EMPTY && move & MFLAGSUMN) {
+    if (pieceEpsilon > 23) {
+      GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = -20;
+    } else {
+      ClearPiece(to);
+    }
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig[
+        `sumn${pieceEpsilon > 23 ? 'R' : ''}${PceChar.split('')[
+          pieceEpsilon
+        ].toUpperCase()}`
+      ] += 1;
+    } else {
+      blackArcaneConfig[
+        `sumn${pieceEpsilon > 23 ? 'R' : ''}${PceChar.split('')[
+          pieceEpsilon
+        ].toUpperCase()}`
+      ] += 1;
+    }
+  } else if (captured !== PIECES.EMPTY && move & MFLAGSWAP) {
+    ClearPiece(from);
+    MovePiece(to, from);
+    AddPiece(to, captured);
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig.swapATK += 1;
+      whiteArcaneConfig.swapDEP += 1;
+      whiteArcaneConfig.swapADJ += 1;
+    } else {
+      blackArcaneConfig.swapATK += 1;
+      blackArcaneConfig.swapDEP += 1;
+      blackArcaneConfig.swapADJ += 1;
+    }
   }
 }

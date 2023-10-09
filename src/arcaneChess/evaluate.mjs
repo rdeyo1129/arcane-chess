@@ -1,5 +1,6 @@
 import { GameBoard } from './board';
 import { PCEINDEX, PIECES, SQ64, COLOURS, MIRROR64 } from './defs';
+import { ARCANE_BIT_VALUES } from './defs.mjs';
 
 // prettier-ignore
 const PawnTable = [
@@ -175,6 +176,24 @@ export function EvalPosition() {
     sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
     score -= RookTable[MIRROR64(SQ64(sq))];
   }
+
+  // pawns
+  // if (GameBoard.whiteArcane[3] & 1) {
+
+  // }
+  // if (GameBoard.blackArcane[3] & 1) {
+
+  // }
+
+  pce = ARCANE_BIT_VALUES.RZ;
+
+  // royalty zealot
+  // if (GameBoard.whiteArcane[3] & 4096) {
+  //   for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+  //     sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+  //     score += RookTable[MIRROR64(SQ64(sq))] * 20000;
+  //   }
+  // }
 
   if (GameBoard.pceNum[PIECES.wB] >= 2) {
     score += BishopPair;

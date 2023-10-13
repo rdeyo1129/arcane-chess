@@ -144,7 +144,7 @@ export default function arcaneChess(
 
     // PrintMoveList();
 
-    // PerftTest(3);
+    // PerftTest(3, fen);
     SearchPosition(fen);
   };
 

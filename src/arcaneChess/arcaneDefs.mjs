@@ -8,7 +8,7 @@ export const whiteArcaneConfig = {
   // sumnR: 4,
   // sumnRE: 4,
   // sumnRZ: 1,
-  sumnRU: 1,
+  // sumnRU: 1,
   // sumnRV: 7,
   // sumnP: 2,
   // sumnX: 1,
@@ -35,7 +35,7 @@ export const blackArcaneConfig = {
   // shftN: 4,
   // modsSIG: 2,
   // modsCON: 4,
-  swapADJ: 1,
+  // swapADJ: 1,
   // sumnRU: 1,
   // swapATK: 1,
   // swapDEP: 1,
@@ -94,6 +94,9 @@ export const POWERBIT = {
   dyadZ: 512,
   dyadU: 1024,
   dyadV: 2048,
+  dyadM: 4096,
+  dyadT: 8192,
+
   // 16
   sumnP: 1,
   sumnS: 2,

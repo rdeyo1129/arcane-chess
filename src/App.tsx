@@ -1,3 +1,39 @@
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  // Redirect,
+} from 'react-router-dom';
+
+import '@fontsource/exo';
+import '@fontsource/exo/400-italic.css';
+import '@fontsource/exo/700-italic.css';
+
+// Import your components/pages here
+import { FrontPage } from '././pages/frontPage/FrontPage';
+import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
+import { SinglePlayer } from '././pages/singlePlayer/SinglePlayer';
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={InGameMenu} />
+          {/* <Route exact path="/" component={SinglePlayer} /> */}
+          {/* <Route exact path="/" component={FrontPage} /> */}
+          {/* <Route path="/about" component={About} /> */}
+          {/* <Route path="/404" component={NotFound} /> */}
+          {/* <Redirect to="/404" /> */}
+        </Switch>
+      </div>
+    </Router>
+  );
+};
+
+export default App;
+
 // import React from "react";
 // import {
 //   BrowserRouter as Router,
@@ -137,39 +173,3 @@
 // });
 
 // export default App;
-
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  // Redirect,
-} from 'react-router-dom';
-
-import '@fontsource/exo';
-import '@fontsource/exo/400-italic.css';
-import '@fontsource/exo/700-italic.css';
-
-// Import your components/pages here
-import { FrontPage } from '././pages/frontPage/FrontPage';
-import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
-import { SinglePlayer } from '././pages/singlePlayer/SinglePlayer';
-
-const App: React.FC = () => {
-  return (
-    <Router>
-      <div>
-        <Switch>
-          {/* <Route exact path="/" component={InGameMenu} /> */}
-          <Route exact path="/" component={SinglePlayer} />
-          {/* <Route exact path="/" component={FrontPage} /> */}
-          {/* <Route path="/about" component={About} /> */}
-          {/* <Route path="/404" component={NotFound} /> */}
-          {/* <Redirect to="/404" /> */}
-        </Switch>
-      </div>
-    </Router>
-  );
-};
-
-export default App;

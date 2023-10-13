@@ -4,9 +4,11 @@
   display: block;
 }
 
+/* poc */
 .module-board .cg-wrap,
 .tactorius-board .cg-wrap {
   background-image: url("../images/board/tactoriusBoard.svg");
+  /* z-index: 10; */
 }
 .armory-board .cg-wrap {
   background-image: url("../images/board/armoryBoard.svg");

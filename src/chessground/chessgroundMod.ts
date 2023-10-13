@@ -4,13 +4,13 @@ import { Chessground as NativeChessground } from 'chessgroundx';
 
 import './styles/chessground.css';
 
-// import './styles/normal.css';
-// import './styles/sigma.css';
-// import './styles/omega.css';
-// import './styles/lambda.css';
-// import './styles/mu.css';
-// import './styles/nu.css';
-// import './styles/chi.css';
+import './styles/normal.css';
+import './styles/sigma.css';
+import './styles/omega.css';
+import './styles/lambda.css';
+import './styles/mu.css';
+import './styles/nu.css';
+import './styles/chi.css';
 
 export class Chessground extends React.Component {
   buildConfigFromProps(props) {
@@ -37,10 +37,8 @@ export class Chessground extends React.Component {
     this.cg = NativeChessground(this.el, this.buildConfigFromProps(this.props));
   }
 
-  componentDidUpdate(prevProps: object) {
-    if (prevProps !== this.props) {
-      this.cg.set(this.buildConfigFromProps(this.props));
-    }
+  componentWillReceiveProps(nextProps) {
+    this.cg.set(this.buildConfigFromProps(nextProps));
   }
 
   componentWillUnmount() {
@@ -48,17 +46,15 @@ export class Chessground extends React.Component {
   }
 
   render() {
-    // const props = { style: { ...this.props.style } };
+    const props = { style: { ...this.props.style } };
 
-    const props = {};
+    if (this.props.width) {
+      props.style.width = this.props.width;
+    }
 
-    // if (this.props.width) {
-    //   props.style.width = this.props.width;
-    // }
-
-    // if (this.props.height) {
-    //   props.style.height = this.props.height;
-    // }
+    if (this.props.height) {
+      props.style.height = this.props.height;
+    }
 
     return <div ref={(el) => (this.el = el)} {...props}></div>;
   }

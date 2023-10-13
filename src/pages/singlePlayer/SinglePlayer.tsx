@@ -49,9 +49,7 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
   };
 
   perftTest = (fen: string) => {
-    // gui?
     ParseFen(fen);
-    // PrintBoard();
     PerftTest(3);
   };
 

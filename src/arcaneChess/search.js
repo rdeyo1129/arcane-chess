@@ -24,6 +24,7 @@ import {
   BRD_SQ_NUM,
   now,
   PIECES,
+  COLOURS,
 } from './defs';
 import { EvalPosition } from './evaluate';
 import { GenerateMoves, generatePowers } from './movegen';
@@ -160,17 +161,24 @@ export function Quiescence(alpha, beta) {
     Legal++;
 
     if (InCheck() === BOOL.TRUE) {
-      CheckCount++;
+      GameBoard.checks[GameBoard.side]++;
       if (
         GameBoard.xCheckLimit[GameBoard.side] > 0 &&
-        CheckCount >= GameBoard.xCheckLimit[GameBoard.side]
+        GameBoard.checks[GameBoard.side] >=
+          GameBoard.xCheckLimit[GameBoard.side]
       ) {
+        GameBoard.checks[GameBoard.side]--;
         TakeMove();
-        break;
+        StorePvMove(Move);
+        return MATE - GameBoard.checks[GameBoard.side ^ 1];
       }
     }
 
     Score = -Quiescence(-beta, -alpha);
+
+    if (InCheck() === BOOL.TRUE) {
+      GameBoard.checks[GameBoard.side]--;
+    }
 
     TakeMove();
 
@@ -198,13 +206,6 @@ export function Quiescence(alpha, beta) {
       alpha = Score;
       BestMove = Move;
     }
-  }
-
-  if (
-    GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
-    CheckCount >= GameBoard.xCheckLimit[GameBoard.side ^ 1]
-  ) {
-    return MATE - GameBoard.ply;
   }
 
   if (alpha !== OldAlpha) {
@@ -293,18 +294,25 @@ export function AlphaBeta(alpha, beta, depth) {
     Legal++;
 
     if (InCheck() === BOOL.TRUE) {
-      CheckCount++;
+      GameBoard.checks[GameBoard.side]++;
       if (
         GameBoard.xCheckLimit[GameBoard.side] > 0 &&
-        CheckCount >= GameBoard.xCheckLimit[GameBoard.side]
+        GameBoard.checks[GameBoard.side] >=
+          GameBoard.xCheckLimit[GameBoard.side]
       ) {
+        GameBoard.checks[GameBoard.side]--;
         TakeMove();
-        break;
+        StorePvMove(Move);
+        return MATE - GameBoard.checks[GameBoard.side ^ 1];
       }
     }
 
     // this is the black box, it will give you a magical score that you can assume is correct at the deepest level
     Score = -AlphaBeta(-beta, -alpha, depth - 1);
+
+    if (InCheck() === BOOL.TRUE) {
+      GameBoard.checks[GameBoard.side]--;
+    }
 
     TakeMove();
 
@@ -342,13 +350,6 @@ export function AlphaBeta(alpha, beta, depth) {
       alpha = Score;
       BestMove = Move;
     }
-  }
-
-  if (
-    GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
-    CheckCount >= GameBoard.xCheckLimit[GameBoard.side ^ 1]
-  ) {
-    return MATE - GameBoard.ply;
   }
 
   // rook entangled mate

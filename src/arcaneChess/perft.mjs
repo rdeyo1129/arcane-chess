@@ -44,8 +44,7 @@ export function Perft(depth) {
   return;
 }
 
-export function PerftTest(depth) {
-  PrintBoard();
+export function PerftTest(depth, fen) {
   console.log('Starting Test To Depth:' + depth);
   perft_leafNodes = 0;
 

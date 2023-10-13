@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export const propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -18,6 +18,7 @@ export const propTypes = {
   highlight: PropTypes.object,
   animation: PropTypes.object,
   movable: PropTypes.object,
+  notation: PropTypes.bool,
   premovable: PropTypes.object,
   predroppable: PropTypes.object,
   draggable: PropTypes.object,

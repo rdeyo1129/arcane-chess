@@ -90,8 +90,6 @@ export function MovePiece(from, to) {
   }
 }
 
-// todo: turn clocks, minus arcana
-
 export function MakeMove(move) {
   let from = FROMSQ(move);
   let to = TOSQ(move);
@@ -183,29 +181,19 @@ export function MakeMove(move) {
   GameBoard.suspend -= 1;
 
   _.forEach(GameBoard.royaltyQ, (value, key) => {
-    if (value > 0) {
-      GameBoard.royaltyQ[key] -= 1;
-    }
+    GameBoard.royaltyQ[key] -= 1;
   });
   _.forEach(GameBoard.royaltyZ, (value, key) => {
-    if (value > 0) {
-      GameBoard.royaltyZ[key] -= 1;
-    }
+    GameBoard.royaltyZ[key] -= 1;
   });
   _.forEach(GameBoard.royaltyU, (value, key) => {
-    if (value > 0) {
-      GameBoard.royaltyU[key] -= 1;
-    }
+    GameBoard.royaltyU[key] -= 1;
   });
   _.forEach(GameBoard.royaltyV, (value, key) => {
-    if (value > 0) {
-      GameBoard.royaltyV[key] -= 1;
-    }
+    GameBoard.royaltyV[key] -= 1;
   });
   _.forEach(GameBoard.royaltyE, (value, key) => {
-    if (value > 0) {
-      GameBoard.royaltyE[key] -= 1;
-    }
+    GameBoard.royaltyE[key] -= 1;
   });
 
   if (GameBoard.pass) {
@@ -308,7 +296,7 @@ export function MakeMove(move) {
     pieceEpsilon !== PIECES.EMPTY &&
     (ARCANEFLAG(move) === 0 || move === MFLAGCNSM)
   ) {
-    ClearPiece(from);
+    ClearPiece(to);
     AddPiece(to, pieceEpsilon);
   } else if (move & MFLAGSUMN) {
     if (pieceEpsilon > 23) {
@@ -330,11 +318,9 @@ export function MakeMove(move) {
       ] -= 1;
     }
   } else if (move & MFLAGSWAP) {
-    // PrintBoard()
     ClearPiece(to);
     MovePiece(from, to);
     AddPiece(from, captured);
-    // PrintBoard();
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig.swapATK -= 1;
       whiteArcaneConfig.swapDEP -= 1;
@@ -425,29 +411,19 @@ export function TakeMove() {
   GameBoard.suspend += 1;
 
   _.forEach(GameBoard.royaltyQ, (value, key) => {
-    if (value >= 0) {
-      GameBoard.royaltyQ[key] += 1;
-    }
+    GameBoard.royaltyQ[key] += 1;
   });
   _.forEach(GameBoard.royaltyZ, (value, key) => {
-    if (value >= 0) {
-      GameBoard.royaltyZ[key] += 1;
-    }
+    GameBoard.royaltyZ[key] += 1;
   });
   _.forEach(GameBoard.royaltyU, (value, key) => {
-    if (value >= 0) {
-      GameBoard.royaltyU[key] += 1;
-    }
+    GameBoard.royaltyU[key] += 1;
   });
   _.forEach(GameBoard.royaltyV, (value, key) => {
-    if (value >= 0) {
-      GameBoard.royaltyV[key] += 1;
-    }
+    GameBoard.royaltyV[key] += 1;
   });
   _.forEach(GameBoard.royaltyE, (value, key) => {
-    if (value >= 0) {
-      GameBoard.royaltyE[key] += 1;
-    }
+    GameBoard.royaltyE[key] += 1;
   });
 
   if (move & MFLAGCNSM) {
@@ -504,10 +480,7 @@ export function TakeMove() {
     }
   }
 
-  if (
-    (ARCANEFLAG(move) === 0 || move & MFLAGCNSM || move & MFLAGSHFT) &&
-    (move & MFLAGSWAP) === 0
-  ) {
+  if (ARCANEFLAG(move) === 0 || move & MFLAGCNSM || move & MFLAGSHFT) {
     MovePiece(to, from);
   }
 
@@ -547,7 +520,7 @@ export function TakeMove() {
     );
   } else if (pieceEpsilon !== PIECES.EMPTY && move & MFLAGSUMN) {
     if (pieceEpsilon > 23) {
-      GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = -20;
+      GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = -500;
     } else {
       ClearPiece(to);
     }
@@ -568,7 +541,6 @@ export function TakeMove() {
     ClearPiece(from);
     MovePiece(to, from);
     AddPiece(to, captured);
-    // PrintBoard();
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig.swapATK += 1;
       whiteArcaneConfig.swapDEP += 1;

@@ -16,6 +16,9 @@ import {
   FROMSQ,
   TOSQ,
   PROMOTED,
+  PrintBoard,
+  PrintSqAttacked,
+  InCheck,
 } from './board';
 import { whiteArcaneConfig, blackArcaneConfig, POWERBIT } from './arcaneDefs';
 import {
@@ -52,10 +55,16 @@ import {
   BRD_SQ_NUM,
   ARCANE_BIT_VALUES,
   Kings,
+  royaltyDyad,
+  royaltySliders,
+  royaltyHoppers,
+  royaltySliderMap,
+  royaltyHopperMap,
 } from './defs';
 import { MakeMove, TakeMove } from './makemove';
 import { PrMove, PrintMoveList } from './io.mjs';
 import { ARCANEFLAG } from './board.mjs';
+import { PceChar } from './defs.mjs';
 
 // prettier-ignore
 const MvvLvaValue = [
@@ -162,6 +171,17 @@ export function AddEnPassantMove(move) {
 }
 
 export function addSummonMove(move) {
+  // whiteArcaneConfig[
+  //   `sumn${pieceEpsilon > 23 ? 'R' : ''}${PceChar.split('')[
+  //     pieceEpsilon
+  //   ].toUpperCase()}`
+  // ]
+  // if (
+  //   // [GameBoard[
+  //   //   `${GameBoard.side === COLOURS.WHITE ? 'white' : 'black'}Arcane`
+  //   // ][3] === POWERBIT[`sumn${PceChar.split('')[PROMOTED(move)]}`]
+  //   (` ${GameBoard.side === COLOURS.WHITE ? 'white' : 'black'}ArcaneConfig`)[] ===
+  // ) {
   GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
   GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 0;
 
@@ -184,6 +204,7 @@ export function addSummonMove(move) {
     }
   }
   GameBoard.moveListStart[GameBoard.ply + 1]++;
+  // }
 }
 
 export function AddWhitePawnCaptureMove(from, to, cap, consume, capturesOnly) {
@@ -461,7 +482,11 @@ export const getHerrings = (color) => {
   return herringsArr;
 };
 
-export function GenerateMoves(withHerrings = true, capturesOnly = false) {
+export function GenerateMoves(
+  withHerrings = true,
+  capturesOnly = false,
+  depth = 22
+) {
   GameBoard.moveListStart[GameBoard.ply + 1] =
     GameBoard.moveListStart[GameBoard.ply];
 
@@ -719,8 +744,9 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
   let summonPce = loopSummon[summonIndex];
   let summonFlag = loopSummonFlag[summonIndex++];
 
-  const whiteLimit = 20 + 10 * GameBoard.summonRankLimits[0];
-  const blackLimit = 100 - 10 * GameBoard.summonRankLimits[1];
+  // todo
+  const whiteLimit = 100 - 10 * (8 - GameBoard.summonRankLimits[0]);
+  const blackLimit = 20 + 10 * (8 - GameBoard.summonRankLimits[1]);
 
   while (summonPce !== 0) {
     for (let sq = 21; sq <= 98; sq++) {
@@ -1438,93 +1464,38 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
     }
   }
 
-  // herring spike bookmark
-  // prereq videos on pins and number of attackers
+  // HOPPERS ROYALTY
+  for (let i = 0; i < royaltyHoppers.length; i++) {
+    const currentRoyalty = GameBoard[royaltyHopperMap[i]];
+    _.forEach(currentRoyalty, (value, sqA) => {
+      const sq = Number(sqA);
+      const piece = GameBoard.pieces[sq];
 
-  // royalty hoppers
-  pceIndexPrimeVar = LoopIndexPrime[GameBoard.side];
-  pcePrimeVar = LoopPcePrime[pceIndexPrimeVar];
-  dyadPrimeVar = LoopDyadPrime[pceIndexPrimeVar++];
-
-  // note NON-SLIDERS ROYALTY
-  while (pcePrimeVar !== 0) {
-    for (pceNum = 0; pceNum < GameBoard.pceNum[pcePrimeVar]; pceNum++) {
-      sq = GameBoard.pList[PCEINDEX(pcePrimeVar, pceNum)];
-
-      const isOverrided =
-        GameBoard.royaltyZ[sq] > 0 ||
-        GameBoard.royaltyU[sq] > 0 ||
-        GameBoard.royaltyV[sq] > 0;
-
-      // ENTAGLE
-      if (GameBoard.royaltyE[sq] > 0 || !isOverrided) {
-        continue;
-      }
-
-      // PREVENT KING CAPTURE HERRING
-      // if (herrings.length) {
-      //   if (GameBoard.side === COLOURS.WHITE && pce === PIECES.wK) continue;
-      //   if (GameBoard.side === COLOURS.BLACK && pce === PIECES.bK) continue;
-      // }
+      if (value <= 0) return;
+      if (piece === PIECES.EMPTY) return;
+      if (GameBoard.royaltyE[sq] > 0) return;
+      if (PieceCol[piece] !== GameBoard.side) return;
 
       // KING WITH CASTLING RIGHTS NO ROYALTY
       if (
         GameBoard.side === COLOURS.WHITE &&
         GameBoard.castlePerm & CASTLEBIT.WKCA &&
         GameBoard.castlePerm & CASTLEBIT.WQCA &&
-        pcePrimeVar === PIECES.wK
+        piece === PIECES.wK
       ) {
-        continue;
+        return;
       }
       if (
         GameBoard.side === COLOURS.BLACK &&
         GameBoard.castlePerm & CASTLEBIT.BKCA &&
         GameBoard.castlePerm & CASTLEBIT.BQCA &&
-        pcePrimeVar === PIECES.bK
+        piece === PIECES.bK
       ) {
-        continue;
+        return;
       }
 
-      if (GameBoard.royaltyV[sq] > 0) {
-        // note ROYALTY VANGUARD ZEALOT UNICORN
-        if (GameBoard.side === COLOURS.WHITE) {
-          pce = PIECES.wV;
-        }
-        if (GameBoard.side === COLOURS.BLACK) {
-          pce = PIECES.bV;
-        }
-      }
-      if (GameBoard.royaltyZ[sq] > 0) {
-        if (GameBoard.side === COLOURS.WHITE) {
-          pce = PIECES.wZ;
-        }
-        if (GameBoard.side === COLOURS.BLACK) {
-          pce = PIECES.bZ;
-        }
-      }
-      if (GameBoard.royaltyU[sq] > 0) {
-        if (GameBoard.side === COLOURS.WHITE) {
-          pce = PIECES.wU;
-        }
-        if (GameBoard.side === COLOURS.BLACK) {
-          pce = PIECES.bU;
-        }
-      }
-
-      // note royalty hoppers only applies to knight right now, hardcoded PIECES.wN here shouldn't matter
-      for (index = 0; index < DirNum[PIECES.wN]; index++) {
-        dir = KnDir[index];
-
-        // dir = PceDir[pce][index];
-        // if (
-        //   pce === PIECES.wZ ||
-        //   pce === PIECES.bZ ||
-        //   pce === PIECES.wU ||
-        //   pce === PIECES.bU
-        // ) {
-        //   dir = KnDir[index];
-        // }
-
+      for (let index = 0; index < DirNum[royaltyHoppers[i]]; index++) {
+        dir = PceDir[royaltyHoppers[i]][index];
         t_sq = sq + dir;
 
         if (SQOFFBOARD(t_sq) === BOOL.TRUE) {
@@ -1532,7 +1503,7 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
         }
 
         if (GameBoard.dyad === 0 && GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
-          // note ROYALTY NON-SLIDERS CAPTURES
+          // note ROYALTY HOPPERS CAPTURES
           if (
             !herrings.length ||
             (herrings.length && _.includes(herrings, t_sq))
@@ -1567,8 +1538,8 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
             }
           }
 
-          // note ROYALTY NON-SLIDERS CONSUME
-          if (SQOFFBOARD(t_sq) === BOOL.FALSE && !herrings.length) {
+          // note ROYALTY HOPPERS CONSUME
+          if (!herrings.length) {
             if (
               PieceCol[GameBoard.pieces[t_sq]] === GameBoard.side &&
               !PieceKing[GameBoard.pieces[t_sq]]
@@ -1629,11 +1600,11 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
           }
         }
 
-        // note ROYALTY NON-SLIDERS QUIET MOVES
+        // note ROYALTY HOPPERS QUIET MOVES
         if (
           (GameBoard.dyad === 0 ||
             GameBoard.dyad === 1 ||
-            GameBoard.dyad === dyadPrimeVar) &&
+            GameBoard.dyad === royaltyDyad[piece]) &&
           !herrings.length &&
           GameBoard.pieces[t_sq] === PIECES.EMPTY
         ) {
@@ -1649,84 +1620,41 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
           }
         }
       }
-    }
-    pcePrimeVar = LoopPcePrime[pceIndexPrimeVar];
-    dyadPrimeVar = LoopDyadPrime[pceIndexPrimeVar++];
+    });
   }
 
-  // royalty sliders
+  // SLIDERS ROYALTY
+  for (let i = 0; i < royaltySliders.length; i++) {
+    const currentRoyalty = GameBoard[royaltySliderMap[i]];
+    _.forEach(currentRoyalty, (value, sqA) => {
+      const sq = Number(sqA);
+      const piece = GameBoard.pieces[sq];
 
-  pceIndexPrimeVar = LoopIndexPrime[GameBoard.side];
-  pcePrimeVar = LoopPcePrime[pceIndexPrimeVar];
-  dyadPrimeVar = LoopDyadPrime[pceIndexPrimeVar++];
-
-  // note SLIDERS ROYALTY
-  while (pcePrimeVar !== 0) {
-    for (pceNum = 0; pceNum < GameBoard.pceNum[pcePrimeVar]; pceNum++) {
-      sq = GameBoard.pList[PCEINDEX(pcePrimeVar, pceNum)];
-
-      const isOverrided =
-        GameBoard.royaltyQ[sq] > 0 ||
-        GameBoard.royaltyZ[sq] > 0 ||
-        GameBoard.royaltyU[sq] > 0;
-
-      // ENTAGLE
-      if (GameBoard.royaltyE[sq] > 0 || !isOverrided) {
-        continue;
-      }
-
-      // PREVENT KING CAPTURE HERRING
-      // if (herrings.length) {
-      //   if (GameBoard.side === COLOURS.WHITE && pce === PIECES.wK) continue;
-      //   if (GameBoard.side === COLOURS.BLACK && pce === PIECES.bK) continue;
-      // }
+      if (value <= 0) return;
+      if (piece === PIECES.EMPTY) return;
+      if (GameBoard.royaltyE[sq] > 0) return;
+      if (PieceCol[piece] !== GameBoard.side) return;
 
       // KING WITH CASTLING RIGHTS NO ROYALTY
       if (
         GameBoard.side === COLOURS.WHITE &&
         GameBoard.castlePerm & CASTLEBIT.WKCA &&
         GameBoard.castlePerm & CASTLEBIT.WQCA &&
-        pcePrimeVar === PIECES.wK
+        piece === PIECES.wK
       ) {
-        continue;
+        return;
       }
       if (
         GameBoard.side === COLOURS.BLACK &&
         GameBoard.castlePerm & CASTLEBIT.BKCA &&
         GameBoard.castlePerm & CASTLEBIT.BQCA &&
-        pcePrimeVar === PIECES.bK
+        piece === PIECES.bK
       ) {
-        continue;
+        return;
       }
 
-      // note ROYALTY QUEEN ZEALOT UNICORN
-      if (GameBoard.royaltyQ[sq] > 0) {
-        if (GameBoard.side === COLOURS.WHITE) {
-          pce = PIECES.wQ;
-        }
-        if (GameBoard.side === COLOURS.BLACK) {
-          pce = PIECES.bQ;
-        }
-      }
-      if (GameBoard.royaltyZ[sq] > 0) {
-        if (GameBoard.side === COLOURS.WHITE) {
-          pce = PIECES.wZ;
-        }
-        if (GameBoard.side === COLOURS.BLACK) {
-          pce = PIECES.bZ;
-        }
-      }
-      if (GameBoard.royaltyU[sq] > 0) {
-        if (GameBoard.side === COLOURS.WHITE) {
-          pce = PIECES.wU;
-        }
-        if (GameBoard.side === COLOURS.BLACK) {
-          pce = PIECES.bU;
-        }
-      }
-
-      for (index = 0; index < DirNum[pce]; index++) {
-        dir = PceDir[pce][index];
+      for (let index = 0; index < DirNum[royaltySliders[i]]; index++) {
+        dir = PceDir[royaltySliders[i]][index];
         t_sq = sq + dir;
 
         while (SQOFFBOARD(t_sq) === BOOL.FALSE) {
@@ -1831,7 +1759,7 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
           if (
             (GameBoard.dyad === 0 ||
               GameBoard.dyad === 1 ||
-              GameBoard.dyad === dyadPrimeVar) &&
+              GameBoard.dyad === royaltyDyad[piece]) &&
             GameBoard.pieces[t_sq] === PIECES.EMPTY
           ) {
             if (
@@ -1853,16 +1781,14 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
           }
         }
       }
-    }
-    pcePrimeVar = LoopPcePrime[pceIndexPrimeVar];
-    dyadPrimeVar = LoopDyadPrime[pceIndexPrimeVar++];
+    });
   }
 
   pceIndex = LoopNonSlideIndex[GameBoard.side];
   pce = LoopNonSlidePce[pceIndex];
   dyad = LoopNonSlideDyad[pceIndex++];
 
-  // note NON-SLIDERS
+  // HOPPERS
   while (pce !== 0) {
     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; pceNum++) {
       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
@@ -2028,7 +1954,7 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
   pce = LoopSlidePce[pceIndex];
   dyad = LoopSlideDyad[pceIndex++];
 
-  // note SLIDERS
+  // SLIDERS
   while (pce !== 0) {
     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; pceNum++) {
       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];

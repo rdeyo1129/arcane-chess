@@ -137,7 +137,7 @@ GameBoard.pList = new Array(25 * 36);
 GameBoard.whiteArcane = [0, 0, 0, 0, 0];
 GameBoard.blackArcane = [0, 0, 0, 0, 0];
 
-GameBoard.summonRankLimits = [8, 8];
+GameBoard.summonRankLimits = [6, 6];
 GameBoard.crazyHouse = [false, false];
 
 GameBoard.summonMoveList = [];
@@ -155,7 +155,7 @@ GameBoard.suspend = 0; // += not =
 GameBoard.racingKings = false;
 GameBoard.invisibility = [0, 0];
 
-GameBoard.xCheckLimit = [0, 0];
+GameBoard.xCheckLimit = [3, 3];
 GameBoard.checks = [0, 0];
 
 GameBoard.dyadName = '';
@@ -350,7 +350,6 @@ export function ResetBoard() {
   GameBoard.whiteArcane = [0, 0, 0, 0, 0];
   GameBoard.blackArcane = [0, 0, 0, 0, 0];
 
-  GameBoard.summonRankLimits = [8, 8];
   GameBoard.crazyHouse = [false, false];
 
   GameBoard.summonMoveList = [];
@@ -358,18 +357,19 @@ export function ResetBoard() {
 
   GameBoard.kohSquares = [];
 
-  GameBoard.royaltyQ = {};
-  GameBoard.royaltyZ = {};
-  GameBoard.royaltyU = {};
-  GameBoard.royaltyV = {};
-  GameBoard.royaltyE = {};
+  // todo?
+  // GameBoard.royaltyQ = {};
+  // GameBoard.royaltyZ = {};
+  // GameBoard.royaltyU = {};
+  // GameBoard.royaltyV = {};
+  // GameBoard.royaltyE = {};
 
   GameBoard.suspend = 0; // += not =
   GameBoard.racingKings = false;
   GameBoard.invisibility = [0, 0];
 
-  GameBoard.xCheckLimit = [0, 0];
-  GameBoard.checks = [0, 0];
+  // GameBoard.xCheckLimit = [0, 0];
+  // GameBoard.checks = [0, 0];
 
   GameBoard.dyadName = '';
   GameBoard.dyad = 0;
@@ -399,7 +399,7 @@ export function randomize() {
         rank[d(2) * 2] = 'b';
         rank[d(2) * 2 + 1] = 'b';
         rank[emptySquares()[d(5)]] =
-          queenTypesMap[blackArcane.modsQTY].toLowerCase();
+          queenTypesMap[blackArcaneConfig.modsQTY].toLowerCase();
         rank[emptySquares()[d(4)]] = 'n';
         rank[emptySquares()[d(3)]] = 'n';
         for (let x = 1; x <= 3; x++) {

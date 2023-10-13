@@ -606,6 +606,16 @@ export const LoopDyadPrime = [
 ];
 export const LoopIndexPrime = [0, 12];
 
+// 10/12/23 edits
+export const royaltyDyad = [
+  0, 2, 32, 64, 128, 256, 2, 32, 64, 128, 256, 0, 4, 8, 512, 1024, 2048, 4, 8,
+  512, 1024, 2048,
+];
+export const royaltySliderMap = ['royaltyU', 'royaltyZ', 'royaltyQ'];
+export const royaltyHopperMap = ['royaltyU', 'royaltyZ', 'royaltyV'];
+export const royaltySliders = [PIECES.wB, PIECES.wR, PIECES.wK];
+export const royaltyHoppers = [PIECES.wN, PIECES.wN, PIECES.wV];
+
 export const loopSummon = [
   PIECES.wP,
   PIECES.wS,

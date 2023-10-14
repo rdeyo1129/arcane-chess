@@ -85,13 +85,19 @@ class UnwrappedInGameMenu extends React.Component {
               <div className="panel-left">this is a paragraph about chess.</div>
             </div>
           </div> */}
-          <div>
+          {/* 
+            panel types lesson temple mission create... any others? puzzles (leage vs temples)
+            must be true to page architecture
+
+          */}
+          {/* <div className="panel"></div> */}
+          <div className="fen-input">
             <Input
               // id="test"
-              className="input"
+              className="input fen-text-box"
               color="B"
-              height={40}
-              width={400}
+              height={60}
+              width={280}
               placeholder="FEN"
               value={this.state.fen}
               setText={this.setFen}
@@ -101,10 +107,36 @@ class UnwrappedInGameMenu extends React.Component {
               onClick={() => this.initializeArcaneChessAndTest(this.state.fen)}
               className="primary"
               color="B"
+              height={60}
+              width={120}
               // disabled={this.state.fen === ''}
               disabled={false}
               // strong={true}
             />
+          </div>
+          <div className="time-input">
+            {/* dropdowns */}
+            <div className="white-time">10 : 00</div>
+            <div className="black-time">10 : 00</div>
+          </div>
+          <div className="eval-output">
+            <span>-5.23 ... </span>
+            <span>Nf5 RU@c2+ Kh2</span>
+          </div>
+          <div className="arcane-faction-input">
+            <div className="arcane-input">
+              Implant, Mind Read, Temporal Pincer
+            </div>
+            <div className="faction-input">
+              <div className="create-faction"></div>
+              <div className="create-faction"></div>
+              <div className="create-faction"></div>
+              <div className="create-faction"></div>
+              <div className="create-faction"></div>
+              <div className="create-faction"></div>
+              <div className="create-faction"></div>
+              <div className="create-faction"></div>
+            </div>
           </div>
           <div className="board-view">
             <Chessground
@@ -125,6 +157,10 @@ class UnwrappedInGameMenu extends React.Component {
               // height={520}
               width={480}
               height={480}
+              // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
+              // don't, just go by the page type
+              // width={360}
+              // height={360}
               animation={{
                 duration: 0.1,
               }}
@@ -171,42 +207,51 @@ class UnwrappedInGameMenu extends React.Component {
               // }}
             />
           </div>
-          <div className="game-info">
-            {/* <RightController
-            // controller="lesson-controller"
-            auth={auth}
-            saveCampaign={(nodeId) => this.completeAndSave(nodeId)}
-            // endGame={this.setGameOverStatus}
-            // gameOver={this.game.game_over()}
-            // nextMv={() => this.navigateNext()}
-            // prevMv={() => this.navigatePrev()}
-            // gameOverStatus={this.state.gameOverStatus}
-            // showAcceptDraw={this.state.showAcceptDraw}
-            // drawOfferSent={this.state.drawOfferSent}
-            // spectatorView={this.state.spectatorView}
-            // statusText={this.state.status}
-            // history={this.state.history}
-            // roomId={this.state.roomId}
-          /> */}
-            {/* <div className="panel-left-container">
-              <LessonController
-                // controller="lesson-controller"
-                auth={auth}
-                endNode={(type) => this.endNodeAndSave(type)}
-                // endGame={this.setGameOverStatus}
-                // gameOver={this.game.game_over()}
-                // nextMv={() => this.navigateNext()}
-                // prevMv={() => this.navigatePrev()}
-                // gameOverStatus={this.state.gameOverStatus}
-                // showAcceptDraw={this.state.showAcceptDraw}
-                // drawOfferSent={this.state.drawOfferSent}
-                // spectatorView={this.state.spectatorView}
-                // statusText={this.state.status}
-                // history={this.state.history}
-                // roomId={this.state.roomId}
+          <div className="pieces-buttons">
+            <div className="preset-dropdown">Horde</div>
+            <div className="piece-pickup">{/* forEach */}</div>
+            <div className="create-buttons">
+              <Button
+                text="DISABLE"
+                onClick={() => null}
+                className="tertiary"
+                color="B"
+                height={60}
+                width={200}
+                disabled={false}
               />
-            </div> */}
+              <Button
+                text="MAKE MOVE"
+                onClick={() => null}
+                className="tertiary"
+                color="B"
+                height={60}
+                width={200}
+                disabled={false}
+              />
+              <Button
+                text="RANDOMIZE"
+                onClick={() => null}
+                className="tertiary"
+                color="B"
+                height={60}
+                width={200}
+                disabled={false}
+              />
+              <Button
+                text="SAVE / QUIT"
+                onClick={() => null}
+                className="tertiary"
+                color="B"
+                height={60}
+                width={200}
+                disabled={false}
+              />
+            </div>
           </div>
+          <div className="grid-filler"></div>
+          <div className="grid-filler"></div>
+          <div className="grid-filler"></div>
         </div>
       </div>
     );

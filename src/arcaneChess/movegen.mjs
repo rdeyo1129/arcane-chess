@@ -482,11 +482,7 @@ export const getHerrings = (color) => {
   return herringsArr;
 };
 
-export function GenerateMoves(
-  withHerrings = true,
-  capturesOnly = false,
-  depth = 22
-) {
+export function GenerateMoves(withHerrings = true, capturesOnly = false) {
   GameBoard.moveListStart[GameBoard.ply + 1] =
     GameBoard.moveListStart[GameBoard.ply];
 

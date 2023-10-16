@@ -30,7 +30,7 @@ import { EvalPosition } from './evaluate';
 import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { PrMove } from './io';
-import { StorePvMove, ProbePvTable, GetPvLine } from './pvtable';
+import { StorePvMove, ProbePvTable, GetPvLine } from './pvtable.mjs';
 import { PrintMoveList } from './io.mjs';
 import { PrintPieceLists, PrintSqAttacked } from './board.mjs';
 import { validMoves, validGroundMoves } from './gui.mjs';
@@ -396,6 +396,8 @@ export function ClearForSearch() {
   SearchController.fhf = 0;
   SearchController.start = new Date();
   SearchController.stop = BOOL.FALSE;
+
+  GameBoard.cleanPV = [];
 }
 
 export function SearchPosition() {
@@ -408,6 +410,10 @@ export function SearchPosition() {
   let c;
 
   ClearForSearch();
+
+  // const exportLine = () => {
+  //   return GameBoar
+  // }
 
   for (
     currentDepth = 1;
@@ -433,6 +439,8 @@ export function SearchPosition() {
       ' nodes:' +
       SearchController.nodes;
 
+    // todo need to add line to a clean array
+
     PvNum = GetPvLine(currentDepth);
     line += ' Pv:';
     for (c = 0; c < PvNum; c++) {
@@ -445,10 +453,27 @@ export function SearchPosition() {
         '%';
     }
     console.log(line);
+
+    GameBoard.cleanPV = [bestScore, line];
+
+    return {
+      score: bestScore,
+      bestMove: bestMove,
+      line: line,
+    };
+
+    // return Promise.resolve({
+    //   score: bestScore,
+    //   line: line,
+    // });
   }
+
+  // thinking time goes here?
 
   SearchController.best = bestMove;
   SearchController.thinking = BOOL.FALSE;
+
+  // todo stop animation
   // todo
   // UpdateDOMStats(bestScore, currentDepth);
 }

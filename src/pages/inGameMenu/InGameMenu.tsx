@@ -12,8 +12,13 @@ import 'src/pages/inGameMenu/InGameMenu.scss';
 
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 import { PerftTest } from '../../arcaneChess/perft.mjs';
-import { ParseFen, PrintBoard } from '../../arcaneChess/board.mjs';
 
+import { GameBoard, ParseFen, PrintBoard } from '../../arcaneChess/board.mjs';
+import { MovePiece } from '../../arcaneChess/makemove.mjs';
+import { PrMove } from 'src/arcaneChess/io.mjs';
+import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
+import { prettyToSquare } from '../../arcaneChess/defs.mjs';
+import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 // import engine
 // import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
@@ -39,7 +44,14 @@ class UnwrappedInGameMenu extends React.Component {
   constructor(props: object) {
     super(props);
     this.state = {
-      fen: '',
+      // todo, just make this an array of fenHistory, simplify state...
+      // todo make dyanamic
+      fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+      pvLine: [],
+      history: [],
+      fenHistory: ['rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'],
+      thinking: false,
+      engineLastMove: [],
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
   }
@@ -51,13 +63,12 @@ class UnwrappedInGameMenu extends React.Component {
     // koh
     // const start = 'k7/8/8/8/8/8/8/7K w - - 0 1';
     // royalty mate
-    const start = '6Xk/8/8/8/8/8/R7/K7 w - - 0 1';
+    // const start = '6Xk/8/8/8/8/8/R7/K7 w - - 0 1';
     // promote to unicorn
     // const start = '4pk2/4ppp1/6XP/8/8/8/8/7K w - - 0 1';
     // const start = '5pk1/5XX1/6XP/6X1/8/8/8/7K w - - 0 1';
     // rnbqk2r/p1pp1ppp/1p2pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR w KQkq - 0 1
-    this.arcaneChess().startGame(start);
-    // this.perftTest(start);
+    this.arcaneChess().startCreate(fen);
   };
 
   perftTest = (fen: string) => {
@@ -67,6 +78,64 @@ class UnwrappedInGameMenu extends React.Component {
   setFen = (fen: string) => {
     this.setState({ fen });
   };
+
+  engineGo = () => {
+    // this.setState({
+    //   thinking: true,
+    //   fenHistory: GameBoard.fenHistory,
+    // });
+    this.arcaneChess().engineReply();
+    //   .then((move) => {
+    //     console.log('oiangoiaf', PrMove(move, 'array'));
+    //   });
+
+    // new Promise((resolve, reject) => {
+    //   resolve()
+    // });
+    this.setState((prevState) => ({
+      fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
+      thinking: false,
+    }));
+  };
+
+  // promise or web worker here?
+  // start variation button call here
+  // pair with a resest button
+  calculateFen = () => {
+    // this.setState({ fen });
+    // todo to animate, set classnames, timeouts, clock conditionals,promise?
+    // todo promise or thinking timeout time for returning makemove
+    // any edge cases?
+    // this.setState({
+    //   thinking: true,
+    // });
+    // this.arcaneChess().getScoreAndLine(
+    //   this.state.fenHistory[this.state.fenHistory.length - 1]
+    // );
+
+    ParseFen(this.state.fen);
+
+    generatePowers();
+
+    GenerateMoves();
+
+    this.setState((prevProps) => ({
+      // pvLine: GameBoard.cleanPV,
+      fenHistory: [...prevProps.fenHistory, this.state.fen],
+    }));
+    // this.setState({
+    //   thinking: false,
+    // });
+    // search controller
+    // your own gui lines of code here here
+  };
+
+  componentDidMount(): void {
+    // uncomment for moving pieces freely? Or just conditionalize based on whether in variation or not
+    // this.initializeArcaneChessAndTest(
+    //   this.state.fenHistory[this.state.fenHistory.length - 1]
+    // );
+  }
 
   render() {
     // const { auth } = this.props;
@@ -99,12 +168,13 @@ class UnwrappedInGameMenu extends React.Component {
               height={60}
               width={280}
               placeholder="FEN"
-              value={this.state.fen}
+              // current
+              text={this.state.fen}
               setText={this.setFen}
             />
             <Button
-              text="SET FEN"
-              onClick={() => this.initializeArcaneChessAndTest(this.state.fen)}
+              text="START HISTORY"
+              onClick={() => this.calculateFen()}
               className="primary"
               color="B"
               height={60}
@@ -118,10 +188,13 @@ class UnwrappedInGameMenu extends React.Component {
             {/* dropdowns */}
             <div className="white-time">10 : 00</div>
             <div className="black-time">10 : 00</div>
+            <div>reset variation</div>
+            {this.state.thinking ? 'thinking' : null}
           </div>
           <div className="eval-output">
-            <span>-5.23 ... </span>
-            <span>Nf5 RU@c2+ Kh2</span>
+            <span>{this.state.pvLine}</span>
+            {/* <span>-5.23 ... </span>
+            <span>Nf5 RU@c2+ Kh2</span> */}
           </div>
           <div className="arcane-faction-input">
             <div className="arcane-input">
@@ -143,9 +216,12 @@ class UnwrappedInGameMenu extends React.Component {
               // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
               // check={this.tactorius.inCheck().isAttacked}
               // viewOnly={this.isCheckmate()}
-              fen={'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'}
+              fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
               // coordinates={true}
               // notation={true}
+              onChange={(move) => {
+                console.log('hello', move);
+              }}
               resizable={true}
               wFaction={'sigma'}
               bFaction={'omega'}
@@ -162,7 +238,7 @@ class UnwrappedInGameMenu extends React.Component {
               // width={360}
               // height={360}
               animation={{
-                duration: 0.1,
+                duration: 0.2,
               }}
               highlight={{
                 lastMove: true,
@@ -170,24 +246,37 @@ class UnwrappedInGameMenu extends React.Component {
               }}
               // orientation={this.state.orientation}
               disableContextMenu={false}
-              // turnColor={this.state.turn}
-              // movable={{
-              //   free: false,
-              //   // todo swap out placeholder for comment
-              //   // color: "both",
-              //   color: this.isSummon(this.state.ability)
-              //     ? undefined
-              //     : this.state.orientation,
-              //   // todo show summon destinations
-              //   dests: !this.isSummon(this.state.ability)
-              //     ? this.tactorius.getMoves(
-              //         this.state.turn === "white" ? "w" : "b",
-              //         this.state.ability === "invisibility"
-              //           ? null
-              //           : this.state.ability
-              //       )
-              //     : null,
-              // }}
+              turnColor={GameBoard.side === 0 ? 'white' : 'black'}
+              movable={{
+                free: false,
+                // todo swap out placeholder for comment
+                // color: "both",
+                color: GameBoard.side === 0 ? 'white' : 'black',
+                // todo show summon destinations
+                dests: this.arcaneChess().getGroundMoves(),
+              }}
+              events={{
+                change: () => {
+                  // if (this.state.)
+                  // this.setState({
+                  //   fen:
+                  // })
+                  // this.arcaneChess().engineReply();
+                  // this.setState({})
+                  // console.log(cg.FEN);
+                  // send moves to redux store, then to server (db), then to opponent
+                },
+                move: (orig, dest, capturedPiece) => {
+                  this.arcaneChess().makeUserMove(orig, dest);
+                  this.setState((prevState) => ({
+                    fenHistory: [
+                      ...prevState.fenHistory,
+                      outputFenOfCurrentPosition(),
+                    ],
+                  }));
+                  this.engineGo();
+                },
+              }}
               // events={{
               //   move: this.makeMove,
               //   select: (key) => {
@@ -212,7 +301,7 @@ class UnwrappedInGameMenu extends React.Component {
             <div className="piece-pickup">{/* forEach */}</div>
             <div className="create-buttons">
               <Button
-                text="DISABLE"
+                text="TACTORIUS"
                 onClick={() => null}
                 className="tertiary"
                 color="B"
@@ -239,7 +328,7 @@ class UnwrappedInGameMenu extends React.Component {
                 disabled={false}
               />
               <Button
-                text="SAVE / QUIT"
+                text="OUTPUT"
                 onClick={() => null}
                 className="tertiary"
                 color="B"

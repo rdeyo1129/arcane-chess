@@ -26,7 +26,7 @@ import {
 } from './defs';
 import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
-import { ARCANE_BIT_VALUES } from './defs.mjs';
+import { ARCANE_BIT_VALUES, prettyToSquare } from './defs.mjs';
 
 export function PrSq(sq) {
   return FileChar[FilesBrd[sq]] + RankChar[RanksBrd[sq]];
@@ -34,7 +34,7 @@ export function PrSq(sq) {
 
 // todo update to allow swapping your pawns into promotion, but not your opponents
 
-export function PrMove(move) {
+export function PrMove(move, returnType) {
   const getPceChar = (pieceNum) => {
     return PceChar.split('')[pieceNum];
   };
@@ -207,6 +207,10 @@ export function PrMove(move) {
       'ep';
   }
 
+  // from chessground translator
+  if (returnType === 'array') {
+    return [PrSq(FROMSQ(move)), PrSq(TOSQ(move))];
+  }
   return MvStr;
 }
 
@@ -251,9 +255,12 @@ export function ParseMove(from, to) {
     ++index
   ) {
     Move = GameBoard.moveList[index];
-    if (FROMSQ(Move) === from && TOSQ(Move) === to) {
+    if (
+      FROMSQ(Move) === prettyToSquare(from) &&
+      TOSQ(Move) === prettyToSquare(to)
+    ) {
       PromPce = PROMOTED(Move);
-      if (PromPce != PIECES.EMPTY) {
+      if (PromPce !== PIECES.EMPTY) {
         if (
           (PromPce === PIECES.wQ && GameBoard.side === COLOURS.WHITE) ||
           (PromPce === PIECES.bQ && GameBoard.side === COLOURS.BLACK)

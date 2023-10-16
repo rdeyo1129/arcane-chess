@@ -54,8 +54,9 @@ import {
 import { MakeMove, TakeMove } from './makemove';
 import { PerftTest } from './perft';
 import { validMoves, validGroundMoves } from './gui';
-import { SearchPosition } from './search';
+import { SearchPosition } from './search.mjs';
 import { PrintSqAttacked } from './board.mjs';
+import { MakeUserMove, engineMove } from './gui.mjs';
 
 export default function arcaneChess(
   whiteConfig = {},
@@ -122,8 +123,25 @@ export default function arcaneChess(
     console.log(type);
   };
 
+  const startCreate = (fen) => {
+    ParseFen(fen);
+  };
+
+  const getScoreAndLine = (fen) => {
+    ParseFen(fen);
+
+    generatePowers();
+
+    GenerateMoves();
+
+    SearchPosition(fen);
+
+    // how to update real time
+    return Promise.resolve(GameBoard.cleanPV);
+  };
+
   const startGame = (fen) => {
-    randomize();
+    // this needs to be assigned to something, the fen that gets passed in randomize();
 
     ParseFen(fen);
 
@@ -145,12 +163,36 @@ export default function arcaneChess(
     // PrintMoveList();
 
     // PerftTest(3, fen);
-    SearchPosition(fen);
+    // SearchPosition(fen);
   };
 
   return {
     // filesRanksBoard: () => InitFilesRanksBrd(),
     activateDyad: (type) => activateDyad(type),
     startGame: (fen) => startGame(fen),
+    startCreate: (fen) => startCreate(fen),
+    getScoreAndLine: (fen) => {
+      return getScoreAndLine(fen);
+      // copilot
+      // return {
+      //   score: GameBoard.searchHistory[GameBoard.ply],
+      //   line: GameBoard.searchKillers[GameBoard.ply],
+      // };
+    },
+    getGroundMoves: () => {
+      return validGroundMoves();
+    },
+    makeUserMove: (orig, dest) => {
+      // engineMove;
+      return MakeUserMove(orig, dest);
+    },
+    engineReply: () => {
+      return engineMove();
+      // return new Promise((resolve) => {
+      //   setTimeout(function () {
+      //     resolve(engineMove());
+      //   }, 200);
+      // });
+    },
   };
 }

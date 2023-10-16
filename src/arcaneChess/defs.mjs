@@ -64,6 +64,13 @@ export const RANKS = {
   RANK_NONE: 8,
 };
 
+// create function that uses parameter of string like "d4" and return 54
+export const prettyToSquare = (pretty) => {
+  const file = pretty.charCodeAt(0) - 97;
+  const rank = pretty.charCodeAt(1) - 49;
+  return 21 + file + rank * 10;
+};
+
 export const COLOURS = { WHITE: 0, BLACK: 1, BOTH: 2 };
 
 export const CASTLEBIT = { WKCA: 1, WQCA: 2, BKCA: 4, BQCA: 8 };
@@ -714,3 +721,8 @@ export const CastlePerm = [
 ];
 
 export const NOMOVE = 0;
+
+export var GameController = {};
+GameController.EngineSide = COLOURS.BOTH;
+GameController.PlayerSide = COLOURS.BOTH;
+GameController.GameOver = BOOL.FALSE;

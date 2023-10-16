@@ -124,6 +124,7 @@ export const SideText = GameBoard.side === COLOURS.WHITE ? 'White' : 'Black';
 GameBoard.pieces = new Array(BRD_SQ_NUM);
 GameBoard.side = COLOURS.WHITE;
 GameBoard.fiftyMove = 0;
+GameBoard.fenHistory = [];
 GameBoard.hisPly = 0;
 GameBoard.history = [];
 GameBoard.ply = 0;
@@ -174,6 +175,9 @@ GameBoard.PvTable = [];
 GameBoard.PvArray = new Array(MAXDEPTH);
 GameBoard.searchHistory = new Array(25 * BRD_SQ_NUM);
 GameBoard.searchKillers = new Array(3 * MAXDEPTH);
+
+// [ score int, 1, 2, 3, 4, 5, 6, 7, 8 ]
+GameBoard.cleanPV = [];
 
 export function CheckBoard() {
   let t_pceNum = [
@@ -257,6 +261,65 @@ export function PrintBoard() {
   if (GameBoard.castlePerm & CASTLEBIT.BQCA) line += 'q';
   console.log('castle:' + line);
   console.log('key:' + GameBoard.posKey.toString(16));
+}
+
+export function outputFenOfCurrentPosition() {
+  let fenStr = '';
+  let rank, file, sq, piece, emptyCount;
+
+  for (rank = RANKS.RANK_8; rank >= RANKS.RANK_1; rank--) {
+    emptyCount = 0;
+    for (file = FILES.FILE_A; file <= FILES.FILE_H; file++) {
+      sq = FR2SQ(file, rank);
+      piece = GameBoard.pieces[sq];
+      if (piece === PIECES.EMPTY) {
+        emptyCount++;
+      } else {
+        if (emptyCount !== 0) {
+          fenStr += emptyCount;
+          emptyCount = 0;
+        }
+        fenStr += PceChar[piece];
+      }
+    }
+    if (emptyCount !== 0) {
+      fenStr += emptyCount;
+    }
+
+    if (rank !== RANKS.RANK_1) {
+      fenStr += '/';
+    } else {
+      fenStr += ' ';
+    }
+  }
+
+  fenStr += SideChar[GameBoard.side] + ' ';
+  if (
+    GameBoard.castlePerm & CASTLEBIT.WKCA ||
+    GameBoard.castlePerm & CASTLEBIT.WQCA ||
+    GameBoard.castlePerm & CASTLEBIT.BKCA ||
+    GameBoard.castlePerm & CASTLEBIT.BQCA
+  ) {
+    if (GameBoard.castlePerm & CASTLEBIT.WKCA) fenStr += 'K';
+    if (GameBoard.castlePerm & CASTLEBIT.WQCA) fenStr += 'Q';
+    if (GameBoard.castlePerm & CASTLEBIT.BKCA) fenStr += 'k';
+    if (GameBoard.castlePerm & CASTLEBIT.BQCA) fenStr += 'q';
+  } else {
+    fenStr += '-';
+  }
+  fenStr += ' ';
+
+  if (GameBoard.enPas === SQUARES.NO_SQ) {
+    fenStr += '-';
+  } else {
+    fenStr += PrSq(GameBoard.enPas);
+  }
+  fenStr += ' ';
+  fenStr += GameBoard.fiftyMove;
+  fenStr += ' ';
+  fenStr += Math.floor(GameBoard.hisPly / 2) + 1;
+
+  return fenStr;
 }
 
 export function GeneratePosKey() {
@@ -429,6 +492,7 @@ export function randomize() {
     }
   };
 
+  // todo this needs work....?
   if (whiteArcaneConfig.modsRAN || blackArcaneConfig.modsRAN) {
     updateStartFen(
       `${randomizer(COLOURS.BLACK)}/pppppppp/8/8/8/8/PPPPPPPP/${randomizer(
@@ -594,6 +658,8 @@ export function ParseFen(fen) {
     );
     GameBoard.enPas = FR2SQ(file, rank);
   }
+
+  GameBoard.fenHistory = [fen];
 
   GameBoard.posKey = GeneratePosKey();
   UpdateListsMaterial();

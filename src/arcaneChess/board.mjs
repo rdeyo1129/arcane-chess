@@ -66,7 +66,6 @@ export function ARCANEFLAG(m) {
 /*
   000 0000 0000 0000 0000 0000 0111 1111 -> From 0x7F
   000 0000 0000 0000 0011 1111 1000 0000 -> To >> 7, 0x7F
-  todo this needs to be shifted in this diagram because of 23 pieces not 12 see vars
   000 0000 0000 0111 1100 0000 0000 0000 -> Captured >> 14, 0x1F
   000 0000 0000 1000 0000 0000 0000 0000 -> EP 0x80000
   000 0000 0001 0000 0000 0000 0000 0000 -> pawn start 0x100000
@@ -156,7 +155,7 @@ GameBoard.suspend = 0; // += not =
 GameBoard.racingKings = false;
 GameBoard.invisibility = [0, 0];
 
-GameBoard.xCheckLimit = [3, 3];
+GameBoard.xCheckLimit = [0, 0];
 GameBoard.checks = [0, 0];
 
 GameBoard.dyadName = '';

@@ -54,7 +54,7 @@ import {
 import { MakeMove, TakeMove } from './makemove';
 import { PerftTest } from './perft';
 import { validMoves, validGroundMoves } from './gui';
-import { SearchPosition } from './search.mjs';
+import { SearchPosition, gameSim } from './search.mjs';
 import { PrintSqAttacked } from './board.mjs';
 import { MakeUserMove, engineMove } from './gui.mjs';
 
@@ -186,13 +186,16 @@ export default function arcaneChess(
       // engineMove;
       return MakeUserMove(orig, dest);
     },
-    engineReply: () => {
-      return engineMove();
+    engineReply: (thinkingTime) => {
+      return engineMove(thinkingTime);
       // return new Promise((resolve) => {
       //   setTimeout(function () {
       //     resolve(engineMove());
       //   }, 200);
       // });
+    },
+    gameSim: (thinkingTime) => {
+      gameSim(thinkingTime);
     },
   };
 }

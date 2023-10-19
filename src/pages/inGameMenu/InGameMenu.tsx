@@ -17,8 +17,9 @@ import { GameBoard, ParseFen, PrintBoard } from '../../arcaneChess/board.mjs';
 import { MovePiece } from '../../arcaneChess/makemove.mjs';
 import { PrMove } from 'src/arcaneChess/io.mjs';
 import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
-import { prettyToSquare } from '../../arcaneChess/defs.mjs';
+import { prettyToSquare, BOOL } from '../../arcaneChess/defs.mjs';
 import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
+import { SearchController } from '../../arcaneChess/search.mjs';
 // import engine
 // import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
@@ -52,6 +53,7 @@ class UnwrappedInGameMenu extends React.Component {
       fenHistory: ['rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'],
       thinking: false,
       engineLastMove: [],
+      thinkingTime: 500,
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
   }
@@ -80,11 +82,42 @@ class UnwrappedInGameMenu extends React.Component {
   };
 
   engineGo = () => {
-    // this.setState({
-    //   thinking: true,
-    //   fenHistory: GameBoard.fenHistory,
+    this.setState({
+      thinking: true,
+      // fenHistory: GameBoard.fenHistory,
+    });
+    // setTimeout(() => {
+    //   this.arcaneChess().engineReply();
+    // }, 2000).then((reply) => {
+    //   console.log('reply', reply);
+    //   this.setState((prevProps) => ({
+    //     // pvLine: GameBoard.cleanPV,
+    //     fenHistory: [...prevProps.fenHistory, this.state.fen],
+    //   }));
     // });
-    this.arcaneChess().engineReply();
+
+    new Promise((resolve) => {
+      setTimeout(() => {
+        SearchController.thinking = BOOL.TRUE;
+        const engineResult = this.arcaneChess().engineReply(
+          this.state.thinkingTime
+        );
+        resolve(engineResult);
+      }, this.state.thinkingTime);
+    })
+      .then((reply) => {
+        console.log('reply', reply);
+        this.setState((prevState) => ({
+          pvLine: GameBoard.cleanPV,
+          history: [...prevState.history, PrMove(reply)],
+          fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
+          thinking: false,
+        }));
+      })
+      .catch((error) => {
+        console.error('An error occurred:', error);
+      });
+
     //   .then((move) => {
     //     console.log('oiangoiaf', PrMove(move, 'array'));
     //   });
@@ -92,10 +125,6 @@ class UnwrappedInGameMenu extends React.Component {
     // new Promise((resolve, reject) => {
     //   resolve()
     // });
-    this.setState((prevState) => ({
-      fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-      thinking: false,
-    }));
   };
 
   // promise or web worker here?
@@ -120,8 +149,9 @@ class UnwrappedInGameMenu extends React.Component {
     GenerateMoves();
 
     this.setState((prevProps) => ({
-      // pvLine: GameBoard.cleanPV,
-      fenHistory: [...prevProps.fenHistory, this.state.fen],
+      pvLine: [],
+      history: [],
+      fenHistory: [this.state.fen],
     }));
     // this.setState({
     //   thinking: false,
@@ -138,6 +168,7 @@ class UnwrappedInGameMenu extends React.Component {
   }
 
   render() {
+    const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     // const { auth } = this.props;
     return (
       <div className="tactorius-board fade">
@@ -189,26 +220,37 @@ class UnwrappedInGameMenu extends React.Component {
             <div className="white-time">10 : 00</div>
             <div className="black-time">10 : 00</div>
             <div>reset variation</div>
-            {this.state.thinking ? 'thinking' : null}
+            <Button
+              text="SIM"
+              onClick={() => this.arcaneChess().gameSim(100)}
+              className="primary"
+              color="B"
+              height={60}
+              width={120}
+              // disabled={this.state.fen === ''}
+              disabled={false}
+              // strong={true}
+            />
           </div>
           <div className="eval-output">
+            {this.state.thinking ? 'thinking' : null}
             <span>{this.state.pvLine}</span>
-            {/* <span>-5.23 ... </span>
-            <span>Nf5 RU@c2+ Kh2</span> */}
           </div>
           <div className="arcane-faction-input">
-            <div className="arcane-input">
-              Implant, Mind Read, Temporal Pincer
+            <div className="arcane-history">
+              <div className="arcane-input"></div>
+              <div className="history">
+                {this.state.history.map((move, i) => (
+                  <div key={i}>{move}</div>
+                ))}
+              </div>
             </div>
             <div className="faction-input">
-              <div className="create-faction"></div>
-              <div className="create-faction"></div>
-              <div className="create-faction"></div>
-              <div className="create-faction"></div>
-              <div className="create-faction"></div>
-              <div className="create-faction"></div>
-              <div className="create-faction"></div>
-              <div className="create-faction"></div>
+              {['R', 'O', 'W', 'Y', 'G', 'BK', 'B', 'V'].map((color, index) => (
+                <div key={index} className={`tertiary-${color}`}>
+                  {greekLetters[index]}
+                </div>
+              ))}
             </div>
           </div>
           <div className="board-view">
@@ -219,12 +261,12 @@ class UnwrappedInGameMenu extends React.Component {
               fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
               // coordinates={true}
               // notation={true}
-              onChange={(move) => {
-                console.log('hello', move);
-              }}
+              // onChange={(move) => {
+              //   console.log('hello', move);
+              // }}
               resizable={true}
-              wFaction={'sigma'}
-              bFaction={'omega'}
+              wFaction={'lambda'}
+              bFaction={'lambda'}
               // wRoyalty={this.state.wRoyalty}
               // bRoyalty={this.state.bRoyalty}
               // wVisible={this.state.wVisCount === 0}
@@ -238,7 +280,8 @@ class UnwrappedInGameMenu extends React.Component {
               // width={360}
               // height={360}
               animation={{
-                duration: 0.2,
+                enabled: true,
+                duration: 1,
               }}
               highlight={{
                 lastMove: true,
@@ -267,8 +310,9 @@ class UnwrappedInGameMenu extends React.Component {
                   // send moves to redux store, then to server (db), then to opponent
                 },
                 move: (orig, dest, capturedPiece) => {
-                  this.arcaneChess().makeUserMove(orig, dest);
+                  const parsed = this.arcaneChess().makeUserMove(orig, dest);
                   this.setState((prevState) => ({
+                    history: [...prevState.history, PrMove(parsed)],
                     fenHistory: [
                       ...prevState.fenHistory,
                       outputFenOfCurrentPosition(),

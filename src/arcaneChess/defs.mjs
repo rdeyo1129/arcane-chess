@@ -36,8 +36,6 @@ export const ARCANE_BIT_VALUES = {
   ADJ: 31,
 };
 
-export const now = () => new Date();
-
 export const BRD_SQ_NUM = 120;
 
 export const FILES = {

@@ -1,20 +1,24 @@
-@import "variables";
+@import 'variables.scss';
 
-$colors: R, O, Y, G, B, V;
+$colors: R, O, W, Y, G, BK, B, V;
 
 $menu_colors: (
   R: $R_MENU,
   O: $O_MENU,
+  W: $GS_8,
   Y: $Y_MENU,
   G: $G_MENU,
+  BK: $GS_2,
   B: $B_MENU,
   V: $V_MENU,
 );
 $hover_colors: (
   R: $R_FACT,
   O: $O_FACT,
+  W: $GS_9,
   Y: $Y_FACT,
   G: $G_FACT,
+  BK: $GS_1,
   B: $B_FACT,
   V: $V_FACT,
 );
@@ -27,7 +31,9 @@ $hover_colors: (
     background: $color_var;
     border: $color_var 1px solid;
     border-radius: 5px;
-    transition: border-radius 0.2s ease-in, border 0.2s ease-in,
+    transition:
+      border-radius 0.2s ease-in,
+      border 0.2s ease-in,
       background 0.2s ease-in;
   }
   .primary-#{$color}:hover {
@@ -35,7 +41,9 @@ $hover_colors: (
     background: $hover_var;
     border: $hover_var 2px solid;
     border-radius: 15px;
-    transition: border-radius 0.2s ease-in, border 0.2s ease-in,
+    transition:
+      border-radius 0.2s ease-in,
+      border 0.2s ease-in,
       background 0.2s ease-in;
   }
   .primary-#{$color}-disabled {
@@ -51,7 +59,9 @@ $hover_colors: (
     background: #444444;
     border-radius: 5px;
     border: $color_var 1px solid;
-    transition: border-radius 0.2s ease-in, border 0.2s ease-in,
+    transition:
+      border-radius 0.2s ease-in,
+      border 0.2s ease-in,
       background 0.2s ease-in;
   }
   .secondary-#{$color}:hover {
@@ -59,7 +69,9 @@ $hover_colors: (
     background: #555555;
     border: $hover_var 2px solid;
     border-radius: 15px;
-    transition: border-radius 0.2s ease-in, border 0.2s ease-in,
+    transition:
+      border-radius 0.2s ease-in,
+      border 0.2s ease-in,
       background 0.2s ease-in;
   }
   .secondary-#{$color}-disabled {
@@ -73,16 +85,20 @@ $hover_colors: (
   }
 
   .tertiary-#{$color} {
-    background: #444444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $color_var;
     border: none;
     border-radius: 0;
     transition: background 0.2s ease-in;
   }
   .tertiary-#{$color}:hover {
-    background: #555555;
+    background: $hover_var;
     border: none;
     border-radius: 0;
     transition: background 0.2s ease-in;
+    cursor: pointer;
   }
   .tertiary-#{$color}-disabled {
     color: #aaaaaa;

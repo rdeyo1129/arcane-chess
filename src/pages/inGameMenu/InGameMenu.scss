@@ -1,3 +1,5 @@
+@import 'src/styles/_components.scss';
+
 .tactorius-board .panels-board {
   width: 100%;
   height: 100vh;
@@ -11,14 +13,36 @@
     display: flex;
     justify-content: center;
   }
+  .time-input {
+    display: flex;
+    justify-content: center;
+  }
   .arcane-faction-input {
-    .arcane-input {
-      height: 240px;
-      background: #212121;
+    .arcane-history {
+      display: flex;
+      height: 360px;
+      .arcane-input {
+        height: 360px;
+        width: 280px;
+      }
+      .history {
+        height: 360px;
+        width: 120px;
+        background: #444444;
+        overflow-y: scroll;
+      }
     }
     .faction-input {
-      height: 240px;
-      background: #212121;
+      height: 120px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      // @each $key, $value in $menu_colors {
+      //   .tertiary-#{$key} {
+      //     // background: $value;
+      //   }
+      // }
     }
   }
   .pieces-buttons {

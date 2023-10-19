@@ -1,10 +1,20 @@
 import { GameBoard } from './board';
-import { GenerateMoves, MoveExists } from './movegen';
+import { GenerateMoves, generatePowers, MoveExists } from './movegen';
 import { SearchController, SearchPosition } from './search';
 import { MakeMove, TakeMove } from './makemove';
-import { NOMOVE, BOOL, prettyToSquare, GameController } from './defs';
-import { PrMove, PrSq, ParseMove } from './io';
-import { PrintBoard } from './board.mjs';
+import {
+  NOMOVE,
+  BOOL,
+  prettyToSquare,
+  GameController,
+  MAXDEPTH,
+  PCEINDEX,
+  COLOURS,
+  PIECES,
+  Kings,
+} from './defs';
+import { PrMove, PrSq, ParseMove, PrintMoveList } from './io';
+import { PrintBoard, SqAttacked } from './board.mjs';
 
 export function validGroundMoves() {
   const moveMap = new Map();
@@ -16,8 +26,8 @@ export function validGroundMoves() {
   // if (GameBoard.currentArcane & POWERBITS[substr(sumn, 4)]) substring of box notation? {
   for (let move of validMovesReturn) {
     // todo, need to split to and from sqaures from things like x and &
-    const from = PrMove(move).substring(1, 3);
-    const to = PrMove(move).substring(3, 5);
+    const from = PrMove(move, 'array')[0];
+    const to = PrMove(move, 'array')[1];
     if (!moveMap.has(from)) {
       moveMap.set(from, []);
     }
@@ -55,14 +65,17 @@ export function MakeUserMove(orig, dest) {
   var parsed = ParseMove(orig, dest);
   MakeMove(parsed);
 
-  if (parsed !== NOMOVE) {
-    // PrintBoard();
-    // MoveGUIPiece(parfsed);
-    // CheckAndSet();
-    // setTimeout(function () {
-    //   return engineMove();
-    // }, 200);
-  }
+  CheckAndSet();
+
+  return parsed;
+
+  // if (parsed !== NOMOVE) {
+  //   // PrintBoard();
+  //   // MoveGUIPiece(parfsed);
+  //   // setTimeout(function () {
+  //   //   return engineMove();
+  //   // }, 200);
+  // }
 
   // DeSelectSq(UserMove.from);
   // DeSelectSq(UserMove.to);
@@ -72,21 +85,130 @@ export function MakeUserMove(orig, dest) {
   // }
 }
 
+export function DrawMaterial() {
+  if (GameBoard.pceNum[PIECES.wP] != 0 || GameBoard.pceNum[PIECES.bP] != 0)
+    return BOOL.FALSE;
+  if (
+    GameBoard.pceNum[PIECES.wQ] != 0 ||
+    GameBoard.pceNum[PIECES.bQ] != 0 ||
+    GameBoard.pceNum[PIECES.wR] != 0 ||
+    GameBoard.pceNum[PIECES.bR] != 0
+  )
+    return BOOL.FALSE;
+  if (GameBoard.pceNum[PIECES.wB] > 1 || GameBoard.pceNum[PIECES.bB] > 1) {
+    return BOOL.FALSE;
+  }
+  if (GameBoard.pceNum[PIECES.wN] > 1 || GameBoard.pceNum[PIECES.bN] > 1) {
+    return BOOL.FALSE;
+  }
+
+  if (GameBoard.pceNum[PIECES.wN] != 0 && GameBoard.pceNum[PIECES.wB] != 0) {
+    return BOOL.FALSE;
+  }
+  if (GameBoard.pceNum[PIECES.bN] != 0 && GameBoard.pceNum[PIECES.bB] != 0) {
+    return BOOL.FALSE;
+  }
+
+  return BOOL.TRUE;
+}
+
+export function ThreeFoldRep() {
+  var i = 0,
+    r = 0;
+
+  for (i = 0; i < GameBoard.hisPly; ++i) {
+    if (GameBoard.history[i].posKey == GameBoard.posKey) {
+      r++;
+    }
+  }
+  return r;
+}
+
+export function CheckResult() {
+  if (GameBoard.fiftyMove >= 100) {
+    // $("#GameStatus").text("GAME DRAWN {fifty move rule}");
+    return BOOL.TRUE;
+  }
+
+  if (ThreeFoldRep() >= 2) {
+    // $("#GameStatus").text("GAME DRAWN {3-fold repetition}");
+    return BOOL.TRUE;
+  }
+
+  if (DrawMaterial() == BOOL.TRUE) {
+    // $("#GameStatus").text("GAME DRAWN {insufficient material to mate}");
+    return BOOL.TRUE;
+  }
+
+  generatePowers();
+  GenerateMoves();
+
+  var MoveNum = 0;
+  var found = 0;
+
+  for (
+    MoveNum = GameBoard.moveListStart[GameBoard.ply];
+    MoveNum < GameBoard.moveListStart[GameBoard.ply + 1];
+    ++MoveNum
+  ) {
+    if (MakeMove(GameBoard.moveList[MoveNum]) == BOOL.FALSE) {
+      continue;
+    }
+    found++;
+    TakeMove();
+    break;
+  }
+
+  if (found != 0) return BOOL.FALSE;
+
+  var InCheck = SqAttacked(
+    GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
+    GameBoard.side ^ 1
+  );
+
+  if (InCheck == BOOL.TRUE) {
+    if (GameBoard.side == COLOURS.WHITE) {
+      // $("#GameStatus").text("GAME OVER {black mates}");
+      return BOOL.TRUE;
+    } else {
+      // $("#GameStatus").text("GAME OVER {white mates}");
+      return BOOL.TRUE;
+    }
+  } else {
+    // $("#GameStatus").text("GAME DRAWN {stalemate}");
+    return BOOL.TRUE;
+  }
+
+  // return BOOL.FALSE;
+}
+
+export function CheckAndSet() {
+  if (CheckResult() == BOOL.TRUE) {
+    GameController.GameOver = BOOL.TRUE;
+  } else {
+    GameController.GameOver = BOOL.FALSE;
+    // $('#GameStatus').text('');
+  }
+}
+
 // function PreSearch() {
 //   if (GameController.GameOver == BOOL.FALSE) {
 //     SearchController.thinking = BOOL.TRUE;
 //   }
 // }
 
-export function engineMove() {
-  // SearchController.depth = MAXDEPTH;
+export function engineMove(thinkingTime) {
+  // SearchController.thinking = BOOL.TRUE;
+  SearchController.depth = MAXDEPTH;
   // var t = $.now();
   // var tt = $('#ThinkTimeChoice').val();
 
-  // SearchController.time = parseInt(tt) * 1000;
+  SearchController.time = thinkingTime;
   const { bestMove, bestScore, line } = SearchPosition();
+  console.log('bestMove', bestMove, 'bestScore', bestScore, 'line', line);
   MakeMove(bestMove);
+  CheckAndSet();
+  PrintMoveList();
   return bestMove;
   // MoveGUIPiece(SearchController.best);
-  // CheckAndSet();
 }

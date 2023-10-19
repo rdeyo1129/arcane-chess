@@ -76,7 +76,6 @@ const MvvLvaValue = [
   300, 200, 800, 700, 1000,
 ];
 const MvvLvaScores = new Array(25 * 25);
-
 export function InitMvvLva() {
   let Attacker;
   let Victim;
@@ -128,7 +127,7 @@ export function AddCaptureMove(move, consume = false, capturesOnly = false) {
     } else if (GameBoard.suspend <= 0) {
       GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
       GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] =
-        MvvLvaScores[CAPTURED(move) * 25 + GameBoard.pieces[FROMSQ(move)]] -
+        MvvLvaScores[CAPTURED(move) * 25 + GameBoard.pieces[FROMSQ(move)]] +
         1000000;
 
       // todo

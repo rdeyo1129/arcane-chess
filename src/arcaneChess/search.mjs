@@ -11,6 +11,7 @@ import {
   MFLAGSUMN,
   PrintBoard,
   PROMOTED,
+  ParseFen,
 } from './board';
 import {
   BOOL,
@@ -22,7 +23,6 @@ import {
   PCEINDEX,
   Kings,
   BRD_SQ_NUM,
-  now,
   PIECES,
   COLOURS,
 } from './defs';
@@ -32,8 +32,8 @@ import { MakeMove, TakeMove } from './makemove';
 import { PrMove } from './io';
 import { StorePvMove, ProbePvTable, GetPvLine } from './pvtable.mjs';
 import { PrintMoveList } from './io.mjs';
-import { PrintPieceLists, PrintSqAttacked } from './board.mjs';
-import { validMoves, validGroundMoves } from './gui.mjs';
+import { GameController, PrintPieceLists, PrintSqAttacked } from './board.mjs';
+import { validMoves, validGroundMoves, CheckAndSet } from './gui.mjs';
 import { whiteArcane, blackArcane } from './arcaneDefs.mjs';
 
 export const SearchController = {};
@@ -89,7 +89,7 @@ export function ClearPvTable() {
 }
 
 export function CheckUp() {
-  if (now() - SearchController.start > SearchController.time) {
+  if (Date.now() - SearchController.start > SearchController.time) {
     SearchController.stop = BOOL.TRUE;
   }
 }
@@ -394,7 +394,7 @@ export function ClearForSearch() {
   SearchController.nodes = 0;
   SearchController.fh = 0;
   SearchController.fhf = 0;
-  SearchController.start = new Date();
+  SearchController.start = Date.now();
   SearchController.stop = BOOL.FALSE;
 
   GameBoard.cleanPV = [];
@@ -454,46 +454,55 @@ export function SearchPosition() {
     }
     console.log(line);
 
-    GameBoard.cleanPV = [bestScore, line];
-
-    return {
-      score: bestScore,
-      bestMove: bestMove,
-      line: line,
-    };
-
     // return Promise.resolve({
     //   score: bestScore,
     //   line: line,
     // });
   }
-
   // thinking time goes here?
+
+  GameBoard.cleanPV = [bestScore, line];
 
   SearchController.best = bestMove;
   SearchController.thinking = BOOL.FALSE;
 
-  // todo stop animation
+  console.log({
+    score: bestScore,
+    bestMove: bestMove,
+    line: line,
+  });
+
+  return {
+    score: bestScore,
+    bestMove: bestMove,
+    line: line,
+  };
+
+  // todo stop no animation
   // todo
   // UpdateDOMStats(bestScore, currentDepth);
 }
 
-export function UpdateDOMStats(dom_score, dom_depth) {
-  let scoreText = 'Score: ' + (dom_score / 100).toFixed(2);
-  if (Math.abs(dom_score) > MATE - MAXDEPTH) {
-    scoreText = 'Score: Mate In ' + (MATE - Math.abs(dom_score) - 1) + ' moves';
-  }
+export function gameSim(thinkingTime) {
+  const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 
-  $('#OrderingOut').text(
-    'Ordering: ' +
-      ((SearchController.fhf / SearchController.fh) * 100).toFixed(2) +
-      '%'
-  );
-  $('#DepthOut').text('Depth: ' + dom_depth);
-  $('#ScoreOut').text(scoreText);
-  $('#NodesOut').text('Nodes: ' + SearchController.nodes);
-  $('#TimeOut').text(
-    'Time: ' + (($.now() - SearchController.start) / 1000).toFixed(1) + 's'
-  );
-  $('#BestOut').text('BestMove: ' + PrMove(SearchController.best));
+  ParseFen(start);
+  generatePowers();
+  GenerateMoves();
+
+  while (GameController.GameOver === BOOL.FALSE) {
+    SearchController.depth = MAXDEPTH;
+    SearchController.time = thinkingTime;
+    const { score, bestMove, line } = SearchPosition();
+    // PrintMoveList();
+    PrintBoard();
+    console.log('@%^%^@$^$%', PrMove(bestMove), bestMove);
+    if (score === INFINITE || score === -INFINITE) {
+      debugger; // eslint-disable-line
+    }
+    MakeMove(SearchController.best);
+    CheckAndSet();
+    // PrintMoveList();
+    // PrintBoard();
+  }
 }

@@ -7,14 +7,14 @@
 /* poc */
 .module-board .cg-wrap,
 .tactorius-board .cg-wrap {
-  background-image: url("../images/board/tactoriusBoard.svg");
+  background-image: url('../images/board/tactoriusBoard.svg');
   /* z-index: 10; */
 }
 .armory-board .cg-wrap {
-  background-image: url("../images/board/armoryBoard.svg");
+  background-image: url('../images/board/armoryBoard.svg');
 }
 .connect4-board .cg-wrap {
-  background-image: url("../images/board/connect4Board.svg");
+  background-image: url('../images/board/connect4Board.svg');
 }
 
 cg-helper {
@@ -48,8 +48,9 @@ cg-board {
   cursor: pointer;
 }
 
-.cg-wrap piece.e-piece {
-  background-image: url("../images/pieces/tactorius/exile.svg");
+.cg-wrap piece.e-piece,
+.e-piece {
+  background-image: url('../images/pieces/tactorius/exile.svg');
 }
 
 cg-board square {

@@ -88,7 +88,8 @@ $hover_colors: (
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $color_var;
+    // background: $color_var;
+    background: #555555;
     border: none;
     border-radius: 0;
     transition: background 0.2s ease-in;

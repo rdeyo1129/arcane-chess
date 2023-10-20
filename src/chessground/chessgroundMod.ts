@@ -2,15 +2,15 @@ import React from 'react';
 import { propTypes } from './propTypes';
 import { Chessground as NativeChessground } from 'chessgroundx';
 
-import './styles/chessground.css';
+import './styles/chessground.scss';
 
-import './styles/normal.css';
-import './styles/sigma.css';
-import './styles/omega.css';
-import './styles/lambda.css';
-import './styles/mu.css';
-import './styles/nu.css';
-import './styles/chi.css';
+import './styles/normal.scss';
+import './styles/sigma.scss';
+import './styles/omega.scss';
+import './styles/lambda.scss';
+import './styles/mu.scss';
+import './styles/nu.scss';
+import './styles/chi.scss';
 
 export class Chessground extends React.Component {
   buildConfigFromProps(props) {

@@ -1,10 +1,14 @@
 import React from 'react';
+import _ from 'lodash';
 // import { Link, withRouter } from "react-router-dom";
 // import { connect } from "react-redux";
 
 // import "../styles/front-page.css";
 
 import 'src/pages/inGameMenu/InGameMenu.scss';
+import 'src/chessground/styles/chessground.scss';
+import 'src/chessground/styles/normal.scss';
+import 'src/chessground/styles/lambda.scss';
 
 // import Hero from "../components/Hero";
 
@@ -14,10 +18,14 @@ import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 import { PerftTest } from '../../arcaneChess/perft.mjs';
 
 import { GameBoard, ParseFen, PrintBoard } from '../../arcaneChess/board.mjs';
-import { MovePiece } from '../../arcaneChess/makemove.mjs';
+import {
+  MovePiece,
+  AddPiece,
+  ClearPiece,
+} from '../../arcaneChess/makemove.mjs';
 import { PrMove } from 'src/arcaneChess/io.mjs';
 import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
-import { prettyToSquare, BOOL } from '../../arcaneChess/defs.mjs';
+import { prettyToSquare, BOOL, PIECES } from '../../arcaneChess/defs.mjs';
 import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
 // import engine
@@ -40,6 +48,43 @@ import { Chessground } from '../../chessground/chessgroundMod';
 //   // arcaneChess: () => void;
 // }
 
+export const piecePickupArray = [
+  'wP',
+  'wH',
+  'wS',
+  'wN',
+  'wZ',
+  'wU',
+  'wB',
+  'wR',
+  'wQ',
+  'wT',
+  'wM',
+  'wV',
+  'wK',
+  //
+  'bP',
+  'bH',
+  'bS',
+  'bN',
+  'bZ',
+  'bU',
+  'bB',
+  'bR',
+  'bQ',
+  'bT',
+  'bM',
+  'bV',
+  'bK',
+];
+export const royaltyPickupArray = {
+  Q: 'yellow',
+  T: 'blue',
+  M: 'green',
+  V: 'purple',
+  E: 'orange',
+};
+
 class UnwrappedInGameMenu extends React.Component {
   arcaneChess;
   constructor(props: object) {
@@ -54,6 +99,8 @@ class UnwrappedInGameMenu extends React.Component {
       thinking: false,
       engineLastMove: [],
       thinkingTime: 500,
+      whiteFaction: 'normal',
+      blackFaction: 'normal',
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
   }
@@ -265,8 +312,8 @@ class UnwrappedInGameMenu extends React.Component {
               //   console.log('hello', move);
               // }}
               resizable={true}
-              wFaction={'lambda'}
-              bFaction={'lambda'}
+              wFaction={this.state.whiteFaction}
+              bFaction={this.state.blackFaction}
               // wRoyalty={this.state.wRoyalty}
               // bRoyalty={this.state.bRoyalty}
               // wVisible={this.state.wVisCount === 0}
@@ -320,6 +367,14 @@ class UnwrappedInGameMenu extends React.Component {
                   }));
                   this.engineGo();
                 },
+                select: (key) => {
+                  ParseFen(this.state.fen);
+                  AddPiece(prettyToSquare(key), PIECES.wN);
+                  this.setState({
+                    fen: outputFenOfCurrentPosition(),
+                    fenHistory: [outputFenOfCurrentPosition()],
+                  });
+                },
               }}
               // events={{
               //   move: this.makeMove,
@@ -342,7 +397,81 @@ class UnwrappedInGameMenu extends React.Component {
           </div>
           <div className="pieces-buttons">
             <div className="preset-dropdown">Horde</div>
-            <div className="piece-pickup">{/* forEach */}</div>
+            <div className="piece-pickup">
+              {piecePickupArray.map((piece, index) => (
+                <div
+                  className="piece-pickup-square"
+                  style={{
+                    width: '50px',
+                    height: '50px',
+                    background: '#555555',
+                  }}
+                  key={index}
+                >
+                  <div
+                    className={`${piece
+                      .substring(1, 2)
+                      .toLocaleLowerCase()}-piece ${
+                      piece.substring(0, 1) === 'w'
+                        ? `white ${this.state.whiteFaction}`
+                        : `black ${this.state.blackFaction}`
+                    }`}
+                    style={{
+                      position: 'relative',
+                      top: '4px',
+                      left: '4px',
+                      width: '40px',
+                      height: '40px',
+                      transform: 'scale(1.25)',
+                    }}
+                  ></div>
+                </div>
+              ))}
+              <div
+                className="piece-pickup-square"
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  background: '#555555',
+                }}
+              >
+                <div
+                  className="e-piece"
+                  style={{
+                    position: 'relative',
+                    top: '-25px',
+                    left: '-25px',
+                    width: '100px',
+                    height: '100px',
+                    transform: 'scale(.4)',
+                  }}
+                ></div>
+              </div>
+              {_.map(royaltyPickupArray, (value, key) => (
+                <div
+                  key={key}
+                  className="piece-pickup-square"
+                  style={{
+                    width: '50px',
+                    height: '50px',
+                    background: '#555555',
+                  }}
+                >
+                  <div
+                    style={{
+                      position: 'relative',
+                      backgroundImage: `radial-gradient(
+          circle at 50% 50%,
+          ${value} 0%,
+          rgba(0, 0, 0, 0) 100%
+        )`,
+                      width: '50px',
+                      height: '50px',
+                    }}
+                  ></div>
+                </div>
+              ))}
+            </div>
             <div className="create-buttons">
               <Button
                 text="TACTORIUS"

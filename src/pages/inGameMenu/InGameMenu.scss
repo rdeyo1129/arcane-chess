@@ -51,11 +51,16 @@
       background: #212121;
     }
     .piece-pickup {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
       height: 300px;
       background: #111111;
     }
     .create-buttons {
-      height: 120px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
     }
   }
   .grid-filler {

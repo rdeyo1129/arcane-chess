@@ -37,6 +37,7 @@ import {
 } from './defs';
 import { ARCANEFLAG, PrintBoard, SideText } from './board.mjs';
 import { PrMove, PrintMoveList } from './io';
+import { ARCANE_BIT_VALUES } from './defs.mjs';
 
 export function ClearPiece(sq) {
   let pce = GameBoard.pieces[sq];
@@ -183,11 +184,11 @@ export function MakeMove(move) {
   _.forEach(GameBoard.royaltyQ, (value, key) => {
     GameBoard.royaltyQ[key] -= 1;
   });
-  _.forEach(GameBoard.royaltyZ, (value, key) => {
-    GameBoard.royaltyZ[key] -= 1;
+  _.forEach(GameBoard.royaltyT, (value, key) => {
+    GameBoard.royaltyT[key] -= 1;
   });
-  _.forEach(GameBoard.royaltyU, (value, key) => {
-    GameBoard.royaltyU[key] -= 1;
+  _.forEach(GameBoard.royaltyM, (value, key) => {
+    GameBoard.royaltyM[key] -= 1;
   });
   _.forEach(GameBoard.royaltyV, (value, key) => {
     GameBoard.royaltyV[key] -= 1;
@@ -299,22 +300,22 @@ export function MakeMove(move) {
     ClearPiece(to);
     AddPiece(to, pieceEpsilon);
   } else if (move & MFLAGSUMN) {
-    if (pieceEpsilon > 23) {
+    if (pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV) {
       GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = 4;
     } else {
       AddPiece(to, pieceEpsilon);
     }
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[
-        `sumn${pieceEpsilon > 23 ? 'R' : ''}${PceChar.split('')[
-          pieceEpsilon
-        ].toUpperCase()}`
+        `sumn${
+          pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''
+        }${PceChar.split('')[pieceEpsilon].toUpperCase()}`
       ] -= 1;
     } else {
       blackArcaneConfig[
-        `sumn${pieceEpsilon > 23 ? 'R' : ''}${PceChar.split('')[
-          pieceEpsilon
-        ].toUpperCase()}`
+        `sumn${
+          pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''
+        }${PceChar.split('')[pieceEpsilon].toUpperCase()}`
       ] -= 1;
     }
   } else if (move & MFLAGSWAP) {
@@ -413,11 +414,11 @@ export function TakeMove() {
   _.forEach(GameBoard.royaltyQ, (value, key) => {
     GameBoard.royaltyQ[key] += 1;
   });
-  _.forEach(GameBoard.royaltyZ, (value, key) => {
-    GameBoard.royaltyZ[key] += 1;
+  _.forEach(GameBoard.royaltyT, (value, key) => {
+    GameBoard.royaltyT[key] += 1;
   });
-  _.forEach(GameBoard.royaltyU, (value, key) => {
-    GameBoard.royaltyU[key] += 1;
+  _.forEach(GameBoard.royaltyM, (value, key) => {
+    GameBoard.royaltyM[key] += 1;
   });
   _.forEach(GameBoard.royaltyV, (value, key) => {
     GameBoard.royaltyV[key] += 1;
@@ -425,6 +426,14 @@ export function TakeMove() {
   _.forEach(GameBoard.royaltyE, (value, key) => {
     GameBoard.royaltyE[key] += 1;
   });
+
+  let captured = CAPTURED(move);
+  let pieceEpsilon = PROMOTED(move);
+
+  if (GameBoard.dyad === 0) {
+    GameBoard.side ^= 1;
+    HASH_SIDE();
+  }
 
   if (move & MFLAGCNSM) {
     if (GameBoard.side === COLOURS.WHITE) {
@@ -443,14 +452,6 @@ export function TakeMove() {
         `shft${PceChar.split('')[GameBoard.pieces[from]].toUpperCase()}`
       ] += 1;
     }
-  }
-
-  let captured = CAPTURED(move);
-  let pieceEpsilon = PROMOTED(move);
-
-  if (GameBoard.dyad === 0) {
-    GameBoard.side ^= 1;
-    HASH_SIDE();
   }
 
   if ((MFLAGEP & move) !== 0) {
@@ -519,22 +520,22 @@ export function TakeMove() {
       PieceCol[pieceEpsilon] === COLOURS.WHITE ? PIECES.wP : PIECES.bP
     );
   } else if (pieceEpsilon !== PIECES.EMPTY && move & MFLAGSUMN) {
-    if (pieceEpsilon > 23) {
+    if (pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV) {
       GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = -500;
     } else {
       ClearPiece(to);
     }
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[
-        `sumn${pieceEpsilon > 23 ? 'R' : ''}${PceChar.split('')[
-          pieceEpsilon
-        ].toUpperCase()}`
+        `sumn${
+          pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''
+        }${PceChar.split('')[pieceEpsilon].toUpperCase()}`
       ] += 1;
     } else {
       blackArcaneConfig[
-        `sumn${pieceEpsilon > 23 ? 'R' : ''}${PceChar.split('')[
-          pieceEpsilon
-        ].toUpperCase()}`
+        `sumn${
+          pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''
+        }${PceChar.split('')[pieceEpsilon].toUpperCase()}`
       ] += 1;
     }
   } else if (move & MFLAGSWAP) {

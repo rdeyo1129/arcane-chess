@@ -129,13 +129,13 @@ export function EvalPosition() {
     score -= BishopTable[MIRROR64(SQ64(sq))];
   }
 
-  pce = PIECES.wU;
+  pce = PIECES.wM;
   for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
     sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
     score += BishopTable[SQ64(sq)];
   }
 
-  pce = PIECES.bU;
+  pce = PIECES.bM;
   for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
     sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
     score -= BishopTable[MIRROR64(SQ64(sq))];
@@ -165,16 +165,40 @@ export function EvalPosition() {
     score -= RookTable[MIRROR64(SQ64(sq))];
   }
 
-  pce = PIECES.wZ;
+  pce = PIECES.wT;
   for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
     sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
     score += RookTable[SQ64(sq)];
   }
 
-  pce = PIECES.bZ;
+  pce = PIECES.bT;
   for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
     sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
     score -= RookTable[MIRROR64(SQ64(sq))];
+  }
+
+  pce = PIECES.wZ;
+  for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+    sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+    score += KnightTable[SQ64(sq)];
+  }
+
+  pce = PIECES.bZ;
+  for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+    sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+    score -= KnightTable[MIRROR64(SQ64(sq))];
+  }
+
+  pce = PIECES.wU;
+  for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+    sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+    score += KnightTable[SQ64(sq)];
+  }
+
+  pce = PIECES.bU;
+  for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+    sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+    score -= KnightTable[MIRROR64(SQ64(sq))];
   }
 
   // pawns
@@ -185,7 +209,7 @@ export function EvalPosition() {
 
   // }
 
-  pce = ARCANE_BIT_VALUES.RZ;
+  pce = ARCANE_BIT_VALUES.RT;
 
   // royalty zealot
   // if (GameBoard.whiteArcane[3] & 4096) {

@@ -215,6 +215,15 @@ export function Quiescence(alpha, beta) {
   return alpha;
 }
 
+// const getColorOfPieceJustMovedErrorTracker = (move) => {
+//   const piece = GameBoard.pieces[FROMSQ(move)];
+//   if (PceCol[piece] === GameBoard.side) {
+//     console.log('piece just moved is the same color as the side');
+//   } else {
+//     console.log('piece just moved is the opposite color as the side');
+//   }
+// };
+
 export function AlphaBeta(alpha, beta, depth) {
   if (depth <= 0) {
     return Quiescence(alpha, beta);
@@ -380,7 +389,7 @@ export function AlphaBeta(alpha, beta, depth) {
 export function ClearForSearch() {
   let index = 0;
 
-  for (index = 0; index < 25 * BRD_SQ_NUM; index++) {
+  for (index = 0; index < 29 * BRD_SQ_NUM; index++) {
     GameBoard.searchHistory[index] = 0;
   }
 
@@ -410,10 +419,6 @@ export function SearchPosition() {
   let c;
 
   ClearForSearch();
-
-  // const exportLine = () => {
-  //   return GameBoar
-  // }
 
   for (
     currentDepth = 1;
@@ -487,16 +492,22 @@ export function gameSim(thinkingTime) {
   const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 
   ParseFen(start);
-  generatePowers();
-  GenerateMoves();
 
   while (GameController.GameOver === BOOL.FALSE) {
     SearchController.depth = MAXDEPTH;
     SearchController.time = thinkingTime;
+
+    generatePowers();
+    GenerateMoves();
+
     const { score, bestMove, line } = SearchPosition();
     // PrintMoveList();
     PrintBoard();
-    console.log('@%^%^@$^$%', PrMove(bestMove), bestMove);
+    console.log('@%^%^@$^$%', PrMove(bestMove), bestMove, ARCANEFLAG(bestMove));
+    PrintMoveList();
+    if (!PrMove(bestMove)) {
+      debugger; // eslint-disable-line
+    }
     if (score === INFINITE || score === -INFINITE) {
       debugger; // eslint-disable-line
     }

@@ -203,6 +203,9 @@ export function engineMove(thinkingTime) {
   // var t = $.now();
   // var tt = $('#ThinkTimeChoice').val();
 
+  // generatePowers();
+  // GenerateMoves();
+
   SearchController.time = thinkingTime;
   const { bestMove, bestScore, line } = SearchPosition();
   console.log('bestMove', bestMove, 'bestScore', bestScore, 'line', line);

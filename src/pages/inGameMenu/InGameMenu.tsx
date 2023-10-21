@@ -6,9 +6,12 @@ import _ from 'lodash';
 // import "../styles/front-page.css";
 
 import 'src/pages/inGameMenu/InGameMenu.scss';
+import 'src/pages/inGameMenu/Create.scss';
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
+
+import * as factionsJson from 'src/data/factions.json';
 
 // import Hero from "../components/Hero";
 
@@ -17,13 +20,18 @@ import 'src/chessground/styles/lambda.scss';
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 import { PerftTest } from '../../arcaneChess/perft.mjs';
 
-import { GameBoard, ParseFen, PrintBoard } from '../../arcaneChess/board.mjs';
+import {
+  GameBoard,
+  ParseFen,
+  PrintBoard,
+  PrintPieceLists,
+} from '../../arcaneChess/board.mjs';
 import {
   MovePiece,
   AddPiece,
   ClearPiece,
 } from '../../arcaneChess/makemove.mjs';
-import { PrMove } from 'src/arcaneChess/io.mjs';
+import { PrMove, PrintMoveList } from 'src/arcaneChess/io.mjs';
 import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
 import { prettyToSquare, BOOL, PIECES } from '../../arcaneChess/defs.mjs';
 import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
@@ -101,6 +109,18 @@ class UnwrappedInGameMenu extends React.Component {
       thinkingTime: 500,
       whiteFaction: 'normal',
       blackFaction: 'normal',
+      selected: 'a',
+      hoverPower: null,
+      config: {
+        // todo disable if no abilities selected
+        a: { disabled: false, powers: {}, picks: 0 },
+        b: { disabled: false, powers: {}, picks: 0 },
+        c: { disabled: false, powers: {}, picks: 0 },
+        d: { disabled: false, powers: {}, picks: 0 },
+        e: { disabled: false, powers: {}, picks: 0 },
+        f: { disabled: false, powers: {}, picks: 0 },
+      },
+      // generatedName: this.generateName(),
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
   }
@@ -121,6 +141,8 @@ class UnwrappedInGameMenu extends React.Component {
   };
 
   perftTest = (fen: string) => {
+    PrintPieceLists();
+    PrintBoard();
     PerftTest(3, fen);
   };
 
@@ -169,6 +191,9 @@ class UnwrappedInGameMenu extends React.Component {
     //     console.log('oiangoiaf', PrMove(move, 'array'));
     //   });
 
+    generatePowers();
+    GenerateMoves();
+
     // new Promise((resolve, reject) => {
     //   resolve()
     // });
@@ -191,9 +216,19 @@ class UnwrappedInGameMenu extends React.Component {
 
     ParseFen(this.state.fen);
 
-    generatePowers();
+    // ParseFen('rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+
+    const gameBoardPowers = generatePowers();
+
+    console.log('gameBoardPowers', gameBoardPowers);
 
     GenerateMoves();
+
+    PrintMoveList();
+
+    // this.perftTest(
+    //   'rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+    // );
 
     this.setState((prevProps) => ({
       pvLine: [],
@@ -205,6 +240,23 @@ class UnwrappedInGameMenu extends React.Component {
     // });
     // search controller
     // your own gui lines of code here here
+  };
+
+  onChangeUses = (e, power) => {
+    const uses = Number(e.target.value) || e.target.value;
+    this.setState((prevState) => ({
+      ...prevState,
+      config: {
+        ...prevState.config,
+        [this.state.selected]: {
+          ...prevState.config[this.state.selected],
+          powers: {
+            ...prevState.config[this.state.selected].powers,
+            [power]: uses,
+          },
+        },
+      },
+    }));
   };
 
   componentDidMount(): void {
@@ -285,7 +337,79 @@ class UnwrappedInGameMenu extends React.Component {
           </div>
           <div className="arcane-faction-input">
             <div className="arcane-history">
-              <div className="arcane-input"></div>
+              <div className="arcane-input">
+                {_.map(factionsJson.default, (power, powerId) => {
+                  return (
+                    <div
+                      className="create-arcane-item"
+                      key={powerId}
+                      onMouseEnter={() => this.setState({ hoverPower: power })}
+                      onMouseLeave={() => this.setState({ hoverPower: null })}
+                    >
+                      <span className="title">{power['title']}</span>
+                      <div className="select-extension">
+                        <div className="uses">
+                          <span>
+                            {this.state.config[this.state.selected]['powers'][
+                              power.id
+                            ]
+                              ? this.state.config[this.state.selected][
+                                  'powers'
+                                ][power.id]
+                              : power.type === 'int'
+                              ? 0
+                              : 'false'}
+                          </span>
+                        </div>
+                        {power.type === 'int' ? (
+                          <select
+                            className="arcane-use-drop"
+                            onChange={(value) => {
+                              this.onChangeUses(value, power.id);
+                            }}
+                          >
+                            {Array.from({ length: 9 }, (_, index) => {
+                              return (
+                                <option
+                                  key={index}
+                                  value={
+                                    this.state.config[this.state.selected][
+                                      'powers'
+                                    ][power.id]
+                                  }
+                                >
+                                  {index}
+                                </option>
+                              );
+                            })}
+                          </select>
+                        ) : power.type === 'boolean' ? (
+                          <select
+                            className="arcane-use-drop"
+                            value={
+                              this.state.config[this.state.selected]['powers'][
+                                power.id
+                              ]
+                            }
+                            onChange={(value) =>
+                              this.onChangeUses(value, power.id)
+                            }
+                          >
+                            {['false', 'true'].map((value) => (
+                              <option
+                                key={value}
+                                // value={`{ "power": "${power['id']}", "uses": "${value}" }`}
+                              >
+                                {value}
+                              </option>
+                            ))}
+                          </select>
+                        ) : null}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
               <div className="history">
                 {this.state.history.map((move, i) => (
                   <div key={i}>{move}</div>
@@ -358,6 +482,11 @@ class UnwrappedInGameMenu extends React.Component {
                 },
                 move: (orig, dest, capturedPiece) => {
                   const parsed = this.arcaneChess().makeUserMove(orig, dest);
+                  console.log(generatePowers());
+                  if (!PrMove(parsed)) {
+                    console.log('invalid move');
+                    debugger; // eslint-disable-line
+                  }
                   this.setState((prevState) => ({
                     history: [...prevState.history, PrMove(parsed)],
                     fenHistory: [
@@ -367,32 +496,15 @@ class UnwrappedInGameMenu extends React.Component {
                   }));
                   this.engineGo();
                 },
-                select: (key) => {
-                  ParseFen(this.state.fen);
-                  AddPiece(prettyToSquare(key), PIECES.wN);
-                  this.setState({
-                    fen: outputFenOfCurrentPosition(),
-                    fenHistory: [outputFenOfCurrentPosition()],
-                  });
-                },
+                // select: (key) => {
+                //   ParseFen(this.state.fen);
+                //   AddPiece(prettyToSquare(key), PIECES.wN);
+                //   this.setState({
+                //     fen: outputFenOfCurrentPosition(),
+                //     fenHistory: [outputFenOfCurrentPosition()],
+                //   });
+                // },
               }}
-              // events={{
-              //   move: this.makeMove,
-              //   select: (key) => {
-              //     // TODO REFACTOR
-              //     return (this.isSummon(this.state.ability) ||
-              //       this.state.ability === "swapAdjacent") &&
-              //       _.includes(
-              //         this.tactorius.getMoves(
-              //           this.state.turn === "white" ? "w" : "b",
-              //           this.state.ability
-              //         ),
-              //         key
-              //       )
-              //       ? this.summonMove(key, this.state.ability, false)
-              //       : null;
-              //   },
-              // }}
             />
           </div>
           <div className="pieces-buttons">

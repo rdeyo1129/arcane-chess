@@ -23,6 +23,8 @@ import {
   PieceRookQueen,
   PieceBishopQueen,
   PieceKing,
+  PieceZebra,
+  PieceUnicorn,
   RkDir,
   BiDir,
   KiDir,
@@ -30,6 +32,8 @@ import {
   VaDir,
   SpDir,
   HrDir,
+  ZeDir,
+  UnDir,
   PceDir,
   PieceSlides,
   PieceVanguard,
@@ -131,8 +135,8 @@ GameBoard.ply = 0;
 GameBoard.enPas = 0;
 GameBoard.castlePerm = 0;
 GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
-GameBoard.pceNum = new Array(24); // indexed by Pce
-GameBoard.pList = new Array(25 * 36);
+GameBoard.pceNum = new Array(30); // indexed by Pce
+GameBoard.pList = new Array(30 * 36);
 
 GameBoard.whiteArcane = [0, 0, 0, 0, 0];
 GameBoard.blackArcane = [0, 0, 0, 0, 0];
@@ -146,8 +150,8 @@ GameBoard.swapMoveList = [];
 GameBoard.kohSquares = [];
 
 GameBoard.royaltyQ = {};
-GameBoard.royaltyZ = {};
-GameBoard.royaltyU = {};
+GameBoard.royaltyT = {};
+GameBoard.royaltyM = {};
 GameBoard.royaltyV = {};
 GameBoard.royaltyE = {};
 
@@ -172,7 +176,7 @@ GameBoard.moveListStart = new Array(MAXDEPTH);
 
 GameBoard.PvTable = [];
 GameBoard.PvArray = new Array(MAXDEPTH);
-GameBoard.searchHistory = new Array(25 * BRD_SQ_NUM);
+GameBoard.searchHistory = new Array(29 * BRD_SQ_NUM);
 GameBoard.searchKillers = new Array(3 * MAXDEPTH);
 
 // [ score int, 1, 2, 3, 4, 5, 6, 7, 8 ]
@@ -180,12 +184,13 @@ GameBoard.cleanPV = [];
 
 export function CheckBoard() {
   let t_pceNum = [
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0,
   ];
   let t_material = [0, 0];
   let sq64, t_piece, t_pce_num, sq120;
 
-  for (t_piece = PIECES.wP; t_piece <= PIECES.bV; t_piece++) {
+  for (t_piece = PIECES.wP; t_piece <= PIECES.bU; t_piece++) {
     for (t_pce_num = 0; t_pce_num < GameBoard.pceNum[t_piece]; t_pce_num++) {
       sq120 = GameBoard.pList[PCEINDEX(t_piece, t_pce_num)];
       if (GameBoard.pieces[sq120] !== t_piece) {
@@ -202,7 +207,7 @@ export function CheckBoard() {
     t_material[PieceCol[t_piece]] += PieceVal[t_piece];
   }
 
-  for (t_piece = PIECES.wP; t_piece <= PIECES.bV; t_piece++) {
+  for (t_piece = PIECES.wP; t_piece <= PIECES.bU; t_piece++) {
     if (t_pceNum[t_piece] !== GameBoard.pceNum[t_piece]) {
       console.log('Error t_pceNum');
       return BOOL.FALSE;
@@ -350,7 +355,7 @@ export function GeneratePosKey() {
 export function PrintPieceLists() {
   let piece, pceNum;
 
-  for (piece = PIECES.wP; piece <= PIECES.bV; piece++) {
+  for (piece = PIECES.wP; piece <= PIECES.bU; piece++) {
     for (pceNum = 0; pceNum < GameBoard.pceNum[piece]; pceNum++) {
       console.log(
         'Piece ' +
@@ -365,7 +370,7 @@ export function PrintPieceLists() {
 export function UpdateListsMaterial() {
   let piece, sq, index, colour;
 
-  for (index = 0; index < 25 * 120; index++) {
+  for (index = 0; index < 29 * 120; index++) {
     GameBoard.pList[index] = PIECES.EMPTY;
   }
 
@@ -373,7 +378,7 @@ export function UpdateListsMaterial() {
     GameBoard.material[index] = 0;
   }
 
-  for (index = 0; index < 24; index++) {
+  for (index = 0; index < 29; index++) {
     GameBoard.pceNum[index] = 0;
   }
 
@@ -421,8 +426,8 @@ export function ResetBoard() {
 
   // todo?
   // GameBoard.royaltyQ = {};
-  // GameBoard.royaltyZ = {};
-  // GameBoard.royaltyU = {};
+  // GameBoard.royaltyT = {};
+  // GameBoard.royaltyM = {};
   // GameBoard.royaltyV = {};
   // GameBoard.royaltyE = {};
 
@@ -565,11 +570,11 @@ export function ParseFen(fen) {
       case 'H':
         piece = PIECES.wH;
         break;
-      case 'Z':
-        piece = PIECES.wZ;
+      case 'T':
+        piece = PIECES.wT;
         break;
-      case 'U':
-        piece = PIECES.wU;
+      case 'M':
+        piece = PIECES.wM;
         break;
       case 'V':
         piece = PIECES.wV;
@@ -580,14 +585,26 @@ export function ParseFen(fen) {
       case 'h':
         piece = PIECES.bH;
         break;
+      case 't':
+        piece = PIECES.bT;
+        break;
+      case 'm':
+        piece = PIECES.bM;
+        break;
+      case 'v':
+        piece = PIECES.bV;
+        break;
+      case 'Z':
+        piece = PIECES.wZ;
+        break;
+      case 'U':
+        piece = PIECES.wU;
+        break;
       case 'z':
         piece = PIECES.bZ;
         break;
       case 'u':
         piece = PIECES.bU;
-        break;
-      case 'v':
-        piece = PIECES.bV;
         break;
 
       case '1':
@@ -622,7 +639,7 @@ export function ParseFen(fen) {
   } // while loop end
 
   // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  GameBoard.side = fen[fenCnt] == 'w' ? COLOURS.WHITE : COLOURS.BLACK;
+  GameBoard.side = fen[fenCnt] === 'w' ? COLOURS.WHITE : COLOURS.BLACK;
   fenCnt += 2;
 
   for (let i = 0; i < 4; i++) {
@@ -700,28 +717,28 @@ export function SqAttacked(sq, side) {
 
   let overridePresent = (t_sq) =>
     GameBoard.royaltyQ[t_sq] > 0 ||
-    GameBoard.royaltyZ[t_sq] > 0 ||
-    GameBoard.royaltyU[t_sq] > 0 ||
+    GameBoard.royaltyT[t_sq] > 0 ||
+    GameBoard.royaltyM[t_sq] > 0 ||
     GameBoard.royaltyV[t_sq] > 0 ||
     GameBoard.royaltyE[t_sq] > 0;
 
   // note OVERRIDES
 
-  // note UNICORN ZEALOT
+  // note TEMPLAR MYSTIC
   for (index = 0; index < 8; index++) {
     pce = GameBoard.pieces[sq + KnDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
-      (GameBoard.royaltyZ[sq + KnDir[index]] > 0 ||
-        GameBoard.royaltyU[sq + KnDir[index]] > 0) &&
+      (GameBoard.royaltyT[sq + KnDir[index]] > 0 ||
+        GameBoard.royaltyM[sq + KnDir[index]] > 0) &&
       !(GameBoard.royaltyE[sq + KnDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }
   }
 
-  // note QUEEN ZEALOT
+  // note QUEEN TEMPLAR
   for (index = 0; index < 4; index++) {
     dir = RkDir[index];
     t_sq = sq + dir;
@@ -730,7 +747,7 @@ export function SqAttacked(sq, side) {
     while (pce !== SQUARES.OFFBOARD) {
       if (pce !== PIECES.EMPTY) {
         if (
-          (GameBoard.royaltyQ[t_sq] > 0 || GameBoard.royaltyZ[t_sq] > 0) &&
+          (GameBoard.royaltyQ[t_sq] > 0 || GameBoard.royaltyT[t_sq] > 0) &&
           PieceCol[pce] === side &&
           !(GameBoard.royaltyE[t_sq] > 0)
         ) {
@@ -743,7 +760,7 @@ export function SqAttacked(sq, side) {
     }
   }
 
-  // note QUEEN UNICORN
+  // note QUEEN MYSTIC
   for (index = 0; index < 4; index++) {
     dir = BiDir[index];
     t_sq = sq + dir;
@@ -752,7 +769,7 @@ export function SqAttacked(sq, side) {
     while (pce !== SQUARES.OFFBOARD) {
       if (pce !== PIECES.EMPTY) {
         if (
-          (GameBoard.royaltyQ[t_sq] > 0 || GameBoard.royaltyU[t_sq] > 0) &&
+          (GameBoard.royaltyQ[t_sq] > 0 || GameBoard.royaltyM[t_sq] > 0) &&
           PieceCol[pce] === side &&
           !(GameBoard.royaltyE[t_sq] > 0)
         ) {
@@ -780,7 +797,7 @@ export function SqAttacked(sq, side) {
 
   // NO OVERRIDE
 
-  // knight unicorn zealot
+  // knight mystic templar
   for (index = 0; index < 8; index++) {
     pce = GameBoard.pieces[sq + KnDir[index]];
     if (
@@ -788,13 +805,13 @@ export function SqAttacked(sq, side) {
       PieceCol[pce] === side &&
       PieceKnight[pce] === BOOL.TRUE &&
       !overridePresent(sq + KnDir[index]) &&
-      !(GameBoard.royaltyE[sq + VaDir[index]] > 0)
+      !(GameBoard.royaltyE[sq + KnDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }
   }
 
-  // rook queen zealot
+  // rook queen templar
   for (index = 0; index < 4; index++) {
     dir = RkDir[index];
     t_sq = sq + dir;
@@ -817,7 +834,7 @@ export function SqAttacked(sq, side) {
     }
   }
 
-  // bishop queen unicorn
+  // bishop queen mystic
   for (index = 0; index < 4; index++) {
     dir = BiDir[index];
     t_sq = sq + dir;
@@ -916,6 +933,34 @@ export function SqAttacked(sq, side) {
       PieceHerring[pce] === BOOL.TRUE &&
       !overridePresent(sq + HrDir[index]) &&
       !(GameBoard.royaltyE[sq + HrDir[index]] > 0)
+    ) {
+      return BOOL.TRUE;
+    }
+  }
+
+  // Zebra
+  for (index = 0; index < 8; index++) {
+    pce = GameBoard.pieces[sq + ZeDir[index]];
+    if (
+      pce !== SQUARES.OFFBOARD &&
+      PieceCol[pce] === side &&
+      PieceZebra[pce] === BOOL.TRUE &&
+      !overridePresent(sq + ZeDir[index]) &&
+      !(GameBoard.royaltyE[sq + ZeDir[index]] > 0)
+    ) {
+      return BOOL.TRUE;
+    }
+  }
+
+  // Unicorn
+  for (index = 0; index < 8; index++) {
+    pce = GameBoard.pieces[sq + UnDir[index]];
+    if (
+      pce !== SQUARES.OFFBOARD &&
+      PieceCol[pce] === side &&
+      PieceUnicorn[pce] === BOOL.TRUE &&
+      !overridePresent(sq + UnDir[index]) &&
+      !(GameBoard.royaltyE[sq + UnDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }

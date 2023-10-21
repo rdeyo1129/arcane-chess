@@ -124,7 +124,7 @@ export default function arcaneChess(
   };
 
   const startCreate = (fen) => {
-    ParseFen(fen);
+    // ParseFen(fen);
   };
 
   const getScoreAndLine = (fen) => {

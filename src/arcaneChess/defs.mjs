@@ -15,25 +15,30 @@ export const PIECES = {
   EXILE: 13,
   wS: 14,
   wH: 15,
-  wZ: 16,
-  wU: 17,
+  wT: 16,
+  wM: 17,
   wV: 18,
   bS: 19,
   bH: 20,
-  bZ: 21,
-  bU: 22,
+  bT: 21,
+  bM: 22,
   bV: 23,
+  wZ: 24,
+  wU: 25,
+  bZ: 26,
+  bU: 27,
 };
 
 export const ARCANE_BIT_VALUES = {
-  RQ: 24,
-  RZ: 25,
-  RU: 26,
-  RV: 27,
-  RE: 28,
-  ATK: 29,
-  DEP: 30,
-  ADJ: 31,
+  RQ: 28,
+  RT: 29,
+  RM: 30,
+  RV: 12,
+  RE: 31,
+  // to reuse when not using summon
+  // ATK: 29,
+  // DEP: 30,
+  // ADJ: 31,
 };
 
 export const BRD_SQ_NUM = 120;
@@ -113,7 +118,7 @@ export function updateStartFen(newFen) {
   START_FEN = newFen;
 }
 
-export let PceChar = '.PNBRQKpnbrqkXSHZUVshzuvQZUVE';
+export let PceChar = '.PNBRQKpnbrqkXSHTMVshtmvZUzuQZUVE';
 export let SideChar = 'wb-';
 export let RankChar = '12345678';
 export let FileChar = 'abcdefgh';
@@ -137,6 +142,10 @@ export const PieceBig = [
   BOOL.TRUE,
   BOOL.TRUE,
   BOOL.FALSE,
+  BOOL.TRUE,
+  BOOL.TRUE,
+  BOOL.TRUE,
+  BOOL.TRUE,
   BOOL.TRUE,
   BOOL.TRUE,
   BOOL.TRUE,
@@ -173,6 +182,10 @@ export const PieceMaj = [
   BOOL.TRUE,
   BOOL.TRUE,
   BOOL.TRUE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceMin = [
   BOOL.FALSE,
@@ -199,10 +212,14 @@ export const PieceMin = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.TRUE,
+  BOOL.TRUE,
+  BOOL.TRUE,
+  BOOL.TRUE,
 ];
 export const PieceVal = [
   0, 100, 325, 325, 550, 1000, 150000, 100, 325, 325, 550, 1000, 150000, 0, 250,
-  200, 1000, 900, 1400, 250, 200, 1000, 900, 1400,
+  200, 1000, 900, 1400, 250, 200, 1000, 900, 1400, 325, 325, 325, 325,
 ];
 export const PieceCol = [
   COLOURS.BOTH,
@@ -229,6 +246,10 @@ export const PieceCol = [
   COLOURS.BLACK,
   COLOURS.BLACK,
   COLOURS.BLACK,
+  COLOURS.WHITE,
+  COLOURS.WHITE,
+  COLOURS.BLACK,
+  COLOURS.BLACK,
 ];
 
 export const PiecePawn = [
@@ -240,6 +261,10 @@ export const PiecePawn = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -282,6 +307,10 @@ export const PieceSpectre = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceHerring = [
   BOOL.FALSE,
@@ -305,6 +334,10 @@ export const PieceHerring = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -334,6 +367,10 @@ export const PieceKnight = [
   BOOL.TRUE,
   BOOL.TRUE,
   BOOL.TRUE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceKing = [
   BOOL.FALSE,
@@ -349,6 +386,10 @@ export const PieceKing = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -386,6 +427,10 @@ export const PieceRookQueen = [
   BOOL.TRUE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceBishopQueen = [
   BOOL.FALSE,
@@ -412,6 +457,10 @@ export const PieceBishopQueen = [
   BOOL.FALSE,
   BOOL.TRUE,
   BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceExile = [
   BOOL.FALSE,
@@ -428,6 +477,10 @@ export const PieceExile = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -464,6 +517,70 @@ export const PieceVanguard = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+];
+export const PieceZebra = [
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.TRUE,
+  BOOL.FALSE,
+  BOOL.TRUE,
+  BOOL.FALSE,
+];
+export const PieceUnicorn = [
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.TRUE,
+  BOOL.FALSE,
+  BOOL.TRUE,
 ];
 export const PieceSlides = [
   BOOL.FALSE,
@@ -490,6 +607,10 @@ export const PieceSlides = [
   BOOL.TRUE,
   BOOL.TRUE,
   BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
+  BOOL.FALSE,
 ];
 
 export let SpDir = [-21, -19, -2, 2, 19, 21];
@@ -506,9 +627,12 @@ export let VaDir = [
     12, 11, 10,  9,  8,
     22, 21, 20, 19, 18,
   ]
+export let ZeDir = [-20, -11, -9, -2, 2, 9, 11, 20];
+export let UnDir = [-22, -18, -10, -1, 1, 10, 18, 22];
 
 export const DirNum = [
-  0, 0, 8, 4, 4, 8, 8, 0, 8, 4, 4, 8, 8, 0, 6, 4, 4, 4, 24, 6, 4, 4, 4, 24,
+  0, 0, 8, 4, 4, 8, 8, 0, 8, 4, 4, 8, 8, 0, 6, 4, 4, 4, 24, 6, 4, 4, 4, 24, 8,
+  8, 8, 8,
 ];
 export const PceDir = [
   0,
@@ -535,42 +659,51 @@ export const PceDir = [
   RkDir, // zealot
   BiDir, // unicorn
   VaDir,
+  ZeDir,
+  UnDir,
+  ZeDir,
+  UnDir,
 ];
 export const LoopNonSlidePce = [
   PIECES.wN,
   PIECES.wK,
   PIECES.wS,
   PIECES.wH,
+  PIECES.wT,
+  PIECES.wM,
+  PIECES.wV,
   PIECES.wZ,
   PIECES.wU,
-  PIECES.wV,
   0,
   PIECES.bN,
   PIECES.bK,
   PIECES.bS,
   PIECES.bH,
+  PIECES.bT,
+  PIECES.bM,
+  PIECES.bV,
   PIECES.bZ,
   PIECES.bU,
-  PIECES.bV,
   0,
 ];
 export const LoopNonSlideDyad = [
-  16, 256, 4, 8, 512, 1024, 2048, 0, 16, 256, 4, 8, 512, 1024, 2048, 0,
+  16, 256, 4, 8, 512, 1024, 2048, 4096, 8192, 0, 16, 256, 4, 8, 512, 1024, 2048,
+  4096, 8192, 0,
 ];
-// export const LoopNonSlideIndex = [0, 3];
-export const LoopNonSlideIndex = [0, 8];
+export const LoopNonSlideIndex = [0, 10];
+
 export const LoopSlidePce = [
   PIECES.wB,
   PIECES.wR,
   PIECES.wQ,
-  PIECES.wZ,
-  PIECES.wU,
+  PIECES.wT,
+  PIECES.wM,
   0,
   PIECES.bB,
   PIECES.bR,
   PIECES.bQ,
-  PIECES.bZ,
-  PIECES.bU,
+  PIECES.bT,
+  PIECES.bM,
   0,
 ];
 export const LoopSlideDyad = [
@@ -585,40 +718,44 @@ export const LoopPcePrime = [
   PIECES.wK,
   PIECES.wS,
   PIECES.wH,
-  PIECES.wZ,
-  PIECES.wU,
+  PIECES.wT,
+  PIECES.wM,
   PIECES.wV,
   PIECES.wB,
   PIECES.wR,
   PIECES.wQ,
+  PIECES.wZ,
+  PIECES.wU,
   0,
   PIECES.bP,
   PIECES.bN,
   PIECES.bK,
   PIECES.bS,
   PIECES.bH,
-  PIECES.bZ,
-  PIECES.bU,
+  PIECES.bT,
+  PIECES.bM,
   PIECES.bV,
   PIECES.bB,
   PIECES.bR,
   PIECES.bQ,
+  PIECES.bZ,
+  PIECES.bU,
   0,
 ];
 export const LoopDyadPrime = [
-  2, 16, 256, 4, 8, 512, 1024, 2048, 32, 64, 128, 0, 2, 16, 256, 4, 8, 512,
-  1024, 2048, 32, 64, 128, 0,
+  2, 16, 256, 4, 8, 512, 1024, 2048, 32, 64, 128, 4096, 8192, 0, 2, 16, 256, 4,
+  8, 512, 1024, 2048, 32, 64, 128, 4096, 8192, 0,
 ];
-export const LoopIndexPrime = [0, 12];
+export const LoopIndexPrime = [0, 14];
 
 // 10/12/23 edits
 export const royaltyDyad = [
   0, 2, 32, 64, 128, 256, 2, 32, 64, 128, 256, 0, 4, 8, 512, 1024, 2048, 4, 8,
-  512, 1024, 2048,
+  512, 1024, 2048, 4096, 8192, 4096, 8192,
 ];
-export const royaltySliderMap = ['royaltyU', 'royaltyZ', 'royaltyQ'];
-export const royaltyHopperMap = ['royaltyU', 'royaltyZ', 'royaltyV'];
-export const royaltySliders = [PIECES.wB, PIECES.wR, PIECES.wK];
+export const royaltySliderMap = ['royaltyM', 'royaltyT', 'royaltyQ'];
+export const royaltyHopperMap = ['royaltyM', 'royaltyT', 'royaltyV'];
+export const royaltySliders = [PIECES.wB, PIECES.wR, PIECES.wQ];
 export const royaltyHoppers = [PIECES.wN, PIECES.wN, PIECES.wV];
 
 export const loopSummon = [
@@ -629,13 +766,15 @@ export const loopSummon = [
   PIECES.wB,
   PIECES.wR,
   PIECES.wQ,
+  PIECES.wT,
+  PIECES.wM,
+  PIECES.wV,
   PIECES.wZ,
   PIECES.wU,
-  PIECES.wV,
   PIECES.EXILE,
   ARCANE_BIT_VALUES.RQ,
-  ARCANE_BIT_VALUES.RZ,
-  ARCANE_BIT_VALUES.RU,
+  ARCANE_BIT_VALUES.RT,
+  ARCANE_BIT_VALUES.RM,
   ARCANE_BIT_VALUES.RV,
   ARCANE_BIT_VALUES.RE,
   0,
@@ -646,23 +785,25 @@ export const loopSummon = [
   PIECES.bB,
   PIECES.bR,
   PIECES.bQ,
+  PIECES.bT,
+  PIECES.bM,
+  PIECES.bV,
   PIECES.bZ,
   PIECES.bU,
-  PIECES.bV,
   PIECES.EXILE,
   ARCANE_BIT_VALUES.RQ,
-  ARCANE_BIT_VALUES.RZ,
-  ARCANE_BIT_VALUES.RU,
+  ARCANE_BIT_VALUES.RT,
+  ARCANE_BIT_VALUES.RM,
   ARCANE_BIT_VALUES.RV,
   ARCANE_BIT_VALUES.RE,
   0,
 ];
 export const loopSummonFlag = [
   1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768,
-  0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384,
-  32768, 0,
+  65536, 131072, 0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096,
+  8192, 16384, 32768, 65536, 131072, 0,
 ];
-export const loopSummonIndex = [0, 17];
+export const loopSummonIndex = [0, 19];
 
 export const Mirror64 = [
   56, 57, 58, 59, 60, 61, 62, 63, 48, 49, 50, 51, 52, 53, 54, 55, 40, 41, 42,
@@ -671,7 +812,7 @@ export const Mirror64 = [
   3, 4, 5, 6, 7,
 ];
 
-export const PieceKeys = new Array(25 * 120);
+export const PieceKeys = new Array(29 * 120);
 export const CastleKeys = new Array(16);
 
 export let SideKey;

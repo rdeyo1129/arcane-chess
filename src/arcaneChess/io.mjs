@@ -101,8 +101,8 @@ export function PrMove(move, returnType) {
   if (move & MFLAGSUMN) {
     if (
       pieceEpsilon === ARCANE_BIT_VALUES.RQ ||
-      pieceEpsilon === ARCANE_BIT_VALUES.RZ ||
-      pieceEpsilon === ARCANE_BIT_VALUES.RU ||
+      pieceEpsilon === ARCANE_BIT_VALUES.RT ||
+      pieceEpsilon === ARCANE_BIT_VALUES.RM ||
       pieceEpsilon === ARCANE_BIT_VALUES.RV ||
       pieceEpsilon === ARCANE_BIT_VALUES.RE
     ) {
@@ -141,17 +141,17 @@ export function PrMove(move, returnType) {
     if (pieceEpsilon === PIECES.bQ) {
       pchar = '=q';
     }
-    if (pieceEpsilon === PIECES.wZ) {
-      pchar = '=Z';
+    if (pieceEpsilon === PIECES.wT) {
+      pchar = '=T';
     }
-    if (pieceEpsilon === PIECES.bZ) {
-      pchar = '=z';
+    if (pieceEpsilon === PIECES.bT) {
+      pchar = '=t';
     }
-    if (pieceEpsilon === PIECES.wU) {
-      pchar = '=U';
+    if (pieceEpsilon === PIECES.wM) {
+      pchar = '=M';
     }
-    if (pieceEpsilon === PIECES.bU) {
-      pchar = '=u';
+    if (pieceEpsilon === PIECES.bM) {
+      pchar = '=m';
     }
     if (pieceEpsilon === PIECES.wR) {
       pchar = '=R';
@@ -165,11 +165,17 @@ export function PrMove(move, returnType) {
     if (pieceEpsilon === PIECES.bB) {
       pchar = '=b';
     }
-    if (pieceEpsilon === PIECES.wN) {
-      pchar = '=N';
+    if (pieceEpsilon === PIECES.wZ) {
+      pchar = '=Z';
     }
-    if (pieceEpsilon === PIECES.bN) {
-      pchar = '=n';
+    if (pieceEpsilon === PIECES.bZ) {
+      pchar = '=z';
+    }
+    if (pieceEpsilon === PIECES.wU) {
+      pchar = '=U';
+    }
+    if (pieceEpsilon === PIECES.bU) {
+      pchar = '=u';
     }
     MvStr += pchar;
   }

@@ -1,5 +1,5 @@
 body {
-  font-family: "Exo", exo;
+  font-family: 'Exo', exo;
   color: white;
   background: #111111;
   margin: 0;
@@ -33,4 +33,27 @@ body {
 .ReactModal__Overlay--before-close {
   opacity: 0;
   /* transform: translateX(-100px); */
+}
+
+.fade-enter {
+  opacity: 0;
+  transition: opacity 300ms linear;
+  scrollbar-width: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  scrollbar-width: 0;
+}
+
+.fade-exit {
+  opacity: 1;
+  transition: opacity 300ms linear;
+  scrollbar-width: 0;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms linear;
+  scrollbar-width: 0;
 }

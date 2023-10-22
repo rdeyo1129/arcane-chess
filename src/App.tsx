@@ -18,16 +18,14 @@ import { SinglePlayer } from '././pages/singlePlayer/SinglePlayer';
 const App: React.FC = () => {
   return (
     <Router>
-      <div>
-        <Switch>
-          <Route exact path="/" component={InGameMenu} />
-          {/* <Route exact path="/" component={SinglePlayer} /> */}
-          {/* <Route exact path="/" component={FrontPage} /> */}
-          {/* <Route path="/about" component={About} /> */}
-          {/* <Route path="/404" component={NotFound} /> */}
-          {/* <Redirect to="/404" /> */}
-        </Switch>
-      </div>
+      <Switch>
+        {/* <Route exact path="/" component={InGameMenu} /> */}
+        {/* <Route exact path="/" component={SinglePlayer} /> */}
+        <Route exact path="/" component={FrontPage} />
+        {/* <Route path="/about" component={About} /> */}
+        {/* <Route path="/404" component={NotFound} /> */}
+        {/* <Redirect to="/404" /> */}
+      </Switch>
     </Router>
   );
 };

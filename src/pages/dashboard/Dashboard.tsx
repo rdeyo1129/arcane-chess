@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from 'src/components/Button/Button';
+import Spinner from 'src/components/Loader/Spinner';
+import Dots from 'src/components/Loader/Dots';
 
 import './Dashboard.scss';
 
@@ -15,7 +17,10 @@ export class Dashboard extends React.Component {
   render() {
     return (
       <div className="dashboard">
-        <div></div>
+        <div>
+          {/* <Spinner /> */}
+          {/* <Dots /> */}
+        </div>
         <div className="news-bar">
           <div className="news-text">NEWS HERE.</div>
         </div>

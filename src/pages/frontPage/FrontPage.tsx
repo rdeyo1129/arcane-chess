@@ -69,10 +69,7 @@ class UnwrappedFrontPage extends React.Component {
         </div>
         <div className="divider"></div>
         <div className="row-a">
-          <img
-            className="paris"
-            src="public/assets/istockphoto-991047628-2048x2048.jpg"
-          />
+          <img className="paris" src="public/assets/paris.jpg" />
         </div>
         <div className="row-b">
           <Hero />

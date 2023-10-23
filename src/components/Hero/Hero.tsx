@@ -55,26 +55,27 @@ export default class Hero extends React.Component {
     };
   };
 
-  getRandomPiece = () =>
-    this.randomizeHelper(true) ? (
-      // <div>
+  getRandomPiece = () => {
+    const { piece } = this.randomizeHelper(false);
+
+    return this.randomizeHelper(true) ? (
       <div
         className={`
-              ${this.randomizeHelper(false).piece || ''} 
+              ${piece} 
               ${this.randomizeHelper(false).color} 
               ${this.randomizeHelper(false).faction}
             `}
         style={{
           position: 'relative',
-          width: '40px',
-          height: '40px',
-          transform: 'scale(1.5)',
-          top: '9px',
-          left: '9px',
+          width: piece === 'e-piece' ? '100px' : '40px',
+          height: piece === 'e-piece' ? '100px' : '40px',
+          transform: piece === 'e-piece' ? 'scale(.5)' : 'scale(1.5)',
+          top: piece === 'e-piece' ? '-20px' : '9px',
+          left: piece === 'e-piece' ? '-20px' : '9px',
         }}
       />
-    ) : // </div>
-    null;
+    ) : null;
+  };
 
   shouldComponentUpdate() {
     return false; // Prevents the component from re-rendering

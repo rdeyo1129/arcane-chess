@@ -2,8 +2,9 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
+  Routes,
   // Redirect,
+  // withRouter,
 } from 'react-router-dom';
 
 import '@fontsource/exo';
@@ -14,19 +15,34 @@ import '@fontsource/exo/700-italic.css';
 import { FrontPage } from '././pages/frontPage/FrontPage';
 import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
 import { SinglePlayer } from '././pages/singlePlayer/SinglePlayer';
+import { Dashboard } from '././pages/dashboard/Dashboard';
 
-const App: React.FC = () => {
+interface AppProps {
+  location: string;
+}
+
+class App extends React.Component {
+  render() {
+    return (
+      <Router>
+        <RouteComponent />
+      </Router>
+    );
+  }
+}
+
+const RouteComponent = () => {
   return (
-    <Router>
-      <Switch>
-        {/* <Route exact path="/" component={InGameMenu} /> */}
-        {/* <Route exact path="/" component={SinglePlayer} /> */}
-        <Route exact path="/" component={FrontPage} />
-        {/* <Route path="/about" component={About} /> */}
-        {/* <Route path="/404" component={NotFound} /> */}
-        {/* <Redirect to="/404" /> */}
-      </Switch>
-    </Router>
+    // <div>
+    //   <Route exact path="/" component={Dashboard} />
+    //   <Route exact path="/create" component={InGameMenu} />
+    //   <Route exact path="/" component={SinglePlayer} />
+    //   <Route exact path="/" component={FrontPage} />
+
+    //   <Route path="/about" component={About} />
+    //   <Route path="/404" component={NotFound} />
+    //   {/* <Redirect to="/404" /> */}
+    // </div>
   );
 };
 

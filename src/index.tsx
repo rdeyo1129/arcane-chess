@@ -14,8 +14,10 @@ import '@fontsource/exo/700-italic.css';
 
 import { FrontPage } from '././pages/frontPage/FrontPage';
 import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
+import { Campaign } from '././pages/campaign/Campaign';
 import { SinglePlayer } from '././pages/singlePlayer/SinglePlayer';
 import { Dashboard } from '././pages/dashboard/Dashboard';
+import { Book } from '././pages/book/Book';
 
 import ReactDOM from 'react-dom/client';
 // import App from './App';
@@ -39,6 +41,8 @@ const router = createBrowserRouter(
       <Route index element={<Dashboard />} />
       <Route path="/create" element={<InGameMenu />} />
       <Route path="/tactorius" element={<FrontPage />} />
+      <Route path="/campaign" element={<Campaign />} />
+      <Route path="/book" element={<Book />} />
       {/* <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} /> */}
     </Route>
@@ -54,6 +58,8 @@ const myRoutes = [
     <Route exact path="/" element={<Dashboard />} />
     <Route path="/create" element={<InGameMenu />} />
     <Route path="/tactorius" element={<FrontPage />} />
+    <Route path="/campaign" element={<Campaign />} />
+    <Route path="/book" element={<Book />} />
     {/* <Route exact path="/" component={SinglePlayer} /> */}
     {/* <Route path="/about" component={About} /> */}
     {/* <Route path="/404" component={NotFound} /> */}

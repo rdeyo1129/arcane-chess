@@ -1,0 +1,54 @@
+@import 'src/styles/main.scss';
+
+.book {
+  display: grid;
+  // todo
+  width: 100%;
+  height: 100vh;
+  // grid-template-columns: 300px 300px 480px 200px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 480px 1fr;
+  overflow: hidden;
+  .top {
+    display: grid;
+    // width: 100%;
+    // height: 100%;
+    grid-template-columns: 300px 300px 480px 1fr;
+    grid-template-rows: 1fr;
+    background: #333333;
+    .chapters {
+      // width: 100%;
+      // height: 100%;
+      background: #444444;
+    }
+    .messages {
+      // width: 100%;
+      // height: 100%;
+      background: #444444;
+    }
+    // .board-view {
+    //   display: absolute;
+    //   width: 100%;
+    //   height: 100%;
+    //   background: #444444;
+    //
+    .tactorius-view {
+      // position: relative;
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: space-between;
+      // width: 480px;
+      // height: 480px;
+    }
+    .arcane-time {
+      // width: 100%;
+      // height: 100%;
+      background: #444444;
+    }
+  }
+  .bottom {
+    // width: 100%;
+    // height:
+    background: #222222;
+  }
+}

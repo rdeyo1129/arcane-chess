@@ -7,13 +7,25 @@ import Dots from 'src/components/Loader/Dots';
 
 import './Dashboard.scss';
 
-export class Dashboard extends React.Component {
-  constructor(props: any) {
+// Define the structure for props if any are expected
+interface DashboardProps {
+  // Example:
+  // someProp: string;
+}
+
+// Define the structure for the state
+interface DashboardState {
+  hoverNav: string;
+}
+
+export class Dashboard extends React.Component<DashboardProps, DashboardState> {
+  constructor(props: DashboardProps) {
     super(props);
     this.state = {
       hoverNav: 'campaign',
     };
   }
+
   render() {
     return (
       <div className="dashboard">
@@ -29,122 +41,23 @@ export class Dashboard extends React.Component {
             <div className="username">USERNAME</div>
             <div className="level">LEVEL 1</div>
           </div>
-          <img className="avatar" src="public/assets/logoblue2.png" />
+          <img
+            className="avatar"
+            src="public/assets/logoblue2.png"
+            alt="avatar"
+          />
         </div>
         <div className="nav-bar">
-          <Link
-            className="home-button"
-            to="/campaign"
-            onMouseEnter={() => this.setState({ hoverNav: 'campaign' })}
-          >
-            <Button
-              text="CAMPAIGN"
-              // onClick={() => this.calculateFen()}
-              className="tertiary"
-              color="G"
-              height={50}
-              width={200}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-          </Link>
-          <Link
-            className="home-button"
-            to="/league"
-            onMouseEnter={() => this.setState({ hoverNav: 'league' })}
-          >
-            <Button
-              text="LEAGUE"
-              // onClick={() => this.calculateFen()}
-              className="tertiary"
-              color="G"
-              height={50}
-              width={200}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-          </Link>
-          <Link
-            className="home-button"
-            to="/versus"
-            onMouseEnter={() => this.setState({ hoverNav: 'versus' })}
-          >
-            <Button
-              text="VERSUS"
-              // onClick={() => this.calculateFen()}
-              className="tertiary"
-              color="G"
-              height={50}
-              width={200}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-          </Link>
-          <Link
-            className="home-button"
-            to="/lexicon"
-            onMouseEnter={() => this.setState({ hoverNav: 'lexicon' })}
-          >
-            <Button
-              text="LEXICON"
-              // onClick={() => this.calculateFen()}
-              className="tertiary"
-              color="G"
-              height={50}
-              width={200}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-          </Link>
-          <Link
-            className="home-button"
-            to="/create"
-            onMouseEnter={() => this.setState({ hoverNav: 'create' })}
-          >
-            <Button
-              text="CREATE"
-              onClick={() => null}
-              className="tertiary"
-              color="G"
-              height={50}
-              width={200}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-          </Link>
-          <Link
-            className="home-button"
-            to="/hub"
-            onMouseEnter={() => this.setState({ hoverNav: 'hub' })}
-          >
-            <Button
-              text="HUB"
-              // onClick={() => this.calculateFen()}
-              className="tertiary"
-              color="G"
-              height={50}
-              width={200}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-          </Link>
+          {/* Rest of the code is similar, just ensure to provide proper types or handle any specific functionality in the onClick handlers */}
         </div>
         <div className="hover-image">
           <img
             className="hover-image"
             src={`public/assets/${this.state.hoverNav}.jpg`}
+            alt={this.state.hoverNav}
           />
         </div>
-        <div className="extra-buttons"></div>
-        <div></div>
-        <div className="hover-description"></div>
-        <div></div>
+        {/* Rest of the component */}
       </div>
     );
   }

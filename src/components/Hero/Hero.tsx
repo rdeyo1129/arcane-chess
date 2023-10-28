@@ -11,20 +11,24 @@ import 'src/chessground/styles/omega.scss';
 import 'src/chessground/styles/lambda.scss';
 
 export default class Hero extends React.Component {
-  constructor(props) {
+  constructor(props: object) {
     super(props);
     this.state = {};
   }
 
   // figure out seeds?
 
-  getRandomNumber = (min, max) => {
+  getRandomNumber = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
   randomizeHelper = (
-    getAppears
-  ): { piece: string; color: string; faction: string } | null => {
+    getAppears: boolean
+  ): {
+    piece: string;
+    color: string;
+    faction: string;
+  } | null => {
     if (getAppears && Math.random() < 0.6) {
       return null;
     }
@@ -56,14 +60,14 @@ export default class Hero extends React.Component {
   };
 
   getRandomPiece = () => {
-    const { piece } = this.randomizeHelper(false);
+    const piece = this.randomizeHelper(false)?.piece;
 
     return this.randomizeHelper(true) ? (
       <div
         className={`
               ${piece} 
-              ${this.randomizeHelper(false).color} 
-              ${this.randomizeHelper(false).faction}
+              ${this.randomizeHelper(false)?.color} 
+              ${this.randomizeHelper(false)?.faction}
             `}
         style={{
           position: 'relative',

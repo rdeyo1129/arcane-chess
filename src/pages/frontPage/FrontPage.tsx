@@ -1,11 +1,11 @@
 import React from 'react';
-// import { Link, withRouter } from "react-router-dom";
+import { Link } from 'react-router-dom';
 // import { connect } from "react-redux";
 
 // import "../styles/front-page.scss";
 
 import './FrontPage.scss';
-import Hero from 'src/components/Hero/Hero.tsx';
+import Hero from 'src/components/Hero/Hero';
 
 import Button from '../../components/Button/Button';
 
@@ -43,28 +43,32 @@ class UnwrappedFrontPage extends React.Component {
             </div>
           </div>
           <div className="header-buttons">
-            <Button
-              text="LOGIN"
-              // onClick={() => this.calculateFen()}
-              className="primary"
-              color="G"
-              height={50}
-              width={140}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-            <Button
-              text="REGISTER"
-              // onClick={() => this.calculateFen()}
-              className="secondary"
-              color="G"
-              height={50}
-              width={140}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
+            <Link to={'/login'}>
+              <Button
+                text="LOGIN"
+                // onClick={() => this.calculateFen()}
+                className="primary"
+                color="G"
+                height={50}
+                width={140}
+                // disabled={this.state.fen === ''}
+                disabled={false}
+                // strong={true}
+              />
+            </Link>
+            <Link to={'/register'}>
+              <Button
+                text="REGISTER"
+                // onClick={() => this.calculateFen()}
+                className="secondary"
+                color="G"
+                height={50}
+                width={140}
+                // disabled={this.state.fen === ''}
+                disabled={false}
+                // strong={true}
+              />
+            </Link>
           </div>
         </div>
         <div className="divider"></div>

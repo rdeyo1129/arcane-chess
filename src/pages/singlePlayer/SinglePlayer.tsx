@@ -32,7 +32,7 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
     // this.arcaneChess();
   }
 
-  initializeArcaneChessAndTest = (fen: string) => {
+  initializeArcaneChessAndTest = () => {
     const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
     // const start = '6pk/3K2p1/6p1/6p1/8/8/8/7P w - - 0 1';
     // const start = '8/8/8/4X3/8/8/8/8 w - - 0 1';
@@ -68,11 +68,12 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
           width={400}
           placeholder="FEN"
           value={this.state.fen}
-          setText={this.setFen}
+          // setText={this.setFen}
+          onChange={(value) => this.setFen(value)}
         />
         <Button
           text="SET FEN"
-          onClick={() => this.initializeArcaneChessAndTest(this.state.fen)}
+          onClick={() => this.initializeArcaneChessAndTest()}
           className="primary"
           color="B"
           // disabled={this.state.fen === ''}

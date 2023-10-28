@@ -17,7 +17,8 @@ import Dots from 'src/components/Loader/Dots';
 // import './Dashboard.scss';
 
 export class Book extends React.Component {
-  constructor(props: any) {
+  // what type is props supposed to be
+  constructor(props: object) {
     super(props);
     this.state = {};
   }

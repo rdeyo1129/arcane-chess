@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 export type ProtectedRouteProps = {
   isAuthenticated: boolean;
@@ -10,10 +10,10 @@ export default function ProtectedRoute({
   isAuthenticated,
   outlet,
 }: ProtectedRouteProps) {
-  const history = useHistory();
+  const navigate = useNavigate();
   if (isAuthenticated) {
     return outlet;
   } else {
-    history.push("/login");
+    navigate('/login');
   }
 }

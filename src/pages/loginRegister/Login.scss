@@ -1,0 +1,109 @@
+.login-page,
+.register-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.login-page .hex-background,
+.register-page .hex-background {
+  position: absolute;
+  max-width: 100vw;
+  overflow: hidden;
+  z-index: -10;
+}
+.login-page .login-col2,
+.register-page .login-col2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-background {
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.4;
+  z-index: -10;
+}
+
+.login-panel.panel,
+.register-panel.panel {
+  background-color: #333333;
+  text-align: center;
+  height: 500px;
+  width: 300px;
+  border-radius: 5px;
+  margin: 20px;
+  border: #34aa48 2px solid;
+  /* border-image: linear-gradient(rgb(63, 72, 204), rgb(127, 127, 127)) 1; */
+  /* border-width: 15px; */
+  /* border-style: solid; */
+}
+
+.login-buttons .buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0 5px 0;
+}
+.login-buttons .other-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-buttons .other-buttons button {
+  height: 40px;
+  width: 200px;
+  margin: 10px 0 0 0;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  background: #555555;
+}
+
+.login-buttons .buttons .back {
+  height: 40px;
+  width: 100px;
+}
+.login-buttons button:hover {
+  cursor: pointer;
+  background: #aaaaaa;
+}
+
+.login-button,
+.register-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  width: 200px;
+}
+
+.login-button button {
+  background: #48c93c;
+  height: 40px;
+  width: 100px;
+  border-radius: 5px;
+  color: white;
+}
+.login-button button:hover {
+  border: 0;
+  background: #48c93c;
+  border-color: #48c93c;
+}
+
+.register-button button {
+  background: #3645ce;
+  height: 40px;
+  width: 100px;
+  border-radius: 5px;
+  color: white;
+}
+.register-button button:hover {
+  border: 0;
+  background: #3645ce;
+  border-color: #3645ce;
+}

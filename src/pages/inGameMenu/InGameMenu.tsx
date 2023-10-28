@@ -11,7 +11,7 @@ import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
-import * as factionsJson from 'src/data/factions.json';
+import factionsJson from 'src/data/factions.json';
 
 // import Hero from "../components/Hero";
 
@@ -49,6 +49,7 @@ import Button from '../../components/Button/Button';
 import Toggle from '../../components/Toggle/Toggle';
 
 import { Chessground } from '../../chessground/chessgroundMod';
+import e from 'express';
 
 // interface FrontPageProps {
 //   // whiteFaction: Faction;
@@ -93,9 +94,37 @@ export const royaltyPickupArray = {
   E: 'orange',
 };
 
-class UnwrappedInGameMenu extends React.Component {
+interface State {
+  thinking: boolean;
+  thinkingTime: number;
+  history: string[];
+  fenHistory: string[];
+  pvLine?: string[];
+  fen: string;
+  engineLastMove: string[];
+  whiteFaction: string;
+  blackFaction: string;
+  selected: string;
+  hoverPower: string | null;
+  config: {
+    [key: string | number]: {
+      disabled: boolean;
+      powers: {
+        [key: string | number]: string | number | readonly string[] | undefined;
+      };
+      picks: number;
+    };
+  };
+}
+
+interface Props {
+  // fen: string;
+  // ... other props
+}
+
+class UnwrappedInGameMenu extends React.Component<object, State> {
   arcaneChess;
-  constructor(props: object) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       // todo, just make this an array of fenHistory, simplify state...
@@ -214,7 +243,7 @@ class UnwrappedInGameMenu extends React.Component {
     //   this.state.fenHistory[this.state.fenHistory.length - 1]
     // );
 
-    ParseFen(this.state.fen);
+    ParseFen(this.state.fenHistory[this.state.fenHistory.length - 1]);
 
     // ParseFen('rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
 
@@ -230,11 +259,11 @@ class UnwrappedInGameMenu extends React.Component {
     //   'rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
     // );
 
-    this.setState((prevProps) => ({
+    this.setState({
       pvLine: [],
       history: [],
       fenHistory: [this.state.fen],
-    }));
+    });
     // this.setState({
     //   thinking: false,
     // });
@@ -242,7 +271,7 @@ class UnwrappedInGameMenu extends React.Component {
     // your own gui lines of code here here
   };
 
-  onChangeUses = (e, power) => {
+  onChangeUses = (e: React.ChangeEvent<HTMLSelectElement>, power: string) => {
     const uses = Number(e.target.value) || e.target.value;
     this.setState((prevState) => ({
       ...prevState,
@@ -299,8 +328,10 @@ class UnwrappedInGameMenu extends React.Component {
               width={280}
               placeholder="FEN"
               // current
-              text={this.state.fen}
-              setText={this.setFen}
+              value={this.state.fen} // Changed to use the value prop
+              onChange={(value) => this.setFen(value)}
+              // textArg={this.state.fenHistory[this.state.fenHistory.length - 1]}
+              // setTextArg={() => this.setFen}
             />
             <Button
               text="START HISTORY"
@@ -338,12 +369,14 @@ class UnwrappedInGameMenu extends React.Component {
           <div className="arcane-faction-input">
             <div className="arcane-history">
               <div className="arcane-input">
-                {_.map(factionsJson.default, (power, powerId) => {
+                {_.map(factionsJson, (power, powerId) => {
                   return (
                     <div
                       className="create-arcane-item"
                       key={powerId}
-                      onMouseEnter={() => this.setState({ hoverPower: power })}
+                      onMouseEnter={() =>
+                        this.setState({ hoverPower: power.id })
+                      }
                       onMouseLeave={() => this.setState({ hoverPower: null })}
                     >
                       <span className="title">{power['title']}</span>
@@ -364,8 +397,8 @@ class UnwrappedInGameMenu extends React.Component {
                         {power.type === 'int' ? (
                           <select
                             className="arcane-use-drop"
-                            onChange={(value) => {
-                              this.onChangeUses(value, power.id);
+                            onChange={(e) => {
+                              this.onChangeUses(e, power.id.toString());
                             }}
                           >
                             {Array.from({ length: 9 }, (_, index) => {
@@ -392,7 +425,7 @@ class UnwrappedInGameMenu extends React.Component {
                               ]
                             }
                             onChange={(value) =>
-                              this.onChangeUses(value, power.id)
+                              this.onChangeUses(value, power.id.toString())
                             }
                           >
                             {['false', 'true'].map((value) => (
@@ -480,15 +513,17 @@ class UnwrappedInGameMenu extends React.Component {
                   // console.log(cg.FEN);
                   // send moves to redux store, then to server (db), then to opponent
                 },
-                move: (orig, dest, capturedPiece) => {
+                move: (orig: string, dest: string, capturedPiece: number) => {
                   const parsed = this.arcaneChess().makeUserMove(orig, dest);
                   console.log(generatePowers());
+                  console.log('captured', capturedPiece);
                   if (!PrMove(parsed)) {
                     console.log('invalid move');
                     debugger; // eslint-disable-line
                   }
                   this.setState((prevState) => ({
                     history: [...prevState.history, PrMove(parsed)],
+                    fen: outputFenOfCurrentPosition(),
                     fenHistory: [
                       ...prevState.fenHistory,
                       outputFenOfCurrentPosition(),

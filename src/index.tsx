@@ -8,6 +8,16 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+import { Provider } from 'react-redux';
+import { store, persistor } from 'src/store/configureStore';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import PrivateRoute from 'src/components/PrivateRoute/PrivateRoute';
+
+import { setCurrentUser, logoutUser } from './actions/authActions';
+
 import '@fontsource/exo';
 import '@fontsource/exo/400-italic.css';
 import '@fontsource/exo/700-italic.css';
@@ -18,59 +28,68 @@ import { Campaign } from '././pages/campaign/Campaign';
 import { SinglePlayer } from '././pages/singlePlayer/SinglePlayer';
 import { Dashboard } from '././pages/dashboard/Dashboard';
 import { Book } from '././pages/book/Book';
+import { Login } from '././pages/loginRegister/Login';
+import { Register } from '././pages/loginRegister/Register';
 
 import ReactDOM from 'react-dom/client';
 // import App from './App';
 
-{
-  /* <Route exact path="/" component={Dashboard} />
-<Route exact path="/create" component={InGameMenu} />
-<Route exact path="/" component={SinglePlayer} />
-<Route exact path="/" component={FrontPage} />
+// Check for token to keep user logged in
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
 
-<Route path="/about" component={About} />
-<Route path="/404" component={NotFound} /> */
-}
-{
-  /* <Redirect to="/404" /> */
+  // Decode token and get user info and exp
+  const decoded: { exp: number } = jwt_decode(token);
+
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+
+  // Check for expired token
+  const currentTime = Date.now() / 1000; // to get in milliseconds
+
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());
+
+    // Redirect to login
+    window.location.href = './';
+  }
 }
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route index element={<Dashboard />} />
+      <Route index element={<FrontPage />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/create" element={<InGameMenu />} />
-      <Route path="/tactorius" element={<FrontPage />} />
       <Route path="/campaign" element={<Campaign />} />
       <Route path="/book" element={<Book />} />
-      {/* <Route path="login" element={<Login />} />
-      <Route path="register" element={<Register />} /> */}
+      <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
     </Route>
   )
 );
 
-function App({ routes }: { routes: (typeof Route)[] }) {
+function App() {
   return <RouterProvider router={router}></RouterProvider>;
 }
-
-const myRoutes = [
-  <>
-    <Route exact path="/" element={<Dashboard />} />
-    <Route path="/create" element={<InGameMenu />} />
-    <Route path="/tactorius" element={<FrontPage />} />
-    <Route path="/campaign" element={<Campaign />} />
-    <Route path="/book" element={<Book />} />
-    {/* <Route exact path="/" component={SinglePlayer} /> */}
-    {/* <Route path="/about" component={About} /> */}
-    {/* <Route path="/404" component={NotFound} /> */}
-  </>,
-];
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App routes={myRoutes} />
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;

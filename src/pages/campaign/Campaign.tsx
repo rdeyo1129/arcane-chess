@@ -1,15 +1,25 @@
 import React from 'react';
-
 import './Campaign.scss';
-import Button from '../../components/button/Button';
+import Button from 'src/components/Button/Button';
 import { Link } from 'react-router-dom';
 
-export class Campaign extends React.Component {
-  constructor(props: any) {
+// Define the structure for props if any are expected
+interface CampaignProps {
+  // Example:
+  // someProp: string;
+}
+
+// Define the structure for the state
+interface CampaignState {
+  books: string[];
+}
+
+export class Campaign extends React.Component<CampaignProps, CampaignState> {
+  constructor(props: CampaignProps) {
     super(props);
     this.state = {
       books: [
-        // todo to be read from db
+        // TODO: To be read from db
         'ARRIVAL',
         '?',
         '?',
@@ -25,6 +35,7 @@ export class Campaign extends React.Component {
       ],
     };
   }
+
   render() {
     return (
       <div className="campaign">
@@ -36,29 +47,27 @@ export class Campaign extends React.Component {
             width={120}
             height={40}
             onClick={() => {
-              null;
+              // Placeholder for onClick function
             }}
             disabled={false}
           />
         </Link>
         <div className="book-grid">
-          {this.state.books.map((book, i) => {
-            return (
-              <Link key={i} to={`/book`}>
-                <Button
-                  text={book}
-                  className="tertiary"
-                  color="G"
-                  width={200}
-                  height={80}
-                  onClick={() => {
-                    null;
-                  }}
-                  disabled={book === '?'}
-                />
-              </Link>
-            );
-          })}
+          {this.state.books.map((book, i) => (
+            <Link key={i} to={`/book`}>
+              <Button
+                text={book}
+                className="tertiary"
+                color="G"
+                width={200}
+                height={80}
+                onClick={() => {
+                  // Placeholder for onClick function
+                }}
+                disabled={book === '?'}
+              />
+            </Link>
+          ))}
         </div>
       </div>
     );

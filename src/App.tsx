@@ -24,26 +24,26 @@ interface AppProps {
 class App extends React.Component {
   render() {
     return (
-      <Router>
-        <RouteComponent />
-      </Router>
+      <></>
+      // <Router>
+      //   <RouteComponent />
+      // </Router>
     );
   }
 }
 
 const RouteComponent = () => {
-  return (
-    // <div>
-    //   <Route exact path="/" component={Dashboard} />
-    //   <Route exact path="/create" component={InGameMenu} />
-    //   <Route exact path="/" component={SinglePlayer} />
-    //   <Route exact path="/" component={FrontPage} />
-
-    //   <Route path="/about" component={About} />
-    //   <Route path="/404" component={NotFound} />
-    //   {/* <Redirect to="/404" /> */}
-    // </div>
-  );
+  // return (
+  //   // <div>
+  //   //   <Route exact path="/" component={Dashboard} />
+  //   //   <Route exact path="/create" component={InGameMenu} />
+  //   //   <Route exact path="/" component={SinglePlayer} />
+  //   //   <Route exact path="/" component={FrontPage} />
+  //   //   <Route path="/about" component={About} />
+  //   //   <Route path="/404" component={NotFound} />
+  //   //   {/* <Redirect to="/404" /> */}
+  //   // </div>
+  // );
 };
 
 export default App;

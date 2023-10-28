@@ -5,19 +5,22 @@ interface ButtonProps {
   color: string;
   height?: number;
   width?: number;
-  onClick: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   text: string;
-  disabled: boolean;
+  disabled?: boolean;
   strong?: boolean;
+  submit?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
   text = 'hello test',
   width = 120,
   height = 40,
+  disabled = false,
+  submit = false,
   ...props
 }: ButtonProps) => {
-  const { className, color, onClick, disabled, strong } = props as ButtonProps;
+  const { className, color, onClick, strong } = props as ButtonProps;
 
   return (
     <button
@@ -28,6 +31,7 @@ const Button: React.FC<ButtonProps> = ({
       }}
       onClick={disabled ? undefined : onClick}
       disabled={disabled}
+      type={submit ? 'submit' : 'button'}
     >
       {strong ? <strong>{text}</strong> : <span>{text}</span>}
     </button>

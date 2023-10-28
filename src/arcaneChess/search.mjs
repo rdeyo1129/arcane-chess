@@ -36,7 +36,7 @@ import { GameController, PrintPieceLists, PrintSqAttacked } from './board.mjs';
 import { validMoves, validGroundMoves, CheckAndSet } from './gui.mjs';
 import { whiteArcane, blackArcane } from './arcaneDefs.mjs';
 
-export const SearchController = {};
+export const SearchController = { thinking: BOOL.FALSE };
 
 SearchController.nodes;
 SearchController.fh;

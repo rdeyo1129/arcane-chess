@@ -1,45 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Input.scss';
 
 interface InputProps {
   id?: string;
-  className: string;
+  className?: string;
   color: string;
   height?: number;
   width?: number;
   placeholder?: string;
-  value?: string;
-  text?: string;
-  setText: (text: string) => void;
+  value: string; // Made this non-optional to ensure a value is always provided
+  onChange: (value: string) => void; // Simplified the type
 }
 
 const Input: React.FC<InputProps> = ({
-  placeholder = 'Type here...',
-  width = 120,
+  id,
+  className,
+  color,
   height = 40,
-  ...props
+  width = 120,
+  placeholder = 'Type here...',
+  value,
+  onChange,
 }: InputProps) => {
-  const { id, className, color, value, text, setText } = props as InputProps;
-  // const [text, setText] = useState('');
-
-  // type : password?
-  // size : # of characters?
-
   return (
     <input
       id={id}
-      className={`${className}`}
+      className={`${className} input`} // Concatenated className prop with 'input'
       type="text"
       style={{
         height: `${height}px`,
         width: `${width}px`,
-        // color: `${color}`, ROYGBV
+        color: `${color}`,
       }}
       placeholder={placeholder}
-      value={text}
-      onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
-        setText(e.target.value)
-      }
+      value={value}
+      onChange={(e) => onChange(e.target.value)} // Simplified the onChange handling
     />
   );
 };

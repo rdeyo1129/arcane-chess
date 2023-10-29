@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Button from 'src/components/Button/Button';
 import Input from 'src/components/Input/Input';
@@ -9,13 +10,16 @@ import { registerUser } from '../../actions/authActions';
 
 import { useNavigate } from 'react-router-dom';
 
-const UnwrappedRegister = (props: object) => {
-  console.log('props', props);
+const UnwrappedRegister = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
+  const loginRegisterErrors = useSelector(
+    (state: any) => state.loginRegisterErrors
+  );
 
   // Adjusted the onChange function to fit the new Input component
   const onChange = (name: string, value: string) => {
@@ -35,7 +39,10 @@ const UnwrappedRegister = (props: object) => {
       password2: password2,
     };
 
-    registerUser(newUser, navigate);
+    console.log(newUser);
+
+    // and navigate to the login page
+    dispatch(registerUser(newUser, navigate));
   };
 
   return (
@@ -84,7 +91,7 @@ const UnwrappedRegister = (props: object) => {
           color={'G'}
           width={120}
           height={60}
-          onClick={() => {}}
+          // onClick={() => {}}
           disabled={false}
           submit={true}
         />
@@ -106,6 +113,9 @@ const UnwrappedRegister = (props: object) => {
             height={60}
           />
         </Link>
+        {_.map(loginRegisterErrors, (value, i) => {
+          return <span key={i}>{value}</span>;
+        })}
       </form>
     </>
   );

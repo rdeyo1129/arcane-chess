@@ -2,8 +2,8 @@ import Validator from 'validator';
 import isEmpty from 'is-empty';
 
 export default function validateLoginInput(data: any) {
-  const errors: Record<string, string> = {};
-  // let errors = {};
+  const loginRegisterErrors: Record<string, string> = {};
+  // let loginRegisterErrors = {};
 
   // Convert empty fields to an empty string so we can use validator functions
   data.username = !isEmpty(data.username) ? data.username : '';
@@ -11,19 +11,19 @@ export default function validateLoginInput(data: any) {
 
   // Username checks
   if (Validator.isEmpty(data.username)) {
-    errors.username = 'Username field is required';
+    loginRegisterErrors.username = 'Username field is required';
   }
   // else if (!Validator.isEmail(data.username)) {
-  //   errors.username = "Username is invalid";
+  //   loginRegisterErrors.username = "Username is invalid";
   // }
 
   // Password checks
   if (Validator.isEmpty(data.password)) {
-    errors.password = 'Password field is required';
+    loginRegisterErrors.password = 'Password field is required';
   }
 
   return {
-    errors,
-    isValid: isEmpty(errors),
+    loginRegisterErrors,
+    isValid: isEmpty(loginRegisterErrors),
   };
 }

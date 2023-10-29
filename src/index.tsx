@@ -14,7 +14,7 @@ import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import PrivateRoute from 'src/components/PrivateRoute/PrivateRoute';
+import { PrivateRoute } from 'src/components/PrivateRoute/PrivateRoute';
 
 import { setCurrentUser, logoutUser } from './actions/authActions';
 
@@ -62,10 +62,38 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route index element={<FrontPage />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/create" element={<InGameMenu />} />
-      <Route path="/campaign" element={<Campaign />} />
-      <Route path="/book" element={<Book />} />
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/create"
+        element={
+          <PrivateRoute>
+            <InGameMenu />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/campaign"
+        element={
+          <PrivateRoute>
+            <Campaign />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/book"
+        element={
+          <PrivateRoute>
+            <Book />
+          </PrivateRoute>
+        }
+      />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
     </Route>
@@ -82,9 +110,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
+      <App />
+      {/* </PersistGate> */}
     </Provider>
   </React.StrictMode>
 );

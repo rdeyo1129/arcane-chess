@@ -27,12 +27,13 @@ import {
 export const registerUser =
   (userData: object, navigate: (path: string) => void) =>
   (dispatch: AppDispatch) => {
+    console.log('userData', userData);
     axios
       .post('/api/users/register', userData)
       .then((res) => {
         console.log('res', res);
         // Redirect user to the root or any other page you prefer after successful registration
-        navigate('/');
+        navigate('/login');
       })
       .catch((err) => {
         dispatch({
@@ -44,7 +45,7 @@ export const registerUser =
 
 // Login - get user token
 export const loginUser =
-  (userData: { guest: boolean }) => (dispatch: AppDispatch) => {
+  (userData: { guest: boolean }, navigate: any) => (dispatch: AppDispatch) => {
     axios
       .post('/api/users/login', userData)
       .then((res) => {
@@ -54,10 +55,10 @@ export const loginUser =
         setAuthToken(token);
         const decoded: object = jwt_decode(token);
         dispatch(setCurrentUser(decoded));
-
-        if (!userData.guest) {
-          dispatch(loadCampaign(res.data.campaign));
-        }
+        navigate('/dashboard');
+        // if (!userData.guest) {
+        //   dispatch(loadCampaign(res.data.campaign));
+        // }
       })
       .catch((err) =>
         dispatch({

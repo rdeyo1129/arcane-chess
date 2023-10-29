@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import { Link, useLocation } from 'react-router-dom';
 // import { TextField } from '@mui/material';
-import { connect, useSelector } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import 'src/pages/loginRegister/Login.scss';
 
 import Button from 'src/components/Button/Button';
+import Input from 'src/components/Input/Input';
 
 // import Hero from '../components/Hero';
 
@@ -34,9 +36,14 @@ interface RootState {
 
 const UnwrappedLogin: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const auth = useSelector((state: RootState) => state.auth);
+  // const auth = useSelector((state: RootState) => state.auth);
+  const loginRegisterErrors = useSelector(
+    (state: any) => state.loginRegisterErrors
+  );
+  const auth = useSelector((state: any) => state.auth);
 
   // const router = useRoutes();
   // constructor(props) {
@@ -64,6 +71,11 @@ const UnwrappedLogin: React.FC = () => {
   //   this.setState({ [e.target.name]: e.target.value });
   // };
 
+  const onChange = (name: string, value: string) => {
+    if (name === 'username') setUsername(value);
+    if (name === 'password') setPassword(value);
+  };
+
   const onSubmitLogin = (
     e: React.MouseEvent<HTMLButtonElement>,
     guest: boolean,
@@ -85,62 +97,72 @@ const UnwrappedLogin: React.FC = () => {
       guest,
     };
 
-    loginUser(
-      guest
-        ? userData
-        : username !== '' && password !== ''
-        ? userData
-        : testUser
+    dispatch(
+      loginUser(
+        guest
+          ? userData
+          : username !== '' && password !== ''
+          ? userData
+          : testUser,
+        navigate
+      )
     );
-
-    if (auth.isAuthenticated) {
-      navigate('/dashboard');
-    }
   };
 
   return (
-    <div className="login-page fade">
-      <div className="hero-background">{/* <Hero /> */}</div>
-
-      <div className="login-col2">
-        <div className="panel login-panel">
-          <img className="logo" src={'/assets/logoblue.png'} alt="" />
-          <form noValidate>
-            <div className="login-buttons">
-              <div className="buttons">
-                <Button
-                  className="primary"
-                  text={'LOGIN'}
-                  color={'G'}
-                  width={120}
-                  height={60}
-                  onClick={(e) => {
-                    return onSubmitLogin(e, false);
-                  }}
-                  disabled={false}
-                />
-                <div className="other-buttons">
-                  <Link to={'/register'}>
-                    <Button
-                      className="secondary"
-                      text={'TO REGISTER'}
-                      color={'G'}
-                      width={120}
-                      height={60}
-                    />
-                  </Link>
-                  {/* <button onClick={(e) => onSubmitLogin(e, true)}>
+    <div className="login-page">
+      <img className="logo" src={'/assets/logoblue.png'} alt="" />
+      <form noValidate>
+        <Input
+          color={'G'}
+          width={120}
+          height={40}
+          placeholder={'Username'}
+          value={username}
+          onChange={(value) => onChange('username', value)}
+        />
+        <Input
+          color={'G'}
+          width={120}
+          height={40}
+          placeholder={'Password'}
+          value={password}
+          onChange={(value) => onChange('password', value)}
+        />
+        <div className="buttons">
+          <Button
+            className="primary"
+            text={'LOGIN'}
+            color={'G'}
+            width={120}
+            height={60}
+            onClick={(e) => {
+              return onSubmitLogin(e, false);
+            }}
+            disabled={false}
+          />
+          <div className="other-buttons">
+            <Link to={'/register'}>
+              <Button
+                className="secondary"
+                text={'TO REGISTER'}
+                color={'G'}
+                width={120}
+                height={60}
+              />
+            </Link>
+            {/* <button onClick={(e) => onSubmitLogin(e, true)}>
                     ENTER AS GUEST
                   </button> */}
-                  <Link to={'/'}>
-                    <button className="back">HOME</button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </form>
+            <Link to={'/'}>
+              <button className="back">HOME</button>
+            </Link>
+            {_.map(loginRegisterErrors, (value, i) => {
+              return <span key={i}>{value}</span>;
+            })}
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

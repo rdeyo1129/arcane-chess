@@ -39,7 +39,7 @@ export const UserSchema = new Schema<UserI>(
     },
     avatar: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   {

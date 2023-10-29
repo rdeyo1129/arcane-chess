@@ -17,7 +17,7 @@ export const whiteArcaneConfig = {
   // shftB: 4,
   // shftR: 4,
   // modsSIG: 2,
-  modsCON: 4,
+  // modsCON: 4,
   // swapADJ: 1,
   // swapATK: 4,
   // swapDEP: 1,

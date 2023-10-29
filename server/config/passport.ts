@@ -1,25 +1,39 @@
-import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
-import mongoose from "mongoose";
-import keys from "./keys.mjs";
+import {
+  Strategy as JwtStrategy,
+  ExtractJwt,
+  JwtFromRequestFunction,
+} from 'passport-jwt';
+import { PassportStatic } from 'passport';
+// import mongoose from 'mongoose';
+import { keys } from './keys.js';
 
-import User from "../src/models/User.mjs";
+import { User } from '../models/User';
 
-const opts = {};
+const opts: {
+  jwtFromRequest: JwtFromRequestFunction;
+  secretOrKey: string;
+} = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: keys.secretOrKey,
+};
 
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = keys.secretOrKey;
-
-export default (passport) => {
+export default (passport: PassportStatic) => {
   passport.use(
-    new JwtStrategy(opts, (jwt_payload, done) => {
-      User.findById(jwt_payload.id)
-        .then((user) => {
-          if (user) {
-            return done(null, user);
-          }
-          return done(null, false);
-        })
-        .catch((err) => console.log(err));
-    })
+    new JwtStrategy(
+      opts,
+      (
+        jwt_payload: any,
+        done: (error: any, user?: any, options?: any) => void
+      ) => {
+        User.findById(jwt_payload.id)
+          .then((user) => {
+            if (user) {
+              return done(null, user);
+            }
+            return done(null, false);
+          })
+          .catch((err) => console.log(err));
+      }
+    )
   );
 };

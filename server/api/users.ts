@@ -1,20 +1,20 @@
-import express from "express";
+import express from 'express';
 const router = express.Router();
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import keys from "../config/keys";
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { keys } from '../config/keys.js';
 
 // Load input validation
-import validateRegisterInput from "../validation/register";
-import validateLoginInput from "../validation/login";
+import validateRegisterInput from '../validation/register.js';
+import validateLoginInput from '../validation/login.js';
 
 // Load User model
-import { User } from "../models/User";
+import { User } from '../models/User.js';
 
 // @route POST api/users/register
 // @desc Register user
 // @access Public
-router.post("/register", (req, res) => {
+router.post('/register', (req, res) => {
   // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -25,7 +25,7 @@ router.post("/register", (req, res) => {
 
   User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
-      return res.status(400).json({ email: "Email already exists" });
+      return res.status(400).json({ email: 'Email already exists' });
     } else {
       const newUser = new User({
         username: req.body.username,
@@ -34,17 +34,17 @@ router.post("/register", (req, res) => {
         games: [],
         campaign: {
           currentNode: {
-            node: { id: "" },
+            node: { id: '' },
             content: {
-              title: "",
-              description: "",
-              story: "",
+              title: '',
+              description: '',
+              story: '',
               time: [0, 0],
-              reward: [0, "", 0],
+              reward: [0, '', 0],
             },
           },
           completedChapters: [0], // should be static
-          completedNodes: [""], // for current chapter selection, clear on new chapter or reset
+          completedNodes: [''], // for current chapter selection, clear on new chapter or reset
           topScores: {
             1: 0,
             2: 0,
@@ -63,13 +63,13 @@ router.post("/register", (req, res) => {
           inventory: {
             kudos: 0,
             items: [], // ids #, symbols
-            setup: "8/8/8/4K3", // half fen
+            setup: '8/8/8/4K3', // half fen
           },
           config: {
             chapter: null,
             points: null,
-            color: "White",
-            difficulty: "Novice",
+            color: 'White',
+            difficulty: 'Novice',
             clock: true,
             blunders: false,
             threats: false,
@@ -81,6 +81,7 @@ router.post("/register", (req, res) => {
 
       // Hash password before saving in database
       bcrypt.genSalt(10, (err, salt) => {
+        if (err) console.log('get salt err', err);
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
@@ -97,7 +98,7 @@ router.post("/register", (req, res) => {
 // @route POST api/users/login
 // @desc Login user and return JWT token
 // @access Public
-router.post("/login", (req, res) => {
+router.post('/login', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const guest = req.body.guest;
@@ -106,7 +107,7 @@ router.post("/login", (req, res) => {
   if (guest) {
     // Create JWT Payload
     const payload = {
-      id: "0",
+      id: '0',
       username: req.body.username,
     };
 
@@ -118,10 +119,11 @@ router.post("/login", (req, res) => {
         expiresIn: 31556926, // 1 year in seconds
       },
       (err, token) => {
+        if (err) console.log('jwt err', err);
         res.json({
           campaign: null,
           success: true,
-          token: "Bearer " + token,
+          token: 'Bearer ' + token,
         });
       }
     );
@@ -138,7 +140,7 @@ router.post("/login", (req, res) => {
     User.findOne({ username }).then((user) => {
       // Check if user exists
       if (!user) {
-        return res.status(404).json({ usernotfound: "Username not found" });
+        return res.status(404).json({ usernotfound: 'Username not found' });
       }
 
       // Check password
@@ -159,17 +161,20 @@ router.post("/login", (req, res) => {
               expiresIn: 31556926, // 1 year in seconds
             },
             (err, token) => {
+              if (err) {
+                console.log('jwt err', err);
+              }
               res.json({
                 campaign: user.campaign,
                 success: true,
-                token: "Bearer " + token,
+                token: 'Bearer ' + token,
               });
             }
           );
         } else {
           return res
             .status(400)
-            .json({ passwordincorrect: "Password incorrect" });
+            .json({ passwordincorrect: 'Password incorrect' });
         }
       });
     });

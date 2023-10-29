@@ -1,13 +1,13 @@
-import { model, Schema, Document } from "mongoose";
+import { model, Schema, Document } from 'mongoose';
 
 export interface GameI extends Document {
   gameId: string;
   pgn: string;
   createdAt: Date;
-  history: Array<String>;
-  fenHistory: Array<String>;
-  players: Object;
-  arcane: Object;
+  history: Array<string>;
+  fenHistory: Array<string>;
+  players: object;
+  arcane: object;
 }
 
 export const GameSchema = new Schema<GameI>({
@@ -42,4 +42,4 @@ export const GameSchema = new Schema<GameI>({
   },
 });
 
-export const Game = model<GameI>("games", GameSchema);
+export const Game = model<GameI>('games', GameSchema);

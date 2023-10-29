@@ -1,12 +1,12 @@
-import { model, Schema, Document } from "mongoose";
+import { model, Schema, Document } from 'mongoose';
 
 export interface TemplateI extends Document {
   name: string;
   createdAt: Date;
   creator: string;
-  games: Array<Object>;
-  factions: Object;
-  ratios: Object;
+  games: Array<object>;
+  factions: object;
+  ratios: object;
   plays: number;
 }
 
@@ -43,4 +43,4 @@ export const TemplateSchema = new Schema<TemplateI>(
   }
 );
 
-export const Template = model<TemplateI>("templates", TemplateSchema);
+export const Template = model<TemplateI>('templates', TemplateSchema);

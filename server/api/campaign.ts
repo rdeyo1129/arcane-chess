@@ -1,33 +1,33 @@
-import express from "express";
+import express from 'express';
 
 const router = express.Router();
 
 // Load models
-import { User } from "../models/User";
+import { User } from '../models/User.js';
 
 // @route POST api/campaign
 // @desc Save campaign
 // @access Public
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const key1 = req.body.key1;
     const key2 = req.body.key2;
     const value = req.body.value;
 
-    if (key2 === "reset") {
+    if (key2 === 'reset') {
       await User.findOneAndUpdate(
         { _id: req.body.userId },
         {
           $set: {
-            [`campaign.${key1}`]: [""],
+            [`campaign.${key1}`]: [''],
           },
         }
       ).then((user) => {
         return res.json(user?.campaign);
       });
-    } else if (key1 === "completedChapters" || key1 === "completedNodes") {
+    } else if (key1 === 'completedChapters' || key1 === 'completedNodes') {
       // chapter and node arrays
-      if (key2 === "campReset") {
+      if (key2 === 'campReset') {
         await User.findOneAndUpdate(
           { _id: req.body.userId },
           {
@@ -50,13 +50,13 @@ router.post("/", async (req, res) => {
           return res.json(user?.campaign);
         });
       }
-    } else if (key1 === "inventory") {
+    } else if (key1 === 'inventory') {
       // items array
       await User.findOneAndUpdate(
         { _id: req.body.userId },
         {
           $set: {
-            ["campaign.inventory"]: value,
+            ['campaign.inventory']: value,
           },
         }
       ).then((user) => {
@@ -87,7 +87,7 @@ router.post("/", async (req, res) => {
       });
     }
   } catch (error) {
-    console.log("campaign error", error);
+    console.log('campaign error', error);
   }
 });
 

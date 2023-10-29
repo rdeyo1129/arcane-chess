@@ -1,12 +1,12 @@
-import { model, Schema, Document } from "mongoose";
+import { model, Schema, Document } from 'mongoose';
 
 export interface UserI extends Document {
   username: string;
   email: string;
   createdAt: Date;
   password: string;
-  games: Array<Object>;
-  campaign: Object;
+  games: Array<object>;
+  campaign: object;
   avatar: string;
 }
 
@@ -47,4 +47,4 @@ export const UserSchema = new Schema<UserI>(
   }
 );
 
-export const User = model<UserI>("users", UserSchema);
+export const User = model<UserI>('users', UserSchema);

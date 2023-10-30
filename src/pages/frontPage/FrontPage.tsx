@@ -48,7 +48,7 @@ class UnwrappedFrontPage extends React.Component {
                 text="LOGIN"
                 // onClick={() => this.calculateFen()}
                 className="primary"
-                color="G"
+                color="V"
                 height={50}
                 width={140}
                 // disabled={this.state.fen === ''}
@@ -61,7 +61,7 @@ class UnwrappedFrontPage extends React.Component {
                 text="REGISTER"
                 // onClick={() => this.calculateFen()}
                 className="secondary"
-                color="G"
+                color="V"
                 height={50}
                 width={140}
                 // disabled={this.state.fen === ''}

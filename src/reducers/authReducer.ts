@@ -1,26 +1,16 @@
-import {
-  SET_CURRENT_USER,
-  USER_LOADING,
-  LOAD_CAMPAIGN,
-  SAVE_CAMPAIGN,
-  SET_NODE,
-} from '../actions/types';
-
-// const isEmpty = require("is-empty");
+import { SET_CURRENT_USER, USER_LOADING } from '../actions/types';
 
 import isEmpty from 'is-empty';
 
 interface InitialStateTypes {
   isAuthenticated: boolean;
   user: object;
-  campaign: object;
   loading: false;
 }
 
 const initialState: InitialStateTypes = {
   isAuthenticated: false,
   user: { id: '' },
-  campaign: {},
   loading: false,
 };
 
@@ -42,26 +32,6 @@ export default function (
       return {
         ...state,
         loading: true,
-      };
-    case LOAD_CAMPAIGN:
-      return {
-        ...state,
-        campaign: action.payload,
-      };
-    case SAVE_CAMPAIGN:
-      return {
-        ...state,
-        campaign: action.payload,
-      };
-    case SET_NODE:
-      return {
-        ...state,
-        campaign: {
-          ...state.campaign,
-          currentNode: {
-            ...action.payload,
-          },
-        },
       };
     default:
       return state;

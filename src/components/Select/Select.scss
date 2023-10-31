@@ -1,0 +1,19 @@
+.select-container {
+  .dropdown {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 60px;
+    border: none;
+    color: white;
+    background: #555555;
+    text-align-last: center;
+  }
+  .dropdown:hover {
+    cursor: pointer;
+    background: #666666;
+  }
+  .dropdown:focus {
+    outline: none;
+  }
+}

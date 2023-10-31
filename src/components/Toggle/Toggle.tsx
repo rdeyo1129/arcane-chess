@@ -1,51 +1,62 @@
-import React, { useState } from "react";
-import "./Toggle.scss";
+import React, { useState } from 'react';
+import './Toggle.scss';
 
-const Toggle: React.FC = ({
-  height = 30,
-  width = 60,
-  onText = "ON",
-  offText = "OFF",
-  callback = () => console.log("toggled"),
-  initialState = false,
-}: {
+interface Props {
+  text?: string;
   height?: number;
   width?: number;
   onText?: string;
   offText?: string;
-  callback?: () => void;
+  callback?: (checked: boolean) => void;
+  initialState?: boolean;
+}
+
+const Toggle: React.FC<Props> = ({
+  text = 'Toggle',
+  height = 30,
+  width = 60,
+  onText = 'ON',
+  offText = 'OFF',
+  callback = (checked: boolean) => checked,
+  initialState = false,
+}: {
+  text?: string;
+  height?: number;
+  width?: number;
+  onText?: string;
+  offText?: string;
+  callback?: (checked: boolean) => void;
   initialState?: boolean;
 }) => {
   const [isChecked, setIsChecked] = useState(initialState);
 
   const toggleSwitch = () => {
+    callback(!isChecked);
     setIsChecked(!isChecked);
-    callback();
   };
 
   return (
     <div className="toggle">
-      <div
-        className="toggle-text"
-        style={isChecked ? { opacity: 0 } : { color: "white" }}
-      >
-        {offText}
-      </div>
+      <span className="toggle-text">{text}</span>
       <label
         className="switch"
         style={{ height: `${height}px`, width: `${width}px` }}
       >
         <input type="checkbox" onChange={toggleSwitch} />
         <span className="slider"></span>
-        {/* <span className="on-text">{onText}</span>
-        <span className="off-text">{offText}</span> */}
       </label>
 
       <div
         className="toggle-text"
-        style={isChecked ? { color: "white" } : { opacity: 0 }}
+        style={isChecked ? { color: 'white' } : { display: 'none' }}
       >
         {onText}
+      </div>
+      <div
+        className="toggle-text"
+        style={isChecked ? { display: 'none' } : { color: 'white' }}
+      >
+        {offText}
       </div>
     </div>
   );

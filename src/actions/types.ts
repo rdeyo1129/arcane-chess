@@ -32,13 +32,7 @@ interface UserLoadingAction {
   type: typeof USER_LOADING;
 }
 
-interface LoadCampaignAction {
-  type: typeof LOAD_CAMPAIGN;
-  payload: object;
-}
-
 export type AuthActionTypes =
   | GetErrorsAction
   | SetCurrentUserAction
-  | UserLoadingAction
-  | LoadCampaignAction;
+  | UserLoadingAction;

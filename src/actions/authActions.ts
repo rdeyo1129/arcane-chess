@@ -56,9 +56,6 @@ export const loginUser =
         const decoded: object = jwt_decode(token);
         dispatch(setCurrentUser(decoded));
         navigate('/dashboard');
-        // if (!userData.guest) {
-        //   dispatch(loadCampaign(res.data.campaign));
-        // }
       })
       .catch((err) =>
         dispatch({
@@ -73,14 +70,6 @@ export const setCurrentUser = (decoded: object) => {
   return {
     type: SET_CURRENT_USER,
     payload: decoded,
-  };
-};
-
-// Load campaign
-export const loadCampaign = (campaign: object) => {
-  return {
-    type: LOAD_CAMPAIGN,
-    payload: campaign,
   };
 };
 

@@ -53,7 +53,7 @@ export class UnwrappedDashboard extends React.Component<
           </div>
           <img
             className="avatar"
-            src="public/assets/logoblue2.png"
+            src="public/assets/logoblue.png"
             alt="avatar"
           />
         </div>

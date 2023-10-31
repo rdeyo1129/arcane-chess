@@ -1,20 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import './Campaign.scss';
+
 import Button from 'src/components/Button/Button';
+import TactoriusModal from 'src/components/Modal/Modal';
+
 import { Link } from 'react-router-dom';
 
 // Define the structure for props if any are expected
 interface CampaignProps {
-  // Example:
-  // someProp: string;
+  auth: any;
 }
 
 // Define the structure for the state
 interface CampaignState {
   books: string[];
+  configModalOpen: boolean;
 }
 
-export class Campaign extends React.Component<CampaignProps, CampaignState> {
+export class UnwrappedCampaign extends React.Component<
+  CampaignProps,
+  CampaignState
+> {
   constructor(props: CampaignProps) {
     super(props);
     this.state = {
@@ -33,17 +41,19 @@ export class Campaign extends React.Component<CampaignProps, CampaignState> {
         '?',
         '?',
       ],
+      configModalOpen: false,
     };
   }
 
   render() {
+    const { campaign } = this.props.auth.user;
     return (
       <div className="campaign">
         <Link to="/dashboard">
           <Button
             text="BACK"
             className="tertiary"
-            color="G"
+            color="V"
             width={120}
             height={40}
             onClick={() => {
@@ -53,23 +63,39 @@ export class Campaign extends React.Component<CampaignProps, CampaignState> {
           />
         </Link>
         <div className="book-grid">
-          {this.state.books.map((book, i) => (
-            <Link key={i} to={`/book`}>
+          {this.state.books.map((book, i) => {
+            const isUnlocked = campaign.topScores[i - 1] || i === 0;
+            const isInProgress = campaign.chapter === i;
+            return (
               <Button
+                key={i}
                 text={book}
                 className="tertiary"
-                color="G"
+                color="V"
                 width={200}
                 height={80}
                 onClick={() => {
-                  // Placeholder for onClick function
+                  this.setState({ configModalOpen: true });
                 }}
-                disabled={book === '?'}
+                disabled={!isUnlocked && !isInProgress}
               />
-            </Link>
-          ))}
+            );
+          })}
         </div>
+        <TactoriusModal
+          isOpen={this.state.configModalOpen}
+          type="bookSettings"
+          imgPath="public/assets/treeBoat.jpg"
+        />
       </div>
     );
   }
 }
+
+function mapStateToProps({ auth }: { auth: any }) {
+  return {
+    auth,
+  };
+}
+
+export const Campaign = connect(mapStateToProps, {})(UnwrappedCampaign);

@@ -63,7 +63,7 @@ const port = process.env.PORT || 8080;
 
 // todo
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'dist')));
+  app.use(express.static(path.join(__dirname, '../dist')));
   app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 }
 // if (process.env.NODE_ENV === 'development') { include separate DB/cluster here? }
@@ -89,7 +89,7 @@ app.use('/api/campaign', campaign);
 app.use('/api/templates', templates);
 
 app.get('*', (_req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

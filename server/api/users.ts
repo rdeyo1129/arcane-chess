@@ -35,49 +35,20 @@ router.post('/register', (req, res) => {
         password: req.body.password,
         games: [],
         campaign: {
-          currentNode: {
-            node: { id: '' },
-            content: {
-              title: '',
-              description: '',
-              story: '',
-              time: [0, 0],
-              reward: [0, '', 0],
-            },
-          },
-          completedChapters: [0], // should be static
-          completedNodes: [''], // for current chapter selection, clear on new chapter or reset
-          topScores: {
-            1: 0,
-            2: 0,
-            3: 0,
-            4: 0,
-            5: 0,
-            6: 0,
-            7: 0,
-            8: 0,
-            9: 0,
-            10: 0,
-            11: 0,
-            12: 0,
-            13: 0,
-          }, // [length - 1] element indexs
-          inventory: {
-            kudos: 0,
-            items: [], // ids #, symbols
-            setup: '8/8/8/4K3', // half fen
-          },
-          config: {
-            chapter: null,
-            points: null,
-            color: 'White',
-            difficulty: 'Novice',
-            clock: true,
-            blunders: false,
-            threats: false,
-            checks: false,
-            hints: false,
-          },
+          chapter: 0,
+          topScores: [],
+          // config: {
+          //   points: null,
+          //   color: 'White',
+          //   difficulty: 'Novice',
+          //   depth: 2,
+          //   thinkingTime: 4,
+          //   clock: true,
+          //   blunders: false,
+          //   threats: false,
+          //   checks: false,
+          //   hints: false,
+          // },
         },
       });
 
@@ -153,6 +124,7 @@ router.post('/login', (req, res) => {
           const payload = {
             id: user.id,
             username: user.username,
+            campaign: user.campaign,
           };
 
           // Sign token

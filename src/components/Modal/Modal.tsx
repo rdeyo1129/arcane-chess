@@ -13,6 +13,7 @@ interface ModalProps {
   isOpen: boolean;
   type: string;
   imgPath?: string;
+  toggleModal: () => void;
 }
 interface ModalState {
   config: { [key: string]: any };
@@ -86,7 +87,7 @@ class TactoriusModal extends React.Component<ModalProps, ModalState> {
                       this.updateConfig(
                         val,
                         'color',
-                        val === 'White' ? -350 : 450
+                        val === 'White' ? -450 : 450
                       )
                     }
                   />
@@ -152,7 +153,7 @@ class TactoriusModal extends React.Component<ModalProps, ModalState> {
                   text="CANCEL"
                   className="secondary"
                   color="V"
-                  // onClick={() => console.log('save')}
+                  onClick={() => this.props.toggleModal()}
                 />
                 <Button
                   text="START"

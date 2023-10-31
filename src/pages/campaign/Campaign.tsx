@@ -83,6 +83,9 @@ export class UnwrappedCampaign extends React.Component<
           })}
         </div>
         <TactoriusModal
+          toggleModal={() => {
+            this.setState({ configModalOpen: false });
+          }}
           isOpen={this.state.configModalOpen}
           type="bookSettings"
           imgPath="public/assets/treeBoat.jpg"

@@ -1,6 +1,7 @@
 import React from 'react';
-import _ from 'lodash';
+import _, { get } from 'lodash';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import 'src/pages/book/Book.scss';
 import 'src/chessground/styles/chessground.scss';
@@ -8,17 +9,24 @@ import 'src/chessground/styles/normal.scss';
 
 // import 'src/pages/inGameMenu/InGameMenu.scss';
 
+import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
+
 import { Chessground } from 'src/chessground/chessgroundMod';
 
 import Button from 'src/components/Button/Button';
 import Spinner from 'src/components/Loader/Spinner';
 import Dots from 'src/components/Loader/Dots';
 
-// import './Dashboard.scss';
+interface BookProps {
+  auth: { [key: string]: any };
+}
+interface BookState {
+  // config: { [key: string]: any };
+}
 
-export class Book extends React.Component {
+export class UnwrappedBook extends React.Component<BookProps, BookState> {
   // what type is props supposed to be
-  constructor(props: object) {
+  constructor(props: BookProps) {
     super(props);
     this.state = {};
   }
@@ -123,3 +131,11 @@ export class Book extends React.Component {
     );
   }
 }
+
+function mapStateToProps({ auth }: { auth: any }) {
+  return {
+    auth,
+  };
+}
+
+export const Book = connect(mapStateToProps, {})(UnwrappedBook);

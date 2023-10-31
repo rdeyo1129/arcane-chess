@@ -24,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${className}-${color}${disabled ? '-disabled' : ''}`}
+      className={`button ${className}-${color}${disabled ? '-disabled' : ''}`}
       style={{
         height: `${height}px`,
         width: `${width}px`,

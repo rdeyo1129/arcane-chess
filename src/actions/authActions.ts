@@ -27,7 +27,6 @@ import {
 export const registerUser =
   (userData: object, navigate: (path: string) => void) =>
   (dispatch: AppDispatch) => {
-    console.log('userData', userData);
     axios
       .post('/api/users/register', userData)
       .then((res) => {

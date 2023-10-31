@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Toggle.scss';
 
 interface Props {
-  text?: string;
+  title?: string;
   height?: number;
   width?: number;
   onText?: string;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Toggle: React.FC<Props> = ({
-  text = 'Toggle',
+  title = 'Toggle',
   height = 30,
   width = 60,
   onText = 'ON',
@@ -20,7 +20,7 @@ const Toggle: React.FC<Props> = ({
   callback = (checked: boolean) => checked,
   initialState = false,
 }: {
-  text?: string;
+  title?: string;
   height?: number;
   width?: number;
   onText?: string;
@@ -38,7 +38,7 @@ const Toggle: React.FC<Props> = ({
   return (
     <div className="toggle">
       <div>
-        <span className="toggle-text">{text}</span>
+        <span className="toggle-title">{title}</span>
       </div>
       <div className="toggle-setting">
         <label

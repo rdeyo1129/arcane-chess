@@ -1,5 +1,11 @@
 import React from 'react';
 import Modal from 'react-modal';
+import axios from 'axios';
+
+import { withRouter } from '../withRouter/withRouter';
+import { connect } from 'react-redux';
+
+import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import Button from '../Button/Button';
 import Select from '../Select/Select';
@@ -7,27 +13,28 @@ import Toggle from '../Toggle/Toggle';
 
 import './Modal.scss';
 
-const multiplierMap = {};
-
 interface ModalProps {
   isOpen: boolean;
   type: string;
   imgPath?: string;
   toggleModal: () => void;
+  navigate: (path: string) => void;
+  auth: any;
+  chapterNumber?: number;
 }
 interface ModalState {
   config: { [key: string]: any };
 }
 
-class TactoriusModal extends React.Component<ModalProps, ModalState> {
+class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
   constructor(props: ModalProps) {
     super(props);
     this.state = {
       config: {
-        multiplier: 900,
+        multiplier: 600,
         color: 'white',
-        thinkingTime: 4,
-        clock: true,
+        thinkingTime: 1,
+        clock: false,
         blunderVision: false,
         threatVision: false,
         checkVision: false,
@@ -60,6 +67,17 @@ class TactoriusModal extends React.Component<ModalProps, ModalState> {
   // book setttings
   // endgame
   // promotion
+
+  saveSettingsStartBook = () => {
+    setLocalStorage(
+      this.props.auth,
+      this.props.chapterNumber,
+      this.state.config,
+      [],
+      {}
+    );
+    this.props.navigate('/book');
+  };
 
   render() {
     return (
@@ -109,7 +127,7 @@ class TactoriusModal extends React.Component<ModalProps, ModalState> {
                 </div>
                 <div className="settings-block">
                   <Toggle
-                    text="Clock"
+                    title="Clock"
                     callback={(val: boolean) =>
                       this.updateConfig(val, 'clock', val ? 300 : -300)
                     }
@@ -117,7 +135,7 @@ class TactoriusModal extends React.Component<ModalProps, ModalState> {
                 </div>
                 <div className="settings-block">
                   <Toggle
-                    text="Blunder Vision"
+                    title="Blunder Vision"
                     callback={(val: boolean) =>
                       this.updateConfig(val, 'blunderVision', val ? -200 : 200)
                     }
@@ -125,7 +143,7 @@ class TactoriusModal extends React.Component<ModalProps, ModalState> {
                 </div>
                 <div className="settings-block">
                   <Toggle
-                    text="Threat Vision"
+                    title="Threat Vision"
                     callback={(val) =>
                       this.updateConfig(val, 'threatVision', val ? -100 : 100)
                     }
@@ -133,7 +151,7 @@ class TactoriusModal extends React.Component<ModalProps, ModalState> {
                 </div>
                 <div className="settings-block">
                   <Toggle
-                    text="Check Vision"
+                    title="Check Vision"
                     callback={(val) =>
                       this.updateConfig(val, 'checkVision', val ? -100 : 100)
                     }
@@ -141,7 +159,7 @@ class TactoriusModal extends React.Component<ModalProps, ModalState> {
                 </div>
                 <div className="settings-block">
                   <Toggle
-                    text="Hints"
+                    title="Hints"
                     callback={(val) =>
                       this.updateConfig(val, 'hints', val ? -100 : 100)
                     }
@@ -159,7 +177,7 @@ class TactoriusModal extends React.Component<ModalProps, ModalState> {
                   text="START"
                   className="primary"
                   color="V"
-                  // onClick={() => console.log('save')}
+                  onClick={() => this.saveSettingsStartBook()}
                 />
               </div>
             </div>
@@ -171,6 +189,19 @@ class TactoriusModal extends React.Component<ModalProps, ModalState> {
     );
   }
 }
+
+// please do mapstatetoprops stuff
+
+function mapStateToProps({ auth }: { auth: any }) {
+  return {
+    auth,
+  };
+}
+
+const TactoriusModal = connect(
+  mapStateToProps,
+  {}
+)(withRouter(UnwrappedTactoriusModal));
 
 export default TactoriusModal;
 

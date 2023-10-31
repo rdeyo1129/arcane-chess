@@ -35,7 +35,7 @@ router.post('/register', (req, res) => {
         password: req.body.password,
         games: [],
         campaign: {
-          chapter: 0,
+          // chapter: 0,
           topScores: [],
           // config: {
           //   points: null,

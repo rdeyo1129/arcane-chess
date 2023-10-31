@@ -37,26 +37,29 @@ const Toggle: React.FC<Props> = ({
 
   return (
     <div className="toggle">
-      <span className="toggle-text">{text}</span>
-      <label
-        className="switch"
-        style={{ height: `${height}px`, width: `${width}px` }}
-      >
-        <input type="checkbox" onChange={toggleSwitch} />
-        <span className="slider"></span>
-      </label>
-
-      <div
-        className="toggle-text"
-        style={isChecked ? { color: 'white' } : { display: 'none' }}
-      >
-        {onText}
+      <div>
+        <span className="toggle-text">{text}</span>
       </div>
-      <div
-        className="toggle-text"
-        style={isChecked ? { display: 'none' } : { color: 'white' }}
-      >
-        {offText}
+      <div className="toggle-setting">
+        <label
+          className="switch"
+          style={{ height: `${height}px`, width: `${width}px` }}
+        >
+          <input type="checkbox" onChange={toggleSwitch} />
+          <span className="slider"></span>
+        </label>
+        <div
+          className="toggle-text"
+          style={isChecked ? { color: 'white' } : { display: 'none' }}
+        >
+          {onText}
+        </div>
+        <div
+          className="toggle-text"
+          style={isChecked ? { display: 'none' } : { color: 'white' }}
+        >
+          {offText}
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,18 @@
-.image {
-  max-height: 320px;
-  object-fit: cover;
+.image-text {
+  .image {
+    max-height: 320px;
+    object-fit: cover;
+  }
+}
+.multiplier-settings-buttons {
+  width: 100%;
+  height: 100%;
+  .multiplier {
+    font-size: 48px;
+  }
+  .settings {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 }

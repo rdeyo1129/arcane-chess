@@ -32,6 +32,7 @@ class Select extends React.Component<SelectProps, SelectState> {
         <span className="select-title">{this.props.title}</span>
         <select
           className="dropdown"
+          style={{ width: '100%' }}
           onChange={(e) => {
             this.onChangeUses(e.target.value);
           }}

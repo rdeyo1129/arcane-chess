@@ -98,14 +98,14 @@ export class UnwrappedCampaign extends React.Component<
           width={160}
           height={40}
           onClick={() => {
-            setLocalStorage({ user: { id: '' } }, 0, {}, [], {});
+            setLocalStorage({ user: { id: '' } }, 0, {}, {}, {}, '');
             this.setState({ chapter: 0 });
           }}
           disabled={false}
         />
         <TactoriusModal
           toggleModal={() => {
-            setLocalStorage(auth, 0, {}, [], {});
+            setLocalStorage(auth, 0, {}, {}, {}, '');
             this.setState({ configModalOpen: false, chapter: 0 });
           }}
           chapterNumber={this.state.chapter}

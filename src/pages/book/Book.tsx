@@ -11,6 +11,7 @@ import 'src/chessground/styles/normal.scss';
 
 import { Chessground } from 'src/chessground/chessgroundMod';
 
+import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
 import Spinner from 'src/components/Loader/Spinner';
 import Dots from 'src/components/Loader/Dots';
@@ -25,7 +26,7 @@ const jsonChpater1 = { a: 1 };
 const jsonChapter2 = { a: 2, inbox: ['test', 'test2'] };
 
 interface BookProps {
-  auth: { [key: string]: any };
+  auth: { user: { id: string } };
 }
 interface BookState {
   [key: string]: any;
@@ -108,10 +109,11 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
   constructor(props: BookProps) {
     super(props);
     this.state = {
+      armoryOpen: false,
       // get all nodes from json import and .map in render
-      // to conditionally render right side of view depending on current node id
+      // to conditionally render right side of view depending on current node id]
       pointsEx: 3552,
-      inboxEx: ['mission-1', 'mission-2', 'mission-3', 'mission-4'],
+      inboxEx: ['lesson-1', 'temple-1', 'mission-1', 'mission-2'],
       dialogueEx: [
         ['sidian', 'message'],
         ['narrator', 'message'],
@@ -120,20 +122,40 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       chapter: [
         `jsonChapter${getLocalStorage(this.props.auth.user.id).chapter}`,
       ],
+      selectedSwatch: '',
       config: getLocalStorage(this.props.auth.user.id).config,
       nodeScores: getLocalStorage(this.props.auth.user.id).nodeScores,
       inventory: getLocalStorage(this.props.auth.user.id).inventory,
     };
   }
   render() {
-    console.log(this.state.chapter);
+    const { auth } = this.props;
     return (
       <div className="book">
         <div className="top">
           <div className="inbox">
             {this.state.inboxEx.map((mission: string, i: number) => {
               return (
-                <div key={i} className="swatch">
+                <div
+                  key={i}
+                  className={`swatch${
+                    this.state.selectedSwatch === mission ? '-selected' : ''
+                  }`}
+                  onClick={() => {
+                    const currLS = getLocalStorage(this.props.auth.user.id);
+                    this.setState({
+                      selectedSwatch: mission,
+                    });
+                    setLocalStorage(
+                      auth,
+                      currLS.chapter,
+                      currLS.config,
+                      currLS.nodeScores,
+                      currLS.inventory,
+                      mission
+                    );
+                  }}
+                >
                   <div className="title">{mission}</div>
                   <div className="time">time</div>
                 </div>
@@ -248,14 +270,16 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         </div>
         <div className="bottom">
           <div className="left">
-            <Button
-              text="BACK"
-              className="secondary"
-              color="V"
-              width={120}
-              height={40}
-              disabled={false}
-            />
+            <Link to="/campaign">
+              <Button
+                text="BACK"
+                className="secondary"
+                color="V"
+                width={120}
+                height={40}
+                disabled={false}
+              />
+            </Link>
             <Button
               text="ARMORY"
               className="secondary"
@@ -263,6 +287,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               width={120}
               height={40}
               disabled={false}
+              onClick={() => {
+                this.setState({ armoryOpen: true });
+              }}
             />
           </div>
           <div className="center">
@@ -273,16 +300,29 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
             </span>
           </div>
           <div className="right">
-            <Button
-              text="START"
-              className="primary"
-              color="V"
-              width={120}
-              height={40}
-              disabled={false}
-            />
+            <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
+              <Button
+                text="START"
+                className="primary"
+                color="V"
+                width={120}
+                height={40}
+                // todo until clickthrough messages are done, keep button disabled
+                disabled={this.state.selectedSwatch === ''}
+              />
+            </Link>
           </div>
         </div>
+        <TactoriusModal
+          // toggleModal={() => {
+          //   setLocalStorage(auth, 0, {}, {}, {}, '');
+          //   this.setState({ configModalOpen: false, chapter: 0 });
+          // }}
+          chapterNumber={this.state.chapter}
+          isOpen={this.state.armoryOpen}
+          type="armory"
+          // imgPath="public/assets/treeBoat.jpg"
+        />
       </div>
     );
   }

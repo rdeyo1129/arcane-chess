@@ -22,16 +22,18 @@
       background: #444444;
       overflow-y: scroll;
       .swatch {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        // width: 100%;
+        padding: 10px;
         height: 100px;
         background: #555555;
       }
       .swatch:hover {
         background: #666666;
         cursor: pointer;
+      }
+      .swatch-selected {
+        padding: 10px;
+        height: 100px;
+        background: purple;
       }
     }
     .messages {
@@ -45,18 +47,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 300px;
-        height: 200px;
+        // width: 300px;
+        // height: 200px;
+        padding: 20px;
         background: #555555;
         margin: 10px;
-        text-align: flex-start;
+        align-self: flex-start;
       }
       .message-hero {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 300px;
-        height: 200px;
+        // width: 300px;
+        // height: 200px;
+        padding: 20px;
         background: #555555;
         margin: 10px;
         align-self: flex-end;
@@ -65,8 +69,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 300px;
-        height: 200px;
+        // width: 300px;
+        // height: 200px;
+        padding: 20px;
         background: #555555;
         margin: 10px;
         align-self: center;

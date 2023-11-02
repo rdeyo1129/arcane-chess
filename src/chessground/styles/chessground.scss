@@ -12,6 +12,8 @@
 }
 .armory-board .cg-wrap {
   background-image: url('../images/board/armoryBoard.svg');
+  overflow: hidden;
+  // z-index: 10;
 }
 .connect4-board .cg-wrap {
   background-image: url('../images/board/connect4Board.svg');

@@ -2,12 +2,13 @@ export const setLocalStorage = (
   auth: { user: { id: string } },
   chapter: number = 0,
   config: { [key: string]: boolean | string | number | null },
-  nodeScores: number[],
-  inventory: { [key: string]: boolean | string | number | null }
+  nodeScores: { [key: string]: number },
+  inventory: { [key: string]: boolean | string | number | null },
+  nodeId: string
 ) => {
   const id = auth.user.id;
   const obj = {
-    [id]: { auth, chapter, config, nodeScores, inventory },
+    [id]: { auth, chapter, config, nodeScores, inventory, nodeId },
   };
   localStorage.setItem(id, JSON.stringify(obj));
 };

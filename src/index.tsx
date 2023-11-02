@@ -30,6 +30,9 @@ import { Dashboard } from '././pages/dashboard/Dashboard';
 import { Book } from '././pages/book/Book';
 import { Login } from '././pages/loginRegister/Login';
 import { Register } from '././pages/loginRegister/Register';
+import { LessonView } from '././pages/lessonView/LessonView';
+import { TempleView } from '././pages/templeView/TempleView';
+import { MissionView } from '././pages/missionView/MissionView';
 
 import ReactDOM from 'react-dom/client';
 // import App from './App';
@@ -91,6 +94,30 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <Book />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/lesson"
+        element={
+          <PrivateRoute>
+            <LessonView />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/temple"
+        element={
+          <PrivateRoute>
+            <TempleView />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/mission"
+        element={
+          <PrivateRoute>
+            <MissionView />
           </PrivateRoute>
         }
       />

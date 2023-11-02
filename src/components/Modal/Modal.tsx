@@ -7,6 +7,10 @@ import { connect } from 'react-redux';
 
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
+import 'src/chessground/styles/chessground.scss';
+import 'src/chessground/styles/normal.scss';
+import { Chessground } from 'src/chessground/chessgroundMod';
+
 import Button from '../Button/Button';
 import Select from '../Select/Select';
 import Toggle from '../Toggle/Toggle';
@@ -73,8 +77,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       this.props.auth,
       this.props.chapterNumber,
       this.state.config,
-      [],
-      {}
+      {},
+      {},
+      ''
     );
     this.props.navigate('/book');
   };
@@ -182,6 +187,101 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
             </div>
           </Modal>
+        ) : this.props.type === 'armory' ? (
+          <Modal
+            style={armoryModal}
+            isOpen={this.props.isOpen}
+            ariaHideApp={false}
+          >
+            hello armory
+            <div className="cg-wrap armory-board">
+              <Chessground
+                // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
+                // check={this.tactorius.inCheck().isAttacked}
+                // viewOnly={this.isCheckmate()}
+                fen="8/8/P7/QRRRRK2"
+                coordinates={false}
+                // notation={true}
+                // onChange={(move) => {
+                //   console.log('hello', move);
+                // }}
+                resizable={true}
+                wFaction={'normal'}
+                bFaction={'normal'}
+                // wRoyalty={this.state.wRoyalty}
+                // bRoyalty={this.state.bRoyalty}
+                // wVisible={this.state.wVisCount === 0}
+                // bVisible={this.state.bVisCount === 0}
+                // width={520}
+                // height={520}
+                width={480}
+                height={240}
+                // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
+                // don't, just go by the page type
+                // width={360}
+                // height={360}
+                animation={{
+                  enabled: true,
+                  duration: 1,
+                }}
+                highlight={{
+                  lastMove: false,
+                  check: true,
+                }}
+                // orientation={this.state.orientation}
+                disableContextMenu={false}
+                // turnColor={GameBoard.side === 0 ? 'white' : 'black'}
+                // movable={{
+                //   free: false,
+                //   // todo swap out placeholder for comment
+                //   // color: "both",
+                //   color: GameBoard.side === 0 ? 'white' : 'black',
+                //   // todo show summon destinations
+                //   dests: this.arcaneChess().getGroundMoves(),
+                // }}
+                dimensions={{
+                  height: 4,
+                  width: 8,
+                }}
+                events={{
+                  change: () => {
+                    // if (this.state.)
+                    // this.setState({
+                    //   fen:
+                    // })
+                    // this.arcaneChess().engineReply();
+                    // this.setState({})
+                    // console.log(cg.FEN);
+                    // send moves to redux store, then to server (db), then to opponent
+                  },
+                  // move: (orig, dest, capturedPiece) => {
+                  //   const parsed = this.arcaneChess().makeUserMove(orig, dest);
+                  //   console.log(generatePowers());
+                  //   if (!PrMove(parsed)) {
+                  //     console.log('invalid move');
+                  //     debugger; // eslint-disable-line
+                  //   }
+                  //   this.setState((prevState) => ({
+                  //     history: [...prevState.history, PrMove(parsed)],
+                  //     fenHistory: [
+                  //       ...prevState.fenHistory,
+                  //       outputFenOfCurrentPosition(),
+                  //     ],
+                  //   }));
+                  //   this.engineGo();
+                  // },
+                  // select: (key) => {
+                  //   ParseFen(this.state.fen);
+                  //   AddPiece(prettyToSquare(key), PIECES.wN);
+                  //   this.setState({
+                  //     fen: outputFenOfCurrentPosition(),
+                  //     fenHistory: [outputFenOfCurrentPosition()],
+                  //   });
+                  // },
+                }}
+              />
+            </div>
+          </Modal>
         ) : (
           <div>other modal</div>
         )}
@@ -212,6 +312,27 @@ const bookSettingsModal = {
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    height: '500px',
+    width: '1000px',
+    background: '#111111',
+    borderRadius: '10px',
+    border: '2px solid #a043a2',
+  },
+  overlay: {
+    zIndex: 10,
+    backgroundColor: '#111111EE',
+  },
+};
+
+const armoryModal = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: 'auto',
     transform: 'translate(-50%, -50%)',
     display: 'flex',
     height: '500px',

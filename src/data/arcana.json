@@ -1,0 +1,76 @@
+{
+  // arcanedef powerbit key names
+  "dyadA": {},
+  "dyadP": {},
+  "dyadS": {},
+  "dyadH": {},
+  "dyadN": {},
+  "dyadB": {},
+  "dyadR": {},
+  "dyadQ": {},
+  "dyadK": {},
+  "dyadT": {},
+  "dyadM": {},
+  "dyadV": {},
+  "dyadZ": {},
+  "dyadU": {},
+  "sumnP": {},
+  "sumnS": {},
+  "sumnH": {},
+  "sumnN": {},
+  "sumnB": {},
+  "sumnR": {},
+  "sumnQ": {},
+  "sumnK": {},
+  "sumnT": {},
+  "sumnM": {},
+  "sumnV": {},
+  "sumnZ": {},
+  "sumnU": {},
+  "sumnX": {},
+  "sumnRQ": {},
+  "sumnRT": {},
+  "sumnRM": {},
+  "sumnRV": {},
+  "sumnRE": {},
+  "shftP": {},
+  "shftN": {},
+  "shftB": {},
+  "shftR": {},
+  "swapATK": {},
+  "swapDEP": {},
+  "swapADJ": {},
+  "modsCON": {
+    "name": "Gambit Consume"
+  },
+  "modsOFF": {
+    "name": "Pentagram Tribute"
+  },
+  "modsFUG": {
+    "name": "Sovereign Fugitive"
+  },
+  "modsRAN": {
+    "name": "War Dice"
+  },
+  "modsINH": {
+    "name": "Legacy Ascension"
+  },
+  "modsSUS": {
+    "name": "Veil of Inaction"
+  },
+  "modsPHA": {
+    "name": "Phantom Mist"
+  },
+  "modsBIN": {
+    "name": "Binate Rewind"
+  },
+  "modsIMP": {
+    "name": "Implant Vision"
+  },
+  "modsORA": {
+    "name": "Oracle Whisper"
+  },
+  "modsTEM": {
+    "name": "Temporal Pincer"
+  }
+}

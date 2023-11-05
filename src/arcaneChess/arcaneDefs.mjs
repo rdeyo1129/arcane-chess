@@ -124,7 +124,7 @@ export const POWERBIT = {
   swapATK: 1,
   swapDEP: 2,
   swapADJ: 4,
-  // 10
+  // 11
   modsCON: 1, // passive
   modsOFF: 2, // active
   modsFUG: 4, // inherent

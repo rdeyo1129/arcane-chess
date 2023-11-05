@@ -243,7 +243,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     //   this.state.fenHistory[this.state.fenHistory.length - 1]
     // );
 
-    ParseFen(this.state.fenHistory[this.state.fenHistory.length - 1]);
+    ParseFen(this.state.fen);
 
     // ParseFen('rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
 
@@ -583,7 +583,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 }}
               >
                 <div
-                  className="e-piece"
+                  className="x-piece"
                   style={{
                     position: 'relative',
                     top: '-25px',

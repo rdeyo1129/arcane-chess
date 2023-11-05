@@ -559,7 +559,7 @@ class UnwrappedTempleView extends React.Component<object, State> {
                 }}
               >
                 <div
-                  className="e-piece"
+                  className="x-piece"
                   style={{
                     position: 'relative',
                     top: '-25px',

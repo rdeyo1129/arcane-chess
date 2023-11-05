@@ -48,7 +48,7 @@ export default class Hero extends React.Component {
       'u-piece',
       'z-piece',
       'v-piece',
-      'e-piece',
+      'x-piece',
     ];
     const faction = ['normal', 'chi', 'mu', 'nu', 'sigma', 'omega', 'lambda'];
 
@@ -71,11 +71,11 @@ export default class Hero extends React.Component {
             `}
         style={{
           position: 'relative',
-          width: piece === 'e-piece' ? '100px' : '40px',
-          height: piece === 'e-piece' ? '100px' : '40px',
-          transform: piece === 'e-piece' ? 'scale(.5)' : 'scale(1.5)',
-          top: piece === 'e-piece' ? '-20px' : '9px',
-          left: piece === 'e-piece' ? '-20px' : '9px',
+          width: piece === 'x-piece' ? '100px' : '40px',
+          height: piece === 'x-piece' ? '100px' : '40px',
+          transform: piece === 'x-piece' ? 'scale(.5)' : 'scale(1.5)',
+          top: piece === 'x-piece' ? '-20px' : '9px',
+          left: piece === 'x-piece' ? '-20px' : '9px',
         }}
       />
     ) : null;

@@ -449,7 +449,7 @@ export function ResetBoard() {
 export function randomize() {
   const randomizer = (side) => {
     const rank = [];
-    const queenTypesMap = ['Q', 'Z', 'U', 'V'];
+    const queenTypesMap = ['Q', 'T', 'M', 'V'];
 
     function d(num) {
       return Math.floor(Math.random() * ++num);

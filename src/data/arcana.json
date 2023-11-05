@@ -1,76 +1,308 @@
 {
-  // arcanedef powerbit key names
-  "dyadA": {},
-  "dyadP": {},
-  "dyadS": {},
-  "dyadH": {},
-  "dyadN": {},
-  "dyadB": {},
-  "dyadR": {},
-  "dyadQ": {},
-  "dyadK": {},
-  "dyadT": {},
-  "dyadM": {},
-  "dyadV": {},
-  "dyadZ": {},
-  "dyadU": {},
-  "sumnP": {},
-  "sumnS": {},
-  "sumnH": {},
-  "sumnN": {},
-  "sumnB": {},
-  "sumnR": {},
-  "sumnQ": {},
-  "sumnK": {},
-  "sumnT": {},
-  "sumnM": {},
-  "sumnV": {},
-  "sumnZ": {},
-  "sumnU": {},
-  "sumnX": {},
-  "sumnRQ": {},
-  "sumnRT": {},
-  "sumnRM": {},
-  "sumnRV": {},
-  "sumnRE": {},
-  "shftP": {},
-  "shftN": {},
-  "shftB": {},
-  "shftR": {},
-  "swapATK": {},
-  "swapDEP": {},
-  "swapADJ": {},
+  "dyadA": {
+    "name": "General Dyad",
+    "description": "Make two moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadP": {
+    "name": "Pawn Dyad",
+    "description": "Make two Pawn moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadS": {
+    "name": "Spectre Dyad",
+    "description": "Make two Spectre moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadH": {
+    "name": "Herring Dyad",
+    "description": "Make two Herring moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadN": {
+    "name": "Knight Dyad",
+    "description": "Make two Knight moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadB": {
+    "name": "Bishop Dyad",
+    "description": "Make two Bishop moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadR": {
+    "name": "Rook Dyad",
+    "description": "Make two Rook moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadQ": {
+    "name": "Queen Dyad",
+    "description": "Make two Queen moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadK": {
+    "name": "King Dyad",
+    "description": "Make two King moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadT": {
+    "name": "Templar Dyad",
+    "description": "Make two Templar moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadM": {
+    "name": "Mystic Dyad",
+    "description": "Make two Mystic moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadV": {
+    "name": "Vanguard Dyad",
+    "description": "Make two Vanguard moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadZ": {
+    "name": "Zebra Dyad",
+    "description": "Make two Zebra moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "dyadU": {
+    "name": "Dyad Unicorn",
+    "description": "Make two Unicorn moves, no capturing.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnP": {
+    "name": "Summon Pawn",
+    "description": "Summon a Pawn to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnS": {
+    "name": "Summon Spectre",
+    "description": "Summon a Spectre to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnH": {
+    "name": "Summon Herring",
+    "description": "Summon a Herring to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnN": {
+    "name": "Summon Knight",
+    "description": "Summon a Knight to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnB": {
+    "name": "Summon Bishop",
+    "description": "Summon a Bishop to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnR": {
+    "name": "Summon Rook",
+    "description": "Summon a Rook to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnQ": {
+    "name": "Summon Queen",
+    "description": "Summon a Queen to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnK": {
+    "name": "Summon King",
+    "description": "Summon a King to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnT": {
+    "name": "Summon Templar",
+    "description": "Summon a Templar to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnM": {
+    "name": "Summon Mystic",
+    "description": "Summon a Mystic to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnV": {
+    "name": "Summon Vanguard",
+    "description": "Summon a Vanguard to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnZ": {
+    "name": "Summon Zebra",
+    "description": "Summon a Zebra to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnU": {
+    "name": "Summon Unicorn",
+    "description": "Summon a Unicorn to an empty square.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnX": {
+    "name": "Summon Exile",
+    "description": "Summon an Exile to an empty square. An Exile is a neutral piece that cannot be moved or captured.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnRQ": {
+    "name": "Royalty Queen",
+    "description": "Summon a Queen Royalty condition to an empty square for a certain number of turns. Pieces on this move like a Queen.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnRT": {
+    "name": "Royalty Templar",
+    "description": "Summon a Templar Royalty condition to an empty square for a certain number of turns. Pieces on this move like a Templar.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnRM": {
+    "name": "Royalty Mystic",
+    "description": "Summon a Mystic Royalty condition to an empty square for a certain number of turns. Pieces on this move like a Mystic.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnRV": {
+    "name": "Royalty Vanguard",
+    "description": "Summon a Vanguard Royalty condition to an empty square for a certain number of turns. Pieces on this move like a Vanguard.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "sumnRE": {
+    "name": "Entanglement",
+    "description": "Summon an Entanglement condition to an empty squarefor a certain number of turns. Pieces on this square cannot move.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "shftP": {
+    "name": "Pawn Strafe",
+    "description": "Move a Pawn one square backwards, left or right, no capturing.",
+    "type": "passive",
+    "imagePath": ""
+  },
+  "shftN": {
+    "name": "Knight Transmutation",
+    "description": "Move a Knight one square in any orthogonal or diagonal direction, no capturing.",
+    "type": "passive",
+    "imagePath": ""
+  },
+  "shftB": {
+    "name": "Bishop Conversion",
+    "description": "Move a Bishop one square in any orthogonal direction, no capturing.",
+    "type": "passive",
+    "imagePath": ""
+  },
+  "shftR": {
+    "name": "Rook Modulation",
+    "description": "Move a Rook one square in any diagonal direction, no capturing.",
+    "type": "passive",
+    "imagePath": ""
+  },
+  "swapATK": {
+    "name": "Adversary Translocate",
+    "description": "Swap the positions of a friendly and enemy Rook, Bishop, or Knight.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "swapDEP": {
+    "name": "Ally Translocate",
+    "description": "Swap the positions of a friendly Rook, Bishop, or Knight.",
+    "type": "active",
+    "imagePath": ""
+  },
+  "swapADJ": {
+    "name": "Proximity Translocate",
+    "description": "Swap the positions of any orthogonally adjacent pieces, no Pawn promotions.",
+    "type": "active",
+    "imagePath": ""
+  },
   "modsCON": {
-    "name": "Gambit Consume"
+    "name": "Consume Gambit",
+    "description": "Capture any friendly piece.",
+    "type": "passive",
+    "imagePath": ""
   },
   "modsOFF": {
-    "name": "Pentagram Tribute"
+    "name": "Pentagram Tribute",
+    "description": "Choose a friendly piece to remove from the board for chance advantage.",
+    "type": "active",
+    "imagePath": ""
   },
   "modsFUG": {
-    "name": "Sovereign Fugitive"
+    "name": "Sovereign Fugitive",
+    "description": "Castle while in or through check.",
+    "type": "inherent",
+    "imagePath": ""
   },
   "modsRAN": {
-    "name": "War Dice"
+    "name": "War Dice",
+    "description": "Randomize your opponent's back rank to a 960 position.",
+    "type": "inherent",
+    "imagePath": ""
   },
   "modsINH": {
-    "name": "Legacy Ascension"
+    "name": "Legacy Ascension",
+    "description": "Friendly Pawns promote one rank early.",
+    "type": "inherent",
+    "imagePath": ""
   },
   "modsSUS": {
-    "name": "Veil of Inaction"
+    "name": "Veil of Inaction",
+    "description": "Prevent any captures or checks for 3 turns.",
+    "type": "active",
+    "imagePath": ""
   },
   "modsPHA": {
-    "name": "Phantom Mist"
+    "name": "Phantom Mist",
+    "description": "Your pieces become invisible to your opponent for 3 turns.",
+    "type": "active",
+    "imagePath": ""
   },
   "modsBIN": {
-    "name": "Binate Rewind"
+    "name": "Binate Rewind",
+    "description": "Undo the last 2 moves.",
+    "type": "active",
+    "imagePath": ""
   },
   "modsIMP": {
-    "name": "Implant Vision"
+    "name": "Implant Vision",
+    "description": "The engine gives you a hint for the best move, from sqaure only.",
+    "type": "active",
+    "imagePath": ""
   },
   "modsORA": {
-    "name": "Oracle Whisper"
+    "name": "Oracle Whisper",
+    "description": "The engine gives you a hint for the best move, from and to square.",
+    "type": "active",
+    "imagePath": ""
   },
   "modsTEM": {
-    "name": "Temporal Pincer"
+    "name": "Temporal Pincer",
+    "description": "Get engine's best calculate line of moves after 3 seconds of thinking time.",
+    "type": "active",
+    "imagePath": ""
   }
 }

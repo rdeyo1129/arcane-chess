@@ -81,7 +81,7 @@ export const activateDyad = (type) => {
 // 0000 0000 0000 0000 0000 0111 1100 0000 0000
 
 export const POWERBIT = {
-  // 14 active
+  // 14 active orange
   dyadA: 1,
   dyadP: 2,
   dyadS: 4,
@@ -96,7 +96,7 @@ export const POWERBIT = {
   dyadV: 2048,
   dyadZ: 4096,
   dyadU: 8192,
-  // 18 active
+  // 18 active purple
   sumnP: 1,
   sumnS: 2,
   sumnH: 4,
@@ -115,16 +115,16 @@ export const POWERBIT = {
   sumnRM: 32768,
   sumnRV: 65536,
   sumnRE: 131072,
-  // 4 passive
+  // 4 passive blue
   shftP: 1,
   shftN: 2,
   shftB: 4,
   shftR: 8,
-  // 3 active
+  // 3 active green
   swapATK: 1,
   swapDEP: 2,
   swapADJ: 4,
-  // 11
+  // 11 yellow
   modsCON: 1, // passive
   modsOFF: 2, // active
   modsFUG: 4, // inherent
@@ -136,6 +136,7 @@ export const POWERBIT = {
   modsIMP: 256, // active
   modsORA: 512, // active
   modsTEM: 1024, // active
+  modsPRE: 2048, // inherent
   // modsOFF: 512, add time, glitch (rand comp move), add random arcana / mana
 };
 

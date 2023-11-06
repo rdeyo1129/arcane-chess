@@ -11,7 +11,7 @@ import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
-import factionsJson from 'src/data/factions.json';
+import ArcanaJson from 'src/data/arcana.json';
 
 // import Hero from "../components/Hero";
 
@@ -105,7 +105,7 @@ interface State {
   whiteFaction: string;
   blackFaction: string;
   selected: string;
-  hoverPower: string | null;
+  hoverArcane: string | null;
   config: {
     [key: string | number]: {
       disabled: boolean;
@@ -139,7 +139,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       whiteFaction: 'normal',
       blackFaction: 'normal',
       selected: 'a',
-      hoverPower: null,
+      hoverArcane: null,
       config: {
         // todo disable if no abilities selected
         a: { disabled: false, powers: {}, picks: 0 },
@@ -334,7 +334,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               // setTextArg={() => this.setFen}
             />
             <Button
-              text="START HISTORY"
+              text="PLAY"
               onClick={() => this.calculateFen()}
               className="primary"
               color="B"
@@ -369,36 +369,38 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
           <div className="arcane-faction-input">
             <div className="arcane-history">
               <div className="arcane-input">
-                {_.map(factionsJson, (power, powerId) => {
+                {_.map(ArcanaJson, (arcane, arcaneId) => {
                   return (
                     <div
                       className="create-arcane-item"
-                      key={powerId}
+                      key={arcaneId}
                       onMouseEnter={() =>
-                        this.setState({ hoverPower: power.id })
+                        this.setState({ hoverArcane: arcaneId })
                       }
-                      onMouseLeave={() => this.setState({ hoverPower: null })}
+                      onMouseLeave={() => this.setState({ hoverArcane: null })}
                     >
-                      <span className="title">{power['title']}</span>
+                      <span className="title">{arcane['name']}</span>
                       <div className="select-extension">
                         <div className="uses">
                           <span>
                             {this.state.config[this.state.selected]['powers'][
-                              power.id
+                              arcaneId
                             ]
                               ? this.state.config[this.state.selected][
                                   'powers'
-                                ][power.id]
-                              : power.type === 'int'
+                                ][arcaneId]
+                              : arcane.type === 'active' ||
+                                arcane.type === 'passive'
                               ? 0
                               : 'false'}
                           </span>
                         </div>
-                        {power.type === 'int' ? (
+                        {arcane.type === 'active' ||
+                        arcane.type === 'passive' ? (
                           <select
                             className="arcane-use-drop"
                             onChange={(e) => {
-                              this.onChangeUses(e, power.id.toString());
+                              this.onChangeUses(e, arcaneId.toString());
                             }}
                           >
                             {Array.from({ length: 9 }, (_, index) => {
@@ -408,7 +410,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                   value={
                                     this.state.config[this.state.selected][
                                       'powers'
-                                    ][power.id]
+                                    ][arcaneId]
                                   }
                                 >
                                   {index}
@@ -416,22 +418,26 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                               );
                             })}
                           </select>
-                        ) : power.type === 'boolean' ? (
+                        ) : arcane.type === 'inherent' ? (
                           <select
                             className="arcane-use-drop"
-                            value={
-                              this.state.config[this.state.selected]['powers'][
-                                power.id
-                              ]
-                            }
-                            onChange={(value) =>
-                              this.onChangeUses(value, power.id.toString())
+                            // value={
+                            //   this.state.config[this.state.selected]['powers'][
+                            //     arcaneId
+                            //   ]
+                            // }
+                            onChange={(e) =>
+                              this.onChangeUses(e, arcaneId.toString())
                             }
                           >
-                            {['false', 'true'].map((value) => (
+                            {['false', 'true'].map((value, i) => (
                               <option
-                                key={value}
-                                // value={`{ "power": "${power['id']}", "uses": "${value}" }`}
+                                key={i}
+                                value={
+                                  this.state.config[this.state.selected][
+                                    'powers'
+                                  ][arcaneId]
+                                }
                               >
                                 {value}
                               </option>

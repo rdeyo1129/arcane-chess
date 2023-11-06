@@ -132,7 +132,7 @@ export const POWERBIT = {
   modsINH: 16, // inherent
   modsSUS: 32, // active
   modsPHA: 64, // active
-  modsBIN: 128, // active
+  modsFUT: 128, // active
   modsIMP: 256, // active
   modsORA: 512, // active
   modsTEM: 1024, // active

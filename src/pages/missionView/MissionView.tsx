@@ -12,6 +12,8 @@ import 'src/chessground/styles/lambda.scss';
 
 import factionsJson from 'src/data/factions.json';
 
+import Dots from 'src/components/Loader/Dots';
+
 // import Hero from "../components/Hero";
 
 // import arcaneChess from "./././validation-engine/arcaneChess";
@@ -48,7 +50,6 @@ import Button from '../../components/Button/Button';
 import Toggle from '../../components/Toggle/Toggle';
 
 import { Chessground } from '../../chessground/chessgroundMod';
-import e from 'express';
 
 // interface FrontPageProps {
 //   // whiteFaction: Faction;
@@ -318,325 +319,113 @@ class UnwrappedMissionView extends React.Component<object, State> {
 
           */}
           {/* <div className="panel"></div> */}
-          <div className="fen-input">
-            <h1>MISSION VIEW</h1>
-          </div>
-          <div className="time-input">
-            {/* dropdowns */}
-            <div className="white-time">10 : 00</div>
-            <div className="black-time">10 : 00</div>
-            <div>reset variation</div>
-            <Button
-              text="SIM"
-              onClick={() => this.arcaneChess().gameSim(100)}
-              className="primary"
-              color="B"
-              height={60}
-              width={120}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-          </div>
-          <div className="eval-output">
-            {this.state.thinking ? 'thinking' : null}
-            <span>{this.state.pvLine}</span>
-          </div>
-          <div className="arcane-faction-input">
-            <div className="arcane-history">
-              <div className="arcane-input">
-                {_.map(factionsJson, (power, powerId) => {
-                  return (
-                    <div
-                      className="create-arcane-item"
-                      key={powerId}
-                      onMouseEnter={() =>
-                        this.setState({ hoverPower: power.id })
-                      }
-                      onMouseLeave={() => this.setState({ hoverPower: null })}
-                    >
-                      <span className="title">{power['title']}</span>
-                      <div className="select-extension">
-                        <div className="uses">
-                          <span>
-                            {this.state.config[this.state.selected]['powers'][
-                              power.id
-                            ]
-                              ? this.state.config[this.state.selected][
-                                  'powers'
-                                ][power.id]
-                              : power.type === 'int'
-                              ? 0
-                              : 'false'}
-                          </span>
-                        </div>
-                        {power.type === 'int' ? (
-                          <select
-                            className="arcane-use-drop"
-                            onChange={(e) => {
-                              this.onChangeUses(e, power.id.toString());
-                            }}
-                          >
-                            {Array.from({ length: 9 }, (_, index) => {
-                              return (
-                                <option
-                                  key={index}
-                                  value={
-                                    this.state.config[this.state.selected][
-                                      'powers'
-                                    ][power.id]
-                                  }
-                                >
-                                  {index}
-                                </option>
-                              );
-                            })}
-                          </select>
-                        ) : power.type === 'boolean' ? (
-                          <select
-                            className="arcane-use-drop"
-                            value={
-                              this.state.config[this.state.selected]['powers'][
-                                power.id
-                              ]
-                            }
-                            onChange={(value) =>
-                              this.onChangeUses(value, power.id.toString())
-                            }
-                          >
-                            {['false', 'true'].map((value) => (
-                              <option
-                                key={value}
-                                // value={`{ "power": "${power['id']}", "uses": "${value}" }`}
-                              >
-                                {value}
-                              </option>
-                            ))}
-                          </select>
-                        ) : null}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="history">
-                {this.state.history.map((move, i) => (
-                  <div key={i}>{move}</div>
-                ))}
+          <div className="opponent-dialogue-arcana">
+            <div className="info-avatar">
+              <div className="avatar"></div>
+              <div className="info">
+                <h3 className="name">Medavas</h3>
+                <div className="thinking">
+                  <Dots />
+                </div>
               </div>
             </div>
-            <div className="faction-input">
-              {['R', 'O', 'W', 'Y', 'G', 'BK', 'B', 'V'].map((color, index) => (
-                <div key={index} className={`tertiary-${color}`}>
-                  {greekLetters[index]}
-                </div>
-              ))}
+            <div className="opponent-dialogue"></div>
+            <div className="arcane-controller"></div>
+          </div>
+          <div className="time-board-time">
+            <div className="opponent-time">
+              <h3>10:00</h3>
             </div>
-          </div>
-          <div className="board-view">
-            <Chessground
-              // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
-              // check={this.tactorius.inCheck().isAttacked}
-              // viewOnly={this.isCheckmate()}
-              fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
-              // coordinates={true}
-              // notation={true}
-              // onChange={(move) => {
-              //   console.log('hello', move);
-              // }}
-              resizable={true}
-              wFaction={this.state.whiteFaction}
-              bFaction={this.state.blackFaction}
-              // wRoyalty={this.state.wRoyalty}
-              // bRoyalty={this.state.bRoyalty}
-              // wVisible={this.state.wVisCount === 0}
-              // bVisible={this.state.bVisCount === 0}
-              // width={520}
-              // height={520}
-              width={480}
-              height={480}
-              // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
-              // don't, just go by the page type
-              // width={360}
-              // height={360}
-              animation={{
-                enabled: true,
-                duration: 1,
-              }}
-              highlight={{
-                lastMove: true,
-                check: true,
-              }}
-              // orientation={this.state.orientation}
-              disableContextMenu={false}
-              turnColor={GameBoard.side === 0 ? 'white' : 'black'}
-              movable={{
-                free: false,
-                // todo swap out placeholder for comment
-                // color: "both",
-                color: GameBoard.side === 0 ? 'white' : 'black',
-                // todo show summon destinations
-                dests: this.arcaneChess().getGroundMoves(),
-              }}
-              events={{
-                change: () => {
-                  // if (this.state.)
-                  // this.setState({
-                  //   fen:
-                  // })
-                  // this.arcaneChess().engineReply();
-                  // this.setState({})
-                  // console.log(cg.FEN);
-                  // send moves to redux store, then to server (db), then to opponent
-                },
-                move: (orig: string, dest: string, capturedPiece: number) => {
-                  const parsed = this.arcaneChess().makeUserMove(orig, dest);
-                  console.log(generatePowers());
-                  console.log('captured', capturedPiece);
-                  if (!PrMove(parsed)) {
-                    console.log('invalid move');
-                    debugger; // eslint-disable-line
-                  }
-                  this.setState((prevState) => ({
-                    history: [...prevState.history, PrMove(parsed)],
-                    fen: outputFenOfCurrentPosition(),
-                    fenHistory: [
-                      ...prevState.fenHistory,
-                      outputFenOfCurrentPosition(),
-                    ],
-                  }));
-                  this.engineGo();
-                },
-                // select: (key) => {
-                //   ParseFen(this.state.fen);
-                //   AddPiece(prettyToSquare(key), PIECES.wN);
-                //   this.setState({
-                //     fen: outputFenOfCurrentPosition(),
-                //     fenHistory: [outputFenOfCurrentPosition()],
-                //   });
-                // },
-              }}
-            />
-          </div>
-          <div className="pieces-buttons">
-            <div className="preset-dropdown">Horde</div>
-            <div className="piece-pickup">
-              {piecePickupArray.map((piece, index) => (
-                <div
-                  className="piece-pickup-square"
-                  style={{
-                    width: '50px',
-                    height: '50px',
-                    background: '#555555',
-                  }}
-                  key={index}
-                >
-                  <div
-                    className={`${piece
-                      .substring(1, 2)
-                      .toLocaleLowerCase()}-piece ${
-                      piece.substring(0, 1) === 'w'
-                        ? `white ${this.state.whiteFaction}`
-                        : `black ${this.state.blackFaction}`
-                    }`}
-                    style={{
-                      position: 'relative',
-                      top: '4px',
-                      left: '4px',
-                      width: '40px',
-                      height: '40px',
-                      transform: 'scale(1.25)',
-                    }}
-                  ></div>
-                </div>
-              ))}
-              <div
-                className="piece-pickup-square"
-                style={{
-                  width: '50px',
-                  height: '50px',
-                  background: '#555555',
+            <div className="board-view">
+              <Chessground
+                // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
+                // check={this.tactorius.inCheck().isAttacked}
+                // viewOnly={this.isCheckmate()}
+                fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
+                // coordinates={true}
+                // notation={true}
+                // onChange={(move) => {
+                //   console.log('hello', move);
+                // }}
+                resizable={true}
+                wFaction={this.state.whiteFaction}
+                bFaction={this.state.blackFaction}
+                // wRoyalty={this.state.wRoyalty}
+                // bRoyalty={this.state.bRoyalty}
+                // wVisible={this.state.wVisCount === 0}
+                // bVisible={this.state.bVisCount === 0}
+                // width={520}
+                // height={520}
+                width={480}
+                height={480}
+                // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
+                // don't, just go by the page type
+                // width={360}
+                // height={360}
+                animation={{
+                  enabled: true,
+                  duration: 1,
                 }}
-              >
-                <div
-                  className="x-piece"
-                  style={{
-                    position: 'relative',
-                    top: '-25px',
-                    left: '-25px',
-                    width: '100px',
-                    height: '100px',
-                    transform: 'scale(.4)',
-                  }}
-                ></div>
-              </div>
-              {_.map(royaltyPickupArray, (value, key) => (
-                <div
-                  key={key}
-                  className="piece-pickup-square"
-                  style={{
-                    width: '50px',
-                    height: '50px',
-                    background: '#555555',
-                  }}
-                >
-                  <div
-                    style={{
-                      position: 'relative',
-                      backgroundImage: `radial-gradient(
-          circle at 50% 50%,
-          ${value} 0%,
-          rgba(0, 0, 0, 0) 100%
-        )`,
-                      width: '50px',
-                      height: '50px',
-                    }}
-                  ></div>
-                </div>
-              ))}
+                highlight={{
+                  lastMove: true,
+                  check: true,
+                }}
+                // orientation={this.state.orientation}
+                disableContextMenu={false}
+                turnColor={GameBoard.side === 0 ? 'white' : 'black'}
+                movable={{
+                  free: false,
+                  // todo swap out placeholder for comment
+                  // color: "both",
+                  color: GameBoard.side === 0 ? 'white' : 'black',
+                  // todo show summon destinations
+                  dests: this.arcaneChess().getGroundMoves(),
+                }}
+                events={{
+                  change: () => {
+                    // if (this.state.)
+                    // this.setState({
+                    //   fen:
+                    // })
+                    // this.arcaneChess().engineReply();
+                    // this.setState({})
+                    // console.log(cg.FEN);
+                    // send moves to redux store, then to server (db), then to opponent
+                  },
+                  move: (orig: string, dest: string, capturedPiece: number) => {
+                    const parsed = this.arcaneChess().makeUserMove(orig, dest);
+                    console.log(generatePowers());
+                    console.log('captured', capturedPiece);
+                    if (!PrMove(parsed)) {
+                      console.log('invalid move');
+                      debugger; // eslint-disable-line
+                    }
+                    this.setState((prevState) => ({
+                      history: [...prevState.history, PrMove(parsed)],
+                      fen: outputFenOfCurrentPosition(),
+                      fenHistory: [
+                        ...prevState.fenHistory,
+                        outputFenOfCurrentPosition(),
+                      ],
+                    }));
+                    this.engineGo();
+                  },
+                  // select: (key) => {
+                  //   ParseFen(this.state.fen);
+                  //   AddPiece(prettyToSquare(key), PIECES.wN);
+                  //   this.setState({
+                  //     fen: outputFenOfCurrentPosition(),
+                  //     fenHistory: [outputFenOfCurrentPosition()],
+                  //   });
+                  // },
+                }}
+              />
             </div>
-            <div className="create-buttons">
-              <Button
-                text="TACTORIUS"
-                onClick={() => null}
-                className="tertiary"
-                color="B"
-                height={60}
-                width={200}
-                disabled={false}
-              />
-              <Button
-                text="MAKE MOVE"
-                onClick={() => null}
-                className="tertiary"
-                color="B"
-                height={60}
-                width={200}
-                disabled={false}
-              />
-              <Button
-                text="RANDOMIZE"
-                onClick={() => null}
-                className="tertiary"
-                color="B"
-                height={60}
-                width={200}
-                disabled={false}
-              />
-              <Button
-                text="OUTPUT"
-                onClick={() => null}
-                className="tertiary"
-                color="B"
-                height={60}
-                width={200}
-                disabled={false}
-              />
+            <div className="player-time">
+              <h3>10:00</h3>
             </div>
           </div>
-          <div className="grid-filler"></div>
-          <div className="grid-filler"></div>
-          <div className="grid-filler"></div>
+          <div className="history-buttons-player"></div>
         </div>
       </div>
     );

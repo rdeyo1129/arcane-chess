@@ -4,76 +4,68 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  display: grid;
+  display: flex;
   justify-content: center;
-  grid-template-columns: 400px 1fr 400px;
-  grid-template-rows: 60px 480px 1fr;
+  align-items: center;
   background: rgba(34, 34, 34);
-  .fen-input {
-    display: flex;
-    justify-content: center;
-  }
-  .time-input {
-    display: flex;
-    justify-content: center;
-  }
-  .arcane-faction-input {
-    .arcane-history {
+  .opponent-dialogue-arcana {
+    width: 400px;
+    height: 100%;
+    background: #222222;
+    padding: 10px;
+    .info-avatar {
       display: flex;
-      height: 360px;
-      .arcane-input {
-        height: 360px;
-        width: 280px;
+      flex-direction: row-reverse;
+      .avatar {
+        width: 80px;
+        height: 80px;
+        margin-left: 20px;
+        background: #aaaaaa;
       }
-      .history {
-        height: 360px;
-        width: 120px;
-        background: #444444;
-        overflow-y: scroll;
+      .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .name {
+          text-align: right;
+        }
+        .thinking {
+        }
       }
     }
-    .faction-input {
-      height: 120px;
+  }
+  .time-board-time {
+    // width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .opponent-time {
+      display: flex;
+      align-items: center;
       width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      // @each $key, $value in $menu_colors {
-      //   .tertiary-#{$key} {
-      //     // background: $value;
-      //   }
-      // }
+      height: 100%;
+      background: #222222;
+    }
+    .player-time {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      width: 100%;
+      height: 100%;
+      background: #333333;
+      text-align: right;
     }
   }
-  .pieces-buttons {
-    .preset-dropdown {
-      height: 60px;
-      background: #212121;
-    }
-    .piece-pickup {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-      height: 300px;
-      background: #111111;
-    }
-    .create-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-    }
-  }
-  .grid-filler {
-    // width: 100vw;
-    // width: 1280px;
-    background: #000000;
-    background-image: linear-gradient(#000000 0%, navy 100%);
+  .history-buttons-player {
+    width: 400px;
+    height: 100%;
+    background: #333333;
   }
 }
 
-.tactorius-board .board-view {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+// .tactorius-board .board-view {
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }

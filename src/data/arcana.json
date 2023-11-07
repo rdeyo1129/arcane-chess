@@ -234,7 +234,7 @@
     "imagePath": "src/data/arcanaImages/swapADJ"
   },
   "modsCON": {
-    "name": "Consume Gambit",
+    "name": "Jaws of Betrayal",
     "description": "Capture any friendly piece.",
     "type": "passive",
     "imagePath": "src/data/arcanaImages/modsCON"

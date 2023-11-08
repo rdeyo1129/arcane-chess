@@ -10,7 +10,9 @@ import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
-import factionsJson from 'src/data/factions.json';
+import arcanaJson from 'src/data/arcana.json';
+
+const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 import Dots from 'src/components/Loader/Dots';
 
@@ -94,6 +96,17 @@ export const royaltyPickupArray = {
   E: 'orange',
 };
 
+interface ArcanaDetail {
+  name: string;
+  description: string;
+  type: string;
+  imagePath: string;
+}
+
+interface ArcanaMap {
+  [key: string]: ArcanaDetail;
+}
+
 interface State {
   thinking: boolean;
   thinkingTime: number;
@@ -105,7 +118,6 @@ interface State {
   whiteFaction: string;
   blackFaction: string;
   selected: string;
-  hoverPower: string | null;
   config: {
     [key: string | number]: {
       disabled: boolean;
@@ -114,6 +126,13 @@ interface State {
       };
       picks: number;
     };
+  };
+  arcaneHover: string;
+  wArcana: {
+    [key: string]: number;
+  };
+  bArcana: {
+    [key: string]: number;
   };
 }
 
@@ -139,7 +158,6 @@ class UnwrappedMissionView extends React.Component<object, State> {
       whiteFaction: 'normal',
       blackFaction: 'normal',
       selected: 'a',
-      hoverPower: null,
       config: {
         // todo disable if no abilities selected
         a: { disabled: false, powers: {}, picks: 0 },
@@ -149,6 +167,23 @@ class UnwrappedMissionView extends React.Component<object, State> {
         e: { disabled: false, powers: {}, picks: 0 },
         f: { disabled: false, powers: {}, picks: 0 },
       },
+      arcaneHover: '',
+      wArcana: {
+        modsTEM: 3,
+        sumnRV: 2,
+        modsSUS: 1,
+        sumnP: 1,
+        dyadA: 1,
+        shftB: 3,
+        shftR: 3,
+        modsFUG: 1,
+        modsORA: 1,
+        modsINH: 1,
+        modsRAN: 1,
+        modsOFF: 1,
+        modsCON: 1,
+      },
+      bArcana: {},
       // generatedName: this.generateName(),
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
@@ -288,6 +323,10 @@ class UnwrappedMissionView extends React.Component<object, State> {
     }));
   };
 
+  toggleHover = (arcane: string) => {
+    this.setState({ arcaneHover: arcane });
+  };
+
   componentDidMount(): void {
     // uncomment for moving pieces freely? Or just conditionalize based on whether in variation or not
     // this.initializeArcaneChessAndTest(
@@ -296,6 +335,7 @@ class UnwrappedMissionView extends React.Component<object, State> {
   }
 
   render() {
+    console.log(arcana);
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     // const { auth } = this.props;
     return (
@@ -329,8 +369,44 @@ class UnwrappedMissionView extends React.Component<object, State> {
                 </div>
               </div>
             </div>
-            <div className="opponent-dialogue"></div>
-            <div className="arcane-controller"></div>
+            <div className="dialogue"></div>
+            <div className="arcana">
+              <div className="arcana-side-buttons">
+                <Button
+                  className="tertiary"
+                  // onClick={() => {
+                  //   this.setState({ selected: 'a' });
+                  // }}
+                  color="V"
+                  text="WHITE"
+                  width={190}
+                />
+                <Button
+                  className="tertiary"
+                  // onClick={() => {
+                  //   this.setState({ selected: 'a' });
+                  // }}
+                  color="V"
+                  text="BLACK"
+                  width={190}
+                />
+              </div>
+              <div className="arcana-select">
+                {_.map(this.state.wArcana, (value: number, key: string) => {
+                  return (
+                    <img
+                      key={key}
+                      className="arcane"
+                      src={`${arcana[key].imagePath}${
+                        this.state.arcaneHover === key ? '-hover' : ''
+                      }.svg`}
+                      onMouseEnter={() => this.toggleHover(key)}
+                      onMouseLeave={() => this.toggleHover('')}
+                    />
+                  );
+                })}
+              </div>
+            </div>
           </div>
           <div className="time-board-time">
             <div className="opponent-time">

@@ -87,7 +87,7 @@
     "name": "Summon Pawn",
     "description": "Summon a Pawn to an empty square.",
     "type": "active",
-    "imagePath": ""
+    "imagePath": "src/data/arcanaImages/sumnA"
   },
   "sumnS": {
     "name": "Summon Spectre",

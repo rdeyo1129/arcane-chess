@@ -140,6 +140,10 @@ export const POWERBIT = {
   // modsOFF: 512, add time, glitch (rand comp move), add random arcana / mana
 };
 
+export const varVars = {
+  // insert things like 960, crazyhouse, summons vs freezes, koh, xcheck, horde,
+};
+
 export const POWERS = (config) => {
   return (
     config.dyad |

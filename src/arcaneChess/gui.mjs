@@ -15,6 +15,10 @@ import {
 } from './defs';
 import { PrMove, PrSq, ParseMove, PrintMoveList } from './io';
 import { PrintBoard, SqAttacked } from './board.mjs';
+import { MissionView } from 'src/pages/missionView/MissionView';
+import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
+import { get } from 'lodash';
+import arcaneChess from './arcaneChess.mjs';
 
 export function validGroundMoves() {
   const moveMap = new Map();
@@ -30,6 +34,8 @@ export function validGroundMoves() {
     const to = PrMove(move, 'array')[1];
     if (!moveMap.has(from)) {
       moveMap.set(from, []);
+      // gameOver
+      // updateReactUI();
     }
     moveMap.get(from).push(to);
   }
@@ -135,7 +141,7 @@ export function CheckResult() {
     return BOOL.TRUE;
   }
 
-  if (DrawMaterial() == BOOL.TRUE) {
+  if (DrawMaterial() === BOOL.TRUE) {
     // $("#GameStatus").text("GAME DRAWN {insufficient material to mate}");
     return BOOL.TRUE;
   }
@@ -151,7 +157,7 @@ export function CheckResult() {
     MoveNum < GameBoard.moveListStart[GameBoard.ply + 1];
     ++MoveNum
   ) {
-    if (MakeMove(GameBoard.moveList[MoveNum]) == BOOL.FALSE) {
+    if (MakeMove(GameBoard.moveList[MoveNum]) === BOOL.FALSE) {
       continue;
     }
     found++;
@@ -166,8 +172,8 @@ export function CheckResult() {
     GameBoard.side ^ 1
   );
 
-  if (InCheck == BOOL.TRUE) {
-    if (GameBoard.side == COLOURS.WHITE) {
+  if (InCheck === BOOL.TRUE) {
+    if (GameBoard.side === COLOURS.WHITE) {
       // $("#GameStatus").text("GAME OVER {black mates}");
       return BOOL.TRUE;
     } else {
@@ -183,11 +189,12 @@ export function CheckResult() {
 }
 
 export function CheckAndSet() {
-  if (CheckResult() == BOOL.TRUE) {
+  if (CheckResult() === BOOL.TRUE) {
     GameController.GameOver = BOOL.TRUE;
+    return true;
   } else {
     GameController.GameOver = BOOL.FALSE;
-    // $('#GameStatus').text('');
+    return false;
   }
 }
 

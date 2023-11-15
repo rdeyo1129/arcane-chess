@@ -1,16 +1,36 @@
-export const setLocalStorage = (
-  auth: { user: { id: string } },
-  chapter: number = 0,
-  config: { [key: string]: boolean | string | number | null },
-  nodeScores: { [key: string]: number },
-  inventory: { [key: string]: boolean | string | number | null },
-  nodeId: string
-) => {
-  const id = auth.user.id;
-  const obj = {
-    [id]: { auth, chapter, config, nodeScores, inventory, nodeId },
+export const setLocalStorage = ({
+  auth = { user: { id: '' } },
+  chapter = 0,
+  config = {},
+  nodeScores = {},
+  inventory = {},
+  nodeId = '',
+} = {}) => {
+  const id = auth.user.id; // Replace 'defaultId' with a suitable default
+
+  // If there is no id, you might not want to proceed
+  if (id === '') {
+    console.warn('No user ID provided for setLocalStorage');
+    return;
+  }
+
+  // You might want to handle the case where some properties are not provided
+  const existingData = JSON.parse(localStorage.getItem(id) || '{}');
+
+  // Merge existing data with new data
+  const newData = {
+    [id]: {
+      ...existingData,
+      auth: { ...existingData.auth, ...auth },
+      chapter: existingData.chapter || chapter,
+      config: { ...existingData.config, ...config },
+      nodeScores: { ...existingData.nodeScores, ...nodeScores },
+      inventory: { ...existingData.inventory, ...inventory },
+      nodeId: nodeId || existingData.nodeId,
+    },
   };
-  localStorage.setItem(id, JSON.stringify(obj));
+
+  localStorage.setItem(id, JSON.stringify(newData));
 };
 
 export const getLocalStorage = (id: string) => {
@@ -18,7 +38,7 @@ export const getLocalStorage = (id: string) => {
 
   if (storedData) {
     const parsedData = JSON.parse(storedData);
-    const userData = parsedData[id];
+    const userData = parsedData[`${id}`];
 
     if (userData) {
       return userData;

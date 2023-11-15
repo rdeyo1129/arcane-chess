@@ -57,11 +57,14 @@ import { validMoves, validGroundMoves } from './gui';
 import { SearchPosition, gameSim } from './search.mjs';
 import { PrintSqAttacked } from './board.mjs';
 import { MakeUserMove, engineMove } from './gui.mjs';
+import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 export default function arcaneChess(
   whiteConfig = {},
   blackConfig = {},
-  fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+  fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+  auth = {},
+  varVars = {}
   // fen = 'n1n5/PPPk4/8/8/8/8/4Kppp/5N1N b - - 0 1'
   // 4k3/8/8/K2P3r/8/8/8/8 w - - 0 1
   // normal starting position

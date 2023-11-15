@@ -120,16 +120,17 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         ['hero', 'message'],
       ],
       chapter: [
-        `jsonChapter${getLocalStorage(this.props.auth.user.id).chapter}`,
+        `jsonChapter${getLocalStorage(this.props.auth.user.id)?.chapter}`,
       ],
       selectedSwatch: '',
-      config: getLocalStorage(this.props.auth.user.id).config,
-      nodeScores: getLocalStorage(this.props.auth.user.id).nodeScores,
-      inventory: getLocalStorage(this.props.auth.user.id).inventory,
+      config: getLocalStorage(this.props.auth.user.id)?.config,
+      nodeScores: getLocalStorage(this.props.auth.user.id)?.nodeScores,
+      inventory: getLocalStorage(this.props.auth.user.id)?.inventory,
     };
   }
   render() {
     const { auth } = this.props;
+    console.log(getLocalStorage(this.props.auth.user.id));
     return (
       <div className="book">
         <div className="top">
@@ -146,14 +147,14 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     this.setState({
                       selectedSwatch: mission,
                     });
-                    setLocalStorage(
-                      auth,
-                      currLS.chapter,
-                      currLS.config,
-                      currLS.nodeScores,
-                      currLS.inventory,
-                      mission
-                    );
+                    setLocalStorage({
+                      auth: auth,
+                      chapter: currLS.chapter,
+                      config: currLS.config,
+                      nodeScores: currLS.nodeScores,
+                      inventory: currLS.inventory,
+                      nodeId: mission,
+                    });
                   }}
                 >
                   <div className="title">{mission}</div>
@@ -295,8 +296,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
           <div className="center">
             <span>
               {/* {this.state.inventory.points} */}
-              {this.state.pointsEx} X {this.state.config.multiplier} ={' '}
-              {this.state.pointsEx * this.state.config.multiplier} kudos
+              {this.state.pointsEx} X {this.state.config?.multiplier} ={' '}
+              {this.state.pointsEx * this.state.config?.multiplier} kudos
             </span>
           </div>
           <div className="right">

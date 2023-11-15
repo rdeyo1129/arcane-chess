@@ -48,7 +48,7 @@ export class UnwrappedCampaign extends React.Component<
         '?',
       ],
       configModalOpen: false,
-      chapter: getLocalStorage(this.props.auth.user.id).chapter,
+      chapter: getLocalStorage(this.props.auth.user.id)?.chapter || 0,
     };
   }
 
@@ -98,14 +98,28 @@ export class UnwrappedCampaign extends React.Component<
           width={160}
           height={40}
           onClick={() => {
-            setLocalStorage({ user: { id: '' } }, 0, {}, {}, {}, '');
+            setLocalStorage({
+              auth: { user: { id: '' } },
+              chapter: 0,
+              config: {},
+              nodeScores: {},
+              inventory: {},
+              nodeId: '',
+            });
             this.setState({ chapter: 0 });
           }}
           disabled={false}
         />
         <TactoriusModal
           toggleModal={() => {
-            setLocalStorage(auth, 0, {}, {}, {}, '');
+            setLocalStorage({
+              auth: auth,
+              chapter: 0,
+              config: {},
+              nodeScores: {},
+              inventory: {},
+              nodeId: '',
+            });
             this.setState({ configModalOpen: false, chapter: 0 });
           }}
           chapterNumber={this.state.chapter}

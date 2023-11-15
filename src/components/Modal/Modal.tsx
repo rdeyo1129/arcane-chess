@@ -73,14 +73,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
   // promotion
 
   saveSettingsStartBook = () => {
-    setLocalStorage(
-      this.props.auth,
-      this.props.chapterNumber,
-      this.state.config,
-      {},
-      {},
-      ''
-    );
+    console.log(this.props);
+    setLocalStorage({
+      auth: this.props.auth,
+      chapter: this.props.chapterNumber,
+      config: this.state.config,
+      nodeScores: {},
+      inventory: {},
+      nodeId: '',
+    });
     this.props.navigate('/book');
   };
 
@@ -282,6 +283,14 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               />
             </div>
           </Modal>
+        ) : this.props.type === 'victory' ? (
+          <Modal
+            style={victoryModal}
+            isOpen={this.props.isOpen}
+            ariaHideApp={false}
+          >
+            <div>Victory! Your progress has been saved.</div>
+          </Modal>
         ) : (
           <div>other modal</div>
         )}
@@ -327,6 +336,27 @@ const bookSettingsModal = {
 };
 
 const armoryModal = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: 'auto',
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    height: '500px',
+    width: '1000px',
+    background: '#111111',
+    borderRadius: '10px',
+    border: '2px solid #a043a2',
+  },
+  overlay: {
+    zIndex: 10,
+    backgroundColor: '#111111EE',
+  },
+};
+
+const victoryModal = {
   content: {
     top: '50%',
     left: '50%',

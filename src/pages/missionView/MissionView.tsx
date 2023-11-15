@@ -5,12 +5,19 @@ import _ from 'lodash';
 
 // import "../styles/front-page.css";
 
+import { connect } from 'react-redux';
+import { withRouter } from 'src/components/withRouter/withRouter';
+
 import 'src/pages/missionView/MissionView.scss';
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
 import arcanaJson from 'src/data/arcana.json';
+
+import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
+
+import TactoriusModal from 'src/components/Modal/Modal';
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
@@ -25,6 +32,7 @@ import { PerftTest } from '../../arcaneChess/perft.mjs';
 
 import {
   GameBoard,
+  GameController,
   ParseFen,
   PrintBoard,
   PrintPieceLists,
@@ -39,6 +47,7 @@ import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
 import { prettyToSquare, BOOL, PIECES } from '../../arcaneChess/defs.mjs';
 import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
+import { CheckAndSet } from '../../arcaneChess/gui.mjs';
 // import engine
 // import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
@@ -96,6 +105,20 @@ export const royaltyPickupArray = {
   E: 'orange',
 };
 
+interface missionJsonI {
+  [key: string]: {
+    fen: string;
+    id: string;
+  };
+}
+
+const missionJson: missionJsonI = {
+  'mission-1': {
+    fen: 'rnbqkbnr/sspppppp/8/7Q/2B1P2R/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1',
+    id: 'mission-1',
+  },
+};
+
 interface ArcanaDetail {
   name: string;
   description: string;
@@ -113,6 +136,7 @@ interface State {
   history: string[];
   fenHistory: string[];
   pvLine?: string[];
+  nodeId: string;
   fen: string;
   engineLastMove: string[];
   whiteFaction: string;
@@ -127,6 +151,7 @@ interface State {
       picks: number;
     };
   };
+  gameOver: boolean;
   arcaneHover: string;
   wArcana: {
     [key: string]: number;
@@ -137,22 +162,33 @@ interface State {
 }
 
 interface Props {
-  // fen: string;
-  // ... other props
+  auth: {
+    user: {
+      id: string;
+    };
+  };
 }
 
-class UnwrappedMissionView extends React.Component<object, State> {
+class UnwrappedMissionView extends React.Component<Props, State> {
   arcaneChess;
   constructor(props: Props) {
     super(props);
     this.state = {
       // todo, just make this an array of fenHistory, simplify state...
       // todo make dyanamic
-      fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+      nodeId: getLocalStorage(this.props.auth.user.id).nodeId,
+      gameOver:
+        getLocalStorage(this.props.auth.user.id).nodeScores[
+          getLocalStorage(this.props.auth.user.id).nodeId
+        ] > 0,
+      fen: missionJson[`${getLocalStorage(this.props.auth.user.id).nodeId}`]
+        .fen,
       pvLine: [],
       history: [],
-      fenHistory: ['rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'],
-      thinking: false,
+      fenHistory: [
+        missionJson[`${getLocalStorage(this.props.auth.user.id).nodeId}`].fen,
+      ],
+      thinking: SearchController.thinking,
       engineLastMove: [],
       thinkingTime: 500,
       whiteFaction: 'normal',
@@ -186,7 +222,10 @@ class UnwrappedMissionView extends React.Component<object, State> {
       bArcana: {},
       // generatedName: this.generateName(),
     };
-    this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
+    console.log(this.props.auth);
+    this.arcaneChess = (fen?: string) => {
+      return arcaneChess({}, {}, fen, this.props.auth, {});
+    };
   }
 
   initializeArcaneChessAndTest = (fen: string) => {
@@ -255,6 +294,11 @@ class UnwrappedMissionView extends React.Component<object, State> {
     //     console.log('oiangoiaf', PrMove(move, 'array'));
     //   });
 
+    if (CheckAndSet()) {
+      this.setState({ gameOver: true });
+      return;
+    }
+
     generatePowers();
     GenerateMoves();
 
@@ -271,9 +315,9 @@ class UnwrappedMissionView extends React.Component<object, State> {
     // todo to animate, set classnames, timeouts, clock conditionals,promise?
     // todo promise or thinking timeout time for returning makemove
     // any edge cases?
-    // this.setState({
-    //   thinking: true,
-    // });
+    this.setState({
+      thinking: true,
+    });
     // this.arcaneChess().getScoreAndLine(
     //   this.state.fenHistory[this.state.fenHistory.length - 1]
     // );
@@ -328,26 +372,48 @@ class UnwrappedMissionView extends React.Component<object, State> {
   };
 
   componentDidMount(): void {
+    this.setState({
+      // fen: you don't need this if you're setting
+      // fenHistory: [this.state.fen],
+      thinking: getLocalStorage(
+        getLocalStorage(this.props.auth.user.id).nodeId
+      ),
+      // if json is white or black
+    });
+    this.arcaneChess().startGame(
+      // white arcana
+      // black arcana
+      // whiteFen: mission json
+      // blackFen: mission json
+      this.state.fen
+    );
     // uncomment for moving pieces freely? Or just conditionalize based on whether in variation or not
     // this.initializeArcaneChessAndTest(
     //   this.state.fenHistory[this.state.fenHistory.length - 1]
     // );
   }
 
+  componentDidUpdate(prevProps: object, prevState: { gameOver: boolean }) {
+    if (this.state.gameOver !== prevState.gameOver) {
+      // this.forceUpdate();
+      this.setState({ gameOver: true });
+    }
+  }
+
   render() {
-    console.log(arcana);
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     // const { auth } = this.props;
     return (
       <div className="tactorius-board fade">
+        <TactoriusModal
+          isOpen={this.state.gameOver}
+          // handleClose={() => this.handleModalClose()}
+          // modalType={this.state.endScenario}
+          // message="test1" // interpolate
+          type="victory"
+        />
         {/* <button style={{ position: "absoulte" }}>test</button> */}
-        <div className="panels-board">
-          {/* <TactoriusModal
-            isOpen={this.state.isOpen}
-            handleClose={() => this.handleModalClose()}
-            modalType={this.state.endScenario}
-            message="test1" // interpolate
-          /> */}
+        <div className="mission-view">
           {/* <div className="game-info">
             <div className="panel-left-container">
               <div className="panel-left">this is a paragraph about chess.</div>
@@ -365,7 +431,7 @@ class UnwrappedMissionView extends React.Component<object, State> {
               <div className="info">
                 <h3 className="name">Medavas</h3>
                 <div className="thinking">
-                  <Dots />
+                  {this.state.thinking ? <Dots /> : null}
                 </div>
               </div>
             </div>
@@ -446,7 +512,9 @@ class UnwrappedMissionView extends React.Component<object, State> {
                   lastMove: true,
                   check: true,
                 }}
-                // orientation={this.state.orientation}
+                orientation={
+                  getLocalStorage(this.props.auth.user.id).config.color
+                }
                 disableContextMenu={false}
                 turnColor={GameBoard.side === 0 ? 'white' : 'black'}
                 movable={{
@@ -484,6 +552,10 @@ class UnwrappedMissionView extends React.Component<object, State> {
                         outputFenOfCurrentPosition(),
                       ],
                     }));
+                    if (CheckAndSet()) {
+                      this.setState({ gameOver: true });
+                      return;
+                    }
                     this.engineGo();
                   },
                   // select: (key) => {
@@ -508,11 +580,17 @@ class UnwrappedMissionView extends React.Component<object, State> {
   }
 }
 
-// function mapStateToProps({}) {
-//   return {};
-// }
+function mapStateToProps({ auth }: { auth: object }) {
+  return {
+    auth,
+  };
+}
 
-export const MissionView = UnwrappedMissionView;
+export const MissionView = connect(
+  mapStateToProps,
+  {}
+)(withRouter(UnwrappedMissionView));
+
 // connect(mapStateToProps)(
 //   withRouter(UnwrappedFrontPage)
 // );

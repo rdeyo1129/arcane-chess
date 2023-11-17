@@ -20,7 +20,7 @@ export const setLocalStorage = ({
   // Merge existing data with new data
   const newData = {
     [id]: {
-      ...existingData,
+      // ...existingData,
       auth: { ...existingData.auth, ...auth },
       chapter: existingData.chapter || chapter,
       config: { ...existingData.config, ...config },

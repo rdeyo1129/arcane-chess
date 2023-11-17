@@ -130,7 +130,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
   }
   render() {
     const { auth } = this.props;
-    console.log(getLocalStorage(this.props.auth.user.id));
     return (
       <div className="book">
         <div className="top">

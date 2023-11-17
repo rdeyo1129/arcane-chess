@@ -130,7 +130,8 @@ export default function arcaneChess(
     // ParseFen(fen);
   };
 
-  const getScoreAndLine = (fen) => {
+  // todo arcane for the three hint tiers
+  const getScoreAndLine = (fen, arcane) => {
     ParseFen(fen);
 
     generatePowers();

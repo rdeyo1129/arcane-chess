@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import _, { get } from 'lodash';
 // import { Link, withRouter } from "react-router-dom";
 // import { connect } from "react-redux";
 
@@ -36,6 +36,7 @@ import {
   ParseFen,
   PrintBoard,
   PrintPieceLists,
+  ResetBoard,
 } from '../../arcaneChess/board.mjs';
 import {
   MovePiece,
@@ -47,7 +48,7 @@ import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
 import { prettyToSquare, BOOL, PIECES } from '../../arcaneChess/defs.mjs';
 import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
-import { CheckAndSet } from '../../arcaneChess/gui.mjs';
+import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
 // import engine
 // import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
@@ -114,7 +115,9 @@ interface missionJsonI {
 
 const missionJson: missionJsonI = {
   'mission-1': {
-    fen: 'rnbqkbnr/sspppppp/8/7Q/2B1P2R/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1',
+    // fen: 'rnbqkbnr/sspppppp/8/7Q/2B1P2R/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1',
+    // fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
     id: 'mission-1',
   },
 };
@@ -131,11 +134,15 @@ interface ArcanaMap {
 }
 
 interface State {
+  turn: string;
+  playerColor: string;
+  engineColor: string;
   thinking: boolean;
   thinkingTime: number;
   history: string[];
   fenHistory: string[];
   pvLine?: string[];
+  hasMounted: boolean;
   nodeId: string;
   fen: string;
   engineLastMove: string[];
@@ -152,6 +159,7 @@ interface State {
     };
   };
   gameOver: boolean;
+  gameOverType: string;
   arcaneHover: string;
   wArcana: {
     [key: string]: number;
@@ -170,17 +178,31 @@ interface Props {
 }
 
 class UnwrappedMissionView extends React.Component<Props, State> {
+  hasMounted = false;
   arcaneChess;
   constructor(props: Props) {
     super(props);
     this.state = {
       // todo, just make this an array of fenHistory, simplify state...
       // todo make dyanamic
+      turn:
+        missionJson[
+          `${getLocalStorage(this.props.auth.user.id).nodeId}`
+        ].fen.split(' ')[1] === 'w'
+          ? 'white'
+          : 'black',
+      playerColor: getLocalStorage(this.props.auth.user.id).config.color,
+      engineColor:
+        getLocalStorage(this.props.auth.user.id).config.color === 'white'
+          ? 'black'
+          : 'white',
+      hasMounted: false,
       nodeId: getLocalStorage(this.props.auth.user.id).nodeId,
-      gameOver:
-        getLocalStorage(this.props.auth.user.id).nodeScores[
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ] > 0,
+      gameOver: false,
+      // getLocalStorage(this.props.auth.user.id).nodeScores[
+      //   getLocalStorage(this.props.auth.user.id).nodeId
+      // ] > 0,
+      gameOverType: '',
       fen: missionJson[`${getLocalStorage(this.props.auth.user.id).nodeId}`]
         .fen,
       pvLine: [],
@@ -206,23 +228,34 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       arcaneHover: '',
       wArcana: {
         modsTEM: 3,
+        modsIMP: 1,
         sumnRV: 2,
+        sumnRE: 2,
+        sumnRM: 2,
         modsSUS: 1,
         sumnP: 1,
+        sumnX: 1,
         dyadA: 1,
         shftB: 3,
         shftR: 3,
+        shftP: 3,
+        shftN: 3,
         modsFUG: 1,
         modsORA: 1,
         modsINH: 1,
         modsRAN: 1,
         modsOFF: 1,
         modsCON: 1,
+        modsPHA: 1,
+        modsFUT: 1,
+        modsPRE: 1,
+        swapATK: 1,
+        swapDEP: 1,
+        swapADJ: 1,
       },
       bArcana: {},
       // generatedName: this.generateName(),
     };
-    console.log(this.props.auth);
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen, this.props.auth, {});
     };
@@ -256,18 +289,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   engineGo = () => {
     this.setState({
       thinking: true,
-      // fenHistory: GameBoard.fenHistory,
     });
-    // setTimeout(() => {
-    //   this.arcaneChess().engineReply();
-    // }, 2000).then((reply) => {
-    //   console.log('reply', reply);
-    //   this.setState((prevProps) => ({
-    //     // pvLine: GameBoard.cleanPV,
-    //     fenHistory: [...prevProps.fenHistory, this.state.fen],
-    //   }));
-    // });
-
     new Promise((resolve) => {
       setTimeout(() => {
         SearchController.thinking = BOOL.TRUE;
@@ -278,33 +300,31 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       }, this.state.thinkingTime);
     })
       .then((reply) => {
-        console.log('reply', reply);
-        this.setState((prevState) => ({
-          pvLine: GameBoard.cleanPV,
-          history: [...prevState.history, PrMove(reply)],
-          fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-          thinking: false,
-        }));
+        this.setState(
+          (prevState) => ({
+            pvLine: GameBoard.cleanPV,
+            history: [...prevState.history, PrMove(reply)],
+            fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
+            thinking: false,
+            turn: prevState.turn === 'white' ? 'black' : 'white',
+          }),
+          () => {
+            if (CheckAndSet()) {
+              this.setState({
+                gameOver: true,
+                gameOverType: CheckResult().gameResult,
+              });
+              return;
+            }
+
+            generatePowers();
+            GenerateMoves();
+          }
+        );
       })
       .catch((error) => {
         console.error('An error occurred:', error);
       });
-
-    //   .then((move) => {
-    //     console.log('oiangoiaf', PrMove(move, 'array'));
-    //   });
-
-    if (CheckAndSet()) {
-      this.setState({ gameOver: true });
-      return;
-    }
-
-    generatePowers();
-    GenerateMoves();
-
-    // new Promise((resolve, reject) => {
-    //   resolve()
-    // });
   };
 
   // promise or web worker here?
@@ -371,46 +391,47 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.setState({ arcaneHover: arcane });
   };
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.setState({
-      // fen: you don't need this if you're setting
-      // fenHistory: [this.state.fen],
-      thinking: getLocalStorage(
-        getLocalStorage(this.props.auth.user.id).nodeId
-      ),
-      // if json is white or black
+      turn:
+        missionJson[
+          `${getLocalStorage(this.props.auth.user.id).nodeId}`
+        ].fen.split(' ')[1] === 'w'
+          ? 'white'
+          : 'black',
     });
-    this.arcaneChess().startGame(
-      // white arcana
-      // black arcana
-      // whiteFen: mission json
-      // blackFen: mission json
-      this.state.fen
-    );
-    // uncomment for moving pieces freely? Or just conditionalize based on whether in variation or not
-    // this.initializeArcaneChessAndTest(
-    //   this.state.fenHistory[this.state.fenHistory.length - 1]
-    // );
+    if (!this.hasMounted) {
+      this.hasMounted = true;
+      this.arcaneChess().startGame(this.state.fen);
+      if (this.state.engineColor === this.state.turn) {
+        this.engineGo();
+      }
+    }
   }
 
   componentDidUpdate(prevProps: object, prevState: { gameOver: boolean }) {
     if (this.state.gameOver !== prevState.gameOver) {
-      // this.forceUpdate();
-      this.setState({ gameOver: true });
+      this.setState({ gameOver: true, gameOverType: CheckResult().gameResult });
     }
   }
 
   render() {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
-    // const { auth } = this.props;
+    const { auth } = this.props;
     return (
       <div className="tactorius-board fade">
         <TactoriusModal
           isOpen={this.state.gameOver}
           // handleClose={() => this.handleModalClose()}
           // modalType={this.state.endScenario}
-          // message="test1" // interpolate
-          type="victory"
+          // message={} // interpolate
+          type={
+            this.state.gameOverType.split(' ')[1] === 'mates' &&
+            getLocalStorage(this.props.auth.user.id).config.color ===
+              this.state.gameOverType.split(' ')[0]
+              ? 'victory'
+              : 'defeat'
+          }
         />
         {/* <button style={{ position: "absoulte" }}>test</button> */}
         <div className="mission-view">
@@ -516,12 +537,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   getLocalStorage(this.props.auth.user.id).config.color
                 }
                 disableContextMenu={false}
-                turnColor={GameBoard.side === 0 ? 'white' : 'black'}
+                turnColor={this.state.turn}
                 movable={{
                   free: false,
                   // todo swap out placeholder for comment
                   // color: "both",
-                  color: GameBoard.side === 0 ? 'white' : 'black',
+                  color: this.state.playerColor,
                   // todo show summon destinations
                   dests: this.arcaneChess().getGroundMoves(),
                 }}
@@ -553,10 +574,25 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       ],
                     }));
                     if (CheckAndSet()) {
-                      this.setState({ gameOver: true });
-                      return;
+                      this.setState({
+                        gameOver: true,
+                        gameOverType: CheckResult().gameResult,
+                      });
+                      setLocalStorage({
+                        ...getLocalStorage(this.props.auth.user.id),
+                        auth,
+                        nodeScores: { [this.state.nodeId]: GameBoard.material },
+                      });
+                    } else {
+                      this.setState(
+                        {
+                          turn: this.state.turn === 'white' ? 'black' : 'white',
+                        },
+                        () => {
+                          this.engineGo();
+                        }
+                      );
                     }
-                    this.engineGo();
                   },
                   // select: (key) => {
                   //   ParseFen(this.state.fen);

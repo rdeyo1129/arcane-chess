@@ -104,14 +104,14 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               <div className="settings">
                 <div className="settings-block">
                   <Select
-                    options={['White', 'Black']}
+                    options={['white', 'black']}
                     title="Color"
                     type="string"
                     onChange={(val) =>
                       this.updateConfig(
                         val,
                         'color',
-                        val === 'White' ? -450 : 450
+                        val === 'white' ? -450 : 450
                       )
                     }
                   />
@@ -289,7 +289,23 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             isOpen={this.props.isOpen}
             ariaHideApp={false}
           >
-            <div>Victory! Your progress has been saved.</div>
+            <div>
+              Victory! You fought with great resource and conqured your
+              opponent! You are eager for the obstacles and challenges that you
+              are working hard towards. Your Progress has been saved.
+            </div>
+          </Modal>
+        ) : this.props.type === 'defeat' ? (
+          <Modal
+            style={victoryModal}
+            isOpen={this.props.isOpen}
+            ariaHideApp={false}
+          >
+            <div>
+              Defeat... You have fought honorably and accept your loss with a
+              critical yet respectful mindset. You are eager to learn from your
+              mistakes and improve.
+            </div>
           </Modal>
         ) : (
           <div>other modal</div>

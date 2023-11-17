@@ -184,15 +184,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       thinking: true,
       // fenHistory: GameBoard.fenHistory,
     });
-    // setTimeout(() => {
-    //   this.arcaneChess().engineReply();
-    // }, 2000).then((reply) => {
-    //   console.log('reply', reply);
-    //   this.setState((prevProps) => ({
-    //     // pvLine: GameBoard.cleanPV,
-    //     fenHistory: [...prevProps.fenHistory, this.state.fen],
-    //   }));
-    // });
 
     new Promise((resolve) => {
       setTimeout(() => {
@@ -215,10 +206,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       .catch((error) => {
         console.error('An error occurred:', error);
       });
-
-    //   .then((move) => {
-    //     console.log('oiangoiaf', PrMove(move, 'array'));
-    //   });
 
     generatePowers();
     GenerateMoves();

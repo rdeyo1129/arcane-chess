@@ -133,19 +133,29 @@ export function ThreeFoldRep() {
 export function CheckResult() {
   if (GameBoard.fiftyMove >= 100) {
     // $("#GameStatus").text("GAME DRAWN {fifty move rule}");
-    return BOOL.TRUE;
+    return {
+      gameOver: true,
+      gameResult: 'fifty move rule',
+    };
   }
 
   if (ThreeFoldRep() >= 2) {
     // $("#GameStatus").text("GAME DRAWN {3-fold repetition}");
-    return BOOL.TRUE;
+    return {
+      gameOver: true,
+      gameResult: '3-fold repetition',
+    };
   }
 
   if (DrawMaterial() === BOOL.TRUE) {
     // $("#GameStatus").text("GAME DRAWN {insufficient material to mate}");
-    return BOOL.TRUE;
+    return {
+      gameOver: true,
+      gameResult: 'insufficient material',
+    };
   }
 
+  // todo herring
   generatePowers();
   GenerateMoves();
 
@@ -165,7 +175,7 @@ export function CheckResult() {
     break;
   }
 
-  if (found != 0) return BOOL.FALSE;
+  if (found !== 0) return BOOL.FALSE;
 
   var InCheck = SqAttacked(
     GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
@@ -175,21 +185,30 @@ export function CheckResult() {
   if (InCheck === BOOL.TRUE) {
     if (GameBoard.side === COLOURS.WHITE) {
       // $("#GameStatus").text("GAME OVER {black mates}");
-      return BOOL.TRUE;
+      return {
+        gameOver: true,
+        gameResult: 'black mates',
+      };
     } else {
       // $("#GameStatus").text("GAME OVER {white mates}");
-      return BOOL.TRUE;
+      return {
+        gameOver: true,
+        gameResult: 'white mates',
+      };
     }
   } else {
     // $("#GameStatus").text("GAME DRAWN {stalemate}");
-    return BOOL.TRUE;
+    return {
+      gameOver: true,
+      gameResult: 'stalemate',
+    };
   }
 
   // return BOOL.FALSE;
 }
 
 export function CheckAndSet() {
-  if (CheckResult() === BOOL.TRUE) {
+  if (CheckResult().gameOver || false) {
     GameController.GameOver = BOOL.TRUE;
     return true;
   } else {

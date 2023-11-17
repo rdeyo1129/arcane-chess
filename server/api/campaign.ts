@@ -107,24 +107,21 @@ router.post('/chapter', async (req, _res) => {
 });
 
 router.post('/topScores', async (req, res) => {
+  const chapterIndex = req.body.chapterNumber - 1; // Calculate the index
+  const updatePath = `campaign.topScores.${chapterIndex}`; // Create the path string
   try {
-    const key = req.body.key;
-    const value = req.body.value;
-
-    console.log(req.body, key, value);
-
     await User.findOneAndUpdate(
       { _id: req.body.userId },
       {
-        $push: {
-          [`campaign.${key}`]: value,
+        $set: {
+          [updatePath]: req.body.chapterPoints, // Use the path to set the value
         },
       }
     ).then((user) => {
       return res.json(user?.campaign);
     });
   } catch (error) {
-    console.log('campaign error', error);
+    console.log('campaign top scores error', error);
   }
 });
 

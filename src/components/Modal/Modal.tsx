@@ -81,6 +81,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       nodeScores: {},
       inventory: {},
       nodeId: '',
+      chapterEnd: false,
     });
     this.props.navigate('/book');
   };
@@ -285,27 +286,43 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
           </Modal>
         ) : this.props.type === 'victory' ? (
           <Modal
-            style={victoryModal}
+            style={endgameModal}
             isOpen={this.props.isOpen}
             ariaHideApp={false}
           >
-            <div>
-              Victory! You fought with great resource and conqured your
-              opponent! You are eager for the obstacles and challenges that you
-              are working hard towards. Your Progress has been saved.
+            <div className="endgame">
+              <div className="left">
+                Victory! You fought with great resource and conqured your
+                opponent! You are eager for the obstacles and challenges that
+                you are working hard towards. Your Progress has been saved.
+              </div>
+              <div className="middle"></div>
+              <div className="right">right</div>
             </div>
           </Modal>
         ) : this.props.type === 'defeat' ? (
           <Modal
-            style={victoryModal}
+            style={endgameModal}
             isOpen={this.props.isOpen}
             ariaHideApp={false}
           >
-            <div>
-              Defeat... You have fought honorably and accept your loss with a
-              critical yet respectful mindset. You are eager to learn from your
-              mistakes and improve.
+            <div className="endgame">
+              <div className="left">
+                Defeat... You have fought honorably and accept your loss with a
+                critical yet respectful mindset. You are eager to learn from
+                your mistakes and improve.
+              </div>
+              <div className="middle"></div>
+              <div className="right">right</div>
             </div>
+          </Modal>
+        ) : this.props.type === 'chapterEnd' ? (
+          <Modal
+            style={chapterEndModal}
+            isOpen={this.props.isOpen}
+            ariaHideApp={false}
+          >
+            <span>YOU HAVE DEFEATED THE BOSS. CHAPTER END. YOUR SCORE: 5M</span>
           </Modal>
         ) : (
           <div>other modal</div>
@@ -372,7 +389,33 @@ const armoryModal = {
   },
 };
 
-const victoryModal = {
+const endgameModal = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: 'auto',
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    height: '100%',
+    maxHight: '574px',
+    width: '100%',
+    background: '#00000000',
+    border: 'none',
+    padding: '0',
+    borderRadius: '0',
+    // border: '2px solid #a043a2',
+  },
+  overlay: {
+    width: '100%',
+    height: '100%',
+    zIndex: 10,
+    backgroundColor: '#00000000',
+  },
+};
+
+const chapterEndModal = {
   content: {
     top: '50%',
     left: '50%',

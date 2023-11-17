@@ -90,21 +90,21 @@ $hover_colors: (
     align-items: center;
     // background: $color_var;
     background: #555555;
-    // border: none;
-    // border-radius: 0;
-    // transition: background 0.2s ease-in;
-  }
-  .tertiary-#{$color}:hover {
-    background: $hover_var;
     border: none;
     border-radius: 0;
-    // transition: background 0.2s ease-in;
+    transition: background 0.2s ease-in;
+  }
+  .tertiary-#{$color}:hover {
+    background: $color_var !important;
+    border: none;
+    border-radius: 0;
+    transition: background 0.2s ease-in;
     cursor: pointer;
   }
   .tertiary-#{$color}-disabled {
     color: #aaaaaa;
     background: #333333;
-    border: #222222 1px solid;
+    // border: #222222 1px solid;
   }
   .tertiary-#{$color}-disabled:hover {
     cursor: auto;

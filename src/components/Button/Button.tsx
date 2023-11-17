@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   height = 40,
   disabled = false,
   submit = false,
-  backgroundColorOverride = '#555555',
+  backgroundColorOverride = '',
   ...props
 }: ButtonProps) => {
   const { className, color, onClick, strong } = props as ButtonProps;
@@ -32,7 +32,9 @@ const Button: React.FC<ButtonProps> = ({
         height: `${height}px`,
         width: `${width}px`,
         fontSize: `${props.fontSize}px`,
-        background: `${backgroundColorOverride}`,
+        background: `${
+          backgroundColorOverride === '' ? '' : backgroundColorOverride
+        }`,
       }}
       onClick={disabled ? undefined : onClick}
       disabled={disabled}

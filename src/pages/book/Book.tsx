@@ -32,12 +32,76 @@ interface BookState {
   [key: string]: any;
 }
 
+// KEEP EACH CHAPTER AND LTM IN ITS OWN JSON FILE ... 36 json files?
+
+interface nodeJsonI {
+  [key: string]: {
+    fen: string;
+    id: string;
+    prereq: string;
+    boss?: boolean;
+  };
+}
+
+const missionJson: nodeJsonI = {
+  'mission-1': {
+    // fen: 'rnbqkbnr/sspppppp/8/7Q/2B1P2R/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1',
+    // fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
+    id: 'mission-1',
+    prereq: '',
+  },
+  'mission-2': {
+    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
+    id: 'mission-2',
+    prereq: 'mission-1',
+  },
+  'mission-3': {
+    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
+    id: 'mission-3',
+    prereq: 'mission-2',
+  },
+  'mission-4': {
+    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
+    id: 'mission-4',
+    prereq: 'mission-3',
+    boss: true,
+  },
+};
+
+const lessonJson: nodeJsonI = {
+  'lesson-1': {
+    fen: '8/8/8/4R3/8/8/8/8 w KQkq - 0 1',
+    id: 'lesson-1',
+    prereq: '',
+  },
+  'lesson-2': {
+    fen: '8/8/8/4V3/8/8/8/8 w KQkq - 0 1',
+    id: 'lesson-2',
+    prereq: 'lesson-1',
+  },
+};
+
+const templeJson: nodeJsonI = {
+  'temple-1': {
+    fen: 'k7/8/8/nnnnVMTQ/8/8/8/7K w KQkq - 0 1',
+    id: 'temple-1',
+    prereq: '',
+  },
+  'temple-2': {
+    fen: '8/8/8/krrrSQTK/8/8/8/8 w KQkq - 0 1',
+    id: 'temple-2',
+    prereq: 'temple-1',
+  },
+};
+
 interface lessonNode {
   id: string; // 'lesson-1';
   title: string;
   time: [number, number]; // seconds
   chatLog: [string | null, string | null];
   reward: (number | string[])[];
+  prereq: string;
   boards: {
     [key: string]: {
       fen: string;
@@ -75,12 +139,15 @@ const templeNode = {};
 // todo to be generated / automated from creator
 interface missionNode {
   id: string; // 'mission-1';
+  prereq: string;
   title: string;
   time: [number, number]; // seconds
   chatLog: [string | null, string | null];
   fen: string;
   fenHistory: string[];
   history: string[];
+  reward: (number | string[])[];
+  boss: boolean;
   // is arrows this a map?
   arrows?: string[][];
   // todo initRoyalties in arcaneChess return object
@@ -91,8 +158,8 @@ interface missionNode {
     royaltyV: string[];
     royaltyE: string[];
   };
-  whiteArcane?: { [key: string]: number };
-  blackArcane?: { [key: string]: number };
+  whiteArcana?: { [key: string]: number };
+  blackArcana?: { [key: string]: number };
   orientation: string;
   handicaps: {
     [key: string]: boolean | string | number;
@@ -126,41 +193,61 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       config: getLocalStorage(this.props.auth.user.id)?.config,
       nodeScores: getLocalStorage(this.props.auth.user.id)?.nodeScores,
       inventory: getLocalStorage(this.props.auth.user.id)?.inventory,
+      endChapterOpen: getLocalStorage(this.props.auth.user.id)?.chapterEnd,
     };
   }
   render() {
     const { auth } = this.props;
+    const allNodes = _.flatMap(
+      { missionJson, lessonJson, templeJson },
+      (value, key) => _.map(value, (node, id) => ({ ...node, id, type: key }))
+    );
     return (
       <div className="book">
         <div className="top">
           <div className="inbox">
-            {this.state.inboxEx.map((mission: string, i: number) => {
-              return (
-                <div
-                  key={i}
-                  className={`swatch${
-                    this.state.selectedSwatch === mission ? '-selected' : ''
-                  }`}
-                  onClick={() => {
-                    const currLS = getLocalStorage(this.props.auth.user.id);
-                    this.setState({
-                      selectedSwatch: mission,
-                    });
-                    setLocalStorage({
-                      auth: auth,
-                      chapter: currLS.chapter,
-                      config: currLS.config,
-                      nodeScores: currLS.nodeScores,
-                      inventory: currLS.inventory,
-                      nodeId: mission,
-                    });
-                  }}
-                >
-                  <div className="title">{mission}</div>
-                  <div className="time">time</div>
-                </div>
-              );
-            })}
+            {allNodes
+              .filter((node) => {
+                const currLS = getLocalStorage(this.props.auth.user.id);
+
+                // Exclude nodes that are already in nodeScores
+                if (currLS.nodeScores && currLS.nodeScores[node.id]) {
+                  return false;
+                }
+                // Check for prerequisites
+                if (node.prereq && !currLS.nodeScores[node.prereq]) {
+                  return false;
+                }
+                return true;
+              })
+              .map((node, i) => {
+                return (
+                  <div
+                    key={i}
+                    className={`swatch${
+                      this.state.selectedSwatch === node.id ? '-selected' : ''
+                    }`}
+                    onClick={() => {
+                      const currLS = getLocalStorage(this.props.auth.user.id);
+                      this.setState({
+                        selectedSwatch: node.id,
+                      });
+                      setLocalStorage({
+                        auth: this.props.auth,
+                        chapter: currLS.chapter,
+                        config: currLS.config,
+                        nodeScores: currLS.nodeScores,
+                        inventory: currLS.inventory,
+                        nodeId: node.id,
+                        chapterEnd: currLS.chapterEnd,
+                      });
+                    }}
+                  >
+                    <div className="title">{node.id}</div>
+                    <div className="time">time</div>
+                  </div>
+                );
+              })}
           </div>
           <div className="messages">
             {this.state.dialogueEx.map((message: string[], i: number) => {
@@ -318,9 +405,18 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
           //   setLocalStorage(auth, 0, {}, {}, {}, '');
           //   this.setState({ configModalOpen: false, chapter: 0 });
           // }}
-          chapterNumber={this.state.chapter}
+          // chapterNumber={this.state.chapter}
           isOpen={this.state.armoryOpen}
           type="armory"
+          // imgPath="public/assets/treeBoat.jpg"
+        />
+        <TactoriusModal
+          // toggleModal={() => {
+          //   setLocalStorage(auth, 0, {}, {}, {}, '');
+          //   this.setState({ configModalOpen: false, chapter: 0 });
+          // }}
+          isOpen={this.state.endChapterOpen}
+          type="chapterEnd"
           // imgPath="public/assets/treeBoat.jpg"
         />
       </div>

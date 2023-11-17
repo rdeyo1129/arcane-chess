@@ -36,7 +36,7 @@ router.post('/register', (req, res) => {
         games: [],
         campaign: {
           // chapter: 0,
-          topScores: [],
+          topScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           // config: {
           //   points: null,
           //   color: 'White',

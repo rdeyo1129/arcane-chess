@@ -99,12 +99,13 @@ export class UnwrappedCampaign extends React.Component<
           height={40}
           onClick={() => {
             setLocalStorage({
-              auth: { user: { id: '' } },
+              auth,
               chapter: 0,
               config: {},
               nodeScores: {},
               inventory: {},
               nodeId: '',
+              chapterEnd: false,
             });
             this.setState({ chapter: 0 });
           }}
@@ -119,6 +120,7 @@ export class UnwrappedCampaign extends React.Component<
               nodeScores: {},
               inventory: {},
               nodeId: '',
+              chapterEnd: false,
             });
             this.setState({ configModalOpen: false, chapter: 0 });
           }}

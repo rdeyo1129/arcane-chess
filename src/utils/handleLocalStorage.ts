@@ -5,6 +5,7 @@ export const setLocalStorage = ({
   nodeScores = {},
   inventory = {},
   nodeId = '',
+  chapterEnd = false,
 } = {}) => {
   const id = auth.user.id; // Replace 'defaultId' with a suitable default
 
@@ -27,6 +28,7 @@ export const setLocalStorage = ({
       nodeScores: { ...existingData.nodeScores, ...nodeScores },
       inventory: { ...existingData.inventory, ...inventory },
       nodeId: nodeId || existingData.nodeId,
+      chapterEnd: chapterEnd || existingData.chapterEnd,
     },
   };
 

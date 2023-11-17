@@ -1,5 +1,6 @@
 import React from 'react';
-import _, { get } from 'lodash';
+import axios from 'axios';
+import _, { get, set } from 'lodash';
 // import { Link, withRouter } from "react-router-dom";
 // import { connect } from "react-redux";
 
@@ -110,6 +111,8 @@ interface missionJsonI {
   [key: string]: {
     fen: string;
     id: string;
+    prereq: string;
+    boss?: boolean;
   };
 }
 
@@ -119,6 +122,23 @@ const missionJson: missionJsonI = {
     // fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
     fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
     id: 'mission-1',
+    prereq: '',
+  },
+  'mission-2': {
+    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
+    id: 'mission-2',
+    prereq: 'mission-1',
+  },
+  'mission-3': {
+    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
+    id: 'mission-3',
+    prereq: 'mission-2',
+  },
+  'mission-4': {
+    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
+    id: 'mission-4',
+    prereq: 'mission-3',
+    boss: true,
   },
 };
 
@@ -135,6 +155,7 @@ interface ArcanaMap {
 
 interface State {
   turn: string;
+  playerClock: number;
   playerColor: string;
   engineColor: string;
   thinking: boolean;
@@ -191,6 +212,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         ].fen.split(' ')[1] === 'w'
           ? 'white'
           : 'black',
+      playerClock: 600,
       playerColor: getLocalStorage(this.props.auth.user.id).config.color,
       engineColor:
         getLocalStorage(this.props.auth.user.id).config.color === 'white'
@@ -391,6 +413,65 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.setState({ arcaneHover: arcane });
   };
 
+  handleVictory = (auth: object) => {
+    setLocalStorage({
+      ...getLocalStorage(this.props.auth.user.id),
+      auth,
+      nodeScores: {
+        ...getLocalStorage(this.props.auth.user.id).nodeScores,
+        [this.state.nodeId]:
+          this.state.playerColor === 'white'
+            ? (100000 - (GameBoard.material[0] - GameBoard.material[1])) *
+              this.state.playerClock
+            : (100000 - (GameBoard.material[1] - GameBoard.material[0])) *
+              this.state.playerClock,
+      },
+      chapterEnd: missionJson[this.state.nodeId].boss ? true : false,
+    });
+    if (missionJson[this.state.nodeId].boss) {
+      const chapterPoints = _.reduce(
+        getLocalStorage(this.props.auth.user.id).nodeScores,
+        (accumulator, value) => {
+          return accumulator + value;
+        },
+        0
+      );
+      // set user top score if new
+      if (
+        chapterPoints >
+        getLocalStorage(this.props.auth.user.id).auth.user.campaign.topScores[
+          getLocalStorage(this.props.auth.user.id).chapter
+        ]
+      ) {
+        // Retrieve the entire data structure from local storage once
+        const localStorageData = getLocalStorage(this.props.auth.user.id);
+
+        // Calculate the chapter index
+        const chapterIndex =
+          getLocalStorage(this.props.auth.user.id).chapter - 1;
+
+        // Update the specific chapter points in the campaign topScores array
+        localStorageData.auth.user.campaign.topScores[chapterIndex] =
+          chapterPoints;
+
+        // Save the updated data back to local storage
+        setLocalStorage(localStorageData);
+        axios
+          .post('/api/campaign/topScores', {
+            userId: this.props.auth.user.id,
+            chapterPoints,
+            chapterNumber: getLocalStorage(this.props.auth.user.id).chapter,
+          })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log('top score post err: ', err);
+          });
+      }
+    }
+  };
+
   componentDidMount() {
     this.setState({
       turn:
@@ -410,14 +491,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: object, prevState: { gameOver: boolean }) {
-    if (this.state.gameOver !== prevState.gameOver) {
-      this.setState({ gameOver: true, gameOverType: CheckResult().gameResult });
-    }
+    // if (this.state.gameOver !== prevState.gameOver) {
+    //   this.setState({ gameOver: true, gameOverType: CheckResult().gameResult });
+    // }
   }
 
   render() {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
+    console.log(GameBoard.material);
     return (
       <div className="tactorius-board fade">
         <TactoriusModal
@@ -474,7 +556,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   // onClick={() => {
                   //   this.setState({ selected: 'a' });
                   // }}
-                  color="V"
+                  backgroundColorOverride="#333333"
+                  color="B"
                   text="WHITE"
                   width={190}
                 />
@@ -483,9 +566,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   // onClick={() => {
                   //   this.setState({ selected: 'a' });
                   // }}
-                  color="V"
+                  backgroundColorOverride="#333333"
+                  color="B"
                   text="BLACK"
                   width={190}
+                  disabled={false}
                 />
               </div>
               <div className="arcana-select">
@@ -588,11 +673,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         gameOver: true,
                         gameOverType: CheckResult().gameResult,
                       });
-                      setLocalStorage({
-                        ...getLocalStorage(this.props.auth.user.id),
-                        auth,
-                        nodeScores: { [this.state.nodeId]: GameBoard.material },
-                      });
+                      if (
+                        CheckResult().gameResult ===
+                        `${
+                          getLocalStorage(this.props.auth.user.id).config.color
+                        } mates`
+                      ) {
+                        this.handleVictory(auth);
+                      }
                     } else {
                       this.setState(
                         {
@@ -662,14 +750,39 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 backgroundColorOverride="#222222"
               />
             </div>
-            <div className="history"></div>
-            <div className="buttons"></div>
+            <div className="history">
+              {this.state.history.map((move, i) => (
+                <div key={i}>{move}</div>
+              ))}
+            </div>
+            <div className="buttons">
+              <Button
+                className="tertiary"
+                onClick={() => {}}
+                color="B"
+                // strong={true}
+                text="1/2"
+                width={100}
+                // fontSize={30}
+                backgroundColorOverride="#222222"
+              />
+              <Button
+                className="tertiary"
+                onClick={() => {}}
+                color="B"
+                // strong={true}
+                text="RESIGN"
+                width={100}
+                // fontSize={30}
+                backgroundColorOverride="#222222"
+              />
+            </div>
             <div className="info-avatar">
               <div className="avatar"></div>
               <div className="info">
                 <h3 className="name">Medavas</h3>
                 <div className="thinking">
-                  {this.state.thinking ? <Dots /> : null}
+                  {this.state.turn === this.state.playerColor ? <Dots /> : null}
                 </div>
               </div>
             </div>

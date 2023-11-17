@@ -10,6 +10,8 @@ interface ButtonProps {
   disabled?: boolean;
   strong?: boolean;
   submit?: boolean;
+  fontSize?: number;
+  backgroundColorOverride?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   height = 40,
   disabled = false,
   submit = false,
+  backgroundColorOverride = '#555555',
   ...props
 }: ButtonProps) => {
   const { className, color, onClick, strong } = props as ButtonProps;
@@ -28,6 +31,8 @@ const Button: React.FC<ButtonProps> = ({
       style={{
         height: `${height}px`,
         width: `${width}px`,
+        fontSize: `${props.fontSize}px`,
+        background: `${backgroundColorOverride}`,
       }}
       onClick={disabled ? undefined : onClick}
       disabled={disabled}

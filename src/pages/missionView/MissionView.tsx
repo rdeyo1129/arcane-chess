@@ -619,7 +619,61 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               <h3>10:00</h3>
             </div>
           </div>
-          <div className="history-buttons-player"></div>
+          <div className="nav-history-buttons-player">
+            <div className="nav">
+              <Button
+                className="tertiary"
+                onClick={() => {}}
+                color="B"
+                strong={true}
+                text="<<"
+                width={100}
+                fontSize={30}
+                backgroundColorOverride="#222222"
+              />
+              <Button
+                className="tertiary"
+                onClick={() => {}}
+                color="B"
+                strong={true}
+                text="<"
+                width={100}
+                fontSize={30}
+                backgroundColorOverride="#222222"
+              />
+              <Button
+                className="tertiary"
+                onClick={() => {}}
+                color="B"
+                strong={true}
+                text=">"
+                width={100}
+                fontSize={30}
+                backgroundColorOverride="#222222"
+              />
+              <Button
+                className="tertiary"
+                onClick={() => {}}
+                color="B"
+                strong={true}
+                text=">>"
+                width={100}
+                fontSize={30}
+                backgroundColorOverride="#222222"
+              />
+            </div>
+            <div className="history"></div>
+            <div className="buttons"></div>
+            <div className="info-avatar">
+              <div className="avatar"></div>
+              <div className="info">
+                <h3 className="name">Medavas</h3>
+                <div className="thinking">
+                  {this.state.thinking ? <Dots /> : null}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

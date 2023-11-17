@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 800">
   <g id="brown-board">
-    <g id="Light" fill="#A57FD4">
+    <g id="Light" fill="#3366CC">
+    <!-- #A57FD4 purple -->
       <rect width="800" height="800"/>
     </g>
     <g id="Frame" fill="none">
       <rect width="800" height="800"/>
     </g>
-    <g id="Dark" fill="#585858">
+    <g id="Dark" fill="#2B2B2B">
+    <!-- #585858 grey -->
       <g id="raz">
         <g id="dva">
           <g id="tri">

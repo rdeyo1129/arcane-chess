@@ -456,7 +456,17 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 </div>
               </div>
             </div>
-            <div className="dialogue"></div>
+            <div className="dialogue">
+              {this.state.arcaneHover !== '' ? (
+                <div className="arcana-detail">
+                  <h3>{arcana[this.state.arcaneHover].name}</h3>
+                  <p>{arcana[this.state.arcaneHover].description}</p>
+                </div>
+              ) : (
+                <div>dialogue</div>
+                // hints, taunts, eval + or - dialogue
+              )}
+            </div>
             <div className="arcana">
               <div className="arcana-side-buttons">
                 <Button

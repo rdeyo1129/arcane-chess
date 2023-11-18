@@ -292,12 +292,58 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
           >
             <div className="endgame">
               <div className="left">
-                Victory! You fought with great resource and conqured your
-                opponent! You are eager for the obstacles and challenges that
-                you are working hard towards. Your Progress has been saved.
+                <div
+                  style={{
+                    textAlign: 'center',
+                    background: '#333333',
+                    padding: '10px',
+                  }}
+                >
+                  <h1>Victory!</h1>
+                </div>
+                <img
+                  className="endgame-image"
+                  src="public/assets/victory.jpg"
+                />
+                <div
+                  style={{
+                    textAlign: 'center',
+                    background: '#333333',
+                    padding: '10px',
+                  }}
+                >
+                  You fought with great resource and conqured your opponent! You
+                  are eager for the obstacles and challenges that you are
+                  working hard towards. Your Progress has been saved.
+                </div>
               </div>
               <div className="middle"></div>
-              <div className="right">right</div>
+              <div className="right">
+                <div className="pog"></div>
+                <div className="buttons">
+                  <Button
+                    text="ANALYZE"
+                    className="secondary"
+                    color="B"
+                    width={160}
+                    height={90}
+                    disabled
+                    // onClick={() => {
+                    //   this.props.navigate('/book');
+                    // }}
+                  />
+                  <Button
+                    text="CONTINUE"
+                    className="primary"
+                    width={180}
+                    height={90}
+                    color="B"
+                    onClick={() => {
+                      this.props.navigate('/book');
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </Modal>
         ) : this.props.type === 'defeat' ? (
@@ -308,12 +354,66 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
           >
             <div className="endgame">
               <div className="left">
-                Defeat... You have fought honorably and accept your loss with a
-                critical yet respectful mindset. You are eager to learn from
-                your mistakes and improve.
+                <div
+                  style={{
+                    textAlign: 'center',
+                    background: '#333333',
+                    padding: '10px',
+                  }}
+                >
+                  <h1>Defeat...</h1>
+                </div>
+                <img className="endgame-image" src="public/assets/reaper.jpg" />
+                <div
+                  style={{
+                    textAlign: 'center',
+                    background: '#333333',
+                    padding: '10px',
+                  }}
+                >
+                  You have fought honorably and accept your loss with a critical
+                  yet respectful mindset. You are eager to learn from your
+                  mistakes and improve.
+                </div>
               </div>
               <div className="middle"></div>
-              <div className="right">right</div>
+              <div className="right">
+                <div className="buttons">
+                  <div className="left-buttons">
+                    <Button
+                      text="TO CHAPTER"
+                      className="secondary"
+                      color="B"
+                      width={160}
+                      height={40}
+                      onClick={() => {
+                        this.props.navigate('/book');
+                      }}
+                    />
+                    <Button
+                      text="ANALYZE"
+                      className="secondary"
+                      color="B"
+                      width={160}
+                      height={40}
+                      disabled
+                      // onClick={() => {
+                      //   this.props.navigate('/book');
+                      // }}
+                    />
+                  </div>
+                  <Button
+                    text="RETRY"
+                    className="primary"
+                    width={180}
+                    height={90}
+                    color="B"
+                    onClick={() => {
+                      location.reload();
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </Modal>
         ) : this.props.type === 'chapterEnd' ? (
@@ -322,7 +422,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             isOpen={this.props.isOpen}
             ariaHideApp={false}
           >
-            <span>YOU HAVE DEFEATED THE BOSS. CHAPTER END. YOUR SCORE: 5M</span>
+            <span>
+              YOU HAVE DEFEATED THE BOSS. CHAPTER END. YOUR SCORE:{' '}
+              {
+                getLocalStorage(this.props.auth.user.id).auth.user.campaign
+                  .topScores[
+                  getLocalStorage(this.props.auth.user.id).chapter - 1
+                ]
+              }
+            </span>
           </Modal>
         ) : (
           <div>other modal</div>

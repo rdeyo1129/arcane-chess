@@ -194,14 +194,73 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       nodeScores: getLocalStorage(this.props.auth.user.id)?.nodeScores,
       inventory: getLocalStorage(this.props.auth.user.id)?.inventory,
       endChapterOpen: getLocalStorage(this.props.auth.user.id)?.chapterEnd,
+      reducedScore: _.reduce(
+        getLocalStorage(this.props.auth.user.id).nodeScores,
+        (accumulator, value) => {
+          return accumulator + value;
+        },
+        0
+      ),
+      animatedValue: 0,
+      targetValue: 0,
+      credits: 4000,
+      // _.reduce(
+      //   getLocalStorage(this.props.auth.user.id).nodeScores,
+      //   (accumulator, value) => {
+      //     return accumulator + value;
+      //   },
+      //   0
+      // ),
+      creditsAnimation: 0,
     };
   }
+
+  cubicEaseOut(t: number) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  componentDidMount() {
+    const targetValue = this.state.reducedScore * this.state.config?.multiplier;
+    this.setState({ targetValue });
+
+    const startTime = Date.now();
+    const duration = 2000;
+
+    const animate = () => {
+      const currentTime = Date.now();
+      const elapsed = currentTime - startTime;
+      const normalizedTime = elapsed / duration;
+
+      if (normalizedTime < 1) {
+        const easedTime = this.cubicEaseOut(normalizedTime);
+        const nextValue = targetValue * easedTime;
+        this.setState({ animatedValue: nextValue });
+        requestAnimationFrame(animate);
+      } else {
+        this.setState({ animatedValue: targetValue });
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }
+
   render() {
     const { auth } = this.props;
     const allNodes = _.flatMap(
       { missionJson, lessonJson, templeJson },
       (value, key) => _.map(value, (node, id) => ({ ...node, id, type: key }))
     );
+    // Convert number to string with comma formatting
+    const formattedNumber = Math.round(
+      this.state.animatedValue
+    ).toLocaleString();
+
+    // Split formatted number into individual characters
+    const digits = formattedNumber.split('').map((char, index) => (
+      <span key={index} className="digit-box">
+        {char}
+      </span>
+    ));
     return (
       <div className="book">
         <div className="top">
@@ -361,18 +420,18 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               <Button
                 text="BACK"
                 className="secondary"
-                color="V"
-                width={120}
-                height={40}
+                color="B"
+                width={160}
+                height={60}
                 disabled={false}
               />
             </Link>
             <Button
               text="ARMORY"
               className="secondary"
-              color="V"
-              width={120}
-              height={40}
+              color="B"
+              width={160}
+              height={60}
               disabled={false}
               onClick={() => {
                 this.setState({ armoryOpen: true });
@@ -380,20 +439,19 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
             />
           </div>
           <div className="center">
-            <span>
-              {/* {this.state.inventory.points} */}
-              {this.state.pointsEx} X {this.state.config?.multiplier} ={' '}
-              {this.state.pointsEx * this.state.config?.multiplier} kudos
-            </span>
+            <div className="points">
+              <span className="digit-box">{digits}</span>
+            </div>
+            kudos
           </div>
           <div className="right">
             <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
               <Button
                 text="START"
                 className="primary"
-                color="V"
-                width={120}
-                height={40}
+                color="B"
+                width={160}
+                height={60}
                 // todo until clickthrough messages are done, keep button disabled
                 disabled={this.state.selectedSwatch === ''}
               />

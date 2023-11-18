@@ -37,21 +37,45 @@
   height: 100%;
   max-height: 574px;
   .left {
-    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 380px;
     height: 100%;
     max-height: 574px;
     background: #222222;
+    margin: 0 10px 0 10px;
+    img.endgame-image {
+      max-width: 380px;
+    }
   }
   .middle {
-    width: 480px;
+    min-width: 480px;
     height: 100%;
     max-height: 574px;
     background: #00000000;
   }
   .right {
+    display: flex;
+    flex-direction: column-reverse;
+    // justify-content: space-evenly;
+    align-items: center;
     width: 400px;
     height: 100%;
     max-height: 574px;
     background: #333333;
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 350px;
+      height: 110px;
+      .left-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 90px;
+      }
+    }
   }
 }

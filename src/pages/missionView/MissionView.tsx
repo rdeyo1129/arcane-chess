@@ -61,6 +61,7 @@ import { SinglePlayer } from '../singlePlayer/SinglePlayer';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import Toggle from '../../components/Toggle/Toggle';
+import ChessClock from '../../components/Clock/Clock';
 
 import { Chessground } from '../../chessground/chessgroundMod';
 
@@ -113,6 +114,7 @@ interface missionJsonI {
     id: string;
     prereq: string;
     boss?: boolean;
+    playerClock: number | null;
   };
 }
 
@@ -123,22 +125,26 @@ const missionJson: missionJsonI = {
     fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
     id: 'mission-1',
     prereq: '',
+    playerClock: 5,
   },
   'mission-2': {
     fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
     id: 'mission-2',
     prereq: 'mission-1',
+    playerClock: 5,
   },
   'mission-3': {
     fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
     id: 'mission-3',
     prereq: 'mission-2',
+    playerClock: 50,
   },
   'mission-4': {
     fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
     id: 'mission-4',
     prereq: 'mission-3',
     boss: true,
+    playerClock: 150,
   },
 };
 
@@ -155,7 +161,7 @@ interface ArcanaMap {
 
 interface State {
   turn: string;
-  playerClock: number;
+  playerClock: number | null;
   playerColor: string;
   engineColor: string;
   thinking: boolean;
@@ -212,7 +218,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         ].fen.split(' ')[1] === 'w'
           ? 'white'
           : 'black',
-      playerClock: 600,
+      playerClock:
+        missionJson[`${getLocalStorage(this.props.auth.user.id).nodeId}`]
+          .playerClock,
       playerColor: getLocalStorage(this.props.auth.user.id).config.color,
       engineColor:
         getLocalStorage(this.props.auth.user.id).config.color === 'white'
@@ -422,9 +430,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         [this.state.nodeId]:
           this.state.playerColor === 'white'
             ? (100000 - (GameBoard.material[0] - GameBoard.material[1])) *
-              this.state.playerClock
+              (this.state.playerClock ? this.state.playerClock : 1)
             : (100000 - (GameBoard.material[1] - GameBoard.material[0])) *
-              this.state.playerClock,
+              (this.state.playerClock ? this.state.playerClock : 1),
       },
       chapterEnd: missionJson[this.state.nodeId].boss ? true : false,
     });
@@ -704,7 +712,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               />
             </div>
             <div className="player-time">
-              <h3>10:00</h3>
+              <h3>
+                <ChessClock initialTime={this.state.playerClock} />
+              </h3>
             </div>
           </div>
           <div className="nav-history-buttons-player">
@@ -782,7 +792,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               <div className="info">
                 <h3 className="name">Medavas</h3>
                 <div className="thinking">
-                  {this.state.turn === this.state.playerColor ? <Dots /> : null}
+                  {/* {this.state.turn === this.state.playerColor ? <Dots /> : null} */}
                 </div>
               </div>
             </div>

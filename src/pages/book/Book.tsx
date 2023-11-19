@@ -232,7 +232,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       const normalizedTime = elapsed / duration;
 
       if (normalizedTime < 1) {
-        const easedTime = this.cubicEaseOut(normalizedTime);
+        const easedTime = normalizedTime;
         const nextValue = targetValue * easedTime;
         this.setState({ animatedValue: nextValue });
         requestAnimationFrame(animate);

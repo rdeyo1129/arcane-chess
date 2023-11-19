@@ -1,0 +1,8 @@
+.timer-bar {
+  transition:
+    width 1s linear,
+    background-color 1s linear;
+  height: 20px; // Example height
+  background-color: green;
+  // Other styling as needed
+}

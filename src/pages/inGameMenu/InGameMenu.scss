@@ -25,18 +25,6 @@
         overflow-y: scroll;
       }
     }
-    .faction-input {
-      // height: 120px;
-      width: 200px;
-      display: grid;
-      grid-template-columns: repeat(4, 50px);
-      grid-template-rows: repeat(2, 46px);
-      // @each $key, $value in $menu_colors {
-      //   .tertiary-#{$key} {
-      //     // background: $value;
-      //   }
-      // }
-    }
   }
   .board-view {
     position: relative;
@@ -54,12 +42,13 @@
       .boards {
         width: 100%;
         height: 100%;
+        overflow-y: scroll;
       }
       .title-description {
         width: 100%;
         height: 100%;
         .description {
-          height: 240px;
+          height: 200px;
           width: 280px;
           border: none;
           background: #222222;
@@ -76,6 +65,13 @@
   }
   .bottom-left {
     overflow: hidden;
+    width: 400px;
+    height: 100%;
+    .faction-input {
+      display: grid;
+      grid-template-columns: repeat(4, 50px);
+      grid-template-rows: repeat(2, 46px);
+    }
   }
   .bottom-center {
     z-index: 30; // patch to display this div over chessground custom svg area
@@ -102,6 +98,13 @@
       .picker-extension {
         height: 100%;
         display: flex;
+      }
+      .content {
+        display: flex;
+      }
+      .reset-output {
+        display: flex;
+        grid-column: span 2;
       }
     }
   }

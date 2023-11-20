@@ -99,7 +99,8 @@ interface lessonNode {
   id: string; // 'lesson-1';
   title: string;
   time: [number, number]; // seconds
-  chatLog: [string | null, string | null];
+  //
+  chatLog: string;
   reward: (number | string[])[];
   prereq: string;
   boards: {
@@ -117,6 +118,7 @@ interface lessonNode {
         royaltyV: string[];
         royaltyE: string[];
       };
+      varVar: string;
       whiteArcane?: { [key: string]: number };
       blackArcane?: { [key: string]: number };
       // orientation: string;

@@ -22,6 +22,7 @@
     "chessgroundx": "github:rdeyo1129/night-chess-ui-2",
     "classnames": "^2.3.1",
     "express": "^4.17.1",
+    "immer": "^10.0.3",
     "is-empty": "^1.2.0",
     "jquery": "^3.6.0",
     "jsonwebtoken": "^8.5.1",

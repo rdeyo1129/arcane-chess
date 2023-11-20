@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import fs from 'fs';
 // import { Link, withRouter } from "react-router-dom";
 // import { connect } from "react-redux";
 
@@ -51,6 +52,19 @@ import Toggle from '../../components/Toggle/Toggle';
 import { Chessground } from '../../chessground/chessgroundMod';
 import e from 'express';
 
+import book1 from 'src/data/books/book1.json';
+import book2 from 'src/data/books/book2.json';
+import book3 from 'src/data/books/book3.json';
+import book4 from 'src/data/books/book4.json';
+import book5 from 'src/data/books/book5.json';
+import book6 from 'src/data/books/book6.json';
+import book7 from 'src/data/books/book7.json';
+import book8 from 'src/data/books/book8.json';
+import book9 from 'src/data/books/book9.json';
+import book10 from 'src/data/books/book10.json';
+import book11 from 'src/data/books/book11.json';
+import book12 from 'src/data/books/book12.json';
+
 // interface FrontPageProps {
 //   // whiteFaction: Faction;
 //   // blackFaction: Faction;
@@ -94,6 +108,47 @@ export const royaltyPickupArray = {
   E: 'orange',
 };
 
+interface Node {
+  id: string; // 'lesson-1';
+  title: string;
+  time: [number, number]; // seconds
+  description1: string;
+  description2: string;
+  reward: (number | string[])[];
+  prereq: string;
+  opponent: string;
+  boards: {
+    [key: string]: {
+      fen: string;
+      fenHistory: string[];
+      history: string[];
+      // is arrows this a map?
+      arrows?: string[][];
+      // todo initRoyalties in arcaneChess return object
+      royalties: {
+        royaltyQ: string[];
+        royaltyM: string[];
+        royaltyT: string[];
+        royaltyV: string[];
+        royaltyE: string[];
+      };
+      varVar: string;
+      whiteArcane?: { [key: string]: number };
+      blackArcane?: { [key: string]: number };
+      // orientation: string;
+      config: {
+        [key: string]: boolean | string | number;
+      };
+      dialogue: [
+        // [ 'narrator', 'message']
+        // [ 'medavas', 'message']
+        // no text from creator, just put in a blank message that doesn't add anything to the ui
+        [string | null, string | null],
+      ];
+    };
+  };
+}
+
 interface State {
   thinking: boolean;
   thinkingTime: number;
@@ -114,6 +169,19 @@ interface State {
       };
       picks: number;
     };
+  };
+  description: string;
+  playing: boolean;
+  bookObject: object;
+  nodeObject: object;
+  panelObject: object;
+  selectedBook: number;
+  newNodeName: string;
+  newBoardName: string;
+  currNode: string;
+  currPanel: string;
+  books: {
+    [key: number]: object;
   };
 }
 
@@ -150,9 +218,46 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         f: { disabled: false, powers: {}, picks: 0 },
       },
       // generatedName: this.generateName(),
+      description: '',
+      playing: false,
+      bookObject: book1,
+      nodeObject: {},
+      panelObject: {},
+      selectedBook: 1,
+      newNodeName: '',
+      newBoardName: '',
+      currNode: '',
+      currPanel: '',
+      books: {
+        1: book1,
+        2: book2,
+        3: book3,
+        4: book4,
+        5: book5,
+        6: book6,
+        7: book7,
+        8: book8,
+        9: book9,
+        10: book10,
+        11: book11,
+        12: book12,
+      },
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
   }
+
+  // userflow
+  // select level (book)
+  // select node (chapter)
+  // select board (only need multiple for lessons and temples, not missions)
+  // edit a board to your desire
+  // play test the board
+  // save the board (save board button)
+  // // this saves the board and adds to the fen history
+  // then, when using the arrows, it will go through the fen history of
+
+  // description is for each panel
+  // each panel has text, you might not be able to dress it up the way you want, this is where the writing needs to be concise and clear and gets the point across
 
   initializeArcaneChessAndTest = (fen: string) => {
     // const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
@@ -388,9 +493,70 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               })}
             </div>
             <div className="history">
-              {this.state.history.map((move, i) => (
-                <div key={i}>{move}</div>
-              ))}
+              {this.state.playing ? (
+                this.state.history.map((move, i) => <div key={i}>{move}</div>)
+              ) : (
+                <div>
+                  {_.map(this.state.bookObject, (node: any) => {
+                    return (
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        {node.id}
+                        <div
+                          style={{
+                            textAlign: 'center',
+                            width: '30px',
+                            height: '30px',
+                            padding: '4px',
+                            background: 'darkred',
+                            cursor: 'pointer',
+                          }}
+                          // delete node
+                          onClick={() => {
+                            this.setState((prevState) => ({
+                              ...prevState,
+                              bookObject: _.omit(prevState.bookObject, node.id),
+                            }));
+                          }}
+                        >
+                          -
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <Input
+                    color="B"
+                    value={this.state.newNodeName}
+                    width={110}
+                    onChange={(value) => {
+                      this.setState({ newNodeName: value });
+                    }}
+                  />
+                  <Button
+                    text="+"
+                    className="tertiary"
+                    color="G"
+                    height={31}
+                    width={110}
+                    onClick={() => {
+                      this.setState((prevState) => ({
+                        ...prevState,
+                        bookObject: {
+                          ...prevState.bookObject,
+                          [this.state.newNodeName]: {
+                            id: this.state.newNodeName,
+                            boards: {},
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -481,8 +647,76 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         </div>
         <div className="top-right">
           <div className="boards-title-description">
-            <div className="boards"></div>
+            <div className="boards">
+              {_.map(this.state.panelObject, (panel: any) => {
+                return (
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    {panel.id}
+                    <div
+                      style={{
+                        textAlign: 'center',
+                        width: '30px',
+                        height: '30px',
+                        padding: '4px',
+                        background: 'darkred',
+                        cursor: 'pointer',
+                      }}
+                      // delete node
+                      onClick={() => {
+                        this.setState((prevState) => ({
+                          ...prevState,
+                          panelObject: _.omit(prevState.panelObject, panel.id),
+                        }));
+                      }}
+                    >
+                      -
+                    </div>
+                  </div>
+                );
+              })}
+              <Input
+                color="B"
+                value={this.state.newBoardName}
+                width={110}
+                onChange={(value) => {
+                  this.setState({ newBoardName: value });
+                }}
+              />
+              <Button
+                text="+"
+                className="tertiary"
+                color="G"
+                height={31}
+                width={110}
+                onClick={() => {
+                  this.setState((prevState) => ({
+                    ...prevState,
+                    panelObject: {
+                      ...prevState.panelObject,
+                      [this.state.newBoardName]: {
+                        id: this.state.newBoardName,
+                      },
+                    },
+                  }));
+                }}
+              />
+            </div>
             <div className="title-description">
+              <Input
+                // id="test"
+                className="input title"
+                color="B"
+                height={40}
+                width={280}
+                placeholder="TITLE"
+                value={this.state.fen}
+                onChange={(value) => this.setFen(value)}
+              />
               <Input
                 // id="test"
                 className="input title"
@@ -505,7 +739,13 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 // textArg={this.state.fenHistory[this.state.fenHistory.length - 1]}
                 // setTextArg={() => this.setFen}
               /> */}
-              <input type="text" className="description"></input>
+              <textarea
+                className="description"
+                style={{ color: 'white' }}
+                onChange={(event) =>
+                  this.setState({ description: event.target.value })
+                }
+              ></textarea>
             </div>
           </div>
           <div className="piece-pickup">
@@ -585,15 +825,16 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
           </div>
         </div>
         <div className="bottom-left">
-          <div className="eval-output">
-            {this.state.thinking ? 'thinking' : null}
-            <span>{this.state.pvLine}</span>
-          </div>
           <div className="faction-input">
             {['R', 'O', 'W', 'Y', 'G', 'BK', 'B', 'V'].map((color, index) => (
-              <div key={index} className={`tertiary-${color}`}>
-                {greekLetters[index]}
-              </div>
+              <Button
+                text={greekLetters[index]}
+                key={index}
+                className="tertiary"
+                color={color} // Ensure this prop is used to set the background color in Button's styles
+                width={50}
+                height={46}
+              ></Button>
             ))}
           </div>
         </div>
@@ -643,37 +884,59 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         </div>
         <div className="bottom-right">
           <div className="create-buttons">
-            <Button
-              text="PUZZLE"
-              onClick={() => null}
-              className="tertiary"
-              color="B"
-              height={46}
-              width={200}
-              disabled={false}
-            />
+            <div className="content">
+              <Button
+                text="PUZZLE"
+                onClick={() => null}
+                className="tertiary"
+                color="B"
+                height={46}
+                width={100}
+                disabled={false}
+              />
+              <Button
+                text="RAND"
+                onClick={() => null}
+                className="tertiary"
+                color="B"
+                height={46}
+                width={100}
+                disabled={false}
+              />
+            </div>
             <div className="picker-extension">
               <Button className="tertiary" color="B" text="MOUSE" height={46} />
               <Button className="tertiary" color="B" text="TRASH" height={46} />
             </div>
-            <Button
-              text="BRAINSTORM"
-              onClick={() => null}
-              className="tertiary"
-              color="B"
-              height={46}
-              width={200}
-              disabled={false}
-            />
-            <Button
-              text="OUTPUT"
-              onClick={() => null}
-              className="tertiary"
-              color="B"
-              height={46}
-              width={200}
-              disabled={false}
-            />
+            <div className="reset-output">
+              <Button
+                text="RESET PANEL"
+                onClick={() => null}
+                className="tertiary"
+                color="B"
+                height={46}
+                width={133}
+                disabled={false}
+              />
+              <Button
+                text="SAVE PANEL"
+                onClick={() => null}
+                className="tertiary"
+                color="B"
+                height={46}
+                width={133}
+                disabled={false}
+              />
+              <Button
+                text="SAVE NODE"
+                onClick={() => null}
+                className="tertiary"
+                color="B"
+                height={46}
+                width={133}
+                disabled={false}
+              />
+            </div>
           </div>
         </div>
       </div>

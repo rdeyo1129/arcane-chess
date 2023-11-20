@@ -1,6 +1,6 @@
 @import 'src/styles/_components.scss';
 
-.tactorius-board .panels-board {
+.creator {
   width: 100%;
   height: 100vh;
   max-height: 574px;
@@ -8,17 +8,9 @@
   display: grid;
   justify-content: center;
   grid-template-columns: 400px 1fr 400px;
-  grid-template-rows: 60px 480px 1fr;
+  grid-template-rows: 480px;
   background: rgba(34, 34, 34);
-  .fen-input {
-    display: flex;
-    justify-content: center;
-  }
-  .time-input {
-    display: flex;
-    justify-content: center;
-  }
-  .arcane-faction-input {
+  .top-left {
     .arcane-history {
       display: flex;
       height: 360px;
@@ -34,11 +26,11 @@
       }
     }
     .faction-input {
-      height: 120px;
-      width: 100%;
+      // height: 120px;
+      width: 200px;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: repeat(4, 50px);
+      grid-template-rows: repeat(2, 46px);
       // @each $key, $value in $menu_colors {
       //   .tertiary-#{$key} {
       //     // background: $value;
@@ -46,10 +38,33 @@
       // }
     }
   }
-  .pieces-buttons {
-    .preset-dropdown {
-      height: 60px;
-      background: #212121;
+  .board-view {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .top-right {
+    display: flex;
+    flex-direction: column;
+    .boards-title-description {
+      width: 400px;
+      height: 280px;
+      display: flex;
+      .boards {
+        width: 100%;
+        height: 100%;
+      }
+      .title-description {
+        width: 100%;
+        height: 100%;
+        .description {
+          height: 240px;
+          width: 280px;
+          border: none;
+          background: #222222;
+        }
+      }
     }
     .piece-pickup {
       display: grid;
@@ -58,23 +73,36 @@
       height: 300px;
       background: #111111;
     }
-    .create-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+  }
+  .bottom-left {
+    overflow: hidden;
+  }
+  .bottom-center {
+    z-index: 30; // patch to display this div over chessground custom svg area
+    display: grid;
+    grid-template-columns: 360px 120px;
+    grid-template-rows: 31px 31px 31px;
+    overflow: hidden;
+    .fen-input {
+      display: flex;
+      justify-content: center;
+      grid-column: span 2;
+    }
+    .time-input {
+      display: flex;
+      justify-content: center;
     }
   }
-  .grid-filler {
-    // width: 100vw;
-    // width: 1280px;
-    background: #000000;
-    background-image: linear-gradient(#000000 0%, navy 100%);
+  .bottom-right {
+    overflow: hidden;
+    .create-buttons {
+      display: grid;
+      grid-template-columns: 200px 200px;
+      grid-template-rows: 1fr 1fr;
+      .picker-extension {
+        height: 100%;
+        display: flex;
+      }
+    }
   }
-}
-
-.tactorius-board .board-view {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }

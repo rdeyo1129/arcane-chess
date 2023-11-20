@@ -224,7 +224,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
     this.setState({ targetValue });
 
     const startTime = Date.now();
-    const duration = 2000;
+    const duration = 1000;
 
     const animate = () => {
       const currentTime = Date.now();
@@ -247,7 +247,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
   render() {
     const { auth } = this.props;
     const allNodes = _.flatMap(
-      { missionJson, lessonJson, templeJson },
+      { lessonJson, templeJson, missionJson },
       (value, key) => _.map(value, (node, id) => ({ ...node, id, type: key }))
     );
     // Convert number to string with comma formatting
@@ -265,68 +265,73 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       <div className="book">
         <div className="top">
           <div className="inbox">
-            {allNodes
-              .filter((node) => {
-                const currLS = getLocalStorage(this.props.auth.user.id);
-
-                // Exclude nodes that are already in nodeScores
-                if (currLS.nodeScores && currLS.nodeScores[node.id]) {
-                  return false;
-                }
-                // Check for prerequisites
-                if (node.prereq && !currLS.nodeScores[node.prereq]) {
-                  return false;
-                }
-                return true;
-              })
-              .map((node, i) => {
+            <div className="messages">
+              {this.state.dialogueEx.map((message: string[], i: number) => {
                 return (
                   <div
                     key={i}
-                    className={`swatch${
-                      this.state.selectedSwatch === node.id ? '-selected' : ''
+                    className={`message${
+                      message[0] === 'narrator'
+                        ? '-narrator'
+                        : message[0] === 'hero'
+                        ? '-hero'
+                        : ''
                     }`}
-                    onClick={() => {
-                      const currLS = getLocalStorage(this.props.auth.user.id);
-                      this.setState({
-                        selectedSwatch: node.id,
-                      });
-                      setLocalStorage({
-                        auth: this.props.auth,
-                        chapter: currLS.chapter,
-                        config: currLS.config,
-                        nodeScores: currLS.nodeScores,
-                        inventory: currLS.inventory,
-                        nodeId: node.id,
-                        chapterEnd: currLS.chapterEnd,
-                      });
-                    }}
                   >
-                    <div className="title">{node.id}</div>
-                    <div className="time">time</div>
+                    <div className="name">{message[0]}</div>
+                    <div className="text">{message[1]}</div>
                   </div>
                 );
               })}
+            </div>
+            <div className="swatches">
+              {allNodes
+                .filter((node) => {
+                  const currLS = getLocalStorage(this.props.auth.user.id);
+
+                  // Exclude nodes that are already in nodeScores
+                  if (currLS.nodeScores && currLS.nodeScores[node.id]) {
+                    return false;
+                  }
+                  // Check for prerequisites
+                  if (node.prereq && !currLS.nodeScores[node.prereq]) {
+                    return false;
+                  }
+                  return true;
+                })
+                .map((node, i) => {
+                  return (
+                    <Button
+                      text={`NEXT ${node.id.split('-')[0].toLocaleUpperCase()}`}
+                      color="B"
+                      width={160}
+                      height={60}
+                      disabled={false}
+                      key={i}
+                      className={`swatch${
+                        this.state.selectedSwatch === node.id ? '-selected' : ''
+                      } secondary`}
+                      onClick={() => {
+                        const currLS = getLocalStorage(this.props.auth.user.id);
+                        this.setState({
+                          selectedSwatch: node.id,
+                        });
+                        setLocalStorage({
+                          auth: this.props.auth,
+                          chapter: currLS.chapter,
+                          config: currLS.config,
+                          nodeScores: currLS.nodeScores,
+                          inventory: currLS.inventory,
+                          nodeId: node.id,
+                          chapterEnd: currLS.chapterEnd,
+                        });
+                      }}
+                    />
+                  );
+                })}
+            </div>
           </div>
-          <div className="messages">
-            {this.state.dialogueEx.map((message: string[], i: number) => {
-              return (
-                <div
-                  key={i}
-                  className={`message${
-                    message[0] === 'narrator'
-                      ? '-narrator'
-                      : message[0] === 'hero'
-                      ? '-hero'
-                      : ''
-                  }`}
-                >
-                  <div className="name">{message[0]}</div>
-                  <div className="text">{message[1]}</div>
-                </div>
-              );
-            })}
-          </div>
+
           {/* <div className="board-view"> */}
           <div className="cg-wrap tactorius-board">
             <Chessground
@@ -416,6 +421,13 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         </div>
         <div className="bottom">
           <div className="left">
+            <div className="points">
+              <span className="digit-box">{digits}</span>
+            </div>
+            kudos
+          </div>
+          {/* <div className="center"></div> */}
+          <div className="right">
             <Link to="/campaign">
               <Button
                 text="BACK"
@@ -437,14 +449,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                 this.setState({ armoryOpen: true });
               }}
             />
-          </div>
-          <div className="center">
-            <div className="points">
-              <span className="digit-box">{digits}</span>
-            </div>
-            kudos
-          </div>
-          <div className="right">
             <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
               <Button
                 text="START"

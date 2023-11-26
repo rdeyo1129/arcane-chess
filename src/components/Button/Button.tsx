@@ -12,6 +12,7 @@ interface ButtonProps {
   submit?: boolean;
   fontSize?: number;
   backgroundColorOverride?: string;
+  styles?: React.CSSProperties;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -29,6 +30,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       className={`button ${className}-${color}${disabled ? '-disabled' : ''}`}
       style={{
+        ...props.styles,
         height: `${height}px`,
         width: `${width}px`,
         fontSize: `${props.fontSize}px`,

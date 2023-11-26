@@ -358,7 +358,7 @@ export function MakeMove(move) {
   }
 
   if (!move) {
-    console.log('make move error');
+    console.log('make move error', move);
   }
 
   if (
@@ -481,7 +481,12 @@ export function TakeMove() {
     }
   }
 
-  if (ARCANEFLAG(move) === 0 || move & MFLAGCNSM || move & MFLAGSHFT) {
+  if (
+    ARCANEFLAG(move) === 0 ||
+    move & MFLAGCNSM ||
+    move & MFLAGSHFT ||
+    move & MFLAGEP
+  ) {
     MovePiece(to, from);
   }
 

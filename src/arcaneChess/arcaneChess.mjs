@@ -59,6 +59,14 @@ import { PrintSqAttacked } from './board.mjs';
 import { MakeUserMove, engineMove } from './gui.mjs';
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
+import {
+  setWhiteArcana,
+  setBlackArcana,
+  whiteArcaneConfig,
+  blackArcaneConfig,
+} from './arcaneDefs.mjs';
+import { set } from 'lodash';
+
 export default function arcaneChess(
   whiteConfig = {},
   blackConfig = {},
@@ -144,14 +152,28 @@ export default function arcaneChess(
     return Promise.resolve(GameBoard.cleanPV);
   };
 
-  const startGame = (fen) => {
+  const startGame = (startFen, whiteConfig, blackConfig, varVar) => {
     // this needs to be assigned to something, the fen that gets passed in randomize();
 
-    ParseFen(fen);
+    setWhiteArcana(whiteConfig);
+    setBlackArcana(blackConfig);
+
+    if (varVar === '960') {
+      randomize(whiteConfig, blackConfig);
+    }
+
+    ParseFen(startFen);
 
     generatePowers();
 
     GenerateMoves();
+
+    console.log(whiteConfig, blackConfig);
+
+    console.log(GameBoard.whiteArcane);
+    console.log(GameBoard.blackArcane);
+    console.log(whiteArcaneConfig);
+    console.log(blackArcaneConfig);
 
     // // should take care of herrings but what about stalemate?
     // // todo assign generate moves with herrings to a variable and check here
@@ -173,7 +195,8 @@ export default function arcaneChess(
   return {
     // filesRanksBoard: () => InitFilesRanksBrd(),
     activateDyad: (type) => activateDyad(type),
-    startGame: (fen) => startGame(fen),
+    startGame: (fen, whiteConfig, blackConfig, varVar) =>
+      startGame(fen, whiteConfig, blackConfig, varVar),
     startCreate: (fen) => startCreate(fen),
     getScoreAndLine: (fen) => {
       return getScoreAndLine(fen);
@@ -199,7 +222,12 @@ export default function arcaneChess(
       // });
     },
     gameSim: (thinkingTime) => {
-      gameSim(thinkingTime);
+      return gameSim(thinkingTime);
+    },
+    changeVarVars: (varVar) => {
+      if (varVar === 'NORMAL') {
+        console.log('');
+      }
     },
   };
 }

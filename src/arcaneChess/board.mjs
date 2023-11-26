@@ -388,6 +388,7 @@ export function UpdateListsMaterial() {
     if (piece !== PIECES.EMPTY) {
       colour = PieceCol[piece];
 
+      console.log(colour);
       GameBoard.material[colour] += PieceVal[piece];
 
       GameBoard.pList[PCEINDEX(piece, GameBoard.pceNum[piece])] = sq;
@@ -446,68 +447,68 @@ export function ResetBoard() {
   GameBoard.pass = false;
 }
 
-export function randomize() {
-  const randomizer = (side) => {
-    const rank = [];
-    const queenTypesMap = ['Q', 'T', 'M', 'V'];
-
-    function d(num) {
-      return Math.floor(Math.random() * ++num);
-    }
-    function emptySquares() {
-      const arr = [];
-      for (let i = 0; i < 8; i++) if (rank[i] == undefined) arr.push(i);
-      return arr;
-    }
-
-    // white has arcane, randomize black
-    if (side === COLOURS.BLACK) {
-      if (whiteArcaneConfig.modsRAN) {
-        rank[d(2) * 2] = 'b';
-        rank[d(2) * 2 + 1] = 'b';
-        rank[emptySquares()[d(5)]] =
-          queenTypesMap[blackArcaneConfig.modsQTY].toLowerCase();
-        rank[emptySquares()[d(4)]] = 'n';
-        rank[emptySquares()[d(3)]] = 'n';
-        for (let x = 1; x <= 3; x++) {
-          rank[emptySquares()[0]] = x === 2 ? 'k' : 'r';
-        }
-        return rank.join('');
-      } else {
-        return `rnb${queenTypesMap[1].toLowerCase()}kbnr`;
-      }
-    }
-
-    // black has arcane, randomize white
-    if (side === COLOURS.WHITE) {
-      if (blackArcaneConfig.modsRAN) {
-        rank[d(2) * 2] = 'B';
-        rank[d(2) * 2 + 1] = 'B';
-        rank[emptySquares()[d(5)]] = queenTypesMap[whiteArcaneConfig.modsQTY];
-        rank[emptySquares()[d(4)]] = 'N';
-        rank[emptySquares()[d(3)]] = 'N';
-        for (let x = 1; x <= 3; x++) {
-          rank[emptySquares()[0]] = x === 2 ? 'K' : 'R';
-        }
-        return rank.join('');
-      } else {
-        return `RNB${queenTypesMap[whiteArcaneConfig.modsQTY]}KBNR`;
-      }
-    }
-  };
-
-  // todo this needs work....?
-  if (whiteArcaneConfig.modsRAN || blackArcaneConfig.modsRAN) {
-    updateStartFen(
-      `${randomizer(COLOURS.BLACK)}/pppppppp/8/8/8/8/PPPPPPPP/${randomizer(
-        COLOURS.WHITE
-      )} w KQkq - 0 1`
-    );
+export function randomize(
+  whiteConfig = {},
+  blackConfig = {},
+  WQT = 'T',
+  BQT = 'Q'
+) {
+  function d(num) {
+    return Math.floor(Math.random() * ++num);
   }
 
-  return `${randomizer(COLOURS.BLACK)}/pppppppp/8/8/8/8/PPPPPPPP/${randomizer(
-    COLOURS.WHITE
-  )} w KQkq - 0 1`;
+  function generateRandomRank(QT) {
+    const rank = new Array(8).fill(null);
+    rank[d(2) * 2] = 'B';
+    rank[d(2) * 2 + 1] = 'B';
+    rank[emptySquares(rank)[d(5)]] = QT;
+    rank[emptySquares(rank)[d(4)]] = 'N';
+    rank[emptySquares(rank)[d(3)]] = 'N';
+    for (let x = 1; x <= 3; x++) {
+      rank[emptySquares(rank)[0]] = x === 2 ? 'K' : 'R';
+    }
+    return rank;
+  }
+
+  function emptySquares(rank) {
+    return rank
+      .map((piece, index) => (piece === null ? index : null))
+      .filter((index) => index !== null);
+  }
+
+  function mirrorRank(rank) {
+    return rank.map((piece) => {
+      if (piece === null) return null;
+      return piece.toLowerCase();
+    });
+  }
+
+  // if (preset) {
+  //   const randomizeA = (QT) => generateRandomRank(QT);
+  //   const blackRank = mirrorRank(randomizeA(BQT)).reverse().join('');
+  //   console.log(
+  //     `################################################## ${blackRank}/pppppppp/8/8/8/8/PPPPPPPP/${randomizeA(
+  //       WQT
+  //     ).join('')} w KQkq - 0 1`
+  //   );
+  //   return `${blackRank}/pppppppp/8/8/8/8/PPPPPPPP/${randomizeA(WQT).join(
+  //     ''
+  //   )} w KQkq - 0 1`;
+  // } else
+  if (whiteConfig.modsRAN === 'true' || blackConfig.modsRAN === 'true') {
+    const randomRank = (QT) => generateRandomRank(QT);
+    const whiteRank =
+      blackConfig.modsRAN === 'true'
+        ? randomRank(WQT).join('')
+        : `RNB${WQT}KBNR`;
+    const blackRank =
+      whiteConfig.modsRAN === 'true'
+        ? mirrorRank(randomRank(BQT)).reverse().join('')
+        : `rnb${BQT.toLowerCase()}kbnr`;
+    return `${blackRank}/pppppppp/8/8/8/8/PPPPPPPP/${whiteRank} w KQkq - 0 1`;
+  } else {
+    return `rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1`;
+  }
 }
 
 export function ParseFen(fen) {

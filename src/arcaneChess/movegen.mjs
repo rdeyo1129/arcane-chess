@@ -217,7 +217,7 @@ export function AddWhitePawnCaptureMove(from, to, cap, consume, capturesOnly) {
       capturesOnly
     );
     AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wT, consume ? MFLAGCNSM : 0),
+      MOVE(from, to, cap, PIECES.wM, consume ? MFLAGCNSM : 0),
       consume,
       capturesOnly
     );
@@ -305,7 +305,7 @@ export function AddBlackPawnCaptureMove(from, to, cap, consume, capturesOnly) {
       capturesOnly
     );
     AddCaptureMove(
-      MOVE(from, to, cap, PIECES.T, consume ? MFLAGCNSM : 0),
+      MOVE(from, to, cap, PIECES.bT, consume ? MFLAGCNSM : 0),
       consume,
       capturesOnly
     );
@@ -460,6 +460,8 @@ export function AddBlackPawnQuietMove(from, to, flag, capturesOnly) {
 
 // get binary representation of powers that are non-zero for the current player
 export const generatePowers = () => {
+  if (blackArcaneConfig.modsRAN === 'true')
+    GameBoard.blackArcane = [0, 0, 0, 0, 8];
   if (GameBoard.side === COLOURS.WHITE) {
     let powerBits = [0, 0, 0, 0, 0];
     const powerTypes = {
@@ -472,7 +474,7 @@ export const generatePowers = () => {
 
     _.forEach(whiteArcaneConfig, (value, key) => {
       const powerName = key.substring(0, 4);
-      if (whiteArcaneConfig[key] > 0) {
+      if (whiteArcaneConfig[key] > 0 || whiteArcaneConfig[key] === 'true') {
         powerTypes[powerName] |= POWERBIT[key];
       }
     });
@@ -1852,7 +1854,14 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
         GameBoard.royaltyE[sq] > 0;
 
       if (!isOverrided) {
-        for (index = 0; index < DirNum[pce]; index++) {
+        let dirVariants =
+          pce === PIECES.wT ||
+          pce === PIECES.bT ||
+          pce === PIECES.wM ||
+          pce === PIECES.bM
+            ? 8
+            : DirNum[pce];
+        for (index = 0; index < dirVariants; index++) {
           let kDir, shft_t_N_sq;
 
           dir = PceDir[pce][index];
@@ -1877,7 +1886,9 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
             continue;
           }
 
-          // note non-sliders captures
+          if (t_sq < 0 || t_sq > 119) continue;
+
+          // note hoppers captures
           if (
             !herrings.length ||
             (herrings.length && _.includes(herrings, t_sq))
@@ -1901,7 +1912,7 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
             }
           }
 
-          // note NON-SLIDERS CONSUME
+          // note hoppers CONSUME
           if (SQOFFBOARD(t_sq) === BOOL.FALSE && !herrings.length) {
             if (
               PieceCol[GameBoard.pieces[t_sq]] === GameBoard.side &&
@@ -1952,7 +1963,7 @@ export function GenerateMoves(withHerrings = true, capturesOnly = false) {
             }
           }
 
-          // note NON-SLIDERS QUIET MOVES
+          // note hoppers QUIET MOVES
           if (
             (GameBoard.dyad === 0 ||
               GameBoard.dyad === 1 ||

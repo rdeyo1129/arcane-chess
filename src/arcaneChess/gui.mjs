@@ -45,6 +45,7 @@ export function validGroundMoves() {
 export function validMoves() {
   const moves = [];
   let moveFound = NOMOVE;
+  generatePowers();
   GenerateMoves();
   for (
     let index = GameBoard.moveListStart[GameBoard.ply];
@@ -58,7 +59,6 @@ export function validMoves() {
     TakeMove();
     moves.push(moveFound);
   }
-  // console.log(moves);
   return moves;
 }
 
@@ -234,10 +234,8 @@ export function engineMove(thinkingTime) {
 
   SearchController.time = thinkingTime;
   const { bestMove, bestScore, line } = SearchPosition();
-  console.log('bestMove', bestMove, 'bestScore', bestScore, 'line', line);
   MakeMove(bestMove);
   CheckAndSet();
   PrintMoveList();
   return bestMove;
-  // MoveGUIPiece(SearchController.best);
 }

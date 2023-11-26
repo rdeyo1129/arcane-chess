@@ -34,9 +34,8 @@ import { StorePvMove, ProbePvTable, GetPvLine } from './pvtable.mjs';
 import { PrintMoveList } from './io.mjs';
 import { GameController, PrintPieceLists, PrintSqAttacked } from './board.mjs';
 import { validMoves, validGroundMoves, CheckAndSet } from './gui.mjs';
-import { whiteArcane, blackArcane } from './arcaneDefs.mjs';
 
-export const SearchController = { thinking: BOOL.FALSE };
+export const SearchController = { thinking: BOOL.FALSE, best: NOMOVE };
 
 SearchController.nodes;
 SearchController.fh;
@@ -46,7 +45,7 @@ SearchController.time;
 SearchController.start;
 SearchController.stop;
 SearchController.best;
-SearchController.thinking;
+// SearchController.thinking;
 
 // if summon royalty just happened, then we need to regenerate moves...?
 // export const isSummonMove = (move) => {
@@ -141,7 +140,6 @@ export function Quiescence(alpha, beta) {
 
   let MoveNum = 0;
   let Legal = 0;
-  let CheckCount = 0;
   let OldAlpha = alpha;
   let BestMove = NOMOVE;
   let Move = NOMOVE;
@@ -154,6 +152,8 @@ export function Quiescence(alpha, beta) {
     PickNextMove(MoveNum);
 
     Move = GameBoard.moveList[MoveNum];
+
+    console.log('move', PrMove(Move), Move, ARCANEFLAG(Move));
 
     if (MakeMove(Move) === BOOL.FALSE) {
       continue;
@@ -269,7 +269,6 @@ export function AlphaBeta(alpha, beta, depth) {
 
   let MoveNum = 0;
   let Legal = 0;
-  let CheckCount = 0;
   let OldAlpha = alpha;
   let BestMove = NOMOVE;
   let Move = NOMOVE;
@@ -432,6 +431,8 @@ export function SearchPosition() {
       break;
     }
 
+    console.log('info score cp ' + Score + ' depth ' + currentDepth);
+
     bestScore = Score;
     bestMove = ProbePvTable();
     line =
@@ -472,13 +473,13 @@ export function SearchPosition() {
   SearchController.thinking = BOOL.FALSE;
 
   console.log({
-    score: bestScore,
+    bestScore: bestScore,
     bestMove: bestMove,
     line: line,
   });
 
   return {
-    score: bestScore,
+    bestScore: bestScore,
     bestMove: bestMove,
     line: line,
   };
@@ -503,15 +504,8 @@ export function gameSim(thinkingTime) {
     const { score, bestMove, line } = SearchPosition();
     // PrintMoveList();
     PrintBoard();
-    console.log('@%^%^@$^$%', PrMove(bestMove), bestMove, ARCANEFLAG(bestMove));
     PrintMoveList();
-    if (!PrMove(bestMove)) {
-      debugger; // eslint-disable-line
-    }
-    if (score === INFINITE || score === -INFINITE) {
-      debugger; // eslint-disable-line
-    }
-    MakeMove(SearchController.best);
+    MakeMove(bestMove);
     CheckAndSet();
     // PrintMoveList();
     // PrintBoard();

@@ -33,8 +33,8 @@ export const ARCANE_BIT_VALUES = {
   RQ: 28,
   RT: 29,
   RM: 30,
-  RV: 12,
-  RE: 31,
+  RV: 31,
+  RE: 32,
   // to reuse when not using summon
   // ATK: 29,
   // DEP: 30,
@@ -118,7 +118,7 @@ export function updateStartFen(newFen) {
   START_FEN = newFen;
 }
 
-export let PceChar = '.PNBRQKpnbrqkXSHTMVshtmvZUzuQZUVE';
+export let PceChar = '.PNBRQKpnbrqkXSHTMVshtmvZUzuQTMVE';
 export let SideChar = 'wb-';
 export let RankChar = '12345678';
 export let FileChar = 'abcdefgh';
@@ -651,13 +651,13 @@ export const PceDir = [
   0,
   SpDir,
   HrDir,
-  RkDir, // zealot
-  BiDir, // unicorn
+  RkDir, // templar
+  BiDir, // mystic
   VaDir,
   SpDir,
   HrDir,
-  RkDir, // zealot
-  BiDir, // unicorn
+  RkDir, // templar
+  BiDir, // mystic
   VaDir,
   ZeDir,
   UnDir,

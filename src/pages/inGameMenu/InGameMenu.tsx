@@ -6,13 +6,15 @@ import fs from 'fs';
 
 // import "../styles/front-page.css";
 
+import 'src/styles/main.scss';
 import 'src/pages/inGameMenu/InGameMenu.scss';
 import 'src/pages/inGameMenu/Create.scss';
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
-import ArcanaJson from 'src/data/arcana.json';
+import arcanaJson from 'src/data/arcana.json';
+const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 // import Hero from "../components/Hero";
 
@@ -35,7 +37,10 @@ import {
 import { PrMove, PrintMoveList } from 'src/arcaneChess/io.mjs';
 import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
 import { prettyToSquare, BOOL, PIECES } from '../../arcaneChess/defs.mjs';
-import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
+import {
+  outputFenOfCurrentPosition,
+  randomize,
+} from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
 // import engine
 // import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
@@ -48,6 +53,7 @@ import { SinglePlayer } from '../singlePlayer/SinglePlayer';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import Toggle from '../../components/Toggle/Toggle';
+import Select from '../../components/Select/Select';
 
 import { Chessground } from '../../chessground/chessgroundMod';
 import e from 'express';
@@ -64,6 +70,7 @@ import book9 from 'src/data/books/book9.json';
 import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
+import { blackArcaneConfig } from 'src/arcaneChess/arcaneDefs.mjs';
 
 // interface FrontPageProps {
 //   // whiteFaction: Faction;
@@ -107,6 +114,27 @@ export const royaltyPickupArray = {
   V: 'purple',
   E: 'orange',
 };
+export const factionColorMap: { [key: string]: string } = {
+  R: '#c53939',
+  O: '#c77c35',
+  Y: '#d6be44',
+  G: '#34aa48',
+  B: '#3f48cc',
+  V: '#a043a2',
+  W: '#888888',
+  BK: '#222222',
+};
+
+interface ArcanaDetail {
+  name: string;
+  description: string;
+  type: string;
+  imagePath: string;
+}
+
+interface ArcanaMap {
+  [key: string]: ArcanaDetail;
+}
 
 interface Node {
   id: string; // 'lesson-1';
@@ -123,7 +151,7 @@ interface Node {
       fenHistory: string[];
       history: string[];
       // is arrows this a map?
-      arrows?: string[][];
+      arrowsCircles?: string[][];
       // todo initRoyalties in arcaneChess return object
       royalties: {
         royaltyQ: string[];
@@ -132,13 +160,14 @@ interface Node {
         royaltyV: string[];
         royaltyE: string[];
       };
-      varVar: string;
+      preset: string;
       whiteArcane?: { [key: string]: number };
       blackArcane?: { [key: string]: number };
       // orientation: string;
       config: {
         [key: string]: boolean | string | number;
       };
+      correctMoves: string[];
       dialogue: [
         // [ 'narrator', 'message']
         // [ 'medavas', 'message']
@@ -159,18 +188,21 @@ interface State {
   engineLastMove: string[];
   whiteFaction: string;
   blackFaction: string;
-  selected: string;
-  hoverArcane: string | null;
+  selectedFaction: string;
+  selectedSide: string;
+  hoverArcane: string;
+  orientation: string;
   config: {
     [key: string | number]: {
       disabled: boolean;
-      powers: {
+      arcana: {
         [key: string | number]: string | number | readonly string[] | undefined;
       };
       picks: number;
     };
   };
   description: string;
+  panelText: string;
   playing: boolean;
   bookObject: object;
   nodeObject: object;
@@ -178,11 +210,17 @@ interface State {
   selectedBook: number;
   newNodeName: string;
   newBoardName: string;
-  currNode: string;
+  currNode: {
+    [key: string]: Node;
+  };
   currPanel: string;
   books: {
     [key: number]: object;
   };
+  panelType: string | number | boolean | null;
+  varVar: string | number | boolean | null;
+  correctMoves: string[];
+  arcaneHover: string;
 }
 
 interface Props {
@@ -203,22 +241,27 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       fenHistory: ['rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'],
       thinking: false,
       engineLastMove: [],
-      thinkingTime: 500,
+      thinkingTime: 1500,
       whiteFaction: 'normal',
       blackFaction: 'normal',
-      selected: 'a',
-      hoverArcane: null,
+      selectedFaction: 'R',
+      selectedSide: 'W',
+      hoverArcane: '',
+      orientation: 'white',
       config: {
         // todo disable if no abilities selected
-        a: { disabled: false, powers: {}, picks: 0 },
-        b: { disabled: false, powers: {}, picks: 0 },
-        c: { disabled: false, powers: {}, picks: 0 },
-        d: { disabled: false, powers: {}, picks: 0 },
-        e: { disabled: false, powers: {}, picks: 0 },
-        f: { disabled: false, powers: {}, picks: 0 },
+        R: { disabled: false, arcana: {}, picks: 0 },
+        O: { disabled: false, arcana: {}, picks: 0 },
+        Y: { disabled: false, arcana: {}, picks: 0 },
+        G: { disabled: false, arcana: {}, picks: 0 },
+        B: { disabled: false, arcana: {}, picks: 0 },
+        V: { disabled: false, arcana: {}, picks: 0 },
+        W: { disabled: false, arcana: {}, picks: 0 },
+        BK: { disabled: false, arcana: {}, picks: 0 },
       },
       // generatedName: this.generateName(),
       description: '',
+      panelText: '',
       playing: false,
       bookObject: book1,
       nodeObject: {},
@@ -226,7 +269,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       selectedBook: 1,
       newNodeName: '',
       newBoardName: '',
-      currNode: '',
+      currNode: {},
       currPanel: '',
       books: {
         1: book1,
@@ -242,6 +285,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         11: book11,
         12: book12,
       },
+      panelType: 'LESSON',
+      varVar: 'NORMAL',
+      correctMoves: [],
+      arcaneHover: '',
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
   }
@@ -281,7 +328,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
   };
 
   setFen = (fen: string) => {
-    this.setState({ fen });
+    this.setState({ fen, fenHistory: [fen] });
   };
 
   engineGo = () => {
@@ -290,17 +337,28 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       // fenHistory: GameBoard.fenHistory,
     });
 
+    generatePowers();
+    GenerateMoves();
+
+    SearchController.thinking = BOOL.TRUE;
+
     new Promise((resolve) => {
       setTimeout(() => {
-        SearchController.thinking = BOOL.TRUE;
         const engineResult = this.arcaneChess().engineReply(
           this.state.thinkingTime
         );
+        if (!engineResult.bestScore) {
+          console.log(engineResult);
+        }
+        console.log(engineResult);
+        // SearchController.thinking = BOOL.FALSE;
         resolve(engineResult);
-      }, this.state.thinkingTime);
+      }, this.state.thinkingTime + 500);
     })
       .then((reply) => {
         console.log('reply', reply);
+        console.log(SearchController.best);
+        // if (reply === 0) debugger; // eslint-disable-line
         this.setState((prevState) => ({
           pvLine: GameBoard.cleanPV,
           history: [...prevState.history, PrMove(reply)],
@@ -308,12 +366,13 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
           thinking: false,
         }));
       })
+      .then(() => {
+        generatePowers();
+        GenerateMoves();
+      })
       .catch((error) => {
         console.error('An error occurred:', error);
       });
-
-    generatePowers();
-    GenerateMoves();
 
     // new Promise((resolve, reject) => {
     //   resolve()
@@ -339,9 +398,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
 
     // ParseFen('rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
 
-    const gameBoardPowers = generatePowers();
-
-    console.log('gameBoardPowers', gameBoardPowers);
+    generatePowers();
 
     GenerateMoves();
 
@@ -363,21 +420,52 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     // your own gui lines of code here here
   };
 
-  onChangeUses = (e: React.ChangeEvent<HTMLSelectElement>, power: string) => {
+  onChangeUses = (e: React.ChangeEvent<HTMLSelectElement>, arcane: string) => {
     const uses = Number(e.target.value) || e.target.value;
+    console.log(arcane, this.state.selectedSide, uses);
     this.setState((prevState) => ({
       ...prevState,
       config: {
         ...prevState.config,
-        [this.state.selected]: {
-          ...prevState.config[this.state.selected],
-          powers: {
-            ...prevState.config[this.state.selected].powers,
-            [power]: uses,
+        [this.state.selectedFaction]: {
+          ...prevState.config[this.state.selectedFaction],
+          arcana: {
+            ...prevState.config[this.state.selectedFaction].arcana,
+            [arcane]: uses,
+          },
+        },
+        [this.state.selectedSide]: {
+          ...prevState.config[this.state.selectedSide],
+          arcana: {
+            ...prevState.config[this.state.selectedSide].arcana,
+            [arcane]: uses,
           },
         },
       },
     }));
+  };
+
+  toggleHover = (arcane: string) => {
+    this.setState({ hoverArcane: arcane });
+  };
+
+  selectFaction = (color: string) => {
+    if (
+      color === 'R' ||
+      color === 'O' ||
+      color === 'Y' ||
+      color === 'G' ||
+      color === 'B' ||
+      color === 'V'
+    ) {
+      this.setState({ selectedFaction: color });
+    }
+  };
+
+  selectSide = (color: string) => {
+    if (color === 'BK' || color === 'W') {
+      this.setState({ selectedSide: color });
+    }
   };
 
   componentDidMount(): void {
@@ -388,8 +476,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
   }
 
   render() {
+    console.log(GameBoard.material);
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     // const { auth } = this.props;
+    // console.log(this.state.fen, this.state.fenHistory[0]);
     return (
       <div className="creator">
         {/* <TactoriusModal
@@ -413,84 +503,111 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         <div className="top-left">
           <div className="arcane-history">
             <div className="arcane-input">
-              {_.map(ArcanaJson, (arcane, arcaneId) => {
-                return (
-                  <div
-                    className="create-arcane-item"
-                    key={arcaneId}
-                    onMouseEnter={() =>
-                      this.setState({ hoverArcane: arcaneId })
-                    }
-                    onMouseLeave={() => this.setState({ hoverArcane: null })}
-                  >
-                    <span className="title">{arcane['name']}</span>
-                    <div className="select-extension">
-                      <div className="uses">
-                        <span>
-                          {this.state.config[this.state.selected]['powers'][
-                            arcaneId
-                          ]
-                            ? this.state.config[this.state.selected]['powers'][
-                                arcaneId
-                              ]
-                            : arcane.type === 'active' ||
-                              arcane.type === 'passive'
-                            ? 0
-                            : 'false'}
-                        </span>
-                      </div>
-                      {arcane.type === 'active' || arcane.type === 'passive' ? (
+              {this.state.playing ? (
+                <div className="arcana">
+                  <div className="arcana-side-buttons">
+                    <Button
+                      className="tertiary"
+                      onClick={() => {
+                        this.setState({ selectedSide: 'W' });
+                      }}
+                      backgroundColorOverride="#333333"
+                      color="B"
+                      text="WHITE"
+                      width={190}
+                    />
+                    <Button
+                      className="tertiary"
+                      onClick={() => {
+                        this.setState({ selectedSide: 'BK' });
+                      }}
+                      backgroundColorOverride="#333333"
+                      color="B"
+                      text="BLACK"
+                      width={190}
+                      disabled={false}
+                    />
+                  </div>
+                  <div className="arcana-select">
+                    {_.map(
+                      this.state.config[this.state.selectedSide].arcana,
+                      (value: number, key: string) => {
+                        console.log(arcana, key);
+                        return (
+                          <img
+                            key={key}
+                            className="arcane"
+                            src={`${arcana[key].imagePath}${
+                              this.state.hoverArcane === key ? '-hover' : ''
+                            }.svg`}
+                            onMouseEnter={() => this.toggleHover(key)}
+                            onMouseLeave={() => this.toggleHover('')}
+                          />
+                        );
+                      }
+                    )}
+                  </div>
+                </div>
+              ) : (
+                _.map(arcanaJson, (arcane, arcaneId) => {
+                  return (
+                    <div
+                      className="create-arcane-item"
+                      key={arcaneId}
+                      onMouseEnter={() => {
+                        this.setState({ hoverArcane: arcaneId });
+                      }}
+                      onMouseLeave={() => this.setState({ hoverArcane: '' })}
+                    >
+                      <span className="title">{arcane['name']}</span>
+                      <div className="select-extension">
+                        <div className="uses">
+                          <span>
+                            {this.state.config[this.state.selectedSide][
+                              'arcana'
+                            ][arcaneId]
+                              ? this.state.config[this.state.selectedSide][
+                                  'arcana'
+                                ][arcaneId]
+                              : arcane.type === 'active'
+                              ? 0
+                              : 'false'}
+                          </span>
+                        </div>
                         <select
                           className="arcane-use-drop"
-                          onChange={(e) => {
-                            this.onChangeUses(e, arcaneId.toString());
-                          }}
-                        >
-                          {Array.from({ length: 9 }, (_, index) => {
-                            return (
-                              <option
-                                key={index}
-                                value={
-                                  this.state.config[this.state.selected][
-                                    'powers'
-                                  ][arcaneId]
-                                }
-                              >
-                                {index}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      ) : arcane.type === 'inherent' ? (
-                        <select
-                          className="arcane-use-drop"
-                          // value={
-                          //   this.state.config[this.state.selected]['powers'][
-                          //     arcaneId
-                          //   ]
-                          // }
+                          value={
+                            this.state.config[this.state.selectedSide][
+                              'arcana'
+                            ][arcaneId]
+                              ? this.state.config[this.state.selectedSide][
+                                  'arcana'
+                                ][arcaneId]
+                              : arcane.type === 'active'
+                              ? 0
+                              : 'false'
+                          }
                           onChange={(e) =>
                             this.onChangeUses(e, arcaneId.toString())
                           }
                         >
-                          {['false', 'true'].map((value, i) => (
-                            <option
-                              key={i}
-                              value={
-                                this.state.config[this.state.selected][
-                                  'powers'
-                                ][arcaneId]
-                              }
-                            >
-                              {value}
-                            </option>
-                          ))}
+                          {arcane.type === 'active' || arcane.type === 'passive'
+                            ? Array.from({ length: 9 }, (_, index) => (
+                                <option key={index} value={index}>
+                                  {index}
+                                </option>
+                              ))
+                            : ['false', 'true'].map((value, i) => (
+                                <option key={i} value={value}>
+                                  {value}
+                                </option>
+                              ))}
                         </select>
-                      ) : null}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              )}
             </div>
             <div className="history">
               {this.state.playing ? (
@@ -535,6 +652,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     onChange={(value) => {
                       this.setState({ newNodeName: value });
                     }}
+                    placeholder="mission-x"
                   />
                   <Button
                     text="+"
@@ -557,6 +675,142 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   />
                 </div>
               )}
+            </div>
+          </div>
+          <div className="preset-correct-moves">
+            <Select
+              options={['LESSON', 'STANDARD', 'UYA', 'PUZZLE']}
+              onChange={(value) => {
+                this.setState({ varVar: value });
+              }}
+              type="string"
+            />
+            <Select
+              options={[
+                'CHESS',
+                'CLEAR',
+                'HORDE',
+                '960',
+                'KOH',
+                '3CHECK',
+                'CRAZYHOUSE',
+              ]}
+              onChange={(value) => {
+                if (value === 'CLEAR') {
+                  this.setState({
+                    fen: '8/8/8/8/8/8/8/8 w - - 0 1',
+                    fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
+                  });
+                }
+                if (value === 'CHESS') {
+                  this.setState({
+                    fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    fenHistory: [
+                      'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    ],
+                  });
+                }
+                if (value === 'HORDE') {
+                  this.setState({
+                    fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    fenHistory: [
+                      'rnbkqbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w KQkq - 0 1',
+                    ],
+                  });
+                }
+                if (value === '960') {
+                  console.log('960', value);
+
+                  this.setState((prevState) => ({
+                    ...prevState,
+                    // fen: fischer,
+                    // fenHistory: [fischer],
+                    varVar: '960',
+                    config: {
+                      ...prevState.config,
+                      W: {
+                        ...prevState.config.W,
+                        arcana: {
+                          ...prevState.config.W.arcana,
+                          modsRAN: 'true',
+                        },
+                      },
+                      BK: {
+                        ...prevState.config.BK,
+                        arcana: {
+                          ...prevState.config.BK.arcana,
+                          modsRAN: 'true',
+                        },
+                      },
+                    },
+                  }));
+                }
+              }}
+              type="string"
+            />
+            <Input
+              color="B"
+              value={this.state.newBoardName}
+              width={200}
+              height={60}
+              onChange={(value) => {
+                this.setState({ correctMoves: value.split(' ') });
+              }}
+              placeholder='Correct Moves "e2e4 e7e5 g1f3 b8c6 f1b5"'
+            />
+            <div className="nav">
+              <Button
+                text="<<"
+                onClick={() => {
+                  // this.setState((prevState) => ({
+                  //   ...prevState,
+                  //   correctMoves: [],
+                  // }));
+                }}
+                className="tertiary"
+                color="B"
+                height={60}
+                width={50}
+              />
+              <Button
+                text="<"
+                onClick={() => {
+                  // this.setState((prevState) => ({
+                  //   ...prevState,
+                  //   correctMoves: [],
+                  // }));
+                }}
+                className="tertiary"
+                color="B"
+                height={60}
+                width={50}
+              />
+              <Button
+                text=">"
+                onClick={() => {
+                  // this.setState((prevState) => ({
+                  //   ...prevState,
+                  //   correctMoves: [],
+                  // }));
+                }}
+                className="tertiary"
+                color="B"
+                height={60}
+                width={50}
+              />
+              <Button
+                text=">>"
+                onClick={() => {
+                  // this.setState((prevState) => ({
+                  //   ...prevState,
+                  //   correctMoves: [],
+                  // }));
+                }}
+                className="tertiary"
+                color="B"
+                height={60}
+                width={50}
+              />
             </div>
           </div>
         </div>
@@ -594,7 +848,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               lastMove: true,
               check: true,
             }}
-            // orientation={this.state.orientation}
+            orientation={this.state.orientation}
             disableContextMenu={false}
             turnColor={GameBoard.side === 0 ? 'white' : 'black'}
             movable={{
@@ -618,7 +872,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               },
               move: (orig: string, dest: string, capturedPiece: number) => {
                 const parsed = this.arcaneChess().makeUserMove(orig, dest);
-                console.log(generatePowers());
+                // generatePowers();
                 console.log('captured', capturedPiece);
                 if (!PrMove(parsed)) {
                   console.log('invalid move');
@@ -680,6 +934,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 );
               })}
               <Input
+                placeholder="panel-x"
                 color="B"
                 value={this.state.newBoardName}
                 width={110}
@@ -744,6 +999,13 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 style={{ color: 'white' }}
                 onChange={(event) =>
                   this.setState({ description: event.target.value })
+                }
+              ></textarea>
+              <textarea
+                className="description"
+                style={{ color: 'white' }}
+                onChange={(event) =>
+                  this.setState({ panelText: event.target.value })
                 }
               ></textarea>
             </div>
@@ -830,12 +1092,38 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               <Button
                 text={greekLetters[index]}
                 key={index}
-                className="tertiary"
-                color={color} // Ensure this prop is used to set the background color in Button's styles
+                // className=""
+                className={`faction-swatch${
+                  this.state.selectedSide === color ||
+                  this.state.selectedFaction === color
+                    ? '-selected'
+                    : ''
+                } tertiary`}
+                color={color}
                 width={50}
                 height={46}
+                onClick={() => {
+                  this.selectFaction(color);
+                  this.selectSide(color);
+                }}
+                backgroundColorOverride={
+                  this.state.selectedSide === color ||
+                  this.state.selectedFaction === color
+                    ? factionColorMap[color]
+                    : ''
+                }
               ></Button>
             ))}
+          </div>
+          <div className="pv-line">
+            {this.state.hoverArcane ? (
+              <div className="arcana-detail">
+                <p>{arcana[this.state.hoverArcane].name}</p>
+                <p>{arcana[this.state.hoverArcane].description}</p>
+              </div>
+            ) : (
+              this.state.pvLine
+            )}
           </div>
         </div>
         <div className="bottom-center">
@@ -853,34 +1141,129 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               // textArg={this.state.fenHistory[this.state.fenHistory.length - 1]}
               // setTextArg={() => this.setFen}
             />
-            <Button
-              text="PLAY"
-              onClick={() => this.calculateFen()}
-              className="primary"
-              color="B"
-              height={31}
-              width={120}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
+            {this.state.playing ? (
+              <Button
+                text="RESET"
+                onClick={() => {
+                  // this.calculateFen();
+                  this.setState({
+                    playing: false,
+                    fen: this.state.fenHistory[0],
+                  });
+                }}
+                className="primary"
+                color="B"
+                height={31}
+                width={120}
+                // disabled={this.state.fen === ''}
+                disabled={false}
+                // strong={true}
+              />
+            ) : (
+              <Button
+                text="PLAY"
+                onClick={() => {
+                  const fischer = randomize(
+                    this.state.config.W.arcana,
+                    this.state.config.BK.arcana
+                  );
+                  console.log(fischer, this.state.config);
+                  this.arcaneChess().startGame(
+                    this.state.fen,
+                    this.state.config.W.arcana,
+                    this.state.config.BK.arcana,
+                    this.state.varVar
+                  );
+                  if (
+                    this.state.fen.split(' ')[1] === 'black' &&
+                    this.state.orientation === 'black'
+                  ) {
+                    this.engineGo();
+                  }
+                  this.setState({
+                    playing: true,
+                    // fen: fischer,
+                    // fenHistory: [fischer],
+                  });
+                }}
+                className="primary"
+                color="B"
+                height={31}
+                width={120}
+                // disabled={this.state.fen === ''}
+                disabled={false}
+                // strong={true}
+              />
+            )}
           </div>
-          <div></div>
           <div className="time-input">
-            <Button
-              text="SIM"
-              onClick={() => this.arcaneChess().gameSim(100)}
-              className="primary"
-              color="B"
-              height={31}
-              width={120}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
+            {/* // todo white time */}
+            <Select
+              type="number"
+              width={180}
+              options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
+              onChange={(value) => {}}
+            />
+            {/* // todo black time */}
+            <Select
+              type="number"
+              width={180}
+              options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
+              onChange={(value) => {}}
             />
           </div>
-          <div></div>
-          <div></div>
+          <Button
+            text="SIM"
+            onClick={() => this.arcaneChess().gameSim(100)}
+            className="primary"
+            color="B"
+            height={31}
+            width={120}
+            // disabled={this.state.fen === ''}
+            disabled={false}
+            // strong={true}
+          />
+          <div className="reward-input">
+            <Input
+              color="B"
+              value={''}
+              placeholder="REWARD"
+              width={180}
+              height={31}
+              onChange={(value) => {
+                this.setState({ thinkingTime: Number(value) });
+              }}
+            ></Input>
+            <div className="material">
+              <div className="white-material">
+                {GameBoard.material[0] ? GameBoard.material[0] - 150000 : 0}
+              </div>
+              <div className="black-material">
+                {GameBoard.material[1] ? GameBoard.material[1] - 150000 : 0}
+              </div>
+            </div>
+            {/* <Input
+              color="B"
+              value={''}
+              placeholder='Thinking Time "500"'
+              width={180}
+              onChange={(value) => {
+                this.setState({ thinkingTime: Number(value) });
+              }}
+            ></Input> */}
+          </div>
+
+          <Button
+            text="FACTIONIZE"
+            onClick={() => this.calculateFen()}
+            className="primary"
+            color="B"
+            height={31}
+            width={120}
+            // disabled={this.state.fen === ''}
+            disabled={false}
+            // strong={true}
+          />
         </div>
         <div className="bottom-right">
           <div className="create-buttons">

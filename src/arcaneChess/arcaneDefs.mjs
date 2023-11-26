@@ -49,20 +49,20 @@ export const blackArcaneConfig = {
 
 // tactorius: needs external defs in order to generate moves with
 // get status for each player from configs
-export const whiteArcane = () => {
-  const config = {};
-  _.forOwn(whiteArcaneConfig, (value, key) => {
-    config[key] = value;
+export const setWhiteArcana = (config) => {
+  // const config = {};
+  _.forOwn(config, (value, key) => {
+    whiteArcaneConfig[key] = value;
   });
-  return config;
+  return whiteArcaneConfig;
 };
 
-export const blackArcane = () => {
-  const config = {};
-  _.forOwn(blackArcaneConfig, (value, key) => {
-    config[key] = value;
+export const setBlackArcana = (config) => {
+  // const config = {};
+  _.forOwn(config, (value, key) => {
+    blackArcaneConfig[key] = value;
   });
-  return config;
+  return blackArcaneConfig;
 };
 
 export const activateDyad = (type) => {

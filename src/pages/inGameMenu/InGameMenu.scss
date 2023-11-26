@@ -17,12 +17,44 @@
       .arcane-input {
         height: 360px;
         width: 280px;
+
+        .arcana {
+          .arcana-side-buttons {
+            display: flex;
+          }
+          .arcana-select {
+            display: grid;
+            grid-template-columns: 40px 40px 40px 40px 40px;
+            // grid-template-rows: 60px 60px 60px 60px 60px;
+            grid-gap: 11px;
+            height: 100%;
+            width: 100%;
+            // overflow-y: scroll;
+            padding: 13px 13px 0 13px;
+            .arcane {
+              height: 40px;
+              width: 40px;
+            }
+            .arcane:hover {
+              cursor: pointer;
+            }
+          }
+        }
       }
       .history {
         height: 360px;
         width: 120px;
         background: #444444;
         overflow-y: scroll;
+      }
+    }
+    .preset-correct-moves {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 60px 60px;
+      .nav {
+        width: 100%;
+        display: flex;
       }
     }
   }
@@ -64,13 +96,21 @@
     }
   }
   .bottom-left {
+    display: flex;
     overflow: hidden;
     width: 400px;
     height: 100%;
     .faction-input {
+      width: 200px;
       display: grid;
       grid-template-columns: repeat(4, 50px);
       grid-template-rows: repeat(2, 46px);
+    }
+    .pv-line {
+      width: 200px;
+      display: flex;
+      font-size: 12px;
+      padding: 10px;
     }
   }
   .bottom-center {
@@ -86,7 +126,45 @@
     }
     .time-input {
       display: flex;
-      justify-content: center;
+      //   .white-time {
+      //     display: flex;
+      //     justify-content: center;
+      //     align-items: center;
+      //     width: 180px;
+      //     height: 31px;
+      //   }
+      //   .black-time {
+      //     display: flex;
+      //     justify-content: center;
+      //     align-items: center;
+      //     width: 180px;
+      //     height: 31px;
+      //   }
+    }
+    .reward-input {
+      display: flex;
+      // justify-content: center;
+      // align-items: center;
+      // grid-column: span 2;
+      .material {
+        display: flex;
+        .white-material {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #bbbbbb;
+          width: 90px;
+          height: 100%;
+        }
+        .black-material {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #444444;
+          width: 90px;
+          height: 100%;
+        }
+      }
     }
   }
   .bottom-right {

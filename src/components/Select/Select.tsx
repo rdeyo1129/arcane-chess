@@ -4,9 +4,11 @@ import './Select.scss';
 
 interface SelectProps {
   type: string;
-  title: string;
+  title?: string;
   options: number[] | string[];
   onChange: (val: boolean | string | number | null) => void;
+  width?: number | string;
+  height?: number | string;
 }
 interface SelectState {
   selectedValue: string | number | boolean | null;
@@ -27,12 +29,16 @@ class Select extends React.Component<SelectProps, SelectState> {
   };
 
   render() {
+    const { width, height } = this.props;
     return (
       <div className="select-container">
         <span className="select-title">{this.props.title}</span>
         <select
           className="dropdown"
-          style={{ width: '100%' }}
+          style={{
+            width: width ? width : '100%',
+            height: height ? height : '100%',
+          }}
           onChange={(e) => {
             this.onChangeUses(e.target.value);
           }}

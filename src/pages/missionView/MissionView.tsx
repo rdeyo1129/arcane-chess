@@ -65,12 +65,6 @@ import ChessClock from '../../components/Clock/Clock';
 
 import { Chessground } from '../../chessground/chessgroundMod';
 
-// interface FrontPageProps {
-//   // whiteFaction: Faction;
-//   // blackFaction: Faction;
-//   // arcaneChess: () => void;
-// }
-
 export const piecePickupArray = [
   'wP',
   'wH',
@@ -320,6 +314,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.setState({
       thinking: true,
     });
+
+    generatePowers();
+    GenerateMoves();
+
     new Promise((resolve) => {
       setTimeout(() => {
         SearchController.thinking = BOOL.TRUE;
@@ -346,11 +344,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               });
               return;
             }
-
-            generatePowers();
-            GenerateMoves();
           }
         );
+      })
+      .then(() => {
+        generatePowers();
+        GenerateMoves();
       })
       .catch((error) => {
         console.error('An error occurred:', error);

@@ -16,7 +16,7 @@ interface MyComponentProps {
   height: number | string;
   // style: React.CSSProperties;
   enabled?: boolean;
-  lastMove?: boolean;
+  lastMove?: string[];
   check?: boolean;
   free?: boolean;
   color?: 'white' | 'black';

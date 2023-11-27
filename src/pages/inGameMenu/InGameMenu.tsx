@@ -28,20 +28,29 @@ import {
   ParseFen,
   PrintBoard,
   PrintPieceLists,
+  FROMSQ,
+  TOSQ,
 } from '../../arcaneChess/board.mjs';
 import {
   MovePiece,
   AddPiece,
   ClearPiece,
 } from '../../arcaneChess/makemove.mjs';
-import { PrMove, PrintMoveList } from 'src/arcaneChess/io.mjs';
+import { PrMove, PrintMoveList, PrSq } from 'src/arcaneChess/io.mjs';
 import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
 import { prettyToSquare, BOOL, PIECES } from '../../arcaneChess/defs.mjs';
 import {
   outputFenOfCurrentPosition,
   randomize,
+  InCheck,
 } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
+import {
+  editAddPiece,
+  editClearPiece,
+  editMovePiece,
+} from '../../arcaneChess/gui.mjs';
+
 // import engine
 // import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
@@ -125,6 +134,12 @@ export const factionColorMap: { [key: string]: string } = {
   BK: '#222222',
 };
 
+const pieces: Pieces = PIECES;
+
+interface Pieces {
+  [key: string]: number;
+}
+
 interface ArcanaDetail {
   name: string;
   description: string;
@@ -185,7 +200,7 @@ interface State {
   fenHistory: string[];
   pvLine?: string[];
   fen: string;
-  engineLastMove: string[];
+  lastMove: string[];
   whiteFaction: string;
   blackFaction: string;
   selectedFaction: string;
@@ -221,6 +236,7 @@ interface State {
   varVar: string | number | boolean | null;
   correctMoves: string[];
   arcaneHover: string;
+  placingPiece: number;
 }
 
 interface Props {
@@ -240,7 +256,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       history: [],
       fenHistory: ['rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'],
       thinking: false,
-      engineLastMove: [],
+      lastMove: [],
       thinkingTime: 1500,
       whiteFaction: 'normal',
       blackFaction: 'normal',
@@ -289,6 +305,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       varVar: 'NORMAL',
       correctMoves: [],
       arcaneHover: '',
+      placingPiece: 0,
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
   }
@@ -353,7 +370,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         console.log(engineResult);
         // SearchController.thinking = BOOL.FALSE;
         resolve(engineResult);
-      }, this.state.thinkingTime + 500);
+      }, this.state.thinkingTime);
     })
       .then((reply) => {
         console.log('reply', reply);
@@ -364,6 +381,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
           history: [...prevState.history, PrMove(reply)],
           fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
           thinking: false,
+          lastMove: [PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))],
         }));
       })
       .then(() => {
@@ -473,10 +491,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     // this.initializeArcaneChessAndTest(
     //   this.state.fenHistory[this.state.fenHistory.length - 1]
     // );
+    ParseFen(this.state.fen);
   }
 
   render() {
-    console.log(GameBoard.material);
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     // const { auth } = this.props;
     // console.log(this.state.fen, this.state.fenHistory[0]);
@@ -836,66 +854,96 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             // height={520}
             width={480}
             height={480}
+            check={InCheck() ? true : false}
             // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
             // don't, just go by the page type
             // width={360}
             // height={360}
             animation={{
               enabled: true,
-              duration: 1,
+              duration: 200,
             }}
             highlight={{
               lastMove: true,
               check: true,
             }}
+            lastMove={this.state.lastMove}
             orientation={this.state.orientation}
             disableContextMenu={false}
-            turnColor={GameBoard.side === 0 ? 'white' : 'black'}
+            turnColor={
+              this.state.playing
+                ? GameBoard.side === 0
+                  ? 'white'
+                  : 'black'
+                : ''
+            }
             movable={{
-              free: false,
+              free: this.state.playing ? false : true,
               // todo swap out placeholder for comment
               // color: "both",
-              color: GameBoard.side === 0 ? 'white' : 'black',
+              color: this.state.playing
+                ? GameBoard.side === 0
+                  ? 'white'
+                  : 'black'
+                : 'both',
               // todo show summon destinations
               dests: this.arcaneChess().getGroundMoves(),
             }}
             events={{
               change: () => {
                 // if (this.state.)
-                // this.setState({
-                //   fen:
-                // })
+                // this.setState((prevState) => ({
+                //   // history: [...prevState.history, PrMove(parsed)],
+                //   fen: outputFenOfCurrentPosition(),
+                //   fenHistory: [
+                //     ...prevState.fenHistory,
+                //     outputFenOfCurrentPosition(),
+                //   ],
+                // }));
                 // this.arcaneChess().engineReply();
                 // this.setState({})
                 // console.log(cg.FEN);
                 // send moves to redux store, then to server (db), then to opponent
               },
               move: (orig: string, dest: string, capturedPiece: number) => {
-                const parsed = this.arcaneChess().makeUserMove(orig, dest);
-                // generatePowers();
-                console.log('captured', capturedPiece);
-                if (!PrMove(parsed)) {
-                  console.log('invalid move');
-                  debugger; // eslint-disable-line
+                if (this.state.playing) {
+                  const parsed = this.arcaneChess().makeUserMove(orig, dest);
+                  console.log(orig, dest);
+                  console.log('captured', capturedPiece);
+                  if (!PrMove(parsed)) {
+                    console.log('invalid move');
+                    debugger; // eslint-disable-line
+                  }
+                  this.setState((prevState) => ({
+                    history: [...prevState.history, PrMove(parsed)],
+                    fen: outputFenOfCurrentPosition(),
+                    fenHistory: [
+                      ...prevState.fenHistory,
+                      outputFenOfCurrentPosition(),
+                    ],
+                    lastMove: [orig, dest],
+                  }));
+                  this.engineGo();
+                } else {
+                  editMovePiece(orig, dest);
+                  this.setState({
+                    fen: outputFenOfCurrentPosition(),
+                    fenHistory: [outputFenOfCurrentPosition()],
+                  });
                 }
-                this.setState((prevState) => ({
-                  history: [...prevState.history, PrMove(parsed)],
-                  fen: outputFenOfCurrentPosition(),
-                  fenHistory: [
-                    ...prevState.fenHistory,
-                    outputFenOfCurrentPosition(),
-                  ],
-                }));
-                this.engineGo();
               },
-              // select: (key) => {
-              //   ParseFen(this.state.fen);
-              //   AddPiece(prettyToSquare(key), PIECES.wN);
-              //   this.setState({
-              //     fen: outputFenOfCurrentPosition(),
-              //     fenHistory: [outputFenOfCurrentPosition()],
-              //   });
-              // },
+              select: (key: string) => {
+                if (this.state.placingPiece === 0) return;
+                if (this.state.placingPiece === 333)
+                  ClearPiece(prettyToSquare(key));
+                else {
+                  AddPiece(prettyToSquare(key), this.state.placingPiece);
+                }
+                this.setState({
+                  fen: outputFenOfCurrentPosition(),
+                  fenHistory: [outputFenOfCurrentPosition()],
+                });
+              },
             }}
           />
         </div>
@@ -969,7 +1017,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 height={40}
                 width={280}
                 placeholder="TITLE"
-                value={this.state.fen}
+                value={''}
                 onChange={(value) => this.setFen(value)}
               />
               <Input
@@ -978,8 +1026,8 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 color="B"
                 height={40}
                 width={280}
-                placeholder="TITLE"
-                value={this.state.fen}
+                placeholder="OPPONENT"
+                value={''}
                 onChange={(value) => this.setFen(value)}
               />
               {/* <input
@@ -996,6 +1044,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               /> */}
               <textarea
                 className="description"
+                placeholder="NODE DESCRIPTIONS"
                 style={{ color: 'white' }}
                 onChange={(event) =>
                   this.setState({ description: event.target.value })
@@ -1003,6 +1052,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               ></textarea>
               <textarea
                 className="description"
+                placeholder="PANEL TEXT"
                 style={{ color: 'white' }}
                 onChange={(event) =>
                   this.setState({ panelText: event.target.value })
@@ -1014,12 +1064,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             {piecePickupArray.map((piece, index) => (
               <div
                 className="piece-pickup-square"
-                style={{
-                  width: '50px',
-                  height: '50px',
-                  background: '#555555',
-                }}
                 key={index}
+                onClick={() => {
+                  this.setState({ placingPiece: pieces[piece] });
+                }}
               >
                 <div
                   className={`${piece
@@ -1040,14 +1088,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 ></div>
               </div>
             ))}
-            <div
-              className="piece-pickup-square"
-              style={{
-                width: '50px',
-                height: '50px',
-                background: '#555555',
-              }}
-            >
+            <div className="piece-pickup-square">
               <div
                 className="x-piece"
                 style={{
@@ -1058,28 +1099,24 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   height: '100px',
                   transform: 'scale(.4)',
                 }}
+                onClick={() => {
+                  this.setState({ placingPiece: pieces.EXILE });
+                }}
               ></div>
             </div>
             {_.map(royaltyPickupArray, (value, key) => (
-              <div
-                key={key}
-                className="piece-pickup-square"
-                style={{
-                  width: '50px',
-                  height: '50px',
-                  background: '#555555',
-                }}
-              >
+              <div key={key} className="piece-pickup-square">
                 <div
                   style={{
+                    width: '50px',
+                    height: '50px',
+                    background: '#333333',
                     position: 'relative',
                     backgroundImage: `radial-gradient(
           circle at 50% 50%,
           ${value} 0%,
           rgba(0, 0, 0, 0) 100%
         )`,
-                    width: '50px',
-                    height: '50px',
                   }}
                 ></div>
               </div>
@@ -1288,8 +1325,20 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               />
             </div>
             <div className="picker-extension">
-              <Button className="tertiary" color="B" text="MOUSE" height={46} />
-              <Button className="tertiary" color="B" text="TRASH" height={46} />
+              <Button
+                className="tertiary"
+                color="B"
+                text="MOUSE"
+                height={46}
+                onClick={() => this.setState({ placingPiece: 0 })}
+              />
+              <Button
+                className="tertiary"
+                color="B"
+                text="TRASH"
+                height={46}
+                onClick={() => this.setState({ placingPiece: 333 })}
+              />
             </div>
             <div className="reset-output">
               <Button

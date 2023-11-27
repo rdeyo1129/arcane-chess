@@ -418,7 +418,7 @@ export function ResetBoard() {
   GameBoard.whiteArcane = [0, 0, 0, 0, 0];
   GameBoard.blackArcane = [0, 0, 0, 0, 0];
 
-  GameBoard.crazyHouse = [false, false];
+  // GameBoard.crazyHouse = [false, false];
 
   GameBoard.summonMoveList = [];
   GameBoard.swapMoveList = [];

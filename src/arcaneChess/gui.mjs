@@ -1,7 +1,13 @@
 import { GameBoard } from './board';
 import { GenerateMoves, generatePowers, MoveExists } from './movegen';
 import { SearchController, SearchPosition } from './search';
-import { MakeMove, TakeMove } from './makemove';
+import {
+  MakeMove,
+  TakeMove,
+  MovePiece,
+  ClearPiece,
+  AddPiece,
+} from './makemove';
 import {
   NOMOVE,
   BOOL,
@@ -14,7 +20,7 @@ import {
   Kings,
 } from './defs';
 import { PrMove, PrSq, ParseMove, PrintMoveList } from './io';
-import { PrintBoard, SqAttacked } from './board.mjs';
+import { PrintBoard, SqAttacked, FROMSQ, TOSQ } from './board.mjs';
 import { MissionView } from 'src/pages/missionView/MissionView';
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 import { get } from 'lodash';
@@ -60,6 +66,20 @@ export function validMoves() {
     moves.push(moveFound);
   }
   return moves;
+}
+
+export function editAddPiece(sq, pce) {
+  AddPiece(prettyToSquare(sq), pce);
+}
+
+export function editClearPiece(sq) {
+  ClearPiece(prettyToSquare(sq));
+}
+
+export function editMovePiece(orig, dest) {
+  var from = prettyToSquare(orig);
+  var to = prettyToSquare(dest);
+  MovePiece(from, to);
 }
 
 export function MakeUserMove(orig, dest) {

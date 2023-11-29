@@ -153,8 +153,6 @@ export function Quiescence(alpha, beta) {
 
     Move = GameBoard.moveList[MoveNum];
 
-    console.log('move', PrMove(Move), Move, ARCANEFLAG(Move));
-
     if (MakeMove(Move) === BOOL.FALSE) {
       continue;
     }
@@ -430,8 +428,6 @@ export function SearchPosition() {
     if (SearchController.stop === BOOL.TRUE) {
       break;
     }
-
-    console.log('info score cp ' + Score + ' depth ' + currentDepth);
 
     bestScore = Score;
     bestMove = ProbePvTable();

@@ -33,7 +33,7 @@ export const ARCANE_BIT_VALUES = {
   RQ: 28,
   RT: 29,
   RM: 30,
-  RV: 31,
+  RV: 12,
   RE: 32,
   // to reuse when not using summon
   // ATK: 29,

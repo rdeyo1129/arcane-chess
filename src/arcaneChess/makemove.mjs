@@ -295,7 +295,7 @@ export function MakeMove(move) {
 
   if (
     pieceEpsilon !== PIECES.EMPTY &&
-    (ARCANEFLAG(move) === 0 || move === MFLAGCNSM)
+    (ARCANEFLAG(move) === 0 || move & MFLAGCNSM)
   ) {
     ClearPiece(to);
     AddPiece(to, pieceEpsilon);
@@ -524,7 +524,7 @@ export function TakeMove() {
       from,
       PieceCol[pieceEpsilon] === COLOURS.WHITE ? PIECES.wP : PIECES.bP
     );
-  } else if (pieceEpsilon !== PIECES.EMPTY && move & MFLAGSUMN) {
+  } else if (move & MFLAGSUMN) {
     if (pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV) {
       GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = -500;
     } else {

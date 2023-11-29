@@ -355,7 +355,9 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     });
 
     generatePowers();
-    GenerateMoves();
+    GenerateMoves(true, false, true);
+
+    PrintMoveList();
 
     SearchController.thinking = BOOL.TRUE;
 
@@ -364,18 +366,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         const engineResult = this.arcaneChess().engineReply(
           this.state.thinkingTime
         );
-        if (!engineResult.bestScore) {
-          console.log(engineResult);
-        }
-        console.log(engineResult);
-        // SearchController.thinking = BOOL.FALSE;
         resolve(engineResult);
       }, this.state.thinkingTime);
     })
       .then((reply) => {
-        console.log('reply', reply);
-        console.log(SearchController.best);
-        // if (reply === 0) debugger; // eslint-disable-line
         this.setState((prevState) => ({
           pvLine: GameBoard.cleanPV,
           history: [...prevState.history, PrMove(reply)],
@@ -550,7 +544,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     {_.map(
                       this.state.config[this.state.selectedSide].arcana,
                       (value: number, key: string) => {
-                        console.log(arcana, key);
                         return (
                           <img
                             key={key}
@@ -1211,14 +1204,12 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     this.state.config.BK.arcana,
                     this.state.varVar
                   );
-                  if (
-                    this.state.fen.split(' ')[1] === 'black' &&
-                    this.state.orientation === 'black'
-                  ) {
+                  if (this.state.fen.split(' ')[1] === 'b') {
                     this.engineGo();
                   }
                   this.setState({
                     playing: true,
+                    placingPiece: 0,
                     // fen: fischer,
                     // fenHistory: [fischer],
                   });

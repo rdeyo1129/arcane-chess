@@ -166,7 +166,7 @@ export default function arcaneChess(
 
     generatePowers();
 
-    GenerateMoves();
+    GenerateMoves(true, false, true);
 
     console.log(whiteConfig, blackConfig);
 
@@ -182,7 +182,7 @@ export default function arcaneChess(
     //   console.log(validGroundMoves());
     // }
 
-    PrintBoard();
+    // PrintBoard();
 
     // PrintSqAttacked();
 

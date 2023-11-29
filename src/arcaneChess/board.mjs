@@ -388,7 +388,6 @@ export function UpdateListsMaterial() {
     if (piece !== PIECES.EMPTY) {
       colour = PieceCol[piece];
 
-      console.log(colour);
       GameBoard.material[colour] += PieceVal[piece];
 
       GameBoard.pList[PCEINDEX(piece, GameBoard.pceNum[piece])] = sq;

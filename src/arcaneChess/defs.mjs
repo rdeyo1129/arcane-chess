@@ -69,6 +69,7 @@ export const RANKS = {
 
 // create function that uses parameter of string like "d4" and return 54
 export const prettyToSquare = (pretty) => {
+  if (pretty === 'a0') return 0;
   const file = pretty.charCodeAt(0) - 97;
   const rank = pretty.charCodeAt(1) - 49;
   return 21 + file + rank * 10;

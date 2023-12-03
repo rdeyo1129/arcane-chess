@@ -141,7 +141,7 @@ GameBoard.pList = new Array(30 * 36);
 GameBoard.whiteArcane = [0, 0, 0, 0, 0];
 GameBoard.blackArcane = [0, 0, 0, 0, 0];
 
-GameBoard.summonRankLimits = [6, 6];
+GameBoard.summonRankLimits = [5, 5];
 GameBoard.crazyHouse = [false, false];
 
 GameBoard.summonMoveList = [];

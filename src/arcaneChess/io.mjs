@@ -23,6 +23,7 @@ import {
   BOOL,
   COLOURS,
   PceChar,
+  PieceCol,
 } from './defs';
 import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
@@ -247,7 +248,7 @@ export function PrintMoveList() {
   console.log('End MoveList');
 }
 
-export function ParseMove(from, to) {
+export function ParseMove(from, to, pieceEpsilon = PIECES.EMPTY) {
   generatePowers();
   GenerateMoves();
 
@@ -262,15 +263,13 @@ export function ParseMove(from, to) {
   ) {
     Move = GameBoard.moveList[index];
     if (
-      FROMSQ(Move) === prettyToSquare(from) &&
-      TOSQ(Move) === prettyToSquare(to)
+      (FROMSQ(Move) === prettyToSquare(from) &&
+        TOSQ(Move) === prettyToSquare(to)) ||
+      (from === 'a0' && TOSQ(Move) === prettyToSquare(to))
     ) {
       PromPce = PROMOTED(Move);
       if (PromPce !== PIECES.EMPTY) {
-        if (
-          (PromPce === PIECES.wQ && GameBoard.side === COLOURS.WHITE) ||
-          (PromPce === PIECES.bQ && GameBoard.side === COLOURS.BLACK)
-        ) {
+        if (PromPce === pieceEpsilon) {
           found = BOOL.TRUE;
           break;
         }

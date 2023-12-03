@@ -7,7 +7,7 @@ type AnyHacker = {
   [key: string]: number | string | React.CSSProperties | null;
 };
 
-interface MyComponentProps {
+export interface IChessground {
   fen: string;
   resizable: boolean;
   wFaction: string;
@@ -35,28 +35,32 @@ interface MyComponentProps {
   turnColor?: string;
   movable?: any; // Replace `any` with a more specific type if available
   events?: any; // Replace `any` with a more specific type if available
+  forwardedRef: React.Ref<IChessgroundApi>;
 
   // Adding an index signature for additional flexibility
   [key: string]: any;
 }
 
-interface IChessground {
+export interface IChessgroundApi {
   set: (config: Record<string, AnyHacker>) => void;
   destroy: () => void;
+  selectPocket: (piece: object) => void;
+  getFen: () => string;
+  unselect: () => void;
 }
 
-export class Chessground extends React.Component<MyComponentProps> {
+export class Chessground extends React.Component<IChessground> {
   cg: IChessground;
   el: HTMLDivElement | null = null;
   config: Record<string, any> = {};
 
-  constructor(props: MyComponentProps) {
+  constructor(props: IChessground) {
     super(props);
     this.cg = {} as IChessground;
     this.config = {};
   }
 
-  buildConfigFromProps(props: MyComponentProps): Record<string, any> {
+  buildConfigFromProps(props: IChessground): Record<string, any> {
     const config: { events: Record<string, any>; [key: string]: any } = {
       events: {},
     };
@@ -84,10 +88,22 @@ export class Chessground extends React.Component<MyComponentProps> {
         this.el,
         this.buildConfigFromProps(this.props)
       );
+
+      if (this.props.forwardedRef) {
+        const refObj = this.props.forwardedRef as React.RefObject<IChessground>;
+        if (refObj) {
+          refObj.current = {
+            set: this.cg.set.bind(this.cg),
+            destroy: this.cg.destroy.bind(this.cg),
+            selectPocket: this.cg.selectPocket.bind(this.cg),
+            // Bind any other API methods you want to expose
+          };
+        }
+      }
     }
   }
 
-  componentDidUpdate(prevProps: MyComponentProps) {
+  componentDidUpdate(prevProps: IChessground) {
     if (this.props !== prevProps) {
       this.cg.set(this.buildConfigFromProps(this.props));
     }
@@ -117,6 +133,17 @@ export class Chessground extends React.Component<MyComponentProps> {
       style: style,
     };
 
-    return <div ref={(el) => (this.el = el)} {...props}></div>;
+    return (
+      <div
+        ref={(el) => {
+          this.el = el;
+        }}
+        {...props}
+      ></div>
+    );
   }
 }
+
+export default React.forwardRef<IChessground, IChessground>((props, ref) => (
+  <Chessground {...props} forwardedRef={ref} />
+));

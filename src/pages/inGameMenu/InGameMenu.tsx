@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import _ from 'lodash';
 import fs from 'fs';
 // import { Link, withRouter } from "react-router-dom";
@@ -38,7 +38,12 @@ import {
 } from '../../arcaneChess/makemove.mjs';
 import { PrMove, PrintMoveList, PrSq } from 'src/arcaneChess/io.mjs';
 import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
-import { prettyToSquare, BOOL, PIECES } from '../../arcaneChess/defs.mjs';
+import {
+  prettyToSquare,
+  BOOL,
+  PIECES,
+  PceChar,
+} from '../../arcaneChess/defs.mjs';
 import {
   outputFenOfCurrentPosition,
   randomize,
@@ -49,6 +54,7 @@ import {
   editAddPiece,
   editClearPiece,
   editMovePiece,
+  validSummonMoves,
 } from '../../arcaneChess/gui.mjs';
 
 // import engine
@@ -64,7 +70,7 @@ import Button from '../../components/Button/Button';
 import Toggle from '../../components/Toggle/Toggle';
 import Select from '../../components/Select/Select';
 
-import { Chessground } from '../../chessground/chessgroundMod';
+import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
 import e from 'express';
 
 import book1 from 'src/data/books/book1.json';
@@ -246,6 +252,7 @@ interface Props {
 
 class UnwrappedInGameMenu extends React.Component<object, State> {
   arcaneChess;
+  chessgroundRef = createRef<IChessgroundApi>();
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -308,6 +315,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       placingPiece: 0,
     };
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
+    this.chessgroundRef = React.createRef();
   }
 
   // userflow
@@ -356,8 +364,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
 
     generatePowers();
     GenerateMoves(true, false, true);
-
-    PrintMoveList();
 
     SearchController.thinking = BOOL.TRUE;
 
@@ -414,7 +420,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
 
     GenerateMoves();
 
-    PrintMoveList();
+    // PrintMoveList();
 
     // this.perftTest(
     //   'rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
@@ -434,7 +440,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
 
   onChangeUses = (e: React.ChangeEvent<HTMLSelectElement>, arcane: string) => {
     const uses = Number(e.target.value) || e.target.value;
-    console.log(arcane, this.state.selectedSide, uses);
     this.setState((prevState) => ({
       ...prevState,
       config: {
@@ -481,10 +486,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
   };
 
   componentDidMount(): void {
-    // uncomment for moving pieces freely? Or just conditionalize based on whether in variation or not
-    // this.initializeArcaneChessAndTest(
-    //   this.state.fenHistory[this.state.fenHistory.length - 1]
-    // );
+    // if (this.chessgroundRef.current) {
+    //   console.log(this.chessgroundRef);
+    //   const api = this.chessgroundRef.current; // Assuming 'getApi' method exists to
+    // }
     ParseFen(this.state.fen);
   }
 
@@ -551,6 +556,30 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                             src={`${arcana[key].imagePath}${
                               this.state.hoverArcane === key ? '-hover' : ''
                             }.svg`}
+                            onClick={() => {
+                              if (this.state.placingPiece > 0) {
+                                // this.chessgroundRef.current?.unselect();
+                                this.setState({ placingPiece: 0 });
+                              } else {
+                                this.chessgroundRef.current?.selectPocket({
+                                  role: 't-piece',
+                                  color: 'white',
+                                });
+                                if (key.includes('sumn')) {
+                                  this.setState({
+                                    placingPiece:
+                                      pieces[
+                                        `${
+                                          this.state.selectedSide === 'W'
+                                            ? 'w'
+                                            : 'b'
+                                        }${key.split('sumn')[1]}`
+                                      ],
+                                  });
+                                  // todo royalty
+                                }
+                              }
+                            }}
                             onMouseEnter={() => this.toggleHover(key)}
                             onMouseLeave={() => this.toggleHover('')}
                           />
@@ -580,7 +609,8 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                               ? this.state.config[this.state.selectedSide][
                                   'arcana'
                                 ][arcaneId]
-                              : arcane.type === 'active'
+                              : arcane.type === 'active' ||
+                                arcane.type === 'passive'
                               ? 0
                               : 'false'}
                           </span>
@@ -594,7 +624,8 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                               ? this.state.config[this.state.selectedSide][
                                   'arcana'
                                 ][arcaneId]
-                              : arcane.type === 'active'
+                              : arcane.type === 'active' ||
+                                arcane.type === 'passive'
                               ? 0
                               : 'false'
                           }
@@ -827,6 +858,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         </div>
         <div className="board-view tactorius-board">
           <Chessground
+            forwardedRef={this.chessgroundRef}
             // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
             // check={this.tactorius.inCheck().isAttacked}
             // viewOnly={this.isCheckmate()}
@@ -872,6 +904,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             }
             movable={{
               free: this.state.playing ? false : true,
+              rookCastle: false,
               // todo swap out placeholder for comment
               // color: "both",
               color: this.state.playing
@@ -880,32 +913,78 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   : 'black'
                 : 'both',
               // todo show summon destinations
-              dests: this.arcaneChess().getGroundMoves(),
+              dests:
+                this.state.placingPiece === 0
+                  ? this.arcaneChess().getGroundMoves()
+                  : // consoe.log()
+                    this.arcaneChess().getSummonMoves(
+                      PceChar.split('')[this.state.placingPiece]
+                    ),
+              events: {
+                afterNewPiece: (role: string, key: string) => {
+                  // console.log('after new piece', role, key);
+                  // console.log(key);
+                  // const parsed = this.arcaneChess().makeUserMove(0, key);
+                  // // console.log(orig, dest);
+                  // // console.log('captured', capturedPiece);
+                  // if (!PrMove(parsed)) {
+                  //   console.log('invalid move');
+                  //   // debugger; // eslint-disable-line
+                  // }
+                  // this.setState((prevState) => ({
+                  //   history: [...prevState.history, PrMove(parsed)],
+                  //   fen: outputFenOfCurrentPosition(),
+                  //   fenHistory: [
+                  //     ...prevState.fenHistory,
+                  //     outputFenOfCurrentPosition(),
+                  //   ],
+                  //   lastMove: [key, key],
+                  // }));
+                  // // this.engineGo();
+                },
+              },
+            }}
+            selectable={{
+              enabled: true, // disable to enforce dragging over click-click move
+              selected: {
+                role: `${PceChar[this.state.placingPiece].toLowerCase()}-piece`, // class name of chess piece
+                color: 'white', // color of chess piece
+              }, // square or piece currently selected "a1"
+              fromPocket: false, // whether the selected piece is from the pocket
+            }}
+            pocketRoles={{
+              white: 't-piece',
+              black: 'b-piece',
             }}
             events={{
-              change: () => {
-                // if (this.state.)
-                // this.setState((prevState) => ({
-                //   // history: [...prevState.history, PrMove(parsed)],
-                //   fen: outputFenOfCurrentPosition(),
-                //   fenHistory: [
-                //     ...prevState.fenHistory,
-                //     outputFenOfCurrentPosition(),
-                //   ],
-                // }));
-                // this.arcaneChess().engineReply();
-                // this.setState({})
-                // console.log(cg.FEN);
-                // send moves to redux store, then to server (db), then to opponent
+              change: () => {},
+              dropNewPiece: (piece: string, key: string) => {
+                const parsed = this.arcaneChess().makeUserMove(
+                  'a0',
+                  key,
+                  this.state.placingPiece
+                );
+                if (!PrMove(parsed)) {
+                  console.log('invalid move');
+                }
+                // this.chessgroundRef.current?.unselect();
+                this.setState((prevState) => ({
+                  history: [...prevState.history, PrMove(parsed)],
+                  fen: outputFenOfCurrentPosition(),
+                  fenHistory: [
+                    ...prevState.fenHistory,
+                    outputFenOfCurrentPosition(),
+                  ],
+                  lastMove: [key, key],
+                  placingPiece: 0,
+                }));
+                this.engineGo();
               },
               move: (orig: string, dest: string, capturedPiece: number) => {
                 if (this.state.playing) {
                   const parsed = this.arcaneChess().makeUserMove(orig, dest);
-                  console.log(orig, dest);
-                  console.log('captured', capturedPiece);
                   if (!PrMove(parsed)) {
                     console.log('invalid move');
-                    debugger; // eslint-disable-line
                   }
                   this.setState((prevState) => ({
                     history: [...prevState.history, PrMove(parsed)],
@@ -925,17 +1004,22 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   });
                 }
               },
+              // dropNewPiece: (piece: string, key: string) => {},
               select: (key: string) => {
-                if (this.state.placingPiece === 0) return;
-                if (this.state.placingPiece === 333)
-                  ClearPiece(prettyToSquare(key));
-                else {
-                  AddPiece(prettyToSquare(key), this.state.placingPiece);
+                if (this.state.playing) {
+                  // console.log('select', key);
+                } else {
+                  if (this.state.placingPiece === 0) return;
+                  if (this.state.placingPiece === 333)
+                    ClearPiece(prettyToSquare(key));
+                  else {
+                    AddPiece(prettyToSquare(key), this.state.placingPiece);
+                  }
+                  this.setState({
+                    fen: outputFenOfCurrentPosition(),
+                    fenHistory: [outputFenOfCurrentPosition()],
+                  });
                 }
-                this.setState({
-                  fen: outputFenOfCurrentPosition(),
-                  fenHistory: [outputFenOfCurrentPosition()],
-                });
               },
             }}
           />
@@ -1197,7 +1281,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     this.state.config.W.arcana,
                     this.state.config.BK.arcana
                   );
-                  console.log(fischer, this.state.config);
                   this.arcaneChess().startGame(
                     this.state.fen,
                     this.state.config.W.arcana,

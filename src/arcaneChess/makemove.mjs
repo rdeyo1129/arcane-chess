@@ -39,7 +39,7 @@ import { ARCANEFLAG, PrintBoard, SideText } from './board.mjs';
 import { PrMove, PrintMoveList } from './io';
 import { ARCANE_BIT_VALUES } from './defs.mjs';
 
-export function ClearPiece(sq) {
+export function ClearPiece(sq, summon = false) {
   let pce = GameBoard.pieces[sq];
   let col = PieceCol[pce];
   let index;
@@ -48,7 +48,9 @@ export function ClearPiece(sq) {
   HASH_PCE(pce, sq);
 
   GameBoard.pieces[sq] = PIECES.EMPTY;
-  GameBoard.material[col] -= PieceVal[pce];
+  if (!summon) {
+    GameBoard.material[col] -= PieceVal[pce];
+  }
 
   for (index = 0; index < GameBoard.pceNum[pce]; index++) {
     if (GameBoard.pList[PCEINDEX(pce, index)] === sq) {
@@ -62,13 +64,15 @@ export function ClearPiece(sq) {
     GameBoard.pList[PCEINDEX(pce, GameBoard.pceNum[pce])];
 }
 
-export function AddPiece(sq, pce) {
+export function AddPiece(sq, pce, summon = false) {
   let col = PieceCol[pce];
 
   HASH_PCE(pce, sq);
 
   GameBoard.pieces[sq] = pce;
-  GameBoard.material[col] += PieceVal[pce];
+  if (!summon) {
+    GameBoard.material[col] += PieceVal[pce];
+  }
   GameBoard.pList[PCEINDEX(pce, GameBoard.pceNum[pce])] = sq;
   GameBoard.pceNum[pce]++;
 }
@@ -303,7 +307,7 @@ export function MakeMove(move) {
     if (pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV) {
       GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = 4;
     } else {
-      AddPiece(to, pieceEpsilon);
+      AddPiece(to, pieceEpsilon, true);
     }
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[
@@ -528,7 +532,7 @@ export function TakeMove() {
     if (pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV) {
       GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = -500;
     } else {
-      ClearPiece(to);
+      ClearPiece(to, true);
     }
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[

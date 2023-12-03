@@ -498,9 +498,7 @@ export function gameSim(thinkingTime) {
     GenerateMoves();
 
     const { score, bestMove, line } = SearchPosition();
-    // PrintMoveList();
-    PrintBoard();
-    PrintMoveList();
+
     MakeMove(bestMove);
     CheckAndSet();
     // PrintMoveList();

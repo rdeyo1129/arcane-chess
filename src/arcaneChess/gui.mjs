@@ -20,7 +20,14 @@ import {
   Kings,
 } from './defs';
 import { PrMove, PrSq, ParseMove, PrintMoveList } from './io';
-import { PrintBoard, SqAttacked, FROMSQ, TOSQ } from './board.mjs';
+import {
+  PrintBoard,
+  SqAttacked,
+  FROMSQ,
+  TOSQ,
+  ARCANEFLAG,
+  MFLAGSUMN,
+} from './board.mjs';
 import { MissionView } from 'src/pages/missionView/MissionView';
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 import { get } from 'lodash';
@@ -45,14 +52,38 @@ export function validGroundMoves() {
     }
     moveMap.get(from).push(to);
   }
+  // console.log('moveMap', moveMap);
   return moveMap;
 }
 
-export function validMoves() {
+export const validSummonMoves = (piece) => {
+  const moveMap = new Map();
+  const validMovesReturn = validMoves(true);
+
+  // moves
+  // click button on UI = setCurrentArcane
+  // is this for dyads?
+  // if (GameBoard.currentArcane & POWERBITS[substr(sumn, 4)]) substring of box notation? {
+  for (let move of validMovesReturn) {
+    // todo, need to split to and from sqaures from things like x and &
+    const from = `${piece.toUpperCase()}@`;
+    const to = PrMove(move, 'array')[1];
+    if (!moveMap.has(from)) {
+      moveMap.set(from, []);
+      // gameOver
+      // updateReactUI();
+    }
+    moveMap.get(from).push(to);
+  }
+  // console.log('moveMap', moveMap);
+  return moveMap;
+};
+
+export function validMoves(summon) {
   const moves = [];
   let moveFound = NOMOVE;
   generatePowers();
-  GenerateMoves();
+  GenerateMoves(true, false, summon);
   for (
     let index = GameBoard.moveListStart[GameBoard.ply];
     index < GameBoard.moveListStart[GameBoard.ply + 1];
@@ -82,14 +113,15 @@ export function editMovePiece(orig, dest) {
   MovePiece(from, to);
 }
 
-export function MakeUserMove(orig, dest) {
-  // if (UserMove.from != SQUARES.NO_SQ && UserMove.to != SQUARES.NO_SQ) {
+export function MakeUserMove(orig, dest, pieceEpsilon = PIECES.EMPTY) {
   console.log(
     'User Move:' + PrSq(prettyToSquare(orig)) + PrSq(prettyToSquare(dest))
   );
 
-  var parsed = ParseMove(orig, dest);
+  var parsed = ParseMove(orig, dest, pieceEpsilon);
   MakeMove(parsed);
+
+  PrintBoard();
 
   CheckAndSet();
 
@@ -256,6 +288,6 @@ export function engineMove(thinkingTime) {
   const { bestMove, bestScore, line } = SearchPosition();
   MakeMove(bestMove);
   CheckAndSet();
-  PrintMoveList();
+  // PrintMoveList();
   return bestMove;
 }

@@ -53,10 +53,15 @@ import {
 } from './board';
 import { MakeMove, TakeMove } from './makemove';
 import { PerftTest } from './perft';
-import { validMoves, validGroundMoves } from './gui';
+import {
+  validMoves,
+  validGroundMoves,
+  validSummonMoves,
+  MakeUserMove,
+  engineMove,
+} from './gui';
 import { SearchPosition, gameSim } from './search.mjs';
 import { PrintSqAttacked } from './board.mjs';
-import { MakeUserMove, engineMove } from './gui.mjs';
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import {
@@ -65,6 +70,7 @@ import {
   whiteArcaneConfig,
   blackArcaneConfig,
 } from './arcaneDefs.mjs';
+import { PIECES } from './defs.mjs';
 import { set } from 'lodash';
 
 export default function arcaneChess(
@@ -166,14 +172,14 @@ export default function arcaneChess(
 
     generatePowers();
 
-    GenerateMoves(true, false, true);
+    GenerateMoves(true, false);
 
-    console.log(whiteConfig, blackConfig);
+    // console.log(whiteConfig, blackConfig);
 
-    console.log(GameBoard.whiteArcane);
-    console.log(GameBoard.blackArcane);
-    console.log(whiteArcaneConfig);
-    console.log(blackArcaneConfig);
+    // console.log(GameBoard.whiteArcane);
+    // console.log(GameBoard.blackArcane);
+    // console.log(whiteArcaneConfig);
+    // console.log(blackArcaneConfig);
 
     // // should take care of herrings but what about stalemate?
     // // todo assign generate moves with herrings to a variable and check here
@@ -209,9 +215,12 @@ export default function arcaneChess(
     getGroundMoves: () => {
       return validGroundMoves();
     },
-    makeUserMove: (orig, dest) => {
+    getSummonMoves: (piece) => {
+      return validSummonMoves(piece);
+    },
+    makeUserMove: (orig, dest, pieceEpsilon = PIECES.EMPTY) => {
       // engineMove;
-      return MakeUserMove(orig, dest);
+      return MakeUserMove(orig, dest, pieceEpsilon);
     },
     engineReply: (thinkingTime) => {
       return engineMove(thinkingTime);

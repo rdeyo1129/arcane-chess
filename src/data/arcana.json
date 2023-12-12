@@ -301,8 +301,14 @@
   },
   "modsPRE": {
     "name": "Premonition Implant",
-    "description": "See all of your opponent's premoves.",
+    "description": "See all of your opponent's premoves or bets.",
     "type": "inherent",
     "imagePath": "src/data/arcanaImages/modsPRE"
+  },
+  "modsBET": {
+    "name": "Gambler Implant",
+    "description": "Premove your opponent's next move, if it's correct, you will gain an arcana.",
+    "type": "inherent",
+    "imagePath": "src/data/arcanaImages/modsBET"
   }
 }

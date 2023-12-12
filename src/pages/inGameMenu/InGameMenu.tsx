@@ -14,7 +14,7 @@ import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
 import arcanaJson from 'src/data/arcana.json';
-const arcana: ArcanaMap = arcanaJson as ArcanaMap;
+const arcana = arcanaJson as ArcanaMap;
 
 // import Hero from "../components/Hero";
 
@@ -220,6 +220,7 @@ interface State {
         [key: string | number]: string | number | readonly string[] | undefined;
       };
       picks: number;
+      setting: string;
     };
   };
   description: string;
@@ -273,14 +274,14 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       orientation: 'white',
       config: {
         // todo disable if no abilities selected
-        R: { disabled: false, arcana: {}, picks: 0 },
-        O: { disabled: false, arcana: {}, picks: 0 },
-        Y: { disabled: false, arcana: {}, picks: 0 },
-        G: { disabled: false, arcana: {}, picks: 0 },
-        B: { disabled: false, arcana: {}, picks: 0 },
-        V: { disabled: false, arcana: {}, picks: 0 },
-        W: { disabled: false, arcana: {}, picks: 0 },
-        BK: { disabled: false, arcana: {}, picks: 0 },
+        R: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
+        O: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
+        Y: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
+        G: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
+        B: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
+        V: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
+        W: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
+        BK: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
       },
       // generatedName: this.generateName(),
       description: '',
@@ -486,11 +487,80 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
   };
 
   componentDidMount(): void {
-    // if (this.chessgroundRef.current) {
-    //   console.log(this.chessgroundRef);
-    //   const api = this.chessgroundRef.current; // Assuming 'getApi' method exists to
-    // }
+    const arcanaKeys = Object.keys(arcana);
+    arcanaKeys.forEach((key) => {
+      this.setState((prevState) => ({
+        ...prevState,
+        config: {
+          ...prevState.config,
+          W: {
+            ...prevState.config.W,
+            arcana: {
+              ...prevState.config.W.arcana,
+              [key]: arcana[key].type === 'active' ? 0 : 'false',
+            },
+          },
+          BK: {
+            ...prevState.config.BK,
+            arcana: {
+              ...prevState.config.BK.arcana,
+              [key]: arcana[key].type === 'active' ? 0 : 'false',
+            },
+          },
+        },
+      }));
+    });
     ParseFen(this.state.fen);
+  }
+
+  toggleAndRandomizeArcana(color: string) {
+    if (color !== 'W' && color !== 'BK') {
+      console.error('Invalid color. Only W and BK are allowed.');
+      return;
+    }
+
+    this.setState((prevState) => {
+      const newConfig = { ...prevState.config };
+      const currentSetting = newConfig[color].setting;
+      const arcanaKeys = Object.keys(arcana);
+
+      arcanaKeys.forEach((key) => {
+        newConfig[color].arcana[key];
+        const isBooleanString =
+          newConfig[color].arcana[key] === 'true' ||
+          newConfig[color].arcana[key] === 'false';
+
+        if (currentSetting === 'zero') {
+          if (isBooleanString) {
+            newConfig[color].arcana[key] = 'true';
+          } else {
+            newConfig[color].arcana[key] = 1;
+          }
+        } else if (currentSetting === 'one') {
+          if (isBooleanString) {
+            newConfig[color].arcana[key] =
+              Math.random() < 0.5 ? 'true' : 'false';
+          } else {
+            newConfig[color].arcana[key] = Math.floor(Math.random() * 9);
+          }
+        } else {
+          if (isBooleanString) {
+            newConfig[color].arcana[key] = 'false';
+          } else {
+            newConfig[color].arcana[key] = 0;
+          }
+        }
+      });
+
+      newConfig[color].setting =
+        currentSetting === 'zero'
+          ? 'one'
+          : currentSetting === 'one'
+          ? 'rand'
+          : 'zero';
+
+      return { config: newConfig };
+    });
   }
 
   render() {
@@ -569,11 +639,14 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                   this.setState({
                                     placingPiece:
                                       pieces[
-                                        `${
-                                          this.state.selectedSide === 'W'
-                                            ? 'w'
-                                            : 'b'
-                                        }${key.split('sumn')[1]}`
+                                        key.split('sumn')[1].toUpperCase() ===
+                                        'X'
+                                          ? 'EXILE'
+                                          : `${
+                                              this.state.selectedSide === 'W'
+                                                ? 'w'
+                                                : 'b'
+                                            }${key.split('sumn')[1]}`
                                       ],
                                   });
                                   // todo royalty
@@ -629,9 +702,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                               ? 0
                               : 'false'
                           }
-                          onChange={(e) =>
-                            this.onChangeUses(e, arcaneId.toString())
-                          }
+                          onChange={(e) => {
+                            console.log(e, arcaneId);
+                            this.onChangeUses(e, arcaneId.toString());
+                          }}
                         >
                           {arcane.type === 'active' || arcane.type === 'passive'
                             ? Array.from({ length: 9 }, (_, index) => (
@@ -762,7 +836,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 }
                 if (value === '960') {
                   console.log('960', value);
-
                   this.setState((prevState) => ({
                     ...prevState,
                     // fen: fischer,
@@ -916,8 +989,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               dests:
                 this.state.placingPiece === 0
                   ? this.arcaneChess().getGroundMoves()
-                  : // consoe.log()
-                    this.arcaneChess().getSummonMoves(
+                  : this.arcaneChess().getSummonMoves(
                       PceChar.split('')[this.state.placingPiece]
                     ),
               events: {
@@ -1390,12 +1462,17 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               />
               <Button
                 text="RAND"
-                onClick={() => null}
                 className="tertiary"
                 color="B"
                 height={46}
                 width={100}
                 disabled={false}
+                onClick={() => {
+                  this.toggleAndRandomizeArcana(
+                    this.state.selectedSide === 'W' ? 'W' : 'BK'
+                  );
+                  // this.toggleAndRandomizeArcana('BK');
+                }}
               />
             </div>
             <div className="picker-extension">

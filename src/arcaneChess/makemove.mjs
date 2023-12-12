@@ -305,7 +305,9 @@ export function MakeMove(move) {
     AddPiece(to, pieceEpsilon);
   } else if (move & MFLAGSUMN) {
     if (pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV) {
-      GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = 4;
+      GameBoard[
+        `royalty${pieceEpsilon === 12 ? 'V' : PceChar.split('')[pieceEpsilon]}`
+      ][to] = 4;
     } else {
       AddPiece(to, pieceEpsilon, true);
     }
@@ -530,7 +532,9 @@ export function TakeMove() {
     );
   } else if (move & MFLAGSUMN) {
     if (pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV) {
-      GameBoard[`royalty${PceChar.split('')[pieceEpsilon]}`][to] = -500;
+      GameBoard[
+        `royalty${pieceEpsilon === 12 ? 'V' : PceChar.split('')[pieceEpsilon]}`
+      ][to] = -500;
     } else {
       ClearPiece(to, true);
     }

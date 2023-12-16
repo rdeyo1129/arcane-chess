@@ -46,6 +46,24 @@
         width: 120px;
         background: #444444;
         overflow-y: scroll;
+
+        .book-node {
+          .delete-node {
+            text-align: center;
+            width: 30px;
+            height: 30px;
+            padding: 4px;
+            background: darkred;
+          }
+          .delete-node:hover {
+            cursor: pointer;
+            background: red;
+          }
+        }
+        .book-node:hover {
+          cursor: pointer;
+          background: #555555 !important;
+        }
       }
     }
     .preset-correct-moves {
@@ -67,14 +85,31 @@
   .top-right {
     display: flex;
     flex-direction: column;
-    .boards-title-description {
+    .panels-title-description {
       width: 400px;
       height: 280px;
       display: flex;
-      .boards {
+      .panels {
         width: 100%;
         height: 100%;
         overflow-y: scroll;
+        .panel {
+          .delete-panel {
+            text-align: center;
+            width: 30px;
+            height: 30px;
+            padding: 4px;
+            background: darkred;
+          }
+          .delete-panel:hover {
+            cursor: pointer;
+            background: red;
+          }
+        }
+        .panel:hover {
+          cursor: pointer;
+          background: #555555 !important;
+        }
       }
       .title-description {
         width: 100%;

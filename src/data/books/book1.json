@@ -1,1 +1,47 @@
-{}
+{
+  "lesson-1": {
+    "id": "lesson-1",
+    "title": "Example TitleAAAA",
+    "time": [100, 100],
+    "nodeText": "Node description",
+    "panelText": "Lesson content example.\n\nThis is a new line.",
+    "reward": [500, "a", "b", "c"],
+    "prereq": "",
+    "opponent": "Sidian",
+    "panels": {
+      "panel-1": {
+        "fen": "rrrrrrrr/pppppppp/8/XTMH4/8/8/PPPPPPPP/RRRRRRRR w KQkq - 0 1",
+        "fenHistory": [
+          "rrrrrrrr/pppppppp/8/XTMH4/8/8/PPPPPPPP/RRRRRRRR w KQkq - 0 1"
+        ],
+        "history": ["e2e4", "e7e5"],
+        "arrowsCircles": [
+          ["arrow1", "circle1"],
+          ["arrow2", "circle2"]
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": { "54": 1 },
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "somePreset",
+        "whiteArcane": {
+          "dyadA": 1,
+          "modsPHA": 2
+        },
+        "blackArcane": {
+          "sumnN": 3,
+          "modsINH": 4
+        },
+        "config": {
+          "keyA": true,
+          "keyB": "stringValue",
+          "keyC": 123
+        },
+        "correctMoves": ["moveA1", "moveA2"]
+      }
+    }
+  }
+}

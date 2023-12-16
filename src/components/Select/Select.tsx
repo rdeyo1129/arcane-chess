@@ -3,10 +3,10 @@ import React from 'react';
 import './Select.scss';
 
 interface SelectProps {
-  type: string;
+  type?: string;
   title?: string;
-  options: number[] | string[];
-  onChange: (val: boolean | string | number | null) => void;
+  options: (string | number)[];
+  onChange: (val: string) => void;
   width?: number | string;
   height?: number | string;
 }
@@ -18,12 +18,11 @@ class Select extends React.Component<SelectProps, SelectState> {
   constructor(props: SelectProps) {
     super(props);
     this.state = {
-      selectedValue:
-        props.type === 'string' ? '' : props.type === 'number' ? 0 : false,
+      selectedValue: props.options.length > 0 ? props.options[0] : '',
     };
   }
-
-  onChangeUses = (value: boolean | string | number | null) => {
+  onChangeUses = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
     this.setState({ selectedValue: value });
     this.props.onChange(value);
   };
@@ -39,9 +38,7 @@ class Select extends React.Component<SelectProps, SelectState> {
             width: width ? width : '100%',
             height: height ? height : '100%',
           }}
-          onChange={(e) => {
-            this.onChangeUses(e.target.value);
-          }}
+          onChange={this.onChangeUses}
         >
           {this.props.options.map((option, i) => {
             return (

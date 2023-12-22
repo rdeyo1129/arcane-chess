@@ -26,7 +26,34 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "somePreset",
+        "preset": "NORMAL",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {
+          "keyA": true,
+          "keyB": "stringValue",
+          "keyC": 123
+        },
+        "correctMoves": ["moveA1", "moveA2"]
+      },
+      "panel-2": {
+        "fen": "rrrrrrrr/pppppppp/8/XTMH4/8/8/PPPPPPPP/RRRRRRRR w KQkq - 0 1",
+        "fenHistory": [
+          "rrrrrrrr/pppppppp/8/XTMH4/8/8/PPPPPPPP/RRRRRRRR w KQkq - 0 1"
+        ],
+        "history": ["e2e4", "e7e5"],
+        "arrowsCircles": [
+          ["arrow1", "circle1"],
+          ["arrow2", "circle2"]
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": { "54": 1 },
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "HORDE",
         "whiteArcane": {
           "dyadA": 1,
           "modsPHA": 2

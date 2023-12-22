@@ -11,6 +11,7 @@ export default ({ mode }) => {
 
   return defineConfig({
     // port: process.env.PORT || 8080,
+    publicDir: 'public',
     resolve: {
       alias: {
         src: resolve(__dirname, 'src'),

@@ -69,11 +69,14 @@
         justify-content: space-evenly;
         align-items: center;
         background: #222222;
-        padding: 10px 0 10px 0;
+        flex: 1 1 auto;
+        width: 500px;
+        // padding: 10px 0 10px 0;
         .swatch {
+          flex: 1;
           padding: 10px;
-          height: 100px;
-          width: 160px;
+          // height: 100px;
+          // width: 160px;
           background: #555555;
         }
         .swatch:hover {
@@ -83,6 +86,7 @@
         .swatch-selected {
           padding: 10px;
           height: 100px;
+          flex: 1;
           background: $B_MENU;
         }
       }

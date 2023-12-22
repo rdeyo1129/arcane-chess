@@ -312,7 +312,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       key={i}
                       className={`swatch${
                         this.state.selectedSwatch === node.id ? '-selected' : ''
-                      } secondary`}
+                      } tertiary`}
                       onClick={() => {
                         const currLS = getLocalStorage(this.props.auth.user.id);
                         this.setState({

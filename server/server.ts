@@ -48,6 +48,7 @@ import users from './api/users.js';
 import games from './api/games.js';
 import campaign from './api/campaign.js';
 import templates from './api/templates.js';
+import puzzles from './api/puzzles.js';
 
 import express from 'express';
 import path from 'path';
@@ -87,6 +88,7 @@ app.use('/api/users', users);
 app.use('/api/games', games);
 app.use('/api/campaign', campaign);
 app.use('/api/templates', templates);
+app.use('/api/puzzles', puzzles);
 
 app.get('*', (_req, res) => {
   res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));

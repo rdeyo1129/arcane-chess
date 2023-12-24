@@ -165,7 +165,6 @@ interface Node {
   title: string;
   time: number[]; // seconds
   nodeText: string;
-  panelText: string;
   reward: (number | string)[];
   prereq: string;
   opponent: string;
@@ -174,6 +173,7 @@ interface Node {
       fen: string;
       fenHistory: string[];
       history: string[];
+      panelText: string;
       // is arrows this a map?
       arrowsCircles?: string[][] | undefined;
       // todo initRoyalties in arcaneChess return object
@@ -235,6 +235,7 @@ interface State {
     fen: string;
     fenHistory: string[];
     history: string[];
+    panelText: string;
     // is arrows this a map?
     arrowsCircles?: string[][] | undefined;
     // todo initRoyalties in arcaneChess return object
@@ -273,6 +274,7 @@ interface State {
   prereq: string;
   opponent: string;
   puzzleEpsilon: string;
+  puzzleNum: number;
 }
 
 interface Props {
@@ -356,12 +358,13 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       nodeText: booksMap['book1']['lesson-1'].nodeText,
       reward: booksMap['book1']['lesson-1'].reward,
       prereq: '',
-      panelText: booksMap['book1']['lesson-1'].panelText,
+      panelText: booksMap['book1']['lesson-1'].panels['panel-1'].panelText,
       time: booksMap['book1']['lesson-1'].time,
       opponent: booksMap['book1']['lesson-1'].opponent,
       // rating: 1500,
       // keyword: '',
       puzzleEpsilon: '1500 mate',
+      puzzleNum: 0,
     };
 
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
@@ -426,6 +429,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
 
   setFen = (fen: string) => {
     this.setState({ fen, fenHistory: [fen] });
+    ParseFen(fen);
   };
 
   engineGo = () => {
@@ -582,6 +586,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       }));
     });
     ParseFen(this.state.fen);
+    // this.chessgroundRef.current?.setAutoShapes([{ orig: 'e2', brush: 'blue' }]);
   }
 
   toggleAndRandomizeArcana(color: string) {
@@ -847,7 +852,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                             title: nodeA.title,
                             time: nodeA.time,
                             nodeText: nodeA.nodeText,
-                            panelText: nodeA.panelText,
+                            panelText: nodeA.panels['panel-1'].panelText,
                             reward: nodeA.reward,
                             prereq: '', // split node name and decrement
                             opponent: nodeA.opponent,
@@ -1249,6 +1254,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         ...prevState,
                         currPanel: key,
                         panelObject: panelA,
+                        panelText: panelA.panelText,
                         fen: panelA.fen,
                         fenHistory: [...panelA.fenHistory],
                         history: panelA.history,
@@ -1320,6 +1326,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                             fen: '8/8/8/8/8/8/8/8 w - - 0 1',
                             fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
                             history: [],
+                            panelText: 'Panel Description ;soihgasog1',
                             arrowsCircles: [[]],
                             royalties: {
                               roltyQ: {},
@@ -1343,6 +1350,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         fen: '8/8/8/8/8/8/8/8 w - - 0 1',
                         fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
                         history: [],
+                        panelText: 'Panel Description ;soihgasog2',
                         arrowsCircles: [[]],
                         royalties: {
                           roltyQ: {},
@@ -1545,7 +1553,9 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               placeholder="FEN"
               // current
               value={this.state.fen} // Changed to use the value prop
-              onChange={(value) => this.setFen(value)}
+              onChange={(value) => {
+                this.setFen(value);
+              }}
               // textArg={this.state.fenHistory[this.state.fenHistory.length - 1]}
               // setTextArg={() => this.setFen}
             />
@@ -1710,7 +1720,27 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       `http://localhost:8080/api/puzzles?rating=${rating}&keyword=${keyword}`
                     )
                     .then((response) => {
+                      // todo to be looped through
                       console.log('Data:', response.data);
+                      this.setState((prevState) => ({
+                        fen: response.data[prevState.puzzleNum].FEN,
+                        fenHistory: [response.data[prevState.puzzleNum].FEN],
+                        // history: response.data.history,
+                        // arrowsCircles: response.data.arrowsCircles,
+                        // royalities: response.data.royalties,
+                        // preset: response.data.preset,
+                        // config: {
+                        //   W: {
+                        //     arcana: { ...response.data.whiteArcane },
+                        //   },
+                        //   BK: {
+                        //     arcana: { ...response.data.blackArcane },
+                        //   },
+                        // },
+                        correctMoves:
+                          response.data[prevState.puzzleNum].Moves.split(' '),
+                      }));
+                      ParseFen(response.data[this.state.puzzleNum].FEN);
                     })
                     .catch((error) => console.error('Error:', error));
                 }}
@@ -1765,10 +1795,20 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 text="OUTPUT PANEL"
                 onClick={() => {
                   console.log({
-                    [this.state.currPanel]:
-                      this.state.bookObject[this.state.currNode]['panels'][
-                        this.state.currPanel
-                      ],
+                    [this.state.currPanel]: {
+                      ...this.state.nodeObject[this.state.currPanel],
+                      fen: this.state.fen,
+                      fenHistory: [...this.state.fenHistory],
+                      history: [...this.state.history],
+                      panelText: this.state.panelText,
+                      // arrowsCircles: [...this.state.arrowsCircles],
+                      royalties: { ...this.state.royalties },
+                      preset: this.state.preset,
+                      whiteArcane: { ...this.state.config.W.arcana },
+                      blackArcane: { ...this.state.config.BK.arcana },
+                      config: { ...this.state.config },
+                      correctMoves: [...this.state.correctMoves],
+                    },
                   });
                 }}
                 className="tertiary"
@@ -1783,7 +1823,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   console.log({
                     [this.state.currNode]: {
                       ...this.state.bookObject[this.state.currNode],
-                      panels: undefined,
+                      missionType: 'NORMAL / VARIANT / UYA',
                     },
                   });
                 }}

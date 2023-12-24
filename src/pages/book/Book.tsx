@@ -268,7 +268,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         <div className="top">
           <div className="inbox">
             <div className="messages">
-              {this.state.dialogueEx.map((message: string[], i: number) => {
+              {/* {this.state.dialogueEx.map((message: string[], i: number) => {
                 return (
                   <div
                     key={i}
@@ -284,7 +284,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     <div className="text">{message[1]}</div>
                   </div>
                 );
-              })}
+              })} */}
             </div>
             <div className="swatches">
               {allNodes
@@ -419,7 +419,10 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
             />
           </div>
           {/* </div> */}
-          <div className="arcane-time">arcane-time</div>
+          <div className="arcane-time">
+            <div className="white-arcana"></div>
+            <div className="black-arcana"></div>
+          </div>
         </div>
         <div className="bottom">
           <div className="left">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import axios from 'axios';
 import _, { get, set } from 'lodash';
 // import { Link, withRouter } from "react-router-dom";
@@ -63,7 +63,7 @@ import Button from '../../components/Button/Button';
 import Toggle from '../../components/Toggle/Toggle';
 import ChessClock from '../../components/Clock/Clock';
 
-import { Chessground } from '../../chessground/chessgroundMod';
+import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
 
 export const piecePickupArray = [
   'wP',
@@ -201,6 +201,7 @@ interface Props {
 class UnwrappedMissionView extends React.Component<Props, State> {
   hasMounted = false;
   arcaneChess;
+  chessgroundRef = createRef<IChessgroundApi>();
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -283,6 +284,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen, this.props.auth, {});
     };
+    this.chessgroundRef = React.createRef();
   }
 
   initializeArcaneChessAndTest = (fen: string) => {
@@ -603,6 +605,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             </div>
             <div className="board-view">
               <Chessground
+                forwardedRef={this.chessgroundRef}
                 // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
                 // check={this.tactorius.inCheck().isAttacked}
                 // viewOnly={this.isCheckmate()}

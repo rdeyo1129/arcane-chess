@@ -18,9 +18,6 @@ router.get('/', async (req, res) => {
     const rating = req.query.rating;
     const keyword = req.query.keyword;
 
-    console.log('rating', rating);
-    console.log('keyword', keyword);
-
     const data = await readAndProcessCSV();
 
     // Apply filtering if the parameters are provided
@@ -47,7 +44,6 @@ function readAndProcessCSV() {
 }
 
 function filterData(data: any, rating: any, keyword: any) {
-  console.log(data);
   return data.filter((row: any) => {
     const isWithinRatingRange = Math.abs(row.Rating - rating) <= 100;
     const containsKeyword = row.Themes.includes(keyword);

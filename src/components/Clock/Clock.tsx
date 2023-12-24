@@ -26,12 +26,7 @@ class ChessClock extends React.Component<ClockProps, ClockState> {
 
   startTimer = () => {
     if (!this.interval) {
-      console.log('Starting timer...');
       this.interval = setInterval(() => {
-        console.log(
-          'Interval callback, current timeLeft:',
-          this.state.timeLeft
-        );
         this.setState((prevState) => ({
           timeLeft: prevState.timeLeft !== null ? prevState.timeLeft - 1 : null,
         }));
@@ -61,7 +56,6 @@ class ChessClock extends React.Component<ClockProps, ClockState> {
   };
 
   componentDidUpdate(prevProps: ClockProps, prevState: ClockState) {
-    console.log(this.state.timeLeft);
     // Check if the timer should start or stop
     if (this.state.isActive && !this.interval) {
       this.startTimer();
@@ -97,11 +91,9 @@ class ChessClock extends React.Component<ClockProps, ClockState> {
       timerColor = timerWidth < 10 ? 'red' : 'green';
     }
 
-    console.log('Rendering ChessClock, timeLeft:', this.state.timeLeft);
-
     return (
       <div>
-        <div>{this.state.timeLeft}</div>
+        <div className="time-text">{this.state.timeLeft}</div>
       </div>
     );
   }

@@ -45,6 +45,8 @@ export interface IChessgroundApi {
   set: (config: Record<string, AnyHacker>) => void;
   destroy: () => void;
   selectPocket: (piece: object) => void;
+  setShapes: (shapes: object[]) => void;
+  setAutoShapes: (shapes: object[]) => void;
   getFen: () => string;
   unselect: () => void;
 }
@@ -96,6 +98,8 @@ export class Chessground extends React.Component<IChessground> {
             set: this.cg.set.bind(this.cg),
             destroy: this.cg.destroy.bind(this.cg),
             selectPocket: this.cg.selectPocket.bind(this.cg),
+            setShapes: this.cg.setShapes.bind(this.cg),
+            setAutoShapes: this.cg.setAutoShapes.bind(this.cg),
             // Bind any other API methods you want to expose
           };
         }

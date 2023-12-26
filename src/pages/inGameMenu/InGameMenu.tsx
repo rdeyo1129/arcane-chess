@@ -275,6 +275,7 @@ interface State {
   opponent: string;
   puzzleEpsilon: string;
   puzzleNum: number;
+  puzzleResponse: any[];
 }
 
 interface Props {
@@ -365,6 +366,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       // keyword: '',
       puzzleEpsilon: '1500 mate',
       puzzleNum: 0,
+      puzzleResponse: [],
     };
 
     this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
@@ -994,18 +996,74 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               }}
               type="string"
             />
-            <Input
-              color="B"
-              value={this.state.puzzleEpsilon}
-              width={200}
-              height={60}
-              onChange={(value) => {
-                this.setState({
-                  puzzleEpsilon: value,
-                });
-              }}
-              placeholder="rating and keyword"
-            />
+            <div className="puzzle-input">
+              <Input
+                color="B"
+                value={this.state.puzzleEpsilon}
+                width={160}
+                height={60}
+                onChange={(value) => {
+                  this.setState({
+                    puzzleEpsilon: value,
+                  });
+                }}
+                placeholder="rating and keyword"
+              />
+              <Button
+                text="<"
+                onClick={() => {
+                  if (!this.state.puzzleResponse.length) return;
+                  if (this.state.puzzleNum === 0) return;
+                  if (this.state.playing) return;
+                  this.setState((prevState) => {
+                    const newPuzzleNum = prevState.puzzleNum - 1;
+                    return {
+                      puzzleNum: newPuzzleNum,
+                      fen: this.state.puzzleResponse[newPuzzleNum].FEN,
+                      fenHistory: [this.state.puzzleResponse[newPuzzleNum].FEN],
+                      correctMoves:
+                        this.state.puzzleResponse[newPuzzleNum].Moves.split(
+                          ' '
+                        ),
+                    };
+                  });
+                  ParseFen(this.state.puzzleResponse[this.state.puzzleNum].FEN);
+                }}
+                className="tertiary"
+                color="B"
+                height={60}
+                width={20}
+              />
+              <Button
+                text=">"
+                onClick={() => {
+                  if (!this.state.puzzleResponse.length) return;
+                  if (
+                    this.state.puzzleNum ===
+                    this.state.puzzleResponse.length - 1
+                  )
+                    return;
+                  if (this.state.playing) return;
+                  this.setState((prevState) => {
+                    const newPuzzleNum = prevState.puzzleNum + 1;
+                    return {
+                      puzzleNum: newPuzzleNum,
+                      fen: this.state.puzzleResponse[newPuzzleNum].FEN,
+                      fenHistory: [this.state.puzzleResponse[newPuzzleNum].FEN],
+                      correctMoves:
+                        this.state.puzzleResponse[newPuzzleNum].Moves.split(
+                          ' '
+                        ),
+                    };
+                  });
+                  ParseFen(this.state.puzzleResponse[this.state.puzzleNum].FEN);
+                }}
+                className="tertiary"
+                color="B"
+                height={60}
+                width={20}
+              />
+            </div>
             <div className="nav">
               <Button
                 text="<<"
@@ -1060,6 +1118,18 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 width={50}
               />
             </div>
+            <Input
+              color="B"
+              value={this.state.correctMoves.join(' ')}
+              width={200}
+              height={60}
+              onChange={(value) => {
+                this.setState({
+                  puzzleEpsilon: value,
+                });
+              }}
+              placeholder="correct moves"
+            />
           </div>
         </div>
         <div className="board-view tactorius-board">
@@ -1261,17 +1331,17 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         arrowsCircles: panelA.arrowsCircles,
                         royalities: panelA.royalties,
                         preset: panelA.preset,
-                        config: {
-                          ...prevState.config,
-                          W: {
-                            ...prevState.config.W,
-                            arcana: { ...panelA.whiteArcane },
-                          },
-                          BK: {
-                            ...prevState.config.BK,
-                            arcana: { ...panelA.blackArcane },
-                          },
-                        },
+                        // config: {
+                        //   ...prevState.config,
+                        //   W: {
+                        //     ...prevState.config.W,
+                        //     arcana: { ...panelA.whiteArcane },
+                        //   },
+                        //   BK: {
+                        //     ...prevState.config.BK,
+                        //     arcana: { ...panelA.blackArcane },
+                        //   },
+                        // },
                         correctMoves: panelA.correctMoves,
                         // dialogue: panelA.dialogue,
                       }));
@@ -1329,11 +1399,11 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                             panelText: 'Panel Description ;soihgasog1',
                             arrowsCircles: [[]],
                             royalties: {
-                              roltyQ: {},
-                              roltyT: {},
-                              roltyM: {},
-                              roltyV: {},
-                              roltyE: {},
+                              royaltyQ: {},
+                              royaltyT: {},
+                              royaltyM: {},
+                              royaltyV: {},
+                              royaltyE: {},
                             },
                             preset: 'CLEAR',
                             whiteArcane: {},
@@ -1366,10 +1436,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         correctMoves: [],
                       },
                     },
-                    panelObject:
-                      booksMap[this.state.currBook][this.state.currNode][
-                        'panels'
-                      ][this.state.newBoardName],
+                    panelObject: this.state.nodeObject[this.state.newBoardName],
                   }));
                 }}
               />
@@ -1739,6 +1806,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         // },
                         correctMoves:
                           response.data[prevState.puzzleNum].Moves.split(' '),
+                        puzzleResponse: [...response.data],
                       }));
                       ParseFen(response.data[this.state.puzzleNum].FEN);
                     })
@@ -1806,7 +1874,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       preset: this.state.preset,
                       whiteArcane: { ...this.state.config.W.arcana },
                       blackArcane: { ...this.state.config.BK.arcana },
-                      config: { ...this.state.config },
+                      // config: { ...this.state.config },
                       correctMoves: [...this.state.correctMoves],
                     },
                   });

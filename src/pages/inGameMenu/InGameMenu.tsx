@@ -174,8 +174,11 @@ interface Node {
       fenHistory: string[];
       history: string[];
       panelText: string;
-      // is arrows this a map?
-      arrowsCircles?: string[][] | undefined;
+      arrowsCircles?: {
+        orig: string;
+        brush: string;
+        dest?: string | undefined;
+      }[];
       // todo initRoyalties in arcaneChess return object
       royalties: {
         [key: string]: { [key: string]: number };
@@ -237,7 +240,11 @@ interface State {
     history: string[];
     panelText: string;
     // is arrows this a map?
-    arrowsCircles?: string[][] | undefined;
+    arrowsCircles?: {
+      orig: string;
+      brush: string;
+      dest?: string | undefined;
+    }[];
     // todo initRoyalties in arcaneChess return object
     royalties: {
       [key: string]: { [key: string]: number };
@@ -265,7 +272,7 @@ interface State {
   correctMoves: string[];
   arcaneHover: string;
   placingPiece: number;
-  arrowsCircles: string[][] | undefined;
+  arrowsCircles?: { orig: string; brush: string; dest?: string | undefined }[];
   royalties: {
     [key: string]: { [key: string]: number };
   };
@@ -1320,6 +1327,9 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       // booksMap[this.state.currBook][this.state.currNode][
                       //   'panels'
                       // ][key];
+                      this.chessgroundRef.current?.setAutoShapes([
+                        ...(panelA.arrowsCircles ?? []),
+                      ]);
                       this.setState((prevState) => ({
                         ...prevState,
                         currPanel: key,
@@ -1328,7 +1338,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         fen: panelA.fen,
                         fenHistory: [...panelA.fenHistory],
                         history: panelA.history,
-                        arrowsCircles: panelA.arrowsCircles,
+                        // arrowsCircles: [...panelA.arrowsCircles],
                         royalities: panelA.royalties,
                         preset: panelA.preset,
                         // config: {
@@ -1397,7 +1407,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                             fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
                             history: [],
                             panelText: 'Panel Description ;soihgasog1',
-                            arrowsCircles: [[]],
+                            arrowsCircles: [],
                             royalties: {
                               royaltyQ: {},
                               royaltyT: {},
@@ -1421,7 +1431,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
                         history: [],
                         panelText: 'Panel Description ;soihgasog2',
-                        arrowsCircles: [[]],
+                        arrowsCircles: [],
                         royalties: {
                           roltyQ: {},
                           roltyT: {},
@@ -1862,6 +1872,29 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               <Button
                 text="OUTPUT PANEL"
                 onClick={() => {
+                  const elements = document.getElementsByTagName('g');
+                  const arrowsCircles = [];
+
+                  for (let i = 0; i < elements.length; i++) {
+                    const children = elements[i].children;
+                    for (let j = 0; j < children.length; j++) {
+                      const items = children[j].getAttribute('cgHash');
+                      const itemsArray = items?.split(',');
+                      if (itemsArray?.length === 4) {
+                        arrowsCircles.push({
+                          orig: itemsArray[2],
+                          brush: itemsArray[3],
+                        });
+                      }
+                      if (itemsArray?.length === 5) {
+                        arrowsCircles.push({
+                          orig: itemsArray[2],
+                          dest: itemsArray[3],
+                          brush: itemsArray[4],
+                        });
+                      }
+                    }
+                  }
                   console.log({
                     [this.state.currPanel]: {
                       ...this.state.nodeObject[this.state.currPanel],
@@ -1869,7 +1902,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       fenHistory: [...this.state.fenHistory],
                       history: [...this.state.history],
                       panelText: this.state.panelText,
-                      // arrowsCircles: [...this.state.arrowsCircles],
+                      arrowsCircles: [...arrowsCircles],
                       royalties: { ...this.state.royalties },
                       preset: this.state.preset,
                       whiteArcane: { ...this.state.config.W.arcana },

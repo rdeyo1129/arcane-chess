@@ -15,10 +15,6 @@
         ],
         "history": ["e2e4", "e7e5"],
         "panelText": "Lesson content example.\n\nThis is a new line.",
-        "arrowsCircles": [
-          ["arrow1", "circle1"],
-          ["arrow2", "circle2"]
-        ],
         "royalties": {
           "royaltyQ": {},
           "royaltyM": { "54": 1 },
@@ -26,6 +22,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
+        "arrowsCircles": [],
         "preset": "NORMAL",
         "whiteArcane": {},
         "blackArcane": {},
@@ -39,10 +36,6 @@
         ],
         "panelText": "panel text 2",
         "history": ["e2e4", "e7e5"],
-        "arrowsCircles": [
-          ["arrow1", "circle1"],
-          ["arrow2", "circle2"]
-        ],
         "royalties": {
           "royaltyQ": {},
           "royaltyM": { "54": 1 },
@@ -50,6 +43,10 @@
           "royaltyV": {},
           "royaltyE": {}
         },
+        "arrowsCircles": [
+          { "orig": "d7", "dest": "c6", "brush": "yellow" },
+          { "orig": "f4", "brush": "yellow" }
+        ],
         "preset": "HORDE",
         "whiteArcane": {
           "dyadA": 1,
@@ -80,10 +77,7 @@
         ],
         "history": ["e2e4", "e7e5"],
         "panelText": "Lesson content example.\n\nThis is a new line.",
-        "arrowsCircles": [
-          ["arrow1", "circle1"],
-          ["arrow2", "circle2"]
-        ],
+        "arrowsCircles": [],
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {

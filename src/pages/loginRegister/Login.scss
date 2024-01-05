@@ -3,7 +3,31 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  // flex-direction: column;
+  justify-content: center;
   align-items: center;
+  .view {
+    width: 600px;
+    height: 400px;
+    background-color: #333333;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 100px 1fr;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    .logo {
+      height: 80px;
+      width: 80px;
+      margin: 10px;
+    }
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      // align-items: center;
+      // justify-content: center;
+    }
+  }
 }
 .login-page .hex-background,
 .register-page .hex-background {

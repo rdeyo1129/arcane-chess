@@ -11,6 +11,7 @@ import 'src/pages/loginRegister/Login.scss';
 
 import Button from 'src/components/Button/Button';
 import Input from 'src/components/Input/Input';
+import Hero from 'src/components/Hero/Hero';
 
 // import Hero from '../components/Hero';
 
@@ -111,55 +112,59 @@ const UnwrappedLogin: React.FC = () => {
 
   return (
     <div className="login-page">
-      <img className="logo" src={'/assets/logoblue.png'} alt="" />
-      <form noValidate>
-        <Input
-          color={'G'}
-          width={120}
-          height={40}
-          placeholder={'Username'}
-          value={username}
-          onChange={(value) => onChange('username', value)}
-        />
-        <Input
-          color={'G'}
-          width={120}
-          height={40}
-          placeholder={'Password'}
-          value={password}
-          onChange={(value) => onChange('password', value)}
-        />
-        <div className="buttons">
-          <Button
-            className="primary"
-            text={'LOGIN'}
-            color={'G'}
-            width={120}
+      <form className="view" noValidate>
+        <img className="logo" src={'/assets/logoblue.png'} alt="" />
+        <div></div>
+        <div></div>
+        <div className="inputs">
+          <Input
+            color={'B'}
+            width={240}
             height={60}
-            onClick={(e) => {
-              return onSubmitLogin(e, false);
-            }}
-            disabled={false}
+            placeholder={'Username'}
+            value={username}
+            onChange={(value) => onChange('username', value)}
           />
-          <div className="other-buttons">
-            <Link to={'/register'}>
-              <Button
-                className="secondary"
-                text={'TO REGISTER'}
-                color={'G'}
-                width={120}
-                height={60}
-              />
-            </Link>
-            {/* <button onClick={(e) => onSubmitLogin(e, true)}>
+          <Input
+            color={'B'}
+            width={240}
+            height={60}
+            placeholder={'Password'}
+            value={password}
+            onChange={(value) => onChange('password', value)}
+          />
+          <div className="buttons">
+            <Button
+              className="primary"
+              text={'LOGIN'}
+              color={'B'}
+              width={120}
+              height={60}
+              onClick={(e) => {
+                return onSubmitLogin(e, false);
+              }}
+              disabled={false}
+            />
+            <div className="other-buttons">
+              <Link to={'/register'}>
+                <Button
+                  className="secondary"
+                  text={'TO REGISTER'}
+                  color={'B'}
+                  width={120}
+                  height={60}
+                />
+              </Link>
+              {/* <button onClick={(e) => onSubmitLogin(e, true)}>
                     ENTER AS GUEST
                   </button> */}
-            <Link to={'/'}>
-              <button className="back">HOME</button>
-            </Link>
-            {_.map(loginRegisterErrors, (value, i) => {
-              return <span key={i}>{value}</span>;
-            })}
+              <Link to={'/'}>
+                <button className="back">HOME</button>
+              </Link>
+              {_.map(loginRegisterErrors, (value, i) => {
+                return <span key={i}>{value}</span>;
+              })}
+            </div>
           </div>
         </div>
       </form>

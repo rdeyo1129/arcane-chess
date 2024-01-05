@@ -1,4 +1,5 @@
 // color variable from gameboard settings
+// import mixin
 
 .hero {
   position: relative;
@@ -29,14 +30,14 @@
 .hero-square.light {
   height: 60px;
   width: 60px;
-  // background: #b87d48;
-  background: #a57fd4;
+  background: #1c7293;
+  // background: #a57fd4;
 }
 .hero-square.dark {
   height: 60px;
   width: 60px;
   // background: #7f4f1a;
-  background: #585858;
+  background: #065a82;
 }
 
 /* $O_LGHT: #b87d48;

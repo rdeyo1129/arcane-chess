@@ -48,7 +48,7 @@ class UnwrappedFrontPage extends React.Component {
                 text="LOGIN"
                 // onClick={() => this.calculateFen()}
                 className="primary"
-                color="V"
+                color="B"
                 height={50}
                 width={140}
                 // disabled={this.state.fen === ''}
@@ -61,7 +61,7 @@ class UnwrappedFrontPage extends React.Component {
                 text="REGISTER"
                 // onClick={() => this.calculateFen()}
                 className="secondary"
-                color="V"
+                color="B"
                 height={50}
                 width={140}
                 // disabled={this.state.fen === ''}
@@ -73,7 +73,7 @@ class UnwrappedFrontPage extends React.Component {
         </div>
         <div className="divider"></div>
         <div className="row-a">
-          <img className="paris" src="public/assets/paris.jpg" />
+          <img className="image" src="public/assets/jellyfish.jpg" />
         </div>
         <div className="row-b">
           <Hero />

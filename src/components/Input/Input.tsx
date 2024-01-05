@@ -10,6 +10,7 @@ interface InputProps {
   placeholder?: string;
   value: string; // Made this non-optional to ensure a value is always provided
   onChange: (value: string) => void; // Simplified the type
+  styles?: React.CSSProperties;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -21,6 +22,7 @@ const Input: React.FC<InputProps> = ({
   placeholder = 'Type here...',
   value,
   onChange,
+  styles,
 }: InputProps) => {
   return (
     <input
@@ -28,6 +30,7 @@ const Input: React.FC<InputProps> = ({
       className={`${className} input`} // Concatenated className prop with 'input'
       type="text"
       style={{
+        ...styles,
         height: `${height}px`,
         width: `${width}px`,
         color: `${color}`,

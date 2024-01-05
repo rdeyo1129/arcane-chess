@@ -75,6 +75,7 @@ class UnwrappedFrontPage extends React.Component {
         <div className="row-a">
           <img className="image" src="public/assets/jellyfish.jpg" />
         </div>
+        start with why
         <div className="row-b">
           <Hero />
         </div>

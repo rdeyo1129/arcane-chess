@@ -117,54 +117,77 @@ const UnwrappedLogin: React.FC = () => {
         <div></div>
         <div></div>
         <div className="inputs">
-          <Input
-            color={'B'}
-            width={240}
-            height={60}
-            placeholder={'Username'}
-            value={username}
-            onChange={(value) => onChange('username', value)}
-          />
-          <Input
-            color={'B'}
-            width={240}
-            height={60}
-            placeholder={'Password'}
-            value={password}
-            onChange={(value) => onChange('password', value)}
-          />
-          <div className="buttons">
+          <div className="input-top">
+            <div className="text-inputs">
+              <Input
+                color={'B'}
+                width={200}
+                height={40}
+                placeholder={'Username'}
+                value={username}
+                onChange={(value) => onChange('username', value)}
+                styles={{ margin: '2px' }}
+              />
+              <Input
+                color={'B'}
+                width={200}
+                height={40}
+                placeholder={'Password'}
+                value={password}
+                onChange={(value) => onChange('password', value)}
+                styles={{ margin: '2px' }}
+              />
+            </div>
             <Button
               className="primary"
               text={'LOGIN'}
               color={'B'}
-              width={120}
-              height={60}
+              width={160}
+              height={84}
               onClick={(e) => {
                 return onSubmitLogin(e, false);
               }}
               disabled={false}
+              styles={{ margin: '2px' }}
             />
-            <div className="other-buttons">
-              <Link to={'/register'}>
-                <Button
-                  className="secondary"
-                  text={'TO REGISTER'}
-                  color={'B'}
-                  width={120}
-                  height={60}
-                />
-              </Link>
-              {/* <button onClick={(e) => onSubmitLogin(e, true)}>
-                    ENTER AS GUEST
-                  </button> */}
-              <Link to={'/'}>
-                <button className="back">HOME</button>
-              </Link>
-              {_.map(loginRegisterErrors, (value, i) => {
-                return <span key={i}>{value}</span>;
-              })}
-            </div>
+          </div>
+          <div className="buttons">
+            <Link to={'/register'}>
+              <Button
+                className="tertiary"
+                text={'REGISTER'}
+                color={'B'}
+                width={80}
+                height={30}
+                fontSize={12}
+                backgroundColorOverride="#333333"
+              />
+            </Link>
+            <Button
+              className="tertiary"
+              text={'GUEST'}
+              color={'B'}
+              width={80}
+              height={30}
+              fontSize={12}
+              backgroundColorOverride="#333333"
+              onClick={(e) => onSubmitLogin(e, true, 'test_user')}
+            />
+            <Link to={'/'}>
+              <Button
+                className="tertiary"
+                text={'FORGOT'}
+                color={'B'}
+                width={80}
+                height={30}
+                fontSize={12}
+                backgroundColorOverride="#333333"
+                // onClick={(e) => onSubmitLogin(e, true, 'test_user')}
+              />
+            </Link>
+            {_.map(loginRegisterErrors, (value, i) => {
+              return <span key={i}>{value}</span>;
+            })}
           </div>
         </div>
       </form>

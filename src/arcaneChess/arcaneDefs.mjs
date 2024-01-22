@@ -72,16 +72,11 @@ export const activateDyad = (type) => {
 // 0000 0000 0000 0000 0000 0000 0000 0000 0000 1111 1111 1111 dyad
 // 0000 0000 0000 0000 0000 0000 0000 0000 1111 0000 0000 0000 shft
 // 0000 0000 0000 0000 0000 0000 0000 0111 0000 0000 0000 0000 swap
-// 0000 0000 0000 0111 1111 1111 1111 1000 0000 0000 0000 0000 sumn
-// 0001 1111 1111 1000 0000 0000 0000 0000 0000 0000 0000 0000 mods
-
-// 0000 0000 0000 0000 0000 0000 0000 0000 1111 dyad
-// 0000 0000 0000 0000 0000 0000 0000 0111 0000 shft
-// 0000 0000 0000 0000 0000 0000 0011 1000 0000 swap
-// 0000 0000 0000 0000 0000 0111 1100 0000 0000
+// 0000 0000 0000 1111 1111 1111 1111 1000 0000 0000 0000 0000 sumn
+// 0011 1111 1111 0000 0000 0000 0000 0000 0000 0000 0000 0000 mods
 
 export const POWERBIT = {
-  // 14 active orange
+  // 15 active orange
   dyadA: 1,
   dyadP: 2,
   dyadS: 4,
@@ -96,7 +91,8 @@ export const POWERBIT = {
   dyadV: 2048,
   dyadZ: 4096,
   dyadU: 8192,
-  // 18 active purple
+  dyadW: 16384,
+  // 19 active purple
   sumnP: 1,
   sumnS: 2,
   sumnH: 4,
@@ -109,12 +105,13 @@ export const POWERBIT = {
   sumnV: 512,
   sumnZ: 1024,
   sumnU: 2048,
-  sumnX: 4096,
-  sumnRQ: 8192,
-  sumnRT: 16384,
-  sumnRM: 32768,
-  sumnRV: 65536,
-  sumnRE: 131072,
+  sumnW: 4096,
+  sumnX: 8192,
+  sumnRQ: 16384,
+  sumnRT: 32768,
+  sumnRM: 65536,
+  sumnRV: 131072,
+  sumnRE: 262144,
   // 4 passive blue
   shftP: 1,
   shftN: 2,

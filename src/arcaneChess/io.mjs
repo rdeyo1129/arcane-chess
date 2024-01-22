@@ -101,11 +101,11 @@ export function PrMove(move, returnType) {
   // summon
   if (move & MFLAGSUMN) {
     if (
-      pieceEpsilon === ARCANE_BIT_VALUES.RQ ||
-      pieceEpsilon === ARCANE_BIT_VALUES.RT ||
-      pieceEpsilon === ARCANE_BIT_VALUES.RM ||
-      pieceEpsilon === ARCANE_BIT_VALUES.RV ||
-      pieceEpsilon === ARCANE_BIT_VALUES.RE
+      CAPTURED(move) === ARCANE_BIT_VALUES.RQ ||
+      CAPTURED(move) === ARCANE_BIT_VALUES.RT ||
+      CAPTURED(move) === ARCANE_BIT_VALUES.RM ||
+      CAPTURED(move) === ARCANE_BIT_VALUES.RV ||
+      CAPTURED(move) === ARCANE_BIT_VALUES.RE
     ) {
       MvStr = 'R' + getPceChar(pieceEpsilon) + '@' + PrSq(TOSQ(move));
     } else {
@@ -265,7 +265,7 @@ export function ParseMove(from, to, pieceEpsilon = PIECES.EMPTY) {
     if (
       (FROMSQ(Move) === prettyToSquare(from) &&
         TOSQ(Move) === prettyToSquare(to)) ||
-      (from === 'a0' && TOSQ(Move) === prettyToSquare(to))
+      (from === null && TOSQ(Move) === prettyToSquare(to))
     ) {
       PromPce = PROMOTED(Move);
       if (PromPce !== PIECES.EMPTY) {

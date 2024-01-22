@@ -201,6 +201,18 @@ export function EvalPosition() {
     score -= KnightTable[MIRROR64(SQ64(sq))];
   }
 
+  pce = PIECES.wW;
+  for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+    sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+    score += KnightTable[SQ64(sq)];
+  }
+
+  pce = PIECES.bW;
+  for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+    sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+    score -= KnightTable[MIRROR64(SQ64(sq))];
+  }
+
   // pawns
   // if (GameBoard.whiteArcane[3] & 1) {
 

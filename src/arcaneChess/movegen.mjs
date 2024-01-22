@@ -82,8 +82,8 @@ export function InitMvvLva() {
   let Attacker;
   let Victim;
 
-  for (Attacker = PIECES.wP; Attacker <= PIECES.bU; Attacker++) {
-    for (Victim = PIECES.wP; Victim <= PIECES.bU; Victim++) {
+  for (Attacker = PIECES.wP; Attacker <= PIECES.bW; Attacker++) {
+    for (Victim = PIECES.wP; Victim <= PIECES.bW; Victim++) {
       MvvLvaScores[Victim * 29 + Attacker] =
         // todo is there an error here?
         MvvLvaValue[Victim] + 13 - MvvLvaValue[Attacker] / 100;
@@ -191,7 +191,7 @@ export function addSummonMove(move, summonPce) {
     GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 800000;
   } else {
     // todo update to treat like pieces on that square
-    if (summonPce < 28) {
+    if (summonPce < 30) {
       GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] =
         // MvvLvaValue[summonPce] + 1000000;
         0;
@@ -245,6 +245,16 @@ export function AddWhitePawnCaptureMove(from, to, cap, consume, capturesOnly) {
       consume,
       capturesOnly
     );
+    AddCaptureMove(
+      MOVE(from, to, cap, PIECES.wS, consume ? MFLAGCNSM : 0),
+      consume,
+      capturesOnly
+    );
+    AddCaptureMove(
+      MOVE(from, to, cap, PIECES.wW, consume ? MFLAGCNSM : 0),
+      consume,
+      capturesOnly
+    );
   }
   if (RanksBrd[to] === RANKS.RANK_8) {
     AddCaptureMove(
@@ -284,6 +294,16 @@ export function AddWhitePawnCaptureMove(from, to, cap, consume, capturesOnly) {
     );
     AddCaptureMove(
       MOVE(from, to, cap, PIECES.wN, consume ? MFLAGCNSM : 0),
+      consume,
+      capturesOnly
+    );
+    AddCaptureMove(
+      MOVE(from, to, cap, PIECES.wS, consume ? MFLAGCNSM : 0),
+      consume,
+      capturesOnly
+    );
+    AddCaptureMove(
+      MOVE(from, to, cap, PIECES.wW, consume ? MFLAGCNSM : 0),
       consume,
       capturesOnly
     );
@@ -338,6 +358,16 @@ export function AddBlackPawnCaptureMove(from, to, cap, consume, capturesOnly) {
       consume,
       capturesOnly
     );
+    AddCaptureMove(
+      MOVE(from, to, cap, PIECES.bS, consume ? MFLAGCNSM : 0),
+      consume,
+      capturesOnly
+    );
+    AddCaptureMove(
+      MOVE(from, to, cap, PIECES.bW, consume ? MFLAGCNSM : 0),
+      consume,
+      capturesOnly
+    );
   }
   if (RanksBrd[to] === RANKS.RANK_1) {
     AddCaptureMove(
@@ -380,6 +410,16 @@ export function AddBlackPawnCaptureMove(from, to, cap, consume, capturesOnly) {
       consume,
       capturesOnly
     );
+    AddCaptureMove(
+      MOVE(from, to, cap, PIECES.bS, consume ? MFLAGCNSM : 0),
+      consume,
+      capturesOnly
+    );
+    AddCaptureMove(
+      MOVE(from, to, cap, PIECES.bW, consume ? MFLAGCNSM : 0),
+      consume,
+      capturesOnly
+    );
   } else {
     AddCaptureMove(
       MOVE(from, to, cap, PIECES.EMPTY, consume ? MFLAGCNSM : 0),
@@ -399,6 +439,8 @@ export function AddWhitePawnQuietMove(from, to, flag, capturesOnly) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wN, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wZ, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wU, flag), capturesOnly);
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wS, flag), capturesOnly);
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wW, flag), capturesOnly);
   }
   if (RanksBrd[to] === RANKS.RANK_8) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wQ, flag), capturesOnly);
@@ -409,6 +451,8 @@ export function AddWhitePawnQuietMove(from, to, flag, capturesOnly) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wN, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wZ, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wU, flag), capturesOnly);
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wS, flag), capturesOnly);
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wW, flag), capturesOnly);
   } else {
     AddQuietMove(
       MOVE(
@@ -433,6 +477,8 @@ export function AddBlackPawnQuietMove(from, to, flag, capturesOnly) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bN, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bZ, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bU, flag), capturesOnly);
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bS, flag), capturesOnly);
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bW, flag), capturesOnly);
   }
   if (RanksBrd[to] === RANKS.RANK_1) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bQ, flag), capturesOnly);
@@ -443,6 +489,8 @@ export function AddBlackPawnQuietMove(from, to, flag, capturesOnly) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bN, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bZ, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bU, flag), capturesOnly);
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bS, flag), capturesOnly);
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bW, flag), capturesOnly);
   } else {
     AddQuietMove(
       MOVE(
@@ -461,6 +509,8 @@ export function AddBlackPawnQuietMove(from, to, flag, capturesOnly) {
 export const generatePowers = () => {
   if (blackArcaneConfig.modsRAN === 'true')
     GameBoard.blackArcane = [0, 0, 0, 0, 8];
+  if (whiteArcaneConfig.modsRAN === 'true')
+    GameBoard.whiteArcane = [0, 0, 0, 0, 8];
   if (GameBoard.side === COLOURS.WHITE) {
     let powerBits = [0, 0, 0, 0, 0];
     const powerTypes = {
@@ -470,6 +520,8 @@ export const generatePowers = () => {
       swap: 0,
       mods: 0,
     };
+
+    // todo: this function needs to be generated on click on at least swap so piece movements like captures or other edge cases don't overlap
 
     _.forEach(whiteArcaneConfig, (value, key) => {
       const powerName = key.substring(0, 4);
@@ -843,9 +895,9 @@ export function GenerateMoves(
       }
       if (GameBoard.side === COLOURS.WHITE) {
         if (sq < whiteLimit) {
-          if (GameBoard.whiteArcane[3] & summonFlag && summonFlag >= 8192) {
+          if (GameBoard.whiteArcane[3] & summonFlag && summonFlag >= 16384) {
             addSummonMove(
-              MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
+              MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
               summonPce
             );
           } else if (GameBoard.whiteArcane[3] & summonFlag) {
@@ -858,9 +910,9 @@ export function GenerateMoves(
       }
       if (GameBoard.side === COLOURS.BLACK) {
         if (sq > blackLimit) {
-          if (GameBoard.blackArcane[3] & summonFlag && summonFlag >= 8192) {
+          if (GameBoard.blackArcane[3] & summonFlag && summonFlag >= 16384) {
             addSummonMove(
-              MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
+              MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
               summonPce
             );
           } else if (GameBoard.blackArcane[3] & summonFlag) {

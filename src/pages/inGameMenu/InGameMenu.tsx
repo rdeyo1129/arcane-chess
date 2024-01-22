@@ -1242,7 +1242,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               change: () => {},
               dropNewPiece: (piece: string, key: string) => {
                 const parsed = this.arcaneChess().makeUserMove(
-                  'a0',
+                  null,
                   key,
                   this.state.placingPiece
                 );

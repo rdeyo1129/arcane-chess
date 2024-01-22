@@ -190,7 +190,7 @@ export function CheckBoard() {
   let t_material = [0, 0];
   let sq64, t_piece, t_pce_num, sq120;
 
-  for (t_piece = PIECES.wP; t_piece <= PIECES.bU; t_piece++) {
+  for (t_piece = PIECES.wP; t_piece <= PIECES.bW; t_piece++) {
     for (t_pce_num = 0; t_pce_num < GameBoard.pceNum[t_piece]; t_pce_num++) {
       sq120 = GameBoard.pList[PCEINDEX(t_piece, t_pce_num)];
       if (GameBoard.pieces[sq120] !== t_piece) {
@@ -207,7 +207,7 @@ export function CheckBoard() {
     t_material[PieceCol[t_piece]] += PieceVal[t_piece];
   }
 
-  for (t_piece = PIECES.wP; t_piece <= PIECES.bU; t_piece++) {
+  for (t_piece = PIECES.wP; t_piece <= PIECES.bW; t_piece++) {
     if (t_pceNum[t_piece] !== GameBoard.pceNum[t_piece]) {
       console.log('Error t_pceNum');
       return BOOL.FALSE;
@@ -355,7 +355,7 @@ export function GeneratePosKey() {
 export function PrintPieceLists() {
   let piece, pceNum;
 
-  for (piece = PIECES.wP; piece <= PIECES.bU; piece++) {
+  for (piece = PIECES.wP; piece <= PIECES.bW; piece++) {
     for (pceNum = 0; pceNum < GameBoard.pceNum[piece]; pceNum++) {
       console.log(
         'Piece ' +
@@ -605,6 +605,12 @@ export function ParseFen(fen) {
         break;
       case 'u':
         piece = PIECES.bU;
+        break;
+      case 'W':
+        piece = PIECES.wW;
+        break;
+      case 'w':
+        piece = PIECES.bW;
         break;
 
       case '1':

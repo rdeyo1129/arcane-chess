@@ -39,6 +39,8 @@ import { ARCANEFLAG, PrintBoard, SideText } from './board.mjs';
 import { PrMove, PrintMoveList } from './io';
 import { ARCANE_BIT_VALUES } from './defs.mjs';
 
+const royaltyMap = ['Q', 'T', 'M', 'V', 'E'];
+
 export function ClearPiece(sq, summon = false) {
   let pce = GameBoard.pieces[sq];
   let col = PieceCol[pce];
@@ -247,7 +249,11 @@ export function MakeMove(move) {
 
   GameBoard.fiftyMove++;
 
-  if (captured !== PIECES.EMPTY && (move & MFLAGSWAP) === 0) {
+  if (
+    captured !== PIECES.EMPTY &&
+    (move & MFLAGSWAP) === 0 &&
+    (move & MFLAGSUMN) === 0
+  ) {
     ClearPiece(to);
     GameBoard.fiftyMove = 0;
     if (GameBoard.crazyHouse[GameBoard.side]) {
@@ -304,24 +310,26 @@ export function MakeMove(move) {
     ClearPiece(to);
     AddPiece(to, pieceEpsilon);
   } else if (move & MFLAGSUMN) {
-    if (pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV) {
-      GameBoard[
-        `royalty${pieceEpsilon === 12 ? 'V' : PceChar.split('')[pieceEpsilon]}`
-      ][to] = 4;
+    if (captured > 0) {
+      GameBoard[`royalty${royaltyMap[captured - 1]}`][to] = 4;
     } else {
       AddPiece(to, pieceEpsilon, true);
     }
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[
-        `sumn${
-          pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''
-        }${PceChar.split('')[pieceEpsilon].toUpperCase()}`
+        `sumn${captured > 0 ? 'R' : ''}${
+          captured > 0
+            ? royaltyMap[captured - 1]
+            : PceChar.split('')[pieceEpsilon].toUpperCase()
+        }`
       ] -= 1;
     } else {
       blackArcaneConfig[
-        `sumn${
-          pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''
-        }${PceChar.split('')[pieceEpsilon].toUpperCase()}`
+        `sumn${captured > 0 ? 'R' : ''}${
+          captured > 0
+            ? royaltyMap[captured - 1]
+            : PceChar.split('')[pieceEpsilon].toUpperCase()
+        }`
       ] -= 1;
     }
   } else if (move & MFLAGSWAP) {
@@ -496,7 +504,11 @@ export function TakeMove() {
     MovePiece(to, from);
   }
 
-  if (captured !== PIECES.EMPTY && (move & MFLAGSWAP) === 0) {
+  if (
+    captured !== PIECES.EMPTY &&
+    (move & MFLAGSWAP) === 0 &&
+    (move & MFLAGSUMN) === 0
+  ) {
     AddPiece(to, captured);
     if (GameBoard.crazyHouse[GameBoard.side]) {
       if (GameBoard.side === COLOURS.WHITE) {
@@ -540,15 +552,19 @@ export function TakeMove() {
     }
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[
-        `sumn${
-          pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''
-        }${PceChar.split('')[pieceEpsilon].toUpperCase()}`
+        `sumn${captured > 0 ? 'R' : ''}${
+          captured > 0
+            ? royaltyMap[captured - 1]
+            : PceChar.split('')[pieceEpsilon].toUpperCase()
+        }`
       ] += 1;
     } else {
       blackArcaneConfig[
-        `sumn${
-          pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''
-        }${PceChar.split('')[pieceEpsilon].toUpperCase()}`
+        `sumn${captured > 0 ? 'R' : ''}${
+          captured > 0
+            ? royaltyMap[captured - 1]
+            : PceChar.split('')[pieceEpsilon].toUpperCase()
+        }`
       ] += 1;
     }
   } else if (move & MFLAGSWAP) {

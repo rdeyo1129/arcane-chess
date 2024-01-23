@@ -679,7 +679,7 @@ export const PieceSlides = [
 ];
 
 export let SpDir = [-21, -19, -12, -10, -8, -1, 1, 8, 10, 12, 19, 21];
-export let WrDir = [-22, -20, -18 - 11, -9, -2, 2, 9, 11, 18, 20, 22];
+export let WrDir = [-22, -20, -18, -11, -9, -2, 2, 9, 11, 18, 20, 22];
 export let HrDir = [-21, -19, -2, 2, 19, 21];
 export let KnDir = [-8, -19, -21, -12, 8, 19, 21, 12];
 export let RkDir = [-1, -10, 1, 10];

@@ -543,10 +543,8 @@ export function TakeMove() {
       PieceCol[pieceEpsilon] === COLOURS.WHITE ? PIECES.wP : PIECES.bP
     );
   } else if (move & MFLAGSUMN) {
-    if (pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV) {
-      GameBoard[
-        `royalty${pieceEpsilon === 12 ? 'V' : PceChar.split('')[pieceEpsilon]}`
-      ][to] = -500;
+    if (captured > 0) {
+      GameBoard[`royalty${royaltyMap[captured - 1]}`][to] = -500;
     } else {
       ClearPiece(to, true);
     }

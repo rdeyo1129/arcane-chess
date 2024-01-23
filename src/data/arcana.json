@@ -17,6 +17,12 @@
     "type": "active",
     "imagePath": "src/data/arcanaImages/dyadA"
   },
+  "dyadW": {
+    "name": "Wraith Dyad",
+    "description": "Make two Wraith moves, no capturing.",
+    "type": "active",
+    "imagePath": "src/data/arcanaImages/dyadA"
+  },
   "dyadH": {
     "name": "Herring Dyad",
     "description": "Make two Herring moves, no capturing.",
@@ -92,6 +98,12 @@
   "sumnS": {
     "name": "Summon Spectre",
     "description": "Summon a Spectre to an empty square.",
+    "type": "active",
+    "imagePath": "src/data/arcanaImages/sumnA"
+  },
+  "sumnW": {
+    "name": "Summon Wraith",
+    "description": "Summon a Wraith to an empty square.",
     "type": "active",
     "imagePath": "src/data/arcanaImages/sumnA"
   },

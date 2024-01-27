@@ -33,9 +33,9 @@ import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 import { get } from 'lodash';
 import arcaneChess from './arcaneChess.mjs';
 
-export function validGroundMoves() {
+export function validGroundMoves(swap = '') {
   const moveMap = new Map();
-  const validMovesReturn = validMoves();
+  const validMovesReturn = validMoves(false, swap);
 
   // moves
   // click button on UI = setCurrentArcane
@@ -79,11 +79,11 @@ export const validSummonMoves = (piece) => {
   return moveMap;
 };
 
-export function validMoves(summon) {
+export function validMoves(summon = false, swap = '') {
   const moves = [];
   let moveFound = NOMOVE;
   generatePowers();
-  GenerateMoves(true, false, summon);
+  GenerateMoves(true, false, summon, swap);
   for (
     let index = GameBoard.moveListStart[GameBoard.ply];
     index < GameBoard.moveListStart[GameBoard.ply + 1];
@@ -113,12 +113,17 @@ export function editMovePiece(orig, dest) {
   MovePiece(from, to);
 }
 
-export function MakeUserMove(orig, dest, pieceEpsilon = PIECES.EMPTY) {
+export function MakeUserMove(
+  orig,
+  dest,
+  pieceEpsilon = PIECES.EMPTY,
+  swapType = ''
+) {
   console.log(
     'User Move:' + PrSq(prettyToSquare(orig)) + PrSq(prettyToSquare(dest))
   );
 
-  var parsed = ParseMove(orig, dest, pieceEpsilon);
+  var parsed = ParseMove(orig, dest, pieceEpsilon, swapType);
   MakeMove(parsed);
 
   PrintBoard();

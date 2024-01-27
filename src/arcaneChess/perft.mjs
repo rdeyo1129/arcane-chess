@@ -16,7 +16,7 @@ export function Perft(depth) {
 
   generatePowers();
 
-  GenerateMoves();
+  GenerateMoves(true, false, true, '');
 
   // should take care of herrings but what about stalemate?
   // todo assign generate moves with herrings to a variable and check here

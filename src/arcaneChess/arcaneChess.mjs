@@ -218,9 +218,12 @@ export default function arcaneChess(
     getSummonMoves: (piece) => {
       return validSummonMoves(piece);
     },
-    makeUserMove: (orig, dest, pieceEpsilon = PIECES.EMPTY) => {
+    getSwapMoves: (swapType) => {
+      return validGroundMoves(swapType);
+    },
+    makeUserMove: (orig, dest, pieceEpsilon = PIECES.EMPTY, swapType = '') => {
       // engineMove;
-      return MakeUserMove(orig, dest, pieceEpsilon);
+      return MakeUserMove(orig, dest, pieceEpsilon, swapType);
     },
     engineReply: (thinkingTime) => {
       return engineMove(thinkingTime);

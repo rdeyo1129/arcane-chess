@@ -248,9 +248,15 @@ export function PrintMoveList() {
   console.log('End MoveList');
 }
 
-export function ParseMove(from, to, pieceEpsilon = PIECES.EMPTY) {
+export function ParseMove(
+  from,
+  to,
+  pieceEpsilon = PIECES.EMPTY,
+  swapType = ''
+) {
+  console.log(swapType);
   generatePowers();
-  GenerateMoves();
+  GenerateMoves(true, false, false, swapType);
 
   let Move = NOMOVE;
   let PromPce = PIECES.EMPTY;

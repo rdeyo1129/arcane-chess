@@ -37,10 +37,9 @@ export const ARCANE_BIT_VALUES = {
   RM: 3,
   RV: 4,
   RE: 5,
-  // to reuse when not using summon
-  // ATK: 29,
-  // DEP: 30,
-  // ADJ: 31,
+  ATK: 6,
+  DEP: 7,
+  ADJ: 8,
 };
 
 export const BRD_SQ_NUM = 120;

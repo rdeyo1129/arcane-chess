@@ -272,6 +272,7 @@ interface State {
   correctMoves: string[];
   arcaneHover: string;
   placingPiece: number;
+  swapType: string;
   arrowsCircles?: { orig: string; brush: string; dest?: string | undefined }[];
   royalties: {
     [key: string]: { [key: string]: number };
@@ -355,6 +356,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       correctMoves: [],
       arcaneHover: '',
       placingPiece: 0,
+      swapType: '',
       arrowsCircles: [],
       royalties: {
         royaltyQ: {},
@@ -716,10 +718,11 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                 // this.chessgroundRef.current?.unselect();
                                 this.setState({ placingPiece: 0 });
                               } else {
-                                this.chessgroundRef.current?.selectPocket({
-                                  role: 't-piece',
-                                  color: 'white',
-                                });
+                                // this.chessgroundRef.current?.selectPocket({
+                                //   // role: 't-piece',
+                                //   // color: 'white',
+                                // });
+                                console.log(arcana[key]);
                                 if (key.includes('sumn')) {
                                   this.setState({
                                     placingPiece:
@@ -735,6 +738,27 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                       ],
                                   });
                                   // todo royalty
+                                }
+
+                                if (key.includes('swap')) {
+                                  if (this.state.swapType === '') {
+                                    this.setState((prevState) => ({
+                                      swapType: key.split('swap')[1],
+                                    }));
+                                    // generatePowers();
+                                    // GenerateMoves(
+                                    //   true,
+                                    //   false,
+                                    //   false,
+                                    //   key.split('swap')[1]
+                                    // );
+                                  } else {
+                                    this.setState((prevState) => ({
+                                      swapType: '',
+                                    }));
+                                    // generatePowers();
+                                    // GenerateMoves();
+                                  }
                                 }
                               }
                             }}
@@ -1198,7 +1222,9 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               // todo show summon destinations
               dests:
                 this.state.placingPiece === 0
-                  ? this.arcaneChess().getGroundMoves()
+                  ? this.state.swapType === ''
+                    ? this.arcaneChess().getGroundMoves()
+                    : this.arcaneChess().getSwapMoves(this.state.swapType)
                   : this.arcaneChess().getSummonMoves(
                       PceChar.split('')[this.state.placingPiece]
                     ),
@@ -1266,9 +1292,17 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               },
               move: (orig: string, dest: string) => {
                 if (this.state.playing) {
-                  const parsed = this.arcaneChess().makeUserMove(orig, dest);
+                  // to pass promotion to makeusermove epsilon
+                  // console.log(capturedPiece);
+                  const parsed = this.arcaneChess().makeUserMove(
+                    orig,
+                    dest,
+                    0,
+                    this.state.swapType
+                  );
                   if (!PrMove(parsed)) {
                     console.log('invalid move');
+                    debugger;
                   }
                   this.setState((prevState) => ({
                     history: [...prevState.history, PrMove(parsed)],

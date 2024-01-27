@@ -136,7 +136,7 @@ export function Quiescence(alpha, beta) {
 
   generatePowers();
 
-  GenerateMoves(true, true);
+  GenerateMoves(true, true, true);
 
   let MoveNum = 0;
   let Legal = 0;

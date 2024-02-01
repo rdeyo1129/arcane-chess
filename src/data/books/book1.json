@@ -9,9 +9,9 @@
     "opponent": "Sidian",
     "panels": {
       "panel-1": {
-        "fen": "rrrrrrrr/pppppppp/8/XTMH4/8/8/PPPPPPPP/RRRRRRRR w KQkq - 0 1",
+        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
         "fenHistory": [
-          "rrrrrrrr/pppppppp/8/XTMH4/8/8/PPPPPPPP/RRRRRRRR w KQkq - 0 1"
+          "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
         ],
         "history": ["e2e4", "e7e5"],
         "panelText": "Lesson content example.\n\nThis is a new line.",
@@ -24,8 +24,13 @@
         },
         "arrowsCircles": [],
         "preset": "NORMAL",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "modsINH": "true" },
+        "blackArcane": {
+          "sumnN": 3,
+          "modsINH": "true",
+          "sumnT": 5,
+          "sumnM": 1
+        },
         "config": {},
         "correctMoves": ["moveA1", "moveA2"]
       },

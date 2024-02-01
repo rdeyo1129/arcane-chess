@@ -224,8 +224,8 @@ export const PieceMin = [
   BOOL.FALSE,
 ];
 export const PieceVal = [
-  0, 100, 325, 325, 550, 1000, 150000, 100, 325, 325, 550, 1000, 150000, 0, 700,
-  250, 1000, 900, 1400, 700, 250, 1000, 900, 1400, 325, 325, 325, 325, 700, 700,
+  0, 100, 325, 325, 550, 1000, 150000, 100, 325, 325, 550, 1000, 150000, 0, 800,
+  250, 1000, 900, 1400, 800, 250, 1000, 900, 1400, 325, 325, 325, 325, 800, 800,
 ];
 export const PieceCol = [
   COLOURS.BOTH,
@@ -876,7 +876,7 @@ export const loopSummonFlag = [
   65536, 131072, 262144, 0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048,
   4096, 8192, 16384, 32768, 65536, 131072, 262144, 0,
 ];
-export const loopSummonIndex = [0, 19];
+export const loopSummonIndex = [0, 20];
 
 export const Mirror64 = [
   56, 57, 58, 59, 60, 61, 62, 63, 48, 49, 50, 51, 52, 53, 54, 55, 40, 41, 42,
@@ -885,7 +885,7 @@ export const Mirror64 = [
   3, 4, 5, 6, 7,
 ];
 
-export const PieceKeys = new Array(29 * 120);
+export const PieceKeys = new Array(31 * 120);
 export const CastleKeys = new Array(16);
 
 export let SideKey;

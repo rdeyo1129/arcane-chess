@@ -312,6 +312,9 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
   chessgroundRef = createRef<IChessgroundApi>();
   constructor(props: Props) {
     super(props);
+    console.log({
+      ...booksMap['book1']['lesson-1'].panels['panel-1'].whiteArcane,
+    });
     this.state = {
       // todo, just make this an array of fenHistory, simplify state...
       // todo make dyanamic
@@ -337,8 +340,22 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         G: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
         B: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
         V: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
-        W: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
-        BK: { disabled: false, arcana: {}, picks: 0, setting: 'zero' },
+        W: {
+          disabled: false,
+          arcana: {
+            ...booksMap['book1']['lesson-1'].panels['panel-1'].whiteArcane,
+          },
+          picks: 0,
+          setting: 'zero',
+        },
+        BK: {
+          disabled: false,
+          arcana: {
+            ...booksMap['book1']['lesson-1'].panels['panel-1'].blackArcane,
+          },
+          picks: 0,
+          setting: 'zero',
+        },
       },
       // generatedName: this.generateName(),
       description: '',
@@ -360,7 +377,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       arrowsCircles: [],
       royalties: {
         royaltyQ: {},
-        royaltyM: { 54: 1 },
+        royaltyM: {},
         royaltyT: {},
         royaltyV: {},
         royaltyE: {},
@@ -450,7 +467,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     });
 
     generatePowers();
-    GenerateMoves(true, false, true);
+    GenerateMoves(true, false, true, '');
 
     SearchController.thinking = BOOL.TRUE;
 
@@ -473,7 +490,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       })
       .then(() => {
         generatePowers();
-        GenerateMoves();
+        GenerateMoves(true, false, true, '');
       })
       .catch((error) => {
         console.error('An error occurred:', error);
@@ -505,7 +522,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
 
     generatePowers();
 
-    GenerateMoves();
+    GenerateMoves(true, false, true, '');
 
     // PrintMoveList();
 
@@ -577,23 +594,23 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     arcanaKeys.forEach((key) => {
       this.setState((prevState) => ({
         ...prevState,
-        config: {
-          ...prevState.config,
-          W: {
-            ...prevState.config.W,
-            arcana: {
-              ...prevState.config.W.arcana,
-              [key]: arcana[key].type === 'active' ? 0 : 'false',
-            },
-          },
-          BK: {
-            ...prevState.config.BK,
-            arcana: {
-              ...prevState.config.BK.arcana,
-              [key]: arcana[key].type === 'active' ? 0 : 'false',
-            },
-          },
-        },
+        // config: {
+        //   ...prevState.config,
+        //   W: {
+        //     ...prevState.config.W,
+        //     arcana: {
+        //       ...prevState.config.W.arcana,
+        //       [key]: arcana[key].type === 'active' ? 0 : 'false',
+        //     },
+        //   },
+        //   BK: {
+        //     ...prevState.config.BK,
+        //     arcana: {
+        //       ...prevState.config.BK.arcana,
+        //       [key]: arcana[key].type === 'active' ? 0 : 'false',
+        //     },
+        //   },
+        // },
       }));
     });
     ParseFen(this.state.fen);
@@ -1375,6 +1392,8 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         // arrowsCircles: [...panelA.arrowsCircles],
                         royalities: panelA.royalties,
                         preset: panelA.preset,
+                        whiteArcane: panelA.whiteArcane,
+                        blackArcane: panelA.blackArcane,
                         // config: {
                         //   ...prevState.config,
                         //   W: {

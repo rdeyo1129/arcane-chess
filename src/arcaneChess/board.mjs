@@ -176,7 +176,7 @@ GameBoard.moveListStart = new Array(MAXDEPTH);
 
 GameBoard.PvTable = [];
 GameBoard.PvArray = new Array(MAXDEPTH);
-GameBoard.searchHistory = new Array(29 * BRD_SQ_NUM);
+GameBoard.searchHistory = new Array(31 * BRD_SQ_NUM);
 GameBoard.searchKillers = new Array(3 * MAXDEPTH);
 
 // [ score int, 1, 2, 3, 4, 5, 6, 7, 8 ]
@@ -370,7 +370,7 @@ export function PrintPieceLists() {
 export function UpdateListsMaterial() {
   let piece, sq, index, colour;
 
-  for (index = 0; index < 29 * 120; index++) {
+  for (index = 0; index < 31 * 120; index++) {
     GameBoard.pList[index] = PIECES.EMPTY;
   }
 
@@ -378,7 +378,7 @@ export function UpdateListsMaterial() {
     GameBoard.material[index] = 0;
   }
 
-  for (index = 0; index < 29; index++) {
+  for (index = 0; index < 31; index++) {
     GameBoard.pceNum[index] = 0;
   }
 

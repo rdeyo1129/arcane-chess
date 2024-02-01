@@ -66,34 +66,27 @@ import { PrMove, PrintMoveList } from './io.mjs';
 import { ARCANEFLAG } from './board.mjs';
 import { PceChar } from './defs.mjs';
 
-// prettier-ignore
 const MvvLvaValue = [
-  0,
-  100, 400, 700, 800, 1100, 1300,
-  100, 400, 700, 800, 1100, 1300,
-  0,
-  300, 200, 1000, 900, 1200,
-  300, 200, 1000, 900, 1200,
-  600, 500, 
-  600, 500,
+  0, 100, 300, 600, 700, 1000, 1400, 1200, 200, 900, 800, 1300, 500, 400, 1100,
+  100, 300, 600, 700, 1000, 1400, 1200, 200, 900, 800, 1300, 500, 400, 1100,
 ];
-const MvvLvaScores = new Array(29 * 29);
+const MvvLvaScores = new Array(30 * 30);
 export function InitMvvLva() {
   let Attacker;
   let Victim;
 
-  for (Attacker = PIECES.wP; Attacker <= PIECES.bW; Attacker++) {
-    for (Victim = PIECES.wP; Victim <= PIECES.bW; Victim++) {
-      MvvLvaScores[Victim * 29 + Attacker] =
+  for (Attacker = PIECES.wP; Attacker <= 29; Attacker++) {
+    for (Victim = PIECES.wP; Victim <= 29; Victim++) {
+      MvvLvaScores[Victim * 30 + Attacker] =
         // todo is there an error here?
-        MvvLvaValue[Victim] + 13 - MvvLvaValue[Attacker] / 100;
+        MvvLvaValue[Victim] + 14 - MvvLvaValue[Attacker] / 100;
     }
   }
 }
 
 export function MoveExists(move) {
   generatePowers();
-  GenerateMoves();
+  GenerateMoves(true, false, true, '');
 
   // todo regenerate for herring edge cases
 
@@ -559,7 +552,7 @@ export const generatePowers = () => {
 
     _.forEach(blackArcaneConfig, (value, key) => {
       const powerName = key.substring(0, 4);
-      if (blackArcaneConfig[key] > 0) {
+      if (blackArcaneConfig[key] > 0 || blackArcaneConfig[key] === 'true') {
         powerTypes[powerName] |= POWERBIT[key];
       }
     });

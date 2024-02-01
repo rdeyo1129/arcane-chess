@@ -172,7 +172,7 @@ export default function arcaneChess(
 
     generatePowers();
 
-    GenerateMoves(true, false);
+    GenerateMoves(true, false, false, '');
 
     // console.log(whiteConfig, blackConfig);
 

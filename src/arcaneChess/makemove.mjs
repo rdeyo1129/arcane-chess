@@ -373,6 +373,7 @@ export function MakeMove(move) {
 
   if (!move) {
     console.log('make move error', move);
+    debugger; // eslint-disable-line
   }
 
   if (

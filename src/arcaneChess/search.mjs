@@ -136,7 +136,7 @@ export function Quiescence(alpha, beta) {
 
   generatePowers();
 
-  GenerateMoves(true, true, true);
+  GenerateMoves(true, true, true, '');
 
   let MoveNum = 0;
   let Legal = 0;
@@ -254,7 +254,7 @@ export function AlphaBeta(alpha, beta, depth) {
 
   generatePowers();
   // todo make function that generates moves summons and swaps
-  GenerateMoves();
+  GenerateMoves(true, false, true, '');
   // todo regenerate if herring edge case hit
 
   // should take care of herrings but what about stalemate?
@@ -386,7 +386,7 @@ export function AlphaBeta(alpha, beta, depth) {
 export function ClearForSearch() {
   let index = 0;
 
-  for (index = 0; index < 29 * BRD_SQ_NUM; index++) {
+  for (index = 0; index < 31 * BRD_SQ_NUM; index++) {
     GameBoard.searchHistory[index] = 0;
   }
 
@@ -456,6 +456,12 @@ export function SearchPosition() {
     }
     console.log(line);
 
+    console.log(GameBoard.blackArcane);
+
+    console.log(GameBoard.moveList);
+
+    PrintMoveList();
+
     // return Promise.resolve({
     //   score: bestScore,
     //   line: line,
@@ -495,7 +501,7 @@ export function gameSim(thinkingTime) {
     SearchController.time = thinkingTime;
 
     generatePowers();
-    GenerateMoves();
+    GenerateMoves(true, false, true, '');
 
     const { score, bestMove, line } = SearchPosition();
 

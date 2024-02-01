@@ -456,12 +456,6 @@ export function SearchPosition() {
     }
     console.log(line);
 
-    console.log(GameBoard.blackArcane);
-
-    console.log(GameBoard.moveList);
-
-    PrintMoveList();
-
     // return Promise.resolve({
     //   score: bestScore,
     //   line: line,

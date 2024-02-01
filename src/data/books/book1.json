@@ -24,7 +24,7 @@
         },
         "arrowsCircles": [],
         "preset": "NORMAL",
-        "whiteArcane": { "modsINH": "true" },
+        "whiteArcane": { "modsINH": "true", "swapADJ": 1 },
         "blackArcane": {
           "sumnN": 3,
           "modsINH": "true",

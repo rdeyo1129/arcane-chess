@@ -24,8 +24,8 @@
         },
         "arrowsCircles": [],
         "preset": "NORMAL",
-        "whiteArcane": { "modsSUS": 4 },
-        "blackArcane": { "swapATK": 1, "swapDEP": 1 },
+        "whiteArcane": { "swapADJ": 4, "modsCON": 3, "shftB": 2 },
+        "blackArcane": { "swapADJ": 1, "modsCON": 3 },
         "config": {},
         "correctMoves": ["moveA1", "moveA2"]
       },

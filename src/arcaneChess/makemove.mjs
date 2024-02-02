@@ -294,11 +294,11 @@ export function MakeMove(move) {
   if (move & MFLAGSHFT) {
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[
-        `shft${PceChar.split('')[GameBoard.pieces[from]].toUpperCase()}`
+        `shft${PceChar.split('')[GameBoard.pieces[to]].toUpperCase()}`
       ] -= 1;
     } else {
       blackArcaneConfig[
-        `shft${PceChar.split('')[GameBoard.pieces[from]].toUpperCase()}`
+        `shft${PceChar.split('')[GameBoard.pieces[to]].toUpperCase()}`
       ] -= 1;
     }
   }
@@ -468,11 +468,11 @@ export function TakeMove() {
   if (move & MFLAGSHFT) {
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[
-        `shft${PceChar.split('')[GameBoard.pieces[from]].toUpperCase()}`
+        `shft${PceChar.split('')[GameBoard.pieces[to]].toUpperCase()}`
       ] += 1;
     } else {
       blackArcaneConfig[
-        `shft${PceChar.split('')[GameBoard.pieces[from]].toUpperCase()}`
+        `shft${PceChar.split('')[GameBoard.pieces[to]].toUpperCase()}`
       ] += 1;
     }
   }

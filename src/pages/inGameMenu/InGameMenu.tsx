@@ -731,9 +731,15 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                               this.state.hoverArcane === key ? '-hover' : ''
                             }.svg`}
                             onClick={() => {
-                              if (this.state.placingPiece > 0) {
+                              if (
+                                this.state.placingPiece > 0 ||
+                                this.state.swapType !== ''
+                              ) {
                                 // this.chessgroundRef.current?.unselect();
-                                this.setState({ placingPiece: 0 });
+                                this.setState({
+                                  placingPiece: 0,
+                                  swapType: '',
+                                });
                               } else {
                                 // this.chessgroundRef.current?.selectPocket({
                                 //   // role: 't-piece',

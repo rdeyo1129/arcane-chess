@@ -33,9 +33,9 @@ import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 import { get } from 'lodash';
 import arcaneChess from './arcaneChess.mjs';
 
-export function validGroundMoves(swap = '') {
+export function validGroundMoves(summon = '', swap = '') {
   const moveMap = new Map();
-  const validMovesReturn = validMoves(false, swap);
+  const validMovesReturn = validMoves(summon, swap);
 
   // moves
   // click button on UI = setCurrentArcane
@@ -58,7 +58,7 @@ export function validGroundMoves(swap = '') {
 
 export const validSummonMoves = (piece) => {
   const moveMap = new Map();
-  const validMovesReturn = validMoves(true);
+  const validMovesReturn = validMoves('PLAYER');
 
   // moves
   // click button on UI = setCurrentArcane
@@ -79,7 +79,7 @@ export const validSummonMoves = (piece) => {
   return moveMap;
 };
 
-export function validMoves(summon = false, swap = '') {
+export function validMoves(summon = 'COMP', swap = 'COMP') {
   const moves = [];
   let moveFound = NOMOVE;
   generatePowers();
@@ -214,7 +214,7 @@ export function CheckResult() {
 
   // todo herring
   generatePowers();
-  GenerateMoves();
+  GenerateMoves(true, false, 'COMP', 'COMP');
 
   var MoveNum = 0;
   var found = 0;
@@ -291,6 +291,10 @@ export function engineMove(thinkingTime) {
 
   SearchController.time = thinkingTime;
   const { bestMove, bestScore, line } = SearchPosition();
+  // if (bestMove === NOMOVE) {
+  //   console.log(bestMove);
+  //   debugger; // eslint-disable-line
+  // }
   MakeMove(bestMove);
   CheckAndSet();
   // PrintMoveList();

@@ -24,13 +24,8 @@
         },
         "arrowsCircles": [],
         "preset": "NORMAL",
-        "whiteArcane": { "modsINH": "true", "swapADJ": 1 },
-        "blackArcane": {
-          "sumnN": 3,
-          "modsINH": "true",
-          "sumnT": 5,
-          "sumnM": 1
-        },
+        "whiteArcane": { "modsSUS": 4 },
+        "blackArcane": { "swapATK": 1, "swapDEP": 1 },
         "config": {},
         "correctMoves": ["moveA1", "moveA2"]
       },

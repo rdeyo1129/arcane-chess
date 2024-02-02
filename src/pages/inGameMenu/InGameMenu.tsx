@@ -467,7 +467,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     });
 
     generatePowers();
-    GenerateMoves(true, false, true, '');
+    GenerateMoves(true, false, 'COMP', 'COMP');
 
     SearchController.thinking = BOOL.TRUE;
 
@@ -490,7 +490,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       })
       .then(() => {
         generatePowers();
-        GenerateMoves(true, false, true, '');
+        GenerateMoves(true, false, 'COMP', 'COMP');
       })
       .catch((error) => {
         console.error('An error occurred:', error);
@@ -522,7 +522,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
 
     generatePowers();
 
-    GenerateMoves(true, false, true, '');
+    GenerateMoves(true, false, 'COMP', 'COMP');
 
     // PrintMoveList();
 

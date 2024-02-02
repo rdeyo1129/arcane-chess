@@ -172,7 +172,7 @@ export default function arcaneChess(
 
     generatePowers();
 
-    GenerateMoves(true, false, false, '');
+    GenerateMoves(true, false, 'COMP', '');
 
     // console.log(whiteConfig, blackConfig);
 
@@ -219,7 +219,7 @@ export default function arcaneChess(
       return validSummonMoves(piece);
     },
     getSwapMoves: (swapType) => {
-      return validGroundMoves(swapType);
+      return validGroundMoves('', swapType);
     },
     makeUserMove: (orig, dest, pieceEpsilon = PIECES.EMPTY, swapType = '') => {
       // engineMove;

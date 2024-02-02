@@ -136,7 +136,7 @@ export function Quiescence(alpha, beta) {
 
   generatePowers();
 
-  GenerateMoves(true, true, true, '');
+  GenerateMoves(true, true, '', 'COMP');
 
   let MoveNum = 0;
   let Legal = 0;
@@ -152,6 +152,10 @@ export function Quiescence(alpha, beta) {
     PickNextMove(MoveNum);
 
     Move = GameBoard.moveList[MoveNum];
+
+    if (Move === NOMOVE) {
+      debugger; // eslint-disable-line
+    }
 
     if (MakeMove(Move) === BOOL.FALSE) {
       continue;
@@ -254,7 +258,7 @@ export function AlphaBeta(alpha, beta, depth) {
 
   generatePowers();
   // todo make function that generates moves summons and swaps
-  GenerateMoves(true, false, true, '');
+  GenerateMoves(true, false, 'COMP', 'COMP');
   // todo regenerate if herring edge case hit
 
   // should take care of herrings but what about stalemate?
@@ -293,6 +297,10 @@ export function AlphaBeta(alpha, beta, depth) {
     PickNextMove(MoveNum);
 
     Move = GameBoard.moveList[MoveNum];
+
+    if (Move === NOMOVE) {
+      debugger; // eslint-disable-line
+    }
 
     if (MakeMove(Move) === BOOL.FALSE) {
       continue;
@@ -495,7 +503,7 @@ export function gameSim(thinkingTime) {
     SearchController.time = thinkingTime;
 
     generatePowers();
-    GenerateMoves(true, false, true, '');
+    GenerateMoves(true, false, 'COMP', 'COMP');
 
     const { score, bestMove, line } = SearchPosition();
 

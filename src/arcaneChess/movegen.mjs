@@ -86,7 +86,7 @@ export function InitMvvLva() {
 
 export function MoveExists(move) {
   generatePowers();
-  GenerateMoves(true, false, true, '');
+  GenerateMoves(true, false, 'COMP', 'COMP');
 
   // todo regenerate for herring edge cases
 
@@ -136,7 +136,7 @@ export function AddCaptureMove(move, consume = false, capturesOnly = false) {
 }
 
 export function AddQuietMove(move, capturesOnly) {
-  if (move & MFLAGSWAP) return;
+  // if (move & MFLAGSWAP) return;
   if (!capturesOnly) {
     GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
     GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 0;
@@ -155,7 +155,7 @@ export function AddQuietMove(move, capturesOnly) {
 }
 
 export function AddEnPassantMove(move) {
-  if (move & MFLAGSWAP) return;
+  // if (move & MFLAGSWAP) return;
   GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
   GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] =
     105 + 1000000;
@@ -163,7 +163,7 @@ export function AddEnPassantMove(move) {
 }
 
 export function addSummonMove(move, summonPce) {
-  if (move & MFLAGSWAP) return;
+  // if (move & MFLAGSWAP) return;
   // whiteArcaneConfig[
   //   `sumn${pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''}${PceChar.split('')[
   //     pieceEpsilon
@@ -598,7 +598,7 @@ export const getHerrings = (color) => {
 export function GenerateMoves(
   withHerrings = true,
   capturesOnly = false,
-  generateSummons = false,
+  generateSummons = '',
   generateSwaps = ''
 ) {
   GameBoard.moveListStart[GameBoard.ply + 1] =
@@ -642,10 +642,13 @@ export function GenerateMoves(
 
   // SWAP ADJACENT 4
   for (let sq = 21; sq <= 98; sq++) {
-    if (GameBoard.pieces[sq] === PIECES.EMPTY || herrings.length) {
+    if (GameBoard.pieces[sq] === PIECES.EMPTY) {
       continue;
     }
-    if (generateSwaps === 'ADJ') {
+    if (herrings.length) {
+      break;
+    }
+    if (generateSwaps === 'ADJ' || generateSwaps === 'COMP') {
       for (let i = 0; i < 4; i++) {
         dir = RkDir[i];
         t_sq = sq + dir;
@@ -744,7 +747,7 @@ export function GenerateMoves(
   }
 
   // SWAP ATK 1
-  if (generateSwaps === 'ATK') {
+  if (generateSwaps === 'ATK' || generateSwaps === 'COMP') {
     for (let i = 0; i < NBRSQS[GameBoard.side].length; i++) {
       for (let j = 0; j < NBRSQS[GameBoard.side ^ 1].length; j++) {
         if (
@@ -776,7 +779,8 @@ export function GenerateMoves(
           );
         }
         if (
-          (GameBoard.side === COLOURS.BLACK) & GameBoard.blackArcane[2] & 1 &&
+          GameBoard.side === COLOURS.BLACK &&
+          GameBoard.blackArcane[2] & 1 &&
           !herrings.length
         ) {
           AddCaptureMove(
@@ -807,7 +811,7 @@ export function GenerateMoves(
   }
 
   // SWAP DEP 2
-  if (generateSwaps === 'DEP') {
+  if (generateSwaps === 'DEP' || generateSwaps === 'COMP') {
     for (let i = 0; i < NBRSQS[GameBoard.side].length; i++) {
       for (let j = 0; j < NBRSQS[GameBoard.side].length; j++) {
         if (
@@ -835,7 +839,8 @@ export function GenerateMoves(
           );
         }
         if (
-          (GameBoard.side === COLOURS.BLACK) & GameBoard.blackArcane[2] & 2 &&
+          GameBoard.side === COLOURS.BLACK &&
+          GameBoard.blackArcane[2] & 2 &&
           !herrings.length
         ) {
           AddCaptureMove(
@@ -854,7 +859,12 @@ export function GenerateMoves(
     }
   }
 
-  if (generateSwaps !== '') return;
+  if (
+    generateSwaps === 'ADJ' ||
+    generateSwaps === 'ATK' ||
+    generateSwaps === 'DEP'
+  )
+    return;
 
   // SUMMONS
   let summonIndex = loopSummonIndex[GameBoard.side];
@@ -865,7 +875,7 @@ export function GenerateMoves(
   const whiteLimit = 100 - 10 * (8 - GameBoard.summonRankLimits[0]);
   const blackLimit = 20 + 10 * (8 - GameBoard.summonRankLimits[1]);
 
-  if (generateSummons && !herrings.length) {
+  if (generateSummons !== '' && !herrings.length) {
     while (summonPce !== 0) {
       for (let sq = 21; sq <= 98; sq++) {
         if (
@@ -927,6 +937,8 @@ export function GenerateMoves(
       summonFlag = loopSummonFlag[summonIndex++];
     }
   }
+
+  if (generateSummons === 'PLAYER') return;
 
   // NOTE WHITE PAWN AND SPECIAL MOVES
   if (GameBoard.side === COLOURS.WHITE) {

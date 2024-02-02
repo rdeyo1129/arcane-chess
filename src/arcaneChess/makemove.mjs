@@ -337,13 +337,25 @@ export function MakeMove(move) {
     MovePiece(from, to);
     AddPiece(from, captured);
     if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig.swapATK -= 1;
-      whiteArcaneConfig.swapDEP -= 1;
-      whiteArcaneConfig.swapADJ -= 1;
+      if (pieceEpsilon === ARCANE_BIT_VALUES.ATK) {
+        whiteArcaneConfig.swapATK -= 1;
+      }
+      if (pieceEpsilon === ARCANE_BIT_VALUES.DEP) {
+        whiteArcaneConfig.swapDEP -= 1;
+      }
+      if (pieceEpsilon === ARCANE_BIT_VALUES.ADJ) {
+        whiteArcaneConfig.swapADJ -= 1;
+      }
     } else {
-      blackArcaneConfig.swapATK -= 1;
-      blackArcaneConfig.swapDEP -= 1;
-      blackArcaneConfig.swapADJ -= 1;
+      if (pieceEpsilon === ARCANE_BIT_VALUES.ATK) {
+        blackArcaneConfig.swapATK -= 1;
+      }
+      if (pieceEpsilon === ARCANE_BIT_VALUES.DEP) {
+        blackArcaneConfig.swapDEP -= 1;
+      }
+      if (pieceEpsilon === ARCANE_BIT_VALUES.ADJ) {
+        blackArcaneConfig.swapADJ -= 1;
+      }
     }
   }
 
@@ -355,7 +367,6 @@ export function MakeMove(move) {
   ) {
     GameBoard.checks[GameBoard.side]++;
   }
-
   if (GameBoard.dyad > 0) {
     GameBoard.dyadClock += 1;
   } else {
@@ -377,10 +388,7 @@ export function MakeMove(move) {
   }
 
   if (
-    SqAttacked(
-      GameBoard.pList[PCEINDEX(Kings[GameBoard.side ^ 1], 0)],
-      GameBoard.side
-    ) ||
+    SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], GameBoard.side) ||
     GameBoard.suspend > 0
   ) {
     TakeMove();
@@ -567,17 +575,30 @@ export function TakeMove() {
       ] += 1;
     }
   } else if (move & MFLAGSWAP) {
+    const swapType = PROMOTED(move);
     ClearPiece(from);
     MovePiece(to, from);
     AddPiece(to, captured);
     if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig.swapATK += 1;
-      whiteArcaneConfig.swapDEP += 1;
-      whiteArcaneConfig.swapADJ += 1;
+      if (swapType === ARCANE_BIT_VALUES.ATK) {
+        whiteArcaneConfig.swapATK += 1;
+      }
+      if (swapType === ARCANE_BIT_VALUES.DEP) {
+        whiteArcaneConfig.swapDEP += 1;
+      }
+      if (swapType === ARCANE_BIT_VALUES.ADJ) {
+        whiteArcaneConfig.swapADJ += 1;
+      }
     } else {
-      blackArcaneConfig.swapATK += 1;
-      blackArcaneConfig.swapDEP += 1;
-      blackArcaneConfig.swapADJ += 1;
+      if (swapType === ARCANE_BIT_VALUES.ATK) {
+        blackArcaneConfig.swapATK += 1;
+      }
+      if (swapType === ARCANE_BIT_VALUES.DEP) {
+        blackArcaneConfig.swapDEP += 1;
+      }
+      if (swapType === ARCANE_BIT_VALUES.ADJ) {
+        blackArcaneConfig.swapADJ += 1;
+      }
     }
   }
 }

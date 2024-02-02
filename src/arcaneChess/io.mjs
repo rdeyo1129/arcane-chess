@@ -256,7 +256,7 @@ export function ParseMove(
 ) {
   console.log(swapType);
   generatePowers();
-  GenerateMoves(true, false, false, swapType);
+  GenerateMoves(true, false, 'COMP', swapType);
 
   let Move = NOMOVE;
   let PromPce = PIECES.EMPTY;
@@ -274,7 +274,13 @@ export function ParseMove(
       (from === null && TOSQ(Move) === prettyToSquare(to))
     ) {
       PromPce = PROMOTED(Move);
-      if (PromPce !== PIECES.EMPTY) {
+      if (Move & MFLAGSWAP && swapType !== '') {
+        if (CAPTURED(Move)) {
+          found = BOOL.TRUE;
+          break;
+        }
+        continue;
+      } else if (PromPce !== PIECES.EMPTY) {
         if (PromPce === pieceEpsilon) {
           found = BOOL.TRUE;
           break;

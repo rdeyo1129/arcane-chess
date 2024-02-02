@@ -45,9 +45,6 @@ export const blackArcaneConfig = {
   // modsQTY: 1,
   // sumnRE: 1,
   // sumnX: 1,
-  sumnQ: 1,
-  sumnR: 1,
-  sumnT: 1,
 };
 
 // tactorius: needs external defs in order to generate moves with

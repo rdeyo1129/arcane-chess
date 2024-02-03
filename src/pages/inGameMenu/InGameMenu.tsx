@@ -96,10 +96,11 @@ import { blackArcaneConfig } from 'src/arcaneChess/arcaneDefs.mjs';
 //   // arcaneChess: () => void;
 // }
 
-export const piecePickupArray = [
+export const whitePiecePickupArray = [
   'wP',
   'wH',
   'wS',
+  'wW',
   'wN',
   'wZ',
   'wU',
@@ -110,10 +111,12 @@ export const piecePickupArray = [
   'wM',
   'wV',
   'wK',
-  //
+];
+export const blackPiecePickupArray = [
   'bP',
   'bH',
   'bS',
+  'bW',
   'bN',
   'bZ',
   'bU',
@@ -125,7 +128,7 @@ export const piecePickupArray = [
   'bV',
   'bK',
 ];
-export const royaltyPickupArray = {
+export const extraPickupArray = {
   Q: 'yellow',
   T: 'blue',
   M: 'green',
@@ -1400,17 +1403,17 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         preset: panelA.preset,
                         whiteArcane: panelA.whiteArcane,
                         blackArcane: panelA.blackArcane,
-                        // config: {
-                        //   ...prevState.config,
-                        //   W: {
-                        //     ...prevState.config.W,
-                        //     arcana: { ...panelA.whiteArcane },
-                        //   },
-                        //   BK: {
-                        //     ...prevState.config.BK,
-                        //     arcana: { ...panelA.blackArcane },
-                        //   },
-                        // },
+                        config: {
+                          ...prevState.config,
+                          W: {
+                            ...prevState.config.W,
+                            arcana: { ...panelA.whiteArcane },
+                          },
+                          BK: {
+                            ...prevState.config.BK,
+                            arcana: { ...panelA.blackArcane },
+                          },
+                        },
                         correctMoves: panelA.correctMoves,
                         // dialogue: panelA.dialogue,
                       }));
@@ -1576,66 +1579,99 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             </div>
           </div>
           <div className="piece-pickup">
-            {piecePickupArray.map((piece, index) => (
-              <div
-                className="piece-pickup-square"
-                key={index}
-                onClick={() => {
-                  this.setState({ placingPiece: pieces[piece] });
-                }}
-              >
+            <div className="piece-pickup-white">
+              {whitePiecePickupArray.map((piece, index) => (
                 <div
-                  className={`${piece
-                    .substring(1, 2)
-                    .toLocaleLowerCase()}-piece ${
-                    piece.substring(0, 1) === 'w'
-                      ? `white ${this.state.whiteFaction}`
-                      : `black ${this.state.blackFaction}`
-                  }`}
-                  style={{
-                    position: 'relative',
-                    top: '4px',
-                    left: '4px',
-                    width: '40px',
-                    height: '40px',
-                    transform: 'scale(1.25)',
+                  className="piece-pickup-square"
+                  key={index}
+                  onClick={() => {
+                    this.setState({ placingPiece: pieces[piece] });
                   }}
-                ></div>
-              </div>
-            ))}
-            <div className="piece-pickup-square">
-              <div
-                className="x-piece"
-                style={{
-                  position: 'relative',
-                  top: '-25px',
-                  left: '-25px',
-                  width: '100px',
-                  height: '100px',
-                  transform: 'scale(.4)',
-                }}
-                onClick={() => {
-                  this.setState({ placingPiece: pieces.EXILE });
-                }}
-              ></div>
+                >
+                  <div
+                    className={`${piece
+                      .substring(1, 2)
+                      .toLocaleLowerCase()}-piece ${
+                      piece.substring(0, 1) === 'w'
+                        ? `white ${this.state.whiteFaction}`
+                        : `black ${this.state.blackFaction}`
+                    }`}
+                    style={{
+                      position: 'relative',
+                      top: '4px',
+                      left: '4px',
+                      width: '40px',
+                      height: '40px',
+                      transform: 'scale(1.25)',
+                    }}
+                  ></div>
+                </div>
+              ))}
             </div>
-            {_.map(royaltyPickupArray, (value, key) => (
-              <div key={key} className="piece-pickup-square">
-                <div
-                  style={{
-                    width: '50px',
-                    height: '50px',
-                    background: '#333333',
-                    position: 'relative',
-                    backgroundImage: `radial-gradient(
+            <div className="piece-pickup-extra">
+              {_.map(extraPickupArray, (value, key) => (
+                <div key={key} className="piece-pickup-square">
+                  <div
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      background: '#333333',
+                      position: 'relative',
+                      backgroundImage: `radial-gradient(
           circle at 50% 50%,
           ${value} 0%,
           rgba(0, 0, 0, 0) 100%
         )`,
+                    }}
+                  ></div>
+                </div>
+              ))}
+              <div className="piece-pickup-square">
+                <div
+                  className="x-piece"
+                  style={{
+                    position: 'relative',
+                    top: '-25px',
+                    left: '-25px',
+                    width: '100px',
+                    height: '100px',
+                    transform: 'scale(.4)',
+                  }}
+                  onClick={() => {
+                    this.setState({ placingPiece: pieces.EXILE });
                   }}
                 ></div>
               </div>
-            ))}
+            </div>
+            <div className="piece-pickup-black">
+              {blackPiecePickupArray.map((piece, index) => (
+                <div
+                  className="piece-pickup-square"
+                  key={index}
+                  onClick={() => {
+                    this.setState({ placingPiece: pieces[piece] });
+                  }}
+                >
+                  <div
+                    className={`${piece
+                      .substring(1, 2)
+                      .toLocaleLowerCase()}-piece ${
+                      piece.substring(0, 1) === 'w'
+                        ? `white ${this.state.whiteFaction}`
+                        : `black ${this.state.blackFaction}`
+                    }`}
+                    style={{
+                      position: 'relative',
+                      top: '4px',
+                      left: '4px',
+                      width: '40px',
+                      height: '40px',
+                      transform: 'scale(1.25)',
+                    }}
+                  ></div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="bottom-left">

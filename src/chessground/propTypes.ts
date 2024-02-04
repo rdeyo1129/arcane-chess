@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 export const propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -31,8 +31,7 @@ export const propTypes = {
   drawable: PropTypes.object,
   wFaction: PropTypes.string,
   bFaction: PropTypes.string,
-  wRoyalty: PropTypes.string,
-  bRoyalty: PropTypes.string,
+  royalties: PropTypes.object,
   wVisible: PropTypes.bool,
   bVisible: PropTypes.bool,
   dimensions: PropTypes.object,

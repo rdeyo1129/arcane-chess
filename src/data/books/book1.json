@@ -13,19 +13,19 @@
         "fenHistory": [
           "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
         ],
-        "history": ["e2e4", "e7e5"],
+        "history": [],
         "panelText": "Lesson content example.\n\nThis is a new line.",
         "royalties": {
-          "royaltyQ": {},
-          "royaltyM": { "54": 1 },
-          "royaltyT": {},
-          "royaltyV": {},
-          "royaltyE": {}
+          "royaltyQ": { "a1": 3 },
+          "royaltyM": { "h8": 1, "e6": 2 },
+          "royaltyT": { "h7": 2 },
+          "royaltyV": { "e4": 1 },
+          "royaltyE": { "g5": 3 }
         },
         "arrowsCircles": [],
         "preset": "NORMAL",
-        "whiteArcane": { "swapADJ": 4, "modsCON": 3, "shftB": 2 },
-        "blackArcane": { "swapADJ": 1, "modsCON": 3 },
+        "whiteArcane": {},
+        "blackArcane": {},
         "config": {},
         "correctMoves": ["moveA1", "moveA2"]
       },
@@ -35,12 +35,12 @@
           "rrrrrrrr/pppppppp/8/XTMH4/8/8/PPPPPPPP/RRRRRRRR w KQkq - 0 1"
         ],
         "panelText": "panel text 2",
-        "history": ["e2e4", "e7e5"],
+        "history": [],
         "royalties": {
           "royaltyQ": {},
-          "royaltyM": { "54": 1 },
+          "royaltyM": {},
           "royaltyT": {},
-          "royaltyV": {},
+          "royaltyV": { "e4": 1 },
           "royaltyE": {}
         },
         "arrowsCircles": [
@@ -81,7 +81,7 @@
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {
-            "54": 1
+            "e4": 1
           },
           "royaltyT": {},
           "royaltyV": {},

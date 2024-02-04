@@ -154,6 +154,11 @@ export function Quiescence(alpha, beta) {
     Move = GameBoard.moveList[MoveNum];
 
     if (Move === NOMOVE) {
+      console.log('quiescence');
+      debugger; // eslint-disable-line
+    }
+
+    if (Move === NOMOVE) {
       debugger; // eslint-disable-line
     }
 
@@ -297,6 +302,11 @@ export function AlphaBeta(alpha, beta, depth) {
     PickNextMove(MoveNum);
 
     Move = GameBoard.moveList[MoveNum];
+
+    if (Move === NOMOVE) {
+      console.log('alpha beta');
+      debugger; // eslint-disable-line
+    }
 
     if (Move === NOMOVE) {
       debugger; // eslint-disable-line
@@ -507,9 +517,11 @@ export function gameSim(thinkingTime) {
 
     const { score, bestMove, line } = SearchPosition();
 
+    console.log(GetPvLine());
+
     MakeMove(bestMove);
     CheckAndSet();
-    // PrintMoveList();
-    // PrintBoard();
+    PrintMoveList();
+    PrintBoard();
   }
 }

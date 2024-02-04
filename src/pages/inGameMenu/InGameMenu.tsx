@@ -294,38 +294,35 @@ interface Props {
   // ... other props
 }
 
-const booksMap: { [key: string]: { [key: string]: Node } } = {
-  book1,
-  book2,
-  book3,
-  book4,
-  book5,
-  book6,
-  book7,
-  book8,
-  book9,
-  book10,
-  book11,
-  book12,
-};
-
 class UnwrappedInGameMenu extends React.Component<object, State> {
   arcaneChess;
   // private puzzleWorker: Worker;
   chessgroundRef = createRef<IChessgroundApi>();
+  booksMap: { [key: string]: { [key: string]: Node } } = {
+    book1,
+    book2,
+    book3,
+    book4,
+    book5,
+    book6,
+    book7,
+    book8,
+    book9,
+    book10,
+    book11,
+    book12,
+  };
   constructor(props: Props) {
     super(props);
-    console.log({
-      ...booksMap['book1']['lesson-1'].panels['panel-1'].whiteArcane,
-    });
     this.state = {
       // todo, just make this an array of fenHistory, simplify state...
       // todo make dyanamic
-      title: booksMap['book1']['lesson-1'].title,
-      fen: booksMap['book1']['lesson-1']['panels']['panel-1'].fen,
+      title: this.booksMap['book1']['lesson-1'].title,
+      fen: this.booksMap['book1']['lesson-1']['panels']['panel-1'].fen,
       pvLine: [],
-      history: booksMap['book1']['lesson-1']['panels']['panel-1'].history,
-      fenHistory: booksMap['book1']['lesson-1']['panels']['panel-1'].fenHistory,
+      history: this.booksMap['book1']['lesson-1']['panels']['panel-1'].history,
+      fenHistory:
+        this.booksMap['book1']['lesson-1']['panels']['panel-1'].fenHistory,
       thinking: false,
       lastMove: [],
       thinkingTime: 1500,
@@ -346,7 +343,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         W: {
           disabled: false,
           arcana: {
-            ...booksMap['book1']['lesson-1'].panels['panel-1'].whiteArcane,
+            ...this.booksMap['book1']['lesson-1'].panels['panel-1'].whiteArcane,
           },
           picks: 0,
           setting: 'zero',
@@ -354,7 +351,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         BK: {
           disabled: false,
           arcana: {
-            ...booksMap['book1']['lesson-1'].panels['panel-1'].blackArcane,
+            ...this.booksMap['book1']['lesson-1'].panels['panel-1'].blackArcane,
           },
           picks: 0,
           setting: 'zero',
@@ -364,7 +361,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       description: '',
       playing: false,
       bookObject: book1,
-      nodeObject: booksMap['book1']['lesson-1'].panels,
+      nodeObject: this.booksMap['book1']['lesson-1'].panels,
       panelObject: {} as State['panelObject'],
       selectedBook: 1,
       newNodeName: '',
@@ -379,18 +376,14 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       swapType: '',
       arrowsCircles: [],
       royalties: {
-        royaltyQ: {},
-        royaltyM: {},
-        royaltyT: {},
-        royaltyV: {},
-        royaltyE: {},
+        ...this.booksMap['book1']['lesson-1']['panels']['panel-1'].royalties,
       },
-      nodeText: booksMap['book1']['lesson-1'].nodeText,
-      reward: booksMap['book1']['lesson-1'].reward,
+      nodeText: this.booksMap['book1']['lesson-1'].nodeText,
+      reward: this.booksMap['book1']['lesson-1'].reward,
       prereq: '',
-      panelText: booksMap['book1']['lesson-1'].panels['panel-1'].panelText,
-      time: booksMap['book1']['lesson-1'].time,
-      opponent: booksMap['book1']['lesson-1'].opponent,
+      panelText: this.booksMap['book1']['lesson-1'].panels['panel-1'].panelText,
+      time: this.booksMap['book1']['lesson-1'].time,
+      opponent: this.booksMap['book1']['lesson-1'].opponent,
       // rating: 1500,
       // keyword: '',
       puzzleEpsilon: '1500 mate',
@@ -594,28 +587,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
 
   componentDidMount(): void {
     const arcanaKeys = Object.keys(arcana);
-    arcanaKeys.forEach((key) => {
-      this.setState((prevState) => ({
-        ...prevState,
-        // config: {
-        //   ...prevState.config,
-        //   W: {
-        //     ...prevState.config.W,
-        //     arcana: {
-        //       ...prevState.config.W.arcana,
-        //       [key]: arcana[key].type === 'active' ? 0 : 'false',
-        //     },
-        //   },
-        //   BK: {
-        //     ...prevState.config.BK,
-        //     arcana: {
-        //       ...prevState.config.BK.arcana,
-        //       [key]: arcana[key].type === 'active' ? 0 : 'false',
-        //     },
-        //   },
-        // },
-      }));
-    });
     ParseFen(this.state.fen);
     // this.chessgroundRef.current?.setAutoShapes([{ orig: 'e2', brush: 'blue' }]);
   }
@@ -673,7 +644,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
   render() {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     // const { auth } = this.props;
-    // console.log(this.state.fen, this.state.fenHistory[0]);
     return (
       <div className="creator">
         {/* <TactoriusModal
@@ -748,7 +718,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                 //   // role: 't-piece',
                                 //   // color: 'white',
                                 // });
-                                console.log(arcana[key]);
                                 if (key.includes('sumn')) {
                                   this.setState({
                                     placingPiece:
@@ -765,7 +734,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                   });
                                   // todo royalty
                                 }
-
                                 if (key.includes('swap')) {
                                   if (this.state.swapType === '') {
                                     this.setState((prevState) => ({
@@ -785,6 +753,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                     // generatePowers();
                                     // GenerateMoves();
                                   }
+                                }
+                                if (key.includes('modsSUS')) {
+                                  if (GameBoard.suspend > 0) return;
+                                  GameBoard.suspend = 6;
                                 }
                               }
                             }}
@@ -883,7 +855,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     onChange={(val) => {
                       this.setState({
                         currBook: val,
-                        bookObject: booksMap[val],
+                        bookObject: this.booksMap[val],
                       });
                     }}
                   />
@@ -904,10 +876,12 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         onClick={() => {
                           // this.state.nodeObject[key];
                           const nodeA = this.state.bookObject[key];
-                          // booksMap[this.state.currBook][node.id];
+                          // this.booksMap[this.state.currBook][node.id];
                           this.setState({
                             currNode: node.id,
+                            currPanel: '',
                             nodeObject: nodeA.panels,
+                            panelObject: nodeA.panels['panel-1'],
                             title: nodeA.title,
                             time: nodeA.time,
                             nodeText: nodeA.nodeText,
@@ -1204,8 +1178,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             resizable={true}
             wFaction={this.state.whiteFaction}
             bFaction={this.state.blackFaction}
-            // wRoyalty={this.state.wRoyalty}
-            // bRoyalty={this.state.bRoyalty}
+            royalties={this.state.royalties}
             // wVisible={this.state.wVisCount === 0}
             // bVisible={this.state.bVisCount === 0}
             // width={520}
@@ -1224,6 +1197,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             highlight={{
               lastMove: true,
               check: true,
+              royalties: true,
             }}
             lastMove={this.state.lastMove}
             orientation={this.state.orientation}
@@ -1338,6 +1312,8 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       outputFenOfCurrentPosition(),
                     ],
                     lastMove: [orig, dest],
+                    placingPiece: 0,
+                    swapType: '',
                   }));
                   this.engineGo();
                 } else {
@@ -1364,6 +1340,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     fenHistory: [outputFenOfCurrentPosition()],
                   });
                 }
+                ('');
               },
             }}
           />
@@ -1383,39 +1360,56 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         this.state.currPanel === key ? 'darkblue' : '#444444',
                     }}
                     onClick={() => {
+                      const nodeA = this.state.bookObject[this.state.currNode];
                       const panelA = this.state.nodeObject[key];
-                      // booksMap[this.state.currBook][this.state.currNode][
-                      //   'panels'
-                      // ][key];
+
+                      // No need to retrieve newPanelData using a function unless it's coming from outside this onClick handler's scope.
+                      // If panelA already contains the data you need, just use it directly.
+
+                      // Deep clone objects that you're going to update to ensure immutability.
+                      // This includes royalties, whiteArcane, and blackArcane.
+                      // Adjust the cloning method based on your data structure and what you need to copy (shallow vs. deep clone).
+                      const newRoyalties = JSON.parse(
+                        JSON.stringify(panelA.royalties)
+                      );
+                      const newWhiteArcane = JSON.parse(
+                        JSON.stringify(panelA.whiteArcane)
+                      );
+                      const newBlackArcane = JSON.parse(
+                        JSON.stringify(panelA.blackArcane)
+                      );
+
                       this.chessgroundRef.current?.setAutoShapes([
                         ...(panelA.arrowsCircles ?? []),
                       ]);
+
                       this.setState((prevState) => ({
                         ...prevState,
                         currPanel: key,
-                        panelObject: panelA,
+                        panelObject: {
+                          ...panelA,
+                          royalties: newRoyalties,
+                          whiteArcane: newWhiteArcane,
+                          blackArcane: newBlackArcane,
+                        },
+                        royalties: newRoyalties,
                         panelText: panelA.panelText,
                         fen: panelA.fen,
                         fenHistory: [...panelA.fenHistory],
-                        history: panelA.history,
-                        // arrowsCircles: [...panelA.arrowsCircles],
-                        royalities: panelA.royalties,
+                        history: [...panelA.history],
                         preset: panelA.preset,
-                        whiteArcane: panelA.whiteArcane,
-                        blackArcane: panelA.blackArcane,
                         config: {
                           ...prevState.config,
                           W: {
                             ...prevState.config.W,
-                            arcana: { ...panelA.whiteArcane },
+                            arcana: newWhiteArcane,
                           },
                           BK: {
                             ...prevState.config.BK,
-                            arcana: { ...panelA.blackArcane },
+                            arcana: newBlackArcane,
                           },
                         },
-                        correctMoves: panelA.correctMoves,
-                        // dialogue: panelA.dialogue,
+                        correctMoves: [...panelA.correctMoves],
                       }));
                       ParseFen(panelA.fen);
                     }}
@@ -1427,7 +1421,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         this.setState((prevState) => ({
                           ...prevState,
                           nodeObject: _.omit(
-                            booksMap['book1']['lesson-1'].panels,
+                            this.booksMap[this.state.currBook]['lesson-1'].panels,
                             key
                           ),
                         }));
@@ -1495,11 +1489,11 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         panelText: 'Panel Description ;soihgasog2',
                         arrowsCircles: [],
                         royalties: {
-                          roltyQ: {},
-                          roltyT: {},
-                          roltyM: {},
-                          roltyV: {},
-                          roltyE: {},
+                          royaltyQ: {},
+                          royaltyT: {},
+                          royaltyM: {},
+                          royaltyV: {},
+                          royaltyE: {},
                         },
                         preset: 'CLEAR',
                         whiteArcane: {},
@@ -1738,30 +1732,30 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   // this.calculateFen();
                   this.setState({
                     playing: false,
-                    fen: booksMap['book1'][this.state.currNode]['panels'][
-                      this.state.currPanel
-                    ].fen,
+                    fen: this.booksMap[this.state.currBook][
+                      this.state.currNode
+                    ]['panels'][this.state.currPanel].fen,
                     fenHistory: [
-                      booksMap['book1'][this.state.currNode]['panels'][
-                        this.state.currPanel
-                      ].fen,
+                      this.booksMap[this.state.currBook][this.state.currNode][
+                        'panels'
+                      ][this.state.currPanel].fen,
                     ],
                     history:
-                      booksMap['book1'][this.state.currNode]['panels'][
-                        this.state.currPanel
-                      ].history,
+                      this.booksMap[this.state.currBook][this.state.currNode][
+                        'panels'
+                      ][this.state.currPanel].history,
                     arrowsCircles:
-                      booksMap['book1'][this.state.currNode]['panels'][
-                        this.state.currPanel
-                      ].arrowsCircles,
+                      this.booksMap[this.state.currBook][this.state.currNode][
+                        'panels'
+                      ][this.state.currPanel].arrowsCircles,
                     royalties:
-                      booksMap['book1'][this.state.currNode]['panels'][
-                        this.state.currPanel
-                      ].royalties,
+                      this.booksMap[this.state.currBook][this.state.currNode][
+                        'panels'
+                      ][this.state.currPanel].royalties,
                     preset:
-                      booksMap['book1'][this.state.currNode]['panels'][
-                        this.state.currPanel
-                      ].preset,
+                      this.booksMap[this.state.currBook][this.state.currNode][
+                        'panels'
+                      ][this.state.currPanel].preset,
                   });
                 }}
                 className="primary"
@@ -1784,6 +1778,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     this.state.fen,
                     this.state.config.W.arcana,
                     this.state.config.BK.arcana,
+                    this.state.royalties,
                     this.state.preset
                   );
                   if (this.state.fen.split(' ')[1] === 'b') {
@@ -1893,7 +1888,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     )
                     .then((response) => {
                       // todo to be looped through
-                      console.log('Data:', response.data);
                       this.setState((prevState) => ({
                         fen: response.data[prevState.puzzleNum].FEN,
                         fenHistory: [response.data[prevState.puzzleNum].FEN],

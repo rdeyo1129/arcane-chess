@@ -30,13 +30,16 @@ export interface IChessground {
   highlight?: {
     lastMove: boolean;
     check: boolean;
+    royalties?: boolean;
   };
   disableContextMenu?: boolean;
   turnColor?: string;
   movable?: any; // Replace `any` with a more specific type if available
   events?: any; // Replace `any` with a more specific type if available
   forwardedRef: React.Ref<IChessgroundApi>;
-
+  royalties?:
+    | { [key: string]: { [key: string]: number | undefined } }
+    | undefined;
   // Adding an index signature for additional flexibility
   [key: string]: any;
 }

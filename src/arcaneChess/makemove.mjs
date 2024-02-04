@@ -387,10 +387,7 @@ export function MakeMove(move) {
     debugger; // eslint-disable-line
   }
 
-  if (
-    SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], GameBoard.side) ||
-    GameBoard.suspend > 0
-  ) {
+  if (SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], GameBoard.side)) {
     TakeMove();
     return BOOL.FALSE;
   }
@@ -399,7 +396,7 @@ export function MakeMove(move) {
       GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
       GameBoard.side ^ 1
     ) &&
-    GameBoard.racingKings
+    (GameBoard.racingKings || GameBoard.suspend > 0)
   ) {
     TakeMove();
     return BOOL.FALSE;

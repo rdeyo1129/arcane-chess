@@ -265,7 +265,7 @@ export function CheckResult() {
 }
 
 export function CheckAndSet() {
-  if (CheckResult().gameOver || false) {
+  if (CheckResult().gameOver) {
     GameController.GameOver = BOOL.TRUE;
     return true;
   } else {

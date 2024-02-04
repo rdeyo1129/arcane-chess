@@ -201,8 +201,8 @@ export default function arcaneChess(
   return {
     // filesRanksBoard: () => InitFilesRanksBrd(),
     activateDyad: (type) => activateDyad(type),
-    startGame: (fen, whiteConfig, blackConfig, varVar) =>
-      startGame(fen, whiteConfig, blackConfig, varVar),
+    startGame: (fen, whiteConfig, blackConfig, royalties, varVar) =>
+      startGame(fen, whiteConfig, blackConfig, royalties, varVar),
     startCreate: (fen) => startCreate(fen),
     getScoreAndLine: (fen) => {
       return getScoreAndLine(fen);

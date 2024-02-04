@@ -75,10 +75,9 @@ export function InitMvvLva() {
   let Attacker;
   let Victim;
 
-  for (Attacker = PIECES.wP; Attacker <= 29; Attacker++) {
-    for (Victim = PIECES.wP; Victim <= 29; Victim++) {
+  for (Attacker = 1; Attacker <= 28; Attacker++) {
+    for (Victim = 1; Victim <= 28; Victim++) {
       MvvLvaScores[Victim * 30 + Attacker] =
-        // todo is there an error here?
         MvvLvaValue[Victim] + 14 - MvvLvaValue[Attacker] / 100;
     }
   }
@@ -117,20 +116,18 @@ export function AddCaptureMove(move, consume = false, capturesOnly = false) {
   if ((capturesOnly && !consume) || !capturesOnly) {
     if (move & MFLAGSWAP) {
       GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
-      GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 0;
-      GameBoard.moveListStart[GameBoard.ply + 1]++;
+      GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]++] = 0;
     } else if (GameBoard.suspend <= 0) {
       GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
       if (consume) {
-        GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] =
-          MvvLvaScores[CAPTURED(move) * 29 + GameBoard.pieces[FROMSQ(move)]] -
+        GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]++] =
+          MvvLvaScores[CAPTURED(move) * 30 + GameBoard.pieces[FROMSQ(move)]] +
           1000000;
       } else {
-        GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] =
-          MvvLvaScores[CAPTURED(move) * 29 + GameBoard.pieces[FROMSQ(move)]] +
+        GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]++] =
+          MvvLvaScores[CAPTURED(move) * 30 + GameBoard.pieces[FROMSQ(move)]] +
           1000000;
       }
-      GameBoard.moveListStart[GameBoard.ply + 1]++;
     }
   }
 }

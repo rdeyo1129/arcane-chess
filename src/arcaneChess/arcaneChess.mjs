@@ -1,4 +1,4 @@
-// import _ from "lodash";
+import _ from 'lodash';
 
 // summons
 // edge case: must be at least 1 empty spot within board / restriction
@@ -40,7 +40,7 @@ import {
   InitSq120To64,
   InitBoardVars,
 } from './main';
-import { PrintMoveList } from './io';
+import { PrintMoveList, PrSq } from './io';
 import { InitMvvLva, GenerateMoves, generatePowers } from './movegen';
 import {
   GameBoard,
@@ -61,7 +61,6 @@ import {
   engineMove,
 } from './gui';
 import { SearchPosition, gameSim } from './search.mjs';
-import { PrintSqAttacked } from './board.mjs';
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import {
@@ -70,7 +69,7 @@ import {
   whiteArcaneConfig,
   blackArcaneConfig,
 } from './arcaneDefs.mjs';
-import { PIECES } from './defs.mjs';
+import { PIECES, prettyToSquare } from './defs.mjs';
 import { set } from 'lodash';
 
 export default function arcaneChess(
@@ -158,7 +157,7 @@ export default function arcaneChess(
     return Promise.resolve(GameBoard.cleanPV);
   };
 
-  const startGame = (startFen, whiteConfig, blackConfig, varVar) => {
+  const startGame = (startFen, whiteConfig, blackConfig, royalties, varVar) => {
     // this needs to be assigned to something, the fen that gets passed in randomize();
 
     setWhiteArcana(whiteConfig);
@@ -167,6 +166,14 @@ export default function arcaneChess(
     if (varVar === '960') {
       randomize(whiteConfig, blackConfig);
     }
+
+    _.forEach(royalties, (value, key) => {
+      GameBoard[key] = {};
+      _.forEach(value, (v, k) => {
+        const square = prettyToSquare(k);
+        GameBoard[key][square] = v;
+      });
+    });
 
     ParseFen(startFen);
 

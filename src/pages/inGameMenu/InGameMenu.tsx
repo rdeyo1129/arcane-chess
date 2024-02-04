@@ -482,6 +482,28 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
           fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
           thinking: false,
           lastMove: [PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))],
+          royalties: {
+            royaltyQ: _.mapValues(
+              prevState.royalties.royaltyQ,
+              (value) => value - 1
+            ),
+            royaltyT: _.mapValues(
+              prevState.royalties.royaltyT,
+              (value) => value - 1
+            ),
+            royaltyM: _.mapValues(
+              prevState.royalties.royaltyM,
+              (value) => value - 1
+            ),
+            royaltyV: _.mapValues(
+              prevState.royalties.royaltyV,
+              (value) => value - 1
+            ),
+            royaltyE: _.mapValues(
+              prevState.royalties.royaltyE,
+              (value) => value - 1
+            ),
+          },
         }));
       })
       .then(() => {
@@ -1285,6 +1307,28 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   ],
                   lastMove: [key, key],
                   placingPiece: 0,
+                  royalties: {
+                    royaltyQ: _.mapValues(
+                      prevState.royalties.royaltyQ,
+                      (value) => value - 1
+                    ),
+                    royaltyT: _.mapValues(
+                      prevState.royalties.royaltyT,
+                      (value) => value - 1
+                    ),
+                    royaltyM: _.mapValues(
+                      prevState.royalties.royaltyM,
+                      (value) => value - 1
+                    ),
+                    royaltyV: _.mapValues(
+                      prevState.royalties.royaltyV,
+                      (value) => value - 1
+                    ),
+                    royaltyE: _.mapValues(
+                      prevState.royalties.royaltyE,
+                      (value) => value - 1
+                    ),
+                  },
                 }));
                 if (this.state.playing) {
                   this.engineGo();
@@ -1304,18 +1348,42 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     console.log('invalid move');
                     debugger;
                   }
-                  this.setState((prevState) => ({
-                    history: [...prevState.history, PrMove(parsed)],
-                    fen: outputFenOfCurrentPosition(),
-                    fenHistory: [
-                      ...prevState.fenHistory,
-                      outputFenOfCurrentPosition(),
-                    ],
-                    lastMove: [orig, dest],
-                    placingPiece: 0,
-                    swapType: '',
-                  }));
-                  this.engineGo();
+                  this.setState(
+                    (prevState) => ({
+                      history: [...prevState.history, PrMove(parsed)],
+                      fen: outputFenOfCurrentPosition(),
+                      fenHistory: [
+                        ...prevState.fenHistory,
+                        outputFenOfCurrentPosition(),
+                      ],
+                      lastMove: [orig, dest],
+                      placingPiece: 0,
+                      swapType: '',
+                      royalties: {
+                        royaltyQ: _.mapValues(
+                          prevState.royalties.royaltyQ,
+                          (value) => value - 1
+                        ),
+                        royaltyT: _.mapValues(
+                          prevState.royalties.royaltyT,
+                          (value) => value - 1
+                        ),
+                        royaltyM: _.mapValues(
+                          prevState.royalties.royaltyM,
+                          (value) => value - 1
+                        ),
+                        royaltyV: _.mapValues(
+                          prevState.royalties.royaltyV,
+                          (value) => value - 1
+                        ),
+                        royaltyE: _.mapValues(
+                          prevState.royalties.royaltyE,
+                          (value) => value - 1
+                        ),
+                      },
+                    }),
+                    () => this.engineGo()
+                  );
                 } else {
                   editMovePiece(orig, dest);
                   this.setState({
@@ -1784,12 +1852,34 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   if (this.state.fen.split(' ')[1] === 'b') {
                     this.engineGo();
                   }
-                  this.setState({
-                    playing: true,
-                    placingPiece: 0,
-                    // fen: fischer,
-                    // fenHistory: [fischer],
-                  });
+
+                  this.setState(
+                    (prevState) => ({
+                      ...prevState,
+                      playing: true,
+                      placingPiece: 0,
+                      royalties: {
+                        royaltyQ: _.fromPairs(
+                          _.map(GameBoard.royaltyQ, (v, k) => [PrSq(k), v])
+                        ),
+                        royaltyT: _.fromPairs(
+                          _.map(GameBoard.royaltyT, (v, k) => [PrSq(k), v])
+                        ),
+                        royaltyM: _.fromPairs(
+                          _.map(GameBoard.royaltyM, (v, k) => [PrSq(k), v])
+                        ),
+                        royaltyV: _.fromPairs(
+                          _.map(GameBoard.royaltyV, (v, k) => [PrSq(k), v])
+                        ),
+                        royaltyE: _.fromPairs(
+                          _.map(GameBoard.royaltyE, (v, k) => [PrSq(k), v])
+                        ),
+                      },
+                    }),
+                    () => {
+                      console.log(this.state.royalties);
+                    }
+                  );
                 }}
                 className="primary"
                 color="B"

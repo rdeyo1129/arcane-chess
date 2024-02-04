@@ -222,15 +222,6 @@ export function Quiescence(alpha, beta) {
   return alpha;
 }
 
-// const getColorOfPieceJustMovedErrorTracker = (move) => {
-//   const piece = GameBoard.pieces[FROMSQ(move)];
-//   if (PceCol[piece] === GameBoard.side) {
-//     console.log('piece just moved is the same color as the side');
-//   } else {
-//     console.log('piece just moved is the opposite color as the side');
-//   }
-// };
-
 export function AlphaBeta(alpha, beta, depth) {
   if (depth <= 0) {
     return Quiescence(alpha, beta);
@@ -486,12 +477,6 @@ export function SearchPosition() {
   SearchController.best = bestMove;
   SearchController.thinking = BOOL.FALSE;
 
-  console.log({
-    bestScore: bestScore,
-    bestMove: bestMove,
-    line: line,
-  });
-
   return {
     bestScore: bestScore,
     bestMove: bestMove,
@@ -516,8 +501,6 @@ export function gameSim(thinkingTime) {
     GenerateMoves(true, false, 'COMP', 'COMP');
 
     const { score, bestMove, line } = SearchPosition();
-
-    console.log(GetPvLine());
 
     MakeMove(bestMove);
     CheckAndSet();

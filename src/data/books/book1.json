@@ -24,7 +24,7 @@
         },
         "arrowsCircles": [],
         "preset": "NORMAL",
-        "whiteArcane": {},
+        "whiteArcane": { "sumnRV": 1, "sumnRE": 2 },
         "blackArcane": {},
         "config": {},
         "correctMoves": ["moveA1", "moveA2"]

@@ -240,6 +240,9 @@ export default function arcaneChess(
       //   }, 200);
       // });
     },
+    addRoyalty: (type, sq, turns) => {
+      GameBoard[type] = { [sq]: turns };
+    },
     gameSim: (thinkingTime) => {
       return gameSim(thinkingTime);
     },

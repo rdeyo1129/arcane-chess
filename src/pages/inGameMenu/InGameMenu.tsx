@@ -275,6 +275,7 @@ interface State {
   correctMoves: string[];
   arcaneHover: string;
   placingPiece: number;
+  placingRoyalty: string;
   swapType: string;
   arrowsCircles?: { orig: string; brush: string; dest?: string | undefined }[];
   royalties: {
@@ -373,6 +374,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       correctMoves: [],
       arcaneHover: '',
       placingPiece: 0,
+      placingRoyalty: '',
       swapType: '',
       arrowsCircles: [],
       royalties: {
@@ -728,12 +730,14 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                             onClick={() => {
                               if (
                                 this.state.placingPiece > 0 ||
-                                this.state.swapType !== ''
+                                this.state.swapType !== '' ||
+                                this.state.placingRoyalty !== ''
                               ) {
                                 // this.chessgroundRef.current?.unselect();
                                 this.setState({
                                   placingPiece: 0,
                                   swapType: '',
+                                  placingRoyalty: '',
                                 });
                               } else {
                                 // this.chessgroundRef.current?.selectPocket({
@@ -741,20 +745,29 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                 //   // color: 'white',
                                 // });
                                 if (key.includes('sumn')) {
-                                  this.setState({
-                                    placingPiece:
-                                      pieces[
-                                        key.split('sumn')[1].toUpperCase() ===
-                                        'X'
-                                          ? 'EXILE'
-                                          : `${
-                                              this.state.selectedSide === 'W'
-                                                ? 'w'
-                                                : 'b'
-                                            }${key.split('sumn')[1]}`
-                                      ],
-                                  });
-                                  // todo royalty
+                                  if (
+                                    key.includes('sumnR') &&
+                                    key !== 'sumnR'
+                                  ) {
+                                    this.setState({
+                                      placingPiece: 0,
+                                      placingRoyalty: key.split('sumnR')[1],
+                                    });
+                                  } else {
+                                    this.setState({
+                                      placingPiece:
+                                        pieces[
+                                          key.split('sumn')[1].toUpperCase() ===
+                                          'X'
+                                            ? 'EXILE'
+                                            : `${
+                                                this.state.selectedSide === 'W'
+                                                  ? 'w'
+                                                  : 'b'
+                                              }${key.split('sumn')[1]}`
+                                        ],
+                                    });
+                                  }
                                 }
                                 if (key.includes('swap')) {
                                   if (this.state.swapType === '') {
@@ -1244,9 +1257,13 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               // todo show summon destinations
               dests:
                 this.state.placingPiece === 0
-                  ? this.state.swapType === ''
-                    ? this.arcaneChess().getGroundMoves()
-                    : this.arcaneChess().getSwapMoves(this.state.swapType)
+                  ? this.state.placingRoyalty === ''
+                    ? this.state.swapType === ''
+                      ? this.arcaneChess().getGroundMoves()
+                      : this.arcaneChess().getSwapMoves(this.state.swapType)
+                    : this.arcaneChess().getSummonMoves(
+                        `R${this.state.placingRoyalty}`
+                      )
                   : this.arcaneChess().getSummonMoves(
                       PceChar.split('')[this.state.placingPiece]
                     ),
@@ -1277,7 +1294,11 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             selectable={{
               enabled: true, // disable to enforce dragging over click-click move
               selected: {
-                role: `${PceChar[this.state.placingPiece].toLowerCase()}-piece`, // class name of chess piece
+                role: `${
+                  PceChar.split('')[this.state.placingPiece] !== '.'
+                    ? PceChar.split('')[this.state.placingPiece].toLowerCase()
+                    : 'a'
+                }-piece`, // class name of chess piece
                 color: 'white', // color of chess piece
               }, // square or piece currently selected "a1"
               fromPocket: false, // whether the selected piece is from the pocket
@@ -1396,11 +1417,62 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               select: (key: string) => {
                 if (this.state.playing) {
                   // console.log('select', key);
+                  if (this.state.placingRoyalty !== '') {
+                    this.arcaneChess().addRoyalty(
+                      `royalty${this.state.placingRoyalty}`,
+                      key,
+                      6
+                    );
+                    this.setState(
+                      (prevState) => ({
+                        ...prevState,
+                        royalties: {
+                          ...prevState.royalties,
+                          [`royalty${this.state.placingRoyalty}`]: {
+                            ...prevState.royalties[
+                              `royalty${this.state.placingRoyalty}`
+                            ],
+                            [key]: 6,
+                          },
+                        },
+                        placeingRoyalty: '',
+                      }),
+                      () => this.engineGo()
+                    );
+                  }
                 } else {
                   if (this.state.placingPiece === 0) return;
                   if (this.state.placingPiece === 333)
                     ClearPiece(prettyToSquare(key));
-                  else {
+                  if (
+                    this.state.placingPiece === 0 &&
+                    this.state.placingRoyalty !== ''
+                  ) {
+                    console.log('royalty', this.state.placingRoyalty);
+                    // console.log(
+                    //   GameBoard[`royalty${this.state.placingRoyalty}`]
+                    // );
+
+                    // GameBoard[`royalty${this.state.placingRoyalty}`][
+                    //   prettyToSquare(key)
+                    // ] = 6;
+                    this.arcaneChess().addRoyalty(
+                      `royalty${this.state.placingRoyalty}`,
+                      prettyToSquare(key)
+                    );
+                    this.setState((prevState) => ({
+                      ...prevState,
+                      royalties: {
+                        ...prevState.royalties,
+                        [`royalty${this.state.placingRoyalty}`]: {
+                          ...prevState.royalties[
+                            `royalty${this.state.placingRoyalty}`
+                          ],
+                          [key]: 6,
+                        },
+                      },
+                    }));
+                  } else {
                     AddPiece(prettyToSquare(key), this.state.placingPiece);
                   }
                   this.setState({
@@ -1877,7 +1949,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       },
                     }),
                     () => {
-                      console.log(this.state.royalties);
+                      // console.log(this.state.royalties);
                     }
                   );
                 }}

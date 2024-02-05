@@ -75,7 +75,6 @@ export const validSummonMoves = (piece) => {
     }
     moveMap.get(from).push(to);
   }
-  // console.log('moveMap', moveMap);
   return moveMap;
 };
 

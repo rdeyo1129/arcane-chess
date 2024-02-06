@@ -63,17 +63,20 @@ export const validSummonMoves = (piece) => {
   // moves
   // click button on UI = setCurrentArcane
   // is this for dyads?
-  // if (GameBoard.currentArcane & POWERBITS[substr(sumn, 4)]) substring of box notation? {
   for (let move of validMovesReturn) {
-    // todo, need to split to and from sqaures from things like x and &
     const from = `${piece.toUpperCase()}@`;
     const to = PrMove(move, 'array')[1];
-    if (!moveMap.has(from)) {
-      moveMap.set(from, []);
-      // gameOver
-      // updateReactUI();
+    if (from.includes('R') && from !== 'R@') {
+      if (!moveMap.has(from)) {
+        moveMap.set(from, []);
+      }
+      moveMap.get(from).push(to);
+    } else {
+      if (!moveMap.has(from)) {
+        moveMap.set(from, []);
+      }
+      moveMap.get(from).push(to);
     }
-    moveMap.get(from).push(to);
   }
   return moveMap;
 };

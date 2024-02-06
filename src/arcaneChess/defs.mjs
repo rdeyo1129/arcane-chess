@@ -120,7 +120,8 @@ export function updateStartFen(newFen) {
   START_FEN = newFen;
 }
 
-export let PceChar = '.PNBRQKpnbrqkXSHTMVshtmvZUzuWwQTMVE';
+export let PceChar = '.PNBRQKpnbrqkXSHTMVshtmvZUzuWw';
+export let RtyChar = '.QTMVE';
 export let SideChar = 'wb-';
 export let RankChar = '12345678';
 export let FileChar = 'abcdefgh';

@@ -241,7 +241,7 @@ export default function arcaneChess(
       // });
     },
     addRoyalty: (type, sq, turns) => {
-      GameBoard[type] = { [sq]: turns };
+      GameBoard[type] = { [prettyToSquare(sq)]: turns };
     },
     gameSim: (thinkingTime) => {
       return gameSim(thinkingTime);

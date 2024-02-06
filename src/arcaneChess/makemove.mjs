@@ -73,6 +73,7 @@ export function AddPiece(sq, pce, summon = false) {
 
   GameBoard.pieces[sq] = pce;
   if (!summon) {
+    // I believe this is to prevent computer from just exhausting all summons right away
     GameBoard.material[col] += PieceVal[pce];
   }
   GameBoard.pList[PCEINDEX(pce, GameBoard.pceNum[pce])] = sq;

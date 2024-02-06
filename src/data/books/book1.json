@@ -20,11 +20,18 @@
           "royaltyM": { "h8": 1, "e6": 2 },
           "royaltyT": { "h7": 2 },
           "royaltyV": { "e4": 1 },
-          "royaltyE": { "g5": 3 }
+          "royaltyE": {}
         },
         "arrowsCircles": [],
         "preset": "NORMAL",
-        "whiteArcane": { "sumnRV": 1, "sumnRE": 2 },
+        "whiteArcane": {
+          "sumnRQ": 1,
+          "sumnRT": 1,
+          "sumnRV": 1,
+          "sumnRE": 2,
+          "sumnN": 1,
+          "sumnR": 1
+        },
         "blackArcane": {},
         "config": {},
         "correctMoves": ["moveA1", "moveA2"]

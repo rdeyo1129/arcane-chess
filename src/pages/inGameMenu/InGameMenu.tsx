@@ -1292,19 +1292,19 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             events={{
               change: () => {},
               dropNewPiece: (piece: string, key: string) => {
-                let parsed: any;
-                if (this.state.placingPiece !== 0) {
-                  parsed = this.arcaneChess().makeUserMove(
-                    null,
-                    key,
-                    this.state.placingPiece
-                  );
-                } else if (this.state.placingRoyalty !== 0) {
-                  this.arcaneChess().addRoyalty(
-                    `royalty${RtyChar.split('')[this.state.placingRoyalty]}`,
-                    key,
-                    6
-                  );
+                const parsed = this.arcaneChess().makeUserMove(
+                  null,
+                  key,
+                  this.state.placingPiece,
+                  '',
+                  this.state.placingRoyalty
+                );
+                if (this.state.placingRoyalty !== 0) {
+                  // this.arcaneChess().addRoyalty(
+                  //   `royalty${RtyChar.split('')[this.state.placingRoyalty]}`,
+                  //   key,
+                  //   6
+                  // );
                   this.setState((prevState) => ({
                     ...prevState,
                     royalties: {
@@ -1374,7 +1374,8 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     orig,
                     dest,
                     0,
-                    this.state.swapType
+                    this.state.swapType,
+                    this.state.placingRoyalty
                   );
                   if (!PrMove(parsed)) {
                     console.log('invalid move');

@@ -23,6 +23,7 @@ import {
   BOOL,
   COLOURS,
   PceChar,
+  RtyChar,
   PieceCol,
 } from './defs';
 import { GenerateMoves, generatePowers } from './movegen';
@@ -55,7 +56,7 @@ export function PrMove(move, returnType) {
   // normal quiet
   if (CAPTURED(move) === 0 && pieceEpsilon === 0 && ARCANEFLAG(move) === 0) {
     MvStr =
-      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
+      getPceChar(GameBoard.pieces[TOSQ(move)]) +
       FileChar[ff] +
       RankChar[rf] +
       FileChar[ft] +
@@ -70,7 +71,7 @@ export function PrMove(move, returnType) {
     // !(move & MFLAGOFFR)
   ) {
     MvStr =
-      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
+      getPceChar(GameBoard.pieces[TOSQ(move)]) +
       FileChar[ff] +
       RankChar[rf] +
       'x' +
@@ -81,7 +82,7 @@ export function PrMove(move, returnType) {
   // consume capture
   if (move & MFLAGCNSM && pieceEpsilon !== 0) {
     MvStr =
-      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
+      getPceChar(GameBoard.pieces[TOSQ(move)]) +
       FileChar[ff] +
       RankChar[rf] +
       'x' +
@@ -92,10 +93,10 @@ export function PrMove(move, returnType) {
   // swap
   if (move & MFLAGSWAP) {
     MvStr =
-      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
+      getPceChar(GameBoard.pieces[TOSQ(move)]) +
       PrSq(FROMSQ(move)) +
       '&' +
-      getPceChar(GameBoard.pieces[TOSQ(move)]) +
+      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
       PrSq(TOSQ(move));
   }
   // summon
@@ -107,7 +108,7 @@ export function PrMove(move, returnType) {
       CAPTURED(move) === ARCANE_BIT_VALUES.RV ||
       CAPTURED(move) === ARCANE_BIT_VALUES.RE
     ) {
-      MvStr = 'R' + getPceChar(pieceEpsilon) + '@' + PrSq(TOSQ(move));
+      MvStr = 'R' + RtyChar.split('')[CAPTURED(move)] + '@' + PrSq(TOSQ(move));
     } else {
       MvStr = getPceChar(pieceEpsilon) + '@' + PrSq(TOSQ(move));
     }
@@ -127,7 +128,7 @@ export function PrMove(move, returnType) {
   // promotion
   if (pieceEpsilon !== 0 && !(move & MFLAGSUMN) && !(move & MFLAGSWAP)) {
     MvStr =
-      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
+      getPceChar(GameBoard.pieces[TOSQ(move)]) +
       FileChar[ff] +
       RankChar[rf] +
       (CAPTURED(move) & 0 || !(move & MFLAGCNSM)
@@ -252,11 +253,11 @@ export function ParseMove(
   from,
   to,
   pieceEpsilon = PIECES.EMPTY,
-  swapType = ''
+  swapType = '',
+  royaltyEpsilon = PIECES.EMPTY
 ) {
-  console.log(swapType);
   generatePowers();
-  GenerateMoves(true, false, 'COMP', swapType);
+  GenerateMoves(true, false, 'COMP', swapType, royaltyEpsilon);
 
   let Move = NOMOVE;
   let PromPce = PIECES.EMPTY;
@@ -280,8 +281,11 @@ export function ParseMove(
           break;
         }
         continue;
-      } else if (PromPce !== PIECES.EMPTY) {
-        if (PromPce === pieceEpsilon) {
+      } else if (
+        ARCANEFLAG(Move) !== 0 &&
+        (PromPce !== PIECES.EMPTY || CAPTURED(Move) !== PIECES.EMPTY)
+      ) {
+        if (PromPce === pieceEpsilon || CAPTURED(Move) === royaltyEpsilon) {
           found = BOOL.TRUE;
           break;
         }

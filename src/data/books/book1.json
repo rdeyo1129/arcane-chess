@@ -25,7 +25,8 @@
         "arrowsCircles": [],
         "preset": "NORMAL",
         "whiteArcane": {
-          "sumnRQ": 1,
+          "sumnP": 1,
+          "sumnB": 1,
           "sumnRT": 1,
           "sumnRV": 1,
           "sumnRE": 2,

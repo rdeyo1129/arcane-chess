@@ -60,11 +60,11 @@ import {
   royaltyHoppers,
   royaltySliderMap,
   royaltyHopperMap,
+  RtyChar,
 } from './defs';
 import { MakeMove, TakeMove } from './makemove';
 import { PrMove, PrintMoveList } from './io.mjs';
 import { ARCANEFLAG } from './board.mjs';
-import { PceChar } from './defs.mjs';
 
 const MvvLvaValue = [
   0, 100, 300, 600, 700, 1000, 1400, 1200, 200, 900, 800, 1300, 500, 400, 1100,
@@ -184,13 +184,8 @@ export function addSummonMove(move, summonPce) {
     GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 800000;
   } else {
     // todo update to treat like pieces on that square
-    if (summonPce < 30) {
-      GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] =
-        // MvvLvaValue[summonPce] + 1000000;
-        0;
-    } else {
-      GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 0;
-    }
+    GameBoard.moveScores[GameBoard.moveListStart[GameBoard.ply + 1]] = 0;
+    // MvvLvaValue[summonPce] + 1000000;
   }
   GameBoard.moveListStart[GameBoard.ply + 1]++;
   // }
@@ -596,7 +591,8 @@ export function GenerateMoves(
   withHerrings = true,
   capturesOnly = false,
   generateSummons = '',
-  generateSwaps = ''
+  generateSwaps = '',
+  userSummonPceRty = ''
 ) {
   GameBoard.moveListStart[GameBoard.ply + 1] =
     GameBoard.moveListStart[GameBoard.ply];
@@ -874,58 +870,80 @@ export function GenerateMoves(
 
   if (generateSummons !== '' && !herrings.length) {
     while (summonPce !== 0) {
-      for (let sq = 21; sq <= 98; sq++) {
-        if (
-          SQOFFBOARD(sq) === BOOL.TRUE ||
-          GameBoard.pieces[sq] !== PIECES.EMPTY ||
-          herrings.length ||
-          capturesOnly
-        ) {
-          continue;
-        }
-        if (summonPce === PIECES.wP) {
-          if (GameBoard.whiteArcane[4] & 16 && RanksBrd[sq] === RANKS.RANK_7) {
+      if (
+        summonPce === ARCANE_BIT_VALUES[userSummonPceRty] ||
+        summonPce === 0
+      ) {
+        let dontDoAnything = 'werw hi!'; // eslint-disable-line
+      } else {
+        for (let sq = 21; sq <= 98; sq++) {
+          if (SQOFFBOARD(sq) === BOOL.TRUE || herrings.length || capturesOnly) {
             continue;
           }
-          if (RanksBrd[sq] === RANKS.RANK_8) {
-            continue;
-          }
-        }
-        if (summonPce === PIECES.bP) {
-          if (GameBoard.blackArcane[4] & 16 && RanksBrd[sq] === RANKS.RANK_2) {
-            continue;
-          }
-          if (RanksBrd[sq] === RANKS.RANK_1) {
-            continue;
-          }
-        }
-        if (GameBoard.side === COLOURS.WHITE) {
-          if (sq < whiteLimit) {
-            if (GameBoard.whiteArcane[3] & summonFlag && summonFlag >= 16384) {
-              addSummonMove(
-                MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
-                summonPce
-              );
-            } else if (GameBoard.whiteArcane[3] & summonFlag) {
-              addSummonMove(
-                MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
-                summonPce
-              );
+          if (summonPce === PIECES.wP && summonFlag < 16384) {
+            if (
+              GameBoard.whiteArcane[4] & 16 &&
+              RanksBrd[sq] === RANKS.RANK_7
+            ) {
+              continue;
+            }
+            if (RanksBrd[sq] === RANKS.RANK_8) {
+              continue;
             }
           }
-        }
-        if (GameBoard.side === COLOURS.BLACK) {
-          if (sq > blackLimit) {
-            if (GameBoard.blackArcane[3] & summonFlag && summonFlag >= 16384) {
-              addSummonMove(
-                MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
-                summonPce
-              );
-            } else if (GameBoard.blackArcane[3] & summonFlag) {
-              addSummonMove(
-                MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
-                summonPce
-              );
+          if (summonPce === PIECES.bP && summonFlag < 16384) {
+            if (
+              GameBoard.blackArcane[4] & 16 &&
+              RanksBrd[sq] === RANKS.RANK_2
+            ) {
+              continue;
+            }
+            if (RanksBrd[sq] === RANKS.RANK_1) {
+              continue;
+            }
+          }
+          if (GameBoard.side === COLOURS.WHITE) {
+            if (sq < whiteLimit) {
+              if (
+                GameBoard.whiteArcane[3] & summonFlag &&
+                summonFlag >= 16384 &&
+                loopSummon[summonPce + 13] === userSummonPceRty
+              ) {
+                addSummonMove(
+                  MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
+                  summonPce
+                );
+              } else if (
+                GameBoard.pieces[sq] === PIECES.EMPTY &&
+                GameBoard.whiteArcane[3] & summonFlag
+              ) {
+                addSummonMove(
+                  MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
+                  summonPce
+                );
+              }
+            }
+          }
+          if (GameBoard.side === COLOURS.BLACK) {
+            if (sq > blackLimit) {
+              if (
+                GameBoard.blackArcane[3] & summonFlag &&
+                summonFlag >= 16384 &&
+                loopSummon[summonPce + 13] === userSummonPceRty
+              ) {
+                addSummonMove(
+                  MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
+                  summonPce
+                );
+              } else if (
+                GameBoard.pieces[sq] === PIECES.EMPTY &&
+                GameBoard.blackArcane[3] & summonFlag
+              ) {
+                addSummonMove(
+                  MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
+                  summonPce
+                );
+              }
             }
           }
         }

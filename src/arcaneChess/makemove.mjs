@@ -37,7 +37,7 @@ import {
 } from './defs';
 import { ARCANEFLAG, PrintBoard, SideText } from './board.mjs';
 import { PrMove, PrintMoveList } from './io';
-import { ARCANE_BIT_VALUES } from './defs.mjs';
+import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
 const royaltyMap = ['Q', 'T', 'M', 'V', 'E'];
 
@@ -312,7 +312,7 @@ export function MakeMove(move) {
     AddPiece(to, pieceEpsilon);
   } else if (move & MFLAGSUMN) {
     if (captured > 0) {
-      GameBoard[`royalty${royaltyMap[captured - 1]}`][to] = 4;
+      GameBoard[`royalty${RtyChar.split('')[captured]}`][to] = 6;
     } else {
       AddPiece(to, pieceEpsilon, true);
     }
@@ -456,14 +456,15 @@ export function TakeMove() {
     HASH_SIDE();
   }
 
-  if (move & MFLAGCNSM) {
+  if (ARCANEFLAG(move) && move & MFLAGCNSM) {
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig.modsCON += 1;
     } else {
       blackArcaneConfig.modsCON += 1;
     }
   }
-  if (move & MFLAGSHFT) {
+  if (ARCANEFLAG(move) && move & MFLAGSHFT) {
+    console.log('shfting???', PrMove(move));
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[
         `shft${PceChar.split('')[GameBoard.pieces[to]].toUpperCase()}`

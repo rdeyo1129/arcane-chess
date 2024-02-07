@@ -228,9 +228,14 @@ export default function arcaneChess(
     getSwapMoves: (swapType) => {
       return validGroundMoves('', swapType);
     },
-    makeUserMove: (orig, dest, pieceEpsilon = PIECES.EMPTY, swapType = '') => {
-      // engineMove;
-      return MakeUserMove(orig, dest, pieceEpsilon, swapType);
+    makeUserMove: (
+      orig,
+      dest,
+      pieceEpsilon = PIECES.EMPTY,
+      swapType = '',
+      royaltyEpsilon = 0
+    ) => {
+      return MakeUserMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
     },
     engineReply: (thinkingTime) => {
       return engineMove(thinkingTime);

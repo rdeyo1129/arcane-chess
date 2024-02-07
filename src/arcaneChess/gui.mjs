@@ -52,13 +52,12 @@ export function validGroundMoves(summon = '', swap = '') {
     }
     moveMap.get(from).push(to);
   }
-  // console.log('moveMap', moveMap);
   return moveMap;
 }
 
 export const validSummonMoves = (piece) => {
   const moveMap = new Map();
-  const validMovesReturn = validMoves('PLAYER');
+  const validMovesReturn = validMoves('PLAYER', '', piece);
 
   // moves
   // click button on UI = setCurrentArcane
@@ -66,6 +65,7 @@ export const validSummonMoves = (piece) => {
   for (let move of validMovesReturn) {
     const from = `${piece.toUpperCase()}@`;
     const to = PrMove(move, 'array')[1];
+
     if (from.includes('R') && from !== 'R@') {
       if (!moveMap.has(from)) {
         moveMap.set(from, []);
@@ -78,14 +78,19 @@ export const validSummonMoves = (piece) => {
       moveMap.get(from).push(to);
     }
   }
+  console.log('need to add summoning to squares with pieces', moveMap);
   return moveMap;
 };
 
-export function validMoves(summon = 'COMP', swap = 'COMP') {
+export function validMoves(
+  summon = 'COMP',
+  swap = 'COMP',
+  userSummonPieceRoyalty = ''
+) {
   const moves = [];
   let moveFound = NOMOVE;
   generatePowers();
-  GenerateMoves(true, false, summon, swap);
+  GenerateMoves(true, false, summon, swap, userSummonPieceRoyalty);
   for (
     let index = GameBoard.moveListStart[GameBoard.ply];
     index < GameBoard.moveListStart[GameBoard.ply + 1];
@@ -119,13 +124,14 @@ export function MakeUserMove(
   orig,
   dest,
   pieceEpsilon = PIECES.EMPTY,
-  swapType = ''
+  swapType = '',
+  royaltyEpsilon = PIECES.EMPTY
 ) {
   console.log(
     'User Move:' + PrSq(prettyToSquare(orig)) + PrSq(prettyToSquare(dest))
   );
 
-  var parsed = ParseMove(orig, dest, pieceEpsilon, swapType);
+  var parsed = ParseMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
   MakeMove(parsed);
 
   PrintBoard();

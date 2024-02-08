@@ -281,11 +281,21 @@ export function ParseMove(
           break;
         }
         continue;
-      } else if (
-        ARCANEFLAG(Move) !== 0 &&
-        (PromPce !== PIECES.EMPTY || CAPTURED(Move) !== PIECES.EMPTY)
-      ) {
-        if (PromPce === pieceEpsilon || CAPTURED(Move) === royaltyEpsilon) {
+      } else if (Move & MFLAGSUMN) {
+        if (PROMOTED(Move) === pieceEpsilon && pieceEpsilon !== PIECES.EMPTY) {
+          found = BOOL.TRUE;
+          break;
+        }
+        if (
+          CAPTURED(Move) === royaltyEpsilon &&
+          royaltyEpsilon !== PIECES.EMPTY
+        ) {
+          found = BOOL.TRUE;
+          break;
+        }
+        continue;
+      } else if (PromPce !== PIECES.EMPTY) {
+        if (PromPce === pieceEpsilon) {
           found = BOOL.TRUE;
           break;
         }

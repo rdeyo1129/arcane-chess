@@ -868,82 +868,116 @@ export function GenerateMoves(
   const whiteLimit = 100 - 10 * (8 - GameBoard.summonRankLimits[0]);
   const blackLimit = 20 + 10 * (8 - GameBoard.summonRankLimits[1]);
 
+  const validateOnlyRoyaltyPlacement = (
+    summonPce,
+    userSummonPceRty,
+    sq = 21
+  ) => {
+    console.log('_______________________');
+    console.log('sumonIndx', summonIndex);
+    console.log('usrSmnPce', ARCANE_BIT_VALUES[userSummonPceRty]);
+    console.log('summonPce', summonPce);
+    console.log('sumonFlag', summonFlag);
+    console.log('squareNum', sq);
+    console.log(
+      'bitFrmIdx',
+      POWERBIT[`sumnR${RtyChar.split('')[summonIndex - 14]}`]
+    );
+    console.log('hasRoylty', GameBoard.whiteArcane[3] & summonFlag);
+
+    if (
+      summonPce === ARCANE_BIT_VALUES[userSummonPceRty] &&
+      summonFlag >= 16384 &&
+      summonFlag === POWERBIT[`sumnR${RtyChar.split('')[summonIndex - 14]}`] &&
+      summonFlag & GameBoard.whiteArcane[3]
+    ) {
+      // debugger; // eslint-disable-line
+    }
+  };
+
   if (generateSummons !== '' && !herrings.length) {
+    const royaltyIndexes = [14, 15, 16, 17, 18, 34, 35, 36, 37, 38];
     while (summonPce !== 0) {
-      if (
-        summonPce === ARCANE_BIT_VALUES[userSummonPceRty] ||
-        summonPce === 0
-      ) {
-        let dontDoAnything = 'werw hi!'; // eslint-disable-line
-      } else {
-        for (let sq = 21; sq <= 98; sq++) {
-          if (SQOFFBOARD(sq) === BOOL.TRUE || herrings.length || capturesOnly) {
+      for (let sq = 21; sq <= 98; sq++) {
+        if (SQOFFBOARD(sq) === BOOL.TRUE || herrings.length || capturesOnly) {
+          continue;
+        }
+        if (summonPce === PIECES.wP && summonFlag < 16384) {
+          if (GameBoard.whiteArcane[4] & 16 && RanksBrd[sq] === RANKS.RANK_7) {
             continue;
           }
-          if (summonPce === PIECES.wP && summonFlag < 16384) {
+          if (RanksBrd[sq] === RANKS.RANK_8) {
+            continue;
+          }
+        }
+        if (summonPce === PIECES.bP && summonFlag < 16384) {
+          if (GameBoard.blackArcane[4] & 16 && RanksBrd[sq] === RANKS.RANK_2) {
+            continue;
+          }
+          if (RanksBrd[sq] === RANKS.RANK_1) {
+            continue;
+          }
+        }
+        if (GameBoard.side === COLOURS.WHITE) {
+          if (sq < whiteLimit) {
             if (
-              GameBoard.whiteArcane[4] & 16 &&
-              RanksBrd[sq] === RANKS.RANK_7
+              summonPce === ARCANE_BIT_VALUES[userSummonPceRty] &&
+              summonFlag >= 16384 &&
+              summonFlag ===
+                POWERBIT[`sumnR${RtyChar.split('')[summonIndex - 14]}`] &&
+              summonFlag & GameBoard.whiteArcane[3]
             ) {
+              addSummonMove(
+                MOVE(null, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
+                summonPce
+              );
+            } else {
               continue;
             }
-            if (RanksBrd[sq] === RANKS.RANK_8) {
-              continue;
-            }
-          }
-          if (summonPce === PIECES.bP && summonFlag < 16384) {
             if (
-              GameBoard.blackArcane[4] & 16 &&
-              RanksBrd[sq] === RANKS.RANK_2
+              summonFlag < 16384 &&
+              !royaltyIndexes.includes(summonIndex) &&
+              GameBoard.pieces[sq] === PIECES.EMPTY &&
+              GameBoard.whiteArcane[3] & summonFlag
             ) {
-              continue;
-            }
-            if (RanksBrd[sq] === RANKS.RANK_1) {
+              addSummonMove(
+                MOVE(null, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
+                summonPce
+              );
+            } else {
               continue;
             }
           }
-          if (GameBoard.side === COLOURS.WHITE) {
-            if (sq < whiteLimit) {
-              if (
-                GameBoard.whiteArcane[3] & summonFlag &&
-                summonFlag >= 16384 &&
-                loopSummon[summonPce + 13] === userSummonPceRty
-              ) {
-                addSummonMove(
-                  MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
-                  summonPce
-                );
-              } else if (
-                GameBoard.pieces[sq] === PIECES.EMPTY &&
-                GameBoard.whiteArcane[3] & summonFlag
-              ) {
-                addSummonMove(
-                  MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
-                  summonPce
-                );
-              }
+        }
+        if (GameBoard.side === COLOURS.BLACK) {
+          if (sq > blackLimit) {
+            if (
+              summonPce === ARCANE_BIT_VALUES[userSummonPceRty] &&
+              summonFlag >= 16384 &&
+              summonFlag ===
+                POWERBIT[`sumnR${RtyChar.split('')[summonIndex - 14]}`] &&
+              summonFlag & GameBoard.blackArcane[3] &&
+              royaltyIndexes.includes(ARCANE_BIT_VALUES[userSummonPceRty] + 14)
+            ) {
+              addSummonMove(
+                MOVE(null, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
+                summonPce
+              );
+            } else {
+              continue;
             }
-          }
-          if (GameBoard.side === COLOURS.BLACK) {
-            if (sq > blackLimit) {
-              if (
-                GameBoard.blackArcane[3] & summonFlag &&
-                summonFlag >= 16384 &&
-                loopSummon[summonPce + 13] === userSummonPceRty
-              ) {
-                addSummonMove(
-                  MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
-                  summonPce
-                );
-              } else if (
-                GameBoard.pieces[sq] === PIECES.EMPTY &&
-                GameBoard.blackArcane[3] & summonFlag
-              ) {
-                addSummonMove(
-                  MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
-                  summonPce
-                );
-              }
+            if (
+              summonFlag < 16384 &&
+              !royaltyIndexes.includes(summonIndex) &&
+              GameBoard.pieces[sq] === PIECES.EMPTY &&
+              GameBoard.blackArcane[3] & summonFlag
+            ) {
+              addSummonMove(
+                MOVE(null, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
+                summonPce
+              );
+            } else {
+              continue;
             }
           }
         }

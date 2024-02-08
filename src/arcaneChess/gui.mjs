@@ -130,7 +130,6 @@ export function MakeUserMove(
   console.log(
     'User Move:' + PrSq(prettyToSquare(orig)) + PrSq(prettyToSquare(dest))
   );
-
   var parsed = ParseMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
   MakeMove(parsed);
 

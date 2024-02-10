@@ -1341,28 +1341,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     placingPiece: 0,
                     placingRoyalty: 0,
                     swapType: '',
-                    royalties: {
-                      royaltyQ: _.mapValues(
-                        prevState.royalties.royaltyQ,
-                        (value) => value - 1
-                      ),
-                      royaltyT: _.mapValues(
-                        prevState.royalties.royaltyT,
-                        (value) => value - 1
-                      ),
-                      royaltyM: _.mapValues(
-                        prevState.royalties.royaltyM,
-                        (value) => value - 1
-                      ),
-                      royaltyV: _.mapValues(
-                        prevState.royalties.royaltyV,
-                        (value) => value - 1
-                      ),
-                      royaltyE: _.mapValues(
-                        prevState.royalties.royaltyE,
-                        (value) => value - 1
-                      ),
-                    },
                   }),
                   () => this.engineGo()
                 );

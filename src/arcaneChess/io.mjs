@@ -128,7 +128,7 @@ export function PrMove(move, returnType) {
   // promotion
   if (pieceEpsilon !== 0 && !(move & MFLAGSUMN) && !(move & MFLAGSWAP)) {
     MvStr =
-      getPceChar(GameBoard.pieces[TOSQ(move)]) +
+      `${GameBoard.side === COLOURS.WHITE ? 'P' : 'p'}` +
       FileChar[ff] +
       RankChar[rf] +
       (CAPTURED(move) & 0 || !(move & MFLAGCNSM)

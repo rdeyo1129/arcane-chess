@@ -448,13 +448,13 @@ export function TakeMove() {
     GameBoard.royaltyE[key] += 1;
   });
 
-  let captured = CAPTURED(move);
-  let pieceEpsilon = PROMOTED(move);
-
   if (GameBoard.dyad === 0) {
     GameBoard.side ^= 1;
     HASH_SIDE();
   }
+
+  let captured = CAPTURED(move);
+  let pieceEpsilon = PROMOTED(move);
 
   if (ARCANEFLAG(move) && move & MFLAGCNSM) {
     if (GameBoard.side === COLOURS.WHITE) {

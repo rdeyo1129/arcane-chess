@@ -16,10 +16,10 @@
         "history": [],
         "panelText": "Lesson content example.\n\nThis is a new line.",
         "royalties": {
-          "royaltyQ": { "a1": 3 },
-          "royaltyM": { "h8": 1, "e6": 2 },
-          "royaltyT": { "h7": 2 },
-          "royaltyV": { "e4": 1 },
+          "royaltyQ": { "a1": 8 },
+          "royaltyM": { "h8": 8, "e6": 8 },
+          "royaltyT": { "h7": 8 },
+          "royaltyV": { "e4": 8 },
           "royaltyE": {}
         },
         "arrowsCircles": [],
@@ -29,8 +29,8 @@
           "sumnB": 1,
           "sumnRT": 1,
           "sumnRV": 1,
-          "sumnRE": 2,
           "sumnN": 1,
+          "sumnRE": 2,
           "sumnR": 1
         },
         "blackArcane": {},

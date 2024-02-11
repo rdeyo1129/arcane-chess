@@ -279,6 +279,7 @@ interface State {
   arcaneHover: string;
   placingPiece: number;
   placingRoyalty: number;
+  royaltyHover: string;
   swapType: string;
   arrowsCircles?: { orig: string; brush: string; dest?: string | undefined }[];
   royalties: {
@@ -378,6 +379,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       arcaneHover: '',
       placingPiece: 0,
       placingRoyalty: 0,
+      royaltyHover: '',
       swapType: '',
       arrowsCircles: [],
       royalties: {
@@ -1292,20 +1294,36 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             events={{
               change: () => {},
               dropNewPiece: (piece: string, key: string) => {
-                console.log(this.state.placingPiece, this.state.placingRoyalty);
-                const parsed = this.arcaneChess().makeUserMove(
-                  null,
-                  key,
-                  this.state.placingPiece,
-                  '',
-                  this.state.placingRoyalty
-                );
+                if (this.state.playing) {
+                  const parsed = this.arcaneChess().makeUserMove(
+                    null,
+                    key,
+                    this.state.placingPiece,
+                    '',
+                    this.state.placingRoyalty
+                  );
+                  if (!PrMove(parsed)) {
+                    console.log('invalid move');
+                  }
+                  this.setState(
+                    (prevState) => ({
+                      history: [...prevState.history, PrMove(parsed)],
+                      fen: outputFenOfCurrentPosition(),
+                      fenHistory: [
+                        ...prevState.fenHistory,
+                        outputFenOfCurrentPosition(),
+                      ],
+                      lastMove: [key, key],
+                      placingPiece: 0,
+                      placingRoyalty: 0,
+                      swapType: '',
+                    }),
+                    () => {
+                      this.engineGo();
+                    }
+                  );
+                }
                 if (this.state.placingRoyalty !== 0) {
-                  // this.arcaneChess().addRoyalty(
-                  //   `royalty${RtyChar.split('')[this.state.placingRoyalty]}`,
-                  //   key,
-                  //   6
-                  // );
                   this.setState((prevState) => ({
                     ...prevState,
                     royalties: {
@@ -1321,29 +1339,11 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         [key]: 6,
                       },
                     },
-                    placingRoyalty: 0,
+                    placingRoyalty: this.state.playing
+                      ? 0
+                      : this.state.placingRoyalty,
                   }));
                 }
-
-                if (!PrMove(parsed)) {
-                  console.log('invalid move');
-                }
-
-                this.setState(
-                  (prevState) => ({
-                    history: [...prevState.history, PrMove(parsed)],
-                    fen: outputFenOfCurrentPosition(),
-                    fenHistory: [
-                      ...prevState.fenHistory,
-                      outputFenOfCurrentPosition(),
-                    ],
-                    lastMove: [key, key],
-                    placingPiece: 0,
-                    placingRoyalty: 0,
-                    swapType: '',
-                  }),
-                  () => this.engineGo()
-                );
               },
               move: (orig: string, dest: string) => {
                 if (this.state.playing) {
@@ -1405,10 +1405,27 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   });
                 }
               },
-              // dropNewPiece: (piece: string, key: string) => {},
               select: (key: string) => {
                 if (this.state.playing) {
-                  return;
+                  console.log(GameBoard);
+                  if (
+                    this.state.placingRoyalty > 0 &&
+                    GameBoard.pieces[prettyToSquare(key)] !== PIECES.EMPTY
+                  ) {
+                    this.setState((prevState) => ({
+                      ...prevState,
+                      royalties: {
+                        ...prevState.royalties,
+                        [`royalty${this.state.placingRoyalty}`]: {
+                          ...prevState.royalties[
+                            `royalty${this.state.placingRoyalty}`
+                          ],
+                          [key]: 8,
+                        },
+                      },
+                    }));
+                    // note quick note make unmovable until summon royalty?????
+                  }
                 } else {
                   if (this.state.placingPiece === 0) return;
                   if (this.state.placingPiece === 333)
@@ -1417,14 +1434,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     this.state.placingPiece === 0 &&
                     this.state.placingRoyalty !== 0
                   ) {
-                    console.log('royalty', this.state.placingRoyalty);
-                    // console.log(
-                    //   GameBoard[`royalty${this.state.placingRoyalty}`]
-                    // );
-
-                    // GameBoard[`royalty${this.state.placingRoyalty}`][
-                    //   prettyToSquare(key)
-                    // ] = 6;
                     this.arcaneChess().addRoyalty(
                       `royalty${this.state.placingRoyalty}`,
                       prettyToSquare(key)
@@ -1437,7 +1446,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                           ...prevState.royalties[
                             `royalty${this.state.placingRoyalty}`
                           ],
-                          [key]: 6,
+                          [key]: 8,
                         },
                       },
                     }));
@@ -1449,7 +1458,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     fenHistory: [outputFenOfCurrentPosition()],
                   });
                 }
-                ('');
               },
             }}
           />
@@ -1688,7 +1696,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   className="piece-pickup-square"
                   key={index}
                   onClick={() => {
-                    this.setState({ placingPiece: pieces[piece] });
+                    this.setState({
+                      placingPiece: pieces[piece],
+                      placingRoyalty: 0,
+                    });
                   }}
                 >
                   <div
@@ -1712,9 +1723,21 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               ))}
             </div>
             <div className="piece-pickup-extra">
-              {_.map(extraPickupArray, (value, key) => (
-                <div key={key} className="piece-pickup-square">
+              {_.map(extraPickupArray, (value, key: string) => (
+                <div
+                  key={key}
+                  className="piece-pickup-square"
+                  onMouseEnter={() => this.setState({ royaltyHover: key })}
+                  onMouseLeave={() => this.setState({ royaltyHover: '' })}
+                  onClick={() => {
+                    this.setState({
+                      placingRoyalty: royalties[`R${key}`],
+                      placingPiece: 0,
+                    });
+                  }}
+                >
                   <div
+                    className="royalty-hover"
                     style={{
                       width: '50px',
                       height: '50px',
@@ -1725,6 +1748,8 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
           ${value} 0%,
           rgba(0, 0, 0, 0) 100%
         )`,
+                      backgroundColor:
+                        this.state.royaltyHover === key ? '#555555' : '#333333',
                     }}
                   ></div>
                 </div>
@@ -1741,7 +1766,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     transform: 'scale(.4)',
                   }}
                   onClick={() => {
-                    this.setState({ placingPiece: pieces.EXILE });
+                    this.setState({
+                      placingPiece: pieces.EXILE,
+                      placingRoyalty: 0,
+                    });
                   }}
                 ></div>
               </div>
@@ -1752,7 +1780,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   className="piece-pickup-square"
                   key={index}
                   onClick={() => {
-                    this.setState({ placingPiece: pieces[piece] });
+                    this.setState({
+                      placingPiece: pieces[piece],
+                      placingRoyalty: 0,
+                    });
                   }}
                 >
                   <div
@@ -1899,6 +1930,8 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       ...prevState,
                       playing: true,
                       placingPiece: 0,
+                      placingRoyalty: 0,
+                      swapType: '',
                       royalties: {
                         royaltyQ: _.fromPairs(
                           _.map(GameBoard.royaltyQ, (v, k) => [PrSq(k), v])

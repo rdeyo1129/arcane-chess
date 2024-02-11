@@ -312,7 +312,7 @@ export function MakeMove(move) {
     AddPiece(to, pieceEpsilon);
   } else if (move & MFLAGSUMN) {
     if (captured > 0) {
-      GameBoard[`royalty${RtyChar.split('')[captured]}`][to] = 6;
+      GameBoard[`royalty${RtyChar.split('')[captured]}`][to] = 8;
     } else {
       AddPiece(to, pieceEpsilon, true);
     }

@@ -901,6 +901,19 @@ export function GenerateMoves(
           if (GameBoard.side === COLOURS.WHITE) {
             if (sq < whiteLimit) {
               if (
+                summonFlag < 16384 &&
+                ((summonPce === PIECES[`w${userSummonPceRty}`] &&
+                  generateSummons === 'PLAYER') ||
+                  generateSummons !== 'PLAYER') &&
+                !royaltyIndexes.includes(summonIndex) &&
+                GameBoard.pieces[sq] === PIECES.EMPTY &&
+                GameBoard.whiteArcane[3] & summonFlag
+              ) {
+                addSummonMove(
+                  MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
+                  summonPce
+                );
+              } else if (
                 ((summonPce === ARCANE_BIT_VALUES[userSummonPceRty] &&
                   generateSummons === 'PLAYER') ||
                   generateSummons !== 'PLAYER') &&
@@ -916,23 +929,23 @@ export function GenerateMoves(
               } else {
                 continue;
               }
+            }
+          } else if (GameBoard.side === COLOURS.BLACK) {
+            if (sq > blackLimit) {
               if (
                 summonFlag < 16384 &&
+                ((summonPce === PIECES[`b${userSummonPceRty}`] &&
+                  generateSummons === 'PLAYER') ||
+                  generateSummons !== 'PLAYER') &&
                 !royaltyIndexes.includes(summonIndex) &&
                 GameBoard.pieces[sq] === PIECES.EMPTY &&
-                GameBoard.whiteArcane[3] & summonFlag
+                GameBoard.blackArcane[3] & summonFlag
               ) {
                 addSummonMove(
                   MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
                   summonPce
                 );
-              } else {
-                continue;
-              }
-            }
-          } else if (GameBoard.side === COLOURS.BLACK) {
-            if (sq > blackLimit) {
-              if (
+              } else if (
                 ((summonPce === ARCANE_BIT_VALUES[userSummonPceRty] &&
                   generateSummons === 'PLAYER') ||
                   generateSummons !== 'PLAYER') &&
@@ -943,19 +956,6 @@ export function GenerateMoves(
               ) {
                 addSummonMove(
                   MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
-                  summonPce
-                );
-              } else {
-                continue;
-              }
-              if (
-                summonFlag < 16384 &&
-                !royaltyIndexes.includes(summonIndex) &&
-                GameBoard.pieces[sq] === PIECES.EMPTY &&
-                GameBoard.blackArcane[3] & summonFlag
-              ) {
-                addSummonMove(
-                  MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
                   summonPce
                 );
               } else {

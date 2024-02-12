@@ -47,6 +47,8 @@ import {
   PceChar,
   RtyChar,
   ARCANE_BIT_VALUES,
+  NOMOVE,
+  COLOURS,
 } from '../../arcaneChess/defs.mjs';
 import {
   outputFenOfCurrentPosition,
@@ -99,43 +101,43 @@ import { blackArcaneConfig } from 'src/arcaneChess/arcaneDefs.mjs';
 // }
 
 export const whitePiecePickupArray = [
-  'wP',
-  'wH',
-  'wS',
   'wW',
-  'wN',
-  'wZ',
-  'wU',
-  'wB',
-  'wR',
+  'wV',
+  'wS',
+  'wM',
   'wQ',
   'wT',
-  'wM',
-  'wV',
+  'wZ',
+  'wN',
+  'wU',
+  'wP',
   'wK',
+  'wH',
+  'wB',
+  'wR',
 ];
 export const blackPiecePickupArray = [
-  'bP',
-  'bH',
-  'bS',
   'bW',
-  'bN',
-  'bZ',
-  'bU',
-  'bB',
-  'bR',
+  'bV',
+  'bS',
+  'bM',
   'bQ',
   'bT',
-  'bM',
-  'bV',
+  'bZ',
+  'bN',
+  'bU',
+  'bP',
   'bK',
+  'bH',
+  'bB',
+  'bR',
 ];
 export const extraPickupArray = {
   Q: 'yellow',
-  T: 'blue',
+  E: 'orange',
   M: 'green',
   V: 'purple',
-  E: 'orange',
+  T: 'blue',
 };
 export const factionColorMap: { [key: string]: string } = {
   R: '#c53939',
@@ -753,6 +755,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                       placingPiece: 0,
                                       placingRoyalty:
                                         royalties[`${key.split('sumn')[1]}`],
+                                      swapType: '',
                                     });
                                   } else {
                                     this.setState({
@@ -1274,7 +1277,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             selectable={{
               enabled: true,
               selected:
-                PceChar.split('')[this.state.placingPiece] !== '.'
+                this.state.placingPiece !== 0
                   ? {
                       role: `${PceChar.split('')[
                         this.state.placingPiece
@@ -1294,7 +1297,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             events={{
               change: () => {},
               dropNewPiece: (piece: string, key: string) => {
-                if (this.state.playing) {
+                if (
+                  this.state.playing &&
+                  GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
+                ) {
                   const parsed = this.arcaneChess().makeUserMove(
                     null,
                     key,
@@ -1406,46 +1412,76 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 }
               },
               select: (key: string) => {
+                const char = RtyChar.split('')[this.state.placingRoyalty];
+                const whiteLimit =
+                  100 - 10 * (8 - GameBoard.summonRankLimits[0]);
+                const blackLimit =
+                  20 + 10 * (8 - GameBoard.summonRankLimits[1]);
                 if (this.state.playing) {
-                  console.log(GameBoard);
-                  if (
-                    this.state.placingRoyalty > 0 &&
-                    GameBoard.pieces[prettyToSquare(key)] !== PIECES.EMPTY
-                  ) {
-                    this.setState((prevState) => ({
-                      ...prevState,
-                      royalties: {
-                        ...prevState.royalties,
-                        [`royalty${this.state.placingRoyalty}`]: {
-                          ...prevState.royalties[
-                            `royalty${this.state.placingRoyalty}`
+                  if (this.state.placingRoyalty > 0) {
+                    if (
+                      ((GameBoard.side === COLOURS.WHITE &&
+                        prettyToSquare(key) < whiteLimit) ||
+                        (GameBoard.side === COLOURS.BLACK &&
+                          prettyToSquare(key) > blackLimit)) &&
+                      GameBoard.pieces[prettyToSquare(key)] !== PIECES.EMPTY
+                    ) {
+                      const parsed = this.arcaneChess().makeUserMove(
+                        null,
+                        key,
+                        this.state.placingPiece,
+                        '',
+                        this.state.placingRoyalty
+                      );
+                      if (!PrMove(parsed)) {
+                        console.log('invalid move');
+                      }
+                      this.setState(
+                        (prevState) => ({
+                          ...prevState,
+                          history: [...prevState.history, PrMove(parsed)],
+                          fen: outputFenOfCurrentPosition(),
+                          fenHistory: [
+                            ...prevState.fenHistory,
+                            outputFenOfCurrentPosition(),
                           ],
-                          [key]: 8,
-                        },
-                      },
-                    }));
-                    // note quick note make unmovable until summon royalty?????
+                          royalties: {
+                            // todo remove old keys
+                            ...prevState.royalties,
+                            [`royalty${char}`]: {
+                              ...prevState.royalties[`royalty${char}`],
+                              [key]: 8,
+                            },
+                          },
+                          lastMove: [key, key],
+                          placingPiece: 0,
+                          placingRoyalty: 0,
+                          swapType: '',
+                        }),
+                        () => this.engineGo()
+                      );
+                    } else {
+                      this.setState({
+                        placingRoyalty: this.state.placingRoyalty,
+                      });
+                    }
                   }
                 } else {
-                  if (this.state.placingPiece === 0) return;
-                  if (this.state.placingPiece === 333)
-                    ClearPiece(prettyToSquare(key));
                   if (
                     this.state.placingPiece === 0 &&
-                    this.state.placingRoyalty !== 0
-                  ) {
-                    this.arcaneChess().addRoyalty(
-                      `royalty${this.state.placingRoyalty}`,
-                      prettyToSquare(key)
-                    );
+                    this.state.placingRoyalty === 0
+                  )
+                    return;
+                  if (this.state.placingPiece === 333)
+                    ClearPiece(prettyToSquare(key));
+                  if (this.state.placingRoyalty !== 0) {
+                    this.arcaneChess().addRoyalty(`royalty${char}`, key, 8);
                     this.setState((prevState) => ({
                       ...prevState,
                       royalties: {
                         ...prevState.royalties,
-                        [`royalty${this.state.placingRoyalty}`]: {
-                          ...prevState.royalties[
-                            `royalty${this.state.placingRoyalty}`
-                          ],
+                        [`royalty${char}`]: {
+                          ...prevState.royalties[`royalty${char}`],
                           [key]: 8,
                         },
                       },
@@ -1459,6 +1495,9 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   });
                 }
               },
+            }}
+            draggable={{
+              enabled: this.state.placingRoyalty === 0 ? true : false,
             }}
           />
         </div>
@@ -1925,35 +1964,30 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     this.engineGo();
                   }
 
-                  this.setState(
-                    (prevState) => ({
-                      ...prevState,
-                      playing: true,
-                      placingPiece: 0,
-                      placingRoyalty: 0,
-                      swapType: '',
-                      royalties: {
-                        royaltyQ: _.fromPairs(
-                          _.map(GameBoard.royaltyQ, (v, k) => [PrSq(k), v])
-                        ),
-                        royaltyT: _.fromPairs(
-                          _.map(GameBoard.royaltyT, (v, k) => [PrSq(k), v])
-                        ),
-                        royaltyM: _.fromPairs(
-                          _.map(GameBoard.royaltyM, (v, k) => [PrSq(k), v])
-                        ),
-                        royaltyV: _.fromPairs(
-                          _.map(GameBoard.royaltyV, (v, k) => [PrSq(k), v])
-                        ),
-                        royaltyE: _.fromPairs(
-                          _.map(GameBoard.royaltyE, (v, k) => [PrSq(k), v])
-                        ),
-                      },
-                    }),
-                    () => {
-                      // console.log(this.state.royalties);
-                    }
-                  );
+                  this.setState((prevState) => ({
+                    ...prevState,
+                    playing: true,
+                    placingPiece: 0,
+                    placingRoyalty: 0,
+                    swapType: '',
+                    royalties: {
+                      royaltyQ: _.fromPairs(
+                        _.map(GameBoard.royaltyQ, (v, k) => [PrSq(k), v])
+                      ),
+                      royaltyT: _.fromPairs(
+                        _.map(GameBoard.royaltyT, (v, k) => [PrSq(k), v])
+                      ),
+                      royaltyM: _.fromPairs(
+                        _.map(GameBoard.royaltyM, (v, k) => [PrSq(k), v])
+                      ),
+                      royaltyV: _.fromPairs(
+                        _.map(GameBoard.royaltyV, (v, k) => [PrSq(k), v])
+                      ),
+                      royaltyE: _.fromPairs(
+                        _.map(GameBoard.royaltyE, (v, k) => [PrSq(k), v])
+                      ),
+                    },
+                  }));
                 }}
                 className="primary"
                 color="B"

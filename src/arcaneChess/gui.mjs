@@ -78,7 +78,6 @@ export const validSummonMoves = (piece) => {
       moveMap.get(from).push(to);
     }
   }
-  console.log('need to add summoning to squares with pieces', moveMap);
   return moveMap;
 };
 
@@ -132,8 +131,6 @@ export function MakeUserMove(
   );
   var parsed = ParseMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
   MakeMove(parsed);
-
-  PrintBoard();
 
   CheckAndSet();
 

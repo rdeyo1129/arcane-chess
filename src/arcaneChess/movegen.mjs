@@ -63,7 +63,7 @@ import {
   RtyChar,
 } from './defs';
 import { MakeMove, TakeMove } from './makemove';
-import { PrMove, PrintMoveList } from './io.mjs';
+import { PrMove, PrintMoveList, PrSq } from './io.mjs';
 import { ARCANEFLAG } from './board.mjs';
 
 const MvvLvaValue = [
@@ -1157,43 +1157,44 @@ export function GenerateMoves(
     // WARNING, this will only work in a vanilla setup, no extra rooks
     if (GameBoard.castlePerm & CASTLEBIT.WKCA && !herrings.length) {
       if (GameBoard.blackArcane[4] & 8) {
-        const getKingPos = _.indexOf(GameBoard.pieces, 6, 22);
-        const getRookPos = _.lastIndexOf(GameBoard.pieces, 4);
-
-        for (let sq = GameBoard.pieces.indexOf(6); sq <= 27; sq++) {
-          const getPiece = _.get(GameBoard.pieces, sq);
-
-          if (sq === 28 && getPiece === PIECES.wK) {
-            AddQuietMove(
-              MOVE(SQUARES.G1, SQUARES.H1, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
-              capturesOnly
-            );
-            break;
-          }
-
-          if (
-            GameBoard.pieces[sq] !== PIECES.EMPTY &&
-            GameBoard.pieces[sq] !== PIECES.wK &&
-            GameBoard.pieces[sq] !== PIECES.wR
-          ) {
-            break;
-          }
-
-          if (
-            SqAttacked(sq, COLOURS.BLACK) &&
-            sq !== 28 &&
-            !(GameBoard.whiteArcane[4] & 4)
-          ) {
-            break;
-          }
-
-          if (sq === 28) {
-            AddQuietMove(
-              MOVE(getKingPos, getRookPos, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
-              capturesOnly
-            );
-          }
-        }
+        // const getKingPos = _.indexOf(GameBoard.pieces, 6, 22);
+        // const getRookPos = _.lastIndexOf(GameBoard.pieces, 4);
+        // for (let sq = GameBoard.pieces.indexOf(6); sq <= 27; sq++) {
+        //   const getPiece = _.get(GameBoard.pieces, sq);
+        //   if (
+        //     sq === 27 &&
+        //     getPiece === PIECES.wK &&
+        //     GameBoard.pieces[26] === PIECES.EMPTY &&
+        //     (!SqAttacked(sq, COLOURS.BLACK) || GameBoard.whiteArcane[4] & 4)
+        //   ) {
+        //     AddQuietMove(
+        //       MOVE(SQUARES.G1, SQUARES.H1, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
+        //       capturesOnly
+        //     );
+        //     break;
+        //   }
+        //   if (
+        //     GameBoard.pieces[sq] !== PIECES.EMPTY &&
+        //     GameBoard.pieces[sq] !== PIECES.wK &&
+        //     GameBoard.pieces[sq] !== PIECES.wR
+        //   ) {
+        //     break;
+        //   }
+        //   if (
+        //     SqAttacked(sq, COLOURS.BLACK) &&
+        //     sq !== 28 &&
+        //     !(GameBoard.whiteArcane[4] & 4)
+        //   ) {
+        //     break;
+        //   }
+        //   console.log(PrSq(sq));
+        //   if (sq === 28) {
+        //     AddQuietMove(
+        //       MOVE(getKingPos, getRookPos, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
+        //       capturesOnly
+        //     );
+        //   }
+        // }
       } else {
         if (
           GameBoard.pieces[SQUARES.F1] === PIECES.EMPTY &&
@@ -1215,75 +1216,70 @@ export function GenerateMoves(
 
     if (GameBoard.castlePerm & CASTLEBIT.WQCA && !herrings.length) {
       if (GameBoard.blackArcane[4] & 8) {
-        const getKingPos = _.indexOf(GameBoard.pieces, 6, 22);
-        const getRookPos = _.indexOf(GameBoard.pieces, 4, 21);
-
-        if (getKingPos === 22) {
-          if (
-            GameBoard.pieces[SQUARES.D1] === PIECES.EMPTY &&
-            GameBoard.pieces[SQUARES.C1] === PIECES.EMPTY
-          ) {
-            if (SqAttacked(SQUARES.B1, COLOURS.BLACK) === BOOL.FALSE) {
-              AddQuietMove(
-                MOVE(
-                  SQUARES.B1,
-                  SQUARES.A1,
-                  PIECES.EMPTY,
-                  PIECES.EMPTY,
-                  MFLAGCA
-                ),
-                capturesOnly
-              );
-            }
-          }
-        } else {
-          for (let sq = GameBoard.pieces.indexOf(6); sq >= 23; sq--) {
-            const getPiece = _.get(GameBoard.pieces, sq);
-
-            if (sq === 23 && getPiece === PIECES.wK) {
-              AddQuietMove(
-                MOVE(
-                  SQUARES.C1,
-                  getRookPos,
-                  PIECES.EMPTY,
-                  PIECES.EMPTY,
-                  MFLAGCA
-                ),
-                capturesOnly
-              );
-              break;
-            }
-
-            if (
-              GameBoard.pieces[sq] !== PIECES.EMPTY &&
-              GameBoard.pieces[sq] !== PIECES.wK &&
-              GameBoard.pieces[sq] !== PIECES.wR
-            ) {
-              break;
-            }
-
-            if (
-              SqAttacked(sq, COLOURS.BLACK) &&
-              sq !== 23 &&
-              !(GameBoard.whiteArcane[4] & 4)
-            ) {
-              break;
-            }
-
-            if (sq === 23) {
-              AddQuietMove(
-                MOVE(
-                  getKingPos,
-                  getRookPos,
-                  PIECES.EMPTY,
-                  PIECES.EMPTY,
-                  MFLAGCA
-                ),
-                capturesOnly
-              );
-            }
-          }
-        }
+        // const getKingPos = _.indexOf(GameBoard.pieces, 6, 22);
+        // const getRookPos = _.indexOf(GameBoard.pieces, 4, 21);
+        // if (getKingPos === 22) {
+        //   if (
+        //     GameBoard.pieces[SQUARES.D1] === PIECES.EMPTY &&
+        //     GameBoard.pieces[SQUARES.C1] === PIECES.EMPTY
+        //   ) {
+        //     if (SqAttacked(SQUARES.B1, COLOURS.BLACK) === BOOL.FALSE) {
+        //       AddQuietMove(
+        //         MOVE(
+        //           SQUARES.B1,
+        //           SQUARES.A1,
+        //           PIECES.EMPTY,
+        //           PIECES.EMPTY,
+        //           MFLAGCA
+        //         ),
+        //         capturesOnly
+        //       );
+        //     }
+        //   }
+        // } else {
+        //   for (let sq = GameBoard.pieces.indexOf(6); sq >= 23; sq--) {
+        //     const getPiece = _.get(GameBoard.pieces, sq);
+        //     if (sq === 23 && getPiece === PIECES.wK) {
+        //       AddQuietMove(
+        //         MOVE(
+        //           SQUARES.C1,
+        //           getRookPos,
+        //           PIECES.EMPTY,
+        //           PIECES.EMPTY,
+        //           MFLAGCA
+        //         ),
+        //         capturesOnly
+        //       );
+        //       break;
+        //     }
+        //     if (
+        //       GameBoard.pieces[sq] !== PIECES.EMPTY &&
+        //       GameBoard.pieces[sq] !== PIECES.wK &&
+        //       GameBoard.pieces[sq] !== PIECES.wR
+        //     ) {
+        //       break;
+        //     }
+        //     if (
+        //       SqAttacked(sq, COLOURS.BLACK) &&
+        //       sq !== 23 &&
+        //       !(GameBoard.whiteArcane[4] & 4)
+        //     ) {
+        //       break;
+        //     }
+        //     if (sq === 23) {
+        //       AddQuietMove(
+        //         MOVE(
+        //           getKingPos,
+        //           getRookPos,
+        //           PIECES.EMPTY,
+        //           PIECES.EMPTY,
+        //           MFLAGCA
+        //         ),
+        //         capturesOnly
+        //       );
+        //     }
+        //   }
+        // }
       } else {
         if (
           GameBoard.pieces[SQUARES.D1] === PIECES.EMPTY &&
@@ -1488,43 +1484,38 @@ export function GenerateMoves(
     // WARNING, this will only work in a vanilla setup, no extra rooks
     if (GameBoard.castlePerm & CASTLEBIT.BKCA && !herrings.length) {
       if (GameBoard.whiteArcane[4] & 8) {
-        const getKingPos = _.indexOf(GameBoard.pieces, 12, 92);
-        const getRookPos = _.lastIndexOf(GameBoard.pieces, 10);
-
-        for (let sq = GameBoard.pieces.indexOf(12); sq <= 97; sq++) {
-          const getPiece = _.get(GameBoard.pieces, sq);
-
-          if (sq === 97 && getPiece === PIECES.bK) {
-            AddQuietMove(
-              MOVE(SQUARES.G8, SQUARES.H8, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
-              capturesOnly
-            );
-            break;
-          }
-
-          if (
-            GameBoard.pieces[sq] !== PIECES.EMPTY &&
-            GameBoard.pieces[sq] !== PIECES.bK &&
-            GameBoard.pieces[sq] !== PIECES.bR
-          ) {
-            break;
-          }
-
-          if (
-            SqAttacked(sq, COLOURS.WHITE) &&
-            sq !== 97 &&
-            !(GameBoard.blackArcane[4] & 4)
-          ) {
-            break;
-          }
-
-          if (sq === 97) {
-            AddQuietMove(
-              MOVE(getKingPos, getRookPos, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
-              capturesOnly
-            );
-          }
-        }
+        // const getKingPos = _.indexOf(GameBoard.pieces, 12, 92);
+        // const getRookPos = _.lastIndexOf(GameBoard.pieces, 10);
+        // for (let sq = GameBoard.pieces.indexOf(12); sq <= 97; sq++) {
+        //   const getPiece = _.get(GameBoard.pieces, sq);
+        //   if (sq === 97 && getPiece === PIECES.bK) {
+        //     AddQuietMove(
+        //       MOVE(SQUARES.G8, SQUARES.H8, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
+        //       capturesOnly
+        //     );
+        //     break;
+        //   }
+        //   if (
+        //     GameBoard.pieces[sq] !== PIECES.EMPTY &&
+        //     GameBoard.pieces[sq] !== PIECES.bK &&
+        //     GameBoard.pieces[sq] !== PIECES.bR
+        //   ) {
+        //     break;
+        //   }
+        //   if (
+        //     SqAttacked(sq, COLOURS.WHITE) &&
+        //     sq !== 97 &&
+        //     !(GameBoard.blackArcane[4] & 4)
+        //   ) {
+        //     break;
+        //   }
+        //   if (sq === 97) {
+        //     AddQuietMove(
+        //       MOVE(getKingPos, getRookPos, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
+        //       capturesOnly
+        //     );
+        //   }
+        // }
       } else {
         if (
           GameBoard.pieces[SQUARES.F8] === PIECES.EMPTY &&
@@ -1546,75 +1537,70 @@ export function GenerateMoves(
 
     if (GameBoard.castlePerm & CASTLEBIT.BQCA && !herrings.length) {
       if (GameBoard.whiteArcane[4] & 8) {
-        const getKingPos = _.indexOf(GameBoard.pieces, 12, 92);
-        const getRookPos = _.indexOf(GameBoard.pieces, 10, 91);
-
-        if (getKingPos === 92) {
-          if (
-            GameBoard.pieces[SQUARES.D8] === PIECES.EMPTY &&
-            GameBoard.pieces[SQUARES.C8] === PIECES.EMPTY
-          ) {
-            if (SqAttacked(SQUARES.B8, COLOURS.WHITE) === BOOL.FALSE) {
-              AddQuietMove(
-                MOVE(
-                  SQUARES.B8,
-                  SQUARES.A8,
-                  PIECES.EMPTY,
-                  PIECES.EMPTY,
-                  MFLAGCA
-                ),
-                capturesOnly
-              );
-            }
-          }
-        } else {
-          for (let sq = GameBoard.pieces.indexOf(12); sq >= 93; sq--) {
-            const getPiece = _.get(GameBoard.pieces, sq);
-
-            if (sq === 93 && getPiece === PIECES.bK) {
-              AddQuietMove(
-                MOVE(
-                  SQUARES.C8,
-                  getRookPos,
-                  PIECES.EMPTY,
-                  PIECES.EMPTY,
-                  MFLAGCA
-                ),
-                capturesOnly
-              );
-              break;
-            }
-
-            if (
-              GameBoard.pieces[sq] !== PIECES.EMPTY &&
-              GameBoard.pieces[sq] !== PIECES.bK &&
-              GameBoard.pieces[sq] !== PIECES.bR
-            ) {
-              break;
-            }
-
-            if (
-              SqAttacked(sq, COLOURS.WHITE) &&
-              sq !== 93 &&
-              !(GameBoard.blackArcane[4] & 4)
-            ) {
-              break;
-            }
-
-            if (sq === 93) {
-              AddQuietMove(
-                MOVE(
-                  getKingPos,
-                  getRookPos,
-                  PIECES.EMPTY,
-                  PIECES.EMPTY,
-                  MFLAGCA
-                ),
-                capturesOnly
-              );
-            }
-          }
-        }
+        // const getKingPos = _.indexOf(GameBoard.pieces, 12, 92);
+        // const getRookPos = _.indexOf(GameBoard.pieces, 10, 91);
+        // if (getKingPos === 92) {
+        //   if (
+        //     GameBoard.pieces[SQUARES.D8] === PIECES.EMPTY &&
+        //     GameBoard.pieces[SQUARES.C8] === PIECES.EMPTY
+        //   ) {
+        //     if (SqAttacked(SQUARES.B8, COLOURS.WHITE) === BOOL.FALSE) {
+        //       AddQuietMove(
+        //         MOVE(
+        //           SQUARES.B8,
+        //           SQUARES.A8,
+        //           PIECES.EMPTY,
+        //           PIECES.EMPTY,
+        //           MFLAGCA
+        //         ),
+        //         capturesOnly
+        //       );
+        //     }
+        //   }
+        // } else {
+        //   for (let sq = GameBoard.pieces.indexOf(12); sq >= 93; sq--) {
+        //     const getPiece = _.get(GameBoard.pieces, sq);
+        //     if (sq === 93 && getPiece === PIECES.bK) {
+        //       AddQuietMove(
+        //         MOVE(
+        //           SQUARES.C8,
+        //           getRookPos,
+        //           PIECES.EMPTY,
+        //           PIECES.EMPTY,
+        //           MFLAGCA
+        //         ),
+        //         capturesOnly
+        //       );
+        //       break;
+        //     }
+        //     if (
+        //       GameBoard.pieces[sq] !== PIECES.EMPTY &&
+        //       GameBoard.pieces[sq] !== PIECES.bK &&
+        //       GameBoard.pieces[sq] !== PIECES.bR
+        //     ) {
+        //       break;
+        //     }
+        //     if (
+        //       SqAttacked(sq, COLOURS.WHITE) &&
+        //       sq !== 93 &&
+        //       !(GameBoard.blackArcane[4] & 4)
+        //     ) {
+        //       break;
+        //     }
+        //     if (sq === 93) {
+        //       AddQuietMove(
+        //         MOVE(
+        //           getKingPos,
+        //           getRookPos,
+        //           PIECES.EMPTY,
+        //           PIECES.EMPTY,
+        //           MFLAGCA
+        //         ),
+        //         capturesOnly
+        //       );
+        //     }
+        //   }
+        // }
       } else {
         if (
           GameBoard.pieces[SQUARES.D8] === PIECES.EMPTY &&

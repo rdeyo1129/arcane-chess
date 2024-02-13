@@ -31,9 +31,12 @@
           "sumnRV": 1,
           "sumnN": 1,
           "sumnRE": 2,
-          "sumnR": 1
+          "sumnR": 1,
+          "modsRAN": "true"
         },
-        "blackArcane": {},
+        "blackArcane": {
+          "modsRAN": "true"
+        },
         "config": {},
         "correctMoves": ["moveA1", "moveA2"]
       },

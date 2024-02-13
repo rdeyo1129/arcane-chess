@@ -163,10 +163,6 @@ export default function arcaneChess(
     setWhiteArcana(whiteConfig);
     setBlackArcana(blackConfig);
 
-    if (varVar === '960') {
-      randomize(whiteConfig, blackConfig);
-    }
-
     _.forEach(royalties, (value, key) => {
       GameBoard[key] = {};
       _.forEach(value, (v, k) => {
@@ -211,6 +207,8 @@ export default function arcaneChess(
     startGame: (fen, whiteConfig, blackConfig, royalties, varVar) =>
       startGame(fen, whiteConfig, blackConfig, royalties, varVar),
     startCreate: (fen) => startCreate(fen),
+    randomize: (whiteConfig, blackConfig) =>
+      randomize(whiteConfig, blackConfig),
     getScoreAndLine: (fen) => {
       return getScoreAndLine(fen);
       // copilot

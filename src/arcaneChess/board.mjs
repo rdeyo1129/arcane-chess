@@ -482,18 +482,7 @@ export function randomize(
     });
   }
 
-  // if (preset) {
-  //   const randomizeA = (QT) => generateRandomRank(QT);
-  //   const blackRank = mirrorRank(randomizeA(BQT)).reverse().join('');
-  //   console.log(
-  //     `################################################## ${blackRank}/pppppppp/8/8/8/8/PPPPPPPP/${randomizeA(
-  //       WQT
-  //     ).join('')} w KQkq - 0 1`
-  //   );
-  //   return `${blackRank}/pppppppp/8/8/8/8/PPPPPPPP/${randomizeA(WQT).join(
-  //     ''
-  //   )} w KQkq - 0 1`;
-  // } else
+  console.log(whiteConfig.modsRAN, whiteConfig.modsRAN === 'true');
   if (whiteConfig.modsRAN === 'true' || blackConfig.modsRAN === 'true') {
     const randomRank = (QT) => generateRandomRank(QT);
     const whiteRank =
@@ -504,6 +493,7 @@ export function randomize(
       whiteConfig.modsRAN === 'true'
         ? mirrorRank(randomRank(BQT)).reverse().join('')
         : `rnb${BQT.toLowerCase()}kbnr`;
+    console.log(whiteRank, blackRank);
     return `${blackRank}/pppppppp/8/8/8/8/PPPPPPPP/${whiteRank} w KQkq - 0 1`;
   } else {
     return `rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1`;

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // import "../styles/front-page.scss";
 
 import './FrontPage.scss';
-import Hero from 'src/components/Hero/Hero';
+import Hero from 'src/components/hero2/Hero';
 
 import Button from '../../components/Button/Button';
 
@@ -72,10 +72,10 @@ class UnwrappedFrontPage extends React.Component {
           </div>
         </div>
         <div className="divider"></div>
-        <div className="row-a">
+        {/* <div className="row-a">
           <img className="image" src="public/assets/jellyfish.jpg" />
-        </div>
-        start with why
+        </div> */}
+        {/* start with why */}
         <div className="row-b">
           <Hero />
         </div>

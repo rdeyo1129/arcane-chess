@@ -1,0 +1,45 @@
+.hero {
+  position: absolute;
+  /* display: block; */
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url("public/assets/istockphoto-916080864-2048x2048.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+.hero-grid {
+  position: absolute;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(36, 60px);
+  grid-template-rows: repeat(50, 60px);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  /* opacity: 0; */
+}
+.hero-square.light {
+  height: 60px;
+  width: 60px;
+  /* background: #b87d48; */
+  background: #588157;
+}
+.hero-square.dark {
+  height: 60px;
+  width: 60px;
+  /* background: #7f4f1a; */
+  background: #3a5a40;
+}
+
+/* $O_LGHT: #b87d48;
+$O_DARK: #7f4f1a; */
+
+/* $B_LGHT: #1c7293;
+$B_DARK: #065a82; */
+
+/* $GS_4: #444444;
+$GS_5: #555555; */

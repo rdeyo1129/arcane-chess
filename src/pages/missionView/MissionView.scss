@@ -9,6 +9,8 @@
   justify-content: center;
   align-items: center;
   background: rgba(34, 34, 34);
+  // radial gradient
+  background: radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
   .opponent-dialogue-arcana {
     display: flex;
     // flex: 80px 1 1;
@@ -16,7 +18,7 @@
     flex-direction: column;
     width: 400px;
     height: 100%;
-    background: #222222;
+    // background: #222222;
     padding: 10px;
     .info-avatar {
       display: flex;
@@ -90,7 +92,7 @@
       align-items: center;
       width: 100%;
       height: 100%;
-      background: #222222;
+      // background: #222222;
     }
     .player-time {
       display: flex;
@@ -98,7 +100,7 @@
       flex-direction: row-reverse;
       width: 100%;
       height: 100%;
-      background: #333333;
+      // background: #333333;
       text-align: right;
     }
   }
@@ -111,7 +113,7 @@
     height: 100%;
     max-height: 574px;
     padding: 10px;
-    background: #333333;
+    // background: #333333;
     overflow: hidden;
     .nav {
       display: flex;

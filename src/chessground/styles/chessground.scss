@@ -7,7 +7,14 @@
 /* poc */
 .module-board .cg-wrap,
 .tactorius-board .cg-wrap {
-  background-image: url('../images/board/tactoriusBoard.svg');
+  background-image: url('src/chessground/images/iron-grip.png'),
+    url('../images/board/tactoriusBoard.svg');
+  // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
+  background-repeat: repeat, no-repeat; /* Example: SVG doesn't repeat, PNG does */
+  background-position:
+    center,
+    left top; /* Adjust positions as needed */
+  // background-size: 100%, cover; /* Adjust sizing as needed */
   /* z-index: 10; */
 }
 .armory-board .cg-wrap {

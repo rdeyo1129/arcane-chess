@@ -27,13 +27,13 @@ class UnwrappedFrontPage extends React.Component {
       <div className="front-page fade">
         <div className="header">
           <div className="inner-header">
-            <img className="logo" src={'/assets/logoblue.png'} alt="" />
+            <img className="logo" src={'/assets/logogold.png'} alt="" />
             <div className="inner-header-a">
               <h1 className="tactorius" style={{ fontWeight: '800' }}>
-                <div className="grey">
+                <div className="tact">
                   <i>TACT</i>
                 </div>
-                <div className="green">
+                <div className="orius">
                   <i>ORIUS</i>
                 </div>
               </h1>
@@ -48,7 +48,7 @@ class UnwrappedFrontPage extends React.Component {
                 text="LOGIN"
                 // onClick={() => this.calculateFen()}
                 className="primary"
-                color="B"
+                color="Y"
                 height={50}
                 width={140}
                 // disabled={this.state.fen === ''}
@@ -61,7 +61,7 @@ class UnwrappedFrontPage extends React.Component {
                 text="REGISTER"
                 // onClick={() => this.calculateFen()}
                 className="secondary"
-                color="B"
+                color="Y"
                 height={50}
                 width={140}
                 // disabled={this.state.fen === ''}
@@ -72,9 +72,10 @@ class UnwrappedFrontPage extends React.Component {
           </div>
         </div>
         <div className="divider"></div>
-        {/* <div className="row-a">
-          <img className="image" src="public/assets/jellyfish.jpg" />
-        </div> */}
+        <div className="row-a">
+          {/* <img className="image" src="public/assets/jellyfish.jpg" /> */}
+          <img className="image" src={'/assets/hero.webp'} alt="" />
+        </div>
         {/* start with why */}
         <div className="row-b">
           <Hero />

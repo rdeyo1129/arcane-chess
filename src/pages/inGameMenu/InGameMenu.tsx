@@ -1958,7 +1958,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     this.state.config.BK.arcana
                   );
                   this.arcaneChess().startGame(
-                    fischer,
+                    this.state.fen,
                     this.state.config.W.arcana,
                     this.state.config.BK.arcana,
                     this.state.royalties,
@@ -1974,8 +1974,8 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     placingPiece: 0,
                     placingRoyalty: 0,
                     swapType: '',
-                    fen: fischer,
-                    fenHistory: [fischer],
+                    fen: this.state.fen,
+                    fenHistory: [this.state.fen],
                     royalties: {
                       royaltyQ: _.fromPairs(
                         _.map(GameBoard.royaltyQ, (v, k) => [PrSq(k), v])

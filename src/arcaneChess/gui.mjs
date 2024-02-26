@@ -88,6 +88,7 @@ export function validMoves(
 ) {
   const moves = [];
   let moveFound = NOMOVE;
+  console.log('p3j4t-q34t', swap);
   generatePowers();
   GenerateMoves(true, false, summon, swap, userSummonPieceRoyalty);
   for (

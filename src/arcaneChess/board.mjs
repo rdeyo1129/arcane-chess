@@ -482,7 +482,6 @@ export function randomize(
     });
   }
 
-  console.log(whiteConfig.modsRAN, whiteConfig.modsRAN === 'true');
   if (whiteConfig.modsRAN === 'true' || blackConfig.modsRAN === 'true') {
     const randomRank = (QT) => generateRandomRank(QT);
     const whiteRank =

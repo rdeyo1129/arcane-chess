@@ -25,15 +25,11 @@
         "arrowsCircles": [],
         "preset": "NORMAL",
         "whiteArcane": {
-          "sumnP": 1,
-          "sumnB": 1,
-          "sumnRT": 1,
-          "sumnRV": 1,
-          "sumnN": 1,
-          "sumnRE": 2,
-          "sumnR": 1
+          "swapADJ": 5
         },
-        "blackArcane": {},
+        "blackArcane": {
+          "swapADJ": 1
+        },
         "config": {},
         "correctMoves": ["moveA1", "moveA2"]
       },

@@ -638,6 +638,9 @@ export function GenerateMoves(
     if (GameBoard.pieces[sq] === PIECES.EMPTY) {
       continue;
     }
+    if (SQOFFBOARD(sq) === BOOL.TRUE) {
+      continue;
+    }
     if (herrings.length) {
       break;
     }
@@ -680,7 +683,6 @@ export function GenerateMoves(
         }
 
         if (
-          SQOFFBOARD(sq) === BOOL.FALSE &&
           SQOFFBOARD(t_sq) === BOOL.FALSE &&
           pce !== PIECES.EMPTY &&
           GameBoard.pieces[sq] !== PIECES.EMPTY &&
@@ -700,7 +702,6 @@ export function GenerateMoves(
           );
         }
         if (
-          SQOFFBOARD(sq) === BOOL.FALSE &&
           SQOFFBOARD(t_sq) === BOOL.FALSE &&
           pce !== PIECES.EMPTY &&
           GameBoard.pieces[sq] !== PIECES.EMPTY &&
@@ -721,22 +722,22 @@ export function GenerateMoves(
         }
       }
     }
-    if (
-      PieceCol[GameBoard.pieces[sq]] === COLOURS.WHITE &&
-      (GameBoard.pieces[sq] === PIECES.wN ||
-        GameBoard.pieces[sq] === PIECES.wB ||
-        GameBoard.pieces[sq] === PIECES.wR)
-    ) {
-      NBRSQS[COLOURS.WHITE].push(sq);
-    }
-    if (
-      PieceCol[GameBoard.pieces[sq]] === COLOURS.BLACK &&
-      (GameBoard.pieces[sq] === PIECES.bN ||
-        GameBoard.pieces[sq] === PIECES.bB ||
-        GameBoard.pieces[sq] === PIECES.bR)
-    ) {
-      NBRSQS[COLOURS.BLACK].push(sq);
-    }
+    // if (
+    //   PieceCol[GameBoard.pieces[sq]] === COLOURS.WHITE &&
+    //   (GameBoard.pieces[sq] === PIECES.wN ||
+    //     GameBoard.pieces[sq] === PIECES.wB ||
+    //     GameBoard.pieces[sq] === PIECES.wR)
+    // ) {
+    //   NBRSQS[COLOURS.WHITE].push(sq);
+    // }
+    // if (
+    //   PieceCol[GameBoard.pieces[sq]] === COLOURS.BLACK &&
+    //   (GameBoard.pieces[sq] === PIECES.bN ||
+    //     GameBoard.pieces[sq] === PIECES.bB ||
+    //     GameBoard.pieces[sq] === PIECES.bR)
+    // ) {
+    //   NBRSQS[COLOURS.BLACK].push(sq);
+    // }
   }
 
   // SWAP ATK 1

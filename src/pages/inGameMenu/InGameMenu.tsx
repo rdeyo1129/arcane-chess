@@ -675,6 +675,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
   render() {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     // const { auth } = this.props;
+    // console.log(GameBoard.pieces);
     return (
       <div className="creator">
         {/* <TactoriusModal
@@ -779,19 +780,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                     this.setState((prevState) => ({
                                       swapType: key.split('swap')[1],
                                     }));
-                                    // generatePowers();
-                                    // GenerateMoves(
-                                    //   true,
-                                    //   false,
-                                    //   false,
-                                    //   key.split('swap')[1]
-                                    // );
                                   } else {
                                     this.setState((prevState) => ({
                                       swapType: '',
                                     }));
-                                    // generatePowers();
-                                    // GenerateMoves();
                                   }
                                 }
                                 if (key.includes('modsSUS')) {

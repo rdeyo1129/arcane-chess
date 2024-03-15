@@ -48,7 +48,7 @@ export default class Hero extends React.Component {
       'u-piece',
       'z-piece',
       'v-piece',
-      // 'x-piece',
+      'x-piece',
     ];
     const faction = ['normal', 'chi', 'mu', 'nu', 'sigma', 'omega', 'lambda'];
 

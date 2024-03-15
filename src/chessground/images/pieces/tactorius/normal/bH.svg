@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
+  <g id="g2838" style="fill:#f9f9f9" transform="matrix(1, 0, 0, 1, -2.842170943040401e-14, 0)">
+    <path id="path3933" d="m 616.13559,1839.7288 h 824.40681 c 29.4204,-293.5857 -84.2852,-764.5569 312.4068,-503.322 C 1694.3938,794.20316 1371.5212,804.00373 1171.5254,1154.1695 1005.6782,858.74792 1017.2281,480.37123 1178.1881,205.20307 687.57992,391.48282 756.1078,942.07958 833.08475,1171.5254 507.57004,845.90154 291.07397,1157.5696 225.62711,1336.4068 c 258.43214,-109.0063 363.13751,80.8877 390.50848,503.322 z" style="fill-opacity: 1; stroke-width: 75; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; stroke: rgb(128, 128, 128); fill: rgb(0, 0, 0);"/>
+    <ellipse id="path3935" style="fill-opacity: 1; stroke-width: 56.0592; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; stroke: rgb(128, 128, 128); fill: rgb(0, 0, 0);" cx="1757.2881" cy="1588.0677" rx="75.733101" ry="62.716156"/>
+    <ellipse transform="rotate(-27.441747)" id="path3935-8" style="fill-opacity: 1; stroke-width: 56.0592; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; stroke: rgb(128, 128, 128); fill: rgb(0, 0, 0);" cx="-440.36691" cy="1401.7439" rx="75.733109" ry="62.716156"/>
+    <ellipse transform="rotate(-84.957196)" id="path3935-2" style="fill-opacity: 1; stroke-width: 56.0592; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; stroke: rgb(128, 128, 128); fill: rgb(0, 0, 0);" cx="-125.19753" cy="1284.9617" rx="75.733101" ry="62.716156"/>
+    <path id="path3968" d="m 1752.9492,1327.7288 37.2536,189.3361" style="fill: rgb(249, 249, 249); stroke-width: 60; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; stroke: rgb(128, 128, 128);"/>
+    <path id="path3970" d="m 180.13166,1447.7314 45.49545,-111.3246" style="fill: rgb(249, 249, 249); stroke-width: 60; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; stroke: rgb(128, 128, 128);"/>
+  </g>
+</svg>

@@ -69,7 +69,7 @@ export default class Hero extends React.Component {
       <div
         className={`
               ${piece} 
-              white
+              ${this.randomizeHelper(false)?.color}
               normal
             `}
         style={{

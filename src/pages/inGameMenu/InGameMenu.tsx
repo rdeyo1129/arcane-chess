@@ -1666,7 +1666,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 value={this.state.title}
                 onChange={(value) => this.setState({ title: value })}
               />
-              <Input
+              {/* <Input
                 // id="test"
                 className="input title"
                 color="B"
@@ -1675,7 +1675,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 placeholder="OPPONENT"
                 value={this.state.opponent}
                 onChange={(value) => this.setFen(value)}
-              />
+              /> */}
               {/* <input
                 className="input description"
                 color="B"

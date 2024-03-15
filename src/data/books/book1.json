@@ -14,88 +14,20 @@
           "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "Lesson content example.\n\nThis is a new line.",
-        "royalties": {
-          "royaltyQ": { "a1": 8 },
-          "royaltyM": { "h8": 8, "e6": 8 },
-          "royaltyT": { "h7": 8 },
-          "royaltyV": { "e4": 8 },
-          "royaltyE": {}
-        },
-        "arrowsCircles": [],
-        "preset": "NORMAL",
-        "whiteArcane": {
-          "swapADJ": 5
-        },
-        "blackArcane": {
-          "swapADJ": 1
-        },
-        "config": {},
-        "correctMoves": ["moveA1", "moveA2"]
-      },
-      "panel-2": {
-        "fen": "rrrrrrrr/pppppppp/8/XTMH4/8/8/PPPPPPPP/RRRRRRRR w KQkq - 0 1",
-        "fenHistory": [
-          "rrrrrrrr/pppppppp/8/XTMH4/8/8/PPPPPPPP/RRRRRRRR w KQkq - 0 1"
-        ],
-        "panelText": "panel text 2",
-        "history": [],
+        "panelText": "Chess, as well as other disciplines you will find in life, is a deep study. You will face unknowns, and you will not always be prepared to handle them. Do you have to courage to move forward knowing this? (show complicated positions here, maybe kasparov vs fischer? kasparavo vs deep blue?)",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
           "royaltyT": {},
-          "royaltyV": { "e4": 1 },
-          "royaltyE": {}
-        },
-        "arrowsCircles": [
-          { "orig": "d7", "dest": "c6", "brush": "yellow" },
-          { "orig": "f4", "brush": "yellow" }
-        ],
-        "preset": "HORDE",
-        "whiteArcane": {
-          "dyadA": 1,
-          "modsPHA": 2
-        },
-        "blackArcane": {
-          "sumnN": 3,
-          "modsINH": 4
-        },
-        "config": {},
-        "correctMoves": ["moveA1", "moveA2"]
-      }
-    }
-  },
-  "temple-1": {
-    "id": "temple-1",
-    "title": "Example TitleAAAA",
-    "time": [100, 100],
-    "nodeText": "Node description",
-    "reward": [500, "a", "b", "c"],
-    "prereq": "",
-    "opponent": "Sidian",
-    "panels": {
-      "panel-1": {
-        "fen": "r5k1/pp1b2pp/4p1p1/2p5/2PqNQ2/3P4/PP4PP/5R1K b - - 4 20",
-        "fenHistory": [
-          "r5k1/pp1b2pp/4p1p1/2p5/2PqNQ2/3P4/PP4PP/5R1K b - - 4 20"
-        ],
-        "history": ["e2e4", "e7e5"],
-        "panelText": "Lesson content example.\n\nThis is a new line.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyM": {
-            "e4": 1
-          },
-          "royaltyT": {},
           "royaltyV": {},
           "royaltyE": {}
         },
-        "config": {},
-        "preset": "CLEAR",
+        "arrowsCircles": [],
+        "preset": "NORMAL",
         "whiteArcane": {},
         "blackArcane": {},
-        "correctMoves": ["d7c6", "f4f7", "g8h8", "f7f8", "a8f8", "f1f8"]
+        "config": {},
+        "correctMoves": []
       }
     }
   }

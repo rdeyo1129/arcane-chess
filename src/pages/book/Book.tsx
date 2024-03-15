@@ -443,7 +443,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                 disabled={false}
               />
             </Link>
-            <Button
+            {/* <Button
               text="ARMORY"
               className="secondary"
               color="B"
@@ -453,7 +453,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               onClick={() => {
                 this.setState({ armoryOpen: true });
               }}
-            />
+            /> */}
             <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
               <Button
                 text="START"

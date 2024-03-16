@@ -30,5 +30,26 @@
         "correctMoves": []
       }
     }
+  },
+  "lesson-2": {
+    "id": "lesson-2"
+  },
+  "lesson-3": {
+    "id": "lesson-3"
+  },
+  "lesson-4": {
+    "id": "lesson-4"
+  },
+  "temple-1": {
+    "id": "temple-1"
+  },
+  "temple-2": {
+    "id": "temple-2"
+  },
+  "mission-1": {
+    "id": "mission-1"
+  },
+  "mission-2": {
+    "id": "mission-2"
   }
 }

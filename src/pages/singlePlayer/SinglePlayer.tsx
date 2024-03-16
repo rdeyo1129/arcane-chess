@@ -70,6 +70,7 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
           value={this.state.fen}
           // setText={this.setFen}
           onChange={(value) => this.setFen(value)}
+          password={false}
         />
         <Button
           text="SET FEN"

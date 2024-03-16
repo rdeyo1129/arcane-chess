@@ -948,6 +948,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       this.setState({ newNodeName: value });
                     }}
                     placeholder="mission-x"
+                    password={false}
                   />
                   <Button
                     text="+"
@@ -1071,6 +1072,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   });
                 }}
                 placeholder="rating and keyword"
+                password={false}
               />
               <Button
                 text="<"
@@ -1192,6 +1194,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 });
               }}
               placeholder="correct moves"
+              password={false}
             />
           </div>
         </div>
@@ -1588,6 +1591,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 onChange={(value) => {
                   this.setState({ newBoardName: value });
                 }}
+                password={false}
               />
               <Button
                 text="+"
@@ -1665,6 +1669,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 placeholder="TITLE"
                 value={this.state.title}
                 onChange={(value) => this.setState({ title: value })}
+                password={false}
               />
               {/* <Input
                 // id="test"
@@ -1893,6 +1898,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               onChange={(value) => {
                 this.setFen(value);
               }}
+              password={false}
               // textArg={this.state.fenHistory[this.state.fenHistory.length - 1]}
               // setTextArg={() => this.setFen}
             />
@@ -2034,6 +2040,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               onChange={(value) => {
                 this.setState({ thinkingTime: Number(value) });
               }}
+              password={false}
             ></Input>
             <div className="material">
               <div className="white-material">

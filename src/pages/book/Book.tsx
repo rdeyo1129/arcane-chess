@@ -285,8 +285,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   </div>
                 );
               })} */}
-            </div>
-            <div className="swatches">
               {allNodes
                 .filter((node) => {
                   const currLS = getLocalStorage(this.props.auth.user.id);
@@ -296,15 +294,15 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     return false;
                   }
                   // Check for prerequisites
-                  if (node.prereq && !currLS.nodeScores[node.prereq]) {
-                    return false;
-                  }
+                  // if (node.prereq && !currLS.nodeScores[node.prereq]) {
+                  //   return false;
+                  // }
                   return true;
                 })
                 .map((node, i) => {
                   return (
                     <Button
-                      text={`NEXT ${node.id.split('-')[0].toLocaleUpperCase()}`}
+                      text={node.id}
                       color="B"
                       width={160}
                       height={60}
@@ -332,6 +330,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   );
                 })}
             </div>
+            <div className="swatches"></div>
           </div>
 
           {/* <div className="board-view"> */}

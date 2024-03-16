@@ -57,6 +57,7 @@ const UnwrappedRegister = () => {
           placeholder={'Username'}
           value={username} // Changed to use the value prop
           onChange={(value) => onChange('username', value)}
+          password={false}
         />
         <Input
           // className="primary"
@@ -66,6 +67,7 @@ const UnwrappedRegister = () => {
           placeholder={'Email'}
           value={email} // Changed to use the value prop
           onChange={(value) => onChange('email', value)}
+          password={false}
         />
         <Input
           // className="primary"
@@ -75,6 +77,7 @@ const UnwrappedRegister = () => {
           placeholder={'Password'}
           value={password} // Changed to use the value prop
           onChange={(value) => onChange('password', value)}
+          password={true}
         />
         <Input
           // className="primary"
@@ -84,6 +87,7 @@ const UnwrappedRegister = () => {
           placeholder={'Confirm Password'}
           value={password2} // Changed to use the value prop
           onChange={(value) => onChange('password2', value)}
+          password={true}
         />
         <Button
           className="primary"

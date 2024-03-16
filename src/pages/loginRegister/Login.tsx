@@ -27,7 +27,6 @@ interface AuthState {
 interface UserData {
   username: string;
   password: string;
-  guest: boolean;
 }
 
 interface RootState {
@@ -75,44 +74,30 @@ const UnwrappedLogin: React.FC = () => {
 
   const onChange = (name: string, value: string) => {
     if (name === 'username') setUsername(value);
+    // if (name === 'password') setPassword(value);
   };
 
   const handlePasswordChange = (value: string) => {
     setPassword(value);
-    setMaskedPassword('●'.repeat(value.length));
   };
 
   const onSubmitLogin = (
     e: React.MouseEvent<HTMLButtonElement>,
-    guest: boolean,
-    testName?: string
+    guest: boolean
   ) => {
     e.preventDefault();
 
     const userData: UserData = {
-      username: guest
-        ? `guest_user_${Math.random().toString(36).substring(2)}`
-        : username,
-      password: '123456',
-      guest,
+      username,
+      password,
     };
 
     const testUser: UserData = {
-      username: testName ?? '',
+      username: `guest_user_${Math.random().toString(36).substring(2)}`,
       password: '123456',
-      guest,
     };
 
-    dispatch(
-      loginUser(
-        guest
-          ? userData
-          : username !== '' && password !== ''
-          ? userData
-          : testUser,
-        navigate
-      )
-    );
+    dispatch(loginUser(guest ? testUser : userData, navigate));
   };
 
   return (
@@ -132,15 +117,17 @@ const UnwrappedLogin: React.FC = () => {
                 value={username}
                 onChange={(value) => onChange('username', value)}
                 styles={{ margin: '2px' }}
+                password={false}
               />
               <Input
                 color={'B'}
                 width={200}
                 height={40}
                 placeholder={'Password'}
-                value={maskedPassword}
-                onChange={handlePasswordChange}
+                value={password}
+                onChange={(value) => handlePasswordChange(value)}
                 styles={{ margin: '2px' }}
+                password={true}
               />
             </div>
             <Button
@@ -176,7 +163,7 @@ const UnwrappedLogin: React.FC = () => {
               height={30}
               fontSize={12}
               backgroundColorOverride="#333333"
-              onClick={(e) => onSubmitLogin(e, true, 'test_user')}
+              onClick={(e) => onSubmitLogin(e, true)}
             />
             <Link to={'/'}>
               <Button

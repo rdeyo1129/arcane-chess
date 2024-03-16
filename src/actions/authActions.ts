@@ -44,7 +44,7 @@ export const registerUser =
 
 // Login - get user token
 export const loginUser =
-  (userData: { guest: boolean }, navigate: any) => (dispatch: AppDispatch) => {
+  (userData: any, navigate: any) => (dispatch: AppDispatch) => {
     axios
       .post('/api/users/login', userData)
       .then((res) => {

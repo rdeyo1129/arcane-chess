@@ -11,6 +11,7 @@ interface InputProps {
   value: string; // Made this non-optional to ensure a value is always provided
   onChange: (value: string) => void; // Simplified the type
   styles?: React.CSSProperties;
+  password: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -23,12 +24,13 @@ const Input: React.FC<InputProps> = ({
   value,
   onChange,
   styles,
+  password,
 }: InputProps) => {
   return (
     <input
       id={id}
       className={`${className} input`} // Concatenated className prop with 'input'
-      type="text"
+      type={password ? 'password' : 'text'}
       style={{
         ...styles,
         height: `${height}px`,

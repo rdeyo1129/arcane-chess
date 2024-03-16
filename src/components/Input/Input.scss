@@ -17,3 +17,14 @@
   transition: border 0.2s ease-in-out;
   font-family: 'Exo', exo;
 }
+input[type='password'] {
+  -webkit-text-security: circle;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #444 inset;
+}

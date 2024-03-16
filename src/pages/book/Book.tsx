@@ -20,6 +20,18 @@ import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 /*
   // // DYNAMIC IMPORTS \\ \\ THIS RUNS INTO AN ISSUE, JUST IMPORT THEM ALL
 */
+import book1 from 'src/data/books/book1.json';
+import book2 from 'src/data/books/book2.json';
+import book3 from 'src/data/books/book3.json';
+import book4 from 'src/data/books/book4.json';
+import book5 from 'src/data/books/book5.json';
+import book6 from 'src/data/books/book6.json';
+import book7 from 'src/data/books/book7.json';
+import book8 from 'src/data/books/book8.json';
+import book9 from 'src/data/books/book9.json';
+import book10 from 'src/data/books/book10.json';
+import book11 from 'src/data/books/book11.json';
+import book12 from 'src/data/books/book12.json';
 
 // import instead, use ex here
 const jsonChpater1 = { a: 1 };
@@ -40,6 +52,47 @@ interface nodeJsonI {
     id: string;
     prereq: string;
     boss?: boolean;
+  };
+}
+
+interface Node {
+  id: string; // 'lesson-1';
+  title: string;
+  time: number[]; // seconds
+  nodeText: string;
+  reward: (number | string)[];
+  prereq: string;
+  opponent: string;
+  panels: {
+    [key: string]: {
+      fen: string;
+      fenHistory: string[];
+      history: string[];
+      panelText: string;
+      arrowsCircles?: {
+        orig: string;
+        brush: string;
+        dest?: string | undefined;
+      }[];
+      // todo initRoyalties in arcaneChess return object
+      royalties: {
+        [key: string]: { [key: string]: number };
+      };
+      preset: string;
+      whiteArcane?: { [key: string]: number };
+      blackArcane?: { [key: string]: number };
+      // orientation: string;
+      config: {
+        [key: string]: boolean | string | number;
+      };
+      correctMoves: string[];
+      // dialogue: [
+      //   // [ 'narrator', 'message']
+      //   // [ 'medavas', 'message']
+      //   // no text from creator, just put in a blank message that doesn't add anything to the ui
+      //   [string | null, string | null],
+      // ];
+    };
   };
 }
 
@@ -175,6 +228,20 @@ interface missionNode {
 }
 
 export class UnwrappedBook extends React.Component<BookProps, BookState> {
+  booksMap: { [key: string]: { [key: string]: Node } } = {
+    book1,
+    book2,
+    book3,
+    book4,
+    book5,
+    book6,
+    book7,
+    book8,
+    book9,
+    book10,
+    book11,
+    book12,
+  };
   constructor(props: BookProps) {
     super(props);
     this.state = {
@@ -190,6 +257,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       ],
       chapter: [
         `jsonChapter${getLocalStorage(this.props.auth.user.id)?.chapter}`,
+      ],
+      book: this.booksMap[
+        `book${getLocalStorage(this.props.auth.user.id)?.chapter}`
       ],
       selectedSwatch: '',
       config: getLocalStorage(this.props.auth.user.id)?.config,
@@ -248,10 +318,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
 
   render() {
     const { auth } = this.props;
-    const allNodes = _.flatMap(
-      { lessonJson, templeJson, missionJson },
-      (value, key) => _.map(value, (node, id) => ({ ...node, id, type: key }))
-    );
+    const allNodes = { ...lessonJson, ...templeJson, ...missionJson };
     // Convert number to string with comma formatting
     const formattedNumber = Math.round(
       this.state.animatedValue
@@ -266,73 +333,77 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
     return (
       <div className="book">
         <div className="top">
-          <div className="inbox">
-            <div className="messages">
-              {/* {this.state.dialogueEx.map((message: string[], i: number) => {
+          <div className="nodes">
+            {this.state.selectedSwatch !== '' ? (
+              <div className="node">
+                <Button
+                  className="tertiary"
+                  text="BACK"
+                  color="B"
+                  width={160}
+                  height={60}
+                  disabled={false}
+                  onClick={() => {
+                    this.setState({ selectedSwatch: '' });
+                  }}
+                />
+                <div className="node-title">
+                  {this.state.book[this.state.selectedSwatch].title}
+                </div>
+                <div className="node-description">
+                  {this.state.book[this.state.selectedSwatch].nodeText
+                    .split('\n\n')
+                    .map((p: string, i: number) => (
+                      <p className="description-paragraph" key={i}>
+                        {p}
+                      </p>
+                    ))}
+                </div>
+              </div>
+            ) : (
+              _.filter(this.state.book, (node) => {
+                const currLS = getLocalStorage(this.props.auth.user.id);
+
+                // Exclude nodes that are already in nodeScores
+                if (currLS.nodeScores && currLS.nodeScores[node.id]) {
+                  return false;
+                }
+                // Check for prerequisites
+                // if (node.prereq && !currLS.nodeScores[node.prereq]) {
+                //   return false;
+                // }
+                return true;
+              }).map((node, i) => {
                 return (
-                  <div
+                  <Button
+                    text={node.title}
+                    color="B"
+                    width={'100%'}
+                    height={60}
+                    disabled={false}
                     key={i}
-                    className={`message${
-                      message[0] === 'narrator'
-                        ? '-narrator'
-                        : message[0] === 'hero'
-                        ? '-hero'
-                        : ''
-                    }`}
-                  >
-                    <div className="name">{message[0]}</div>
-                    <div className="text">{message[1]}</div>
-                  </div>
+                    className={`select-node tertiary`}
+                    backgroundColorOverride="#444444"
+                    onClick={() => {
+                      const currLS = getLocalStorage(this.props.auth.user.id);
+                      this.setState({
+                        selectedSwatch: node.id,
+                      });
+                      setLocalStorage({
+                        auth: this.props.auth,
+                        chapter: currLS.chapter,
+                        config: currLS.config,
+                        nodeScores: currLS.nodeScores,
+                        inventory: currLS.inventory,
+                        nodeId: node.id,
+                        chapterEnd: currLS.chapterEnd,
+                      });
+                    }}
+                  />
                 );
-              })} */}
-              {allNodes
-                .filter((node) => {
-                  const currLS = getLocalStorage(this.props.auth.user.id);
-
-                  // Exclude nodes that are already in nodeScores
-                  if (currLS.nodeScores && currLS.nodeScores[node.id]) {
-                    return false;
-                  }
-                  // Check for prerequisites
-                  // if (node.prereq && !currLS.nodeScores[node.prereq]) {
-                  //   return false;
-                  // }
-                  return true;
-                })
-                .map((node, i) => {
-                  return (
-                    <Button
-                      text={node.id}
-                      color="B"
-                      width={160}
-                      height={60}
-                      disabled={false}
-                      key={i}
-                      className={`swatch${
-                        this.state.selectedSwatch === node.id ? '-selected' : ''
-                      } tertiary`}
-                      onClick={() => {
-                        const currLS = getLocalStorage(this.props.auth.user.id);
-                        this.setState({
-                          selectedSwatch: node.id,
-                        });
-                        setLocalStorage({
-                          auth: this.props.auth,
-                          chapter: currLS.chapter,
-                          config: currLS.config,
-                          nodeScores: currLS.nodeScores,
-                          inventory: currLS.inventory,
-                          nodeId: node.id,
-                          chapterEnd: currLS.chapterEnd,
-                        });
-                      }}
-                    />
-                  );
-                })}
-            </div>
-            <div className="swatches"></div>
+              })
+            )}
           </div>
-
           {/* <div className="board-view"> */}
           <div className="cg-wrap tactorius-board">
             <Chessground

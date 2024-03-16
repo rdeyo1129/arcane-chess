@@ -3,8 +3,8 @@ import React from 'react';
 interface ButtonProps {
   className: string;
   color: string;
-  height?: number;
-  width?: number;
+  height?: number | string;
+  width?: number | string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   text: string;
   disabled?: boolean;
@@ -31,8 +31,8 @@ const Button: React.FC<ButtonProps> = ({
       className={`button ${className}-${color}${disabled ? '-disabled' : ''}`}
       style={{
         ...props.styles,
-        height: `${height}px`,
-        width: `${width}px`,
+        height: `${height}${typeof height === 'string' ? '' : 'px'}`,
+        width: `${width}${typeof width === 'string' ? '' : 'px'}`,
         fontSize: `${props.fontSize}px`,
         background: `${
           backgroundColorOverride === '' ? '' : backgroundColorOverride

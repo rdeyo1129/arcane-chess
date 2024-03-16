@@ -1,9 +1,9 @@
 {
   "lesson-1": {
     "id": "lesson-1",
-    "title": "Example TitleAAAA",
+    "title": "Into the Unknown",
     "time": [100, 100],
-    "nodeText": "Node description",
+    "nodeText": "Node description is here to set an example.\n\nthis is a new paragraph.",
     "reward": [500, "a", "b", "c"],
     "prereq": "",
     "opponent": "Sidian",
@@ -32,24 +32,39 @@
     }
   },
   "lesson-2": {
-    "id": "lesson-2"
+    "id": "lesson-2",
+    "title": "Example TitleAAAA"
   },
   "lesson-3": {
-    "id": "lesson-3"
+    "id": "lesson-3",
+    "title": "Example TitleAAAA"
   },
   "lesson-4": {
-    "id": "lesson-4"
+    "id": "lesson-4",
+    "title": "Example TitleAAAA"
   },
   "temple-1": {
-    "id": "temple-1"
+    "id": "temple-1",
+    "title": "Example TitleAAAA"
   },
   "temple-2": {
-    "id": "temple-2"
+    "id": "temple-2",
+    "title": "Example TitleAAAA"
   },
   "mission-1": {
-    "id": "mission-1"
+    "id": "mission-1",
+    "title": "Example TitleAAAA"
   },
   "mission-2": {
-    "id": "mission-2"
+    "id": "mission-2",
+    "title": "Example TitleAAAA"
+  },
+  "mission-3": {
+    "id": "mission-3",
+    "title": "Example TitleAAAA"
+  },
+  "mission-4": {
+    "id": "mission-4",
+    "title": "Example TitleAAAA"
   }
 }

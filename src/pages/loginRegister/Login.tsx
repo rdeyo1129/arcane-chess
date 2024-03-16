@@ -40,6 +40,7 @@ const UnwrappedLogin: React.FC = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [maskedPassword, setMaskedPassword] = useState('');
   // const auth = useSelector((state: RootState) => state.auth);
   const loginRegisterErrors = useSelector(
     (state: any) => state.loginRegisterErrors
@@ -74,7 +75,11 @@ const UnwrappedLogin: React.FC = () => {
 
   const onChange = (name: string, value: string) => {
     if (name === 'username') setUsername(value);
-    if (name === 'password') setPassword(value);
+  };
+
+  const handlePasswordChange = (value: string) => {
+    setPassword(value);
+    setMaskedPassword('●'.repeat(value.length));
   };
 
   const onSubmitLogin = (
@@ -133,8 +138,8 @@ const UnwrappedLogin: React.FC = () => {
                 width={200}
                 height={40}
                 placeholder={'Password'}
-                value={password}
-                onChange={(value) => onChange('password', value)}
+                value={maskedPassword}
+                onChange={handlePasswordChange}
                 styles={{ margin: '2px' }}
               />
             </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import _, { get } from 'lodash';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import 'src/chessground/styles/normal.scss';
 
 // import 'src/pages/inGameMenu/InGameMenu.scss';
 
-import { Chessground } from 'src/chessground/chessgroundMod';
+import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
@@ -33,9 +33,24 @@ import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
 
+import arcanaJson from 'src/data/arcana.json';
+
+const arcana: ArcanaMap = arcanaJson as ArcanaMap;
+
 // import instead, use ex here
 const jsonChpater1 = { a: 1 };
 const jsonChapter2 = { a: 2, inbox: ['test', 'test2'] };
+
+interface ArcanaMap {
+  [key: string]: ArcanaDetail;
+}
+
+interface ArcanaDetail {
+  name: string;
+  description: string;
+  type: string;
+  imagePath: string;
+}
 
 interface BookProps {
   auth: { user: { id: string } };
@@ -228,6 +243,7 @@ interface missionNode {
 }
 
 export class UnwrappedBook extends React.Component<BookProps, BookState> {
+  chessgroundRef = createRef<IChessgroundApi>();
   booksMap: { [key: string]: { [key: string]: Node } } = {
     book1,
     book2,
@@ -410,8 +426,12 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
               // check={this.tactorius.inCheck().isAttacked}
               // viewOnly={this.isCheckmate()}
-              fen="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-              coordinates={false}
+              forwardedRef={this.chessgroundRef}
+              fen={
+                this.state.book[this.state.selectedSwatch]?.panels['panel-1']
+                  .fen || '8/8/8/8/8/8/8/8 w KQkq - 0 1'
+              }
+              coordinates={true}
               // notation={true}
               // onChange={(move) => {
               //   console.log('hello', move);
@@ -444,12 +464,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               // turnColor={GameBoard.side === 0 ? 'white' : 'black'}
               // movable={{
               //   free: false,
-              //   // todo swap out placeholder for comment
-              //   // color: "both",
-              //   color: GameBoard.side === 0 ? 'white' : 'black',
-              //   // todo show summon destinations
-              //   dests: this.arcaneChess().getGroundMoves(),
               // }}
+              viewOnly={true}
+              free={false}
               events={{
                 change: () => {
                   // if (this.state.)
@@ -490,8 +507,46 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
           </div>
           {/* </div> */}
           <div className="arcane-time">
-            <div className="white-arcana"></div>
-            <div className="black-arcana"></div>
+            <div className="white-arcana">
+              {_.map(
+                this.state.book[this.state.selectedSwatch]?.panels['panel-1']
+                  .whiteArcane || {},
+                (value: number, key: string) => {
+                  return (
+                    <img
+                      key={key}
+                      className="arcane"
+                      src={`${arcana[key].imagePath}${
+                        this.state.arcaneHover === key ? '-hover' : ''
+                      }.svg`}
+                      // onMouseEnter={() => this.toggleHover(key)}
+                      // onMouseLeave={() => this.toggleHover('')}
+                    />
+                  );
+                }
+              )}
+            </div>
+            <div className="white-time">10:00</div>
+            <div className="black-time">10:00</div>
+            <div className="black-arcana">
+              {_.map(
+                this.state.book[this.state.selectedSwatch]?.panels['panel-1']
+                  .blackArcane || {},
+                (value: number, key: string) => {
+                  return (
+                    <img
+                      key={key}
+                      className="arcane"
+                      src={`${arcana[key].imagePath}${
+                        this.state.arcaneHover === key ? '-hover' : ''
+                      }.svg`}
+                      // onMouseEnter={() => this.toggleHover(key)}
+                      // onMouseLeave={() => this.toggleHover('')}
+                    />
+                  );
+                }
+              )}
+            </div>
           </div>
         </div>
         <div className="bottom">
@@ -509,7 +564,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                 className="secondary"
                 color="B"
                 width={160}
-                height={60}
+                height={50}
                 disabled={false}
               />
             </Link>
@@ -530,7 +585,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                 className="primary"
                 color="B"
                 width={160}
-                height={60}
+                height={50}
                 // todo until clickthrough messages are done, keep button disabled
                 disabled={this.state.selectedSwatch === ''}
               />

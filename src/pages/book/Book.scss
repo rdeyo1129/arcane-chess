@@ -49,14 +49,19 @@
       // width: 100%;
       // height: 100%;
       background: #333333;
+      .arcane {
+        height: 60px;
+        width: 60px;
+      }
     }
   }
   .bottom {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100%;
+    padding: 0 20px 0 20px;
     background: #222222;
     .left {
       z-index: 30; // patch to display this div over chessground custom svg area
@@ -93,7 +98,7 @@
     .right {
       z-index: 30; // patch to display this div over chessground custom svg area
       display: flex;
-      gap: 20px;
+      gap: 10px;
     }
   }
 }

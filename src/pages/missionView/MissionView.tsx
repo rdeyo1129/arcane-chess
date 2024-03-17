@@ -14,11 +14,11 @@ import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
-import arcanaJson from 'src/data/arcana.json';
-
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import TactoriusModal from 'src/components/Modal/Modal';
+
+import arcanaJson from 'src/data/arcana.json';
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 

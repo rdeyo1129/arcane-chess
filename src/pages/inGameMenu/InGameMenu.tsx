@@ -175,6 +175,7 @@ interface Node {
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
+  theme: string;
   opponent: string;
   panels: {
     [key: string]: {
@@ -291,6 +292,7 @@ interface State {
   reward: (number | string)[];
   prereq: string;
   opponent: string;
+  theme: string;
   puzzleEpsilon: string;
   puzzleNum: number;
   puzzleResponse: any[];
@@ -393,6 +395,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       panelText: this.booksMap['book1']['lesson-1'].panels['panel-1'].panelText,
       time: this.booksMap['book1']['lesson-1'].time,
       opponent: this.booksMap['book1']['lesson-1'].opponent,
+      theme: this.booksMap['book1']['lesson-1'].theme,
       // rating: 1500,
       // keyword: '',
       puzzleEpsilon: '1500 mate',
@@ -871,6 +874,23 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 <div>
                   <Select
                     options={[
+                      'red',
+                      'orange',
+                      'yellow',
+                      'green',
+                      'blue',
+                      'purple',
+                      'grey',
+                      'black',
+                    ]}
+                    onChange={(val) => {
+                      this.setState({
+                        theme: val,
+                      });
+                    }}
+                  />
+                  <Select
+                    options={[
                       'book1',
                       'book2',
                       'book3',
@@ -921,6 +941,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                             reward: nodeA.reward,
                             prereq: '', // split node name and decrement
                             opponent: nodeA.opponent,
+                            theme: nodeA.theme,
                           });
                         }}
                       >
@@ -971,6 +992,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                             reward: [500, 'a', 'b', 'c'],
                             prereq: 'Some prerequisite',
                             opponent: 'Opponent Name',
+                            theme: 'red',
                             panels: {},
                           },
                         },
@@ -1200,6 +1222,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         </div>
         <div className="board-view tactorius-board">
           <Chessground
+            // theme={this.state.theme}
             forwardedRef={this.chessgroundRef}
             // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
             // check={this.tactorius.inCheck().isAttacked}
@@ -1671,7 +1694,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 onChange={(value) => this.setState({ title: value })}
                 password={false}
               />
-              {/* <Input
+              <Input
                 // id="test"
                 className="input title"
                 color="B"
@@ -1679,8 +1702,9 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 width={280}
                 placeholder="OPPONENT"
                 value={this.state.opponent}
-                onChange={(value) => this.setFen(value)}
-              /> */}
+                onChange={(value) => this.setState({ opponent: value })}
+                password={false}
+              />
               {/* <input
                 className="input description"
                 color="B"
@@ -2004,19 +2028,27 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             )}
           </div>
           <div className="time-input">
-            {/* // todo white time */}
             <Select
               type="number"
               width={180}
               options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
-              onChange={(value) => {}}
+              onChange={(value) => {
+                this.setState((prevState) => ({
+                  ...prevState,
+                  time: [Number(value), prevState.time[1]],
+                }));
+              }}
             />
-            {/* // todo black time */}
             <Select
               type="number"
               width={180}
               options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
-              onChange={(value) => {}}
+              onChange={(value) => {
+                this.setState((prevState) => ({
+                  ...prevState,
+                  time: [prevState.time[0], Number(value)],
+                }));
+              }}
             />
           </div>
           <Button
@@ -2216,6 +2248,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   console.log({
                     [this.state.currNode]: {
                       ...this.state.bookObject[this.state.currNode],
+                      description: this.state.nodeText,
+                      opponent: this.state.opponent,
+                      theme: this.state.theme,
+                      time: this.state.time,
                       missionType: 'NORMAL / VARIANT / UYA',
                     },
                   });

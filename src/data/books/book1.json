@@ -9,10 +9,12 @@
     "opponent": "Sidian",
     "panels": {
       "panel-1": {
-        "fen": "8/8/2unzk2/8/8/2KZNU/8/8 w - - 0 1",
-        "fenHistory": ["8/8/2unzk2/8/8/2KZNU/8/8 w - - 0 1"],
+        "fen": "b2r3r/k4p1p/p2q1np1/NppP4/3p1Q2/P4PPB/1PP4P/1K1RR3 w - - 1 24",
+        "fenHistory": [
+          "b2r3r/k4p1p/p2q1np1/NppP4/3p1Q2/P4PPB/1PP4P/1K1RR3 w - - 1 24"
+        ],
         "history": [],
-        "panelText": "Chess, as well as other disciplines you will find in life, is a deep study. You will face unknowns, and you will not always be prepared to handle them. Do you have to courage to move forward knowing this? (show complicated positions here, maybe kasparov vs fischer? kasparavo vs deep blue?)",
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns, and you will not always be prepared to handle them. Do you have to courage to move forward knowing this? (show complicated positions here, maybe kasparov vs fischer? kasparavo vs deep blue?)",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -32,8 +34,37 @@
         },
         "config": {},
         "correctMoves": []
+      },
+      "panel-2": {
+        "fen": "b2r3r/k4p1p/p2q1np1/NppP4/3R1Q2/P4PPB/1PP4P/1K2R3 b - - 0 24",
+        "fenHistory": [
+          "b2r3r/k4p1p/p2q1np1/NppP4/3R1Q2/P4PPB/1PP4P/1K2R3 b - - 0 24"
+        ],
+        "history": [],
+        "panelText": "This is not only a game, you will learn about who you are along the way. Don’t get lost in the tangling branches of variations to find that one tactic. See the full picture. Take in what philosophies are offered and pack them in your bag. The game is an entertaining side effect.",
+        "arrowsCircles": [
+          {
+            "orig": "d1",
+            "dest": "d4",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
       }
-    }
+    },
+    "description": "Take the first step of your learning journey into the dark, winding forest of Chess.",
+    "missionType": "NORMAL / VARIANT / UYA"
   },
   "lesson-2": {
     "id": "lesson-2",
@@ -55,32 +86,35 @@
   },
   "temple-1": {
     "id": "temple-1",
-    "title": "Example TitleAAAA",
+    "title": "temple 1",
+    "time": [100, 100],
+    "nodeText": "Node description",
+    "reward": [500, "a", "b", "c"],
+    "prereq": "",
+    "opponent": "Sidian",
     "panels": {
       "panel-1": {
-        "fen": "8/8/2unzk2/8/8/2KZNU/8/8 w - - 0 1",
-        "fenHistory": ["8/8/2unzk2/8/8/2KZNU/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Chess, as well as other disciplines you will find in life, is a deep study. You will face unknowns, and you will not always be prepared to handle them. Do you have to courage to move forward knowing this? (show complicated positions here, maybe kasparov vs fischer? kasparavo vs deep blue?)",
+        "fen": "r5k1/pp1b2pp/4p1p1/2p5/2PqNQ2/3P4/PP4PP/5R1K b - - 4 20",
+        "fenHistory": [
+          "r5k1/pp1b2pp/4p1p1/2p5/2PqNQ2/3P4/PP4PP/5R1K b - - 4 20"
+        ],
+        "history": ["e2e4", "e7e5"],
+        "panelText": "Lesson content example.\n\nThis is a new line.",
+        "arrowsCircles": [],
         "royalties": {
           "royaltyQ": {},
-          "royaltyM": {},
+          "royaltyM": {
+            "e4": 1
+          },
           "royaltyT": {},
           "royaltyV": {},
           "royaltyE": {}
         },
-        "arrowsCircles": [],
-        "preset": "NORMAL",
-        "whiteArcane": {
-          "modsINH": "true",
-          "modsFUG": "true"
-        },
-        "blackArcane": {
-          "modsINH": "true",
-          "modsFUG": "true"
-        },
         "config": {},
-        "correctMoves": []
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d7c6", "f4f7", "g8h8", "f7f8", "a8f8", "f1f8"]
       }
     }
   },

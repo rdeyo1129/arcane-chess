@@ -55,7 +55,34 @@
   },
   "temple-1": {
     "id": "temple-1",
-    "title": "Example TitleAAAA"
+    "title": "Example TitleAAAA",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/2unzk2/8/8/2KZNU/8/8 w - - 0 1",
+        "fenHistory": ["8/8/2unzk2/8/8/2KZNU/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines you will find in life, is a deep study. You will face unknowns, and you will not always be prepared to handle them. Do you have to courage to move forward knowing this? (show complicated positions here, maybe kasparov vs fischer? kasparavo vs deep blue?)",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "NORMAL",
+        "whiteArcane": {
+          "modsINH": "true",
+          "modsFUG": "true"
+        },
+        "blackArcane": {
+          "modsINH": "true",
+          "modsFUG": "true"
+        },
+        "config": {},
+        "correctMoves": []
+      }
+    }
   },
   "temple-2": {
     "id": "temple-2",

@@ -8,14 +8,15 @@
   color: white;
   border-radius: 5px;
   font-family: 'Exo', exo;
-  border: #555555 2px solid;
+  // border: #555555 2px solid;
   transition: border 0.2s ease-in-out;
   cursor: text;
 }
 .input:focus {
-  border: #3f48cc 2px solid;
+  // border: #3f48cc 2px solid;
   transition: border 0.2s ease-in-out;
-  font-family: 'Exo', exo;
+  // font-family: 'Exo', exo;
+  background: #444444;
 }
 input[type='password'] {
   -webkit-text-security: circle;

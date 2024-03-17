@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 
 import { useNavigate } from 'react-router-dom';
 
-import 'src/pages/loginRegister/Login.scss';
+import 'src/pages/loginRegister/LoginRegister.scss';
 
 import Button from 'src/components/Button/Button';
 import Input from 'src/components/Input/Input';
-import Hero from 'src/components/Hero/Hero';
+import Hero from 'src/components/hero2/Hero';
 
 // import Hero from '../components/Hero';
 
@@ -42,7 +42,7 @@ const UnwrappedLogin: React.FC = () => {
   const [maskedPassword, setMaskedPassword] = useState('');
   // const auth = useSelector((state: RootState) => state.auth);
   const loginRegisterErrors = useSelector(
-    (state: any) => state.loginRegisterErrors
+    (state: any) => state.loginRegisterErrors || {}
   );
   const auth = useSelector((state: any) => state.auth);
 
@@ -93,7 +93,8 @@ const UnwrappedLogin: React.FC = () => {
     };
 
     const testUser: UserData = {
-      username: `guest_user_${Math.random().toString(36).substring(2)}`,
+      username: 'test_user',
+      // username: `guest_user_${Math.random().toString(36).substring(2)}`,
       password: '123456',
     };
 
@@ -102,16 +103,17 @@ const UnwrappedLogin: React.FC = () => {
 
   return (
     <div className="login-page">
+      <Hero />
       <form className="view" noValidate>
-        <img className="logo" src={'/assets/logoblue.png'} alt="" />
+        <img className="logo" src={'/assets/logogold.png'} alt="" />
         <div></div>
         <div></div>
         <div className="inputs">
           <div className="input-top">
             <div className="text-inputs">
               <Input
-                color={'B'}
-                width={200}
+                color={'Y'}
+                width={220}
                 height={40}
                 placeholder={'Username'}
                 value={username}
@@ -120,8 +122,8 @@ const UnwrappedLogin: React.FC = () => {
                 password={false}
               />
               <Input
-                color={'B'}
-                width={200}
+                color={'Y'}
+                width={220}
                 height={40}
                 placeholder={'Password'}
                 value={password}
@@ -130,55 +132,71 @@ const UnwrappedLogin: React.FC = () => {
                 password={true}
               />
             </div>
-            <Button
-              className="primary"
-              text={'LOGIN'}
-              color={'B'}
-              width={160}
-              height={84}
-              onClick={(e) => {
-                return onSubmitLogin(e, false);
-              }}
-              disabled={false}
-              styles={{ margin: '2px' }}
-            />
+            <div className="top-buttons">
+              <div style={{ height: '44px' }}></div>
+              {/* <Button
+                className="secondary"
+                text={'GUEST'}
+                color={'Y'}
+                width={140}
+                onClick={(e) => onSubmitLogin(e, true)}
+                styles={{ margin: '2px' }}
+              /> */}
+              <Button
+                className="primary"
+                text={'LOGIN'}
+                color={'Y'}
+                width={140}
+                onClick={(e) => {
+                  return onSubmitLogin(e, false);
+                }}
+                disabled={false}
+                styles={{ margin: '2px' }}
+              />
+            </div>
           </div>
           <div className="buttons">
             <Link to={'/register'}>
               <Button
                 className="tertiary"
                 text={'REGISTER'}
-                color={'B'}
+                color={'Y'}
                 width={80}
                 height={30}
                 fontSize={12}
-                backgroundColorOverride="#333333"
+                backgroundColorOverride="#111111"
               />
             </Link>
-            <Button
-              className="tertiary"
-              text={'GUEST'}
-              color={'B'}
-              width={80}
-              height={30}
-              fontSize={12}
-              backgroundColorOverride="#333333"
-              onClick={(e) => onSubmitLogin(e, true)}
-            />
             <Link to={'/'}>
               <Button
                 className="tertiary"
                 text={'FORGOT'}
-                color={'B'}
+                color={'Y'}
                 width={80}
                 height={30}
                 fontSize={12}
-                backgroundColorOverride="#333333"
-                // onClick={(e) => onSubmitLogin(e, true, 'test_user')}
+                backgroundColorOverride="#111111"
               />
             </Link>
+            <Link to={'/'}>
+              <Button
+                className="tertiary"
+                text={'HOME'}
+                color={'Y'}
+                width={80}
+                height={30}
+                fontSize={12}
+                backgroundColorOverride="#111111"
+              />
+            </Link>
+          </div>
+          <div className="login-errors">
             {_.map(loginRegisterErrors, (value, i) => {
-              return <span key={i}>{value}</span>;
+              return (
+                <span className="login-error" key={i}>
+                  {value}
+                </span>
+              );
             })}
           </div>
         </div>

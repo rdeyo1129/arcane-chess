@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .login-page,
 .register-page {
   width: 100vw;
@@ -5,13 +7,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  .hero {
+    width: 100vw;
+    height: 100vh;
+    .hero-curtain {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+  }
   .view {
     height: 340px;
-    background-color: #333333;
+    background-color: #111111;
     display: grid;
     grid-template-columns: 100px 468px;
     grid-template-rows: 100px 240px;
-    border: 4px solid #3f48cc;
+    border: 4px solid $Y_MENU;
     border-radius: 10px;
     .logo {
       height: 80px;
@@ -24,12 +36,18 @@
       .input-top {
         display: flex;
         .text-inputs {
-          width: 204px;
+          width: 224px;
         }
       }
       .buttons {
         display: flex;
         margin: 2px;
+      }
+      .login-errors {
+        display: flex;
+        flex-direction: column;
+        color: red;
+        font-size: 12px;
       }
     }
   }
@@ -105,28 +123,52 @@
   width: 200px;
 }
 
-.login-button button {
-  background: #48c93c;
-  height: 40px;
-  width: 100px;
-  border-radius: 5px;
-  color: white;
-}
-.login-button button:hover {
-  border: 0;
-  background: #48c93c;
-  border-color: #48c93c;
-}
+// .login-button button {
+//   background: #48c93c;
+//   height: 40px;
+//   width: 100px;
+//   border-radius: 5px;
+//   color: white;
+// }
+// .login-button button:hover {
+//   border: 0;
+//   background: #48c93c;
+//   border-color: #48c93c;
+// }
 
-.register-button button {
-  background: #3645ce;
-  height: 40px;
-  width: 100px;
-  border-radius: 5px;
-  color: white;
+// .register-button button {
+//   background: #3645ce;
+//   height: 40px;
+//   width: 100px;
+//   border-radius: 5px;
+//   color: white;
+// }
+// .register-button button:hover {
+//   border: 0;
+//   background: #3645ce;
+//   border-color: #3645ce;
+// }
+
+.reg-buttons {
+  display: flex;
+  justify-content: space-between;
+  .mini-reg-buttons {
+    display: flex;
+    // flex-direction: column;
+    // align-items: center;
+  }
 }
-.register-button button:hover {
-  border: 0;
-  background: #3645ce;
-  border-color: #3645ce;
+.reg-input-top {
+  .reg-inputs {
+    width: 368px;
+  }
+  .reg-buttons {
+    width: 368px;
+  }
+  .reg-errors {
+    display: flex;
+    flex-direction: column;
+    color: red;
+    font-size: 12px;
+  }
 }

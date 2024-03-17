@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Button from 'src/components/Button/Button';
 import Input from 'src/components/Input/Input';
+import Hero from 'src/components/hero2/Hero';
 
 import { registerUser } from '../../actions/authActions';
 
@@ -46,82 +47,109 @@ const UnwrappedRegister = () => {
   };
 
   return (
-    <>
-      <h2>Register</h2>
-      <form noValidate onSubmit={onSubmitReg}>
-        <Input
-          // className="primary"
-          color={'G'}
-          width={120}
-          height={40}
-          placeholder={'Username'}
-          value={username} // Changed to use the value prop
-          onChange={(value) => onChange('username', value)}
-          password={false}
-        />
-        <Input
-          // className="primary"
-          color={'G'}
-          width={120}
-          height={40}
-          placeholder={'Email'}
-          value={email} // Changed to use the value prop
-          onChange={(value) => onChange('email', value)}
-          password={false}
-        />
-        <Input
-          // className="primary"
-          color={'G'}
-          width={120}
-          height={40}
-          placeholder={'Password'}
-          value={password} // Changed to use the value prop
-          onChange={(value) => onChange('password', value)}
-          password={true}
-        />
-        <Input
-          // className="primary"
-          color={'G'}
-          width={120}
-          height={40}
-          placeholder={'Confirm Password'}
-          value={password2} // Changed to use the value prop
-          onChange={(value) => onChange('password2', value)}
-          password={true}
-        />
-        <Button
-          className="primary"
-          text={'REGISTER'}
-          color={'G'}
-          width={120}
-          height={60}
-          // onClick={() => {}}
-          disabled={false}
-          submit={true}
-        />
-        <Link to={'/login'}>
-          <Button
-            className="secondary"
-            text={'TO LOGIN'}
-            color={'G'}
-            width={120}
-            height={60}
-          />
-        </Link>
-        <Link to={'/'}>
-          <Button
-            className="secondary"
-            text={'TO HOME'}
-            color={'G'}
-            width={120}
-            height={60}
-          />
-        </Link>
-        {_.map(loginRegisterErrors, (value, i) => {
-          return <span key={i}>{value}</span>;
-        })}
+    <div className="register-page">
+      <Hero />
+      <form noValidate onSubmit={onSubmitReg} className="view">
+        <img className="logo" src={'/assets/logogold.png'} alt="" />
+        <div></div>
+        <div></div>
+        <div className="reg-input-top">
+          <div className="reg-inputs">
+            <Input
+              className="primary"
+              color={'Y'}
+              width={180}
+              height={40}
+              placeholder={'Username'}
+              value={username} // Changed to use the value prop
+              onChange={(value) => onChange('username', value)}
+              password={false}
+              styles={{ margin: '2px' }}
+            />
+            <Input
+              className="primary"
+              color={'Y'}
+              width={180}
+              height={40}
+              placeholder={'Email'}
+              value={email} // Changed to use the value prop
+              onChange={(value) => onChange('email', value)}
+              password={false}
+              styles={{ margin: '2px' }}
+            />
+            <Input
+              className="primary"
+              color={'Y'}
+              width={180}
+              height={40}
+              placeholder={'Password'}
+              value={password} // Changed to use the value prop
+              onChange={(value) => onChange('password', value)}
+              password={true}
+              styles={{ margin: '2px' }}
+            />
+            <Input
+              className="primary"
+              color={'Y'}
+              width={180}
+              height={40}
+              placeholder={'Confirm Password'}
+              value={password2} // Changed to use the value prop
+              onChange={(value) => onChange('password2', value)}
+              password={true}
+              styles={{ margin: '2px' }}
+            />
+          </div>
+          <div className="reg-buttons">
+            <div className="mini-reg-buttons">
+              <Link to={'/login'}>
+                <Button
+                  className="tertiary"
+                  text={'LOGIN'}
+                  color={'Y'}
+                  width={80}
+                  height={30}
+                  fontSize={12}
+                  styles={{ margin: '2px' }}
+                  backgroundColorOverride="#111111"
+                />
+              </Link>
+              <Link to={'/'}>
+                <Button
+                  className="tertiary"
+                  text={'HOME'}
+                  color={'Y'}
+                  width={80}
+                  height={30}
+                  fontSize={12}
+                  styles={{ margin: '2px' }}
+                  backgroundColorOverride="#111111"
+                />
+              </Link>
+            </div>
+            <Button
+              className="primary"
+              text={'REGISTER'}
+              color={'Y'}
+              width={140}
+              // onClick={() => {}}
+              disabled={false}
+              submit={true}
+              styles={{ margin: '2px' }}
+            />
+          </div>
+          <div className="reg-errors">
+            {_.map(loginRegisterErrors, (value, i) => {
+              return (
+                <span className="reg-error" key={i}>
+                  {value}
+                </span>
+              );
+            })}
+          </div>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 

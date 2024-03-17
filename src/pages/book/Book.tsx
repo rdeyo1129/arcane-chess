@@ -507,6 +507,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
           </div>
           {/* </div> */}
           <div className="arcane-time">
+            {/* todo column reverse inline style for when playing as black? */}
             <div className="white-arcana">
               {_.map(
                 this.state.book[this.state.selectedSwatch]?.panels['panel-1']

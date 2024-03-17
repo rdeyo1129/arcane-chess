@@ -7,7 +7,6 @@
 }
 .inner-header {
   display: flex;
-  // height: 72px;
   padding: 10px 0 0 10px;
   .logo {
     height: 72px;
@@ -15,14 +14,9 @@
     margin: 10px;
   }
   .inner-header-a {
-    // padding: 0 0 0 10px;
     height: 72px;
-    // margin: 5px;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
-
-    // align-items: center;
   }
 }
 .header-buttons {

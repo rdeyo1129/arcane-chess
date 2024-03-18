@@ -7,6 +7,7 @@
     "reward": [500, "a", "b", "c"],
     "prereq": "",
     "opponent": "Sidian",
+    "boss": false,
     "panels": {
       "panel-1": {
         "fen": "b2r3r/k4p1p/p2q1np1/NppP4/3p1Q2/P4PPB/1PP4P/1K1RR3 w - - 1 24",
@@ -14,7 +15,7 @@
           "b2r3r/k4p1p/p2q1np1/NppP4/3p1Q2/P4PPB/1PP4P/1K1RR3 w - - 1 24"
         ],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns, and you will not always be prepared to handle them. Do you have to courage to move forward knowing this? (show complicated positions here, maybe kasparov vs fischer? kasparavo vs deep blue?)",
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -25,12 +26,10 @@
         "arrowsCircles": [],
         "preset": "NORMAL",
         "whiteArcane": {
-          "modsINH": "true",
           "modsFUG": "true"
         },
         "blackArcane": {
-          "modsINH": "true",
-          "modsFUG": "true"
+          "modsINH": "true"
         },
         "config": {},
         "correctMoves": []

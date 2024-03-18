@@ -22,9 +22,12 @@ interface ModalProps {
   type: string;
   imgPath?: string;
   toggleModal: () => void;
+  handleClose: () => void;
   navigate: (path: string) => void;
   auth: any;
   chapterNumber?: number;
+  lessonBackButton?: boolean;
+  disableSecondary?: boolean;
 }
 interface ModalState {
   config: { [key: string]: any };
@@ -322,15 +325,19 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <div className="pog"></div>
                 <div className="buttons">
                   <Button
-                    text="ANALYZE"
+                    text={this.props.lessonBackButton ? 'BACK' : 'ANALYZE'}
                     className="secondary"
                     color="B"
                     width={160}
                     height={90}
-                    disabled
-                    // onClick={() => {
-                    //   this.props.navigate('/book');
-                    // }}
+                    disabled={this.props.disableSecondary}
+                    onClick={() => {
+                      if (this.props.lessonBackButton) {
+                        this.props.handleClose();
+                      } else {
+                        this.props.navigate('/book');
+                      }
+                    }}
                   />
                   <Button
                     text="CONTINUE"

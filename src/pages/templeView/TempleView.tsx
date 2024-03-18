@@ -768,6 +768,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                   dests: this.arcaneChess().getGroundMoves(),
                 }}
                 lastMove={this.state.lastMove}
+                viewOnly={false}
                 events={{
                   change: () => {
                     // if (this.state.)

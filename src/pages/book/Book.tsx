@@ -466,7 +466,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               //   free: false,
               // }}
               viewOnly={true}
-              free={false}
               events={{
                 change: () => {
                   // if (this.state.)

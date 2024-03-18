@@ -102,9 +102,12 @@ $hover_colors: (
     cursor: pointer;
   }
   .tertiary-#{$color}-disabled {
-    color: #aaaaaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555555;
     background: #333333;
-    // border: #222222 1px solid;
+    border: none;
   }
   .tertiary-#{$color}-disabled:hover {
     cursor: auto;

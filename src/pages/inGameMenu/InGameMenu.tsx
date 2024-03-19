@@ -17,10 +17,6 @@ import 'src/chessground/styles/lambda.scss';
 import arcanaJson from 'src/data/arcana.json';
 const arcana = arcanaJson as ArcanaMap;
 
-// import Hero from "../components/Hero";
-
-// import arcaneChess from "./././validation-engine/arcaneChess";
-
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 import { PerftTest } from '../../arcaneChess/perft.mjs';
 
@@ -415,48 +411,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     // this.puzzleWorker.onmessage = this.handleWorkerMessage.bind(this);
   }
 
-  // userflow
-  // select level (book)
-  // select node (chapter)
-  // select board (only need multiple for lessons and temples, not missions)
-  // edit a board to your desire
-  // play test the board
-  // save the board (save board button)
-  // // this saves the board and adds to the fen history
-  // then, when using the arrows, it will go through the fen history of
-
-  // description is for each panel
-  // each panel has text, you might not be able to dress it up the way you want, this is where the writing needs to be concise and clear and gets the point across
-
-  // handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   this.setState({ [event.target.name]: event.target.value });
-  // };
-
-  // handleProcessCSV = () => {
-  //   const rating = Number(this.state.puzzleEpsilon.split(' ')[0]);
-  //   const keyword = this.state.puzzleEpsilon.split(' ').slice(1).join(' ');
-  //   this.puzzleWorker.postMessage({ action: 'processCSV', rating, keyword });
-  // };
-
-  // handleWorkerMessage = (e: MessageEvent) => {
-  //   console.log('Processed data:', e.data);
-  // };
-
-  // initializeArcaneChessAndTest = (fen: string) => {
-  //   // const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-  //   // const start = '6pk/3K2p1/6p1/6p1/8/8/8/7P w - - 0 1';
-  //   // const start = '8/8/8/4X3/8/8/8/8 w - - 0 1';
-  //   // koh
-  //   // const start = 'k7/8/8/8/8/8/8/7K w - - 0 1';
-  //   // royalty mate
-  //   // const start = '6Xk/8/8/8/8/8/R7/K7 w - - 0 1';
-  //   // promote to unicorn
-  //   // const start = '4pk2/4ppp1/6XP/8/8/8/8/7K w - - 0 1';
-  //   // const start = '5pk1/5XX1/6XP/6X1/8/8/8/7K w - - 0 1';
-  //   // rnbqk2r/p1pp1ppp/1p2pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR w KQkq - 0 1
-  //   this.arcaneChess().startCreate(fen);
-  // };
-
   perftTest = (fen: string) => {
     PrintPieceLists();
     PrintBoard();
@@ -531,9 +485,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     // });
   };
 
-  // promise or web worker here?
-  // start variation button call here
-  // pair with a resest button
   calculateFen = () => {
     // this.setState({ fen });
     // todo to animate, set classnames, timeouts, clock conditionals,promise?
@@ -681,24 +632,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     // console.log(GameBoard.pieces);
     return (
       <div className="creator">
-        {/* <TactoriusModal
-            isOpen={this.state.isOpen}
-            handleClose={() => this.handleModalClose()}
-            modalType={this.state.endScenario}
-            message="test1" // interpolate
-          /> */}
-        {/* <div className="game-info">
-            <div className="panel-left-container">
-              <div className="panel-left">this is a paragraph about chess.</div>
-            </div>
-          </div> */}
-        {/* 
-            panel types lesson temple mission create... any others? puzzles (leage vs temples)
-            must be true to page architecture
-
-          */}
-        {/* <div className="panel"></div> */}
-
         <div className="top-left">
           <div className="arcane-history">
             <div className="arcane-input">
@@ -1224,30 +1157,17 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
           <Chessground
             // theme={this.state.theme}
             forwardedRef={this.chessgroundRef}
-            // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
-            // check={this.tactorius.inCheck().isAttacked}
             // viewOnly={this.isCheckmate()}
             fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
-            // coordinates={true}
-            // notation={true}
-            // onChange={(move) => {
-            //   console.log('hello', move);
-            // }}
             resizable={true}
             wFaction={this.state.whiteFaction}
             bFaction={this.state.blackFaction}
             royalties={this.state.royalties}
             // wVisible={this.state.wVisCount === 0}
             // bVisible={this.state.bVisCount === 0}
-            // width={520}
-            // height={520}
             width={480}
             height={480}
             check={InCheck() ? true : false}
-            // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
-            // don't, just go by the page type
-            // width={360}
-            // height={360}
             animation={{
               enabled: true,
               duration: 200,
@@ -1270,14 +1190,11 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             movable={{
               free: this.state.playing ? false : true,
               rookCastle: false,
-              // todo swap out placeholder for comment
-              // color: "both",
               color: this.state.playing
                 ? GameBoard.side === 0
                   ? 'white'
                   : 'black'
                 : 'both',
-              // todo show summon destinations
               dests:
                 this.state.placingPiece === 0
                   ? this.state.placingRoyalty === 0
@@ -1382,7 +1299,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   );
                   if (!PrMove(parsed)) {
                     console.log('invalid move');
-                    debugger;
+                    // debugger;
                   }
                   this.setState(
                     (prevState) => ({
@@ -2185,15 +2102,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             </div>
             <div className="reset-output">
               <Button
-                text="RESET PANEL"
-                onClick={() => null}
-                className="tertiary"
-                color="B"
-                height={46}
-                width={133}
-                disabled={false}
-              />
-              <Button
                 text="OUTPUT PANEL"
                 onClick={() => {
                   const elements = document.getElementsByTagName('g');
@@ -2251,14 +2159,22 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   console.log({
                     [this.state.currNode]: {
                       ...this.state.bookObject[this.state.currNode],
-                      description: this.state.nodeText,
+                      nodeText: this.state.nodeText,
                       opponent: this.state.opponent,
                       theme: this.state.theme,
                       time: this.state.time,
-                      missionType: 'NORMAL / VARIANT / UYA',
                     },
                   });
                 }}
+                className="tertiary"
+                color="B"
+                height={46}
+                width={133}
+                disabled={false}
+              />
+              <Button
+                text="RESET PANEL"
+                onClick={() => null}
                 className="tertiary"
                 color="B"
                 height={46}

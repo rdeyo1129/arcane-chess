@@ -385,7 +385,7 @@ export function MakeMove(move) {
 
   if (!move) {
     console.log('make move error', move);
-    debugger; // eslint-disable-line
+    // debugger; // eslint-disable-line
   }
 
   if (SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], GameBoard.side)) {

@@ -88,7 +88,6 @@ export function validMoves(
 ) {
   const moves = [];
   let moveFound = NOMOVE;
-  console.log('p3j4t-q34t', swap);
   generatePowers();
   GenerateMoves(true, false, summon, swap, userSummonPieceRoyalty);
   for (
@@ -296,10 +295,6 @@ export function engineMove(thinkingTime) {
 
   SearchController.time = thinkingTime;
   const { bestMove, bestScore, line } = SearchPosition();
-  // if (bestMove === NOMOVE) {
-  //   console.log(bestMove);
-  //   debugger; // eslint-disable-line
-  // }
   MakeMove(bestMove);
   CheckAndSet();
   // PrintMoveList();

@@ -3,7 +3,7 @@
     "id": "lesson-1",
     "title": "Into the Unknown",
     "time": [100, 100],
-    "nodeText": "Node description is here to set an example.\n\nthis is a new paragraph.",
+    "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
     "reward": [500, "a", "b", "c"],
     "prereq": "",
     "opponent": "Sidian",
@@ -62,32 +62,13 @@
         "correctMoves": []
       }
     },
-    "description": "Take the first step of your learning journey into the dark, winding forest of Chess.",
     "missionType": "NORMAL / VARIANT / UYA"
-  },
-  "lesson-2": {
-    "id": "lesson-2",
-    "title": "Example TitleAAAA",
-    "panels": {
-      "panel-1": {}
-    }
-  },
-  "lesson-3": {
-    "id": "lesson-3",
-    "title": "Example TitleAAAA",
-    "panels": {
-      "panel-1": {}
-    }
-  },
-  "lesson-4": {
-    "id": "lesson-4",
-    "title": "Example TitleAAAA"
   },
   "temple-1": {
     "id": "temple-1",
     "title": "temple 1",
     "time": [100, 100],
-    "nodeText": "Node description",
+    "nodeText": "Complete puzzles.",
     "reward": [500, "a", "b", "c"],
     "prereq": "",
     "opponent": "Sidian",
@@ -117,24 +98,43 @@
       }
     }
   },
-  "temple-2": {
-    "id": "temple-2",
-    "title": "Example TitleAAAA"
-  },
   "mission-1": {
     "id": "mission-1",
-    "title": "Example TitleAAAA"
-  },
-  "mission-2": {
-    "id": "mission-2",
-    "title": "Example TitleAAAA"
-  },
-  "mission-3": {
-    "id": "mission-3",
-    "title": "Example TitleAAAA"
-  },
-  "mission-4": {
-    "id": "mission-4",
-    "title": "Example TitleAAAA"
+    "title": "Example Title",
+    "time": [100, 100],
+    "nodeText": "First Description",
+    "reward": [500, "a", "b", "c"],
+    "prereq": "Some prerequisite",
+    "opponent": "",
+    "panels": {
+      "panel-1": {
+        "fen": "4k3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1",
+        "fenHistory": ["4k3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1"],
+        "history": [],
+        "panelText": "Panel Description ;soihgasog1",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {
+          "sumnB": 1,
+          "shftP": 2
+        },
+        "blackArcane": {
+          "shftP": 2
+        },
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white",
+        "boss": false
+      }
+    },
+    "missionType": "NORMAL / VARIANT / UYA"
   }
 }

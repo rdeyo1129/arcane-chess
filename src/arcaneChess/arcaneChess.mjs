@@ -42,35 +42,17 @@ import {
 } from './main';
 import { PrintMoveList, PrSq } from './io';
 import { InitMvvLva, GenerateMoves, generatePowers } from './movegen';
+import { GameBoard, randomize, ParseFen } from './board';
 import {
-  GameBoard,
-  randomize,
-  ParseFen,
-  CheckBoard,
-  PrintBoard,
-  PrintPieceLists,
-  InCheck,
-} from './board';
-import { MakeMove, TakeMove } from './makemove';
-import { PerftTest } from './perft';
-import {
-  validMoves,
   validGroundMoves,
   validSummonMoves,
   MakeUserMove,
   engineMove,
 } from './gui';
 import { SearchPosition, gameSim } from './search.mjs';
-import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
-import {
-  setWhiteArcana,
-  setBlackArcana,
-  whiteArcaneConfig,
-  blackArcaneConfig,
-} from './arcaneDefs.mjs';
+import { setWhiteArcana, setBlackArcana } from './arcaneDefs.mjs';
 import { PIECES, prettyToSquare } from './defs.mjs';
-import { set } from 'lodash';
 
 export default function arcaneChess(
   whiteConfig = {},
@@ -139,12 +121,13 @@ export default function arcaneChess(
     console.log(type);
   };
 
-  const startCreate = (fen) => {
-    // ParseFen(fen);
-  };
+  // const startCreate = (fen) => {
+  //   // ParseFen(fen);
+  // };
 
   // todo arcane for the three hint tiers
-  const getScoreAndLine = (fen, arcane) => {
+  const getScoreAndLine = (fen) => {
+    // arcane param needed?
     ParseFen(fen);
 
     generatePowers();
@@ -157,7 +140,13 @@ export default function arcaneChess(
     return Promise.resolve(GameBoard.cleanPV);
   };
 
-  const startGame = (startFen, whiteConfig, blackConfig, royalties, varVar) => {
+  const startGame = (
+    startFen,
+    whiteConfig,
+    blackConfig,
+    royalties,
+    varVar = null
+  ) => {
     // this needs to be assigned to something, the fen that gets passed in randomize();
 
     setWhiteArcana(whiteConfig);

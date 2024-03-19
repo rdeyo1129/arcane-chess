@@ -24,7 +24,6 @@ import {
   COLOURS,
   PceChar,
   RtyChar,
-  PieceCol,
 } from './defs';
 import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
@@ -282,11 +281,10 @@ export function ParseMove(
         }
         continue;
       } else if (Move & MFLAGSUMN) {
-        if (PROMOTED(Move) === pieceEpsilon && pieceEpsilon !== PIECES.EMPTY) {
+        if (pieceEpsilon !== PIECES.EMPTY) {
           found = BOOL.TRUE;
           break;
-        }
-        if (
+        } else if (
           CAPTURED(Move) === royaltyEpsilon &&
           royaltyEpsilon !== PIECES.EMPTY
         ) {

@@ -153,15 +153,6 @@ export function Quiescence(alpha, beta) {
 
     Move = GameBoard.moveList[MoveNum];
 
-    if (Move === NOMOVE) {
-      console.log('quiescence');
-      debugger; // eslint-disable-line
-    }
-
-    if (Move === NOMOVE) {
-      debugger; // eslint-disable-line
-    }
-
     if (MakeMove(Move) === BOOL.FALSE) {
       continue;
     }
@@ -293,15 +284,6 @@ export function AlphaBeta(alpha, beta, depth) {
     PickNextMove(MoveNum);
 
     Move = GameBoard.moveList[MoveNum];
-
-    if (Move === NOMOVE) {
-      console.log('alpha beta');
-      debugger; // eslint-disable-line
-    }
-
-    if (Move === NOMOVE) {
-      debugger; // eslint-disable-line
-    }
 
     if (MakeMove(Move) === BOOL.FALSE) {
       continue;

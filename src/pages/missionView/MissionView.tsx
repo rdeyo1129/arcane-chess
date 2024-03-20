@@ -314,6 +314,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     generatePowers();
     GenerateMoves();
 
+    PrintMoveList();
+
     new Promise((resolve) => {
       setTimeout(() => {
         SearchController.thinking = BOOL.TRUE;
@@ -816,7 +818,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           ),
                         },
                       }),
-                      () => this.engineGo()
+                      () => {
+                        this.engineGo();
+                      }
                     );
                   },
                   select: (key: string) => {

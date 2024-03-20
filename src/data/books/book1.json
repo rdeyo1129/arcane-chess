@@ -122,11 +122,18 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {
-          "sumnB": 1,
-          "shftP": 2
+          "shftP": 2,
+          "shftB": 2,
+          "sumnRM": 1,
+          "swapADJ": 1,
+          "sumnB": 1
         },
         "blackArcane": {
-          "shftP": 2
+          "shftP": 2,
+          "shftB": 2,
+          "sumnRM": 1,
+          "swapADJ": 1,
+          "sumnB": 1
         },
         "config": {},
         "correctMoves": [],

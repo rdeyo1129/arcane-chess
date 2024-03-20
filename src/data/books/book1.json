@@ -120,7 +120,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "CLEAR",
+        "preset": "capAllPieces",
         "whiteArcane": {
           "shftP": 2,
           "shftB": 2,

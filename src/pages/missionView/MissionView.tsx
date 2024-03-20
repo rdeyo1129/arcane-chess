@@ -182,6 +182,7 @@ interface State {
   };
   lastMove: string[];
   orientation: string;
+  preset: string;
 }
 
 interface Props {
@@ -270,6 +271,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
           getLocalStorage(this.props.auth.user.id).nodeId
         ].panels['panel-1'].orientation,
+      preset:
+        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
+          getLocalStorage(this.props.auth.user.id).nodeId
+        ].panels['panel-1'].preset,
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen);
@@ -335,10 +340,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             turn: prevState.turn === 'white' ? 'black' : 'white',
           }),
           () => {
-            if (CheckAndSet()) {
+            if (CheckAndSet(this.state.preset)) {
               this.setState({
                 gameOver: true,
-                gameOverType: CheckResult().gameResult,
+                gameOverType: CheckResult(this.state.preset).gameResult,
               });
               return;
             }
@@ -501,7 +506,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           isOpen={this.state.gameOver}
           // handleClose={() => this.handleModalClose()}
           // modalType={this.state.endScenario}
-          // message={} // interpolate
+          message={this.state.gameOverType} // interpolate
           type={
             this.state.gameOverType.split(' ')[1] === 'mates' &&
             getLocalStorage(this.props.auth.user.id).config.color ===
@@ -745,7 +750,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           swapType: '',
                         }),
                         () => {
-                          this.engineGo();
+                          if (CheckAndSet(this.state.preset)) {
+                            this.setState({
+                              gameOver: true,
+                              gameOverType: CheckResult(this.state.preset)
+                                .gameResult,
+                            });
+                            return;
+                          } else {
+                            this.engineGo();
+                          }
                         }
                       );
                     }
@@ -819,7 +833,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         },
                       }),
                       () => {
-                        this.engineGo();
+                        if (CheckAndSet(this.state.preset)) {
+                          this.setState({
+                            gameOver: true,
+                            gameOverType: CheckResult(this.state.preset)
+                              .gameResult,
+                          });
+                          return;
+                        } else {
+                          this.engineGo();
+                        }
                       }
                     );
                   },
@@ -870,7 +893,18 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             placingRoyalty: 0,
                             swapType: '',
                           }),
-                          () => this.engineGo()
+                          () => {
+                            if (CheckAndSet(this.state.preset)) {
+                              this.setState({
+                                gameOver: true,
+                                gameOverType: CheckResult(this.state.preset)
+                                  .gameResult,
+                              });
+                              return;
+                            } else {
+                              this.engineGo();
+                            }
+                          }
                         );
                       } else {
                         this.setState({

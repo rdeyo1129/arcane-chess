@@ -191,7 +191,7 @@ export function ThreeFoldRep() {
   return r;
 }
 
-export function CheckResult() {
+export function CheckResult(preset) {
   if (GameBoard.fiftyMove >= 100) {
     // $("#GameStatus").text("GAME DRAWN {fifty move rule}");
     return {
@@ -214,6 +214,21 @@ export function CheckResult() {
       gameOver: true,
       gameResult: 'insufficient material',
     };
+  }
+
+  if (preset === 'capAllPieces') {
+    if (GameBoard.material[COLOURS.WHITE] === 150000) {
+      return {
+        gameOver: true,
+        gameResult: 'black mates (all white material captured)',
+      };
+    }
+    if (GameBoard.material[COLOURS.BLACK] === 150000) {
+      return {
+        gameOver: true,
+        gameResult: 'white mates (all black material captured)',
+      };
+    }
   }
 
   // todo herring
@@ -268,8 +283,8 @@ export function CheckResult() {
   // return BOOL.FALSE;
 }
 
-export function CheckAndSet() {
-  if (CheckResult().gameOver) {
+export function CheckAndSet(preset = '') {
+  if (CheckResult(preset).gameOver) {
     GameController.GameOver = BOOL.TRUE;
     return true;
   } else {

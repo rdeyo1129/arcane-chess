@@ -24,6 +24,7 @@ interface ModalProps {
   toggleModal: () => void;
   handleClose: () => void;
   navigate: (path: string) => void;
+  message?: string;
   auth: any;
   chapterNumber?: number;
   lessonBackButton?: boolean;
@@ -303,6 +304,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }}
                 >
                   <h1>Victory!</h1>
+                  <span>{this.props.message}</span>
                 </div>
                 <img
                   className="endgame-image"

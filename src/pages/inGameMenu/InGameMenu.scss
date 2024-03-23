@@ -208,8 +208,8 @@
   .bottom-center {
     z-index: 30; // patch to display this div over chessground custom svg area
     display: grid;
-    grid-template-columns: 360px 120px;
-    grid-template-rows: 31px 31px 31px;
+    grid-template-columns: 180px 160px 140px;
+    grid-template-rows: 26px 26px 26px;
     overflow: hidden;
     .fen-input {
       display: flex;
@@ -238,24 +238,24 @@
       // justify-content: center;
       // align-items: center;
       // grid-column: span 2;
-      .material {
+    }
+    .material {
+      display: flex;
+      .white-material {
         display: flex;
-        .white-material {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: #bbbbbb;
-          width: 90px;
-          height: 100%;
-        }
-        .black-material {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: #444444;
-          width: 90px;
-          height: 100%;
-        }
+        justify-content: center;
+        align-items: center;
+        background: #bbbbbb;
+        width: 90px;
+        height: 100%;
+      }
+      .black-material {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #444444;
+        width: 90px;
+        height: 100%;
       }
     }
   }

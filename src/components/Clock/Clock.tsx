@@ -1,15 +1,24 @@
 import React from 'react';
-
 import './Clock.scss';
 
+//
+// multiplayer to pass down current nodejs.timeouts from server level
+//
+
 interface ClockProps {
-  initialTime: number | null; // Make sure this is passed as a number and not null
+  playerTurn: boolean;
+  turn: string;
+  time: number | null;
+  inc: number | null;
+  playerTimeout: () => void;
+  // whiteTimeout: () => void;
+  // blackTimeout: () => void;
 }
 
 interface ClockState {
   timeLeft: number | null;
   isActive: boolean;
-  playerTurn: string;
+  isPlayerOneTurn: boolean;
 }
 
 class ChessClock extends React.Component<ClockProps, ClockState> {
@@ -18,23 +27,33 @@ class ChessClock extends React.Component<ClockProps, ClockState> {
   constructor(props: ClockProps) {
     super(props);
     this.state = {
-      timeLeft: props.initialTime,
+      timeLeft: props.time,
       isActive: true,
-      playerTurn: 'Player 1',
+      isPlayerOneTurn: true,
     };
   }
 
   startTimer = () => {
     if (!this.interval) {
       this.interval = setInterval(() => {
-        this.setState((prevState) => ({
-          timeLeft: prevState.timeLeft !== null ? prevState.timeLeft - 1 : null,
-        }));
+        this.setState(
+          (prevState) => ({
+            timeLeft:
+              prevState.timeLeft !== null ? prevState.timeLeft - 1 : null,
+          }),
+          () => {
+            if (this.state.timeLeft === 0) {
+              this.props.playerTimeout();
+              this.stopTimer();
+            }
+          }
+        );
       }, 1000);
     }
   };
 
   stopTimer = () => {
+    console.log('Stopping timer');
     if (this.interval) {
       clearInterval(this.interval);
       this.interval = null;
@@ -45,28 +64,44 @@ class ChessClock extends React.Component<ClockProps, ClockState> {
     this.setState((prevState) => ({ isActive: !prevState.isActive }));
   };
 
-  switchPlayer = () => {
-    this.stopTimer();
-    this.setState({
-      playerTurn:
-        this.state.playerTurn === 'Player 1' ? 'Player 2' : 'Player 1',
-      timeLeft: this.props.initialTime,
-      isActive: false,
-    });
-  };
+  // switchPlayer = () => {
+  //   this.stopTimer(); // Ensures the current timer is stopped before switching.
+  //   this.setState(
+  //     {
+  //       isPlayerOneTurn: this.props.playerTurn ?? true, // Assuming true defaults to Player 1
+  //       timeLeft: this.props.time,
+  //       isActive: true, // Set to true to indicate the timer should be active
+  //     },
+  //     () => {
+  //       // Ensure the timer is stopped before starting a new one to prevent overlaps
+  //       if (!this.interval) {
+  //         // this.startTimer(); // Start the timer only if it's not already running
+  //       }
+  //     }
+  //   );
+  // };
 
   componentDidUpdate(prevProps: ClockProps, prevState: ClockState) {
-    // Check if the timer should start or stop
-    if (this.state.isActive && !this.interval) {
-      this.startTimer();
-    } else if (!this.state.isActive && this.interval) {
-      this.stopTimer();
+    // Example condition adjustment to stop the timer immediately when the player's turn ends
+    if (
+      this.props.playerTurn !== prevProps.playerTurn &&
+      !this.props.playerTurn
+    ) {
+      this.stopTimer(); // Ensure timer is stopped as soon as it's not the player's turn
     }
 
-    // Check for timer reaching zero
-    if (this.state.timeLeft === 0 && prevState.timeLeft !== 0) {
-      alert(`${this.state.playerTurn} ran out of time! Game over.`);
-      this.stopTimer();
+    // Start the timer only when it's the player's turn
+    if (this.props.playerTurn && !this.interval) {
+      this.startTimer();
+    }
+
+    // Handle timer expiration
+    if (
+      this.state.timeLeft === 0 &&
+      this.state.timeLeft !== prevState.timeLeft
+    ) {
+      this.props.playerTimeout(); // Call the timeout handler
+      this.stopTimer(); // Ensure timer is stopped
     }
   }
 
@@ -75,19 +110,19 @@ class ChessClock extends React.Component<ClockProps, ClockState> {
   }
 
   componentDidMount() {
-    console.log('ChessClock mounted with initialTime:', this.props.initialTime);
+    console.log('ChessClock mounted with initialTime:', this.props.time);
     this.startTimer();
   }
 
   render() {
     const { timeLeft, isActive } = this.state;
-    const { initialTime } = this.props;
+    const { time } = this.props;
 
     let timerWidth = 0;
     let timerColor = 'green';
 
-    if (timeLeft !== null && initialTime !== null) {
-      timerWidth = (timeLeft / initialTime) * 100;
+    if (timeLeft !== null && time !== null) {
+      timerWidth = (timeLeft / time) * 100;
       timerColor = timerWidth < 10 ? 'red' : 'green';
     }
 

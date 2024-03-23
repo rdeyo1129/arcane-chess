@@ -21,7 +21,10 @@ const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 import Dots from 'src/components/Loader/Dots';
 
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
-import { PerftTest } from '../../arcaneChess/perft.mjs';
+// import {
+//   arcane as arcaneChess,
+//   arcaneChessWorker,
+// } from '../../arcaneChess/arcaneChessInstance.js';
 
 import {
   GameBoard,
@@ -99,7 +102,7 @@ interface ArcanaMap {
 interface Node {
   id: string;
   title: string;
-  time: number[];
+  time: [number[], number[]];
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
@@ -141,6 +144,7 @@ interface Node {
 interface State {
   turn: string;
   playerClock: number | null;
+  playerInc: number | null;
   playerColor: string;
   engineColor: string;
   thinking: boolean;
@@ -203,15 +207,23 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.state = {
       // todo, just make this an array of fenHistory, simplify state...
       // todo make dyanamic
-      turn: 'white',
+      turn: GameBoard.side === 0 ? 'white' : 'black',
+      playerInc:
+        getLocalStorage(this.props.auth.user.id).config.color === 'white'
+          ? booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
+              getLocalStorage(this.props.auth.user.id).nodeId
+            ].time[0][1]
+          : booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
+              getLocalStorage(this.props.auth.user.id).nodeId
+            ].time[1][1],
       playerClock:
         getLocalStorage(this.props.auth.user.id).config.color === 'white'
           ? booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
               getLocalStorage(this.props.auth.user.id).nodeId
-            ].time[0]
+            ].time[0][0]
           : booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
               getLocalStorage(this.props.auth.user.id).nodeId
-            ].time[1],
+            ].time[1][0],
       playerColor: getLocalStorage(this.props.auth.user.id).config.color,
       engineColor:
         getLocalStorage(this.props.auth.user.id).config.color === 'white'
@@ -236,7 +248,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       ],
       thinking: SearchController.thinking,
       engineLastMove: [],
-      thinkingTime: 500,
+      thinkingTime: 1500,
       whiteFaction: 'normal',
       blackFaction: 'normal',
       selected: 'a',
@@ -279,6 +291,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen);
     };
+
+    // this.arcaneChessCallback = arcaneChess.bind(this);
+
     this.chessgroundRef = React.createRef();
   }
 
@@ -286,47 +301,20 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.setState({ hoverArcane: arcane });
   };
 
-  initializeArcaneChessAndTest = (fen: string) => {
-    // const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-    // const start = '6pk/3K2p1/6p1/6p1/8/8/8/7P w - - 0 1';
-    // const start = '8/8/8/4X3/8/8/8/8 w - - 0 1';
-    // koh
-    // const start = 'k7/8/8/8/8/8/8/7K w - - 0 1';
-    // royalty mate
-    // const start = '6Xk/8/8/8/8/8/R7/K7 w - - 0 1';
-    // promote to unicorn
-    // const start = '4pk2/4ppp1/6XP/8/8/8/8/7K w - - 0 1';
-    // const start = '5pk1/5XX1/6XP/6X1/8/8/8/7K w - - 0 1';
-    // rnbqk2r/p1pp1ppp/1p2pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR w KQkq - 0 1
-    this.arcaneChess().startCreate(fen);
-  };
-
-  perftTest = (fen: string) => {
-    PrintPieceLists();
-    PrintBoard();
-    PerftTest(3, fen);
-  };
-
-  setFen = (fen: string) => {
-    this.setState({ fen });
-  };
-
   engineGo = () => {
     this.setState({
       thinking: true,
     });
 
-    generatePowers();
-    GenerateMoves();
+    // generatePowers();
+    // GenerateMoves();
 
-    PrintMoveList();
+    // PrintMoveList();
 
     new Promise((resolve) => {
       setTimeout(() => {
         SearchController.thinking = BOOL.TRUE;
-        const engineResult = this.arcaneChess().engineReply(
-          this.state.thinkingTime
-        );
+        const engineResult = arcaneChess().engineReply(this.state.thinkingTime);
         resolve(engineResult);
       }, this.state.thinkingTime);
     })
@@ -351,8 +339,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         );
       })
       .then(() => {
-        generatePowers();
-        GenerateMoves();
+        // generatePowers();
+        // GenerateMoves();
       })
       .catch((error) => {
         console.error('An error occurred:', error);
@@ -378,11 +366,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
 
     // ParseFen('rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
 
-    const gameBoardPowers = generatePowers();
+    // const gameBoardPowers = generatePowers();
 
-    console.log('gameBoardPowers', gameBoardPowers);
+    // console.log('gameBoardPowers', gameBoardPowers);
 
-    GenerateMoves();
+    // GenerateMoves();
 
     PrintMoveList();
 
@@ -500,6 +488,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   render() {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
+    const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     return (
       <div className="tactorius-board fade">
         <TactoriusModal
@@ -664,6 +653,13 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 royalties={this.state.royalties}
                 // wVisible={this.state.wVisCount === 0}
                 // bVisible={this.state.bVisCount === 0}
+                premovable={{
+                  enabled: true,
+                  // premoveFunc: () => {},
+                  // showDests: true,
+                  // autoCastle: true,
+                  // dests: this.arcaneChess().getGroundMoves(),
+                }}
                 width={480}
                 height={480}
                 check={InCheck() ? true : false}
@@ -679,17 +675,19 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 lastMove={this.state.lastMove}
                 orientation={this.state.orientation}
                 disableContextMenu={false}
-                turnColor={GameBoard.side === 0 ? 'white' : 'black'}
+                turnColor={gameBoardTurn}
                 movable={{
                   free: false,
                   rookCastle: false,
-                  color: GameBoard.side === 0 ? 'white' : 'black',
+                  color: this.state.playerColor,
                   dests:
                     this.state.placingPiece === 0
                       ? this.state.placingRoyalty === 0
                         ? this.state.swapType === ''
-                          ? this.arcaneChess().getGroundMoves()
-                          : this.arcaneChess().getSwapMoves(this.state.swapType)
+                          ? // ? gameBoardTurn === this.state.playerColor
+                            this.arcaneChess().getGroundMoves()
+                          : // : null
+                            this.arcaneChess().getSwapMoves(this.state.swapType)
                         : this.arcaneChess().getSummonMoves(
                             `R${RtyChar.split('')[this.state.placingRoyalty]}`
                           )
@@ -921,7 +919,18 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             </div>
             <div className="player-time">
               <h3>
-                <ChessClock initialTime={this.state.playerClock} />
+                <ChessClock
+                  playerTurn={gameBoardTurn === this.state.playerColor}
+                  turn={gameBoardTurn}
+                  time={this.state.playerClock}
+                  inc={this.state.playerInc}
+                  playerTimeout={() => {
+                    this.setState({
+                      gameOver: true,
+                      gameOverType: 'player timed out',
+                    });
+                  }}
+                />
               </h3>
             </div>
           </div>

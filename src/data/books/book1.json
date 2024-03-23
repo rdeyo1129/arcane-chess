@@ -2,7 +2,10 @@
   "lesson-1": {
     "id": "lesson-1",
     "title": "Into the Unknown",
-    "time": [100, 100],
+    "time": [
+      [100, 100],
+      [100, 100]
+    ],
     "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
     "reward": [500, "a", "b", "c"],
     "prereq": "",
@@ -67,7 +70,10 @@
   "temple-1": {
     "id": "temple-1",
     "title": "temple 1",
-    "time": [100, 100],
+    "time": [
+      [100, 100],
+      [100, 100]
+    ],
     "nodeText": "Complete puzzles.",
     "reward": [500, "a", "b", "c"],
     "prereq": "",
@@ -101,7 +107,10 @@
   "mission-1": {
     "id": "mission-1",
     "title": "Example Title",
-    "time": [100, 100],
+    "time": [
+      [15, 1],
+      [10, 1]
+    ],
     "nodeText": "First Description",
     "reward": [500, "a", "b", "c"],
     "prereq": "Some prerequisite",
@@ -129,7 +138,6 @@
           "sumnB": 1
         },
         "blackArcane": {
-          "shftP": 2,
           "shftB": 2,
           "sumnRM": 1,
           "swapADJ": 1,

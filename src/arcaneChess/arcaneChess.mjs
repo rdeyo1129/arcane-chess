@@ -195,7 +195,6 @@ export default function arcaneChess(
     activateDyad: (type) => activateDyad(type),
     startGame: (fen, whiteConfig, blackConfig, royalties, varVar) =>
       startGame(fen, whiteConfig, blackConfig, royalties, varVar),
-    startCreate: (fen) => startCreate(fen),
     randomize: (whiteConfig, blackConfig) =>
       randomize(whiteConfig, blackConfig),
     getScoreAndLine: (fen) => {

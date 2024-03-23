@@ -167,7 +167,7 @@ interface ArcanaMap {
 interface Node {
   id: string; // 'lesson-1';
   title: string;
-  time: number[]; // seconds
+  time: [number[], number[]]; // seconds
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
@@ -208,7 +208,7 @@ interface Node {
 
 interface State {
   title: string;
-  time: number[];
+  time: [number[], number[]];
   thinking: boolean;
   thinkingTime: number;
   history: string[];
@@ -1831,7 +1831,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               // id="test"
               className="input fen-text-box"
               color="B"
-              height={31}
+              height={26}
               width={360}
               placeholder="FEN"
               // current
@@ -1878,7 +1878,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 }}
                 className="primary"
                 color="B"
-                height={31}
+                height={26}
                 width={120}
                 // disabled={this.state.fen === ''}
                 disabled={false}
@@ -1936,7 +1936,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 }}
                 className="primary"
                 color="B"
-                height={31}
+                height={26}
                 width={120}
                 // disabled={this.state.fen === ''}
                 disabled={false}
@@ -1944,31 +1944,55 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               />
             )}
           </div>
+          <div></div>
           <div className="time-input">
             <Select
               type="number"
-              width={180}
+              width={90}
+              height={26}
               options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
               onChange={(value) => {
                 this.setState((prevState) => ({
                   ...prevState,
-                  time: [Number(value), prevState.time[1]],
+                  time: [
+                    [Number(value), prevState.time[0][1]],
+                    [prevState.time[1][0], prevState.time[1][1]],
+                  ],
                 }));
               }}
             />
             <Select
               type="number"
-              width={180}
+              width={90}
+              height={26}
               options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
               onChange={(value) => {
                 this.setState((prevState) => ({
                   ...prevState,
-                  time: [prevState.time[0], Number(value)],
+                  time: [
+                    [prevState.time[0][0], Number(value)],
+                    [prevState.time[1][0], prevState.time[1][1]],
+                  ],
                 }));
               }}
             />
           </div>
-          <Button
+          <div className="reward-input">
+            <Input
+              color="B"
+              value={this.state.reward.toString()}
+              placeholder="REWARD"
+              width={180}
+              height={26}
+              onChange={(value) => {
+                this.setState({ thinkingTime: Number(value) });
+              }}
+              password={false}
+            ></Input>
+          </div>
+          <div></div>
+          {/* <div></div> */}
+          {/* <Button
             text="SIM"
             onClick={() => this.arcaneChess().gameSim(100)}
             className="primary"
@@ -1978,38 +2002,47 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             // disabled={this.state.fen === ''}
             disabled={false}
             // strong={true}
-          />
-          <div className="reward-input">
-            <Input
-              color="B"
-              value={this.state.reward.toString()}
-              placeholder="REWARD"
-              width={180}
-              height={31}
+          /> */}
+          <div className="time-input">
+            <Select
+              type="number"
+              width={90}
+              height={26}
+              options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
               onChange={(value) => {
-                this.setState({ thinkingTime: Number(value) });
+                this.setState((prevState) => ({
+                  ...prevState,
+                  time: [
+                    [prevState.time[0][0], prevState.time[0][1]],
+                    [Number(value), prevState.time[1][1]],
+                  ],
+                }));
               }}
-              password={false}
-            ></Input>
-            <div className="material">
-              <div className="white-material">
-                {GameBoard.material[0] ? GameBoard.material[0] - 150000 : 0}
-              </div>
-              <div className="black-material">
-                {GameBoard.material[1] ? GameBoard.material[1] - 150000 : 0}
-              </div>
-            </div>
-            {/* <Input
-              color="B"
-              value={''}
-              placeholder='Thinking Time "500"'
-              width={180}
+            />
+            <Select
+              type="number"
+              width={90}
+              height={26}
+              options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
               onChange={(value) => {
-                this.setState({ thinkingTime: Number(value) });
+                this.setState((prevState) => ({
+                  ...prevState,
+                  time: [
+                    [prevState.time[0][0], prevState.time[0][1]],
+                    [prevState.time[1][0], Number(value)],
+                  ],
+                }));
               }}
-            ></Input> */}
+            />
           </div>
-
+          <div className="material">
+            <div className="white-material">
+              {GameBoard.material[0] ? GameBoard.material[0] - 150000 : 0}
+            </div>
+            <div className="black-material">
+              {GameBoard.material[1] ? GameBoard.material[1] - 150000 : 0}
+            </div>
+          </div>
           <Button
             text="FACTIONIZE"
             onClick={() => this.calculateFen()}

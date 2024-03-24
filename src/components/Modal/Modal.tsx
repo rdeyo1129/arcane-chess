@@ -371,6 +371,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }}
                 >
                   <h1>Defeat...</h1>
+                  <span>{this.props.message}</span>
                 </div>
                 <img className="endgame-image" src="public/assets/reaper.jpg" />
                 <div

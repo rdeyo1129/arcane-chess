@@ -71,8 +71,8 @@
     "id": "temple-1",
     "title": "temple 1",
     "time": [
-      [100, 100],
-      [100, 100]
+      [20, 5],
+      [100, 10]
     ],
     "nodeText": "Complete puzzles.",
     "reward": [500, "a", "b", "c"],
@@ -90,7 +90,7 @@
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {
-            "e4": 1
+            "e4": 4
           },
           "royaltyT": {},
           "royaltyV": {},
@@ -101,6 +101,28 @@
         "whiteArcane": {},
         "blackArcane": {},
         "correctMoves": ["d7c6", "f4f7", "g8h8", "f7f8", "a8f8", "f1f8"]
+      },
+      "panel-2": {
+        "fen": "r3r1k1/p1pQ2pp/q4p2/8/8/1P3N2/P4PPP/2R2R1K w - - 4 25",
+        "fenHistory": ["r3r1k1/p1pQ2pp/q4p2/8/8/1P3N2/P4PPP/2R2R1K w - - 4 25"],
+        "history": [],
+        "panelText": "Panel Description ;soihgasog2",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["c1c7", "a6f1", "f3g1", "f1g1", "h1g1", "e8e1"],
+        "viewOnly": false,
+        "orientation": "white",
+        "boss": false
       }
     }
   },
@@ -108,8 +130,8 @@
     "id": "mission-1",
     "title": "Example Title",
     "time": [
-      [15, 1],
-      [10, 1]
+      [5, 3],
+      [5, 1]
     ],
     "nodeText": "First Description",
     "reward": [500, "a", "b", "c"],
@@ -123,7 +145,7 @@
         "panelText": "Panel Description ;soihgasog1",
         "arrowsCircles": [],
         "royalties": {
-          "royaltyQ": {},
+          "royaltyQ": { "e2": 4 },
           "royaltyT": {},
           "royaltyM": {},
           "royaltyV": {},

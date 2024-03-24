@@ -63,6 +63,7 @@ import { prettyToSquare, BOOL, PIECES } from '../../arcaneChess/defs.mjs';
 import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
 import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
+import { TakeMove } from '../../arcaneChess/makemove.mjs';
 // import engine
 // import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
@@ -182,9 +183,9 @@ interface ArcanaMap {
 }
 
 interface Node {
-  id: string; // 'lesson-1';
+  id: string;
   title: string;
-  time: number[]; // seconds
+  time: [number[], number[]];
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
@@ -222,6 +223,7 @@ interface Node {
 interface State {
   turn: string;
   playerClock: number | null;
+  playerDec: number | null;
   playerColor: string;
   engineColor: string;
   currPanel: number;
@@ -262,6 +264,9 @@ interface State {
       }
     | undefined;
   lastMove: string[];
+  royalties: {
+    [key: string]: { [key: string]: number };
+  };
 }
 
 interface Props {
@@ -276,33 +281,35 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   hasMounted = false;
   arcaneChess;
   chessgroundRef = createRef<IChessgroundApi>();
+  chessclockRef = createRef<ChessClock>();
   constructor(props: Props) {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.id);
     this.state = {
-      // todo, just make this an array of fenHistory, simplify state...
-      // todo make dyanamic
-      playerClock: LS.config.clock
-        ? booksMap[`book${LS.chapter}`][`${LS.nodeId}`].time[
-            LS.config.color === 'white' ? 0 : 1
-          ]
-        : 0,
+      playerClock:
+        LS.config.color === 'white'
+          ? booksMap[`book${LS.chapter}`][LS.nodeId].time[0][0]
+          : booksMap[`book${LS.chapter}`][LS.nodeId].time[1][0],
+      playerDec:
+        LS.config.color === 'white'
+          ? booksMap[`book${LS.chapter}`][LS.nodeId].time[0][1]
+          : booksMap[`book${LS.chapter}`][LS.nodeId].time[1][1],
       turn:
         booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
           `panel-1`
-        ].fen.split(' ')[0] === 'w'
+        ].fen.split(' ')[1] === 'w'
           ? 'white'
           : 'black',
       playerColor:
         booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
           `panel-1`
-        ].fen.split(' ')[0] === 'w'
+        ].fen.split(' ')[1] === 'w'
           ? 'black'
           : 'white',
       engineColor:
         booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
           `panel-1`
-        ].fen.split(' ')[0] === 'w'
+        ].fen.split(' ')[1] === 'w'
           ? 'white'
           : 'black',
       hasMounted: false,
@@ -346,6 +353,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1']
           .blackArcane,
       lastMove: [],
+      royalties:
+        booksMap[`book${LS.chapter}`][LS.nodeId].panels['panel-1'].royalties,
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen, this.props.auth, {});
@@ -362,51 +371,84 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   };
 
   incrementPanel = () => {
-    this.setState((prevState) => {
-      const LS = getLocalStorage(this.props.auth.user.id);
-      const newPanel = prevState.currPanel + 1;
-      return {
-        currPanel: newPanel,
-        turn:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+    const LS = getLocalStorage(this.props.auth.user.id);
+    if (
+      this.state.currPanel ===
+      Object.keys(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels).length
+    ) {
+      this.handleVictory(this.props.auth);
+      this.handleStopTimer();
+      return;
+    }
+    this.setState(
+      (prevState) => {
+        const newPanel = prevState.currPanel + 1;
+        this.chessgroundRef.current?.setAutoShapes([
+          ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
             `panel-${newPanel}`
-          ].fen.split(' ')[0] === 'w'
-            ? 'white'
-            : 'black',
-        playerColor:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].fen.split(' ')[0] === 'w'
-            ? 'black'
-            : 'white',
-        engineColor:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].fen.split(' ')[0] === 'w'
-            ? 'white'
-            : 'black',
-        fen: booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-          `panel-${newPanel}`
-        ].fen,
-        fenHistory: [
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+          ].arrowsCircles ?? []),
+        ]);
+        return {
+          gameOver: false,
+          currPanel: newPanel,
+          moveNumber: 0,
+          turn:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].fen.split(' ')[1] === 'w'
+              ? 'white'
+              : 'black',
+          playerColor:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].fen.split(' ')[1] === 'w'
+              ? 'black'
+              : 'white',
+          engineColor:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].fen.split(' ')[1] === 'w'
+              ? 'white'
+              : 'black',
+          fen: booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
             `panel-${newPanel}`
           ].fen,
-        ],
-        correctMoves:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].correctMoves,
-        wArcana:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].whiteArcane,
-        bArcana:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].blackArcane,
-      };
-    });
+          fenHistory: [
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].fen,
+          ],
+          correctMoves:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].correctMoves,
+          wArcana:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].whiteArcane,
+          bArcana:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].blackArcane,
+          royalties:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].royalties,
+          // orientation
+        };
+      },
+      () => {
+        console.log(GameBoard);
+        this.arcaneChess().startGame(
+          this.state.fen,
+          this.state.wArcana,
+          this.state.bArcana,
+          this.state.royalties
+          // this.state.preset
+        );
+        this.compTempleMove();
+      }
+    );
   };
 
   initializeArcaneChessAndTest = (fen: string) => {
@@ -421,7 +463,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     // const start = '4pk2/4ppp1/6XP/8/8/8/8/7K w - - 0 1';
     // const start = '5pk1/5XX1/6XP/6X1/8/8/8/7K w - - 0 1';
     // rnbqk2r/p1pp1ppp/1p2pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR w KQkq - 0 1
-    this.arcaneChess().startCreate(fen);
+    // this.arcaneChess().startCreate(fen);
   };
 
   perftTest = (fen: string) => {
@@ -540,11 +582,51 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     }));
   };
 
+  handleWrongMove = () => {
+    this.chessclockRef.current?.templeTimeHandler();
+    TakeMove();
+    this.setState((prevState) => ({
+      fen: outputFenOfCurrentPosition(),
+      fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
+    }));
+  };
+
+  handleStopTimer = () => {
+    this.chessclockRef.current?.stopTimer();
+  };
+
   toggleHover = (arcane: string) => {
     this.setState({ arcaneHover: arcane });
   };
 
+  compTempleMove = () => {
+    if (this.state.engineColor === this.state.turn) {
+      const parsed = this.arcaneChess().makeUserMove(
+        this.state.correctMoves[this.state.moveNumber].slice(0, 2),
+        this.state.correctMoves[this.state.moveNumber].slice(2, 4)
+      );
+      if (!PrMove(parsed)) {
+        console.log('invalid move');
+        // debugger; // eslint-disable-line
+      }
+      this.setState((prevState) => ({
+        history: [...prevState.history, PrMove(parsed)],
+        fen: outputFenOfCurrentPosition(),
+        fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
+        lastMove: [
+          this.state.correctMoves[prevState.moveNumber].slice(0, 2),
+          this.state.correctMoves[prevState.moveNumber].slice(2, 4),
+        ],
+        moveNumber: prevState.moveNumber + 1,
+      }));
+    }
+  };
+
   handleVictory = (auth: object) => {
+    this.setState({
+      gameOver: true,
+      gameOverType: 'puzzle victory',
+    });
     setLocalStorage({
       ...getLocalStorage(this.props.auth.user.id),
       auth,
@@ -604,40 +686,16 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    this.setState({
-      turn:
-        missionJson[
-          `${getLocalStorage(this.props.auth.user.id).nodeId}`
-        ].fen.split(' ')[1] === 'w'
-          ? 'white'
-          : 'black',
-    });
     if (!this.hasMounted) {
       this.hasMounted = true;
-      this.arcaneChess().startGame(this.state.fen);
-      console.log(this.state.turn, this.state.engineColor);
-      if (this.state.engineColor === this.state.turn) {
-        // this.engineGo();
-        console.log(this.state.correctMoves);
-        const parsed = this.arcaneChess().makeUserMove(
-          this.state.correctMoves[this.state.moveNumber].slice(0, 2),
-          this.state.correctMoves[this.state.moveNumber].slice(2, 4)
-        );
-        if (!PrMove(parsed)) {
-          console.log('invalid move');
-          // debugger; // eslint-disable-line
-        }
-        this.setState((prevState) => ({
-          history: [...prevState.history, PrMove(parsed)],
-          fen: outputFenOfCurrentPosition(),
-          fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-          lastMove: [
-            this.state.correctMoves[prevState.moveNumber].slice(0, 2),
-            this.state.correctMoves[prevState.moveNumber].slice(2, 4),
-          ],
-          moveNumber: prevState.moveNumber + 1,
-        }));
-      }
+      this.arcaneChess().startGame(
+        this.state.fen,
+        this.state.wArcana,
+        this.state.bArcana,
+        this.state.royalties
+        // this.state.preset)
+      );
+      this.compTempleMove();
     }
   }
 
@@ -650,6 +708,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   render() {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
+    const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     return (
       <div className="tactorius-board fade">
         <TactoriusModal
@@ -657,11 +716,9 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           // handleClose={() => this.handleModalClose()}
           // modalType={this.state.endScenario}
           // message={} // interpolate
+          message={this.state.gameOverType} // interpolate
           type={
-            this.state.gameOverType.split(' ')[1] === 'mates' &&
-            this.state.playerColor === this.state.gameOverType.split(' ')[0]
-              ? 'victory'
-              : 'defeat'
+            this.state.gameOverType === 'puzzle victory' ? 'victory' : 'defeat'
           }
         />
         {/* <button style={{ position: "absoulte" }}>test</button> */}
@@ -736,6 +793,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                 resizable={true}
                 wFaction={this.state.whiteFaction}
                 bFaction={this.state.blackFaction}
+                royalties={this.state.royalties}
                 // wRoyalty={this.state.wRoyalty}
                 // bRoyalty={this.state.bRoyalty}
                 // wVisible={this.state.wVisCount === 0}
@@ -782,18 +840,11 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                   },
                   move: (orig: string, dest: string, capturedPiece: number) => {
                     console.log('move', orig, dest, this.state.correctMoves);
+                    const parsed = this.arcaneChess().makeUserMove(orig, dest);
                     if (
                       `${orig}${dest}` ===
                       this.state.correctMoves[this.state.moveNumber]
                     ) {
-                      const parsed = this.arcaneChess().makeUserMove(
-                        orig,
-                        dest
-                      );
-                      if (!PrMove(parsed)) {
-                        console.log('invalid move');
-                        // debugger; // eslint-disable-line
-                      }
                       this.setState(
                         (prevState) => ({
                           history: [...prevState.history, PrMove(parsed)],
@@ -806,61 +857,18 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                           lastMove: [orig, dest],
                         }),
                         () => {
-                          console.log(
-                            this.state.moveNumber,
-                            this.state.correctMoves
-                          );
                           if (
                             this.state.moveNumber ===
                             this.state.correctMoves.length
                           ) {
-                            console.log('you beat the puzzle');
+                            this.incrementPanel();
                           } else {
-                            const parsed = this.arcaneChess().makeUserMove(
-                              this.state.correctMoves[
-                                this.state.moveNumber
-                              ].slice(0, 2),
-                              this.state.correctMoves[
-                                this.state.moveNumber
-                              ].slice(2, 4)
-                            );
-                            this.setState((prevState) => ({
-                              history: [...prevState.history, PrMove(parsed)],
-                              fen: outputFenOfCurrentPosition(),
-                              fenHistory: [
-                                ...prevState.fenHistory,
-                                outputFenOfCurrentPosition(),
-                              ],
-                              lastMove: [
-                                this.state.correctMoves[
-                                  prevState.moveNumber
-                                ].slice(0, 2),
-                                this.state.correctMoves[
-                                  prevState.moveNumber
-                                ].slice(2, 4),
-                              ],
-                              moveNumber: prevState.moveNumber + 1,
-                            }));
+                            this.compTempleMove();
                           }
                         }
                       );
                     } else {
-                      alert('incorrect, minus 10 seconds');
-                    }
-                    // console.log(generatePowers());
-                    // console.log('captured', capturedPiece);
-
-                    if (CheckAndSet()) {
-                      this.setState({
-                        gameOver: true,
-                        gameOverType: CheckResult().gameResult,
-                      });
-                      if (
-                        CheckResult().gameResult ===
-                        `${this.state.playerColor} mates`
-                      ) {
-                        this.handleVictory(auth);
-                      }
+                      this.handleWrongMove();
                     }
                   },
                   // select: (key) => {
@@ -878,7 +886,20 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           </div>
           <div className="temple-clock-buttons">
             <div className="temple-clock">
-              <ChessClock initialTime={this.state.playerClock} />
+              <ChessClock
+                ref={this.chessclockRef}
+                type="dec"
+                playerTurn={gameBoardTurn === this.state.playerColor}
+                turn={gameBoardTurn}
+                time={this.state.playerClock}
+                timePrime={this.state.playerDec}
+                playerTimeout={() => {
+                  this.setState({
+                    gameOver: true,
+                    gameOverType: 'player timed out',
+                  });
+                }}
+              />
             </div>
             <div className="temple-buttons">
               <Button

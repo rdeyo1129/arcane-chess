@@ -920,10 +920,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             <div className="player-time">
               <h3>
                 <ChessClock
+                  type="inc"
                   playerTurn={gameBoardTurn === this.state.playerColor}
                   turn={gameBoardTurn}
                   time={this.state.playerClock}
-                  inc={this.state.playerInc}
+                  timePrime={this.state.playerInc}
                   playerTimeout={() => {
                     this.setState({
                       gameOver: true,

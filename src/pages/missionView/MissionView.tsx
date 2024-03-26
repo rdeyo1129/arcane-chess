@@ -149,6 +149,7 @@ interface State {
   engineColor: string;
   thinking: boolean;
   thinkingTime: number;
+  engineDepth: number;
   history: string[];
   fenHistory: string[];
   pvLine?: string[];
@@ -205,9 +206,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      // todo, just make this an array of fenHistory, simplify state...
-      // todo make dyanamic
-      turn: GameBoard.side === 0 ? 'white' : 'black',
+      turn:
+        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
+          getLocalStorage(this.props.auth.user.id).nodeId
+        ].panels['panel-1'].fen.split(' ')[1] === 'w'
+          ? 'white'
+          : 'black',
       playerInc:
         getLocalStorage(this.props.auth.user.id).config.color === 'white'
           ? booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
@@ -248,7 +252,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       ],
       thinking: SearchController.thinking,
       engineLastMove: [],
-      thinkingTime: 1500,
+      thinkingTime: getLocalStorage(this.props.auth.user.id).config
+        .thinkingTime,
+      engineDepth: getLocalStorage(this.props.auth.user.id).config.depth,
       whiteFaction: 'normal',
       blackFaction: 'normal',
       selected: 'a',
@@ -314,7 +320,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     new Promise((resolve) => {
       setTimeout(() => {
         SearchController.thinking = BOOL.TRUE;
-        const engineResult = arcaneChess().engineReply(this.state.thinkingTime);
+        const engineResult = arcaneChess().engineReply(
+          this.state.thinkingTime,
+          this.state.engineDepth
+        );
         resolve(engineResult);
       }, this.state.thinkingTime);
     })

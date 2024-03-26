@@ -82,49 +82,6 @@ export default function arcaneChess(
   InitBoardVars();
   InitMvvLva();
 
-  // randomize();
-
-  // ParseFen(fen);
-
-  // generatePowers();
-
-  // GenerateMoves();
-
-  // should take care of herrings but what about stalemate?
-  // todo assign generate moves with herrings to a variable and check here
-  // if (validMoves().length === 0 && !InCheck()) {
-  //   GenerateMoves(false);
-  //   console.log(validGroundMoves());
-  // }
-
-  // PrintBoard();
-
-  // PerftTest(3);
-
-  // SearchPosition(fen);
-
-  // console.log(validGroundMoves());
-
-  // PrintPieceLists();
-  // CheckBoard();
-
-  // PrintMoveList();
-  // MakeMove(GameBoard.moveList[0]);
-  // PrintBoard();
-  // CheckBoard();
-
-  // TakeMove();
-  // PrintBoard();
-  // CheckBoard();
-
-  const activateDyad = (type) => {
-    console.log(type);
-  };
-
-  // const startCreate = (fen) => {
-  //   // ParseFen(fen);
-  // };
-
   // todo arcane for the three hint tiers
   const getScoreAndLine = (fen) => {
     // arcane param needed?
@@ -166,13 +123,6 @@ export default function arcaneChess(
 
     GenerateMoves(true, false, 'COMP', '');
 
-    // console.log(whiteConfig, blackConfig);
-
-    // console.log(GameBoard.whiteArcane);
-    // console.log(GameBoard.blackArcane);
-    // console.log(whiteArcaneConfig);
-    // console.log(blackArcaneConfig);
-
     // // should take care of herrings but what about stalemate?
     // // todo assign generate moves with herrings to a variable and check here
     // if (validMoves().length === 0 && !InCheck()) {
@@ -180,13 +130,6 @@ export default function arcaneChess(
     //   console.log(validGroundMoves());
     // }
 
-    // PrintBoard();
-
-    // PrintSqAttacked();
-
-    // PrintMoveList();
-
-    // PerftTest(3, fen);
     // SearchPosition(fen);
   };
 
@@ -223,13 +166,8 @@ export default function arcaneChess(
     ) => {
       return MakeUserMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
     },
-    engineReply: (thinkingTime) => {
-      return engineMove(thinkingTime);
-      // return new Promise((resolve) => {
-      //   setTimeout(function () {
-      //     resolve(engineMove());
-      //   }, 200);
-      // });
+    engineReply: (thinkingTime, depth = 3) => {
+      return engineMove(thinkingTime, depth);
     },
     addRoyalty: (type, sq, turns) => {
       GameBoard[type] = { [prettyToSquare(sq)]: turns };

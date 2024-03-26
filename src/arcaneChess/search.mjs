@@ -410,9 +410,7 @@ export function SearchPosition() {
 
   for (
     currentDepth = 1;
-    // currentDepth <= SearchController.depth;
-    // depth here
-    currentDepth <= 3;
+    currentDepth <= SearchController.depth;
     currentDepth++
   ) {
     Score = AlphaBeta(-INFINITE, INFINITE, currentDepth);

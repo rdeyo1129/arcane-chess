@@ -42,6 +42,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         multiplier: 600,
         color: 'white',
         thinkingTime: 1,
+        depth: 1,
         clock: false,
         blunderVision: false,
         threatVision: false,
@@ -128,9 +129,24 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} // or to depth x?
                     onChange={(val) =>
                       this.updateConfig(
-                        val,
+                        Number(val),
                         'thinkingTime',
                         (-this.state.config.thinkingTime * 100 +
+                          Number(val) * 100) as number
+                      )
+                    }
+                  />
+                </div>
+                <div className="settings-block">
+                  <Select
+                    title="Depth"
+                    type="number"
+                    options={[1, 2, 3, 4, 5, 6, 7, 8]}
+                    onChange={(val) =>
+                      this.updateConfig(
+                        Number(val),
+                        'depth',
+                        (-this.state.config.depth * 100 +
                           Number(val) * 100) as number
                       )
                     }

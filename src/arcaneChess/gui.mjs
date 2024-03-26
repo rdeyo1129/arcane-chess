@@ -293,25 +293,13 @@ export function CheckAndSet(preset = '') {
   }
 }
 
-// function PreSearch() {
-//   if (GameController.GameOver == BOOL.FALSE) {
-//     SearchController.thinking = BOOL.TRUE;
-//   }
-// }
-
-export function engineMove(thinkingTime) {
-  // SearchController.thinking = BOOL.TRUE;
-  SearchController.depth = MAXDEPTH;
-  // var t = $.now();
-  // var tt = $('#ThinkTimeChoice').val();
-
+export function engineMove(thinkingTime, depth) {
   // generatePowers();
   // GenerateMoves();
-
+  SearchController.depth = depth;
   SearchController.time = thinkingTime;
   const { bestMove, bestScore, line } = SearchPosition();
   MakeMove(bestMove);
   CheckAndSet();
-  // PrintMoveList();
   return bestMove;
 }

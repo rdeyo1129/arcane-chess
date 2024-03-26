@@ -436,7 +436,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               YOU HAVE DEFEATED THE BOSS. CHAPTER END. YOUR SCORE:{' '}
               {
                 getLocalStorage(this.props.auth.user.id).auth.user.campaign
-                  .topScores[
+                  ?.topScores[
                   getLocalStorage(this.props.auth.user.id).chapter - 1
                 ]
               }

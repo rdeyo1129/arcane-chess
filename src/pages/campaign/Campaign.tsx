@@ -69,7 +69,7 @@ export class UnwrappedCampaign extends React.Component<
         </Link>
         <div className="book-grid">
           {this.state.books.map((book, i) => {
-            const isUnlocked = campaign.topScores[i - 1] || i === 0;
+            const isUnlocked = campaign?.topScores[i - 1] || i === 0;
             const isInProgress = this.state.chapter === i + 1;
             return (
               <Button

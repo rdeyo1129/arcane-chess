@@ -27,6 +27,7 @@ interface AuthState {
 interface UserData {
   username: string;
   password: string;
+  guest: boolean;
 }
 
 interface RootState {
@@ -90,12 +91,13 @@ const UnwrappedLogin: React.FC = () => {
     const userData: UserData = {
       username,
       password,
+      guest,
     };
 
     const testUser: UserData = {
-      username: 'test_user',
-      // username: `guest_user_${Math.random().toString(36).substring(2)}`,
+      username: `user_${Math.random().toString(36).substring(2)}`,
       password: '123456',
+      guest: true,
     };
 
     dispatch(loginUser(guest ? testUser : userData, navigate));
@@ -133,15 +135,15 @@ const UnwrappedLogin: React.FC = () => {
               />
             </div>
             <div className="top-buttons">
-              <div style={{ height: '44px' }}></div>
-              {/* <Button
+              {/* <div style={{ height: '44px' }}></div> */}
+              <Button
                 className="secondary"
                 text={'GUEST'}
                 color={'Y'}
                 width={140}
                 onClick={(e) => onSubmitLogin(e, true)}
                 styles={{ margin: '2px' }}
-              /> */}
+              />
               <Button
                 className="primary"
                 text={'LOGIN'}

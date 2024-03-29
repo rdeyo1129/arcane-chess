@@ -861,7 +861,7 @@ export function GenerateMoves(
 
   if (generateSummons !== '' && !herrings.length) {
     const royaltyIndexes = [14, 15, 16, 17, 18, 34, 35, 36, 37, 38];
-    if (userSummonPceRty !== '') {
+    if (userSummonPceRty !== '' || generateSummons !== 'PLAYER') {
       while (summonPce !== 0) {
         for (let sq = 21; sq <= 98; sq++) {
           if (SQOFFBOARD(sq) === BOOL.TRUE || herrings.length || capturesOnly) {
@@ -915,7 +915,7 @@ export function GenerateMoves(
                   generateSummons !== 'PLAYER') &&
                 summonFlag >= 16384 &&
                 summonFlag ===
-                  POWERBIT[`sumnR${RtyChar.split('')[summonIndex - 14]}`] &&
+                  POWERBIT[`sumnR${RtyChar.split('')[summonPce]}`] &&
                 summonFlag & GameBoard.whiteArcane[3]
               ) {
                 addSummonMove(MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN));
@@ -949,7 +949,7 @@ export function GenerateMoves(
                   generateSummons !== 'PLAYER') &&
                 summonFlag >= 16384 &&
                 summonFlag ===
-                  POWERBIT[`sumnR${RtyChar.split('')[summonIndex - 14]}`] &&
+                  POWERBIT[`sumnR${RtyChar.split('')[summonPce]}`] &&
                 summonFlag & GameBoard.blackArcane[3]
               ) {
                 addSummonMove(MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN));

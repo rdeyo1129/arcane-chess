@@ -18,7 +18,6 @@ import {
   COLOURS,
   PIECES,
   Kings,
-  PceChar,
 } from './defs';
 import { PrMove, PrSq, ParseMove, PrintMoveList } from './io';
 import {

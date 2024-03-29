@@ -256,7 +256,7 @@ export function ParseMove(
   royaltyEpsilon = PIECES.EMPTY
 ) {
   generatePowers();
-  GenerateMoves(true, false, 'COMP', swapType, royaltyEpsilon);
+  GenerateMoves(true, false, 'COMP', swapType, pieceEpsilon);
 
   let Move = NOMOVE;
   let PromPce = PIECES.EMPTY;
@@ -269,9 +269,10 @@ export function ParseMove(
   ) {
     Move = GameBoard.moveList[index];
     if (
-      (FROMSQ(Move) === prettyToSquare(from) &&
-        TOSQ(Move) === prettyToSquare(to)) ||
-      (from === null && TOSQ(Move) === prettyToSquare(to))
+      (from === 0 && TOSQ(Move) === prettyToSquare(to)) ||
+      (from !== 0 &&
+        FROMSQ(Move) === prettyToSquare(from) &&
+        TOSQ(Move) === prettyToSquare(to))
     ) {
       PromPce = PROMOTED(Move);
       if (Move & MFLAGSWAP && swapType !== '') {

@@ -526,11 +526,6 @@ export const generatePowers = () => {
 
     GameBoard.whiteArcane = powerBits;
 
-    // console.log(GameBoard.whiteArcane);
-    // console.log(GameBoard.blackArcane);
-    // console.log(whiteArcaneConfig);
-    // console.log(blackArcaneConfig);
-
     return powerBits;
   } else {
     let powerBits = [0, 0, 0, 0, 0];
@@ -556,11 +551,6 @@ export const generatePowers = () => {
     powerBits[4] |= powerTypes.mods;
 
     GameBoard.blackArcane = powerBits;
-
-    // console.log(GameBoard.whiteArcane);
-    // console.log(GameBoard.blackArcane);
-    // console.log(whiteArcaneConfig);
-    // console.log(blackArcaneConfig);
 
     return powerBits;
   }
@@ -911,8 +901,13 @@ export function GenerateMoves(
                 GameBoard.whiteArcane[3] & summonFlag
               ) {
                 addSummonMove(
-                  MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
-                  summonPce
+                  MOVE(
+                    0,
+                    sq,
+                    PIECES.EMPTY,
+                    userSummonPceRty === '' ? summonPce : userSummonPceRty,
+                    MFLAGSUMN
+                  )
                 );
               } else if (
                 ((summonPce === ARCANE_BIT_VALUES[userSummonPceRty] &&
@@ -923,10 +918,7 @@ export function GenerateMoves(
                   POWERBIT[`sumnR${RtyChar.split('')[summonIndex - 14]}`] &&
                 summonFlag & GameBoard.whiteArcane[3]
               ) {
-                addSummonMove(
-                  MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
-                  summonPce
-                );
+                addSummonMove(MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN));
               } else {
                 continue;
               }
@@ -943,8 +935,13 @@ export function GenerateMoves(
                 GameBoard.blackArcane[3] & summonFlag
               ) {
                 addSummonMove(
-                  MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN),
-                  summonPce
+                  MOVE(
+                    0,
+                    sq,
+                    PIECES.EMPTY,
+                    userSummonPceRty === '' ? summonPce : userSummonPceRty,
+                    MFLAGSUMN
+                  )
                 );
               } else if (
                 ((summonPce === ARCANE_BIT_VALUES[userSummonPceRty] &&
@@ -955,10 +952,7 @@ export function GenerateMoves(
                   POWERBIT[`sumnR${RtyChar.split('')[summonIndex - 14]}`] &&
                 summonFlag & GameBoard.blackArcane[3]
               ) {
-                addSummonMove(
-                  MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN),
-                  summonPce
-                );
+                addSummonMove(MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN));
               } else {
                 continue;
               }

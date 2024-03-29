@@ -252,8 +252,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       ],
       thinking: SearchController.thinking,
       engineLastMove: [],
-      thinkingTime: getLocalStorage(this.props.auth.user.id).config
-        .thinkingTime,
+      thinkingTime:
+        getLocalStorage(this.props.auth.user.id).config.thinkingTime * 1000,
       engineDepth: getLocalStorage(this.props.auth.user.id).config.depth,
       whiteFaction: 'normal',
       blackFaction: 'normal',
@@ -278,7 +278,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       placingPiece: 0,
       swapType: '',
       placingRoyalty: 0,
-      selectedSide: 'w',
+      selectedSide: 'W',
       hoverArcane: '',
       royalties:
         booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
@@ -313,9 +313,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     });
 
     // generatePowers();
-    // GenerateMoves();
+    // GenerateMoves(true, false, 'COMP');
 
-    // PrintMoveList();
+    PrintMoveList();
 
     new Promise((resolve) => {
       setTimeout(() => {
@@ -552,7 +552,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 <Button
                   className="tertiary"
                   onClick={() => {
-                    this.setState({ selectedSide: 'w' });
+                    this.setState({ selectedSide: 'W' });
                   }}
                   backgroundColorOverride="#333333"
                   color="B"
@@ -562,7 +562,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 <Button
                   className="tertiary"
                   onClick={() => {
-                    this.setState({ selectedSide: 'b' });
+                    this.setState({ selectedSide: 'B' });
                   }}
                   backgroundColorOverride="#333333"
                   color="B"
@@ -573,7 +573,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               </div>
               <div className="arcana-select">
                 {_.map(
-                  this.state.selectedSide === 'w'
+                  this.state.selectedSide === 'W'
                     ? this.state.wArcana
                     : this.state.bArcana,
                   (value: number, key: string) => {
@@ -734,7 +734,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
                     ) {
                       const parsed = this.arcaneChess().makeUserMove(
-                        null,
+                        0,
                         key,
                         this.state.placingPiece,
                         '',
@@ -783,7 +783,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 RtyChar.split('')[this.state.placingRoyalty]
                               }`
                             ],
-                            [key]: 6,
+                            // todo royalty time limit
+                            [key]: 8,
                           },
                         },
                         placingRoyalty: 0,

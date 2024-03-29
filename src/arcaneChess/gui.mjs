@@ -18,6 +18,7 @@ import {
   COLOURS,
   PIECES,
   Kings,
+  PceChar,
 } from './defs';
 import { PrMove, PrSq, ParseMove, PrintMoveList } from './io';
 import {
@@ -126,30 +127,19 @@ export function MakeUserMove(
   swapType = '',
   royaltyEpsilon = PIECES.EMPTY
 ) {
-  console.log(
-    'User Move:' + PrSq(prettyToSquare(orig)) + PrSq(prettyToSquare(dest))
+  var parsed = ParseMove(
+    orig,
+    dest,
+    pieceEpsilon,
+    swapType,
+    royaltyEpsilon,
+    true
   );
-  var parsed = ParseMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
   MakeMove(parsed);
 
   CheckAndSet();
 
   return parsed;
-
-  // if (parsed !== NOMOVE) {
-  //   // PrintBoard();
-  //   // MoveGUIPiece(parfsed);
-  //   // setTimeout(function () {
-  //   //   return engineMove();
-  //   // }, 200);
-  // }
-
-  // DeSelectSq(UserMove.from);
-  // DeSelectSq(UserMove.to);
-
-  // UserMove.from = SQUARES.NO_SQ;
-  // UserMove.to = SQUARES.NO_SQ;
-  // }
 }
 
 export function DrawMaterial() {
@@ -295,7 +285,7 @@ export function CheckAndSet(preset = '') {
 
 export function engineMove(thinkingTime, depth) {
   // generatePowers();
-  // GenerateMoves();
+  // GenerateMoves(true, false, 'COMP');
   SearchController.depth = depth;
   SearchController.time = thinkingTime;
   const { bestMove, bestScore, line } = SearchPosition();

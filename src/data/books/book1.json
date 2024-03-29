@@ -130,7 +130,7 @@
     "id": "mission-1",
     "title": "Example Title",
     "time": [
-      [5, 3],
+      [100, 3],
       [5, 1]
     ],
     "nodeText": "First Description",
@@ -139,13 +139,13 @@
     "opponent": "",
     "panels": {
       "panel-1": {
-        "fen": "4k3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1",
-        "fenHistory": ["4k3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1"],
+        "fen": "4k3/3pp3/8/8/8/8/2PPPP2/4K2b w - - 0 1",
+        "fenHistory": ["4k3/3pp3/8/8/8/8/2PPPP2/4K2b w - - 0 1"],
         "history": [],
         "panelText": "Panel Description ;soihgasog1",
         "arrowsCircles": [],
         "royalties": {
-          "royaltyQ": { "e2": 4 },
+          "royaltyQ": {},
           "royaltyT": {},
           "royaltyM": {},
           "royaltyV": {},
@@ -155,13 +155,15 @@
         "whiteArcane": {
           "shftP": 2,
           "shftB": 2,
-          "sumnRM": 1,
+          "sumnM": 1,
+          "sumnRM": 2,
+          "sumnRE": 2,
           "swapADJ": 1,
           "sumnB": 1
         },
         "blackArcane": {
           "shftB": 2,
-          "sumnRM": 1,
+          "sumnRQ": 1,
           "swapADJ": 1,
           "sumnB": 1
         },

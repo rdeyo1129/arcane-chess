@@ -155,18 +155,9 @@
         "whiteArcane": {
           "shftP": 2,
           "shftB": 2,
-          "sumnM": 1,
-          "sumnRM": 2,
-          "sumnRE": 2,
-          "swapADJ": 1,
-          "sumnB": 1
+          "sumnRQ": 1
         },
-        "blackArcane": {
-          "shftB": 2,
-          "sumnRQ": 1,
-          "swapADJ": 1,
-          "sumnB": 1
-        },
+        "blackArcane": {},
         "config": {},
         "correctMoves": [],
         "viewOnly": false,
@@ -175,5 +166,44 @@
       }
     },
     "missionType": "NORMAL / VARIANT / UYA"
+  },
+  "mission-2": {
+    "id": "mission-2",
+    "title": "Example Title",
+    "time": [
+      [100, 3],
+      [5, 1]
+    ],
+    "nodeText": "First Description",
+    "panelText": "Second Description",
+    "reward": [500, "a", "b", "c"],
+    "prereq": "Some prerequisite",
+    "opponent": "",
+    "panels": {
+      "panel-1": {
+        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Panel Description ;soihgasog1",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white",
+        "boss": false
+      }
+    }
   }
 }

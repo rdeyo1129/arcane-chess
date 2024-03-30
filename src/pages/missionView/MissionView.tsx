@@ -315,7 +315,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     // generatePowers();
     // GenerateMoves(true, false, 'COMP');
 
-    PrintMoveList();
+    // PrintMoveList();
 
     new Promise((resolve) => {
       setTimeout(() => {

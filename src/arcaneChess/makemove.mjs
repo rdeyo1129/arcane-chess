@@ -464,7 +464,6 @@ export function TakeMove() {
     }
   }
   if (ARCANEFLAG(move) && move & MFLAGSHFT) {
-    // console.log('shfting???', PrMove(move));
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[
         `shft${PceChar.split('')[GameBoard.pieces[to]].toUpperCase()}`

@@ -443,13 +443,7 @@ export function AddWhitePawnQuietMove(from, to, flag, capturesOnly) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wW, flag), capturesOnly);
   } else {
     AddQuietMove(
-      MOVE(
-        from,
-        to,
-        PIECES.EMPTY,
-        flag === MFLAGSHFT ? PIECES.wP : PIECES.EMPTY,
-        flag
-      ),
+      MOVE(from, to, PIECES.EMPTY, PIECES.EMPTY, flag),
       capturesOnly
     );
   }
@@ -481,13 +475,7 @@ export function AddBlackPawnQuietMove(from, to, flag, capturesOnly) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bW, flag), capturesOnly);
   } else {
     AddQuietMove(
-      MOVE(
-        from,
-        to,
-        PIECES.EMPTY,
-        flag === MFLAGSHFT ? PIECES.bP : PIECES.EMPTY,
-        flag
-      ),
+      MOVE(from, to, PIECES.EMPTY, PIECES.EMPTY, flag),
       capturesOnly
     );
   }

@@ -32,8 +32,10 @@ import {
   PrintBoard,
   PrintPieceLists,
   InCheck,
+  TOSQ,
+  PROMOTED,
 } from '../../arcaneChess/board.mjs';
-import { PrMove, PrintMoveList } from 'src/arcaneChess/io.mjs';
+import { PrMove, PrintMoveList, PrSq } from 'src/arcaneChess/io.mjs';
 import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
 import {
   prettyToSquare,
@@ -47,6 +49,11 @@ import {
 import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
 import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
+
+import {
+  whiteArcaneConfig,
+  blackArcaneConfig,
+} from 'src/arcaneChess/arcaneDefs.mjs';
 
 import Button from '../../components/Button/Button';
 import ChessClock from '../../components/Clock/Clock';
@@ -123,8 +130,8 @@ interface Node {
         [key: string]: { [key: string]: number };
       };
       preset: string;
-      whiteArcane?: { [key: string]: number };
-      blackArcane?: { [key: string]: number };
+      whiteArcane?: { [key: string]: number | string };
+      blackArcane?: { [key: string]: number | string };
       // orientation: string;
       config: {
         [key: string]: boolean | string | number;
@@ -171,19 +178,23 @@ interface State {
   };
   gameOver: boolean;
   gameOverType: string;
-  wArcana: {
-    [key in `${'w'}Arcana` | string]: number;
-  };
-  bArcana: {
-    [key in `${'b'}Arcana` | string]: number;
-  };
+  wArcana:
+    | {
+        [key in `${'w'}Arcana` | string]: number | string;
+      }
+    | object;
+  bArcana:
+    | {
+        [key in `${'b'}Arcana` | string]: number | string;
+      }
+    | object;
   placingPiece: number;
   swapType: string;
   placingRoyalty: number;
   selectedSide: string;
   hoverArcane: string;
   royalties: {
-    [key: string]: { [key: string]: number };
+    [key: string]: { [key: string]: number | undefined };
   };
   lastMove: string[];
   orientation: string;
@@ -267,14 +278,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         e: { disabled: false, powers: {}, picks: 0 },
         f: { disabled: false, powers: {}, picks: 0 },
       },
-      wArcana:
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ].panels['panel-1'].whiteArcane || {},
-      bArcana:
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ].panels['panel-1'].blackArcane || {},
+      wArcana: {},
+      bArcana: {},
       placingPiece: 0,
       swapType: '',
       placingRoyalty: 0,
@@ -307,6 +312,18 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.setState({ hoverArcane: arcane });
   };
 
+  transformedPositions = (royaltyType: State['royalties']) =>
+    _.reduce(
+      royaltyType,
+      (acc, value, key) => {
+        if (typeof value === 'number') {
+          acc[PrSq(Number(key))] = value;
+        }
+        return acc;
+      },
+      {} as Record<string, number>
+    );
+
   engineGo = () => {
     this.setState({
       thinking: true,
@@ -329,13 +346,57 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     })
       .then((reply) => {
         this.setState(
-          (prevState) => ({
-            pvLine: GameBoard.cleanPV,
-            history: [...prevState.history, PrMove(reply)],
-            fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-            thinking: false,
-            turn: prevState.turn === 'white' ? 'black' : 'white',
-          }),
+          (prevState) => {
+            const setEngineRoyalty =
+              PrSq(TOSQ(reply)).split('@').length > 1
+                ? {
+                    [`royalty${PrMove(reply)[1]}`]: {
+                      ...prevState.royalties[`royalty${PrMove(reply)[1]}`],
+                      [PrSq(TOSQ(reply))]: 8,
+                    },
+                  }
+                : {};
+            return {
+              ...prevState,
+              pvLine: GameBoard.cleanPV,
+              history: [...prevState.history, PrMove(reply)],
+              fenHistory: [
+                ...prevState.fenHistory,
+                outputFenOfCurrentPosition(),
+              ],
+              thinking: false,
+              turn: prevState.turn === 'white' ? 'black' : 'white',
+              royalties: {
+                ...prevState.royalties,
+                royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
+                  return typeof value === 'undefined' || value <= 0
+                    ? value
+                    : value - 1;
+                }),
+                royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
+                  return typeof value === 'undefined' || value <= 0
+                    ? value
+                    : value - 1;
+                }),
+                royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
+                  return typeof value === 'undefined' || value <= 0
+                    ? value
+                    : value - 1;
+                }),
+                royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
+                  return typeof value === 'undefined' || value <= 0
+                    ? value
+                    : value - 1;
+                }),
+                royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
+                  return typeof value === 'undefined' || value <= 0
+                    ? value
+                    : value - 1;
+                }),
+                ...setEngineRoyalty,
+              },
+            };
+          },
           () => {
             if (CheckAndSet(this.state.preset)) {
               this.setState({
@@ -476,21 +537,36 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    this.setState({
-      turn: 'white',
-    });
     if (!this.hasMounted) {
       this.hasMounted = true;
       this.arcaneChess().startGame(
         this.state.fen,
-        this.state.wArcana,
-        this.state.bArcana,
+        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
+          getLocalStorage(this.props.auth.user.id).nodeId
+        ].panels['panel-1'].whiteArcane,
+        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
+          getLocalStorage(this.props.auth.user.id).nodeId
+        ].panels['panel-1'].blackArcane,
         this.state.royalties
         // this.state.preset
       );
-      if (this.state.engineColor === this.state.turn) {
-        this.engineGo();
-      }
+
+      this.setState(
+        {
+          turn: GameBoard.side === 0 ? 'white' : 'black',
+          wArcana: {
+            ...whiteArcaneConfig,
+          },
+          bArcana: {
+            ...blackArcaneConfig,
+          },
+        },
+        () => {
+          if (this.state.engineColor === this.state.turn) {
+            this.engineGo();
+          }
+        }
+      );
     }
   }
 
@@ -574,9 +650,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               <div className="arcana-select">
                 {_.map(
                   this.state.selectedSide === 'W'
-                    ? this.state.wArcana
-                    : this.state.bArcana,
+                    ? whiteArcaneConfig
+                    : blackArcaneConfig,
                   (value: number, key: string) => {
+                    if (value === null || value <= 0) return;
                     return (
                       <img
                         key={key}
@@ -659,7 +736,33 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 resizable={true}
                 wFaction={this.state.whiteFaction}
                 bFaction={this.state.blackFaction}
-                royalties={this.state.royalties}
+                royalties={{
+                  royaltyQ: {
+                    ...this.transformedPositions(
+                      GameBoard.royaltyQ as State['royalties']
+                    ),
+                  },
+                  royaltyT: {
+                    ...this.transformedPositions(
+                      GameBoard.royaltyT as State['royalties']
+                    ),
+                  },
+                  royaltyM: {
+                    ...this.transformedPositions(
+                      GameBoard.royaltyM as State['royalties']
+                    ),
+                  },
+                  royaltyV: {
+                    ...this.transformedPositions(
+                      GameBoard.royaltyV as State['royalties']
+                    ),
+                  },
+                  royaltyE: {
+                    ...this.transformedPositions(
+                      GameBoard.royaltyE as State['royalties']
+                    ),
+                  },
+                }}
                 // wVisible={this.state.wVisCount === 0}
                 // bVisible={this.state.bVisCount === 0}
                 premovable={{
@@ -775,6 +878,26 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         ...prevState,
                         royalties: {
                           ...prevState.royalties,
+                          royaltyQ: {
+                            ...prevState.royalties.royaltyQ,
+                            [key]: undefined,
+                          },
+                          royaltyT: {
+                            ...prevState.royalties.royaltyT,
+                            [key]: undefined,
+                          },
+                          royaltyM: {
+                            ...prevState.royalties.royaltyM,
+                            [key]: undefined,
+                          },
+                          royaltyV: {
+                            ...prevState.royalties.royaltyV,
+                            [key]: undefined,
+                          },
+                          royaltyE: {
+                            ...prevState.royalties.royaltyE,
+                            [key]: undefined,
+                          },
                           [`royalty${
                             RtyChar.split('')[this.state.placingRoyalty]
                           }`]: {
@@ -783,7 +906,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 RtyChar.split('')[this.state.placingRoyalty]
                               }`
                             ],
-                            // todo royalty time limit
                             [key]: 8,
                           },
                         },
@@ -820,23 +942,43 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         royalties: {
                           royaltyQ: _.mapValues(
                             prevState.royalties.royaltyQ,
-                            (value) => value - 1
+                            (value) => {
+                              return typeof value === 'undefined' || value <= 0
+                                ? value
+                                : value - 1;
+                            }
                           ),
                           royaltyT: _.mapValues(
                             prevState.royalties.royaltyT,
-                            (value) => value - 1
+                            (value) => {
+                              return typeof value === 'undefined' || value <= 0
+                                ? value
+                                : value - 1;
+                            }
                           ),
                           royaltyM: _.mapValues(
                             prevState.royalties.royaltyM,
-                            (value) => value - 1
+                            (value) => {
+                              return typeof value === 'undefined' || value <= 0
+                                ? value
+                                : value - 1;
+                            }
                           ),
                           royaltyV: _.mapValues(
                             prevState.royalties.royaltyV,
-                            (value) => value - 1
+                            (value) => {
+                              return typeof value === 'undefined' || value <= 0
+                                ? value
+                                : value - 1;
+                            }
                           ),
                           royaltyE: _.mapValues(
                             prevState.royalties.royaltyE,
-                            (value) => value - 1
+                            (value) => {
+                              return typeof value === 'undefined' || value <= 0
+                                ? value
+                                : value - 1;
+                            }
                           ),
                         },
                       }),
@@ -889,8 +1031,27 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               outputFenOfCurrentPosition(),
                             ],
                             royalties: {
-                              // todo remove old keys
                               ...prevState.royalties,
+                              royaltyQ: {
+                                ...prevState.royalties[royalties.royaltyQ],
+                                [key]: undefined,
+                              },
+                              royaltyT: {
+                                ...prevState.royalties[royalties.royaltyT],
+                                [key]: undefined,
+                              },
+                              royaltyM: {
+                                ...prevState.royalties[royalties.royaltyM],
+                                [key]: undefined,
+                              },
+                              royaltyV: {
+                                ...prevState.royalties[royalties.royaltyV],
+                                [key]: undefined,
+                              },
+                              royaltyE: {
+                                ...prevState.royalties[royalties.royaltyE],
+                                [key]: undefined,
+                              },
                               [`royalty${char}`]: {
                                 ...prevState.royalties[`royalty${char}`],
                                 [key]: 8,

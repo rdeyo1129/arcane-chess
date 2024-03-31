@@ -39,8 +39,6 @@ import { ARCANEFLAG, PrintBoard, SideText } from './board.mjs';
 import { PrMove, PrintMoveList } from './io';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
-const royaltyMap = ['Q', 'T', 'M', 'V', 'E'];
-
 export function ClearPiece(sq, summon = false) {
   let pce = GameBoard.pieces[sq];
   let col = PieceCol[pce];
@@ -189,19 +187,29 @@ export function MakeMove(move) {
   GameBoard.suspend -= 1;
 
   _.forEach(GameBoard.royaltyQ, (value, key) => {
-    GameBoard.royaltyQ[key] -= 1;
+    value === undefined || value <= 0
+      ? GameBoard.royaltyQ[key]
+      : (GameBoard.royaltyQ[key] -= 1);
   });
   _.forEach(GameBoard.royaltyT, (value, key) => {
-    GameBoard.royaltyT[key] -= 1;
+    value === undefined || value <= 0
+      ? GameBoard.royaltyT[key]
+      : (GameBoard.royaltyT[key] -= 1);
   });
   _.forEach(GameBoard.royaltyM, (value, key) => {
-    GameBoard.royaltyM[key] -= 1;
+    value === undefined || value <= 0
+      ? GameBoard.royaltyM[key]
+      : (GameBoard.royaltyM[key] -= 1);
   });
   _.forEach(GameBoard.royaltyV, (value, key) => {
-    GameBoard.royaltyV[key] -= 1;
+    value === undefined || value <= 0
+      ? GameBoard.royaltyV[key]
+      : (GameBoard.royaltyV[key] -= 1);
   });
   _.forEach(GameBoard.royaltyE, (value, key) => {
-    GameBoard.royaltyE[key] -= 1;
+    value === undefined || value <= 0
+      ? GameBoard.royaltyE[key]
+      : (GameBoard.royaltyE[key] -= 1);
   });
 
   if (GameBoard.pass) {
@@ -312,26 +320,35 @@ export function MakeMove(move) {
     AddPiece(to, pieceEpsilon);
   } else if (move & MFLAGSUMN) {
     if (captured > 0) {
-      GameBoard[`royalty${RtyChar.split('')[captured]}`][to] = 8;
-    } else {
+      if (
+        GameBoard[`royalty${RtyChar.split('')[captured]}`][to] === undefined ||
+        GameBoard[`royalty${RtyChar.split('')[captured]}`][to] <= 0
+      ) {
+        GameBoard[`royalty${RtyChar.split('')[captured]}`][to] = 8;
+      }
+    } else if (pieceEpsilon > 0) {
       AddPiece(to, pieceEpsilon, true);
     }
     if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig[
-        `sumn${captured > 0 ? 'R' : ''}${
-          captured > 0
-            ? royaltyMap[captured - 1]
-            : PceChar.split('')[pieceEpsilon].toUpperCase()
-        }`
-      ] -= 1;
+      if (pieceEpsilon > 0 || captured > 0) {
+        whiteArcaneConfig[
+          `sumn${captured > 0 ? 'R' : ''}${
+            captured > 0
+              ? RtyChar.split('')[captured]
+              : PceChar.split('')[pieceEpsilon].toUpperCase()
+          }`
+        ] -= 1;
+      }
     } else {
-      blackArcaneConfig[
-        `sumn${captured > 0 ? 'R' : ''}${
-          captured > 0
-            ? royaltyMap[captured - 1]
-            : PceChar.split('')[pieceEpsilon].toUpperCase()
-        }`
-      ] -= 1;
+      if (pieceEpsilon > 0 || captured > 0) {
+        blackArcaneConfig[
+          `sumn${captured > 0 ? 'R' : ''}${
+            captured > 0
+              ? RtyChar.split('')[captured]
+              : PceChar.split('')[pieceEpsilon].toUpperCase()
+          }`
+        ] -= 1;
+      }
     }
   } else if (move & MFLAGSWAP) {
     ClearPiece(to);
@@ -433,19 +450,29 @@ export function TakeMove() {
   GameBoard.suspend += 1;
 
   _.forEach(GameBoard.royaltyQ, (value, key) => {
-    GameBoard.royaltyQ[key] += 1;
+    value === undefined || value <= 0
+      ? GameBoard.royaltyQ[key]
+      : (GameBoard.royaltyQ[key] += 1);
   });
   _.forEach(GameBoard.royaltyT, (value, key) => {
-    GameBoard.royaltyT[key] += 1;
+    value === undefined || value <= 0
+      ? GameBoard.royaltyT[key]
+      : (GameBoard.royaltyT[key] += 1);
   });
   _.forEach(GameBoard.royaltyM, (value, key) => {
-    GameBoard.royaltyM[key] += 1;
+    value === undefined || value <= 0
+      ? GameBoard.royaltyM[key]
+      : (GameBoard.royaltyM[key] += 1);
   });
   _.forEach(GameBoard.royaltyV, (value, key) => {
-    GameBoard.royaltyV[key] += 1;
+    value === undefined || value <= 0
+      ? GameBoard.royaltyV[key]
+      : (GameBoard.royaltyV[key] += 1);
   });
   _.forEach(GameBoard.royaltyE, (value, key) => {
-    GameBoard.royaltyE[key] += 1;
+    value === undefined || value <= 0
+      ? GameBoard.royaltyE[key]
+      : (GameBoard.royaltyE[key] += 1);
   });
 
   if (GameBoard.dyad === 0) {
@@ -551,26 +578,32 @@ export function TakeMove() {
     );
   } else if (move & MFLAGSUMN) {
     if (captured > 0) {
-      GameBoard[`royalty${royaltyMap[captured - 1]}`][to] = -500;
-    } else {
+      if (GameBoard[`royalty${RtyChar.split('')[captured]}`][to] === 9) {
+        GameBoard[`royalty${RtyChar.split('')[captured]}`][to] = 0;
+      }
+    } else if (pieceEpsilon > 0) {
       ClearPiece(to, true);
     }
     if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig[
-        `sumn${captured > 0 ? 'R' : ''}${
-          captured > 0
-            ? royaltyMap[captured - 1]
-            : PceChar.split('')[pieceEpsilon].toUpperCase()
-        }`
-      ] += 1;
+      if (pieceEpsilon > 0 || captured > 0) {
+        whiteArcaneConfig[
+          `sumn${captured > 0 ? 'R' : ''}${
+            captured > 0
+              ? RtyChar.split('')[captured]
+              : PceChar.split('')[pieceEpsilon].toUpperCase()
+          }`
+        ] += 1;
+      }
     } else {
-      blackArcaneConfig[
-        `sumn${captured > 0 ? 'R' : ''}${
-          captured > 0
-            ? royaltyMap[captured - 1]
-            : PceChar.split('')[pieceEpsilon].toUpperCase()
-        }`
-      ] += 1;
+      if (pieceEpsilon > 0 || captured > 0) {
+        blackArcaneConfig[
+          `sumn${captured > 0 ? 'R' : ''}${
+            captured > 0
+              ? RtyChar.split('')[captured]
+              : PceChar.split('')[pieceEpsilon].toUpperCase()
+          }`
+        ] += 1;
+      }
     }
   } else if (move & MFLAGSWAP) {
     const swapType = PROMOTED(move);

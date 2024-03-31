@@ -139,8 +139,8 @@
     "opponent": "",
     "panels": {
       "panel-1": {
-        "fen": "4k3/3pp3/8/8/8/8/2PPPP2/4K2b w - - 0 1",
-        "fenHistory": ["4k3/3pp3/8/8/8/8/2PPPP2/4K2b w - - 0 1"],
+        "fen": "5k2/8/8/8/4b3/2R5/3P1B2/3K4 w - - 0 1",
+        "fenHistory": ["5k2/8/8/8/4b3/2R5/3P1B2/3K4 w - - 0 1"],
         "history": [],
         "panelText": "Panel Description ;soihgasog1",
         "arrowsCircles": [],
@@ -153,9 +153,11 @@
         },
         "preset": "capAllPieces",
         "whiteArcane": {
+          "sumnB": 2,
           "shftP": 2,
-          "shftB": 2,
-          "sumnRQ": 1
+          "sumnRE": 3,
+          "sumnRQ": 3,
+          "swapADJ": 1
         },
         "blackArcane": {},
         "config": {},

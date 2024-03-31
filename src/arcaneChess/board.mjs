@@ -31,6 +31,7 @@ import {
   KnDir,
   VaDir,
   SpDir,
+  WrDir,
   HrDir,
   ZeDir,
   UnDir,
@@ -39,6 +40,7 @@ import {
   PieceVanguard,
   PieceHerring,
   PieceSpectre,
+  PieceWraith,
   PceChar,
   FileChar,
   RankChar,
@@ -956,6 +958,34 @@ export function SqAttacked(sq, side) {
       PieceUnicorn[pce] === BOOL.TRUE &&
       !overridePresent(sq + UnDir[index]) &&
       !(GameBoard.royaltyE[sq + UnDir[index]] > 0)
+    ) {
+      return BOOL.TRUE;
+    }
+  }
+
+  // Spectre
+  for (index = 0; index < 12; index++) {
+    pce = GameBoard.pieces[sq + SpDir[index]];
+    if (
+      pce !== SQUARES.OFFBOARD &&
+      PieceCol[pce] === side &&
+      PieceSpectre[pce] === BOOL.TRUE &&
+      !overridePresent(sq + SpDir[index]) &&
+      !(GameBoard.royaltyE[sq + SpDir[index]] > 0)
+    ) {
+      return BOOL.TRUE;
+    }
+  }
+
+  // Wraith
+  for (index = 0; index < 12; index++) {
+    pce = GameBoard.pieces[sq + WrDir[index]];
+    if (
+      pce !== SQUARES.OFFBOARD &&
+      PieceCol[pce] === side &&
+      PieceWraith[pce] === BOOL.TRUE &&
+      !overridePresent(sq + WrDir[index]) &&
+      !(GameBoard.royaltyE[sq + WrDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }

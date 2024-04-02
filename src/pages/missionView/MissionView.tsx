@@ -33,6 +33,7 @@ import {
   PrintPieceLists,
   InCheck,
   TOSQ,
+  FROMSQ,
   PROMOTED,
 } from '../../arcaneChess/board.mjs';
 import { PrMove, PrintMoveList, PrSq } from 'src/arcaneChess/io.mjs';
@@ -366,6 +367,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               ],
               thinking: false,
               turn: prevState.turn === 'white' ? 'black' : 'white',
+              lastMove: [PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))],
               royalties: {
                 ...prevState.royalties,
                 royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
@@ -736,33 +738,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 resizable={true}
                 wFaction={this.state.whiteFaction}
                 bFaction={this.state.blackFaction}
-                royalties={{
-                  royaltyQ: {
-                    ...this.transformedPositions(
-                      GameBoard.royaltyQ as State['royalties']
-                    ),
-                  },
-                  royaltyT: {
-                    ...this.transformedPositions(
-                      GameBoard.royaltyT as State['royalties']
-                    ),
-                  },
-                  royaltyM: {
-                    ...this.transformedPositions(
-                      GameBoard.royaltyM as State['royalties']
-                    ),
-                  },
-                  royaltyV: {
-                    ...this.transformedPositions(
-                      GameBoard.royaltyV as State['royalties']
-                    ),
-                  },
-                  royaltyE: {
-                    ...this.transformedPositions(
-                      GameBoard.royaltyE as State['royalties']
-                    ),
-                  },
-                }}
+                royalties={this.state.royalties}
                 // wVisible={this.state.wVisCount === 0}
                 // bVisible={this.state.bVisCount === 0}
                 premovable={{
@@ -878,26 +854,46 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         ...prevState,
                         royalties: {
                           ...prevState.royalties,
-                          royaltyQ: {
-                            ...prevState.royalties.royaltyQ,
-                            [key]: undefined,
-                          },
-                          royaltyT: {
-                            ...prevState.royalties.royaltyT,
-                            [key]: undefined,
-                          },
-                          royaltyM: {
-                            ...prevState.royalties.royaltyM,
-                            [key]: undefined,
-                          },
-                          royaltyV: {
-                            ...prevState.royalties.royaltyV,
-                            [key]: undefined,
-                          },
-                          royaltyE: {
-                            ...prevState.royalties.royaltyE,
-                            [key]: undefined,
-                          },
+                          royaltyQ: _.mapValues(
+                            prevState.royalties.royaltyQ,
+                            (value) => {
+                              return typeof value === 'undefined'
+                                ? value
+                                : (value -= 1);
+                            }
+                          ),
+                          royaltyT: _.mapValues(
+                            prevState.royalties.royaltyT,
+                            (value) => {
+                              return typeof value === 'undefined'
+                                ? value
+                                : (value -= 1);
+                            }
+                          ),
+                          royaltyM: _.mapValues(
+                            prevState.royalties.royaltyM,
+                            (value) => {
+                              return typeof value === 'undefined'
+                                ? value
+                                : (value -= 1);
+                            }
+                          ),
+                          royaltyV: _.mapValues(
+                            prevState.royalties.royaltyV,
+                            (value) => {
+                              return typeof value === 'undefined'
+                                ? value
+                                : (value -= 1);
+                            }
+                          ),
+                          royaltyE: _.mapValues(
+                            prevState.royalties.royaltyE,
+                            (value) => {
+                              return typeof value === 'undefined'
+                                ? value
+                                : (value -= 1);
+                            }
+                          ),
                           [`royalty${
                             RtyChar.split('')[this.state.placingRoyalty]
                           }`]: {
@@ -916,6 +912,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   move: (orig: string, dest: string) => {
                     // to pass promotion to makeusermove epsilon
                     // console.log(capturedPiece);
+                    const char = RtyChar.split('')[this.state.placingRoyalty];
                     const parsed = this.arcaneChess().makeUserMove(
                       orig,
                       dest,
@@ -940,46 +937,51 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         placingRoyalty: 0,
                         swapType: '',
                         royalties: {
+                          ...prevState.royalties,
                           royaltyQ: _.mapValues(
                             prevState.royalties.royaltyQ,
                             (value) => {
-                              return typeof value === 'undefined' || value <= 0
+                              return typeof value === 'undefined'
                                 ? value
-                                : value - 1;
+                                : (value -= 1);
                             }
                           ),
                           royaltyT: _.mapValues(
                             prevState.royalties.royaltyT,
                             (value) => {
-                              return typeof value === 'undefined' || value <= 0
+                              return typeof value === 'undefined'
                                 ? value
-                                : value - 1;
+                                : (value -= 1);
                             }
                           ),
                           royaltyM: _.mapValues(
                             prevState.royalties.royaltyM,
                             (value) => {
-                              return typeof value === 'undefined' || value <= 0
+                              return typeof value === 'undefined'
                                 ? value
-                                : value - 1;
+                                : (value -= 1);
                             }
                           ),
                           royaltyV: _.mapValues(
                             prevState.royalties.royaltyV,
                             (value) => {
-                              return typeof value === 'undefined' || value <= 0
+                              return typeof value === 'undefined'
                                 ? value
-                                : value - 1;
+                                : (value -= 1);
                             }
                           ),
                           royaltyE: _.mapValues(
                             prevState.royalties.royaltyE,
                             (value) => {
-                              return typeof value === 'undefined' || value <= 0
+                              return typeof value === 'undefined'
                                 ? value
-                                : value - 1;
+                                : (value -= 1);
                             }
                           ),
+                          [`royalty${char}`]: {
+                            ...prevState.royalties[`royalty${char}`],
+                            [dest]: 8,
+                          },
                         },
                       }),
                       () => {
@@ -1011,70 +1013,103 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             prettyToSquare(key) > blackLimit)) &&
                         GameBoard.pieces[prettyToSquare(key)] !== PIECES.EMPTY
                       ) {
-                        const parsed = this.arcaneChess().makeUserMove(
-                          null,
-                          key,
-                          this.state.placingPiece,
-                          '',
-                          this.state.placingRoyalty
-                        );
-                        if (!PrMove(parsed)) {
-                          console.log('invalid move');
-                        }
-                        this.setState(
-                          (prevState) => ({
-                            ...prevState,
-                            history: [...prevState.history, PrMove(parsed)],
-                            fen: outputFenOfCurrentPosition(),
-                            fenHistory: [
-                              ...prevState.fenHistory,
-                              outputFenOfCurrentPosition(),
-                            ],
-                            royalties: {
-                              ...prevState.royalties,
-                              royaltyQ: {
-                                ...prevState.royalties[royalties.royaltyQ],
-                                [key]: undefined,
-                              },
-                              royaltyT: {
-                                ...prevState.royalties[royalties.royaltyT],
-                                [key]: undefined,
-                              },
-                              royaltyM: {
-                                ...prevState.royalties[royalties.royaltyM],
-                                [key]: undefined,
-                              },
-                              royaltyV: {
-                                ...prevState.royalties[royalties.royaltyV],
-                                [key]: undefined,
-                              },
-                              royaltyE: {
-                                ...prevState.royalties[royalties.royaltyE],
-                                [key]: undefined,
-                              },
-                              [`royalty${char}`]: {
-                                ...prevState.royalties[`royalty${char}`],
-                                [key]: 8,
-                              },
-                            },
-                            lastMove: [key, key],
-                            placingPiece: 0,
-                            placingRoyalty: 0,
-                            swapType: '',
-                          }),
-                          () => {
-                            if (CheckAndSet(this.state.preset)) {
-                              this.setState({
-                                gameOver: true,
-                                gameOverType: CheckResult(this.state.preset)
-                                  .gameResult,
-                              });
-                              return;
-                            } else {
-                              this.engineGo();
-                            }
+                        if (
+                          (this.state.royalties.royaltyQ[key] as number) > 0 ||
+                          (this.state.royalties.royaltyT[key] as number) > 0 ||
+                          (this.state.royalties.royaltyM[key] as number) > 0 ||
+                          (this.state.royalties.royaltyV[key] as number) > 0 ||
+                          (this.state.royalties.royaltyE[key] as number) > 0
+                        ) {
+                          this.setState({
+                            placingRoyalty: this.state.placingRoyalty,
+                          });
+                          return;
+                        } else {
+                          const parsed = this.arcaneChess().makeUserMove(
+                            null,
+                            key,
+                            this.state.placingPiece,
+                            '',
+                            this.state.placingRoyalty
+                          );
+                          if (!PrMove(parsed)) {
+                            console.log('invalid move');
                           }
-                        );
+                          this.setState(
+                            (prevState) => ({
+                              ...prevState,
+                              history: [...prevState.history, PrMove(parsed)],
+                              fen: outputFenOfCurrentPosition(),
+                              fenHistory: [
+                                ...prevState.fenHistory,
+                                outputFenOfCurrentPosition(),
+                              ],
+                              royalties: {
+                                ...prevState.royalties,
+                                royaltyQ: _.mapValues(
+                                  prevState.royalties.royaltyQ,
+                                  (value) => {
+                                    return typeof value === 'undefined'
+                                      ? value
+                                      : (value -= 1);
+                                  }
+                                ),
+                                royaltyT: _.mapValues(
+                                  prevState.royalties.royaltyT,
+                                  (value) => {
+                                    return typeof value === 'undefined'
+                                      ? value
+                                      : (value -= 1);
+                                  }
+                                ),
+                                royaltyM: _.mapValues(
+                                  prevState.royalties.royaltyM,
+                                  (value) => {
+                                    return typeof value === 'undefined'
+                                      ? value
+                                      : (value -= 1);
+                                  }
+                                ),
+                                royaltyV: _.mapValues(
+                                  prevState.royalties.royaltyV,
+                                  (value) => {
+                                    return typeof value === 'undefined'
+                                      ? value
+                                      : (value -= 1);
+                                  }
+                                ),
+                                royaltyE: _.mapValues(
+                                  prevState.royalties.royaltyE,
+                                  (value) => {
+                                    return typeof value === 'undefined'
+                                      ? value
+                                      : (value -= 1);
+                                  }
+                                ),
+                                [`royalty${char}`]: {
+                                  ...prevState.royalties[`royalty${char}`],
+                                  [key]: 8,
+                                },
+                              },
+                              lastMove: [key, key],
+                              placingPiece: 0,
+                              placingRoyalty: 0,
+                              swapType: '',
+                            }),
+                            () => {
+                              if (CheckAndSet(this.state.preset)) {
+                                this.setState({
+                                  gameOver: true,
+                                  gameOverType: CheckResult(this.state.preset)
+                                    .gameResult,
+                                });
+                                return;
+                              } else {
+                                this.engineGo();
+                              }
+                            }
+                          );
+                        }
                       } else {
                         this.setState({
                           placingRoyalty: this.state.placingRoyalty,

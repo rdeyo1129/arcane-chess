@@ -126,7 +126,7 @@ export function MakeUserMove(
   swapType = '',
   royaltyEpsilon = PIECES.EMPTY
 ) {
-  var parsed = ParseMove(
+  const { parsed, isInitPromotion } = ParseMove(
     orig,
     dest,
     pieceEpsilon,
@@ -134,11 +134,16 @@ export function MakeUserMove(
     royaltyEpsilon,
     true
   );
+
+  if (isInitPromotion && pieceEpsilon === PIECES.EMPTY) {
+    return { parsed, isInitPromotion: BOOL.TRUE };
+  }
+
   MakeMove(parsed);
 
   CheckAndSet();
 
-  return parsed;
+  return { parsed, isInitPromotion: BOOL.FALSE };
 }
 
 export function DrawMaterial() {

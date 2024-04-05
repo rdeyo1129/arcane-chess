@@ -1,0 +1,14 @@
+.piece-selection {
+  width: 60px;
+  height: 60px;
+  background: #333333;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 50%;
+}
+.piece-selection:hover {
+  background: #aaaaaa;
+  margin: 0;
+  padding: 15px;
+  cursor: pointer;
+}

@@ -24,6 +24,7 @@ import {
   COLOURS,
   PceChar,
   RtyChar,
+  RANKS,
 } from './defs';
 import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
@@ -34,6 +35,31 @@ export function PrSq(sq) {
 }
 
 // todo update to allow swapping your pawns into promotion, but not your opponents
+
+const isInitPromotion = (move) => {
+  if (GameBoard.pieces[FROMSQ(move)] === PIECES.wP) {
+    if (
+      GameBoard.whiteArcane[4] & 16 &&
+      RanksBrd[TOSQ(move)] === RANKS.RANK_7
+    ) {
+      return true;
+    }
+    if (RanksBrd[TOSQ(move)] === RANKS.RANK_8) {
+      return true;
+    }
+  } else if (GameBoard.pieces[FROMSQ(move)] === PIECES.bP) {
+    if (
+      GameBoard.blackArcane[4] & 16 &&
+      RanksBrd[TOSQ(move)] === RANKS.RANK_2
+    ) {
+      return true;
+    }
+    if (RanksBrd[TOSQ(move)] === RANKS.RANK_1) {
+      return true;
+    }
+  }
+  return false;
+};
 
 export function PrMove(move, returnType) {
   const getPceChar = (pieceNum) => {
@@ -178,6 +204,24 @@ export function PrMove(move, returnType) {
     if (pieceEpsilon === PIECES.bU) {
       pchar = '=u';
     }
+    if (pieceEpsilon === PIECES.wS) {
+      pchar = '=S';
+    }
+    if (pieceEpsilon === PIECES.bS) {
+      pchar = '=s';
+    }
+    if (pieceEpsilon === PIECES.wN) {
+      pchar = '=N';
+    }
+    if (pieceEpsilon === PIECES.bN) {
+      pchar = '=n';
+    }
+    if (pieceEpsilon === PIECES.wW) {
+      pchar = '=W';
+    }
+    if (pieceEpsilon === PIECES.bW) {
+      pchar = '=w';
+    }
     MvStr += pchar;
   }
   // castle
@@ -275,6 +319,10 @@ export function ParseMove(
         TOSQ(Move) === prettyToSquare(to))
     ) {
       PromPce = PROMOTED(Move);
+      if (isInitPromotion(Move) && pieceEpsilon === PIECES.EMPTY) {
+        found = BOOL.TRUE;
+        break;
+      }
       if (Move & MFLAGSWAP && swapType !== '') {
         if (CAPTURED(Move)) {
           found = BOOL.TRUE;
@@ -307,11 +355,19 @@ export function ParseMove(
 
   if (found !== BOOL.FALSE) {
     if (MakeMove(Move) === BOOL.FALSE) {
-      return NOMOVE;
+      return {
+        parsed: NOMOVE,
+        isInitPromotion: isInitPromotion(Move) ? BOOL.TRUE : BOOL.FALSE,
+      };
     }
     TakeMove();
-    return Move;
+    return {
+      parsed: Move,
+      isInitPromotion: isInitPromotion(Move) ? BOOL.TRUE : BOOL.FALSE,
+    };
   }
-
-  return NOMOVE;
+  return {
+    parsed: NOMOVE,
+    isInitPromotion: isInitPromotion(Move) ? BOOL.TRUE : BOOL.FALSE,
+  };
 }

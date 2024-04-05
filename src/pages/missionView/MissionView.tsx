@@ -13,6 +13,7 @@ import 'src/chessground/styles/lambda.scss';
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import TactoriusModal from 'src/components/Modal/Modal';
+import PromotionModal from 'src/components/PromotionModal/PromotionModal';
 
 import arcanaJson from 'src/data/arcana.json';
 
@@ -89,10 +90,10 @@ const booksMap: { [key: string]: { [key: string]: Node } } = {
   book12,
 };
 
-const pieces: Tokens = PIECES;
-const royalties: Tokens = ARCANE_BIT_VALUES;
+const pieces: PieceRoyaltyTypse = PIECES;
+const royalties: PieceRoyaltyTypse = ARCANE_BIT_VALUES;
 
-interface Tokens {
+interface PieceRoyaltyTypse {
   [key: string]: number;
 }
 
@@ -200,6 +201,8 @@ interface State {
   lastMove: string[];
   orientation: string;
   preset: string;
+  promotionModalOpen: boolean;
+  placingPromotion: number;
 }
 
 interface Props {
@@ -299,6 +302,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
           getLocalStorage(this.props.auth.user.id).nodeId
         ].panels['panel-1'].preset,
+      promotionModalOpen: false,
+      placingPromotion: 0,
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen);
@@ -436,20 +441,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
 
     ParseFen(this.state.fenHistory[this.state.fenHistory.length - 1]);
 
-    // ParseFen('rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-
-    // const gameBoardPowers = generatePowers();
-
-    // console.log('gameBoardPowers', gameBoardPowers);
-
-    // GenerateMoves();
-
-    PrintMoveList();
-
-    // this.perftTest(
-    //   'rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-    // );
-
     this.setState({
       pvLine: [],
       history: [],
@@ -538,6 +529,85 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     }
   };
 
+  handlePromotion = (piece: string) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      placingPromotion:
+        pieces[`${this.state.playerColor === 'white' ? 'w' : 'b'}${piece}`],
+    }));
+  };
+
+  promotionSelectAsync(callback: () => void) {
+    const loop = () => {
+      this.setState({ promotionModalOpen: true });
+      if (!this.state.placingPromotion) {
+        setTimeout(loop, 0);
+      } else {
+        callback();
+      }
+    };
+    loop();
+  }
+
+  handleModalClose = (pieceType: string) => {
+    this.setState({
+      placingPromotion:
+        pieces[`${this.state.playerColor === 'white' ? 'w' : 'b'}${pieceType}`],
+      gameOver: false,
+      promotionModalOpen: false,
+    });
+  };
+
+  normalMoveStateAndEngineGo = (parsed: number, orig: string, dest: string) => {
+    const char = RtyChar.split('')[this.state.placingRoyalty];
+    this.setState(
+      (prevState) => ({
+        history: [...prevState.history, PrMove(parsed)],
+        fen: outputFenOfCurrentPosition(),
+        fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
+        lastMove: [orig, dest],
+        placingPiece: 0,
+        placingRoyalty: 0,
+        placingPromotion: 0,
+        promotionModalOpen: false,
+        swapType: '',
+        royalties: {
+          ...prevState.royalties,
+          royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
+            return typeof value === 'undefined' ? value : (value -= 1);
+          }),
+          royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
+            return typeof value === 'undefined' ? value : (value -= 1);
+          }),
+          royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
+            return typeof value === 'undefined' ? value : (value -= 1);
+          }),
+          royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
+            return typeof value === 'undefined' ? value : (value -= 1);
+          }),
+          royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
+            return typeof value === 'undefined' ? value : (value -= 1);
+          }),
+          [`royalty${char}`]: {
+            ...prevState.royalties[`royalty${char}`],
+            [dest]: 8,
+          },
+        },
+      }),
+      () => {
+        if (CheckAndSet(this.state.preset)) {
+          this.setState({
+            gameOver: true,
+            gameOverType: CheckResult(this.state.preset).gameResult,
+          });
+          return;
+        } else {
+          this.engineGo();
+        }
+      }
+    );
+  };
+
   componentDidMount() {
     if (!this.hasMounted) {
       this.hasMounted = true;
@@ -590,6 +660,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               ? 'victory'
               : 'defeat'
           }
+        />
+        <PromotionModal
+          isOpen={this.state.promotionModalOpen}
+          playerColor={this.state.playerColor}
+          playerFaction={'normal'}
+          handleClose={(pieceType: string) => this.handleModalClose(pieceType)}
         />
         {/* <button style={{ position: "absoulte" }}>test</button> */}
         <div className="mission-view">
@@ -910,93 +986,38 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     }
                   },
                   move: (orig: string, dest: string) => {
-                    // to pass promotion to makeusermove epsilon
-                    // console.log(capturedPiece);
-                    const char = RtyChar.split('')[this.state.placingRoyalty];
-                    const parsed = this.arcaneChess().makeUserMove(
-                      orig,
-                      dest,
-                      0,
-                      this.state.swapType,
-                      this.state.placingRoyalty
-                    );
-                    if (!PrMove(parsed)) {
-                      console.log('invalid move');
-                      // debugger;
-                    }
-                    this.setState(
-                      (prevState) => ({
-                        history: [...prevState.history, PrMove(parsed)],
-                        fen: outputFenOfCurrentPosition(),
-                        fenHistory: [
-                          ...prevState.fenHistory,
-                          outputFenOfCurrentPosition(),
-                        ],
-                        lastMove: [orig, dest],
-                        placingPiece: 0,
-                        placingRoyalty: 0,
-                        swapType: '',
-                        royalties: {
-                          ...prevState.royalties,
-                          royaltyQ: _.mapValues(
-                            prevState.royalties.royaltyQ,
-                            (value) => {
-                              return typeof value === 'undefined'
-                                ? value
-                                : (value -= 1);
-                            }
-                          ),
-                          royaltyT: _.mapValues(
-                            prevState.royalties.royaltyT,
-                            (value) => {
-                              return typeof value === 'undefined'
-                                ? value
-                                : (value -= 1);
-                            }
-                          ),
-                          royaltyM: _.mapValues(
-                            prevState.royalties.royaltyM,
-                            (value) => {
-                              return typeof value === 'undefined'
-                                ? value
-                                : (value -= 1);
-                            }
-                          ),
-                          royaltyV: _.mapValues(
-                            prevState.royalties.royaltyV,
-                            (value) => {
-                              return typeof value === 'undefined'
-                                ? value
-                                : (value -= 1);
-                            }
-                          ),
-                          royaltyE: _.mapValues(
-                            prevState.royalties.royaltyE,
-                            (value) => {
-                              return typeof value === 'undefined'
-                                ? value
-                                : (value -= 1);
-                            }
-                          ),
-                          [`royalty${char}`]: {
-                            ...prevState.royalties[`royalty${char}`],
-                            [dest]: 8,
-                          },
-                        },
-                      }),
-                      () => {
-                        if (CheckAndSet(this.state.preset)) {
-                          this.setState({
-                            gameOver: true,
-                            gameOverType: CheckResult(this.state.preset)
-                              .gameResult,
-                          });
-                          return;
-                        } else {
-                          this.engineGo();
+                    const { parsed, isInitPromotion = false } =
+                      this.arcaneChess().makeUserMove(
+                        orig,
+                        dest,
+                        0,
+                        this.state.swapType,
+                        this.state.placingRoyalty
+                      );
+                    if (isInitPromotion) {
+                      this.promotionSelectAsync(() => {
+                        const parsedPromotion = this.arcaneChess().makeUserMove(
+                          orig,
+                          dest,
+                          this.state.placingPromotion,
+                          this.state.swapType,
+                          this.state.placingRoyalty
+                        );
+                        if (!PrMove(parsed)) {
+                          console.log('invalid move');
                         }
+                        this.normalMoveStateAndEngineGo(
+                          parsedPromotion.parsed,
+                          orig,
+                          dest
+                        );
+                      });
+                    } else {
+                      if (!PrMove(parsed)) {
+                        console.log('invalid move');
                       }
-                    );
+                      this.normalMoveStateAndEngineGo(parsed, orig, dest);
+                    }
                   },
                   select: (key: string) => {
                     const char = RtyChar.split('')[this.state.placingRoyalty];

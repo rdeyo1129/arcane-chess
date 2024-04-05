@@ -287,7 +287,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       placingPiece: 0,
       swapType: '',
       placingRoyalty: 0,
-      selectedSide: 'W',
+      selectedSide: getLocalStorage(this.props.auth.user.id).config.color,
       hoverArcane: '',
       royalties:
         booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
@@ -354,14 +354,20 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         this.setState(
           (prevState) => {
             const setEngineRoyalty =
-              PrSq(TOSQ(reply)).split('@').length > 1
+              PrMove(reply).split('@')[0]?.length > 1
                 ? {
-                    [`royalty${PrMove(reply)[1]}`]: {
-                      ...prevState.royalties[`royalty${PrMove(reply)[1]}`],
+                    [`royalty${PrMove(reply).split('')[1]}`]: {
+                      ...prevState.royalties[
+                        `royalty${PrMove(reply).split('')[1]}`
+                      ],
                       [PrSq(TOSQ(reply))]: 8,
                     },
                   }
-                : {};
+                : {
+                    ...prevState.royalties[
+                      `royalty${PrMove(reply).split('')[1]}`
+                    ],
+                  };
             return {
               ...prevState,
               pvLine: GameBoard.cleanPV,
@@ -405,6 +411,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             };
           },
           () => {
+            console.log('royalty', this.state.royalties);
             if (CheckAndSet(this.state.preset)) {
               this.setState({
                 gameOver: true,
@@ -706,7 +713,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 <Button
                   className="tertiary"
                   onClick={() => {
-                    this.setState({ selectedSide: 'W' });
+                    this.setState({ selectedSide: 'white' });
                   }}
                   backgroundColorOverride="#333333"
                   color="B"
@@ -716,7 +723,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 <Button
                   className="tertiary"
                   onClick={() => {
-                    this.setState({ selectedSide: 'B' });
+                    this.setState({ selectedSide: 'black' });
                   }}
                   backgroundColorOverride="#333333"
                   color="B"
@@ -727,7 +734,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               </div>
               <div className="arcana-select">
                 {_.map(
-                  this.state.selectedSide === 'W'
+                  this.state.selectedSide === 'white'
                     ? whiteArcaneConfig
                     : blackArcaneConfig,
                   (value: number, key: string) => {
@@ -739,7 +746,20 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         src={`${arcana[key].imagePath}${
                           this.state.hoverArcane === key ? '-hover' : ''
                         }.svg`}
+                        style={{
+                          opacity:
+                            this.state.playerColor !== gameBoardTurn ||
+                            this.state.selectedSide === this.state.engineColor
+                              ? 0.5
+                              : 1,
+                          cursor:
+                            this.state.playerColor !== gameBoardTurn ||
+                            this.state.selectedSide === this.state.engineColor
+                              ? 'not-allowed'
+                              : 'pointer',
+                        }}
                         onClick={() => {
+                          if (this.state.playerColor !== gameBoardTurn) return;
                           if (
                             this.state.placingPiece > 0 ||
                             this.state.swapType !== '' ||
@@ -753,6 +773,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           } else {
                             if (key.includes('sumn')) {
                               if (key.includes('sumnR') && key !== 'sumnR') {
+                                // if (key !== 'sumnRE' && InCheck()) return;
                                 this.setState({
                                   placingPiece: 0,
                                   placingRoyalty:
@@ -767,7 +788,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                       key.split('sumn')[1].toUpperCase() === 'X'
                                         ? 'EXILE'
                                         : `${
-                                            this.state.selectedSide === 'W'
+                                            this.state.selectedSide === 'white'
                                               ? 'w'
                                               : 'b'
                                           }${key.split('sumn')[1]}`
@@ -818,7 +839,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 // wVisible={this.state.wVisCount === 0}
                 // bVisible={this.state.bVisCount === 0}
                 premovable={{
-                  enabled: true,
+                  enabled: false,
                   // premoveFunc: () => {},
                   // showDests: true,
                   // autoCastle: true,
@@ -888,7 +909,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     if (
                       GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
                     ) {
-                      const parsed = this.arcaneChess().makeUserMove(
+                      const { parsed } = this.arcaneChess().makeUserMove(
                         0,
                         key,
                         this.state.placingPiece,
@@ -1046,15 +1067,17 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           });
                           return;
                         } else {
-                          const parsed = this.arcaneChess().makeUserMove(
+                          const { parsed } = this.arcaneChess().makeUserMove(
                             null,
                             key,
                             this.state.placingPiece,
                             '',
                             this.state.placingRoyalty
                           );
-                          if (!PrMove(parsed)) {
-                            console.log('invalid move');
+                          if (parsed === 0) {
+                            console.log('parsed === 0');
+                            this.arcaneChess().takeUserMove();
+                            return;
                           }
                           this.setState(
                             (prevState) => ({

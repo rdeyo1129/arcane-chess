@@ -53,6 +53,7 @@ import { SearchPosition, gameSim } from './search.mjs';
 
 import { setWhiteArcana, setBlackArcana } from './arcaneDefs.mjs';
 import { PIECES, prettyToSquare } from './defs.mjs';
+import { TakeMove } from './makemove.mjs';
 
 export default function arcaneChess(
   whiteConfig = {},
@@ -165,6 +166,11 @@ export default function arcaneChess(
       royaltyEpsilon = 0
     ) => {
       return MakeUserMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
+    },
+    takeUserMove: (halfPlyCnt = 1) => {
+      for (let i = 0; i < halfPlyCnt; i++) {
+        TakeMove();
+      }
     },
     engineReply: (thinkingTime, depth = 3) => {
       return engineMove(thinkingTime, depth);

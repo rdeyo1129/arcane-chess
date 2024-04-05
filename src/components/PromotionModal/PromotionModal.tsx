@@ -27,7 +27,7 @@ export default class PromotionModal extends React.Component<Props> {
     return (
       <div className="modal">
         <Modal isOpen={isOpen} style={promotionModal}>
-          <div>
+          <div className="promotion-selection-container">
             <img
               onClick={() => handleClose('N')}
               src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
@@ -123,9 +123,6 @@ const promotionModal = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    display: 'flex',
-    height: '160px',
-    width: '480px',
     background: '#111111',
   },
   overlay: {

@@ -39,10 +39,6 @@
           width: 224px;
         }
       }
-      .buttons {
-        display: flex;
-        margin: 2px;
-      }
       .login-errors {
         display: flex;
         flex-direction: column;
@@ -123,40 +119,15 @@
   width: 200px;
 }
 
-// .login-button button {
-//   background: #48c93c;
-//   height: 40px;
-//   width: 100px;
-//   border-radius: 5px;
-//   color: white;
-// }
-// .login-button button:hover {
-//   border: 0;
-//   background: #48c93c;
-//   border-color: #48c93c;
-// }
-
-// .register-button button {
-//   background: #3645ce;
-//   height: 40px;
-//   width: 100px;
-//   border-radius: 5px;
-//   color: white;
-// }
-// .register-button button:hover {
-//   border: 0;
-//   background: #3645ce;
-//   border-color: #3645ce;
-// }
+.reg-buttons .mini-buttons,
+.inputs .mini-buttons {
+  display: flex;
+  margin: 2px;
+}
 
 .reg-buttons {
   display: flex;
   justify-content: space-between;
-  .mini-reg-buttons {
-    display: flex;
-    // flex-direction: column;
-    // align-items: center;
-  }
 }
 .reg-input-top {
   .reg-inputs {

@@ -101,7 +101,7 @@ const UnwrappedRegister = () => {
             />
           </div>
           <div className="reg-buttons">
-            <div className="mini-reg-buttons">
+            <div className="mini-buttons">
               <Link to={'/login'}>
                 <Button
                   className="tertiary"
@@ -110,7 +110,6 @@ const UnwrappedRegister = () => {
                   width={80}
                   height={30}
                   fontSize={12}
-                  styles={{ margin: '2px' }}
                   backgroundColorOverride="#111111"
                 />
               </Link>
@@ -122,7 +121,6 @@ const UnwrappedRegister = () => {
                   width={80}
                   height={30}
                   fontSize={12}
-                  styles={{ margin: '2px' }}
                   backgroundColorOverride="#111111"
                 />
               </Link>

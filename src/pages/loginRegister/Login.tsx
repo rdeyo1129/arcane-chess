@@ -157,7 +157,7 @@ const UnwrappedLogin: React.FC = () => {
               />
             </div>
           </div>
-          <div className="buttons">
+          <div className="mini-buttons">
             <Link to={'/register'}>
               <Button
                 className="tertiary"
@@ -169,7 +169,7 @@ const UnwrappedLogin: React.FC = () => {
                 backgroundColorOverride="#111111"
               />
             </Link>
-            <Link to={'/'}>
+            {/* <Link to={'/'}>
               <Button
                 className="tertiary"
                 text={'FORGOT'}
@@ -179,7 +179,7 @@ const UnwrappedLogin: React.FC = () => {
                 fontSize={12}
                 backgroundColorOverride="#111111"
               />
-            </Link>
+            </Link> */}
             <Link to={'/'}>
               <Button
                 className="tertiary"

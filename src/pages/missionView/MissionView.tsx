@@ -357,7 +357,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         this.setState(
           (prevState) => {
             const setEngineRoyalty =
-              _.has(PrMove(reply), '@') &&
               PrMove(reply).split('@')[0]?.length > 1
                 ? {
                     [`royalty${PrMove(reply).split('')[1]}`]: {
@@ -367,7 +366,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       [PrSq(TOSQ(reply))]: 8,
                     },
                   }
-                : {};
+                : {
+                    ...prevState.royalties[
+                      `royalty${PrMove(reply).split('')[1]}`
+                    ],
+                  };
             return {
               ...prevState,
               pvLine: GameBoard.cleanPV,

@@ -139,15 +139,15 @@
     "opponent": "",
     "panels": {
       "panel-1": {
-        "fen": "5k2/p7/8/2P5/p3b3/2R4p/3P1B2/3K4 w - - 0 1",
-        "fenHistory": ["5k2/p7/8/2P5/p3b3/2R4p/3P1B2/3K4 w - - 0 1"],
+        "fen": "5k2/p7/8/2P5/p3b1p1/2R4p/3P1B2/3K4 w - - 0 1",
+        "fenHistory": ["5k2/p7/8/2P5/p3b1p1/2R4p/3P1B2/3K4 w - - 0 1"],
         "history": [],
         "panelText": "Panel Description ;soihgasog1",
         "arrowsCircles": [],
         "royalties": {
           "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
+          "royaltyT": { "f2": 3 },
+          "royaltyM": { "g4": 3 },
           "royaltyV": {},
           "royaltyE": {}
         },

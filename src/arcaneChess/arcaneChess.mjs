@@ -198,6 +198,13 @@ export default function arcaneChess(
     addRoyalty: (type, sq, turns) => {
       GameBoard[type] = { [prettyToSquare(sq)]: turns };
     },
+    clearRoyalties: () => {
+      GameBoard.royaltyQ = {};
+      GameBoard.royaltyT = {};
+      GameBoard.royaltyM = {};
+      GameBoard.royaltyV = {};
+      GameBoard.royaltyE = {};
+    },
     gameSim: (thinkingTime) => {
       return gameSim(thinkingTime);
     },

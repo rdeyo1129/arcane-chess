@@ -906,6 +906,15 @@ export function GenerateMoves(
                   POWERBIT[`sumnR${RtyChar.split('')[summonPce]}`] &&
                 summonFlag & GameBoard.whiteArcane[3]
               ) {
+                if (
+                  GameBoard.royaltyQ[sq] > 0 ||
+                  GameBoard.royaltyT[sq] > 0 ||
+                  GameBoard.royaltyM[sq] > 0 ||
+                  GameBoard.royaltyV[sq] > 0 ||
+                  GameBoard.royaltyE[sq] > 0
+                ) {
+                  continue;
+                }
                 addSummonMove(MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN));
               } else {
                 continue;
@@ -940,6 +949,15 @@ export function GenerateMoves(
                   POWERBIT[`sumnR${RtyChar.split('')[summonPce]}`] &&
                 summonFlag & GameBoard.blackArcane[3]
               ) {
+                if (
+                  GameBoard.royaltyQ[sq] > 0 ||
+                  GameBoard.royaltyT[sq] > 0 ||
+                  GameBoard.royaltyM[sq] > 0 ||
+                  GameBoard.royaltyV[sq] > 0 ||
+                  GameBoard.royaltyE[sq] > 0
+                ) {
+                  continue;
+                }
                 addSummonMove(MOVE(0, sq, summonPce, PIECES.EMPTY, MFLAGSUMN));
               } else {
                 continue;

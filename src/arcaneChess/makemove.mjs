@@ -187,28 +187,28 @@ export function MakeMove(move) {
   GameBoard.suspend -= 1;
 
   _.forEach(GameBoard.royaltyQ, (value, key) => {
-    value === undefined || value <= 0
-      ? GameBoard.royaltyQ[key]
+    value === undefined
+      ? (GameBoard.royaltyQ[key] = -1)
       : (GameBoard.royaltyQ[key] -= 1);
   });
   _.forEach(GameBoard.royaltyT, (value, key) => {
-    value === undefined || value <= 0
-      ? GameBoard.royaltyT[key]
+    value === undefined
+      ? (GameBoard.royaltyT[key] = -1)
       : (GameBoard.royaltyT[key] -= 1);
   });
   _.forEach(GameBoard.royaltyM, (value, key) => {
-    value === undefined || value <= 0
-      ? GameBoard.royaltyM[key]
+    value === undefined
+      ? (GameBoard.royaltyM[key] = -1)
       : (GameBoard.royaltyM[key] -= 1);
   });
   _.forEach(GameBoard.royaltyV, (value, key) => {
-    value === undefined || value <= 0
-      ? GameBoard.royaltyV[key]
+    value === undefined
+      ? (GameBoard.royaltyV[key] = -1)
       : (GameBoard.royaltyV[key] -= 1);
   });
   _.forEach(GameBoard.royaltyE, (value, key) => {
-    value === undefined || value <= 0
-      ? GameBoard.royaltyE[key]
+    value === undefined
+      ? (GameBoard.royaltyE[key] = -1)
       : (GameBoard.royaltyE[key] -= 1);
   });
 
@@ -450,29 +450,19 @@ export function TakeMove() {
   GameBoard.suspend += 1;
 
   _.forEach(GameBoard.royaltyQ, (value, key) => {
-    value === undefined || value <= 0
-      ? GameBoard.royaltyQ[key]
-      : (GameBoard.royaltyQ[key] += 1);
+    GameBoard.royaltyQ[key] += 1;
   });
   _.forEach(GameBoard.royaltyT, (value, key) => {
-    value === undefined || value <= 0
-      ? GameBoard.royaltyT[key]
-      : (GameBoard.royaltyT[key] += 1);
+    GameBoard.royaltyT[key] += 1;
   });
   _.forEach(GameBoard.royaltyM, (value, key) => {
-    value === undefined || value <= 0
-      ? GameBoard.royaltyM[key]
-      : (GameBoard.royaltyM[key] += 1);
+    GameBoard.royaltyM[key] += 1;
   });
   _.forEach(GameBoard.royaltyV, (value, key) => {
-    value === undefined || value <= 0
-      ? GameBoard.royaltyV[key]
-      : (GameBoard.royaltyV[key] += 1);
+    GameBoard.royaltyV[key] += 1;
   });
   _.forEach(GameBoard.royaltyE, (value, key) => {
-    value === undefined || value <= 0
-      ? GameBoard.royaltyE[key]
-      : (GameBoard.royaltyE[key] += 1);
+    GameBoard.royaltyE[key] += 1;
   });
 
   if (GameBoard.dyad === 0) {
@@ -579,7 +569,7 @@ export function TakeMove() {
   } else if (move & MFLAGSUMN) {
     if (captured > 0) {
       if (GameBoard[`royalty${RtyChar.split('')[captured]}`][to] === 9) {
-        GameBoard[`royalty${RtyChar.split('')[captured]}`][to] = 0;
+        GameBoard[`royalty${RtyChar.split('')[captured]}`][to] = -10;
       }
     } else if (pieceEpsilon > 0) {
       ClearPiece(to, true);

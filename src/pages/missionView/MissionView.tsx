@@ -341,11 +341,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       thinking: true,
     });
 
-    // generatePowers();
-    // GenerateMoves(true, false, 'COMP');
-
-    // PrintMoveList();
-
     new Promise((resolve) => {
       setTimeout(() => {
         SearchController.thinking = BOOL.TRUE;
@@ -418,7 +413,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             };
           },
           () => {
-            console.log('royalty', this.state.royalties);
+            console.log('royalty', this.state.royalties, GameBoard.royaltyE);
             if (CheckAndSet(this.state.preset)) {
               this.setState({
                 gameOver: true,
@@ -632,6 +627,19 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     );
   };
 
+  componentWillUnmount(): void {
+    // this.arcaneChess().clearRoyalties();
+    // this.setState({
+    //   royalties: {
+    //     royaltyQ: {},
+    //     royaltyT: {},
+    //     royaltyM: {},
+    //     royaltyV: {},
+    //     royaltyE: {},
+    //   },
+    // });
+  }
+
   componentDidMount() {
     if (!this.hasMounted) {
       this.hasMounted = true;
@@ -670,6 +678,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
+    console.log('royalty', this.state.royalties, GameBoard.royaltyE);
     return (
       <div className="tactorius-board fade">
         <TactoriusModal

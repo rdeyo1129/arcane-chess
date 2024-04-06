@@ -1,5 +1,5 @@
 import { GameBoard } from './board';
-import { GenerateMoves, generatePowers, MoveExists } from './movegen';
+import { GenerateMoves, generatePowers } from './movegen';
 import { SearchController, SearchPosition } from './search';
 import {
   MakeMove,
@@ -13,42 +13,23 @@ import {
   BOOL,
   prettyToSquare,
   GameController,
-  MAXDEPTH,
   PCEINDEX,
   COLOURS,
   PIECES,
   Kings,
 } from './defs';
-import { PrMove, PrSq, ParseMove, PrintMoveList } from './io';
-import {
-  PrintBoard,
-  SqAttacked,
-  FROMSQ,
-  TOSQ,
-  ARCANEFLAG,
-  MFLAGSUMN,
-} from './board.mjs';
-import { MissionView } from 'src/pages/missionView/MissionView';
-import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
-import { get } from 'lodash';
-import arcaneChess from './arcaneChess.mjs';
+import { PrMove, ParseMove } from './io';
+import { SqAttacked } from './board.mjs';
 
 export function validGroundMoves(summon = '', swap = '') {
   const moveMap = new Map();
   const validMovesReturn = validMoves(summon, swap);
 
-  // moves
-  // click button on UI = setCurrentArcane
-  // is this for dyads?
-  // if (GameBoard.currentArcane & POWERBITS[substr(sumn, 4)]) substring of box notation? {
   for (let move of validMovesReturn) {
-    // todo, need to split to and from sqaures from things like x and &
     const from = PrMove(move, 'array')[0];
     const to = PrMove(move, 'array')[1];
     if (!moveMap.has(from)) {
       moveMap.set(from, []);
-      // gameOver
-      // updateReactUI();
     }
     moveMap.get(from).push(to);
   }
@@ -59,9 +40,6 @@ export const validSummonMoves = (piece) => {
   const moveMap = new Map();
   const validMovesReturn = validMoves('PLAYER', '', piece);
 
-  // moves
-  // click button on UI = setCurrentArcane
-  // is this for dyads?
   for (let move of validMovesReturn) {
     const from = `${piece.toUpperCase()}@`;
     const to = PrMove(move, 'array')[1];
@@ -187,7 +165,6 @@ export function ThreeFoldRep() {
 
 export function CheckResult(preset) {
   if (GameBoard.fiftyMove >= 100) {
-    // $("#GameStatus").text("GAME DRAWN {fifty move rule}");
     return {
       gameOver: true,
       gameResult: 'fifty move rule',
@@ -195,7 +172,6 @@ export function CheckResult(preset) {
   }
 
   if (ThreeFoldRep() >= 2) {
-    // $("#GameStatus").text("GAME DRAWN {3-fold repetition}");
     return {
       gameOver: true,
       gameResult: '3-fold repetition',
@@ -203,7 +179,6 @@ export function CheckResult(preset) {
   }
 
   if (DrawMaterial() === BOOL.TRUE) {
-    // $("#GameStatus").text("GAME DRAWN {insufficient material to mate}");
     return {
       gameOver: true,
       gameResult: 'insufficient material',
@@ -225,7 +200,7 @@ export function CheckResult(preset) {
     }
   }
 
-  // todo herring
+  // todo herring and forced ep
   generatePowers();
   GenerateMoves(true, false, 'COMP', 'COMP');
 
@@ -254,27 +229,22 @@ export function CheckResult(preset) {
 
   if (InCheck === BOOL.TRUE) {
     if (GameBoard.side === COLOURS.WHITE) {
-      // $("#GameStatus").text("GAME OVER {black mates}");
       return {
         gameOver: true,
         gameResult: 'black mates',
       };
     } else {
-      // $("#GameStatus").text("GAME OVER {white mates}");
       return {
         gameOver: true,
         gameResult: 'white mates',
       };
     }
   } else {
-    // $("#GameStatus").text("GAME DRAWN {stalemate}");
     return {
       gameOver: true,
       gameResult: 'stalemate',
     };
   }
-
-  // return BOOL.FALSE;
 }
 
 export function CheckAndSet(preset = '') {
@@ -287,12 +257,17 @@ export function CheckAndSet(preset = '') {
   }
 }
 
-export function engineMove(thinkingTime, depth) {
-  // generatePowers();
-  // GenerateMoves(true, false, 'COMP');
+export function engineSuggestion(thinkingTime, depth) {
   SearchController.depth = depth;
   SearchController.time = thinkingTime;
-  const { bestMove, bestScore, line } = SearchPosition();
+  const { bestMove, bestScore, temporalPincer } = SearchPosition();
+  return { bestMove, bestScore, temporalPincer };
+}
+
+export function engineMove(thinkingTime, depth) {
+  SearchController.depth = depth;
+  SearchController.time = thinkingTime;
+  const { bestMove } = SearchPosition();
   MakeMove(bestMove);
   CheckAndSet();
   return bestMove;

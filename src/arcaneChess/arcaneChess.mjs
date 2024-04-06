@@ -48,10 +48,16 @@ import {
   validSummonMoves,
   MakeUserMove,
   engineMove,
+  engineSuggestion,
 } from './gui';
 import { SearchPosition, gameSim } from './search.mjs';
 
-import { setWhiteArcana, setBlackArcana } from './arcaneDefs.mjs';
+import {
+  whiteArcaneConfig,
+  blackArcaneConfig,
+  setWhiteArcana,
+  setBlackArcana,
+} from './arcaneDefs.mjs';
 import { PIECES, prettyToSquare } from './defs.mjs';
 import { TakeMove } from './makemove.mjs';
 
@@ -172,8 +178,22 @@ export default function arcaneChess(
         TakeMove();
       }
     },
-    engineReply: (thinkingTime, depth = 3) => {
+    engineReply: (thinkingTime, depth = 4) => {
       return engineMove(thinkingTime, depth);
+    },
+    engineSuggestion: (thinkingTime, depth = 6, playerColor, level) => {
+      const playerArcana =
+        playerColor === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+      if (level === 1) {
+        playerArcana.modsIMP -= 1;
+      }
+      if (level === 2) {
+        playerArcana.modsORA -= 1;
+      }
+      if (level === 3) {
+        playerArcana.modsTEM -= 1;
+      }
+      return engineSuggestion(thinkingTime, depth);
     },
     addRoyalty: (type, sq, turns) => {
       GameBoard[type] = { [prettyToSquare(sq)]: turns };

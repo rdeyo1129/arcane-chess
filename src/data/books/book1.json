@@ -157,7 +157,11 @@
           "shftP": 2,
           "sumnRE": 3,
           "sumnRQ": 3,
-          "swapADJ": 1
+          "swapADJ": 1,
+          "modsIMP": 1,
+          "modsORA": 3,
+          "modsTEM": 4,
+          "modsCON": 2
         },
         "blackArcane": {
           "sumnB": 2,

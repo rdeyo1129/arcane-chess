@@ -17,8 +17,6 @@ import PromotionModal from 'src/components/PromotionModal/PromotionModal';
 
 import arcanaJson from 'src/data/arcana.json';
 
-const arcana: ArcanaMap = arcanaJson as ArcanaMap;
-
 import Dots from 'src/components/Loader/Dots';
 
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
@@ -27,18 +25,8 @@ import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 //   arcaneChessWorker,
 // } from '../../arcaneChess/arcaneChessInstance.js';
 
-import {
-  GameBoard,
-  ParseFen,
-  PrintBoard,
-  PrintPieceLists,
-  InCheck,
-  TOSQ,
-  FROMSQ,
-  PROMOTED,
-} from '../../arcaneChess/board.mjs';
-import { PrMove, PrintMoveList, PrSq } from 'src/arcaneChess/io.mjs';
-import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
+import { GameBoard, InCheck, TOSQ, FROMSQ } from '../../arcaneChess/board.mjs';
+import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import {
   prettyToSquare,
   BOOL,
@@ -90,11 +78,25 @@ const booksMap: { [key: string]: { [key: string]: Node } } = {
   book12,
 };
 
+const arcana: ArcanaMap = arcanaJson as ArcanaMap;
+
 const pieces: PieceRoyaltyTypse = PIECES;
 const royalties: PieceRoyaltyTypse = ARCANE_BIT_VALUES;
+const whiteArcanaBox: arcanaBoxTypes | arcanaBoxHintTypes | object =
+  whiteArcaneConfig;
+const blackArcanaBox: arcanaBoxTypes | arcanaBoxHintTypes | object =
+  blackArcaneConfig;
 
 interface PieceRoyaltyTypse {
   [key: string]: number;
+}
+interface arcanaBoxTypes {
+  [key: string]: number | string | undefined;
+}
+interface arcanaBoxHintTypes {
+  modsIMP: number | undefined;
+  modsORA: number | undefined;
+  modsTEM: number | undefined;
 }
 
 interface ArcanaDetail {
@@ -180,16 +182,18 @@ interface State {
   };
   gameOver: boolean;
   gameOverType: string;
-  wArcana:
-    | {
-        [key in `${'w'}Arcana` | string]: number | string;
-      }
-    | object;
-  bArcana:
-    | {
-        [key in `${'b'}Arcana` | string]: number | string;
-      }
-    | object;
+  wArcana: {
+    [key: string]: number | string | undefined;
+    modsIMP?: number | undefined;
+    modsORA?: number | undefined;
+    modsTEM?: number | undefined;
+  };
+  bArcana: {
+    [key: string]: number | string | undefined;
+    modsIMP?: number | undefined;
+    modsORA?: number | undefined;
+    modsTEM?: number | undefined;
+  };
   placingPiece: number;
   swapType: string;
   placingRoyalty: number;
@@ -203,6 +207,7 @@ interface State {
   preset: string;
   promotionModalOpen: boolean;
   placingPromotion: number;
+  hint: string;
 }
 
 interface Props {
@@ -304,6 +309,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         ].panels['panel-1'].preset,
       promotionModalOpen: false,
       placingPromotion: 0,
+      hint: '',
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen);
@@ -379,6 +385,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               thinking: false,
               turn: prevState.turn === 'white' ? 'black' : 'white',
               lastMove: [PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))],
+              hint: '',
               royalties: {
                 ...prevState.royalties,
                 royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
@@ -431,33 +438,43 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       });
   };
 
-  // promise or web worker here?
-  // start variation button call here
-  // pair with a resest button
-  calculateFen = () => {
-    // this.setState({ fen });
-    // todo to animate, set classnames, timeouts, clock conditionals,promise?
-    // todo promise or thinking timeout time for returning makemove
-    // any edge cases?
+  getHintAndScore = (level: number) => {
     this.setState({
       thinking: true,
     });
-    // this.arcaneChess().getScoreAndLine(
-    //   this.state.fenHistory[this.state.fenHistory.length - 1]
-    // );
+    new Promise((resolve) => {
+      setTimeout(() => {
+        SearchController.thinking = BOOL.TRUE;
+        const engineResult = arcaneChess().engineSuggestion(
+          this.state.thinkingTime,
+          4,
+          this.state.playerColor,
+          level
+        );
+        resolve(engineResult);
+      }, 3000);
+    }).then((reply: any) => {
+      const { bestMove, bestScore, temporalPincer } = reply;
 
-    ParseFen(this.state.fenHistory[this.state.fenHistory.length - 1]);
-
-    this.setState({
-      pvLine: [],
-      history: [],
-      fenHistory: [this.state.fen],
+      if (level === 1) {
+        this.setState({
+          hint: PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
+          thinking: false,
+        });
+      }
+      if (level === 2) {
+        this.setState({
+          hint: PrMove(bestMove),
+          thinking: false,
+        });
+      }
+      if (level === 3) {
+        this.setState({
+          hint: temporalPincer,
+          thinking: false,
+        });
+      }
     });
-    // this.setState({
-    //   thinking: false,
-    // });
-    // search controller
-    // your own gui lines of code here here
   };
 
   onChangeUses = (e: React.ChangeEvent<HTMLSelectElement>, power: string) => {
@@ -698,7 +715,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               </div>
             </div>
             <div className="dialogue">
-              {this.state.hoverArcane !== '' ? (
+              {this.state.hint !== '' ? (
+                this.state.hint
+              ) : this.state.hoverArcane !== '' ? (
                 <div className="arcana-detail">
                   <h3>{arcana[this.state.hoverArcane].name}</h3>
                   <p>{arcana[this.state.hoverArcane].description}</p>
@@ -759,7 +778,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               : 'pointer',
                         }}
                         onClick={() => {
-                          if (this.state.playerColor !== gameBoardTurn) return;
+                          if (
+                            this.state.playerColor !== gameBoardTurn ||
+                            this.state.selectedSide === this.state.engineColor
+                          )
+                            return;
                           if (
                             this.state.placingPiece > 0 ||
                             this.state.swapType !== '' ||
@@ -810,6 +833,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             if (key.includes('modsSUS')) {
                               if (GameBoard.suspend > 0) return;
                               GameBoard.suspend = 6;
+                            }
+                            if (key === 'modsIMP') {
+                              this.getHintAndScore(1);
+                            }
+                            if (key === 'modsORA') {
+                              this.getHintAndScore(2);
+                            }
+                            if (key === 'modsTEM') {
+                              this.getHintAndScore(3);
                             }
                           }
                         }}

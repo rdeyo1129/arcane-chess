@@ -5,12 +5,8 @@ import {
   MFLAGCAP,
   FROMSQ,
   TOSQ,
-  CAPTURED,
-  ARCANEFLAG,
   InCheck,
-  MFLAGSUMN,
   PrintBoard,
-  PROMOTED,
   ParseFen,
 } from './board';
 import {
@@ -24,7 +20,6 @@ import {
   Kings,
   BRD_SQ_NUM,
   PIECES,
-  COLOURS,
 } from './defs';
 import { EvalPosition } from './evaluate';
 import { GenerateMoves, generatePowers } from './movegen';
@@ -32,8 +27,8 @@ import { MakeMove, TakeMove } from './makemove';
 import { PrMove } from './io';
 import { StorePvMove, ProbePvTable, GetPvLine } from './pvtable.mjs';
 import { PrintMoveList } from './io.mjs';
-import { GameController, PrintPieceLists, PrintSqAttacked } from './board.mjs';
-import { validMoves, validGroundMoves, CheckAndSet } from './gui.mjs';
+import { GameController } from './board.mjs';
+import { CheckAndSet } from './gui.mjs';
 
 export const SearchController = { thinking: BOOL.FALSE, best: NOMOVE };
 
@@ -45,12 +40,6 @@ SearchController.time;
 SearchController.start;
 SearchController.stop;
 SearchController.best;
-// SearchController.thinking;
-
-// if summon royalty just happened, then we need to regenerate moves...?
-// export const isSummonMove = (move) => {
-//   return move & MFLAGSUMN;
-// };
 
 export function PickNextMove(MoveNum) {
   let index = 0;
@@ -249,6 +238,7 @@ export function AlphaBeta(alpha, beta, depth) {
   // todo regenerate if herring edge case hit
 
   // should take care of herrings but what about stalemate?
+  // forced ep
   // todo assign generate moves with herrings to a variable and check here
   // if (validMoves().length === 0 && !InCheck()) {
   //   console.log('valid moves false');
@@ -304,7 +294,6 @@ export function AlphaBeta(alpha, beta, depth) {
       }
     }
 
-    // this is the black box, it will give you a magical score that you can assume is correct at the deepest level
     Score = -AlphaBeta(-beta, -alpha, depth - 1);
 
     if (InCheck() === BOOL.TRUE) {
@@ -351,13 +340,7 @@ export function AlphaBeta(alpha, beta, depth) {
 
   // rook entangled mate
   // future sight should be the last one
-  // implant (from sq)
-  // vision (from and to sq)
-  // future sight (computer line)
-  // hints and arrows soon, find out how to draw them automatically
-  // insert elements onto chessboard that are sent to the dom?
-  // insert using jsx interpolation for the
-  // more thinking time for the computer
+  // arrows for hints
 
   if (Legal === 0) {
     if (InCheckA === BOOL.TRUE) {
@@ -405,6 +388,7 @@ export function SearchPosition() {
   let line;
   let PvNum;
   let c;
+  let temporalPincer = '';
 
   ClearForSearch();
 
@@ -437,6 +421,7 @@ export function SearchPosition() {
     line += ' Pv:';
     for (c = 0; c < PvNum; c++) {
       line += ' ' + PrMove(GameBoard.PvArray[c]);
+      temporalPincer += ' ' + PrMove(GameBoard.PvArray[c]);
     }
     if (currentDepth !== 1) {
       line +=
@@ -444,14 +429,8 @@ export function SearchPosition() {
         ((SearchController.fhf / SearchController.fh) * 100).toFixed(2) +
         '%';
     }
-    console.log(line);
-
-    // return Promise.resolve({
-    //   score: bestScore,
-    //   line: line,
-    // });
+    // console.log(line);
   }
-  // thinking time goes here?
 
   GameBoard.cleanPV = [bestScore, line];
 
@@ -462,11 +441,8 @@ export function SearchPosition() {
     bestScore: bestScore,
     bestMove: bestMove,
     line: line,
+    temporalPincer,
   };
-
-  // todo stop no animation
-  // todo
-  // UpdateDOMStats(bestScore, currentDepth);
 }
 
 export function gameSim(thinkingTime) {

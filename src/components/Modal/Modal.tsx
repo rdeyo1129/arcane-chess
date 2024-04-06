@@ -161,6 +161,28 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   />
                 </div>
                 <div className="settings-block">
+                  <Select
+                    title="Autopromotion"
+                    type="string"
+                    options={[
+                      'Select',
+                      'N',
+                      'Z',
+                      'U',
+                      'B',
+                      'R',
+                      'Q',
+                      'T',
+                      'M',
+                      'W',
+                      'S',
+                    ]}
+                    onChange={(val) =>
+                      this.updateConfig(val, 'autopromotion', 0)
+                    }
+                  />
+                </div>
+                {/* <div className="settings-block">
                   <Toggle
                     title="Blunder Vision"
                     callback={(val: boolean) =>
@@ -191,7 +213,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       this.updateConfig(val, 'hints', val ? -100 : 100)
                     }
                   />
-                </div>
+                </div> */}
               </div>
               <div className="buttons">
                 <Button

@@ -115,7 +115,6 @@ class ChessClock extends React.Component<ClockProps, ClockState> {
   }
 
   componentDidMount() {
-    console.log('ChessClock mounted with initialTime:', this.props.time);
     this.startTimer();
   }
 

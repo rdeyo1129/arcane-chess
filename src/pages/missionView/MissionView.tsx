@@ -241,7 +241,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               getLocalStorage(this.props.auth.user.id).nodeId
             ].time[1][1],
       playerClock:
-        getLocalStorage(this.props.auth.user.id).config.color === 'white'
+        getLocalStorage(this.props.auth.user.id).config.clock === false
+          ? null
+          : getLocalStorage(this.props.auth.user.id).config.color === 'white'
           ? booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
               getLocalStorage(this.props.auth.user.id).nodeId
             ].time[0][0]
@@ -355,6 +357,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         this.setState(
           (prevState) => {
             const setEngineRoyalty =
+              _.has(PrMove(reply), '@') &&
               PrMove(reply).split('@')[0]?.length > 1
                 ? {
                     [`royalty${PrMove(reply).split('')[1]}`]: {
@@ -364,11 +367,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       [PrSq(TOSQ(reply))]: 8,
                     },
                   }
-                : {
-                    ...prevState.royalties[
-                      `royalty${PrMove(reply).split('')[1]}`
-                    ],
-                  };
+                : {};
             return {
               ...prevState,
               pvLine: GameBoard.cleanPV,
@@ -413,7 +412,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             };
           },
           () => {
-            console.log('royalty', this.state.royalties, GameBoard.royaltyE);
             if (CheckAndSet(this.state.preset)) {
               this.setState({
                 gameOver: true,
@@ -678,7 +676,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
-    console.log('royalty', this.state.royalties, GameBoard.royaltyE);
     return (
       <div className="tactorius-board fade">
         <TactoriusModal
@@ -1052,7 +1049,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       this.arcaneChess().makeUserMove(
                         orig,
                         dest,
-                        0,
+                        getLocalStorage(auth.user.id).config.autopromotion ===
+                          'Select'
+                          ? 0
+                          : pieces[
+                              `${this.state.playerColor[0]}${
+                                getLocalStorage(auth.user.id).config
+                                  .autopromotion
+                              }`
+                            ],
                         this.state.swapType,
                         this.state.placingRoyalty
                       );

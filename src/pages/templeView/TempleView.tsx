@@ -267,6 +267,7 @@ interface State {
   royalties: {
     [key: string]: { [key: string]: number };
   };
+  hideCompletedPage: boolean;
 }
 
 interface Props {
@@ -355,6 +356,9 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       lastMove: [],
       royalties:
         booksMap[`book${LS.chapter}`][LS.nodeId].panels['panel-1'].royalties,
+      hideCompletedPage:
+        _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
+        LS.nodeId.split('-')[0] !== 'temple',
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen, this.props.auth, {});
@@ -451,21 +455,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     );
   };
 
-  initializeArcaneChessAndTest = (fen: string) => {
-    // const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-    // const start = '6pk/3K2p1/6p1/6p1/8/8/8/7P w - - 0 1';
-    // const start = '8/8/8/4X3/8/8/8/8 w - - 0 1';
-    // koh
-    // const start = 'k7/8/8/8/8/8/8/7K w - - 0 1';
-    // royalty mate
-    // const start = '6Xk/8/8/8/8/8/R7/K7 w - - 0 1';
-    // promote to unicorn
-    // const start = '4pk2/4ppp1/6XP/8/8/8/8/7K w - - 0 1';
-    // const start = '5pk1/5XX1/6XP/6X1/8/8/8/7K w - - 0 1';
-    // rnbqk2r/p1pp1ppp/1p2pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR w KQkq - 0 1
-    // this.arcaneChess().startCreate(fen);
-  };
-
   perftTest = (fen: string) => {
     PrintPieceLists();
     PrintBoard();
@@ -522,49 +511,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       });
   };
 
-  // promise or web worker here?
-  // start variation button call here
-  // pair with a resest button
-  calculateFen = () => {
-    // this.setState({ fen });
-    // todo to animate, set classnames, timeouts, clock conditionals,promise?
-    // todo promise or thinking timeout time for returning makemove
-    // any edge cases?
-    this.setState({
-      thinking: true,
-    });
-    // this.arcaneChess().getScoreAndLine(
-    //   this.state.fenHistory[this.state.fenHistory.length - 1]
-    // );
-
-    ParseFen(this.state.fenHistory[this.state.fenHistory.length - 1]);
-
-    // ParseFen('rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-
-    const gameBoardPowers = generatePowers();
-
-    console.log('gameBoardPowers', gameBoardPowers);
-
-    GenerateMoves();
-
-    PrintMoveList();
-
-    // this.perftTest(
-    //   'rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-    // );
-
-    this.setState({
-      pvLine: [],
-      history: [],
-      fenHistory: [this.state.fen],
-    });
-    // this.setState({
-    //   thinking: false,
-    // });
-    // search controller
-    // your own gui lines of code here here
-  };
-
   onChangeUses = (e: React.ChangeEvent<HTMLSelectElement>, power: string) => {
     const uses = Number(e.target.value) || e.target.value;
     this.setState((prevState) => ({
@@ -607,7 +553,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       );
       if (!PrMove(parsed)) {
         console.log('invalid move');
-        // debugger; // eslint-disable-line
       }
       this.setState((prevState) => ({
         history: [...prevState.history, PrMove(parsed)],
@@ -686,6 +631,9 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   };
 
   componentDidMount() {
+    if (this.state.hideCompletedPage) {
+      return;
+    }
     if (!this.hasMounted) {
       this.hasMounted = true;
       this.arcaneChess().startGame(
@@ -699,234 +647,249 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: object, prevState: { gameOver: boolean }) {
-    // if (this.state.gameOver !== prevState.gameOver) {
-    //   this.setState({ gameOver: true, gameOverType: CheckResult().gameResult });
-    // }
-  }
-
   render() {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     return (
       <div className="tactorius-board fade">
-        <TactoriusModal
-          isOpen={this.state.gameOver}
-          // handleClose={() => this.handleModalClose()}
-          // modalType={this.state.endScenario}
-          // message={} // interpolate
-          message={this.state.gameOverType} // interpolate
-          type={
-            this.state.gameOverType === 'puzzle victory' ? 'victory' : 'defeat'
-          }
-        />
-        {/* <button style={{ position: "absoulte" }}>test</button> */}
-        <div className="temple-view">
-          {/* <div className="game-info">
-            <div className="panel-left-container">
-              <div className="panel-left">this is a paragraph about chess.</div>
-            </div>
-          </div> */}
-          {/* 
-            panel types lesson temple mission create... any others? puzzles (leage vs temples)
-            must be true to page architecture
+        {this.state.hideCompletedPage ? (
+          <div className="completed-node">
+            <div className="completed-node-text">Node Completed</div>
+          </div>
+        ) : (
+          <>
+            <TactoriusModal
+              isOpen={this.state.gameOver}
+              // handleClose={() => this.handleModalClose()}
+              // modalType={this.state.endScenario}
+              // message={} // interpolate
+              message={this.state.gameOverType} // interpolate
+              type={
+                this.state.gameOverType === 'puzzle victory'
+                  ? 'victory'
+                  : 'defeat'
+              }
+            />
+            <div className="temple-view">
+              {/* <div className="game-info">
+          <div className="panel-left-container">
+            <div className="panel-left">this is a paragraph about chess.</div>
+          </div>
+        </div> */}
+              {/* 
+          panel types lesson temple mission create... any others? puzzles (leage vs temples)
+          must be true to page architecture
 
-          */}
-          {/* <div className="panel"></div> */}
-          <div className="opponent-dialogue-arcana">
-            <div className="arcana">
-              <div className="arcana-side-buttons">
-                <Button
-                  className="tertiary"
-                  // onClick={() => {
-                  //   this.setState({ selected: 'a' });
-                  // }}
-                  backgroundColorOverride="#333333"
-                  color="B"
-                  text="WHITE"
-                  width={190}
-                />
-                <Button
-                  className="tertiary"
-                  // onClick={() => {
-                  //   this.setState({ selected: 'a' });
-                  // }}
-                  backgroundColorOverride="#333333"
-                  color="B"
-                  text="BLACK"
-                  width={190}
-                  disabled={false}
-                />
-              </div>
-              <div className="arcana-select">
-                {_.map(this.state.wArcana, (value: number, key: string) => {
-                  return (
-                    <img
-                      key={key}
-                      className="arcane"
-                      src={`${arcana[key].imagePath}${
-                        this.state.arcaneHover === key ? '-hover' : ''
-                      }.svg`}
-                      onMouseEnter={() => this.toggleHover(key)}
-                      onMouseLeave={() => this.toggleHover('')}
+        */}
+              {/* <div className="panel"></div> */}
+              <div className="opponent-dialogue-arcana">
+                <div className="arcana">
+                  <div className="arcana-side-buttons">
+                    <Button
+                      className="tertiary"
+                      // onClick={() => {
+                      //   this.setState({ selected: 'a' });
+                      // }}
+                      backgroundColorOverride="#333333"
+                      color="B"
+                      text="WHITE"
+                      width={190}
                     />
-                  );
-                })}
+                    <Button
+                      className="tertiary"
+                      // onClick={() => {
+                      //   this.setState({ selected: 'a' });
+                      // }}
+                      backgroundColorOverride="#333333"
+                      color="B"
+                      text="BLACK"
+                      width={190}
+                      disabled={false}
+                    />
+                  </div>
+                  <div className="arcana-select">
+                    {_.map(this.state.wArcana, (value: number, key: string) => {
+                      return (
+                        <img
+                          key={key}
+                          className="arcane"
+                          src={`${arcana[key].imagePath}${
+                            this.state.arcaneHover === key ? '-hover' : ''
+                          }.svg`}
+                          onMouseEnter={() => this.toggleHover(key)}
+                          onMouseLeave={() => this.toggleHover('')}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              <div className="time-board-time">
+                <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
+                <div className="board-view">
+                  <Chessground
+                    forwardedRef={this.chessgroundRef}
+                    // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
+                    // check={this.tactorius.inCheck().isAttacked}
+                    // viewOnly={this.isCheckmate()}
+                    fen={
+                      this.state.fenHistory[this.state.fenHistory.length - 1]
+                    }
+                    // coordinates={true}
+                    // notation={true}
+                    // onChange={(move) => {
+                    //   console.log('hello', move);
+                    // }}
+                    resizable={true}
+                    wFaction={this.state.whiteFaction}
+                    bFaction={this.state.blackFaction}
+                    royalties={this.state.royalties}
+                    // wRoyalty={this.state.wRoyalty}
+                    // bRoyalty={this.state.bRoyalty}
+                    // wVisible={this.state.wVisCount === 0}
+                    // bVisible={this.state.bVisCount === 0}
+                    // width={520}
+                    // height={520}
+                    width={480}
+                    height={480}
+                    // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
+                    // don't, just go by the page type
+                    // width={360}
+                    // height={360}
+                    animation={{
+                      enabled: true,
+                      duration: 200,
+                    }}
+                    highlight={{
+                      lastMove: true,
+                      check: true,
+                    }}
+                    orientation={this.state.playerColor}
+                    disableContextMenu={false}
+                    turnColor={GameBoard.side === 0 ? 'white' : 'black'}
+                    movable={{
+                      free: false,
+                      // todo swap out placeholder for comment
+                      // color: "both",
+                      color: this.state.playerColor,
+                      // todo show summon destinations
+                      dests: this.arcaneChess().getGroundMoves(),
+                    }}
+                    lastMove={this.state.lastMove}
+                    viewOnly={false}
+                    events={{
+                      change: () => {
+                        // if (this.state.)
+                        // this.setState({
+                        //   fen:
+                        // })
+                        // this.arcaneChess().engineReply();
+                        // this.setState({})
+                        // console.log(cg.FEN);
+                        // send moves to redux store, then to server (db), then to opponent
+                      },
+                      move: (
+                        orig: string,
+                        dest: string,
+                        capturedPiece: number
+                      ) => {
+                        console.log('todo promotion');
+                        const parsed = this.arcaneChess().makeUserMove(
+                          orig,
+                          dest
+                        );
+                        if (
+                          `${orig}${dest}` ===
+                          this.state.correctMoves[this.state.moveNumber]
+                        ) {
+                          this.setState(
+                            (prevState) => ({
+                              history: [...prevState.history, PrMove(parsed)],
+                              fen: outputFenOfCurrentPosition(),
+                              fenHistory: [
+                                ...prevState.fenHistory,
+                                outputFenOfCurrentPosition(),
+                              ],
+                              moveNumber: prevState.moveNumber + 1,
+                              lastMove: [orig, dest],
+                            }),
+                            () => {
+                              if (
+                                this.state.moveNumber ===
+                                this.state.correctMoves.length
+                              ) {
+                                this.incrementPanel();
+                              } else {
+                                this.compTempleMove();
+                              }
+                            }
+                          );
+                        } else {
+                          this.handleWrongMove();
+                        }
+                      },
+                      // select: (key) => {
+                      //   ParseFen(this.state.fen);
+                      //   AddPiece(prettyToSquare(key), PIECES.wN);
+                      //   this.setState({
+                      //     fen: outputFenOfCurrentPosition(),
+                      //     fenHistory: [outputFenOfCurrentPosition()],
+                      //   });
+                      // },
+                    }}
+                  />
+                </div>
+                <div className="player-time"></div>
+              </div>
+              <div className="temple-clock-buttons">
+                <div className="temple-clock">
+                  <ChessClock
+                    ref={this.chessclockRef}
+                    type="dec"
+                    playerTurn={gameBoardTurn === this.state.playerColor}
+                    turn={gameBoardTurn}
+                    time={this.state.playerClock}
+                    timePrime={this.state.playerDec}
+                    playerTimeout={() => {
+                      this.setState({
+                        gameOver: true,
+                        gameOverType: 'player timed out',
+                      });
+                    }}
+                  />
+                </div>
+                <div className="temple-buttons">
+                  <Button
+                    className="tertiary"
+                    onClick={() => {
+                      this.setState({ selected: 'a' });
+                    }}
+                    color="B"
+                    text=""
+                    width={160}
+                    disabled={this.state.config.a.disabled}
+                  />
+                  <Button
+                    className="tertiary"
+                    onClick={() => {
+                      this.setState({
+                        gameOver: true,
+                        gameOverType: `${this.state.playerColor} resigns`,
+                      });
+                    }}
+                    color="B"
+                    // strong={true}
+                    text="RESIGN"
+                    width={160}
+                    // fontSize={30}
+                    backgroundColorOverride="#222222"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="time-board-time">
-            <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
-            <div className="board-view">
-              <Chessground
-                forwardedRef={this.chessgroundRef}
-                // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
-                // check={this.tactorius.inCheck().isAttacked}
-                // viewOnly={this.isCheckmate()}
-                fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
-                // coordinates={true}
-                // notation={true}
-                // onChange={(move) => {
-                //   console.log('hello', move);
-                // }}
-                resizable={true}
-                wFaction={this.state.whiteFaction}
-                bFaction={this.state.blackFaction}
-                royalties={this.state.royalties}
-                // wRoyalty={this.state.wRoyalty}
-                // bRoyalty={this.state.bRoyalty}
-                // wVisible={this.state.wVisCount === 0}
-                // bVisible={this.state.bVisCount === 0}
-                // width={520}
-                // height={520}
-                width={480}
-                height={480}
-                // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
-                // don't, just go by the page type
-                // width={360}
-                // height={360}
-                animation={{
-                  enabled: true,
-                  duration: 200,
-                }}
-                highlight={{
-                  lastMove: true,
-                  check: true,
-                }}
-                orientation={this.state.playerColor}
-                disableContextMenu={false}
-                turnColor={GameBoard.side === 0 ? 'white' : 'black'}
-                movable={{
-                  free: false,
-                  // todo swap out placeholder for comment
-                  // color: "both",
-                  color: this.state.playerColor,
-                  // todo show summon destinations
-                  dests: this.arcaneChess().getGroundMoves(),
-                }}
-                lastMove={this.state.lastMove}
-                viewOnly={false}
-                events={{
-                  change: () => {
-                    // if (this.state.)
-                    // this.setState({
-                    //   fen:
-                    // })
-                    // this.arcaneChess().engineReply();
-                    // this.setState({})
-                    // console.log(cg.FEN);
-                    // send moves to redux store, then to server (db), then to opponent
-                  },
-                  move: (orig: string, dest: string, capturedPiece: number) => {
-                    console.log('move', orig, dest, this.state.correctMoves);
-                    const parsed = this.arcaneChess().makeUserMove(orig, dest);
-                    if (
-                      `${orig}${dest}` ===
-                      this.state.correctMoves[this.state.moveNumber]
-                    ) {
-                      this.setState(
-                        (prevState) => ({
-                          history: [...prevState.history, PrMove(parsed)],
-                          fen: outputFenOfCurrentPosition(),
-                          fenHistory: [
-                            ...prevState.fenHistory,
-                            outputFenOfCurrentPosition(),
-                          ],
-                          moveNumber: prevState.moveNumber + 1,
-                          lastMove: [orig, dest],
-                        }),
-                        () => {
-                          if (
-                            this.state.moveNumber ===
-                            this.state.correctMoves.length
-                          ) {
-                            this.incrementPanel();
-                          } else {
-                            this.compTempleMove();
-                          }
-                        }
-                      );
-                    } else {
-                      this.handleWrongMove();
-                    }
-                  },
-                  // select: (key) => {
-                  //   ParseFen(this.state.fen);
-                  //   AddPiece(prettyToSquare(key), PIECES.wN);
-                  //   this.setState({
-                  //     fen: outputFenOfCurrentPosition(),
-                  //     fenHistory: [outputFenOfCurrentPosition()],
-                  //   });
-                  // },
-                }}
-              />
-            </div>
-            <div className="player-time"></div>
-          </div>
-          <div className="temple-clock-buttons">
-            <div className="temple-clock">
-              <ChessClock
-                ref={this.chessclockRef}
-                type="dec"
-                playerTurn={gameBoardTurn === this.state.playerColor}
-                turn={gameBoardTurn}
-                time={this.state.playerClock}
-                timePrime={this.state.playerDec}
-                playerTimeout={() => {
-                  this.setState({
-                    gameOver: true,
-                    gameOverType: 'player timed out',
-                  });
-                }}
-              />
-            </div>
-            <div className="temple-buttons">
-              <Button
-                className="tertiary"
-                onClick={() => {
-                  this.setState({ selected: 'a' });
-                }}
-                color="B"
-                text=""
-                width={160}
-                disabled={this.state.config.a.disabled}
-              />
-              <Button
-                className="tertiary"
-                onClick={() => {
-                  this.setState({ gameOver: true });
-                }}
-                color="B"
-                // strong={true}
-                text="RESIGN"
-                width={160}
-                // fontSize={30}
-                backgroundColorOverride="#222222"
-              />
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     );
   }

@@ -1283,7 +1283,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               ))}
             </div>
             <div className="buttons">
-              <Button
+              {/* <Button
                 className="tertiary"
                 onClick={() => {}}
                 color="B"
@@ -1292,10 +1292,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 width={100}
                 // fontSize={30}
                 backgroundColorOverride="#222222"
-              />
+              /> */}
               <Button
                 className="tertiary"
-                onClick={() => {}}
+                onClick={() => {
+                  this.setState({
+                    gameOver: true,
+                    gameOverType: `${this.state.playerColor} resigns`,
+                  });
+                }}
                 color="B"
                 // strong={true}
                 text="RESIGN"

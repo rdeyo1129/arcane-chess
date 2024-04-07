@@ -138,21 +138,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   />
                 </div>
                 <div className="settings-block">
-                  <Select
-                    title="Depth"
-                    type="number"
-                    options={[1, 2, 3, 4, 5, 6, 7, 8]}
-                    onChange={(val) =>
-                      this.updateConfig(
-                        Number(val),
-                        'depth',
-                        (-this.state.config.depth * 100 +
-                          Number(val) * 100) as number
-                      )
-                    }
-                  />
-                </div>
-                <div className="settings-block">
                   <Toggle
                     title="Clock"
                     callback={(val: boolean) =>
@@ -179,6 +164,21 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     ]}
                     onChange={(val) =>
                       this.updateConfig(val, 'autopromotion', 0)
+                    }
+                  />
+                </div>
+                <div className="settings-block">
+                  <Select
+                    title="Depth"
+                    type="number"
+                    options={[1, 2, 3, 4, 5, 6, 7, 8]}
+                    onChange={(val) =>
+                      this.updateConfig(
+                        Number(val),
+                        'depth',
+                        (-this.state.config.depth * 100 +
+                          Number(val) * 100) as number
+                      )
                     }
                   />
                 </div>

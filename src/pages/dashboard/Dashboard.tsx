@@ -145,11 +145,11 @@ export class UnwrappedDashboard extends React.Component<
           </Link>
           <Link
             className="home-button"
-            to="/hub"
+            to="https://discord.gg/JYV3SWnc"
             onMouseEnter={() => this.setState({ hoverNav: 'hub' })}
           >
             <Button
-              text="HUB"
+              text="UNDERGROUND"
               // onClick={() => this.calculateFen()}
               className="tertiary"
               color="G"

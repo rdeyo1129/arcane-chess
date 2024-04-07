@@ -117,7 +117,6 @@ interface Node {
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
-  theme: string;
   opponent: string;
   panels: {
     [key: string]: {
@@ -150,6 +149,7 @@ interface Node {
       // ];
     };
   };
+  theme: string;
 }
 
 interface State {
@@ -208,6 +208,7 @@ interface State {
   promotionModalOpen: boolean;
   placingPromotion: number;
   hint: string;
+  theme: string;
 }
 
 interface Props {
@@ -312,6 +313,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       promotionModalOpen: false,
       placingPromotion: 0,
       hint: '',
+      theme:
+        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
+          getLocalStorage(this.props.auth.user.id).nodeId
+        ].theme,
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen);
@@ -700,19 +705,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           playerFaction={'normal'}
           handleClose={(pieceType: string) => this.handleModalClose(pieceType)}
         />
-        {/* <button style={{ position: "absoulte" }}>test</button> */}
-        <div className="mission-view">
-          {/* <div className="game-info">
-            <div className="panel-left-container">
-              <div className="panel-left">this is a paragraph about chess.</div>
-            </div>
-          </div> */}
-          {/* 
-            panel types lesson temple mission create... any others? puzzles (leage vs temples)
-            must be true to page architecture
-
-          */}
-          {/* <div className="panel"></div> */}
+        <div
+          className="mission-view"
+          style={{
+            background: `url(assets/${this.state.theme}.webp) no-repeat center center fixed`,
+          }}
+        >
           <div className="opponent-dialogue-arcana">
             <div className="info-avatar">
               <div className="avatar"></div>
@@ -1335,12 +1333,3 @@ export const MissionView = connect(
   mapStateToProps,
   {}
 )(withRouter(UnwrappedMissionView));
-
-// connect(mapStateToProps)(
-//   withRouter(UnwrappedFrontPage)
-// );
-
-// .hero-text {
-//   font-size: 48px;
-//   font-weight: 800;
-// }

@@ -919,7 +919,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                           [this.state.newNodeName]: {
                             id: this.state.newNodeName,
                             title: 'Example Title',
-                            time: [100, 100],
+                            time: [
+                              [300, 3],
+                              [300, 3],
+                            ],
                             nodeText: 'First Description',
                             panelText: 'Second Description',
                             reward: [500, 'a', 'b', 'c'],
@@ -2172,7 +2175,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       preset: this.state.preset,
                       viewOnly: false,
                       orientation: 'white',
-                      boss: false,
                       whiteArcane: { ...this.state.config.W.arcana },
                       blackArcane: { ...this.state.config.BK.arcana },
                       // config: { ...this.state.config },
@@ -2196,6 +2198,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       opponent: this.state.opponent,
                       theme: this.state.theme,
                       time: this.state.time,
+                      boss: false,
                     },
                   });
                 }}

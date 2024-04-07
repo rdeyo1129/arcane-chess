@@ -64,8 +64,7 @@
         "config": {},
         "correctMoves": []
       }
-    },
-    "missionType": "NORMAL / VARIANT / UYA"
+    }
   },
   "temple-1": {
     "id": "temple-1",
@@ -78,6 +77,7 @@
     "reward": [500, "a", "b", "c"],
     "prereq": "",
     "opponent": "Sidian",
+    "boss": false,
     "panels": {
       "panel-1": {
         "fen": "r5k1/pp1b2pp/4p1p1/2p5/2PqNQ2/3P4/PP4PP/5R1K b - - 4 20",
@@ -121,8 +121,7 @@
         "config": {},
         "correctMoves": ["c1c7", "a6f1", "f3g1", "f1g1", "h1g1", "e8e1"],
         "viewOnly": false,
-        "orientation": "white",
-        "boss": false
+        "orientation": "white"
       }
     }
   },
@@ -137,6 +136,8 @@
     "reward": [500, "a", "b", "c"],
     "prereq": "Some prerequisite",
     "opponent": "",
+    "boss": false,
+    "theme": "orange",
     "panels": {
       "panel-1": {
         "fen": "5k2/p7/8/2P5/p3b1p1/2R4p/3P1B2/3K4 w - - 0 1",
@@ -173,11 +174,9 @@
         "config": {},
         "correctMoves": [],
         "viewOnly": false,
-        "orientation": "white",
-        "boss": false
+        "orientation": "white"
       }
-    },
-    "missionType": "NORMAL / VARIANT / UYA"
+    }
   },
   "mission-2": {
     "id": "mission-2",
@@ -191,6 +190,8 @@
     "reward": [500, "a", "b", "c"],
     "prereq": "Some prerequisite",
     "opponent": "",
+    "boss": false,
+    "theme": "yellow",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
@@ -213,9 +214,48 @@
         "config": {},
         "correctMoves": [],
         "viewOnly": false,
-        "orientation": "white",
-        "boss": false
+        "orientation": "white"
       }
     }
+  },
+  "mission-3": {
+    "id": "mission-3",
+    "title": "Example Title",
+    "time": [
+      [100, 3],
+      [5, 1]
+    ],
+    "nodeText": "First Description",
+    "panelText": "Second Description",
+    "reward": [500, "a", "b", "c"],
+    "prereq": "Some prerequisite",
+    "opponent": "",
+    "theme": "purple",
+    "panels": {
+      "panel-1": {
+        "fen": "rnbkqbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w KQkq - 0 1",
+        "fenHistory": [
+          "rnbkqbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Panel Description ;soihgasog2",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      }
+    },
+    "boss": true
   }
 }

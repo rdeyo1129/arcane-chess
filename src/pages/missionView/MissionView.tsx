@@ -36,7 +36,10 @@ import {
   RtyChar,
   PceChar,
 } from '../../arcaneChess/defs.mjs';
-import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
+import {
+  outputFenOfCurrentPosition,
+  PrintBoard,
+} from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
 import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
 
@@ -302,10 +305,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           getLocalStorage(this.props.auth.user.id).nodeId
         ].panels['panel-1'].royalties,
       lastMove: [],
-      orientation:
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ].panels['panel-1'].orientation,
+      orientation: getLocalStorage(this.props.auth.user.id).config.color,
       preset:
         booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
           getLocalStorage(this.props.auth.user.id).nodeId
@@ -361,21 +361,22 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       .then((reply) => {
         this.setState(
           (prevState) => {
-            const setEngineRoyalty =
-              PrMove(reply).split('@')[0]?.length > 1
-                ? {
-                    [`royalty${PrMove(reply).split('')[1]}`]: {
-                      ...prevState.royalties[
-                        `royalty${PrMove(reply).split('')[1]}`
-                      ],
-                      [PrSq(TOSQ(reply))]: 8,
-                    },
-                  }
-                : {
+            const setEngineRoyalty = !_.includes(PrMove(reply), '@')
+              ? {}
+              : PrMove(reply).split('@')[0]?.length > 1
+              ? {
+                  [`royalty${PrMove(reply).split('')[1]}`]: {
                     ...prevState.royalties[
                       `royalty${PrMove(reply).split('')[1]}`
                     ],
-                  };
+                    [PrSq(TOSQ(reply))]: 8,
+                  },
+                }
+              : {
+                  ...prevState.royalties[
+                    `royalty${PrMove(reply)?.split('')[1]}`
+                  ],
+                };
             return {
               ...prevState,
               pvLine: GameBoard.cleanPV,
@@ -420,10 +421,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             };
           },
           () => {
-            if (CheckAndSet(this.state.preset)) {
+            if (CheckAndSet()) {
               this.setState({
                 gameOver: true,
-                gameOverType: CheckResult(this.state.preset).gameResult,
+                gameOverType: CheckResult().gameResult,
               });
               return;
             }
@@ -620,10 +621,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         },
       }),
       () => {
-        if (CheckAndSet(this.state.preset)) {
+        if (CheckAndSet()) {
           this.setState({
             gameOver: true,
-            gameOverType: CheckResult(this.state.preset).gameResult,
+            gameOverType: CheckResult().gameResult,
           });
           return;
         } else {
@@ -657,8 +658,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
           getLocalStorage(this.props.auth.user.id).nodeId
         ].panels['panel-1'].blackArcane,
-        this.state.royalties
-        // this.state.preset
+        this.state.royalties,
+        this.state.preset
       );
 
       this.setState(
@@ -972,11 +973,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           swapType: '',
                         }),
                         () => {
-                          if (CheckAndSet(this.state.preset)) {
+                          if (CheckAndSet()) {
                             this.setState({
                               gameOver: true,
-                              gameOverType: CheckResult(this.state.preset)
-                                .gameResult,
+                              gameOverType: CheckResult().gameResult,
                             });
                             return;
                           } else {
@@ -1188,11 +1188,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               swapType: '',
                             }),
                             () => {
-                              if (CheckAndSet(this.state.preset)) {
+                              if (CheckAndSet()) {
                                 this.setState({
                                   gameOver: true,
-                                  gameOverType: CheckResult(this.state.preset)
-                                    .gameResult,
+                                  gameOverType: CheckResult().gameResult,
                                 });
                                 return;
                               } else {

@@ -950,13 +950,14 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             /> */}
             <Select
               options={[
-                'CHESS',
+                '',
                 'CLEAR',
+                'CHESS',
                 'HORDE',
-                '960',
                 'KOH',
                 '3CHECK',
                 'CRAZYHOUSE',
+                'CAPALL',
               ]}
               onChange={(value) => {
                 if (value === 'CLEAR') {
@@ -979,41 +980,15 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 }
                 if (value === 'HORDE') {
                   this.setState({
-                    fen: 'rnbkqbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w KQkq - 0 1',
+                    fen: 'rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1',
                     fenHistory: [
-                      'rnbkqbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w KQkq - 0 1',
+                      'rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1',
                     ],
+                    preset: 'HORDE',
                   });
                   ParseFen(
-                    'rnbkqbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w KQkq - 0 1'
+                    'rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1'
                   );
-                }
-                if (value === '960') {
-                  // todo
-                  console.log('960', value);
-                  this.setState((prevState) => ({
-                    ...prevState,
-                    // fen: fischer,
-                    // fenHistory: [fischer],
-                    preset: '960',
-                    config: {
-                      ...prevState.config,
-                      W: {
-                        ...prevState.config.W,
-                        arcana: {
-                          ...prevState.config.W.arcana,
-                          modsRAN: 'true',
-                        },
-                      },
-                      BK: {
-                        ...prevState.config.BK,
-                        arcana: {
-                          ...prevState.config.BK.arcana,
-                          modsRAN: 'true',
-                        },
-                      },
-                    },
-                  }));
                 }
               }}
               type="string"

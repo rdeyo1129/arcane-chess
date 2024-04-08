@@ -152,7 +152,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "capAllPieces",
+        "preset": "CAPALL",
         "whiteArcane": {
           "sumnB": 2,
           "shftP": 2,
@@ -194,9 +194,9 @@
     "theme": "yellow",
     "panels": {
       "panel-1": {
-        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "fen": "rnbqkbnr/ppppp3/6PP/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
         "fenHistory": [
-          "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+          "rnbqkbnr/ppppp3/6PP/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
         ],
         "history": [],
         "panelText": "Panel Description ;soihgasog1",
@@ -233,9 +233,9 @@
     "theme": "purple",
     "panels": {
       "panel-1": {
-        "fen": "rnbkqbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w KQkq - 0 1",
+        "fen": "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1",
         "fenHistory": [
-          "rnbkqbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w KQkq - 0 1"
+          "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1"
         ],
         "history": [],
         "panelText": "Panel Description ;soihgasog2",
@@ -247,7 +247,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "CLEAR",
+        "preset": "HORDE",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},

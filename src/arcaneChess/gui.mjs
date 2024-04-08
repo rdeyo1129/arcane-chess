@@ -163,7 +163,7 @@ export function ThreeFoldRep() {
   return r;
 }
 
-export function CheckResult(preset) {
+export function CheckResult(preset = GameBoard.preset) {
   if (GameBoard.fiftyMove >= 100) {
     return {
       gameOver: true,
@@ -185,7 +185,16 @@ export function CheckResult(preset) {
     };
   }
 
-  if (preset === 'capAllPieces') {
+  if (preset === 'HORDE') {
+    if (GameBoard.material[COLOURS.WHITE] === 150000) {
+      return {
+        gameOver: true,
+        gameResult: 'black mates (all white material captured)',
+      };
+    }
+  }
+
+  if (preset === 'CAPALL') {
     if (GameBoard.material[COLOURS.WHITE] === 150000) {
       return {
         gameOver: true,
@@ -247,8 +256,8 @@ export function CheckResult(preset) {
   }
 }
 
-export function CheckAndSet(preset = '') {
-  if (CheckResult(preset).gameOver) {
+export function CheckAndSet() {
+  if (CheckResult().gameOver) {
     GameController.GameOver = BOOL.TRUE;
     return true;
   } else {

@@ -415,8 +415,6 @@ export function SearchPosition() {
       ' nodes:' +
       SearchController.nodes;
 
-    // todo need to add line to a clean array
-
     PvNum = GetPvLine(currentDepth);
     line += ' Pv:';
     for (c = 0; c < PvNum; c++) {
@@ -429,7 +427,7 @@ export function SearchPosition() {
         ((SearchController.fhf / SearchController.fh) * 100).toFixed(2) +
         '%';
     }
-    // console.log(line);
+    console.log(line);
   }
 
   GameBoard.cleanPV = [bestScore, line];

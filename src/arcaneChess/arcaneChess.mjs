@@ -58,7 +58,7 @@ import {
   setWhiteArcana,
   setBlackArcana,
 } from './arcaneDefs.mjs';
-import { PIECES, prettyToSquare } from './defs.mjs';
+import { COLOURS, PIECES, prettyToSquare } from './defs.mjs';
 import { TakeMove } from './makemove.mjs';
 
 export default function arcaneChess(
@@ -66,7 +66,7 @@ export default function arcaneChess(
   blackConfig = {},
   fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
   auth = {},
-  varVars = {}
+  preset = {}
   // fen = 'n1n5/PPPk4/8/8/8/8/4Kppp/5N1N b - - 0 1'
   // 4k3/8/8/K2P3r/8/8/8/8 w - - 0 1
   // normal starting position
@@ -109,10 +109,8 @@ export default function arcaneChess(
     whiteConfig,
     blackConfig,
     royalties,
-    varVar = null
+    preset = 'CLEAR'
   ) => {
-    // this needs to be assigned to something, the fen that gets passed in randomize();
-
     setWhiteArcana(whiteConfig);
     setBlackArcana(blackConfig);
 
@@ -123,6 +121,9 @@ export default function arcaneChess(
         GameBoard[key][square] = v;
       });
     });
+
+    // if (preset === 'HORDE') GameBoard.material[COLOURS.WHITE] += 150000;
+    GameBoard.preset = preset;
 
     ParseFen(startFen);
 
@@ -143,8 +144,8 @@ export default function arcaneChess(
   return {
     // filesRanksBoard: () => InitFilesRanksBrd(),
     activateDyad: (type) => activateDyad(type),
-    startGame: (fen, whiteConfig, blackConfig, royalties, varVar) =>
-      startGame(fen, whiteConfig, blackConfig, royalties, varVar),
+    startGame: (fen, whiteConfig, blackConfig, royalties, preset) =>
+      startGame(fen, whiteConfig, blackConfig, royalties, preset),
     randomize: (whiteConfig, blackConfig) =>
       randomize(whiteConfig, blackConfig),
     getScoreAndLine: (fen) => {

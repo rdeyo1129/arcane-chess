@@ -133,10 +133,11 @@ GameBoard.fenHistory = [];
 GameBoard.hisPly = 0;
 GameBoard.history = [];
 GameBoard.ply = 0;
-// Gameboard.SubPly = 0;
+// Gameboard.SubPly = 0; // for dyads I think
 GameBoard.enPas = 0;
 GameBoard.castlePerm = 0;
 GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
+// WHITE, BLACK material of pieces
 GameBoard.pceNum = new Array(30); // indexed by Pce
 GameBoard.pList = new Array(30 * 36);
 
@@ -156,6 +157,8 @@ GameBoard.royaltyT = {};
 GameBoard.royaltyM = {};
 GameBoard.royaltyV = {};
 GameBoard.royaltyE = {};
+
+GameBoard.preset;
 
 GameBoard.suspend = 0; // += not =
 GameBoard.racingKings = false;
@@ -347,9 +350,9 @@ export function GeneratePosKey() {
     finalKey ^= PieceKeys[GameBoard.enPas];
   }
 
+  // if (GameBoard.preset !== 'HORDE' || GameBoard.side === COLOURS.BLACK) {
   finalKey ^= CastleKeys[GameBoard.castlePerm];
-
-  // console.log('final key', finalKey);
+  // }
 
   return finalKey;
 }
@@ -383,6 +386,8 @@ export function UpdateListsMaterial() {
   for (index = 0; index < 31; index++) {
     GameBoard.pceNum[index] = 0;
   }
+
+  if (GameBoard.preset === 'HORDE') GameBoard.material[COLOURS.WHITE] += 150000;
 
   for (index = 0; index < 64; index++) {
     sq = SQ120(index);

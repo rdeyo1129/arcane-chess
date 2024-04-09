@@ -267,10 +267,22 @@ export function MakeMove(move) {
     GameBoard.fiftyMove = 0;
     if (GameBoard.crazyHouse[GameBoard.side]) {
       if (GameBoard.side === COLOURS.WHITE) {
+        if (
+          !whiteArcaneConfig[`sumn${PceChar.split('')[captured].toUpperCase()}`]
+        )
+          whiteArcaneConfig[
+            `sumn${PceChar.split('')[captured].toUpperCase()}`
+          ] = 0;
         whiteArcaneConfig[
           `sumn${PceChar.split('')[captured].toUpperCase()}`
         ] += 1;
       } else {
+        if (
+          !blackArcaneConfig[`sumn${PceChar.split('')[captured].toUpperCase()}`]
+        )
+          blackArcaneConfig[
+            `sumn${PceChar.split('')[captured].toUpperCase()}`
+          ] = 0;
         blackArcaneConfig[
           `sumn${PceChar.split('')[captured].toUpperCase()}`
         ] += 1;

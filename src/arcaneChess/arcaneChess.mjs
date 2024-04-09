@@ -125,6 +125,9 @@ export default function arcaneChess(
     // if (preset === 'HORDE') GameBoard.material[COLOURS.WHITE] += 150000;
     GameBoard.preset = preset;
 
+    if (preset === 'CRAZYHOUSE') GameBoard.crazyHouse[COLOURS.WHITE] = true;
+    if (preset === 'CRAZYHOUSE') GameBoard.crazyHouse[COLOURS.BLACK] = true;
+
     ParseFen(startFen);
 
     generatePowers();

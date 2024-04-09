@@ -250,10 +250,10 @@ export function PrMove(move, returnType) {
   // EP
   if (move & MFLAGEP) {
     MvStr =
-      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
+      getPceChar(GameBoard.pieces[TOSQ(move)]) +
       PrSq(FROMSQ(move)) +
       'x' +
-      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
+      getPceChar(GameBoard.pieces[TOSQ(move)]) +
       PrSq(TOSQ(move)) +
       'ep';
   }

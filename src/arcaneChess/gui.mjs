@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { GameBoard } from './board';
 import { GenerateMoves, generatePowers } from './movegen';
 import { SearchController, SearchPosition } from './search';
@@ -191,6 +192,44 @@ export function CheckResult(preset = GameBoard.preset) {
         gameOver: true,
         gameResult: 'black mates (all white material captured)',
       };
+    }
+  }
+  if (preset === 'KOH' || preset === 'RACINGKINGS') {
+    let gameOverObj = null;
+    for (const sq of GameBoard.kohSquares) {
+      if (GameBoard.pieces[sq] === PIECES.wK) {
+        gameOverObj = {
+          gameOver: true,
+          gameResult: 'white mates (king takes the throne)',
+        };
+        break;
+      } else if (GameBoard.pieces[sq] === PIECES.bK) {
+        gameOverObj = {
+          gameOver: true,
+          gameResult: 'black mates (king takes the throne)',
+        };
+        break;
+      }
+    }
+    if (gameOverObj) return gameOverObj;
+  }
+
+  if (preset === 'XCHECK') {
+    if (
+      GameBoard.xCheckLimit[GameBoard.side] > 0 &&
+      GameBoard.checks[GameBoard.side] >= GameBoard.xCheckLimit[GameBoard.side]
+    ) {
+      if (GameBoard.side === COLOURS.WHITE) {
+        return {
+          gameOver: true,
+          gameResult: 'black mates (x check ending)',
+        };
+      } else {
+        return {
+          gameOver: true,
+          gameResult: 'white mates (x check ending)',
+        };
+      }
     }
   }
 

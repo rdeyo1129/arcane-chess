@@ -629,7 +629,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
   render() {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     // const { auth } = this.props;
-    // console.log(GameBoard.pieces);
     return (
       <div className="creator">
         <div className="top-left">

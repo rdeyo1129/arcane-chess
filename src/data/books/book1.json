@@ -190,13 +190,12 @@
     "reward": [500, "a", "b", "c"],
     "prereq": "Some prerequisite",
     "opponent": "",
-    "boss": false,
     "theme": "yellow",
     "panels": {
       "panel-1": {
-        "fen": "rnbqkbnr/ppppp3/6PP/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "fen": "rnbq1bnr/ppppp/5kPP/8/8/4K3/PPPPPPPP/RNBQ1BNR w KQkq - 0 1",
         "fenHistory": [
-          "rnbqkbnr/ppppp3/6PP/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+          "rnbq1bnr/ppppp3/5kPP/8/8/4K3/PPPPPPPP/RNBQ1BNR w KQkq - 0 1"
         ],
         "history": [],
         "panelText": "Panel Description ;soihgasog1",
@@ -208,7 +207,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "CRAZYHOUSE",
+        "preset": "XCHECK",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
@@ -216,7 +215,8 @@
         "viewOnly": false,
         "orientation": "white"
       }
-    }
+    },
+    "boss": false
   },
   "mission-3": {
     "id": "mission-3",

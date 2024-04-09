@@ -429,7 +429,7 @@ export function ResetBoard() {
   GameBoard.summonMoveList = [];
   GameBoard.swapMoveList = [];
 
-  GameBoard.kohSquares = [];
+  // GameBoard.kohSquares = [];
 
   // todo?
   // GameBoard.royaltyQ = {};
@@ -438,17 +438,17 @@ export function ResetBoard() {
   // GameBoard.royaltyV = {};
   // GameBoard.royaltyE = {};
 
-  GameBoard.suspend = 0; // += not =
-  GameBoard.racingKings = false;
-  GameBoard.invisibility = [0, 0];
+  // GameBoard.suspend = 0; // += not =
+  // GameBoard.racingKings = false;
+  // GameBoard.invisibility = [0, 0];
 
   // GameBoard.xCheckLimit = [0, 0];
   // GameBoard.checks = [0, 0];
 
-  GameBoard.dyadName = '';
-  GameBoard.dyad = 0;
-  GameBoard.dyadMax = [2, 2];
-  GameBoard.dyadClock = 0;
+  // GameBoard.dyadName = '';
+  // GameBoard.dyad = 0;
+  // GameBoard.dyadMax = [2, 2];
+  // GameBoard.dyadClock = 0;
 
   GameBoard.pass = false;
 }

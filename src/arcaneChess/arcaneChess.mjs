@@ -122,12 +122,17 @@ export default function arcaneChess(
       });
     });
 
-    // if (preset === 'HORDE') GameBoard.material[COLOURS.WHITE] += 150000;
     GameBoard.preset = preset;
 
+    if (preset === 'XCHECK') GameBoard.xCheckLimit[COLOURS.WHITE] = 3;
+    if (preset === 'XCHECK') GameBoard.xCheckLimit[COLOURS.BLACK] = 3;
     if (preset === 'CRAZYHOUSE') GameBoard.crazyHouse[COLOURS.WHITE] = true;
     if (preset === 'CRAZYHOUSE') GameBoard.crazyHouse[COLOURS.BLACK] = true;
+    if (preset === 'KOH') {
+      GameBoard.kohSquares.push(54, 55, 64, 65);
+    }
 
+    console.log(GameBoard.xCheckLimit);
     ParseFen(startFen);
 
     generatePowers();

@@ -25,7 +25,13 @@ import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 //   arcaneChessWorker,
 // } from '../../arcaneChess/arcaneChessInstance.js';
 
-import { GameBoard, InCheck, TOSQ, FROMSQ } from '../../arcaneChess/board.mjs';
+import {
+  GameBoard,
+  InCheck,
+  TOSQ,
+  FROMSQ,
+  PrintPieceLists,
+} from '../../arcaneChess/board.mjs';
 import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import {
   prettyToSquare,
@@ -685,6 +691,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
+    console.log(GameBoard.checks);
     return (
       <div className="tactorius-board fade">
         <TactoriusModal

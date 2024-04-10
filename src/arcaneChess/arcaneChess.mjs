@@ -132,7 +132,6 @@ export default function arcaneChess(
       GameBoard.kohSquares.push(54, 55, 64, 65);
     }
 
-    console.log(GameBoard.xCheckLimit);
     ParseFen(startFen);
 
     generatePowers();

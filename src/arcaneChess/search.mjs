@@ -147,39 +147,12 @@ export function Quiescence(alpha, beta) {
     }
     Legal++;
 
-    if (InCheck() === BOOL.TRUE) {
-      GameBoard.checks[GameBoard.side]++;
-      if (
-        GameBoard.xCheckLimit[GameBoard.side] > 0 &&
-        GameBoard.checks[GameBoard.side] >=
-          GameBoard.xCheckLimit[GameBoard.side]
-      ) {
-        GameBoard.checks[GameBoard.side]--;
-        TakeMove();
-        StorePvMove(Move);
-        return MATE - GameBoard.checks[GameBoard.side ^ 1];
-      }
-    }
-
     Score = -Quiescence(-beta, -alpha);
-
-    if (InCheck() === BOOL.TRUE) {
-      GameBoard.checks[GameBoard.side]--;
-    }
 
     TakeMove();
 
     if (SearchController.stop === BOOL.TRUE) {
       return 0;
-    }
-
-    if (
-      (GameBoard.pieces[FROMSQ(Move)] === PIECES.wK ||
-        GameBoard.pieces[FROMSQ(Move)] === PIECES.bK) &&
-      _.includes(GameBoard.kohSquares, TOSQ(Move))
-    ) {
-      BestMove = Move;
-      alpha = MATE - GameBoard.ply;
     }
 
     if (Score > alpha) {
@@ -192,6 +165,24 @@ export function Quiescence(alpha, beta) {
       }
       alpha = Score;
       BestMove = Move;
+    }
+  }
+
+  const kingSquareIndex = _.findIndex(GameBoard.kohSquares, (square) => {
+    return GameBoard.pieces[square] === Kings[GameBoard.side];
+  });
+
+  if (kingSquareIndex !== -1) {
+    alpha = MATE - GameBoard.ply;
+  }
+
+  if (InCheck() === BOOL.TRUE) {
+    if (
+      GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
+      GameBoard.checksGiven[GameBoard.side ^ 1] ===
+        GameBoard.xCheckLimit[GameBoard.side ^ 1]
+    ) {
+      alpha = -MATE + GameBoard.ply;
     }
   }
 
@@ -280,39 +271,12 @@ export function AlphaBeta(alpha, beta, depth) {
     }
     Legal++;
 
-    if (InCheck() === BOOL.TRUE) {
-      GameBoard.checks[GameBoard.side]++;
-      if (
-        GameBoard.xCheckLimit[GameBoard.side] > 0 &&
-        GameBoard.checks[GameBoard.side] >=
-          GameBoard.xCheckLimit[GameBoard.side]
-      ) {
-        GameBoard.checks[GameBoard.side]--;
-        TakeMove();
-        StorePvMove(Move);
-        return MATE - GameBoard.checks[GameBoard.side ^ 1];
-      }
-    }
-
     Score = -AlphaBeta(-beta, -alpha, depth - 1);
-
-    if (InCheck() === BOOL.TRUE) {
-      GameBoard.checks[GameBoard.side]--;
-    }
 
     TakeMove();
 
     if (SearchController.stop === BOOL.TRUE) {
       return 0;
-    }
-
-    if (
-      (GameBoard.pieces[FROMSQ(Move)] === PIECES.wK ||
-        GameBoard.pieces[FROMSQ(Move)] === PIECES.bK) &&
-      _.includes(GameBoard.kohSquares, TOSQ(Move))
-    ) {
-      BestMove = Move;
-      alpha = MATE - GameBoard.ply;
     }
 
     if (Score > alpha) {
@@ -341,6 +305,24 @@ export function AlphaBeta(alpha, beta, depth) {
   // rook entangled mate
   // future sight should be the last one
   // arrows for hints
+
+  const kingSquareIndex = _.findIndex(GameBoard.kohSquares, (square) => {
+    return GameBoard.pieces[square] === Kings[GameBoard.side];
+  });
+
+  if (kingSquareIndex !== -1) {
+    return MATE - GameBoard.ply;
+  }
+
+  if (InCheck() === BOOL.TRUE) {
+    if (
+      GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
+      GameBoard.checksGiven[GameBoard.side ^ 1] ===
+        GameBoard.xCheckLimit[GameBoard.side ^ 1]
+    ) {
+      return MATE + GameBoard.ply;
+    }
+  }
 
   if (Legal === 0) {
     if (InCheckA === BOOL.TRUE) {

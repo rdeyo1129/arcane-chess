@@ -47,6 +47,18 @@ const RookTable = [
   0, 0, 5, 10, 10, 5, 0, 0,
 ];
 
+// prettier-ignore
+const KohTable = [
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 10, 10, 0, 0, 0,
+  0, 0, 10, 15, 15, 10, 0, 0,
+  0, 10, 15, 1000, 1000, 15, 10, 0,
+  0, 10, 15, 1000, 1000, 15, 10, 0,
+  0, 0, 10, 15, 15, 10, 0, 0, 
+  0, 0, 0, 10, 10, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0,
+];
+
 const BishopPair = 40;
 
 export function EvalPosition() {
@@ -217,7 +229,7 @@ export function EvalPosition() {
     pce = PIECES.wK;
     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
-      score += KnightTable[SQ64(sq)];
+      score += KohTable[SQ64(sq)];
     }
   }
 
@@ -225,7 +237,7 @@ export function EvalPosition() {
     pce = PIECES.bK;
     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
-      score -= KnightTable[MIRROR64(SQ64(sq))];
+      score -= KohTable[MIRROR64(SQ64(sq))];
     }
   }
 

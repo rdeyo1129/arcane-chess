@@ -691,7 +691,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
-    console.log(GameBoard.checks);
     return (
       <div className="tactorius-board fade">
         <TactoriusModal

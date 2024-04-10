@@ -391,11 +391,11 @@ export function MakeMove(move) {
 
   if (
     SqAttacked(
-      GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
-      GameBoard.side ^ 1
+      GameBoard.pList[PCEINDEX(Kings[GameBoard.side ^ 1], 0)],
+      GameBoard.side
     )
   ) {
-    GameBoard.checks[GameBoard.side]++;
+    GameBoard.checksGiven[GameBoard.side]++;
   }
   if (GameBoard.dyad > 0) {
     GameBoard.dyadClock += 1;
@@ -440,6 +440,15 @@ export function TakeMove() {
   if (GameBoard.dyad === 0) {
     GameBoard.hisPly--;
     GameBoard.ply--;
+  }
+
+  if (
+    SqAttacked(
+      GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
+      GameBoard.side ^ 1
+    )
+  ) {
+    GameBoard.checksGiven[GameBoard.side ^ 1]--;
   }
 
   let move = GameBoard.history[GameBoard.hisPly].move;
@@ -557,15 +566,6 @@ export function TakeMove() {
         ] -= 1;
       }
     }
-  }
-
-  if (
-    SqAttacked(
-      GameBoard.pList[PCEINDEX(Kings[GameBoard.side ^ 1], 0)],
-      GameBoard.side
-    )
-  ) {
-    GameBoard.checks[GameBoard.side ^ 1]--;
   }
 
   if (

@@ -216,8 +216,9 @@ export function CheckResult(preset = GameBoard.preset) {
 
   if (preset === 'XCHECK') {
     if (
-      GameBoard.xCheckLimit[GameBoard.side] > 0 &&
-      GameBoard.checks[GameBoard.side] >= GameBoard.xCheckLimit[GameBoard.side]
+      GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
+      GameBoard.checksGiven[GameBoard.side ^ 1] >=
+        GameBoard.xCheckLimit[GameBoard.side ^ 1]
     ) {
       if (GameBoard.side === COLOURS.WHITE) {
         return {

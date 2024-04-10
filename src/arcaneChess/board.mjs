@@ -165,7 +165,7 @@ GameBoard.racingKings = false;
 GameBoard.invisibility = [0, 0];
 
 GameBoard.xCheckLimit = [0, 0];
-GameBoard.checks = [0, 0];
+GameBoard.checksGiven = [0, 0];
 
 GameBoard.dyadName = '';
 GameBoard.dyad = 0;

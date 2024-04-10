@@ -391,7 +391,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       panelText: this.booksMap['book1']['lesson-1'].panels['panel-1'].panelText,
       time: this.booksMap['book1']['lesson-1'].time,
       opponent: this.booksMap['book1']['lesson-1'].opponent,
-      theme: this.booksMap['book1']['lesson-1'].theme,
+      theme: '',
       // rating: 1500,
       // keyword: '',
       puzzleEpsilon: '1500 mate',
@@ -953,8 +953,9 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 'CLEAR',
                 'CHESS',
                 'HORDE',
-                'KOH',
-                '3CHECK',
+                'THRONE',
+                'DELIVERANCE',
+                'XCHECK',
                 'CRAZYHOUSE',
                 'CAPALL',
               ]}
@@ -988,6 +989,54 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   ParseFen(
                     'rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1'
                   );
+                }
+                if (value === 'THRONE') {
+                  this.setState({
+                    fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    fenHistory: [
+                      'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    ],
+                    preset: 'THRONE',
+                  });
+                  ParseFen(
+                    'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+                  );
+                }
+                if (value === 'DELIVERANCE') {
+                  this.setState({
+                    fen: '8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1',
+                    fenHistory: ['8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1'],
+                    preset: 'DELIVERANCE',
+                  });
+                  ParseFen('8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1');
+                }
+                if (value === 'XCHECK') {
+                  this.setState({
+                    fen: '8/8/8/8/8/8/8/8 w - - 0 1',
+                    fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
+                    preset: 'XCHECK',
+                  });
+                  ParseFen('8/8/8/8/8/8/8/8 w - - 0 1');
+                }
+                if (value === 'CRAZYHOUSE') {
+                  this.setState({
+                    fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    fenHistory: [
+                      'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    ],
+                    preset: 'CRAZYHOUSE',
+                  });
+                  ParseFen(
+                    'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+                  );
+                }
+                if (value === 'CAPALL') {
+                  this.setState({
+                    fen: '8/8/8/8/8/8/8/8 w - - 0 1',
+                    fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
+                    preset: 'CAPALL',
+                  });
+                  ParseFen('8/8/8/8/8/8/8/8 w - - 0 1');
                 }
               }}
               type="string"

@@ -59,6 +59,18 @@ const KohTable = [
   0, 0, 0, 0, 0, 0, 0, 0,
 ];
 
+// prettier-ignore
+const deliverance = [
+  1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+  900, 900, 900, 900, 900, 900, 900, 900,
+  800, 800, 800, 800, 800, 800, 800, 800,
+  700, 700, 700, 700, 700, 700, 700, 700,
+  600, 600, 600, 600, 600, 600, 600, 600,
+  500, 500, 500, 500, 500, 500, 500, 500,
+  0, 0, 0, 0, 0, 0, 0, 0,
+  -200, -200, -200, -200, -200, -200, -200, -200,
+]
+
 const BishopPair = 40;
 
 export function EvalPosition() {
@@ -225,7 +237,7 @@ export function EvalPosition() {
     score -= KnightTable[MIRROR64(SQ64(sq))];
   }
 
-  if (GameBoard.preset === 'KOH') {
+  if (GameBoard.preset === 'THRONE') {
     pce = PIECES.wK;
     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
@@ -233,11 +245,27 @@ export function EvalPosition() {
     }
   }
 
-  if (GameBoard.preset === 'KOH') {
+  if (GameBoard.preset === 'THRONE') {
     pce = PIECES.bK;
     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
       score -= KohTable[MIRROR64(SQ64(sq))];
+    }
+  }
+
+  if (GameBoard.preset === 'DELIVERANCE') {
+    pce = PIECES.wK;
+    for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+      sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+      score += deliverance[SQ64(sq)];
+    }
+  }
+
+  if (GameBoard.preset === 'DELIVERANCE') {
+    pce = PIECES.bK;
+    for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+      sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+      score -= deliverance[SQ64(sq)];
     }
   }
 

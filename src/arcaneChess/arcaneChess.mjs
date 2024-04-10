@@ -128,8 +128,11 @@ export default function arcaneChess(
     if (preset === 'XCHECK') GameBoard.xCheckLimit[COLOURS.BLACK] = 3;
     if (preset === 'CRAZYHOUSE') GameBoard.crazyHouse[COLOURS.WHITE] = true;
     if (preset === 'CRAZYHOUSE') GameBoard.crazyHouse[COLOURS.BLACK] = true;
-    if (preset === 'KOH') {
+    if (preset === 'THRONE') {
       GameBoard.kohSquares.push(54, 55, 64, 65);
+    }
+    if (preset === 'DELIVERANCE') {
+      GameBoard.kohSquares.push(91, 92, 93, 94, 95, 96, 97, 98);
     }
 
     ParseFen(startFen);

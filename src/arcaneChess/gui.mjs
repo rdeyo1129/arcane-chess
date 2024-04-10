@@ -194,19 +194,19 @@ export function CheckResult(preset = GameBoard.preset) {
       };
     }
   }
-  if (preset === 'KOH' || preset === 'RACINGKINGS') {
+  if (preset === 'THRONE' || preset === 'DELIVERANCE') {
     let gameOverObj = null;
     for (const sq of GameBoard.kohSquares) {
       if (GameBoard.pieces[sq] === PIECES.wK) {
         gameOverObj = {
           gameOver: true,
-          gameResult: 'white mates (king takes the throne)',
+          gameResult: 'white mates (king has been delivered)',
         };
         break;
       } else if (GameBoard.pieces[sq] === PIECES.bK) {
         gameOverObj = {
           gameOver: true,
-          gameResult: 'black mates (king takes the throne)',
+          gameResult: 'black mates (king has been delivered)',
         };
         break;
       }

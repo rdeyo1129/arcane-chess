@@ -161,7 +161,6 @@ GameBoard.royaltyE = {};
 GameBoard.preset;
 
 GameBoard.suspend = 0; // += not =
-GameBoard.racingKings = false;
 GameBoard.invisibility = [0, 0];
 
 GameBoard.xCheckLimit = [0, 0];
@@ -439,7 +438,6 @@ export function ResetBoard() {
   // GameBoard.royaltyE = {};
 
   // GameBoard.suspend = 0; // += not =
-  // GameBoard.racingKings = false;
   // GameBoard.invisibility = [0, 0];
 
   // GameBoard.xCheckLimit = [0, 0];

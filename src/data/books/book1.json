@@ -257,5 +257,43 @@
       }
     },
     "boss": true
+  },
+  "mission-4": {
+    "id": "mission-4",
+    "title": "Example Title",
+    "time": [
+      [100, 100],
+      [100, 100]
+    ],
+    "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
+    "panelText": "Second Description",
+    "reward": [500, "a", "b", "c"],
+    "prereq": "Some prerequisite",
+    "opponent": "Sidian",
+    "theme": "blue",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1"],
+        "history": [],
+        "panelText": "Panel Description ;soihgasog2",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "DELIVERANCE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      }
+    },
+    "boss": false
   }
 }

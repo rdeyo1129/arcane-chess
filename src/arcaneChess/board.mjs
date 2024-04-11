@@ -669,9 +669,9 @@ export function ParseFen(fen) {
   if (fen[fenCnt] !== '-') {
     file = fen[fenCnt].charCodeAt() - 'a'.charCodeAt();
     rank = fen[fenCnt + 1].charCodeAt() - '1'.charCodeAt();
-    console.log(
-      'fen[fenCnt]:' + fen[fenCnt] + ' File:' + file + ' Rank:' + rank
-    );
+    // console.log(
+    //   'fen[fenCnt]:' + fen[fenCnt] + ' File:' + file + ' Rank:' + rank
+    // );
     GameBoard.enPas = FR2SQ(file, rank);
   }
 

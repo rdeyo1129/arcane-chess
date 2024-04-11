@@ -42,7 +42,12 @@ import {
 } from './main';
 import { PrintMoveList, PrSq } from './io';
 import { InitMvvLva, GenerateMoves, generatePowers } from './movegen';
-import { GameBoard, randomize, ParseFen } from './board';
+import {
+  GameBoard,
+  randomize,
+  ParseFen,
+  outputFenOfCurrentPosition,
+} from './board';
 import {
   validGroundMoves,
   validSummonMoves,
@@ -151,6 +156,13 @@ export default function arcaneChess(
     // SearchPosition(fen);
   };
 
+  const generatePlayableOptions = () => {
+    // todo herring, forced ep, and find all working instances and replace with this
+    ParseFen(outputFenOfCurrentPosition());
+    generatePowers();
+    GenerateMoves(true, false, 'COMP', '');
+  };
+
   return {
     // filesRanksBoard: () => InitFilesRanksBrd(),
     activateDyad: (type) => activateDyad(type),
@@ -206,8 +218,31 @@ export default function arcaneChess(
       }
       return engineSuggestion(thinkingTime, depth);
     },
+    takeBackMove: (halfPly, side) => {
+      if (side === 'white') {
+        whiteArcaneConfig.modsFUT -= 1;
+      }
+      if (side === 'black') {
+        blackArcaneConfig.modsFUT -= 1;
+      }
+      _.times(halfPly, () => {
+        TakeMove();
+      });
+    },
+    generatePlayableOptions: () => {
+      return generatePlayableOptions();
+    },
     addRoyalty: (type, sq, turns) => {
       GameBoard[type] = { [prettyToSquare(sq)]: turns };
+    },
+    getRoyalties: () => {
+      return {
+        royaltyQ: GameBoard.royaltyQ,
+        royaltyT: GameBoard.royaltyT,
+        royaltyM: GameBoard.royaltyM,
+        royaltyV: GameBoard.royaltyV,
+        royaltyE: GameBoard.royaltyE,
+      };
     },
     clearRoyalties: () => {
       GameBoard.royaltyQ = {};

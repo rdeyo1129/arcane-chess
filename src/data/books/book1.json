@@ -193,9 +193,9 @@
     "theme": "yellow",
     "panels": {
       "panel-1": {
-        "fen": "rnbq1bnr/ppppp/5kPP/8/8/4K3/PPPPPPPP/RNBQ1BNR w KQkq - 0 1",
+        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
         "fenHistory": [
-          "rnbq1bnr/ppppp3/5kPP/8/8/4K3/PPPPPPPP/RNBQ1BNR w KQkq - 0 1"
+          "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
         ],
         "history": [],
         "panelText": "Panel Description ;soihgasog1",
@@ -208,7 +208,14 @@
           "royaltyE": {}
         },
         "preset": "KOH",
-        "whiteArcane": {},
+        "whiteArcane": {
+          "modsFUT": 1,
+          "sumnP": 1,
+          "sumnQ": 2,
+          "sumnRE": 1,
+          "sumnRQ": 1,
+          "sumnRM": 1
+        },
         "blackArcane": {},
         "config": {},
         "correctMoves": [],

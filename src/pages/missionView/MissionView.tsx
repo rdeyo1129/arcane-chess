@@ -291,7 +291,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       blackFaction: 'normal',
       selected: 'a',
       config: {
-        // todo disable if no abilities selected
         a: { disabled: false, powers: {}, picks: 0 },
         b: { disabled: false, powers: {}, picks: 0 },
         c: { disabled: false, powers: {}, picks: 0 },
@@ -771,6 +770,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     ? whiteArcaneConfig
                     : blackArcaneConfig,
                   (value: number, key: string) => {
+                    const noFutureSight =
+                      this.state.history.length < 4 && key === 'modsFUT';
                     if (value === null || value <= 0) return;
                     return (
                       <img
@@ -782,12 +783,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         style={{
                           opacity:
                             this.state.playerColor !== gameBoardTurn ||
-                            this.state.selectedSide === this.state.engineColor
+                            this.state.selectedSide ===
+                              this.state.engineColor ||
+                            noFutureSight
                               ? 0.5
                               : 1,
                           cursor:
                             this.state.playerColor !== gameBoardTurn ||
-                            this.state.selectedSide === this.state.engineColor
+                            this.state.selectedSide ===
+                              this.state.engineColor ||
+                            noFutureSight
                               ? 'not-allowed'
                               : 'pointer',
                         }}
@@ -856,6 +861,32 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             }
                             if (key === 'modsTEM') {
                               this.getHintAndScore(3);
+                            }
+                            if (key === 'modsFUT') {
+                              if (this.state.history.length >= 4) {
+                                this.arcaneChess().takeBackMove(
+                                  4,
+                                  this.state.playerColor
+                                );
+                                this.setState(
+                                  (prevState) => ({
+                                    history: prevState.history.slice(0, -4),
+                                    fen: outputFenOfCurrentPosition(),
+                                    fenHistory: prevState.fenHistory.slice(
+                                      0,
+                                      -4
+                                    ),
+                                    lastMove: [],
+                                    turn: gameBoardTurn,
+                                    royalties: {
+                                      ...this.arcaneChess().getRoyalties(),
+                                    },
+                                  }),
+                                  () => {
+                                    this.arcaneChess().generatePlayableOptions();
+                                  }
+                                );
+                              }
                             }
                           }
                         }}

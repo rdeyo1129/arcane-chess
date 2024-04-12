@@ -9,7 +9,7 @@ import _ from 'lodash';
 // if no piece of dyad type, no using that dyad
 
 // so:
-// dyads can ONLY be used on quiet moves (shifts, castling and attacks ok, no captures, no promotions, no abilities) or to give checks
+// dyads can ONLY be used on quiet moves (shifts, castling and attacks ok, no captures, no promotions, no abilities) an no checks..?
 // does this take care of all the edge cases?
 // not really, what about zugzwang or when a piece type (dyad type) like pawn runs out of moves, or when a piece is pinned or entangled?
 // when a pawn runs out of moves and there's only that pawn left, what are some rules to prevent stalemate?
@@ -22,11 +22,11 @@ import _ from 'lodash';
 // EDGE CASE HOW TO HANDLE WHEN A BUTTON CLICK IS NEEDED TO GET OUT OF CHECK IF ITS THE ONLY WAY OUT?
 // JUST INCLUDE THIS WHEN CHECKING FOR CHECKS, IF FUT SIGHT EXISTS TOO
 
-// dyad and summon fut sight adj swap can be used to get out of check
+// dyad and summon (futsight, not checkmate) adj swap can be used to get out of check and checkmate
 
 // dyad and promotion edge cases?
 
-// disable all but summons dyads when in check?
+// disable all but summons, swaps dyads when in check?
 
 // when hitting a power button, disable all other buttons
 
@@ -195,11 +195,6 @@ export default function arcaneChess(
       royaltyEpsilon = 0
     ) => {
       return MakeUserMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
-    },
-    takeUserMove: (halfPlyCnt = 1) => {
-      for (let i = 0; i < halfPlyCnt; i++) {
-        TakeMove();
-      }
     },
     engineReply: (thinkingTime, depth = 4) => {
       return engineMove(thinkingTime, depth);

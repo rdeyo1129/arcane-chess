@@ -1,10 +1,5 @@
 import React, { createRef } from 'react';
-import axios from 'axios';
-import _, { get, set } from 'lodash';
-// import { Link, withRouter } from "react-router-dom";
-// import { connect } from "react-redux";
-
-// import "../styles/front-page.css";
+import _ from 'lodash';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
@@ -35,85 +30,14 @@ import TactoriusModal from 'src/components/Modal/Modal';
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-import Dots from 'src/components/Loader/Dots';
-
-// import Hero from "../components/Hero";
-
-// import arcaneChess from "./././validation-engine/arcaneChess";
-
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
-import { PerftTest } from '../../arcaneChess/perft.mjs';
 
-import {
-  GameBoard,
-  GameController,
-  ParseFen,
-  PrintBoard,
-  PrintPieceLists,
-  ResetBoard,
-} from '../../arcaneChess/board.mjs';
-import {
-  MovePiece,
-  AddPiece,
-  ClearPiece,
-} from '../../arcaneChess/makemove.mjs';
-import { PrMove, PrintMoveList } from 'src/arcaneChess/io.mjs';
-import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
-import { prettyToSquare, BOOL, PIECES } from '../../arcaneChess/defs.mjs';
-import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
+import { GameBoard } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
-import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
-// import engine
-// import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
-import { SinglePlayer } from '../singlePlayer/SinglePlayer';
-
-// import arcaneChess correctly
-// import arcaneChess from "@shared/arcaneChess/arcaneChess";
-
-import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
-import Toggle from '../../components/Toggle/Toggle';
-import ChessClock from '../../components/Clock/Clock';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
-
-export const piecePickupArray = [
-  'wP',
-  'wH',
-  'wS',
-  'wN',
-  'wZ',
-  'wU',
-  'wB',
-  'wR',
-  'wQ',
-  'wT',
-  'wM',
-  'wV',
-  'wK',
-  //
-  'bP',
-  'bH',
-  'bS',
-  'bN',
-  'bZ',
-  'bU',
-  'bB',
-  'bR',
-  'bQ',
-  'bT',
-  'bM',
-  'bV',
-  'bK',
-];
-export const royaltyPickupArray = {
-  Q: 'yellow',
-  T: 'blue',
-  M: 'green',
-  V: 'purple',
-  E: 'orange',
-};
 
 const booksMap: { [key: string]: { [key: string]: Node } } = {
   book1,
@@ -130,46 +54,6 @@ const booksMap: { [key: string]: { [key: string]: Node } } = {
   book12,
 };
 
-interface missionJsonI {
-  [key: string]: {
-    fen: string;
-    id: string;
-    prereq: string;
-    boss?: boolean;
-    playerClock: number | null;
-  };
-}
-
-const missionJson: missionJsonI = {
-  'temple-1': {
-    // fen: 'rnbqkbnr/sspppppp/8/7Q/2B1P2R/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1',
-    // fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'temple-1',
-    prereq: '',
-    playerClock: 5,
-  },
-  'temple-2': {
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'temple-2',
-    prereq: 'temple-1',
-    playerClock: 5,
-  },
-  'temple-3': {
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'temple-3',
-    prereq: 'temple-2',
-    playerClock: 50,
-  },
-  'temple-4': {
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'temple-4',
-    prereq: 'temple-3',
-    boss: true,
-    playerClock: 150,
-  },
-};
-
 interface ArcanaDetail {
   name: string;
   description: string;
@@ -182,9 +66,9 @@ interface ArcanaMap {
 }
 
 interface Node {
-  id: string; // 'lesson-1';
+  id: string;
   title: string;
-  time: number[]; // seconds
+  time: number[];
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
@@ -269,6 +153,7 @@ interface State {
       }
     | undefined;
   lastMove: string[];
+  hideCompletedPage: boolean;
 }
 
 interface Props {
@@ -359,11 +244,13 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1']
           .blackArcane,
       lastMove: [],
+      hideCompletedPage: LS.nodeId.split('-')[0] !== 'lesson',
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen, this.props.auth, {});
     };
     this.chessgroundRef = React.createRef();
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   changePosition = (direction: 'inc' | 'dec') => {
@@ -438,117 +325,6 @@ class UnwrappedLessonView extends React.Component<Props, State> {
     });
   };
 
-  initializeArcaneChessAndTest = (fen: string) => {
-    // const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-    // const start = '6pk/3K2p1/6p1/6p1/8/8/8/7P w - - 0 1';
-    // const start = '8/8/8/4X3/8/8/8/8 w - - 0 1';
-    // koh
-    // const start = 'k7/8/8/8/8/8/8/7K w - - 0 1';
-    // royalty mate
-    // const start = '6Xk/8/8/8/8/8/R7/K7 w - - 0 1';
-    // promote to unicorn
-    // const start = '4pk2/4ppp1/6XP/8/8/8/8/7K w - - 0 1';
-    // const start = '5pk1/5XX1/6XP/6X1/8/8/8/7K w - - 0 1';
-    // rnbqk2r/p1pp1ppp/1p2pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR w KQkq - 0 1
-    this.arcaneChess().startCreate(fen);
-  };
-
-  perftTest = (fen: string) => {
-    PrintPieceLists();
-    PrintBoard();
-    PerftTest(3, fen);
-  };
-
-  setFen = (fen: string) => {
-    this.setState({ fen });
-  };
-
-  engineGo = () => {
-    this.setState({
-      thinking: true,
-    });
-
-    generatePowers();
-    GenerateMoves();
-
-    new Promise((resolve) => {
-      setTimeout(() => {
-        SearchController.thinking = BOOL.TRUE;
-        const engineResult = this.arcaneChess().engineReply(
-          this.state.thinkingTime
-        );
-        resolve(engineResult);
-      }, this.state.thinkingTime);
-    })
-      .then((reply) => {
-        this.setState(
-          (prevState) => ({
-            pvLine: GameBoard.cleanPV,
-            history: [...prevState.history, PrMove(reply)],
-            fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-            thinking: false,
-            turn: prevState.turn === 'white' ? 'black' : 'white',
-          }),
-          () => {
-            if (CheckAndSet()) {
-              this.setState({
-                gameOver: true,
-                gameOverType: CheckResult().gameResult,
-              });
-              return;
-            }
-          }
-        );
-      })
-      .then(() => {
-        generatePowers();
-        GenerateMoves();
-      })
-      .catch((error) => {
-        console.error('An error occurred:', error);
-      });
-  };
-
-  calculateFen = () => {
-    // this.setState({ fen });
-    // todo to animate, set classnames, timeouts, clock conditionals,promise?
-    // todo promise or thinking timeout time for returning makemove
-    // any edge cases?
-    this.setState({
-      thinking: true,
-    });
-    // this.arcaneChess().getScoreAndLine(
-    //   this.state.fenHistory[this.state.fenHistory.length - 1]
-    // );
-
-    ParseFen(this.state.fenHistory[this.state.fenHistory.length - 1]);
-
-    // ParseFen('rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-
-    const gameBoardPowers = generatePowers();
-
-    console.log('gameBoardPowers', gameBoardPowers);
-
-    GenerateMoves();
-
-    PrintMoveList();
-
-    // this.perftTest(
-    //   'rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-    // );
-
-    this.setState({
-      pvLine: [],
-      history: [],
-      fenHistory: [this.state.fen],
-    });
-    // this.setState({
-    //   thinking: false,
-    // });
-    // search controller
-    // your own gui lines of code here here
-  };
-
   stepForward = () => {
     function isLastProperty(obj: object, property: string) {
       const keys = Object.keys(obj);
@@ -573,7 +349,9 @@ class UnwrappedLessonView extends React.Component<Props, State> {
   };
 
   stepBackward = () => {
-    if (this.state.moveNumber === 0) {
+    if (this.state.gameOver) {
+      this.setState({ gameOver: false });
+    } else if (this.state.moveNumber === 0) {
       this.changePanel('dec');
     } else {
       this.changePosition('dec');
@@ -623,48 +401,25 @@ class UnwrappedLessonView extends React.Component<Props, State> {
     this.setState({ gameOver: true });
   };
 
-  componentDidMount() {
-    // this.setState({
-    //   turn:
-    //     missionJson[
-    //       `${getLocalStorage(this.props.auth.user.id).nodeId}`
-    //     ].fen.split(' ')[1] === 'w'
-    //       ? 'white'
-    //       : 'black',
-    // });
-    // if (!this.hasMounted) {
-    //   this.hasMounted = true;
-    //   this.arcaneChess().startGame(this.state.fen);
-    //   console.log(this.state.turn, this.state.engineColor);
-    //   if (this.state.engineColor === this.state.turn) {
-    //     // this.engineGo();
-    //     console.log(this.state.correctMoves);
-    //     const parsed = this.arcaneChess().makeUserMove(
-    //       this.state.correctMoves[this.state.moveNumber].slice(0, 2),
-    //       this.state.correctMoves[this.state.moveNumber].slice(2, 4)
-    //     );
-    //     if (!PrMove(parsed)) {
-    //       console.log('invalid move');
-    //       // debugger; // eslint-disable-line
-    //     }
-    //     this.setState((prevState) => ({
-    //       history: [...prevState.history, PrMove(parsed)],
-    //       fen: outputFenOfCurrentPosition(),
-    //       fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-    //       lastMove: [
-    //         this.state.correctMoves[prevState.moveNumber].slice(0, 2),
-    //         this.state.correctMoves[prevState.moveNumber].slice(2, 4),
-    //       ],
-    //       moveNumber: prevState.moveNumber + 1,
-    //     }));
-    //   }
-    // }
+  handleKeyDown(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'ArrowLeft':
+        if (this.state.currPanel > 1) this.stepBackward();
+        break;
+      case 'ArrowRight':
+        this.stepForward();
+        break;
+      default:
+        break;
+    }
   }
 
-  componentDidUpdate(prevProps: object, prevState: { gameOver: boolean }) {
-    // if (this.state.gameOver !== prevState.gameOver) {
-    //   this.setState({ gameOver: true, gameOverType: CheckResult().gameResult });
-    // }
+  componentWillUnmount(): void {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
   }
 
   render() {
@@ -672,157 +427,164 @@ class UnwrappedLessonView extends React.Component<Props, State> {
     const { auth } = this.props;
     return (
       <div className="tactorius-board fade">
-        <TactoriusModal
-          isOpen={this.state.gameOver}
-          handleClose={() => this.setState({ gameOver: false })}
-          disableSecondary={false}
-          // modalType={this.state.endScenario}
-          // message={} // interpolate
-          lessonBackButton={true}
-          type="victory"
-        />
-        {/* <button style={{ position: "absoulte" }}>test</button> */}
-        <div className="lesson-view">
-          {/* <div className="game-info">
-            <div className="panel-left-container">
-              <div className="panel-left">this is a paragraph about chess.</div>
-            </div>
-          </div> */}
-          {/* 
-            panel types lesson temple mission create... any others? puzzles (leage vs temples)
-            must be true to page architecture
-
-          */}
-          {/* <div className="panel"></div> */}
-          <div className="opponent-dialogue-arcana">
-            <div className="arcana">
-              <div className="arcana-side-buttons">
-                <Button
-                  className="tertiary"
-                  onClick={() => {
-                    this.setState({ selected: 'white' });
-                  }}
-                  backgroundColorOverride="#333333"
-                  color="B"
-                  text="WHITE"
-                  width={190}
-                />
-                <Button
-                  className="tertiary"
-                  onClick={() => {
-                    this.setState({ selected: 'black' });
-                  }}
-                  backgroundColorOverride="#333333"
-                  color="B"
-                  text="BLACK"
-                  width={190}
-                  disabled={false}
-                />
-              </div>
-              <div className="arcana-select">
-                {this.state.selected === 'white'
-                  ? _.map(this.state.wArcana, (value: number, key: string) => {
-                      return (
-                        <img
-                          key={key}
-                          className="arcane"
-                          src={`${arcana[key].imagePath}${
-                            this.state.arcaneHover === key ? '-hover' : ''
-                          }.svg`}
-                          onMouseEnter={() => this.toggleHover(key)}
-                          onMouseLeave={() => this.toggleHover('')}
-                        />
-                      );
-                    })
-                  : _.map(this.state.bArcana, (value: number, key: string) => {
-                      return (
-                        <img
-                          key={key}
-                          className="arcane"
-                          src={`${arcana[key].imagePath}${
-                            this.state.arcaneHover === key ? '-hover' : ''
-                          }.svg`}
-                          onMouseEnter={() => this.toggleHover(key)}
-                          onMouseLeave={() => this.toggleHover('')}
-                        />
-                      );
-                    })}
-              </div>
-            </div>
+        {this.state.hideCompletedPage ? (
+          <div className="completed-node">
+            <div className="completed-node-text">Node Completed</div>
           </div>
-          <div className="time-board-time">
-            <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
-            <div className="board-view">
-              <Chessground
-                forwardedRef={this.chessgroundRef}
-                fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
-                resizable={true}
-                wFaction={this.state.whiteFaction}
-                bFaction={this.state.blackFaction}
-                width={480}
-                height={480}
-                animation={{
-                  enabled: true,
-                  duration: 200,
-                }}
-                highlight={{
-                  lastMove: true,
-                  check: true,
-                }}
-                orientation={this.state.playerColor}
-                disableContextMenu={false}
-                turnColor={GameBoard.side === 0 ? 'white' : 'black'}
-                movable={{
-                  free: false,
-                  color: this.state.playerColor,
-                  dests: this.arcaneChess().getGroundMoves(),
-                }}
-                lastMove={this.state.lastMove}
-              />
-            </div>
-            <div className="player-time"></div>
-          </div>
-          <div className="temple-clock-buttons">
-            <div className="lesson-text">
-              {
-                booksMap[`book${getLocalStorage(auth.user.id).chapter}`][
-                  `${getLocalStorage(auth.user.id).nodeId}`
-                ].panels[`panel-${this.state.currPanel}`].panelText
+        ) : (
+          <>
+            <TactoriusModal
+              isOpen={this.state.gameOver}
+              handleClose={() =>
+                this.setState((prevState) => ({
+                  ...prevState,
+                  gameOver: false,
+                }))
               }
+              disableSecondary={false}
+              lessonBackButton={true}
+              type="victory"
+            />
+            <div className="lesson-view">
+              <div className="opponent-dialogue-arcana">
+                <div className="arcana">
+                  <div className="arcana-side-buttons">
+                    <Button
+                      className="tertiary"
+                      onClick={() => {
+                        this.setState({ selected: 'white' });
+                      }}
+                      backgroundColorOverride="#333333"
+                      color="B"
+                      text="WHITE"
+                      width={190}
+                    />
+                    <Button
+                      className="tertiary"
+                      onClick={() => {
+                        this.setState({ selected: 'black' });
+                      }}
+                      backgroundColorOverride="#333333"
+                      color="B"
+                      text="BLACK"
+                      width={190}
+                      disabled={false}
+                    />
+                  </div>
+                  <div className="arcana-select">
+                    {this.state.selected === 'white'
+                      ? _.map(
+                          this.state.wArcana,
+                          (value: number, key: string) => {
+                            return (
+                              <img
+                                key={key}
+                                className="arcane"
+                                src={`${arcana[key].imagePath}${
+                                  this.state.arcaneHover === key ? '-hover' : ''
+                                }.svg`}
+                                onMouseEnter={() => this.toggleHover(key)}
+                                onMouseLeave={() => this.toggleHover('')}
+                              />
+                            );
+                          }
+                        )
+                      : _.map(
+                          this.state.bArcana,
+                          (value: number, key: string) => {
+                            return (
+                              <img
+                                key={key}
+                                className="arcane"
+                                src={`${arcana[key].imagePath}${
+                                  this.state.arcaneHover === key ? '-hover' : ''
+                                }.svg`}
+                                onMouseEnter={() => this.toggleHover(key)}
+                                onMouseLeave={() => this.toggleHover('')}
+                              />
+                            );
+                          }
+                        )}
+                  </div>
+                </div>
+              </div>
+              <div className="time-board-time">
+                <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
+                <div className="board-view">
+                  <Chessground
+                    forwardedRef={this.chessgroundRef}
+                    fen={
+                      this.state.fenHistory[this.state.fenHistory.length - 1]
+                    }
+                    resizable={true}
+                    wFaction={this.state.whiteFaction}
+                    bFaction={this.state.blackFaction}
+                    width={480}
+                    height={480}
+                    animation={{
+                      enabled: true,
+                      duration: 200,
+                    }}
+                    highlight={{
+                      lastMove: true,
+                      check: true,
+                    }}
+                    orientation={this.state.playerColor}
+                    disableContextMenu={false}
+                    turnColor={GameBoard.side === 0 ? 'white' : 'black'}
+                    movable={{
+                      free: false,
+                      color: this.state.playerColor,
+                      dests: this.arcaneChess().getGroundMoves(),
+                    }}
+                    lastMove={this.state.lastMove}
+                  />
+                </div>
+                <div className="player-time"></div>
+              </div>
+              <div className="temple-clock-buttons">
+                <div className="lesson-text">
+                  {
+                    booksMap[`book${getLocalStorage(auth.user.id).chapter}`][
+                      `${getLocalStorage(auth.user.id).nodeId}`
+                    ].panels[`panel-${this.state.currPanel}`].panelText
+                  }
+                </div>
+                <div className="temple-buttons">
+                  <Button
+                    className="tertiary"
+                    onClick={() => {
+                      this.stepBackward();
+                    }}
+                    disabled={
+                      this.state.moveNumber === 0 && this.state.currPanel === 1
+                        ? true
+                        : false
+                    }
+                    color="B"
+                    strong={true}
+                    text="<"
+                    width={180}
+                    fontSize={36}
+                    backgroundColorOverride="#222222"
+                  />
+                  <Button
+                    className="tertiary"
+                    onClick={() => {
+                      this.stepForward();
+                    }}
+                    color="B"
+                    strong={true}
+                    text=">"
+                    width={180}
+                    fontSize={36}
+                    backgroundColorOverride="#222222"
+                  />
+                </div>
+              </div>
             </div>
-            <div className="temple-buttons">
-              <Button
-                className="tertiary"
-                onClick={() => {
-                  this.stepBackward();
-                }}
-                disabled={
-                  this.state.moveNumber === 0 && this.state.currPanel === 1
-                    ? true
-                    : false
-                }
-                color="B"
-                strong={true}
-                text="<<"
-                width={180}
-                fontSize={36}
-                backgroundColorOverride="#222222"
-              />
-              <Button
-                className="tertiary"
-                onClick={() => {
-                  this.stepForward();
-                }}
-                color="B"
-                strong={true}
-                text=">>"
-                width={180}
-                fontSize={36}
-                backgroundColorOverride="#222222"
-              />
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     );
   }
@@ -838,12 +600,3 @@ export const LessonView = connect(
   mapStateToProps,
   {}
 )(withRouter(UnwrappedLessonView));
-
-// connect(mapStateToProps)(
-//   withRouter(UnwrappedFrontPage)
-// );
-
-// .hero-text {
-//   font-size: 48px;
-//   font-weight: 800;
-// }

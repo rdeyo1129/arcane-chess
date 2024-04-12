@@ -170,6 +170,7 @@ interface State {
   thinking: boolean;
   thinkingTime: number;
   engineDepth: number;
+  historyPly: number;
   history: string[];
   fenHistory: string[];
   pvLine?: string[];
@@ -218,6 +219,7 @@ interface State {
   placingPromotion: number;
   hint: string;
   theme: string;
+  hideCompletedPage: boolean;
 }
 
 interface Props {
@@ -235,6 +237,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
+    const LS = getLocalStorage(this.props.auth.user.id);
     this.state = {
       turn:
         booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
@@ -276,6 +279,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         getLocalStorage(this.props.auth.user.id).nodeId
       ].panels['panel-1'].fen,
       pvLine: [],
+      historyPly: 0,
       history: [],
       fenHistory: [
         booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
@@ -322,14 +326,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
           getLocalStorage(this.props.auth.user.id).nodeId
         ].theme,
+      hideCompletedPage:
+        _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
+        LS.nodeId.split('-')[0] !== 'mission',
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen);
     };
-
-    // this.arcaneChessCallback = arcaneChess.bind(this);
-
     this.chessgroundRef = React.createRef();
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   toggleHover = (arcane: string) => {
@@ -385,7 +390,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             return {
               ...prevState,
               pvLine: GameBoard.cleanPV,
+              historyPly: prevState.historyPly + 1,
               history: [...prevState.history, PrMove(reply)],
+              fen: outputFenOfCurrentPosition(),
               fenHistory: [
                 ...prevState.fenHistory,
                 outputFenOfCurrentPosition(),
@@ -593,6 +600,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const char = RtyChar.split('')[this.state.placingRoyalty];
     this.setState(
       (prevState) => ({
+        historyPly: prevState.historyPly + 1,
         history: [...prevState.history, PrMove(parsed)],
         fen: outputFenOfCurrentPosition(),
         fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
@@ -639,7 +647,50 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     );
   };
 
+  navigateHistory(type: string) {
+    this.setState((prevState) => {
+      let newFenIndex = prevState.historyPly;
+      switch (type) {
+        case 'back':
+          if (this.state.historyPly > 0) {
+            newFenIndex -= 1;
+          }
+          break;
+        case 'forward':
+          if (newFenIndex < prevState.fenHistory.length - 1) {
+            newFenIndex += 1;
+          }
+          break;
+        case 'start':
+          newFenIndex = 0;
+          break;
+        case 'end':
+          newFenIndex = prevState.fenHistory.length - 1;
+          break;
+      }
+      return {
+        ...prevState,
+        historyPly: newFenIndex,
+        fen: prevState.fenHistory[newFenIndex],
+      };
+    });
+  }
+
+  handleKeyDown(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'ArrowLeft':
+        this.navigateHistory('back');
+        break;
+      case 'ArrowRight':
+        this.navigateHistory('forward');
+        break;
+      default:
+        break;
+    }
+  }
+
   componentWillUnmount(): void {
+    window.removeEventListener('keydown', this.handleKeyDown);
     // this.arcaneChess().clearRoyalties();
     // this.setState({
     //   royalties: {
@@ -653,6 +704,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
     if (!this.hasMounted) {
       this.hasMounted = true;
       this.arcaneChess().startGame(
@@ -692,533 +744,338 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     return (
       <div className="tactorius-board fade">
-        <TactoriusModal
-          isOpen={this.state.gameOver}
-          // handleClose={() => this.handleModalClose()}
-          // modalType={this.state.endScenario}
-          message={this.state.gameOverType} // interpolate
-          type={
-            this.state.gameOverType.split(' ')[1] === 'mates' &&
-            getLocalStorage(this.props.auth.user.id).config.color ===
-              this.state.gameOverType.split(' ')[0]
-              ? 'victory'
-              : 'defeat'
-          }
-        />
-        <PromotionModal
-          isOpen={this.state.promotionModalOpen}
-          playerColor={this.state.playerColor}
-          playerFaction={'normal'}
-          handleClose={(pieceType: string) => this.handleModalClose(pieceType)}
-        />
-        <div
-          className="mission-view"
-          style={{
-            background: `url(assets/${this.state.theme}.webp) no-repeat center center fixed`,
-          }}
-        >
-          <div className="opponent-dialogue-arcana">
-            <div className="info-avatar">
-              <div className="avatar"></div>
-              <div className="info">
-                <h3 className="name">Medavas</h3>
-                <div className="thinking">
-                  {this.state.thinking ? <Dots /> : null}
+        {this.state.hideCompletedPage ? (
+          <div className="completed-node">
+            <div className="completed-node-text">Node Completed</div>
+          </div>
+        ) : (
+          <>
+            <TactoriusModal
+              isOpen={this.state.gameOver}
+              // handleClose={() => this.handleModalClose()}
+              // modalType={this.state.endScenario}
+              message={this.state.gameOverType} // interpolate
+              type={
+                this.state.gameOverType.split(' ')[1] === 'mates' &&
+                getLocalStorage(this.props.auth.user.id).config.color ===
+                  this.state.gameOverType.split(' ')[0]
+                  ? 'victory'
+                  : 'defeat'
+              }
+            />
+            <PromotionModal
+              isOpen={this.state.promotionModalOpen}
+              playerColor={this.state.playerColor}
+              playerFaction={'normal'}
+              handleClose={(pieceType: string) =>
+                this.handleModalClose(pieceType)
+              }
+            />
+            <div
+              className="mission-view"
+              style={{
+                background: `url(assets/${this.state.theme}.webp) no-repeat center center fixed`,
+              }}
+            >
+              <div className="opponent-dialogue-arcana">
+                <div className="info-avatar">
+                  <div className="avatar"></div>
+                  <div className="info">
+                    <h3 className="name">Medavas</h3>
+                    <div className="thinking">
+                      {this.state.thinking ? <Dots /> : null}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="dialogue">
-              {this.state.hint !== '' ? (
-                this.state.hint
-              ) : this.state.hoverArcane !== '' ? (
-                <div className="arcana-detail">
-                  <h3>{arcana[this.state.hoverArcane].name}</h3>
-                  <p>{arcana[this.state.hoverArcane].description}</p>
+                <div className="dialogue">
+                  {this.state.hint !== '' ? (
+                    this.state.hint
+                  ) : this.state.hoverArcane !== '' ? (
+                    <div className="arcana-detail">
+                      <h3>{arcana[this.state.hoverArcane].name}</h3>
+                      <p>{arcana[this.state.hoverArcane].description}</p>
+                    </div>
+                  ) : (
+                    <div>dialogue</div>
+                    // hints, taunts, eval + or - dialogue
+                  )}
                 </div>
-              ) : (
-                <div>dialogue</div>
-                // hints, taunts, eval + or - dialogue
-              )}
-            </div>
-            <div className="arcana">
-              <div className="arcana-side-buttons">
-                <Button
-                  className="tertiary"
-                  onClick={() => {
-                    this.setState({ selectedSide: 'white' });
-                  }}
-                  backgroundColorOverride="#333333"
-                  color="B"
-                  text="WHITE"
-                  width={190}
-                />
-                <Button
-                  className="tertiary"
-                  onClick={() => {
-                    this.setState({ selectedSide: 'black' });
-                  }}
-                  backgroundColorOverride="#333333"
-                  color="B"
-                  text="BLACK"
-                  width={190}
-                  disabled={false}
-                />
-              </div>
-              <div className="arcana-select">
-                {_.map(
-                  this.state.selectedSide === 'white'
-                    ? whiteArcaneConfig
-                    : blackArcaneConfig,
-                  (value: number, key: string) => {
-                    const noFutureSight =
-                      this.state.history.length < 4 && key === 'modsFUT';
-                    if (value === null || value <= 0) return;
-                    return (
-                      <img
-                        key={key}
-                        className="arcane"
-                        src={`${arcana[key].imagePath}${
-                          this.state.hoverArcane === key ? '-hover' : ''
-                        }.svg`}
-                        style={{
-                          opacity:
-                            this.state.playerColor !== gameBoardTurn ||
-                            this.state.selectedSide ===
-                              this.state.engineColor ||
-                            noFutureSight
-                              ? 0.5
-                              : 1,
-                          cursor:
-                            this.state.playerColor !== gameBoardTurn ||
-                            this.state.selectedSide ===
-                              this.state.engineColor ||
-                            noFutureSight
-                              ? 'not-allowed'
-                              : 'pointer',
-                        }}
-                        onClick={() => {
-                          if (
-                            this.state.playerColor !== gameBoardTurn ||
-                            this.state.selectedSide === this.state.engineColor
-                          )
-                            return;
-                          if (
-                            this.state.placingPiece > 0 ||
-                            this.state.swapType !== '' ||
-                            this.state.placingRoyalty !== 0
-                          ) {
-                            this.setState({
-                              placingPiece: 0,
-                              swapType: '',
-                              placingRoyalty: 0,
-                            });
-                          } else {
-                            if (key.includes('sumn')) {
-                              if (key.includes('sumnR') && key !== 'sumnR') {
-                                // if (key !== 'sumnRE' && InCheck()) return;
+                <div className="arcana">
+                  <div className="arcana-side-buttons">
+                    <Button
+                      className="tertiary"
+                      onClick={() => {
+                        this.setState({ selectedSide: 'white' });
+                      }}
+                      backgroundColorOverride="#333333"
+                      color="B"
+                      text="WHITE"
+                      width={190}
+                    />
+                    <Button
+                      className="tertiary"
+                      onClick={() => {
+                        this.setState({ selectedSide: 'black' });
+                      }}
+                      backgroundColorOverride="#333333"
+                      color="B"
+                      text="BLACK"
+                      width={190}
+                      disabled={false}
+                    />
+                  </div>
+                  <div className="arcana-select">
+                    {_.map(
+                      this.state.selectedSide === 'white'
+                        ? whiteArcaneConfig
+                        : blackArcaneConfig,
+                      (value: number, key: string) => {
+                        const noFutureSight =
+                          this.state.history.length < 4 && key === 'modsFUT';
+                        if (value === null || value <= 0) return;
+                        return (
+                          <img
+                            key={key}
+                            className="arcane"
+                            src={`${arcana[key].imagePath}${
+                              this.state.hoverArcane === key ? '-hover' : ''
+                            }.svg`}
+                            style={{
+                              opacity:
+                                this.state.playerColor !== gameBoardTurn ||
+                                this.state.selectedSide ===
+                                  this.state.engineColor ||
+                                noFutureSight
+                                  ? 0.5
+                                  : 1,
+                              cursor:
+                                this.state.playerColor !== gameBoardTurn ||
+                                this.state.selectedSide ===
+                                  this.state.engineColor ||
+                                noFutureSight
+                                  ? 'not-allowed'
+                                  : 'pointer',
+                            }}
+                            onClick={() => {
+                              if (
+                                this.state.playerColor !== gameBoardTurn ||
+                                this.state.selectedSide ===
+                                  this.state.engineColor
+                              )
+                                return;
+                              if (
+                                this.state.placingPiece > 0 ||
+                                this.state.swapType !== '' ||
+                                this.state.placingRoyalty !== 0
+                              ) {
                                 this.setState({
                                   placingPiece: 0,
-                                  placingRoyalty:
-                                    royalties[`${key.split('sumn')[1]}`],
                                   swapType: '',
-                                });
-                              } else {
-                                this.setState({
                                   placingRoyalty: 0,
-                                  placingPiece:
-                                    pieces[
-                                      key.split('sumn')[1].toUpperCase() === 'X'
-                                        ? 'EXILE'
-                                        : `${
-                                            this.state.selectedSide === 'white'
-                                              ? 'w'
-                                              : 'b'
-                                          }${key.split('sumn')[1]}`
-                                    ],
                                 });
-                              }
-                            }
-                            if (key.includes('swap')) {
-                              if (this.state.swapType === '') {
-                                this.setState((prevState) => ({
-                                  swapType: key.split('swap')[1],
-                                }));
                               } else {
-                                this.setState((prevState) => ({
-                                  swapType: '',
-                                }));
-                              }
-                            }
-                            if (key.includes('modsSUS')) {
-                              if (GameBoard.suspend > 0) return;
-                              GameBoard.suspend = 6;
-                            }
-                            if (key === 'modsIMP') {
-                              this.getHintAndScore(1);
-                            }
-                            if (key === 'modsORA') {
-                              this.getHintAndScore(2);
-                            }
-                            if (key === 'modsTEM') {
-                              this.getHintAndScore(3);
-                            }
-                            if (key === 'modsFUT') {
-                              if (this.state.history.length >= 4) {
-                                this.arcaneChess().takeBackMove(
-                                  4,
-                                  this.state.playerColor
-                                );
-                                this.setState(
-                                  (prevState) => ({
-                                    history: prevState.history.slice(0, -4),
-                                    fen: outputFenOfCurrentPosition(),
-                                    fenHistory: prevState.fenHistory.slice(
-                                      0,
-                                      -4
-                                    ),
-                                    lastMove: [],
-                                    turn: gameBoardTurn,
-                                    royalties: {
-                                      ...this.arcaneChess().getRoyalties(),
-                                    },
-                                  }),
-                                  () => {
-                                    this.arcaneChess().generatePlayableOptions();
+                                if (key.includes('sumn')) {
+                                  if (
+                                    key.includes('sumnR') &&
+                                    key !== 'sumnR'
+                                  ) {
+                                    // if (key !== 'sumnRE' && InCheck()) return;
+                                    this.setState({
+                                      placingPiece: 0,
+                                      placingRoyalty:
+                                        royalties[`${key.split('sumn')[1]}`],
+                                      swapType: '',
+                                    });
+                                  } else {
+                                    this.setState({
+                                      placingRoyalty: 0,
+                                      placingPiece:
+                                        pieces[
+                                          key.split('sumn')[1].toUpperCase() ===
+                                          'X'
+                                            ? 'EXILE'
+                                            : `${
+                                                this.state.selectedSide ===
+                                                'white'
+                                                  ? 'w'
+                                                  : 'b'
+                                              }${key.split('sumn')[1]}`
+                                        ],
+                                    });
                                   }
-                                );
+                                }
+                                if (key.includes('swap')) {
+                                  if (this.state.swapType === '') {
+                                    this.setState((prevState) => ({
+                                      swapType: key.split('swap')[1],
+                                    }));
+                                  } else {
+                                    this.setState((prevState) => ({
+                                      swapType: '',
+                                    }));
+                                  }
+                                }
+                                if (key.includes('modsSUS')) {
+                                  if (GameBoard.suspend > 0) return;
+                                  GameBoard.suspend = 6;
+                                }
+                                if (key === 'modsIMP') {
+                                  this.getHintAndScore(1);
+                                }
+                                if (key === 'modsORA') {
+                                  this.getHintAndScore(2);
+                                }
+                                if (key === 'modsTEM') {
+                                  this.getHintAndScore(3);
+                                }
+                                if (key === 'modsFUT') {
+                                  if (this.state.history.length >= 4) {
+                                    this.arcaneChess().takeBackMove(
+                                      4,
+                                      this.state.playerColor
+                                    );
+                                    this.setState(
+                                      (prevState) => ({
+                                        historyPly: prevState.historyPly - 4,
+                                        history: prevState.history.slice(0, -4),
+                                        fen: outputFenOfCurrentPosition(),
+                                        fenHistory: prevState.fenHistory.slice(
+                                          0,
+                                          -4
+                                        ),
+                                        lastMove: [],
+                                        turn: gameBoardTurn,
+                                        royalties: {
+                                          ...this.arcaneChess().getRoyalties(),
+                                        },
+                                      }),
+                                      () => {
+                                        this.arcaneChess().generatePlayableOptions();
+                                      }
+                                    );
+                                  }
+                                }
                               }
-                            }
-                          }
-                        }}
-                        onMouseEnter={() => this.toggleHover(key)}
-                        onMouseLeave={() => this.toggleHover('')}
-                      />
-                    );
-                  }
-                )}
+                            }}
+                            onMouseEnter={() => this.toggleHover(key)}
+                            onMouseLeave={() => this.toggleHover('')}
+                          />
+                        );
+                      }
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="time-board-time">
-            <div className="opponent-time">
-              <h3>10:00</h3>
-            </div>
-            <div className="board-view">
-              <Chessground
-                // theme={this.state.theme}
-                forwardedRef={this.chessgroundRef}
-                // viewOnly={this.isCheckmate()}
-                fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
-                resizable={true}
-                wFaction={this.state.whiteFaction}
-                bFaction={this.state.blackFaction}
-                royalties={this.state.royalties}
-                // wVisible={this.state.wVisCount === 0}
-                // bVisible={this.state.bVisCount === 0}
-                premovable={{
-                  enabled: false,
-                  // premoveFunc: () => {},
-                  // showDests: true,
-                  // autoCastle: true,
-                  // dests: this.arcaneChess().getGroundMoves(),
-                }}
-                width={480}
-                height={480}
-                check={InCheck() ? true : false}
-                animation={{
-                  enabled: true,
-                  duration: 200,
-                }}
-                highlight={{
-                  lastMove: true,
-                  check: true,
-                  royalties: true,
-                }}
-                lastMove={this.state.lastMove}
-                orientation={this.state.orientation}
-                disableContextMenu={false}
-                turnColor={gameBoardTurn}
-                movable={{
-                  free: false,
-                  rookCastle: false,
-                  color: this.state.playerColor,
-                  dests:
-                    this.state.placingPiece === 0
-                      ? this.state.placingRoyalty === 0
-                        ? this.state.swapType === ''
-                          ? // ? gameBoardTurn === this.state.playerColor
-                            this.arcaneChess().getGroundMoves()
-                          : // : null
-                            this.arcaneChess().getSwapMoves(this.state.swapType)
-                        : this.arcaneChess().getSummonMoves(
-                            `R${RtyChar.split('')[this.state.placingRoyalty]}`
-                          )
-                      : this.arcaneChess().getSummonMoves(
-                          PceChar.split('')[
-                            this.state.placingPiece
-                          ].toUpperCase()
-                        ),
-                  events: {},
-                }}
-                selectable={{
-                  enabled: true,
-                  selected:
-                    this.state.placingPiece !== 0
-                      ? {
-                          role: `${PceChar.split('')[
-                            this.state.placingPiece
-                          ].toLowerCase()}-piece`,
-                          color: 'white',
-                        }
-                      : this.state.placingRoyalty !== 0
-                      ? {
-                          role: `r${RtyChar.split('')[
-                            this.state.placingRoyalty
-                          ].toLowerCase()}-piece`,
-                          color: 'white',
-                        }
-                      : null,
-                  fromPocket: false,
-                }}
-                events={{
-                  change: () => {},
-                  dropNewPiece: (piece: string, key: string) => {
-                    if (
-                      GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
-                    ) {
-                      const { parsed } = this.arcaneChess().makeUserMove(
-                        0,
-                        key,
-                        this.state.placingPiece,
-                        '',
-                        this.state.placingRoyalty
-                      );
-                      if (!PrMove(parsed)) {
-                        console.log('invalid move');
-                      }
-                      this.setState(
-                        (prevState) => ({
-                          history: [...prevState.history, PrMove(parsed)],
-                          fen: outputFenOfCurrentPosition(),
-                          fenHistory: [
-                            ...prevState.fenHistory,
-                            outputFenOfCurrentPosition(),
-                          ],
-                          lastMove: [key, key],
-                          placingPiece: 0,
-                          placingRoyalty: 0,
-                          swapType: '',
-                        }),
-                        () => {
-                          if (CheckAndSet()) {
-                            this.setState({
-                              gameOver: true,
-                              gameOverType: CheckResult().gameResult,
-                            });
-                            return;
-                          } else {
-                            this.engineGo();
-                          }
-                        }
-                      );
-                    }
-                    if (this.state.placingRoyalty !== 0) {
-                      this.setState((prevState) => ({
-                        ...prevState,
-                        royalties: {
-                          ...prevState.royalties,
-                          royaltyQ: _.mapValues(
-                            prevState.royalties.royaltyQ,
-                            (value) => {
-                              return typeof value === 'undefined'
-                                ? value
-                                : (value -= 1);
+              <div className="time-board-time">
+                <div className="opponent-time">
+                  <h3>10:00</h3>
+                </div>
+                <div className="board-view">
+                  <Chessground
+                    // theme={this.state.theme}
+                    forwardedRef={this.chessgroundRef}
+                    // viewOnly={this.isCheckmate()}
+                    fen={this.state.fen}
+                    resizable={true}
+                    wFaction={this.state.whiteFaction}
+                    bFaction={this.state.blackFaction}
+                    royalties={this.state.royalties}
+                    // wVisible={this.state.wVisCount === 0}
+                    // bVisible={this.state.bVisCount === 0}
+                    premovable={{
+                      enabled: false,
+                      // premoveFunc: () => {},
+                      // showDests: true,
+                      // autoCastle: true,
+                      // dests: this.arcaneChess().getGroundMoves(),
+                    }}
+                    width={480}
+                    height={480}
+                    check={InCheck() ? true : false}
+                    animation={{
+                      enabled: true,
+                      duration: 200,
+                    }}
+                    highlight={{
+                      lastMove: true,
+                      check: true,
+                      royalties: true,
+                    }}
+                    lastMove={this.state.lastMove}
+                    orientation={this.state.orientation}
+                    disableContextMenu={false}
+                    turnColor={gameBoardTurn}
+                    movable={{
+                      free: false,
+                      rookCastle: false,
+                      color: this.state.playerColor,
+                      dests:
+                        this.state.placingPiece === 0
+                          ? this.state.placingRoyalty === 0
+                            ? this.state.swapType === ''
+                              ? // ? gameBoardTurn === this.state.playerColor
+                                this.arcaneChess().getGroundMoves()
+                              : // : null
+                                this.arcaneChess().getSwapMoves(
+                                  this.state.swapType
+                                )
+                            : this.arcaneChess().getSummonMoves(
+                                `R${
+                                  RtyChar.split('')[this.state.placingRoyalty]
+                                }`
+                              )
+                          : this.arcaneChess().getSummonMoves(
+                              PceChar.split('')[
+                                this.state.placingPiece
+                              ].toUpperCase()
+                            ),
+                      events: {},
+                    }}
+                    selectable={{
+                      enabled: true,
+                      selected:
+                        this.state.placingPiece !== 0
+                          ? {
+                              role: `${PceChar.split('')[
+                                this.state.placingPiece
+                              ].toLowerCase()}-piece`,
+                              color: 'white',
                             }
-                          ),
-                          royaltyT: _.mapValues(
-                            prevState.royalties.royaltyT,
-                            (value) => {
-                              return typeof value === 'undefined'
-                                ? value
-                                : (value -= 1);
+                          : this.state.placingRoyalty !== 0
+                          ? {
+                              role: `r${RtyChar.split('')[
+                                this.state.placingRoyalty
+                              ].toLowerCase()}-piece`,
+                              color: 'white',
                             }
-                          ),
-                          royaltyM: _.mapValues(
-                            prevState.royalties.royaltyM,
-                            (value) => {
-                              return typeof value === 'undefined'
-                                ? value
-                                : (value -= 1);
-                            }
-                          ),
-                          royaltyV: _.mapValues(
-                            prevState.royalties.royaltyV,
-                            (value) => {
-                              return typeof value === 'undefined'
-                                ? value
-                                : (value -= 1);
-                            }
-                          ),
-                          royaltyE: _.mapValues(
-                            prevState.royalties.royaltyE,
-                            (value) => {
-                              return typeof value === 'undefined'
-                                ? value
-                                : (value -= 1);
-                            }
-                          ),
-                          [`royalty${
-                            RtyChar.split('')[this.state.placingRoyalty]
-                          }`]: {
-                            ...prevState.royalties[
-                              `royalty${
-                                RtyChar.split('')[this.state.placingRoyalty]
-                              }`
-                            ],
-                            [key]: 8,
-                          },
-                        },
-                        placingRoyalty: 0,
-                      }));
-                    }
-                  },
-                  move: (orig: string, dest: string) => {
-                    const { parsed, isInitPromotion = false } =
-                      this.arcaneChess().makeUserMove(
-                        orig,
-                        dest,
-                        getLocalStorage(auth.user.id).config.autopromotion ===
-                          'Select'
-                          ? 0
-                          : pieces[
-                              `${this.state.playerColor[0]}${
-                                getLocalStorage(auth.user.id).config
-                                  .autopromotion
-                              }`
-                            ],
-                        this.state.swapType,
-                        this.state.placingRoyalty
-                      );
-                    if (isInitPromotion) {
-                      this.promotionSelectAsync(() => {
-                        const parsedPromotion = this.arcaneChess().makeUserMove(
-                          orig,
-                          dest,
-                          this.state.placingPromotion,
-                          this.state.swapType,
-                          this.state.placingRoyalty
-                        );
-                        if (!PrMove(parsed)) {
-                          console.log('invalid move');
-                        }
-                        this.normalMoveStateAndEngineGo(
-                          parsedPromotion.parsed,
-                          orig,
-                          dest
-                        );
-                      });
-                    } else {
-                      if (!PrMove(parsed)) {
-                        console.log('invalid move');
-                      }
-                      this.normalMoveStateAndEngineGo(parsed, orig, dest);
-                    }
-                  },
-                  select: (key: string) => {
-                    const char = RtyChar.split('')[this.state.placingRoyalty];
-                    const whiteLimit =
-                      100 - 10 * (8 - GameBoard.summonRankLimits[0]);
-                    const blackLimit =
-                      20 + 10 * (8 - GameBoard.summonRankLimits[1]);
-
-                    if (this.state.placingRoyalty > 0) {
-                      if (
-                        ((GameBoard.side === COLOURS.WHITE &&
-                          prettyToSquare(key) < whiteLimit) ||
-                          (GameBoard.side === COLOURS.BLACK &&
-                            prettyToSquare(key) > blackLimit)) &&
-                        GameBoard.pieces[prettyToSquare(key)] !== PIECES.EMPTY
-                      ) {
+                          : null,
+                      fromPocket: false,
+                    }}
+                    events={{
+                      change: () => {},
+                      dropNewPiece: (piece: string, key: string) => {
                         if (
-                          (this.state.royalties.royaltyQ[key] as number) > 0 ||
-                          (this.state.royalties.royaltyT[key] as number) > 0 ||
-                          (this.state.royalties.royaltyM[key] as number) > 0 ||
-                          (this.state.royalties.royaltyV[key] as number) > 0 ||
-                          (this.state.royalties.royaltyE[key] as number) > 0
+                          GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
                         ) {
-                          this.setState({
-                            placingRoyalty: this.state.placingRoyalty,
-                          });
-                          return;
-                        } else {
                           const { parsed } = this.arcaneChess().makeUserMove(
-                            null,
+                            0,
                             key,
                             this.state.placingPiece,
                             '',
                             this.state.placingRoyalty
                           );
-                          if (parsed === 0) {
-                            console.log('parsed === 0');
-                            this.arcaneChess().takeUserMove();
-                            return;
+                          if (!PrMove(parsed)) {
+                            console.log('invalid move');
                           }
                           this.setState(
                             (prevState) => ({
-                              ...prevState,
+                              historyPly: prevState.historyPly + 1,
                               history: [...prevState.history, PrMove(parsed)],
                               fen: outputFenOfCurrentPosition(),
                               fenHistory: [
                                 ...prevState.fenHistory,
                                 outputFenOfCurrentPosition(),
                               ],
-                              royalties: {
-                                ...prevState.royalties,
-                                royaltyQ: _.mapValues(
-                                  prevState.royalties.royaltyQ,
-                                  (value) => {
-                                    return typeof value === 'undefined'
-                                      ? value
-                                      : (value -= 1);
-                                  }
-                                ),
-                                royaltyT: _.mapValues(
-                                  prevState.royalties.royaltyT,
-                                  (value) => {
-                                    return typeof value === 'undefined'
-                                      ? value
-                                      : (value -= 1);
-                                  }
-                                ),
-                                royaltyM: _.mapValues(
-                                  prevState.royalties.royaltyM,
-                                  (value) => {
-                                    return typeof value === 'undefined'
-                                      ? value
-                                      : (value -= 1);
-                                  }
-                                ),
-                                royaltyV: _.mapValues(
-                                  prevState.royalties.royaltyV,
-                                  (value) => {
-                                    return typeof value === 'undefined'
-                                      ? value
-                                      : (value -= 1);
-                                  }
-                                ),
-                                royaltyE: _.mapValues(
-                                  prevState.royalties.royaltyE,
-                                  (value) => {
-                                    return typeof value === 'undefined'
-                                      ? value
-                                      : (value -= 1);
-                                  }
-                                ),
-                                [`royalty${char}`]: {
-                                  ...prevState.royalties[`royalty${char}`],
-                                  [key]: 8,
-                                },
-                              },
                               lastMove: [key, key],
                               placingPiece: 0,
                               placingRoyalty: 0,
@@ -1237,87 +1094,314 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             }
                           );
                         }
-                      } else {
+                        if (this.state.placingRoyalty !== 0) {
+                          this.setState((prevState) => ({
+                            ...prevState,
+                            royalties: {
+                              ...prevState.royalties,
+                              royaltyQ: _.mapValues(
+                                prevState.royalties.royaltyQ,
+                                (value) => {
+                                  return typeof value === 'undefined'
+                                    ? value
+                                    : (value -= 1);
+                                }
+                              ),
+                              royaltyT: _.mapValues(
+                                prevState.royalties.royaltyT,
+                                (value) => {
+                                  return typeof value === 'undefined'
+                                    ? value
+                                    : (value -= 1);
+                                }
+                              ),
+                              royaltyM: _.mapValues(
+                                prevState.royalties.royaltyM,
+                                (value) => {
+                                  return typeof value === 'undefined'
+                                    ? value
+                                    : (value -= 1);
+                                }
+                              ),
+                              royaltyV: _.mapValues(
+                                prevState.royalties.royaltyV,
+                                (value) => {
+                                  return typeof value === 'undefined'
+                                    ? value
+                                    : (value -= 1);
+                                }
+                              ),
+                              royaltyE: _.mapValues(
+                                prevState.royalties.royaltyE,
+                                (value) => {
+                                  return typeof value === 'undefined'
+                                    ? value
+                                    : (value -= 1);
+                                }
+                              ),
+                              [`royalty${
+                                RtyChar.split('')[this.state.placingRoyalty]
+                              }`]: {
+                                ...prevState.royalties[
+                                  `royalty${
+                                    RtyChar.split('')[this.state.placingRoyalty]
+                                  }`
+                                ],
+                                [key]: 8,
+                              },
+                            },
+                            placingRoyalty: 0,
+                          }));
+                        }
+                      },
+                      move: (orig: string, dest: string) => {
+                        const { parsed, isInitPromotion = false } =
+                          this.arcaneChess().makeUserMove(
+                            orig,
+                            dest,
+                            getLocalStorage(auth.user.id).config
+                              .autopromotion === 'Select'
+                              ? 0
+                              : pieces[
+                                  `${this.state.playerColor[0]}${
+                                    getLocalStorage(auth.user.id).config
+                                      .autopromotion
+                                  }`
+                                ],
+                            this.state.swapType,
+                            this.state.placingRoyalty
+                          );
+                        if (isInitPromotion) {
+                          this.promotionSelectAsync(() => {
+                            const parsedPromotion =
+                              this.arcaneChess().makeUserMove(
+                                orig,
+                                dest,
+                                this.state.placingPromotion,
+                                this.state.swapType,
+                                this.state.placingRoyalty
+                              );
+                            if (!PrMove(parsed)) {
+                              console.log('invalid move');
+                            }
+                            this.normalMoveStateAndEngineGo(
+                              parsedPromotion.parsed,
+                              orig,
+                              dest
+                            );
+                          });
+                        } else {
+                          if (!PrMove(parsed)) {
+                            console.log('invalid move');
+                          }
+                          this.normalMoveStateAndEngineGo(parsed, orig, dest);
+                        }
+                      },
+                      select: (key: string) => {
+                        const char =
+                          RtyChar.split('')[this.state.placingRoyalty];
+                        const whiteLimit =
+                          100 - 10 * (8 - GameBoard.summonRankLimits[0]);
+                        const blackLimit =
+                          20 + 10 * (8 - GameBoard.summonRankLimits[1]);
+
+                        if (this.state.placingRoyalty > 0) {
+                          if (
+                            ((GameBoard.side === COLOURS.WHITE &&
+                              prettyToSquare(key) < whiteLimit) ||
+                              (GameBoard.side === COLOURS.BLACK &&
+                                prettyToSquare(key) > blackLimit)) &&
+                            GameBoard.pieces[prettyToSquare(key)] !==
+                              PIECES.EMPTY
+                          ) {
+                            if (
+                              (this.state.royalties.royaltyQ[key] as number) >
+                                0 ||
+                              (this.state.royalties.royaltyT[key] as number) >
+                                0 ||
+                              (this.state.royalties.royaltyM[key] as number) >
+                                0 ||
+                              (this.state.royalties.royaltyV[key] as number) >
+                                0 ||
+                              (this.state.royalties.royaltyE[key] as number) > 0
+                            ) {
+                              this.setState({
+                                placingRoyalty: this.state.placingRoyalty,
+                              });
+                              return;
+                            } else {
+                              const { parsed } =
+                                this.arcaneChess().makeUserMove(
+                                  null,
+                                  key,
+                                  this.state.placingPiece,
+                                  '',
+                                  this.state.placingRoyalty
+                                );
+                              if (parsed === 0) {
+                                console.log('parsed === 0');
+                                // this.arcaneChess().takeUserMove();
+                                return;
+                              }
+                              this.setState(
+                                (prevState) => ({
+                                  ...prevState,
+                                  historyPly: prevState.historyPly + 1,
+                                  history: [
+                                    ...prevState.history,
+                                    PrMove(parsed),
+                                  ],
+                                  fen: outputFenOfCurrentPosition(),
+                                  fenHistory: [
+                                    ...prevState.fenHistory,
+                                    outputFenOfCurrentPosition(),
+                                  ],
+                                  royalties: {
+                                    ...prevState.royalties,
+                                    royaltyQ: _.mapValues(
+                                      prevState.royalties.royaltyQ,
+                                      (value) => {
+                                        return typeof value === 'undefined'
+                                          ? value
+                                          : (value -= 1);
+                                      }
+                                    ),
+                                    royaltyT: _.mapValues(
+                                      prevState.royalties.royaltyT,
+                                      (value) => {
+                                        return typeof value === 'undefined'
+                                          ? value
+                                          : (value -= 1);
+                                      }
+                                    ),
+                                    royaltyM: _.mapValues(
+                                      prevState.royalties.royaltyM,
+                                      (value) => {
+                                        return typeof value === 'undefined'
+                                          ? value
+                                          : (value -= 1);
+                                      }
+                                    ),
+                                    royaltyV: _.mapValues(
+                                      prevState.royalties.royaltyV,
+                                      (value) => {
+                                        return typeof value === 'undefined'
+                                          ? value
+                                          : (value -= 1);
+                                      }
+                                    ),
+                                    royaltyE: _.mapValues(
+                                      prevState.royalties.royaltyE,
+                                      (value) => {
+                                        return typeof value === 'undefined'
+                                          ? value
+                                          : (value -= 1);
+                                      }
+                                    ),
+                                    [`royalty${char}`]: {
+                                      ...prevState.royalties[`royalty${char}`],
+                                      [key]: 8,
+                                    },
+                                  },
+                                  lastMove: [key, key],
+                                  placingPiece: 0,
+                                  placingRoyalty: 0,
+                                  swapType: '',
+                                }),
+                                () => {
+                                  if (CheckAndSet()) {
+                                    this.setState({
+                                      gameOver: true,
+                                      gameOverType: CheckResult().gameResult,
+                                    });
+                                    return;
+                                  } else {
+                                    this.engineGo();
+                                  }
+                                }
+                              );
+                            }
+                          } else {
+                            this.setState({
+                              placingRoyalty: this.state.placingRoyalty,
+                            });
+                          }
+                        }
+                      },
+                    }}
+                    draggable={{
+                      enabled: this.state.placingRoyalty === 0 ? true : false,
+                    }}
+                  />
+                </div>
+                <div className="player-time">
+                  <h3>
+                    <ChessClock
+                      type="inc"
+                      playerTurn={gameBoardTurn === this.state.playerColor}
+                      turn={gameBoardTurn}
+                      time={this.state.playerClock}
+                      timePrime={this.state.playerInc}
+                      playerTimeout={() => {
                         this.setState({
-                          placingRoyalty: this.state.placingRoyalty,
+                          gameOver: true,
+                          gameOverType: 'player timed out',
                         });
-                      }
-                    }
-                  },
-                }}
-                draggable={{
-                  enabled: this.state.placingRoyalty === 0 ? true : false,
-                }}
-              />
-            </div>
-            <div className="player-time">
-              <h3>
-                <ChessClock
-                  type="inc"
-                  playerTurn={gameBoardTurn === this.state.playerColor}
-                  turn={gameBoardTurn}
-                  time={this.state.playerClock}
-                  timePrime={this.state.playerInc}
-                  playerTimeout={() => {
-                    this.setState({
-                      gameOver: true,
-                      gameOverType: 'player timed out',
-                    });
-                  }}
-                />
-              </h3>
-            </div>
-          </div>
-          <div className="nav-history-buttons-player">
-            <div className="nav">
-              <Button
-                className="tertiary"
-                onClick={() => {}}
-                color="B"
-                strong={true}
-                text="<<"
-                width={100}
-                fontSize={30}
-                backgroundColorOverride="#222222"
-              />
-              <Button
-                className="tertiary"
-                onClick={() => {}}
-                color="B"
-                strong={true}
-                text="<"
-                width={100}
-                fontSize={30}
-                backgroundColorOverride="#222222"
-              />
-              <Button
-                className="tertiary"
-                onClick={() => {}}
-                color="B"
-                strong={true}
-                text=">"
-                width={100}
-                fontSize={30}
-                backgroundColorOverride="#222222"
-              />
-              <Button
-                className="tertiary"
-                onClick={() => {}}
-                color="B"
-                strong={true}
-                text=">>"
-                width={100}
-                fontSize={30}
-                backgroundColorOverride="#222222"
-              />
-            </div>
-            <div className="history">
-              {this.state.history.map((move, i) => (
-                <div key={i}>{move}</div>
-              ))}
-            </div>
-            <div className="buttons">
-              {/* <Button
+                      }}
+                    />
+                  </h3>
+                </div>
+              </div>
+              <div className="nav-history-buttons-player">
+                <div className="nav">
+                  <Button
+                    className="tertiary"
+                    onClick={() => this.navigateHistory('start')}
+                    color="B"
+                    strong={true}
+                    text="<<"
+                    width={100}
+                    fontSize={30}
+                    backgroundColorOverride="#222222"
+                  />
+                  <Button
+                    className="tertiary"
+                    onClick={() => this.navigateHistory('back')}
+                    color="B"
+                    strong={true}
+                    text="<"
+                    width={100}
+                    fontSize={30}
+                    backgroundColorOverride="#222222"
+                  />
+                  <Button
+                    className="tertiary"
+                    onClick={() => this.navigateHistory('forward')}
+                    color="B"
+                    strong={true}
+                    text=">"
+                    width={100}
+                    fontSize={30}
+                    backgroundColorOverride="#222222"
+                  />
+                  <Button
+                    className="tertiary"
+                    onClick={() => this.navigateHistory('end')}
+                    color="B"
+                    strong={true}
+                    text=">>"
+                    width={100}
+                    fontSize={30}
+                    backgroundColorOverride="#222222"
+                  />
+                </div>
+                <div className="history">
+                  {this.state.history.map((move, i) => (
+                    <div key={i}>{move}</div>
+                  ))}
+                </div>
+                <div className="buttons">
+                  {/* <Button
                 className="tertiary"
                 onClick={() => {}}
                 color="B"
@@ -1327,33 +1411,35 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 // fontSize={30}
                 backgroundColorOverride="#222222"
               /> */}
-              <Button
-                className="tertiary"
-                onClick={() => {
-                  this.setState({
-                    gameOver: true,
-                    gameOverType: `${this.state.playerColor} resigns`,
-                  });
-                }}
-                color="B"
-                // strong={true}
-                text="RESIGN"
-                width={100}
-                // fontSize={30}
-                backgroundColorOverride="#222222"
-              />
-            </div>
-            <div className="info-avatar">
-              <div className="avatar"></div>
-              <div className="info">
-                <h3 className="name">Medavas</h3>
-                <div className="thinking">
-                  {/* {this.state.turn === this.state.playerColor ? <Dots /> : null} */}
+                  <Button
+                    className="tertiary"
+                    onClick={() => {
+                      this.setState({
+                        gameOver: true,
+                        gameOverType: `${this.state.playerColor} resigns`,
+                      });
+                    }}
+                    color="B"
+                    // strong={true}
+                    text="RESIGN"
+                    width={100}
+                    // fontSize={30}
+                    backgroundColorOverride="#222222"
+                  />
+                </div>
+                <div className="info-avatar">
+                  <div className="avatar"></div>
+                  <div className="info">
+                    <h3 className="name">Medavas</h3>
+                    <div className="thinking">
+                      {/* {this.state.turn === this.state.playerColor ? <Dots /> : null} */}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     );
   }

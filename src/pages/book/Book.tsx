@@ -308,7 +308,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
   }
 
   componentDidMount() {
-    const targetValue = this.state.reducedScore * this.state.config?.multiplier;
+    const targetValue = this.state.reducedScore;
     this.setState({ targetValue });
 
     const startTime = Date.now();

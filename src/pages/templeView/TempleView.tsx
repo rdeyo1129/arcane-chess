@@ -79,43 +79,6 @@ import ChessClock from '../../components/Clock/Clock';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
 
-export const piecePickupArray = [
-  'wP',
-  'wH',
-  'wS',
-  'wN',
-  'wZ',
-  'wU',
-  'wB',
-  'wR',
-  'wQ',
-  'wT',
-  'wM',
-  'wV',
-  'wK',
-  //
-  'bP',
-  'bH',
-  'bS',
-  'bN',
-  'bZ',
-  'bU',
-  'bB',
-  'bR',
-  'bQ',
-  'bT',
-  'bM',
-  'bV',
-  'bK',
-];
-export const royaltyPickupArray = {
-  Q: 'yellow',
-  T: 'blue',
-  M: 'green',
-  V: 'purple',
-  E: 'orange',
-};
-
 const booksMap: { [key: string]: { [key: string]: Node } } = {
   book1,
   book2,
@@ -141,36 +104,6 @@ interface missionJsonI {
   };
 }
 
-const missionJson: missionJsonI = {
-  'temple-1': {
-    // fen: 'rnbqkbnr/sspppppp/8/7Q/2B1P2R/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1',
-    // fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'temple-1',
-    prereq: '',
-    playerClock: 5,
-  },
-  'temple-2': {
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'temple-2',
-    prereq: 'temple-1',
-    playerClock: 5,
-  },
-  'temple-3': {
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'temple-3',
-    prereq: 'temple-2',
-    playerClock: 50,
-  },
-  'temple-4': {
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'temple-4',
-    prereq: 'temple-3',
-    boss: true,
-    playerClock: 150,
-  },
-};
-
 interface ArcanaDetail {
   name: string;
   description: string;
@@ -190,6 +123,7 @@ interface Node {
   reward: (number | string)[];
   prereq: string;
   opponent: string;
+  boss: boolean;
   panels: {
     [key: string]: {
       fen: string;
@@ -223,6 +157,7 @@ interface Node {
 interface State {
   turn: string;
   playerClock: number | null;
+  timeLeft: number | null;
   playerDec: number | null;
   playerColor: string;
   engineColor: string;
@@ -291,6 +226,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         LS.config.color === 'white'
           ? booksMap[`book${LS.chapter}`][LS.nodeId].time[0][0]
           : booksMap[`book${LS.chapter}`][LS.nodeId].time[1][0],
+      timeLeft: 0,
       playerDec:
         LS.config.color === 'white'
           ? booksMap[`book${LS.chapter}`][LS.nodeId].time[0][1]
@@ -363,6 +299,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen, this.props.auth, {});
     };
+    this.setTimeLeft = this.setTimeLeft.bind(this);
     this.chessgroundRef = React.createRef();
   }
 
@@ -380,8 +317,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       this.state.currPanel ===
       Object.keys(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels).length
     ) {
-      this.handleVictory(this.props.auth);
-      this.handleStopTimer();
+      const timeLeft = this.stopAndReturnTime() as number | null;
+      this.handleVictory(this.props.auth, timeLeft);
       return;
     }
     this.setState(
@@ -537,8 +474,15 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     }));
   };
 
-  handleStopTimer = () => {
-    this.chessclockRef.current?.stopTimer();
+  stopAndReturnTime = () => {
+    return this.chessclockRef.current?.stopTimer();
+  };
+
+  setTimeLeft = (time: number | null) => {
+    console.log('time left AAAA: ', time);
+    this.setState({
+      timeLeft: time,
+    });
   };
 
   toggleHover = (arcane: string) => {
@@ -567,7 +511,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     }
   };
 
-  handleVictory = (auth: object) => {
+  handleVictory = (auth: object, timeLeft: number | null) => {
+    const LS = getLocalStorage(this.props.auth.user.id);
     this.setState({
       gameOver: true,
       gameOverType: 'puzzle victory',
@@ -579,14 +524,22 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         ...getLocalStorage(this.props.auth.user.id).nodeScores,
         [this.state.nodeId]:
           this.state.playerColor === 'white'
-            ? (100000 - (GameBoard.material[0] - GameBoard.material[1])) *
-              (this.state.playerClock ? this.state.playerClock : 1)
-            : (100000 - (GameBoard.material[1] - GameBoard.material[0])) *
-              (this.state.playerClock ? this.state.playerClock : 1),
+            ? (timeLeft ? timeLeft : 1) * LS.config.multiplier
+            : (timeLeft ? timeLeft : 1) * LS.config.multiplier,
       },
-      chapterEnd: missionJson[this.state.nodeId].boss ? true : false,
+      chapterEnd: booksMap[`book${LS.chapter}`][this.state.nodeId].boss
+        ? true
+        : false,
     });
-    if (missionJson[this.state.nodeId].boss) {
+    console.log(
+      'node scores: ',
+      getLocalStorage(this.props.auth.user.id).nodeScores,
+      'time left: ',
+      timeLeft,
+      'multiplier: ',
+      LS.config.multiplier
+    );
+    if (booksMap[`book${LS.chapter}`][this.state.nodeId].boss) {
       const chapterPoints = _.reduce(
         getLocalStorage(this.props.auth.user.id).nodeScores,
         (accumulator, value) => {
@@ -672,17 +625,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               }
             />
             <div className="temple-view">
-              {/* <div className="game-info">
-          <div className="panel-left-container">
-            <div className="panel-left">this is a paragraph about chess.</div>
-          </div>
-        </div> */}
-              {/* 
-          panel types lesson temple mission create... any others? puzzles (leage vs temples)
-          must be true to page architecture
-
-        */}
-              {/* <div className="panel"></div> */}
               <div className="opponent-dialogue-arcana">
                 <div className="arcana">
                   <div className="arcana-side-buttons">
@@ -857,6 +799,9 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                         gameOverType: 'player timed out',
                       });
                     }}
+                    passTimeLeft={(time) =>
+                      this.setState({ playerClock: time })
+                    }
                   />
                 </div>
                 <div className="temple-buttons">

@@ -12,6 +12,7 @@ interface ClockProps {
   time: number | null;
   timePrime?: number | null;
   playerTimeout: () => void;
+  passTimeLeft: (time: number | null) => void;
   // whiteTimeout: () => void;
   // blackTimeout: () => void;
 }
@@ -32,6 +33,7 @@ class ChessClock extends React.Component<ClockProps, ClockState> {
       isActive: true,
       isPlayerOneTurn: true,
     };
+    // this.passTime = this.passTime.bind(this);
   }
 
   startTimer = () => {
@@ -53,6 +55,7 @@ class ChessClock extends React.Component<ClockProps, ClockState> {
       clearInterval(this.interval);
       this.interval = null;
     }
+    return this.state.timeLeft;
   };
 
   toggleTimer = () => {

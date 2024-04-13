@@ -136,7 +136,7 @@
     "reward": [500, "a", "b", "c"],
     "prereq": "Some prerequisite",
     "opponent": "",
-    "boss": false,
+    "boss": true,
     "theme": "orange",
     "panels": {
       "panel-1": {
@@ -155,6 +155,8 @@
         "preset": "CAPALL",
         "whiteArcane": {
           "sumnB": 2,
+          "sumnQ": 2,
+          "sumnM": 2,
           "shftP": 2,
           "sumnRE": 3,
           "sumnRQ": 3,
@@ -164,13 +166,7 @@
           "modsTEM": 4,
           "modsCON": 2
         },
-        "blackArcane": {
-          "sumnB": 2,
-          "shftP": 2,
-          "sumnRE": 3,
-          "sumnRQ": 3,
-          "swapADJ": 1
-        },
+        "blackArcane": {},
         "config": {},
         "correctMoves": [],
         "viewOnly": false,
@@ -207,7 +203,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "KOH",
+        "preset": "CHESS",
         "whiteArcane": {
           "modsFUT": 1,
           "sumnP": 1,
@@ -263,7 +259,7 @@
         "orientation": "white"
       }
     },
-    "boss": true
+    "boss": false
   },
   "mission-4": {
     "id": "mission-4",

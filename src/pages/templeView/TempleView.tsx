@@ -226,7 +226,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         LS.config.color === 'white'
           ? booksMap[`book${LS.chapter}`][LS.nodeId].time[0][0]
           : booksMap[`book${LS.chapter}`][LS.nodeId].time[1][0],
-      timeLeft: 0,
+      timeLeft: null,
       playerDec:
         LS.config.color === 'white'
           ? booksMap[`book${LS.chapter}`][LS.nodeId].time[0][1]
@@ -299,7 +299,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen, this.props.auth, {});
     };
-    this.setTimeLeft = this.setTimeLeft.bind(this);
     this.chessgroundRef = React.createRef();
   }
 
@@ -379,7 +378,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         };
       },
       () => {
-        console.log(GameBoard);
         this.arcaneChess().startGame(
           this.state.fen,
           this.state.wArcana,
@@ -478,13 +476,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     return this.chessclockRef.current?.stopTimer();
   };
 
-  setTimeLeft = (time: number | null) => {
-    console.log('time left AAAA: ', time);
-    this.setState({
-      timeLeft: time,
-    });
-  };
-
   toggleHover = (arcane: string) => {
     this.setState({ arcaneHover: arcane });
   };
@@ -531,14 +522,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         ? true
         : false,
     });
-    console.log(
-      'node scores: ',
-      getLocalStorage(this.props.auth.user.id).nodeScores,
-      'time left: ',
-      timeLeft,
-      'multiplier: ',
-      LS.config.multiplier
-    );
     if (booksMap[`book${LS.chapter}`][this.state.nodeId].boss) {
       const chapterPoints = _.reduce(
         getLocalStorage(this.props.auth.user.id).nodeScores,
@@ -799,9 +782,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                         gameOverType: 'player timed out',
                       });
                     }}
-                    passTimeLeft={(time) =>
-                      this.setState({ playerClock: time })
-                    }
                   />
                 </div>
                 <div className="temple-buttons">

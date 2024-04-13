@@ -57,11 +57,12 @@
   }
   .right {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 400px;
-    height: 100%;
-    max-height: 574px;
+    // height: 100%;
+    // max-height: 574px;
     background: #333333;
     .buttons {
       display: flex;

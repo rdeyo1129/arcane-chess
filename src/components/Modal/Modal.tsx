@@ -29,6 +29,7 @@ interface ModalProps {
   chapterNumber?: number;
   lessonBackButton?: boolean;
   disableSecondary?: boolean;
+  score?: number;
 }
 interface ModalState {
   config: { [key: string]: any };
@@ -362,7 +363,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
               <div className="middle"></div>
               <div className="right">
-                <div className="pog"></div>
+                <span>SCORE: {this.props.score}</span>
+                {/* <div className="pog"></div> */}
                 <div className="buttons">
                   <Button
                     text={this.props.lessonBackButton ? 'BACK' : 'ANALYZE'}

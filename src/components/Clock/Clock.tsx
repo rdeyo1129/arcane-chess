@@ -12,7 +12,6 @@ interface ClockProps {
   time: number | null;
   timePrime?: number | null;
   playerTimeout: () => void;
-  passTimeLeft: (time: number | null) => void;
   // whiteTimeout: () => void;
   // blackTimeout: () => void;
 }

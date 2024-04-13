@@ -25,13 +25,7 @@ import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 //   arcaneChessWorker,
 // } from '../../arcaneChess/arcaneChessInstance.js';
 
-import {
-  GameBoard,
-  InCheck,
-  TOSQ,
-  FROMSQ,
-  PrintPieceLists,
-} from '../../arcaneChess/board.mjs';
+import { GameBoard, InCheck, TOSQ, FROMSQ } from '../../arcaneChess/board.mjs';
 import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import {
   prettyToSquare,
@@ -42,10 +36,7 @@ import {
   RtyChar,
   PceChar,
 } from '../../arcaneChess/defs.mjs';
-import {
-  outputFenOfCurrentPosition,
-  PrintBoard,
-} from '../../arcaneChess/board.mjs';
+import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
 import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
 
@@ -91,21 +82,9 @@ const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 const pieces: PieceRoyaltyTypse = PIECES;
 const royalties: PieceRoyaltyTypse = ARCANE_BIT_VALUES;
-const whiteArcanaBox: arcanaBoxTypes | arcanaBoxHintTypes | object =
-  whiteArcaneConfig;
-const blackArcanaBox: arcanaBoxTypes | arcanaBoxHintTypes | object =
-  blackArcaneConfig;
 
 interface PieceRoyaltyTypse {
   [key: string]: number;
-}
-interface arcanaBoxTypes {
-  [key: string]: number | string | undefined;
-}
-interface arcanaBoxHintTypes {
-  modsIMP: number | undefined;
-  modsORA: number | undefined;
-  modsTEM: number | undefined;
 }
 
 interface ArcanaDetail {
@@ -127,6 +106,7 @@ interface Node {
   reward: (number | string)[];
   prereq: string;
   opponent: string;
+  boss: boolean;
   panels: {
     [key: string]: {
       fen: string;
@@ -163,6 +143,7 @@ interface Node {
 
 interface State {
   turn: string;
+  timeLeft: number | null;
   playerClock: number | null;
   playerInc: number | null;
   playerColor: string;
@@ -234,7 +215,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   hasMounted = false;
   arcaneChess;
   chessgroundRef = createRef<IChessgroundApi>();
-
+  chessclockRef = createRef<ChessClock>();
   constructor(props: Props) {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.id);
@@ -253,6 +234,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           : booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
               getLocalStorage(this.props.auth.user.id).nodeId
             ].time[1][1],
+      timeLeft: null,
       playerClock:
         getLocalStorage(this.props.auth.user.id).config.clock === false
           ? null
@@ -508,22 +490,35 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     }));
   };
 
-  handleVictory = (auth: object) => {
+  stopAndReturnTime = () => {
+    return this.chessclockRef.current?.stopTimer();
+  };
+
+  handleVictory = (auth: object, timeLeft: number | null) => {
+    const LS = getLocalStorage(this.props.auth.user.id);
     setLocalStorage({
       ...getLocalStorage(this.props.auth.user.id),
       auth,
       nodeScores: {
         ...getLocalStorage(this.props.auth.user.id).nodeScores,
         [this.state.nodeId]:
-          this.state.playerColor === 'white'
-            ? (100000 - (GameBoard.material[0] - GameBoard.material[1])) *
-              (this.state.playerClock ? this.state.playerClock : 1)
-            : (100000 - (GameBoard.material[1] - GameBoard.material[0])) *
-              (this.state.playerClock ? this.state.playerClock : 1),
+          Math.abs(
+            100000 -
+              Math.abs(
+                GameBoard.material[this.state.playerColor === 'white' ? 0 : 1] -
+                  GameBoard.material[this.state.playerColor === 'white' ? 1 : 0]
+              )
+          ) *
+          (timeLeft || 1) *
+          LS.config.multiplier,
       },
-      chapterEnd: missionJson[this.state.nodeId].boss ? true : false,
+      chapterEnd: booksMap[`book${LS.chapter}`][this.state.nodeId].boss
+        ? true
+        : false,
     });
-    if (missionJson[this.state.nodeId].boss) {
+    // below updates score in modal
+    this.setState({});
+    if (booksMap[`book${LS.chapter}`][this.state.nodeId].boss) {
       const chapterPoints = _.reduce(
         getLocalStorage(this.props.auth.user.id).nodeScores,
         (accumulator, value) => {
@@ -533,10 +528,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       );
       // set user top score if new
       if (
+        LS.auth.user.id !== '0' &&
         chapterPoints >
-        getLocalStorage(this.props.auth.user.id).auth.user.campaign.topScores[
-          getLocalStorage(this.props.auth.user.id).chapter
-        ]
+          getLocalStorage(this.props.auth.user.id).auth.user.campaign.topScores[
+            getLocalStorage(this.props.auth.user.id).chapter
+          ]
       ) {
         // Retrieve the entire data structure from local storage once
         const localStorageData = getLocalStorage(this.props.auth.user.id);
@@ -635,10 +631,25 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       }),
       () => {
         if (CheckAndSet()) {
-          this.setState({
-            gameOver: true,
-            gameOverType: CheckResult().gameResult,
-          });
+          this.setState(
+            {
+              gameOver: true,
+              gameOverType: CheckResult().gameResult,
+            },
+            () => {
+              if (
+                _.includes(
+                  this.state.gameOverType,
+                  `${this.state.playerColor} mates`
+                )
+              ) {
+                this.handleVictory(
+                  this.props.auth,
+                  this.stopAndReturnTime() as number | null
+                );
+              }
+            }
+          );
           return;
         } else {
           this.engineGo();
@@ -742,6 +753,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
+    const LS = getLocalStorage(this.props.auth.user.id);
     return (
       <div className="tactorius-board fade">
         {this.state.hideCompletedPage ? (
@@ -755,6 +767,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               // handleClose={() => this.handleModalClose()}
               // modalType={this.state.endScenario}
               message={this.state.gameOverType} // interpolate
+              score={LS.nodeScores[this.state.nodeId]}
               type={
                 this.state.gameOverType.split(' ')[1] === 'mates' &&
                 getLocalStorage(this.props.auth.user.id).config.color ===
@@ -1083,10 +1096,27 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             }),
                             () => {
                               if (CheckAndSet()) {
-                                this.setState({
-                                  gameOver: true,
-                                  gameOverType: CheckResult().gameResult,
-                                });
+                                this.setState(
+                                  {
+                                    gameOver: true,
+                                    gameOverType: CheckResult().gameResult,
+                                  },
+                                  () => {
+                                    if (
+                                      _.includes(
+                                        this.state.gameOverType,
+                                        `${this.state.playerColor} mates`
+                                      )
+                                    ) {
+                                      this.handleVictory(
+                                        this.props.auth,
+                                        this.stopAndReturnTime() as
+                                          | number
+                                          | null
+                                      );
+                                    }
+                                  }
+                                );
                                 return;
                               } else {
                                 this.engineGo();
@@ -1310,10 +1340,27 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 }),
                                 () => {
                                   if (CheckAndSet()) {
-                                    this.setState({
-                                      gameOver: true,
-                                      gameOverType: CheckResult().gameResult,
-                                    });
+                                    this.setState(
+                                      {
+                                        gameOver: true,
+                                        gameOverType: CheckResult().gameResult,
+                                      },
+                                      () => {
+                                        if (
+                                          _.includes(
+                                            this.state.gameOverType,
+                                            `${this.state.playerColor} mates`
+                                          )
+                                        ) {
+                                          this.handleVictory(
+                                            this.props.auth,
+                                            this.stopAndReturnTime() as
+                                              | number
+                                              | null
+                                          );
+                                        }
+                                      }
+                                    );
                                     return;
                                   } else {
                                     this.engineGo();
@@ -1337,6 +1384,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 <div className="player-time">
                   <h3>
                     <ChessClock
+                      ref={this.chessclockRef}
                       type="inc"
                       playerTurn={gameBoardTurn === this.state.playerColor}
                       turn={gameBoardTurn}

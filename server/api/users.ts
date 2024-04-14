@@ -94,7 +94,10 @@ router.post('/login', (req, res) => {
       (err, token) => {
         if (err) console.log('jwt err', err);
         res.json({
-          campaign: null,
+          id: '0',
+          campaign: {
+            topScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          },
           success: true,
           token: 'Bearer ' + token,
         });
@@ -122,7 +125,7 @@ router.post('/login', (req, res) => {
           // User matched
           // Create JWT Payload
           const payload = {
-            id: user.id,
+            id: user._id,
             username: user.username,
             campaign: user.campaign,
           };
@@ -139,6 +142,7 @@ router.post('/login', (req, res) => {
                 console.log('jwt err', err);
               }
               res.json({
+                id: user.id,
                 campaign: user.campaign,
                 success: true,
                 token: 'Bearer ' + token,

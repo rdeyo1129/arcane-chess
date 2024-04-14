@@ -1,5 +1,11 @@
 export const setLocalStorage = ({
-  auth = { user: { id: '' } },
+  auth = {
+    user: {
+      id: '',
+      username: '',
+      campaign: { topScores: [] as number[] },
+    },
+  },
   chapter = 0,
   config = {},
   nodeScores = {},
@@ -7,20 +13,20 @@ export const setLocalStorage = ({
   nodeId = '',
   chapterEnd = false,
 } = {}) => {
-  const id = auth.user.id; // Replace 'defaultId' with a suitable default
+  const username = auth.user.username; // Replace 'defaultId' with a suitable default
 
-  // If there is no id, you might not want to proceed
-  if (id === '') {
+  // If there is no username, you might not want to proceed
+  if (username === '') {
     console.warn('No user ID provided for setLocalStorage');
     return;
   }
 
   // You might want to handle the case where some properties are not provided
-  const existingData = JSON.parse(localStorage.getItem(id) || '{}');
+  const existingData = JSON.parse(localStorage.getItem(username) || '{}');
 
   // Merge existing data with new data
   const newData = {
-    [id]: {
+    [username]: {
       // ...existingData,
       auth: { ...existingData.auth, ...auth },
       chapter: existingData.chapter || chapter,
@@ -32,15 +38,15 @@ export const setLocalStorage = ({
     },
   };
 
-  localStorage.setItem(id, JSON.stringify(newData));
+  localStorage.setItem(username, JSON.stringify(newData));
 };
 
-export const getLocalStorage = (id: string) => {
-  const storedData = localStorage.getItem(id);
+export const getLocalStorage = (username: string) => {
+  const storedData = localStorage.getItem(username);
 
   if (storedData) {
     const parsedData = JSON.parse(storedData);
-    const userData = parsedData[`${id}`];
+    const userData = parsedData[`${username}`];
 
     if (userData) {
       return userData;
@@ -49,7 +55,7 @@ export const getLocalStorage = (id: string) => {
       return null;
     }
   } else {
-    console.error('No data found in localStorage');
+    // console.error('No data found in localStorage');
     return null;
   }
 };

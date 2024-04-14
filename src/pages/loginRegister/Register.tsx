@@ -40,8 +40,6 @@ const UnwrappedRegister = () => {
       password2: password2,
     };
 
-    console.log(newUser);
-
     // and navigate to the login page
     dispatch(registerUser(newUser, navigate));
   };

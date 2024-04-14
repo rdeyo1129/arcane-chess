@@ -2,15 +2,11 @@ import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
-import { RootState, AppDispatch } from 'src/index';
+import { AppDispatch } from 'src/index';
 
-import {
-  GET_ERRORS,
-  SET_CURRENT_USER,
-  USER_LOADING,
-  LOAD_CAMPAIGN,
-  AuthActionTypes,
-} from './types';
+import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
+
+import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types';
 
 // interface AuthState {
 //   isAuthenticated: boolean;
@@ -30,8 +26,22 @@ export const registerUser =
     axios
       .post('/api/users/register', userData)
       .then((res) => {
-        console.log('res', res);
-        // Redirect user to the root or any other page you prefer after successful registration
+        setLocalStorage({
+          auth: {
+            user: {
+              id: res.data._id,
+              username: res.data.username,
+              campaign: {
+                topScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] as number[],
+              },
+            },
+          },
+          chapter: 0,
+          config: {},
+          nodeScores: {},
+          inventory: {},
+          nodeId: '',
+        });
         navigate('/login');
       })
       .catch((err) => {
@@ -54,6 +64,26 @@ export const loginUser =
         setAuthToken(token);
         const decoded: object = jwt_decode(token);
         dispatch(setCurrentUser(decoded));
+        if (userData.guest || getLocalStorage(userData.username) === null) {
+          setLocalStorage({
+            auth: {
+              user: {
+                id: res.data.id || '0',
+                username: userData.username,
+                campaign: {
+                  topScores: userData.guest
+                    ? [...Array(12).fill(0)]
+                    : ([...res.data.campaign.topScores] as number[]),
+                },
+              },
+            },
+            chapter: 0,
+            config: {},
+            nodeScores: {},
+            inventory: {},
+            nodeId: '',
+          });
+        }
         navigate('/dashboard');
       })
       .catch((err) =>

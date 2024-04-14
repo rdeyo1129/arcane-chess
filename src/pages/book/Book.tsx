@@ -53,7 +53,7 @@ interface ArcanaDetail {
 }
 
 interface BookProps {
-  auth: { user: { id: string } };
+  auth: { user: { id: string; username: string } };
 }
 interface BookState {
   [key: string]: any;
@@ -272,18 +272,20 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         ['hero', 'message'],
       ],
       chapter: [
-        `jsonChapter${getLocalStorage(this.props.auth.user.id)?.chapter}`,
+        `jsonChapter${getLocalStorage(this.props.auth.user.username)?.chapter}`,
       ],
       book: this.booksMap[
-        `book${getLocalStorage(this.props.auth.user.id)?.chapter}`
+        `book${getLocalStorage(this.props.auth.user.username)?.chapter}`
       ],
       selectedSwatch: '',
-      config: getLocalStorage(this.props.auth.user.id)?.config,
-      nodeScores: getLocalStorage(this.props.auth.user.id)?.nodeScores,
-      inventory: getLocalStorage(this.props.auth.user.id)?.inventory,
-      endChapterOpen: getLocalStorage(this.props.auth.user.id)?.chapterEnd,
+      config: getLocalStorage(this.props.auth.user.username)?.config,
+      nodeScores: getLocalStorage(this.props.auth.user.username)?.nodeScores,
+      inventory: getLocalStorage(this.props.auth.user.username)?.inventory,
+      endChapterOpen:
+        getLocalStorage(this.props.auth.user.username)?.chapterEnd &&
+        getLocalStorage(this.props.auth.user.username)?.chapter,
       reducedScore: _.reduce(
-        getLocalStorage(this.props.auth.user.id).nodeScores,
+        getLocalStorage(this.props.auth.user.username).nodeScores,
         (accumulator, value) => {
           return accumulator + value;
         },
@@ -293,7 +295,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       targetValue: 0,
       credits: 4000,
       // _.reduce(
-      //   getLocalStorage(this.props.auth.user.id).nodeScores,
+      //   getLocalStorage(this.props.auth.user.username).nodeScores,
       //   (accumulator, value) => {
       //     return accumulator + value;
       //   },
@@ -378,7 +380,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               </div>
             ) : (
               _.filter(this.state.book, (node) => {
-                const currLS = getLocalStorage(this.props.auth.user.id);
+                const currLS = getLocalStorage(this.props.auth.user.username);
 
                 // Exclude nodes that are already in nodeScores
                 if (currLS.nodeScores && currLS.nodeScores[node.id]) {
@@ -401,12 +403,14 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     className={`select-node tertiary`}
                     backgroundColorOverride="#444444"
                     onClick={() => {
-                      const currLS = getLocalStorage(this.props.auth.user.id);
+                      const currLS = getLocalStorage(
+                        this.props.auth.user.username
+                      );
                       this.setState({
                         selectedSwatch: node.id,
                       });
                       setLocalStorage({
-                        auth: this.props.auth,
+                        auth: currLS.auth,
                         chapter: currLS.chapter,
                         config: currLS.config,
                         nodeScores: currLS.nodeScores,

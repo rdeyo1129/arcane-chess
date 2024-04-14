@@ -95,7 +95,7 @@ const UnwrappedLogin: React.FC = () => {
     };
 
     const testUser: UserData = {
-      username: `user_${Math.random().toString(36).substring(2)}`,
+      username: `guest_${Math.random().toString(36).substring(2)}`,
       password: '123456',
       guest: true,
     };

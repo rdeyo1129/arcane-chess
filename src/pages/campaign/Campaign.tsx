@@ -35,8 +35,8 @@ export class UnwrappedCampaign extends React.Component<
       books: [
         // TODO: To be read from db
         'ARRIVAL',
-        '?',
-        '?',
+        'ANAMNESIS',
+        'PENTAGRAMS',
         '?',
         '?',
         '?',
@@ -48,13 +48,11 @@ export class UnwrappedCampaign extends React.Component<
         '?',
       ],
       configModalOpen: false,
-      chapter: getLocalStorage(this.props.auth.user.id)?.chapter || 0,
+      chapter: getLocalStorage(this.props.auth.user.username)?.chapter || 0,
     };
   }
 
   render() {
-    const { auth } = this.props;
-    const { campaign, id } = this.props.auth.user;
     return (
       <div className="campaign">
         <Link to="/dashboard">
@@ -69,12 +67,13 @@ export class UnwrappedCampaign extends React.Component<
         </Link>
         <div className="book-grid">
           {this.state.books.map((book, i) => {
-            const isUnlocked = campaign?.topScores[i - 1] || i === 0;
-            const isInProgress = this.state.chapter === i + 1;
+            const LS = getLocalStorage(this.props.auth.user.username);
+            const isUnlocked =
+              LS.auth.user.campaign.topScores[i - 1] || i === 0;
             return (
               <Button
                 key={i}
-                text={book}
+                text={isUnlocked ? book : '?'}
                 className="tertiary"
                 color="V"
                 width={200}
@@ -86,7 +85,9 @@ export class UnwrappedCampaign extends React.Component<
                     this.setState({ configModalOpen: true, chapter: i + 1 });
                   }
                 }}
-                disabled={!isUnlocked && !isInProgress}
+                disabled={
+                  !isUnlocked || (LS.chapter !== 0 && LS.chapter !== i + 1)
+                }
               />
             );
           })}
@@ -98,8 +99,9 @@ export class UnwrappedCampaign extends React.Component<
           width={160}
           height={40}
           onClick={() => {
+            const currLS = getLocalStorage(this.props.auth.user.username);
             setLocalStorage({
-              auth,
+              ...currLS,
               chapter: 0,
               config: {},
               nodeScores: {},
@@ -113,8 +115,9 @@ export class UnwrappedCampaign extends React.Component<
         />
         <TactoriusModal
           toggleModal={() => {
+            const currLS = getLocalStorage(this.props.auth.user.username);
             setLocalStorage({
-              auth: auth,
+              ...currLS,
               chapter: 0,
               config: {},
               nodeScores: {},

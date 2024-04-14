@@ -159,7 +159,7 @@ interface State {
 interface Props {
   auth: {
     user: {
-      id: string;
+      username: string;
     };
   };
 }
@@ -170,7 +170,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
   chessgroundRef = createRef<IChessgroundApi>();
   constructor(props: Props) {
     super(props);
-    const LS = getLocalStorage(this.props.auth.user.id);
+    const LS = getLocalStorage(this.props.auth.user.username);
     this.state = {
       // todo, just make this an array of fenHistory, simplify state...
       // todo make dyanamic
@@ -205,8 +205,8 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       moveNumber: 0,
       currPanel: 1,
       gameOver: false,
-      // getLocalStorage(this.props.auth.user.id).nodeScores[
-      //   getLocalStorage(this.props.auth.user.id).nodeId
+      // getLocalStorage(this.props.auth.user.username).nodeScores[
+      //   getLocalStorage(this.props.auth.user.username).nodeId
       // ] > 0,
       gameOverType: '',
       fen: booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`].fen,
@@ -266,7 +266,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
 
   changePanel = (direction: 'inc' | 'dec') => {
     this.setState((prevState) => {
-      const LS = getLocalStorage(this.props.auth.user.id);
+      const LS = getLocalStorage(this.props.auth.user.username);
       const newPanel = prevState.currPanel + (direction === 'inc' ? 1 : -1);
       this.chessgroundRef.current?.setAutoShapes([
         ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
@@ -334,9 +334,9 @@ class UnwrappedLessonView extends React.Component<Props, State> {
     if (
       this.state.moveNumber === this.state.fenHistory.length - 1 &&
       isLastProperty(
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          `${getLocalStorage(this.props.auth.user.id).nodeId}`
-        ].panels,
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ][`${getLocalStorage(this.props.auth.user.username).nodeId}`].panels,
         `panel-${this.state.currPanel}`
       )
     ) {
@@ -381,10 +381,10 @@ class UnwrappedLessonView extends React.Component<Props, State> {
 
   handleVictory = (auth: object) => {
     setLocalStorage({
-      ...getLocalStorage(this.props.auth.user.id),
+      ...getLocalStorage(this.props.auth.user.username),
       auth,
       nodeScores: {
-        ...getLocalStorage(this.props.auth.user.id).nodeScores,
+        ...getLocalStorage(this.props.auth.user.username).nodeScores,
         [this.state.nodeId]:
           this.state.playerColor === 'white'
             ? (100000 - (GameBoard.material[0] - GameBoard.material[1])) *
@@ -393,7 +393,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               (this.state.playerClock ? this.state.playerClock : 1),
       },
       chapterEnd: booksMap[
-        `book${getLocalStorage(this.props.auth.user.id).chapter}`
+        `book${getLocalStorage(this.props.auth.user.username).chapter}`
       ][this.state.nodeId].boss
         ? true
         : false,
@@ -545,9 +545,11 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               <div className="temple-clock-buttons">
                 <div className="lesson-text">
                   {
-                    booksMap[`book${getLocalStorage(auth.user.id).chapter}`][
-                      `${getLocalStorage(auth.user.id).nodeId}`
-                    ].panels[`panel-${this.state.currPanel}`].panelText
+                    booksMap[
+                      `book${getLocalStorage(auth.user.username).chapter}`
+                    ][`${getLocalStorage(auth.user.username).nodeId}`].panels[
+                      `panel-${this.state.currPanel}`
+                    ].panelText
                   }
                 </div>
                 <div className="temple-buttons">

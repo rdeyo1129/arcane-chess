@@ -207,6 +207,7 @@ interface Props {
   auth: {
     user: {
       id: string;
+      username: string;
     };
   };
 }
@@ -218,61 +219,68 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   chessclockRef = createRef<ChessClock>();
   constructor(props: Props) {
     super(props);
-    const LS = getLocalStorage(this.props.auth.user.id);
+    const LS = getLocalStorage(this.props.auth.user.username);
     this.state = {
       turn:
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ].panels['panel-1'].fen.split(' ')[1] === 'w'
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+          'panel-1'
+        ].fen.split(' ')[1] === 'w'
           ? 'white'
           : 'black',
       playerInc:
-        getLocalStorage(this.props.auth.user.id).config.color === 'white'
-          ? booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-              getLocalStorage(this.props.auth.user.id).nodeId
-            ].time[0][1]
-          : booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-              getLocalStorage(this.props.auth.user.id).nodeId
-            ].time[1][1],
+        getLocalStorage(this.props.auth.user.username).config.color === 'white'
+          ? booksMap[
+              `book${getLocalStorage(this.props.auth.user.username).chapter}`
+            ][getLocalStorage(this.props.auth.user.username).nodeId].time[0][1]
+          : booksMap[
+              `book${getLocalStorage(this.props.auth.user.username).chapter}`
+            ][getLocalStorage(this.props.auth.user.username).nodeId].time[1][1],
       timeLeft: null,
       playerClock:
-        getLocalStorage(this.props.auth.user.id).config.clock === false
+        getLocalStorage(this.props.auth.user.username).config.clock === false
           ? null
-          : getLocalStorage(this.props.auth.user.id).config.color === 'white'
-          ? booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-              getLocalStorage(this.props.auth.user.id).nodeId
-            ].time[0][0]
-          : booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-              getLocalStorage(this.props.auth.user.id).nodeId
-            ].time[1][0],
-      playerColor: getLocalStorage(this.props.auth.user.id).config.color,
+          : getLocalStorage(this.props.auth.user.username).config.color ===
+            'white'
+          ? booksMap[
+              `book${getLocalStorage(this.props.auth.user.username).chapter}`
+            ][getLocalStorage(this.props.auth.user.username).nodeId].time[0][0]
+          : booksMap[
+              `book${getLocalStorage(this.props.auth.user.username).chapter}`
+            ][getLocalStorage(this.props.auth.user.username).nodeId].time[1][0],
+      playerColor: getLocalStorage(this.props.auth.user.username).config.color,
       engineColor:
-        getLocalStorage(this.props.auth.user.id).config.color === 'white'
+        getLocalStorage(this.props.auth.user.username).config.color === 'white'
           ? 'black'
           : 'white',
       hasMounted: false,
-      nodeId: getLocalStorage(this.props.auth.user.id).nodeId,
+      nodeId: getLocalStorage(this.props.auth.user.username).nodeId,
       gameOver: false,
-      // getLocalStorage(this.props.auth.user.id).nodeScores[
-      //   getLocalStorage(this.props.auth.user.id).nodeId
+      // getLocalStorage(this.props.auth.user.username).nodeScores[
+      //   getLocalStorage(this.props.auth.user.username).nodeId
       // ] > 0,
       gameOverType: '',
-      fen: booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-        getLocalStorage(this.props.auth.user.id).nodeId
-      ].panels['panel-1'].fen,
+      fen: booksMap[
+        `book${getLocalStorage(this.props.auth.user.username).chapter}`
+      ][getLocalStorage(this.props.auth.user.username).nodeId].panels['panel-1']
+        .fen,
       pvLine: [],
       historyPly: 0,
       history: [],
       fenHistory: [
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ].panels['panel-1'].fen,
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+          'panel-1'
+        ].fen,
       ],
       thinking: SearchController.thinking,
       engineLastMove: [],
       thinkingTime:
-        getLocalStorage(this.props.auth.user.id).config.thinkingTime * 1000,
-      engineDepth: getLocalStorage(this.props.auth.user.id).config.depth,
+        getLocalStorage(this.props.auth.user.username).config.thinkingTime *
+        1000,
+      engineDepth: getLocalStorage(this.props.auth.user.username).config.depth,
       whiteFaction: 'normal',
       blackFaction: 'normal',
       selected: 'a',
@@ -289,25 +297,29 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       placingPiece: 0,
       swapType: '',
       placingRoyalty: 0,
-      selectedSide: getLocalStorage(this.props.auth.user.id).config.color,
+      selectedSide: getLocalStorage(this.props.auth.user.username).config.color,
       hoverArcane: '',
       royalties:
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ].panels['panel-1'].royalties,
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+          'panel-1'
+        ].royalties,
       lastMove: [],
-      orientation: getLocalStorage(this.props.auth.user.id).config.color,
+      orientation: getLocalStorage(this.props.auth.user.username).config.color,
       preset:
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ].panels['panel-1'].preset,
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+          'panel-1'
+        ].preset,
       promotionModalOpen: false,
       placingPromotion: 0,
       hint: '',
       theme:
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ].theme,
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ][getLocalStorage(this.props.auth.user.username).nodeId].theme,
       hideCompletedPage:
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
         LS.nodeId.split('-')[0] !== 'mission',
@@ -495,12 +507,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   };
 
   handleVictory = (auth: object, timeLeft: number | null) => {
-    const LS = getLocalStorage(this.props.auth.user.id);
+    const LS = getLocalStorage(this.props.auth.user.username);
     setLocalStorage({
-      ...getLocalStorage(this.props.auth.user.id),
-      auth,
+      ...getLocalStorage(this.props.auth.user.username),
       nodeScores: {
-        ...getLocalStorage(this.props.auth.user.id).nodeScores,
+        ...getLocalStorage(this.props.auth.user.username).nodeScores,
         [this.state.nodeId]:
           Math.abs(
             100000 -
@@ -520,7 +531,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.setState({});
     if (booksMap[`book${LS.chapter}`][this.state.nodeId].boss) {
       const chapterPoints = _.reduce(
-        getLocalStorage(this.props.auth.user.id).nodeScores,
+        getLocalStorage(this.props.auth.user.username).nodeScores,
         (accumulator, value) => {
           return accumulator + value;
         },
@@ -528,18 +539,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       );
       // set user top score if new
       if (
-        LS.auth.user.id !== '0' &&
         chapterPoints >
-          getLocalStorage(this.props.auth.user.id).auth.user.campaign.topScores[
-            getLocalStorage(this.props.auth.user.id).chapter
-          ]
+        getLocalStorage(this.props.auth.user.username).auth.user.campaign
+          .topScores[getLocalStorage(this.props.auth.user.username).chapter]
       ) {
         // Retrieve the entire data structure from local storage once
-        const localStorageData = getLocalStorage(this.props.auth.user.id);
+        const localStorageData = getLocalStorage(this.props.auth.user.username);
 
         // Calculate the chapter index
         const chapterIndex =
-          getLocalStorage(this.props.auth.user.id).chapter - 1;
+          getLocalStorage(this.props.auth.user.username).chapter - 1;
 
         // Update the specific chapter points in the campaign topScores array
         localStorageData.auth.user.campaign.topScores[chapterIndex] =
@@ -547,18 +556,22 @@ class UnwrappedMissionView extends React.Component<Props, State> {
 
         // Save the updated data back to local storage
         setLocalStorage(localStorageData);
-        axios
-          .post('/api/campaign/topScores', {
-            userId: this.props.auth.user.id,
-            chapterPoints,
-            chapterNumber: getLocalStorage(this.props.auth.user.id).chapter,
-          })
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log('top score post err: ', err);
-          });
+
+        if (LS.auth.user.id !== '0') {
+          axios
+            .post('/api/campaign/topScores', {
+              userId: this.props.auth.user.id,
+              chapterPoints,
+              chapterNumber: getLocalStorage(this.props.auth.user.username)
+                .chapter,
+            })
+            .then((res) => {
+              // console.log(res);
+            })
+            .catch((err) => {
+              console.log('top score post err: ', err);
+            });
+        }
       }
     }
   };
@@ -720,12 +733,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       this.hasMounted = true;
       this.arcaneChess().startGame(
         this.state.fen,
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ].panels['panel-1'].whiteArcane,
-        booksMap[`book${getLocalStorage(this.props.auth.user.id).chapter}`][
-          getLocalStorage(this.props.auth.user.id).nodeId
-        ].panels['panel-1'].blackArcane,
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+          'panel-1'
+        ].whiteArcane,
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+          'panel-1'
+        ].blackArcane,
         this.state.royalties,
         this.state.preset
       );
@@ -753,7 +770,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
-    const LS = getLocalStorage(this.props.auth.user.id);
+    const LS = getLocalStorage(this.props.auth.user.username);
     return (
       <div className="tactorius-board fade">
         {this.state.hideCompletedPage ? (
@@ -770,7 +787,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               score={LS.nodeScores[this.state.nodeId]}
               type={
                 this.state.gameOverType.split(' ')[1] === 'mates' &&
-                getLocalStorage(this.props.auth.user.id).config.color ===
+                getLocalStorage(this.props.auth.user.username).config.color ===
                   this.state.gameOverType.split(' ')[0]
                   ? 'victory'
                   : 'defeat'
@@ -1189,12 +1206,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           this.arcaneChess().makeUserMove(
                             orig,
                             dest,
-                            getLocalStorage(auth.user.id).config
+                            getLocalStorage(auth.user.username).config
                               .autopromotion === 'Select'
                               ? 0
                               : pieces[
                                   `${this.state.playerColor[0]}${
-                                    getLocalStorage(auth.user.id).config
+                                    getLocalStorage(auth.user.username).config
                                       .autopromotion
                                   }`
                                 ],

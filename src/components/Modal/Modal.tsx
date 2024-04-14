@@ -79,9 +79,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
   // promotion
 
   saveSettingsStartBook = () => {
+    const currLS = getLocalStorage(this.props.auth.user.username);
     console.log(this.props);
     setLocalStorage({
-      auth: this.props.auth,
+      ...currLS,
       chapter: this.props.chapterNumber,
       config: this.state.config,
       nodeScores: {},
@@ -475,12 +476,31 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             <span>
               YOU HAVE DEFEATED THE BOSS. CHAPTER END. YOUR SCORE:{' '}
               {
-                getLocalStorage(this.props.auth.user.id).auth.user.campaign
-                  ?.topScores[
-                  getLocalStorage(this.props.auth.user.id).chapter - 1
+                getLocalStorage(this.props.auth.user.username).auth.user
+                  .campaign?.topScores[
+                  getLocalStorage(this.props.auth.user.username).chapter - 1
                 ]
               }
             </span>
+            <Button
+              text="CONTINUE"
+              className="primary"
+              color="V"
+              width={160}
+              height={40}
+              onClick={() => {
+                setLocalStorage({
+                  ...getLocalStorage(this.props.auth.user.username),
+                  chapter: 0,
+                  config: {},
+                  nodeScores: {},
+                  inventory: {},
+                  nodeId: '',
+                  chapterEnd: false,
+                });
+                this.props.navigate('/campaign');
+              }}
+            />
           </Modal>
         ) : (
           <div>other modal</div>

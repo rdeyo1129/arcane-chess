@@ -208,7 +208,7 @@ interface State {
 interface Props {
   auth: {
     user: {
-      id: string;
+      username: string;
     };
   };
 }
@@ -220,7 +220,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   chessclockRef = createRef<ChessClock>();
   constructor(props: Props) {
     super(props);
-    const LS = getLocalStorage(this.props.auth.user.id);
+    const LS = getLocalStorage(this.props.auth.user.username);
     this.state = {
       playerClock:
         LS.config.color === 'white'
@@ -253,8 +253,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       nodeId: LS.nodeId,
       moveNumber: 0,
       gameOver: false,
-      // getLocalStorage(this.props.auth.user.id).nodeScores[
-      //   getLocalStorage(this.props.auth.user.id).nodeId
+      // getLocalStorage(this.props.auth.user.username).nodeScores[
+      //   getLocalStorage(this.props.auth.user.username).nodeId
       // ] > 0,
       gameOverType: '',
       fen: booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`].fen,
@@ -311,7 +311,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   };
 
   incrementPanel = () => {
-    const LS = getLocalStorage(this.props.auth.user.id);
+    const LS = getLocalStorage(this.props.auth.user.username);
     if (
       this.state.currPanel ===
       Object.keys(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels).length
@@ -503,16 +503,15 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   };
 
   handleVictory = (auth: object, timeLeft: number | null) => {
-    const LS = getLocalStorage(this.props.auth.user.id);
+    const LS = getLocalStorage(this.props.auth.user.username);
     this.setState({
       gameOver: true,
       gameOverType: 'puzzle victory',
     });
     setLocalStorage({
-      ...getLocalStorage(this.props.auth.user.id),
-      auth,
+      ...getLocalStorage(this.props.auth.user.username),
       nodeScores: {
-        ...getLocalStorage(this.props.auth.user.id).nodeScores,
+        ...getLocalStorage(this.props.auth.user.username).nodeScores,
         [this.state.nodeId]:
           this.state.playerColor === 'white'
             ? (timeLeft ? timeLeft : 1) * LS.config.multiplier
@@ -524,7 +523,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     });
     if (booksMap[`book${LS.chapter}`][this.state.nodeId].boss) {
       const chapterPoints = _.reduce(
-        getLocalStorage(this.props.auth.user.id).nodeScores,
+        getLocalStorage(this.props.auth.user.username).nodeScores,
         (accumulator, value) => {
           return accumulator + value;
         },
@@ -533,16 +532,15 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       // set user top score if new
       if (
         chapterPoints >
-        getLocalStorage(this.props.auth.user.id).auth.user.campaign.topScores[
-          getLocalStorage(this.props.auth.user.id).chapter
-        ]
+        getLocalStorage(this.props.auth.user.username).auth.user.campaign
+          .topScores[getLocalStorage(this.props.auth.user.username).chapter]
       ) {
         // Retrieve the entire data structure from local storage once
-        const localStorageData = getLocalStorage(this.props.auth.user.id);
+        const localStorageData = getLocalStorage(this.props.auth.user.username);
 
         // Calculate the chapter index
         const chapterIndex =
-          getLocalStorage(this.props.auth.user.id).chapter - 1;
+          getLocalStorage(this.props.auth.user.username).chapter - 1;
 
         // Update the specific chapter points in the campaign topScores array
         localStorageData.auth.user.campaign.topScores[chapterIndex] =
@@ -552,9 +550,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         setLocalStorage(localStorageData);
         axios
           .post('/api/campaign/topScores', {
-            userId: this.props.auth.user.id,
+            userId: this.props.auth.user.username,
             chapterPoints,
-            chapterNumber: getLocalStorage(this.props.auth.user.id).chapter,
+            chapterNumber: getLocalStorage(this.props.auth.user.username)
+              .chapter,
           })
           .then((res) => {
             console.log(res);

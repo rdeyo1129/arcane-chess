@@ -2,17 +2,51 @@
 
 .campaign {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .back {
+    width: 830px;
+    display: flex;
+    text-align: left;
+    justify-content: start;
+    margin-bottom: 10px;
+  }
   .book-grid {
-    width: 100%;
-    height: 100%;
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(4, 200px);
-    grid-template-rows: repeat(3, 80px);
-    // .book {
-    //   width:
-    // }
+    margin-right: 80px;
+    .books {
+      width: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      span {
+        display: flex;
+        // margin-right: 20px;
+        align-items: center;
+        height: 80px;
+      }
+    }
+    .chapters {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      grid-template-columns: repeat(4, 200px);
+      grid-template-rows: repeat(3, 80px);
+      grid-gap: 10px;
+    }
+  }
+  .reset {
+    width: 830px;
+    display: flex;
+    text-align: right;
+    justify-content: end;
+    margin-top: 10px;
   }
 }

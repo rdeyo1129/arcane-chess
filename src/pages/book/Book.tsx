@@ -298,7 +298,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       'panel-1'
                     ].fen || '8/8/8/8/8/8/8/8 w KQkq - 0 1'
                   }
-                  coordinates={true}
+                  coordinates={false}
                   // notation={true}
                   // onChange={(move) => {
                   //   console.log('hello', move);
@@ -322,12 +322,12 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     enabled: true,
                     duration: 1,
                   }}
-                  highlight={{
-                    lastMove: true,
-                    check: true,
-                  }}
+                  // highlight={{
+                  //   lastMove: true,
+                  //   check: true,
+                  // }}
                   // orientation={this.state.orientation}
-                  disableContextMenu={false}
+                  // disableContextMenu={false}
                   // turnColor={GameBoard.side === 0 ? 'white' : 'black'}
                   // movable={{
                   //   free: false,

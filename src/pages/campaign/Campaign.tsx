@@ -55,64 +55,76 @@ export class UnwrappedCampaign extends React.Component<
   render() {
     return (
       <div className="campaign">
-        <Link to="/dashboard">
+        <div className="back">
+          <Link to="/dashboard">
+            <Button
+              text="BACK"
+              className="tertiary"
+              color="V"
+              width={200}
+              height={40}
+              disabled={false}
+            />
+          </Link>
+        </div>
+        <div className="book-grid">
+          <div className="books">
+            <span>Book I</span>
+            <span>Book III</span>
+            <span>Book IV</span>
+          </div>
+          <div className="chapters">
+            {this.state.books.map((book, i) => {
+              const LS = getLocalStorage(this.props.auth.user.username);
+              const isUnlocked =
+                LS.auth.user.campaign.topScores[i - 1] || i === 0;
+              return (
+                <Button
+                  key={i}
+                  text={isUnlocked ? book : '?'}
+                  className="tertiary"
+                  color="V"
+                  width={200}
+                  height={80}
+                  onClick={() => {
+                    if (this.state.chapter !== 0) {
+                      this.props.navigate('/chapter');
+                    } else {
+                      this.setState({ configModalOpen: true, chapter: i + 1 });
+                    }
+                  }}
+                  disabled={
+                    !isUnlocked || (LS.chapter !== 0 && LS.chapter !== i + 1)
+                  }
+                />
+              );
+            })}
+          </div>
+        </div>
+        <div className="reset">
           <Button
-            text="BACK"
+            text="RESET CHAPTER"
             className="tertiary"
             color="V"
-            width={120}
+            width={200}
             height={40}
+            onClick={() => {
+              const currLS = getLocalStorage(this.props.auth.user.username);
+              setLocalStorage({
+                ...currLS,
+                chapter: 0,
+                config: {},
+                nodeScores: {},
+                inventory: {},
+                nodeId: '',
+                chapterEnd: false,
+              });
+              this.setState({ chapter: 0 });
+            }}
             disabled={false}
           />
-        </Link>
-        <div className="book-grid">
-          {this.state.books.map((book, i) => {
-            const LS = getLocalStorage(this.props.auth.user.username);
-            const isUnlocked =
-              LS.auth.user.campaign.topScores[i - 1] || i === 0;
-            return (
-              <Button
-                key={i}
-                text={isUnlocked ? book : '?'}
-                className="tertiary"
-                color="V"
-                width={200}
-                height={80}
-                onClick={() => {
-                  if (this.state.chapter !== 0) {
-                    this.props.navigate('/chapter');
-                  } else {
-                    this.setState({ configModalOpen: true, chapter: i + 1 });
-                  }
-                }}
-                disabled={
-                  !isUnlocked || (LS.chapter !== 0 && LS.chapter !== i + 1)
-                }
-              />
-            );
-          })}
         </div>
-        <Button
-          text="RESET CHAPTER"
-          className="tertiary"
-          color="V"
-          width={160}
-          height={40}
-          onClick={() => {
-            const currLS = getLocalStorage(this.props.auth.user.username);
-            setLocalStorage({
-              ...currLS,
-              chapter: 0,
-              config: {},
-              nodeScores: {},
-              inventory: {},
-              nodeId: '',
-              chapterEnd: false,
-            });
-            this.setState({ chapter: 0 });
-          }}
-          disabled={false}
-        />
+
         <TactoriusModal
           toggleModal={() => {
             const currLS = getLocalStorage(this.props.auth.user.username);

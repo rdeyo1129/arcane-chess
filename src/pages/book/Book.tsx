@@ -190,6 +190,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
 
   render() {
     const { auth } = this.props;
+    const LS = getLocalStorage(auth.user.username);
     // Convert number to string with comma formatting
     const formattedNumber = Math.round(
       this.state.animatedValue
@@ -202,273 +203,285 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
     ));
     return (
       <div className="book">
-        <div className="top">
-          <div className="nodes">
-            {this.state.selectedSwatch !== '' ? (
-              <div className="node">
-                <Button
-                  className="tertiary"
-                  text="BACK"
-                  color="B"
-                  width={160}
-                  height={60}
-                  disabled={false}
-                  onClick={() => {
-                    this.setState({ selectedSwatch: '' });
+        {LS.chapter === 0 ? (
+          <>NO CHAPTER SELECTED, NAGIVATE TO CAMPAIGN</>
+        ) : (
+          <>
+            {' '}
+            <div className="top">
+              <div className="nodes">
+                {this.state.selectedSwatch !== '' ? (
+                  <div className="node">
+                    <Button
+                      className="tertiary"
+                      text="BACK"
+                      color="B"
+                      width={160}
+                      height={60}
+                      disabled={false}
+                      onClick={() => {
+                        this.setState({ selectedSwatch: '' });
+                      }}
+                    />
+                    <div className="node-title">
+                      {this.state.book[this.state.selectedSwatch].title}
+                    </div>
+                    <div className="node-description">
+                      {this.state.book[this.state.selectedSwatch].nodeText
+                        .split('\n\n')
+                        .map((p: string, i: number) => (
+                          <p className="description-paragraph" key={i}>
+                            {p}
+                          </p>
+                        ))}
+                    </div>
+                  </div>
+                ) : (
+                  _.filter(this.state.book, (node) => {
+                    const currLS = getLocalStorage(
+                      this.props.auth.user.username
+                    );
+
+                    // Exclude nodes that are already in nodeScores
+                    if (currLS.nodeScores && currLS.nodeScores[node.id]) {
+                      return false;
+                    }
+
+                    // Check for prerequisites
+                    // if (node.prereq && !currLS.nodeScores[node.prereq]) {
+                    //   return false;
+                    // }
+                    if (_.includes(node.id, 'lesson')) return true;
+                    return true;
+                  }).map((node, i) => {
+                    return (
+                      <Button
+                        text={node.title}
+                        color="B"
+                        width={'100%'}
+                        height={60}
+                        disabled={false}
+                        key={i}
+                        className={`select-node tertiary`}
+                        backgroundColorOverride="#444444"
+                        onClick={() => {
+                          const currLS = getLocalStorage(
+                            this.props.auth.user.username
+                          );
+                          this.setState({
+                            selectedSwatch: node.id,
+                          });
+                          setLocalStorage({
+                            auth: currLS.auth,
+                            chapter: currLS.chapter,
+                            config: currLS.config,
+                            nodeScores: currLS.nodeScores,
+                            inventory: currLS.inventory,
+                            nodeId: node.id,
+                            chapterEnd: currLS.chapterEnd,
+                          });
+                        }}
+                      />
+                    );
+                  })
+                )}
+              </div>
+              {/* <div className="board-view"> */}
+              <div className="cg-wrap tactorius-board">
+                <Chessground
+                  // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
+                  // check={this.tactorius.inCheck().isAttacked}
+                  // viewOnly={this.isCheckmate()}
+                  forwardedRef={this.chessgroundRef}
+                  fen={
+                    this.state.book[this.state.selectedSwatch]?.panels[
+                      'panel-1'
+                    ].fen || '8/8/8/8/8/8/8/8 w KQkq - 0 1'
+                  }
+                  coordinates={true}
+                  // notation={true}
+                  // onChange={(move) => {
+                  //   console.log('hello', move);
+                  // }}
+                  resizable={true}
+                  wFaction={'normal'}
+                  bFaction={'normal'}
+                  // wRoyalty={this.state.wRoyalty}
+                  // bRoyalty={this.state.bRoyalty}
+                  // wVisible={this.state.wVisCount === 0}
+                  // bVisible={this.state.bVisCount === 0}
+                  // width={520}
+                  // height={520}
+                  width={480}
+                  height={480}
+                  // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
+                  // don't, just go by the page type
+                  // width={360}
+                  // height={360}
+                  animation={{
+                    enabled: true,
+                    duration: 1,
+                  }}
+                  highlight={{
+                    lastMove: true,
+                    check: true,
+                  }}
+                  // orientation={this.state.orientation}
+                  disableContextMenu={false}
+                  // turnColor={GameBoard.side === 0 ? 'white' : 'black'}
+                  // movable={{
+                  //   free: false,
+                  // }}
+                  viewOnly={true}
+                  events={{
+                    change: () => {
+                      // if (this.state.)
+                      // this.setState({
+                      //   fen:
+                      // })
+                      // this.arcaneChess().engineReply();
+                      // this.setState({})
+                      // console.log(cg.FEN);
+                      // send moves to redux store, then to server (db), then to opponent
+                    },
+                    // move: (orig, dest, capturedPiece) => {
+                    //   const parsed = this.arcaneChess().makeUserMove(orig, dest);
+                    //   console.log(generatePowers());
+                    //   if (!PrMove(parsed)) {
+                    //     console.log('invalid move');
+                    //     debugger; // eslint-disable-line
+                    //   }
+                    //   this.setState((prevState) => ({
+                    //     history: [...prevState.history, PrMove(parsed)],
+                    //     fenHistory: [
+                    //       ...prevState.fenHistory,
+                    //       outputFenOfCurrentPosition(),
+                    //     ],
+                    //   }));
+                    //   this.engineGo();
+                    // },
+                    // select: (key) => {
+                    //   ParseFen(this.state.fen);
+                    //   AddPiece(prettyToSquare(key), PIECES.wN);
+                    //   this.setState({
+                    //     fen: outputFenOfCurrentPosition(),
+                    //     fenHistory: [outputFenOfCurrentPosition()],
+                    //   });
+                    // },
                   }}
                 />
-                <div className="node-title">
-                  {this.state.book[this.state.selectedSwatch].title}
+              </div>
+              {/* </div> */}
+              <div className="arcane-time">
+                {/* todo column reverse inline style for when playing as black? */}
+                <div className="white-arcana">
+                  {_.map(
+                    this.state.book[this.state.selectedSwatch]?.panels[
+                      'panel-1'
+                    ].whiteArcane || {},
+                    (value: number, key: string) => {
+                      return (
+                        <img
+                          key={key}
+                          className="arcane"
+                          src={`${arcana[key].imagePath}${
+                            this.state.arcaneHover === key ? '-hover' : ''
+                          }.svg`}
+                          // onMouseEnter={() => this.toggleHover(key)}
+                          // onMouseLeave={() => this.toggleHover('')}
+                        />
+                      );
+                    }
+                  )}
                 </div>
-                <div className="node-description">
-                  {this.state.book[this.state.selectedSwatch].nodeText
-                    .split('\n\n')
-                    .map((p: string, i: number) => (
-                      <p className="description-paragraph" key={i}>
-                        {p}
-                      </p>
-                    ))}
+                <div className="white-time">10:00</div>
+                <div className="black-time">10:00</div>
+                <div className="black-arcana">
+                  {_.map(
+                    this.state.book[this.state.selectedSwatch]?.panels[
+                      'panel-1'
+                    ].blackArcane || {},
+                    (value: number, key: string) => {
+                      return (
+                        <img
+                          key={key}
+                          className="arcane"
+                          src={`${arcana[key].imagePath}${
+                            this.state.arcaneHover === key ? '-hover' : ''
+                          }.svg`}
+                          // onMouseEnter={() => this.toggleHover(key)}
+                          // onMouseLeave={() => this.toggleHover('')}
+                        />
+                      );
+                    }
+                  )}
                 </div>
               </div>
-            ) : (
-              _.filter(this.state.book, (node) => {
-                const currLS = getLocalStorage(this.props.auth.user.username);
-
-                // Exclude nodes that are already in nodeScores
-                if (currLS.nodeScores && currLS.nodeScores[node.id]) {
-                  return false;
-                }
-
-                // Check for prerequisites
-                // if (node.prereq && !currLS.nodeScores[node.prereq]) {
-                //   return false;
-                // }
-                if (_.includes(node.id, 'lesson')) return true;
-                return true;
-              }).map((node, i) => {
-                return (
+            </div>
+            <div className="bottom">
+              <div className="left">
+                <div className="points">
+                  <span className="digit-box">{digits}</span>
+                </div>
+                kudos
+              </div>
+              {/* <div className="center"></div> */}
+              <div className="right">
+                <Link to="/campaign">
                   <Button
-                    text={node.title}
+                    text="BACK"
+                    className="secondary"
                     color="B"
-                    width={'100%'}
-                    height={60}
+                    width={160}
+                    height={50}
                     disabled={false}
-                    key={i}
-                    className={`select-node tertiary`}
-                    backgroundColorOverride="#444444"
-                    onClick={() => {
-                      const currLS = getLocalStorage(
-                        this.props.auth.user.username
-                      );
-                      this.setState({
-                        selectedSwatch: node.id,
-                      });
-                      setLocalStorage({
-                        auth: currLS.auth,
-                        chapter: currLS.chapter,
-                        config: currLS.config,
-                        nodeScores: currLS.nodeScores,
-                        inventory: currLS.inventory,
-                        nodeId: node.id,
-                        chapterEnd: currLS.chapterEnd,
-                      });
-                    }}
                   />
-                );
-              })
-            )}
-          </div>
-          {/* <div className="board-view"> */}
-          <div className="cg-wrap tactorius-board">
-            <Chessground
-              // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
-              // check={this.tactorius.inCheck().isAttacked}
-              // viewOnly={this.isCheckmate()}
-              forwardedRef={this.chessgroundRef}
-              fen={
-                this.state.book[this.state.selectedSwatch]?.panels['panel-1']
-                  .fen || '8/8/8/8/8/8/8/8 w KQkq - 0 1'
-              }
-              coordinates={true}
-              // notation={true}
-              // onChange={(move) => {
-              //   console.log('hello', move);
-              // }}
-              resizable={true}
-              wFaction={'normal'}
-              bFaction={'normal'}
-              // wRoyalty={this.state.wRoyalty}
-              // bRoyalty={this.state.bRoyalty}
-              // wVisible={this.state.wVisCount === 0}
-              // bVisible={this.state.bVisCount === 0}
-              // width={520}
-              // height={520}
-              width={480}
-              height={480}
-              // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
-              // don't, just go by the page type
-              // width={360}
-              // height={360}
-              animation={{
-                enabled: true,
-                duration: 1,
-              }}
-              highlight={{
-                lastMove: true,
-                check: true,
-              }}
-              // orientation={this.state.orientation}
-              disableContextMenu={false}
-              // turnColor={GameBoard.side === 0 ? 'white' : 'black'}
-              // movable={{
-              //   free: false,
-              // }}
-              viewOnly={true}
-              events={{
-                change: () => {
-                  // if (this.state.)
-                  // this.setState({
-                  //   fen:
-                  // })
-                  // this.arcaneChess().engineReply();
-                  // this.setState({})
-                  // console.log(cg.FEN);
-                  // send moves to redux store, then to server (db), then to opponent
-                },
-                // move: (orig, dest, capturedPiece) => {
-                //   const parsed = this.arcaneChess().makeUserMove(orig, dest);
-                //   console.log(generatePowers());
-                //   if (!PrMove(parsed)) {
-                //     console.log('invalid move');
-                //     debugger; // eslint-disable-line
-                //   }
-                //   this.setState((prevState) => ({
-                //     history: [...prevState.history, PrMove(parsed)],
-                //     fenHistory: [
-                //       ...prevState.fenHistory,
-                //       outputFenOfCurrentPosition(),
-                //     ],
-                //   }));
-                //   this.engineGo();
-                // },
-                // select: (key) => {
-                //   ParseFen(this.state.fen);
-                //   AddPiece(prettyToSquare(key), PIECES.wN);
-                //   this.setState({
-                //     fen: outputFenOfCurrentPosition(),
-                //     fenHistory: [outputFenOfCurrentPosition()],
-                //   });
-                // },
-              }}
-            />
-          </div>
-          {/* </div> */}
-          <div className="arcane-time">
-            {/* todo column reverse inline style for when playing as black? */}
-            <div className="white-arcana">
-              {_.map(
-                this.state.book[this.state.selectedSwatch]?.panels['panel-1']
-                  .whiteArcane || {},
-                (value: number, key: string) => {
-                  return (
-                    <img
-                      key={key}
-                      className="arcane"
-                      src={`${arcana[key].imagePath}${
-                        this.state.arcaneHover === key ? '-hover' : ''
-                      }.svg`}
-                      // onMouseEnter={() => this.toggleHover(key)}
-                      // onMouseLeave={() => this.toggleHover('')}
-                    />
-                  );
-                }
-              )}
-            </div>
-            <div className="white-time">10:00</div>
-            <div className="black-time">10:00</div>
-            <div className="black-arcana">
-              {_.map(
-                this.state.book[this.state.selectedSwatch]?.panels['panel-1']
-                  .blackArcane || {},
-                (value: number, key: string) => {
-                  return (
-                    <img
-                      key={key}
-                      className="arcane"
-                      src={`${arcana[key].imagePath}${
-                        this.state.arcaneHover === key ? '-hover' : ''
-                      }.svg`}
-                      // onMouseEnter={() => this.toggleHover(key)}
-                      // onMouseLeave={() => this.toggleHover('')}
-                    />
-                  );
-                }
-              )}
-            </div>
-          </div>
-        </div>
-        <div className="bottom">
-          <div className="left">
-            <div className="points">
-              <span className="digit-box">{digits}</span>
-            </div>
-            kudos
-          </div>
-          {/* <div className="center"></div> */}
-          <div className="right">
-            <Link to="/campaign">
-              <Button
-                text="BACK"
+                </Link>
+                {/* <Button
+                text="ARMORY"
                 className="secondary"
                 color="B"
                 width={160}
-                height={50}
+                height={60}
                 disabled={false}
-              />
-            </Link>
-            {/* <Button
-              text="ARMORY"
-              className="secondary"
-              color="B"
-              width={160}
-              height={60}
-              disabled={false}
-              onClick={() => {
-                this.setState({ armoryOpen: true });
-              }}
-            /> */}
-            <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
-              <Button
-                text="START"
-                className="primary"
-                color="B"
-                width={160}
-                height={50}
-                // todo until clickthrough messages are done, keep button disabled
-                disabled={this.state.selectedSwatch === ''}
-              />
-            </Link>
-          </div>
-        </div>
-        <TactoriusModal
-          // toggleModal={() => {
-          //   setLocalStorage(auth, 0, {}, {}, {}, '');
-          //   this.setState({ configModalOpen: false, chapter: 0 });
-          // }}
-          // chapterNumber={this.state.chapter}
-          isOpen={this.state.armoryOpen}
-          type="armory"
-          // imgPath="public/assets/treeBoat.jpg"
-        />
-        <TactoriusModal
-          // toggleModal={() => {
-          //   setLocalStorage(auth, 0, {}, {}, {}, '');
-          //   this.setState({ configModalOpen: false, chapter: 0 });
-          // }}
-          isOpen={this.state.endChapterOpen}
-          type="chapterEnd"
-          // imgPath="public/assets/treeBoat.jpg"
-        />
+                onClick={() => {
+                  this.setState({ armoryOpen: true });
+                }}
+              /> */}
+                <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
+                  <Button
+                    text="START"
+                    className="primary"
+                    color="B"
+                    width={160}
+                    height={50}
+                    // todo until clickthrough messages are done, keep button disabled
+                    disabled={this.state.selectedSwatch === ''}
+                  />
+                </Link>
+              </div>
+            </div>
+            <TactoriusModal
+              // toggleModal={() => {
+              //   setLocalStorage(auth, 0, {}, {}, {}, '');
+              //   this.setState({ configModalOpen: false, chapter: 0 });
+              // }}
+              // chapterNumber={this.state.chapter}
+              isOpen={this.state.armoryOpen}
+              type="armory"
+              // imgPath="public/assets/treeBoat.jpg"
+            />
+            <TactoriusModal
+              // toggleModal={() => {
+              //   setLocalStorage(auth, 0, {}, {}, {}, '');
+              //   this.setState({ configModalOpen: false, chapter: 0 });
+              // }}
+              isOpen={this.state.endChapterOpen}
+              type="chapterEnd"
+              // imgPath="public/assets/treeBoat.jpg"
+            />
+          </>
+        )}
       </div>
     );
   }

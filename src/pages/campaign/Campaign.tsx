@@ -80,7 +80,7 @@ export class UnwrappedCampaign extends React.Component<
                 height={80}
                 onClick={() => {
                   if (this.state.chapter !== 0) {
-                    this.props.navigate('/book');
+                    this.props.navigate('/chapter');
                   } else {
                     this.setState({ configModalOpen: true, chapter: i + 1 });
                   }

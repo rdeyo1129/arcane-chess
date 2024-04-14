@@ -90,7 +90,7 @@ const router = createBrowserRouter(
         }
       />
       <Route
-        path="/book"
+        path="/chapter"
         element={
           <PrivateRoute>
             <Book />

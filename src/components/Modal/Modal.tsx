@@ -74,7 +74,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
 
   // todo save to local storage and update chapter number to db on click save or submit? FC?
   // todo dyanmicize for different types
-  // book setttings
+  // chapter setttings
   // endgame
   // promotion
 
@@ -90,7 +90,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       nodeId: '',
       chapterEnd: false,
     });
-    this.props.navigate('/book');
+    this.props.navigate('/chapter');
   };
 
   render() {
@@ -365,7 +365,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               <div className="middle"></div>
               <div className="right">
                 {this.props.score && <span>SCORE: {this.props.score}</span>}
-                {/* <div className="pog"></div> */}
                 <div className="buttons">
                   <Button
                     text={this.props.lessonBackButton ? 'BACK' : 'ANALYZE'}
@@ -378,7 +377,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       if (this.props.lessonBackButton) {
                         this.props.handleClose();
                       } else {
-                        this.props.navigate('/book');
+                        this.props.navigate('/chapter');
                       }
                     }}
                   />
@@ -389,7 +388,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     height={90}
                     color="B"
                     onClick={() => {
-                      this.props.navigate('/book');
+                      this.props.navigate('/chapter');
                     }}
                   />
                 </div>
@@ -438,7 +437,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       width={160}
                       height={40}
                       onClick={() => {
-                        this.props.navigate('/book');
+                        this.props.navigate('/chapter');
                       }}
                     />
                     <Button
@@ -449,7 +448,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       height={40}
                       disabled
                       // onClick={() => {
-                      //   this.props.navigate('/book');
+                      //   this.props.navigate('/chapter');
                       // }}
                     />
                   </div>

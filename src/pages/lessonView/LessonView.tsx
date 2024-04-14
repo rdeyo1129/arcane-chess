@@ -385,18 +385,8 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       auth,
       nodeScores: {
         ...getLocalStorage(this.props.auth.user.username).nodeScores,
-        [this.state.nodeId]:
-          this.state.playerColor === 'white'
-            ? (100000 - (GameBoard.material[0] - GameBoard.material[1])) *
-              (this.state.playerClock ? this.state.playerClock : 1)
-            : (100000 - (GameBoard.material[1] - GameBoard.material[0])) *
-              (this.state.playerClock ? this.state.playerClock : 1),
+        [this.state.nodeId]: 0,
       },
-      chapterEnd: booksMap[
-        `book${getLocalStorage(this.props.auth.user.username).chapter}`
-      ][this.state.nodeId].boss
-        ? true
-        : false,
     });
     this.setState({ gameOver: true });
   };

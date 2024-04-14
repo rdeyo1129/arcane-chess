@@ -189,10 +189,8 @@
     "theme": "yellow",
     "panels": {
       "panel-1": {
-        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-        "fenHistory": [
-          "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-        ],
+        "fen": "7k/6pp/8/7V/8/7K/8/8 w - - 0 1",
+        "fenHistory": ["7k/6pp/8/7V/8/7K/8/8 w - - 0 1"],
         "history": [],
         "panelText": "Panel Description ;soihgasog1",
         "arrowsCircles": [],
@@ -236,10 +234,8 @@
     "theme": "purple",
     "panels": {
       "panel-1": {
-        "fen": "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1",
-        "fenHistory": [
-          "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1"
-        ],
+        "fen": "k3MR2/ppp5/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["k3MR2/ppp5/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
         "panelText": "Panel Description ;soihgasog2",
         "arrowsCircles": [],

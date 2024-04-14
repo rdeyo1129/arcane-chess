@@ -364,7 +364,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
               <div className="middle"></div>
               <div className="right">
-                <span>SCORE: {this.props.score}</span>
+                {this.props.score && <span>SCORE: {this.props.score}</span>}
                 {/* <div className="pog"></div> */}
                 <div className="buttons">
                   <Button

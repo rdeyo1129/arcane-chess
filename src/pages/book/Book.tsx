@@ -37,10 +37,6 @@ import arcanaJson from 'src/data/arcana.json';
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-// import instead, use ex here
-const jsonChpater1 = { a: 1 };
-const jsonChapter2 = { a: 2, inbox: ['test', 'test2'] };
-
 interface ArcanaMap {
   [key: string]: ArcanaDetail;
 }
@@ -57,17 +53,7 @@ interface BookProps {
 }
 interface BookState {
   [key: string]: any;
-}
-
-// KEEP EACH CHAPTER AND LTM IN ITS OWN JSON FILE ... 36 json files?
-
-interface nodeJsonI {
-  [key: string]: {
-    fen: string;
-    id: string;
-    prereq: string;
-    boss?: boolean;
-  };
+  endChapterOpen: boolean;
 }
 
 interface Node {
@@ -111,137 +97,6 @@ interface Node {
   };
 }
 
-const missionJson: nodeJsonI = {
-  'mission-1': {
-    // fen: 'rnbqkbnr/sspppppp/8/7Q/2B1P2R/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1',
-    // fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'mission-1',
-    prereq: '',
-  },
-  'mission-2': {
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'mission-2',
-    prereq: 'mission-1',
-  },
-  'mission-3': {
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'mission-3',
-    prereq: 'mission-2',
-  },
-  'mission-4': {
-    fen: 'rnbqkbnr/pppp1ppp/4p3/8/5P2/3PPP1P/PPPPP1BP/RNBQKBNR b KQkq - 0 1',
-    id: 'mission-4',
-    prereq: 'mission-3',
-    boss: true,
-  },
-};
-
-const lessonJson: nodeJsonI = {
-  'lesson-1': {
-    fen: '8/8/8/4R3/8/8/8/8 w KQkq - 0 1',
-    id: 'lesson-1',
-    prereq: '',
-  },
-  'lesson-2': {
-    fen: '8/8/8/4V3/8/8/8/8 w KQkq - 0 1',
-    id: 'lesson-2',
-    prereq: 'lesson-1',
-  },
-};
-
-const templeJson: nodeJsonI = {
-  'temple-1': {
-    fen: 'k7/8/8/nnnnVMTQ/8/8/8/7K w KQkq - 0 1',
-    id: 'temple-1',
-    prereq: '',
-  },
-  'temple-2': {
-    fen: '8/8/8/krrrSQTK/8/8/8/8 w KQkq - 0 1',
-    id: 'temple-2',
-    prereq: 'temple-1',
-  },
-};
-
-interface lessonNode {
-  id: string; // 'lesson-1';
-  title: string;
-  time: [number, number]; // seconds
-  //
-  chatLog: string;
-  reward: (number | string[])[];
-  prereq: string;
-  boards: {
-    [key: string]: {
-      fen: string;
-      fenHistory: string[];
-      history: string[];
-      // is arrows this a map?
-      arrows?: string[][];
-      // todo initRoyalties in arcaneChess return object
-      royalties: {
-        royaltyQ: string[];
-        royaltyM: string[];
-        royaltyT: string[];
-        royaltyV: string[];
-        royaltyE: string[];
-      };
-      varVar: string;
-      whiteArcane?: { [key: string]: number };
-      blackArcane?: { [key: string]: number };
-      // orientation: string;
-      config: {
-        [key: string]: boolean | string | number;
-      };
-      dialogue: [
-        // [ 'narrator', 'message']
-        // [ 'medavas', 'message']
-        // no text from creator, just put in a blank message that doesn't add anything to the ui
-        [string | null, string | null],
-      ];
-    };
-  };
-}
-
-const templeNode = {};
-
-// JSON STRUCTURE
-// todo to be generated / automated from creator
-interface missionNode {
-  id: string; // 'mission-1';
-  prereq: string;
-  title: string;
-  time: [number, number]; // seconds
-  chatLog: [string | null, string | null];
-  fen: string;
-  fenHistory: string[];
-  history: string[];
-  reward: (number | string[])[];
-  boss: boolean;
-  // is arrows this a map?
-  arrows?: string[][];
-  // todo initRoyalties in arcaneChess return object
-  royalties: {
-    royaltyQ: string[];
-    royaltyM: string[];
-    royaltyT: string[];
-    royaltyV: string[];
-    royaltyE: string[];
-  };
-  whiteArcana?: { [key: string]: number };
-  blackArcana?: { [key: string]: number };
-  orientation: string;
-  handicaps: {
-    [key: string]: boolean | string | number;
-  };
-  dialogue: [
-    // [ 'narrator', 'message']
-    // [ 'medavas', 'message']
-    // no text from creator, just put in a blank message that doesn't add anything to the ui
-    [string | null, string | null],
-  ];
-}
-
 export class UnwrappedBook extends React.Component<BookProps, BookState> {
   chessgroundRef = createRef<IChessgroundApi>();
   booksMap: { [key: string]: { [key: string]: Node } } = {
@@ -281,9 +136,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       config: getLocalStorage(this.props.auth.user.username)?.config,
       nodeScores: getLocalStorage(this.props.auth.user.username)?.nodeScores,
       inventory: getLocalStorage(this.props.auth.user.username)?.inventory,
-      endChapterOpen:
-        getLocalStorage(this.props.auth.user.username)?.chapterEnd &&
-        getLocalStorage(this.props.auth.user.username)?.chapter,
+      endChapterOpen: getLocalStorage(this.props.auth.user.username)
+        ?.chapterEnd,
       reducedScore: _.reduce(
         getLocalStorage(this.props.auth.user.username).nodeScores,
         (accumulator, value) => {
@@ -336,12 +190,10 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
 
   render() {
     const { auth } = this.props;
-    const allNodes = { ...lessonJson, ...templeJson, ...missionJson };
     // Convert number to string with comma formatting
     const formattedNumber = Math.round(
       this.state.animatedValue
     ).toLocaleString();
-
     // Split formatted number into individual characters
     const digits = formattedNumber.split('').map((char, index) => (
       <span key={index} className="digit-box">
@@ -386,10 +238,12 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                 if (currLS.nodeScores && currLS.nodeScores[node.id]) {
                   return false;
                 }
+
                 // Check for prerequisites
                 // if (node.prereq && !currLS.nodeScores[node.prereq]) {
                 //   return false;
                 // }
+                if (_.includes(node.id, 'lesson')) return true;
                 return true;
               }).map((node, i) => {
                 return (

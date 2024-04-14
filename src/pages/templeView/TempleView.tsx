@@ -586,6 +586,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
+    const LS = getLocalStorage(auth.user.username);
     return (
       <div className="tactorius-board fade">
         {this.state.hideCompletedPage ? (
@@ -600,6 +601,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               // modalType={this.state.endScenario}
               // message={} // interpolate
               message={this.state.gameOverType} // interpolate
+              score={LS.nodeScores[this.state.nodeId]}
               type={
                 this.state.gameOverType === 'puzzle victory'
                   ? 'victory'

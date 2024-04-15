@@ -45,7 +45,7 @@ const Toggle: React.FC<Props> = ({
           className="switch"
           style={{ height: `${height}px`, width: `${width}px` }}
         >
-          <input type="checkbox" onChange={toggleSwitch} />
+          <input type="checkbox" onChange={toggleSwitch} checked={isChecked} />
           <span className="slider"></span>
         </label>
         <div

@@ -1,6 +1,6 @@
 @import 'src/styles/_components.scss';
 
-.tactorius-board .temple-view {
+.temple-view {
   width: 100%;
   height: 100vh;
   max-height: 574px;
@@ -100,10 +100,3 @@
     }
   }
 }
-
-// .tactorius-board .board-view {
-//   position: relative;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-// }

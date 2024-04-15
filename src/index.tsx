@@ -1,18 +1,15 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
   Route,
-  Routes,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
 } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
-import { store, persistor } from 'src/store/configureStore';
+import { store } from 'src/store/configureStore';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
-import { PersistGate } from 'redux-persist/integration/react';
 
 import { PrivateRoute } from 'src/components/PrivateRoute/PrivateRoute';
 
@@ -25,7 +22,6 @@ import '@fontsource/exo/700-italic.css';
 import { FrontPage } from '././pages/frontPage/FrontPage';
 import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
 import { Campaign } from '././pages/campaign/Campaign';
-import { SinglePlayer } from '././pages/singlePlayer/SinglePlayer';
 import { Dashboard } from '././pages/dashboard/Dashboard';
 import { Book } from '././pages/book/Book';
 import { Login } from '././pages/loginRegister/Login';
@@ -33,6 +29,7 @@ import { Register } from '././pages/loginRegister/Register';
 import { LessonView } from '././pages/lessonView/LessonView';
 import { TempleView } from '././pages/templeView/TempleView';
 import { MissionView } from '././pages/missionView/MissionView';
+import { QuickPlay } from '././pages/quickPlay/QuickPlay';
 
 import ReactDOM from 'react-dom/client';
 // import App from './App';
@@ -78,6 +75,14 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <InGameMenu />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/quickplay"
+        element={
+          <PrivateRoute>
+            <QuickPlay />
           </PrivateRoute>
         }
       />

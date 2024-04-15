@@ -16,7 +16,7 @@ interface DashboardProps {
   // Example:
   // someProp: string;
   logoutUser: () => void;
-  auth: any;
+  auth: { user: { username: string } };
   navigate: (path: string) => void;
 }
 
@@ -77,11 +77,11 @@ export class UnwrappedDashboard extends React.Component<
           </Link>
           <Link
             className="home-button"
-            to="/league"
-            onMouseEnter={() => this.setState({ hoverNav: 'league' })}
+            to="/quickplay"
+            onMouseEnter={() => this.setState({ hoverNav: 'quickplay' })}
           >
             <Button
-              text="LEAGUE"
+              text="QUICKPLAY"
               // onClick={() => this.calculateFen()}
               className="tertiary"
               color="G"
@@ -94,11 +94,28 @@ export class UnwrappedDashboard extends React.Component<
           </Link>
           <Link
             className="home-button"
-            to="/versus"
-            onMouseEnter={() => this.setState({ hoverNav: 'versus' })}
+            to="https://discord.gg/JYV3SWnc"
+            onMouseEnter={() => this.setState({ hoverNav: 'hub' })}
           >
             <Button
-              text="VERSUS"
+              text="UNDERGROUND"
+              // onClick={() => this.calculateFen()}
+              className="tertiary"
+              color="G"
+              height={50}
+              width={200}
+              // disabled={this.state.fen === ''}
+              disabled={false}
+              // strong={true}
+            />
+          </Link>
+          <Link
+            className="home-button"
+            to="/league"
+            onMouseEnter={() => this.setState({ hoverNav: 'league' })}
+          >
+            <Button
+              text="LEAGUE"
               // onClick={() => this.calculateFen()}
               className="tertiary"
               color="G"
@@ -143,23 +160,6 @@ export class UnwrappedDashboard extends React.Component<
               // strong={true}
             />
           </Link>
-          <Link
-            className="home-button"
-            to="https://discord.gg/JYV3SWnc"
-            onMouseEnter={() => this.setState({ hoverNav: 'hub' })}
-          >
-            <Button
-              text="UNDERGROUND"
-              // onClick={() => this.calculateFen()}
-              className="tertiary"
-              color="G"
-              height={50}
-              width={200}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-          </Link>
         </div>
         <div className="hover-image">
           <img
@@ -190,7 +190,7 @@ export class UnwrappedDashboard extends React.Component<
   }
 }
 
-function mapStateToProps({ auth }: { auth: any }) {
+function mapStateToProps({ auth }: { auth: object }) {
   return {
     auth,
   };

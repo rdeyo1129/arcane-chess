@@ -210,6 +210,13 @@ interface Props {
       username: string;
     };
   };
+  quickplayConfig: {
+    color: string;
+    clock: boolean;
+    thinkingTime: number;
+    depth: number;
+    multiplier: number;
+  };
 }
 
 class UnwrappedMissionView extends React.Component<Props, State> {
@@ -804,7 +811,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             <div
               className="mission-view"
               style={{
-                background: `url(assets/${this.state.theme}.webp) no-repeat center center fixed`,
+                background:
+                  this.state.theme === 'black'
+                    ? ''
+                    : `url(assets/${this.state.theme}.webp) no-repeat center center fixed`,
               }}
             >
               <div className="opponent-dialogue-arcana">
@@ -812,6 +822,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   <div className="avatar"></div>
                   <div className="info">
                     <h3 className="name">Medavas</h3>
+                    <div className="opponent-time">
+                      <h3>10:00</h3>
+                    </div>
                     <div className="thinking">
                       {this.state.thinking ? <Dots /> : null}
                     </div>
@@ -997,9 +1010,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 </div>
               </div>
               <div className="time-board-time">
-                <div className="opponent-time">
-                  <h3>10:00</h3>
-                </div>
+                <div className="board-frame"></div>
                 <div className="board-view">
                   <Chessground
                     // theme={this.state.theme}
@@ -1398,24 +1409,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     }}
                   />
                 </div>
-                <div className="player-time">
-                  <h3>
-                    <ChessClock
-                      ref={this.chessclockRef}
-                      type="inc"
-                      playerTurn={gameBoardTurn === this.state.playerColor}
-                      turn={gameBoardTurn}
-                      time={this.state.playerClock}
-                      timePrime={this.state.playerInc}
-                      playerTimeout={() => {
-                        this.setState({
-                          gameOver: true,
-                          gameOverType: 'player timed out',
-                        });
-                      }}
-                    />
-                  </h3>
-                </div>
+                <div className="board-frame"></div>
               </div>
               <div className="nav-history-buttons-player">
                 <div className="nav">
@@ -1496,6 +1490,24 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   <div className="avatar"></div>
                   <div className="info">
                     <h3 className="name">Medavas</h3>
+                    <div className="player-time">
+                      <h3>
+                        <ChessClock
+                          ref={this.chessclockRef}
+                          type="inc"
+                          playerTurn={gameBoardTurn === this.state.playerColor}
+                          turn={gameBoardTurn}
+                          time={this.state.playerClock}
+                          timePrime={this.state.playerInc}
+                          playerTimeout={() => {
+                            this.setState({
+                              gameOver: true,
+                              gameOverType: 'player timed out',
+                            });
+                          }}
+                        />
+                      </h3>
+                    </div>
                     <div className="thinking">
                       {/* {this.state.turn === this.state.playerColor ? <Dots /> : null} */}
                     </div>

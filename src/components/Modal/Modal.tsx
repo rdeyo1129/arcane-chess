@@ -30,6 +30,7 @@ interface ModalProps {
   lessonBackButton?: boolean;
   disableSecondary?: boolean;
   score?: number;
+  updateConfig?: (key: string, value: any) => void;
 }
 interface ModalState {
   config: { [key: string]: any };
@@ -44,7 +45,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         color: 'white',
         thinkingTime: 1,
         depth: 1,
-        clock: false,
+        clock: true,
         blunderVision: false,
         threatVision: false,
         checkVision: false,
@@ -142,6 +143,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <div className="settings-block">
                   <Toggle
                     title="Clock"
+                    initialState={true}
                     callback={(val: boolean) =>
                       this.updateConfig(val, 'clock', val ? 300 : -300)
                     }
@@ -501,6 +503,85 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               }}
             />
           </Modal>
+        ) : this.props.type === 'quickPlay' ? (
+          <Modal
+            style={quickPlayModal}
+            isOpen={this.props.isOpen}
+            ariaHideApp={false}
+          >
+            <div className="quickplay-select">
+              <Select
+                options={['white', 'black']}
+                title="Color"
+                type="string"
+                onChange={(val) => this.updateConfig(val, 'color', 0)}
+              />
+            </div>
+            <div className="quickplay-select">
+              <Select
+                title="Thinking Time"
+                type="number"
+                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+                onChange={(val) =>
+                  this.updateConfig(Number(val), 'thinkingTime', 0)
+                }
+              />
+            </div>
+            <div className="quickplay-select">
+              <Select
+                title="Depth"
+                type="number"
+                options={[1, 2, 3, 4, 5, 6, 7, 8]}
+                onChange={(val) => this.updateConfig(Number(val), 'depth', 0)}
+              />
+            </div>
+            <Toggle
+              title="Clock"
+              initialState={true}
+              callback={(val: boolean) => this.updateConfig(val, 'clock', 0)}
+            />
+            <div className="quickplay-select">
+              <Select
+                title="Autopromotion"
+                type="string"
+                options={[
+                  'Select',
+                  'N',
+                  'Z',
+                  'U',
+                  'B',
+                  'R',
+                  'Q',
+                  'T',
+                  'M',
+                  'W',
+                  'S',
+                ]}
+                onChange={(val) => this.updateConfig(val, 'autopromotion', 0)}
+              />
+            </div>
+            <div className="quickplay-select">
+              <Select
+                title="whiteSetup"
+                type="string"
+                options={['RNBQKBNR', 'RZBTKBUR']}
+                onChange={(val) => {
+                  if (this.props.updateConfig)
+                    this.props.updateConfig('whiteSetup', val);
+                }}
+              />
+            </div>
+            <Button
+              text="START"
+              className="primary"
+              color="V"
+              width={160}
+              height={40}
+              onClick={() => {
+                this.props.handleClose();
+              }}
+            />
+          </Modal>
         ) : (
           <div>other modal</div>
         )}
@@ -523,6 +604,27 @@ const TactoriusModal = connect(
 )(withRouter(UnwrappedTactoriusModal));
 
 export default TactoriusModal;
+
+const quickPlayModal = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: 'auto',
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    height: '500px',
+    width: '1000px',
+    background: '#111111',
+    borderRadius: '10px',
+    border: '2px solid #a043a2',
+  },
+  overlay: {
+    zIndex: 10,
+    backgroundColor: '#111111EE',
+  },
+};
 
 const bookSettingsModal = {
   content: {

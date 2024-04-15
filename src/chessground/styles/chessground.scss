@@ -6,7 +6,8 @@
 
 /* poc */
 .module-board .cg-wrap,
-.tactorius-board .cg-wrap {
+.tactorius-board .cg-wrap,
+.creator-board .cg-wrap {
   background-image: url('src/chessground/images/shattered.png'),
     url('../images/board/tactoriusBoard.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
@@ -69,7 +70,8 @@ cg-board square {
   pointer-events: none;
 }
 .module-board cg-board square,
-.tactorius-board cg-board square {
+.tactorius-board cg-board square,
+.creator-board cg-board square {
   width: 12.5%;
   height: 12.5%;
 }
@@ -212,7 +214,8 @@ cg-board square.current-premove {
   pointer-events: none;
 }
 .module-board .cg-wrap piece,
-.tactorius-board .cg-wrap piece {
+.tactorius-board .cg-wrap piece,
+.creator-board .cg-wrap piece {
   width: 12.5%;
   height: 12.5%;
 }

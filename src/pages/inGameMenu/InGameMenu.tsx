@@ -1179,7 +1179,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             />
           </div>
         </div>
-        <div className="board-view tactorius-board">
+        <div className="creator-board fade">
           <Chessground
             // theme={this.state.theme}
             forwardedRef={this.chessgroundRef}

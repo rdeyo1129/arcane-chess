@@ -15,10 +15,6 @@ import {
   CAPTURED,
   FROMSQ,
   TOSQ,
-  PROMOTED,
-  PrintBoard,
-  PrintSqAttacked,
-  InCheck,
 } from './board';
 import { whiteArcaneConfig, blackArcaneConfig, POWERBIT } from './arcaneDefs';
 import {
@@ -36,10 +32,7 @@ import {
   LoopSlideDyad,
   LoopSlidePce,
   LoopNonSlideIndex,
-  LoopIndexPrime,
   LoopSlideIndex,
-  LoopDyadPrime,
-  LoopPcePrime,
   loopSummon,
   loopSummonFlag,
   loopSummonIndex,
@@ -54,7 +47,6 @@ import {
   MAXDEPTH,
   BRD_SQ_NUM,
   ARCANE_BIT_VALUES,
-  Kings,
   royaltyDyad,
   royaltySliders,
   royaltyHoppers,
@@ -63,8 +55,6 @@ import {
   RtyChar,
 } from './defs';
 import { MakeMove, TakeMove } from './makemove';
-import { PrMove, PrintMoveList, PrSq } from './io.mjs';
-import { ARCANEFLAG } from './board.mjs';
 
 const MvvLvaValue = [
   0, 100, 300, 600, 700, 1000, 1400, 1200, 200, 900, 800, 1300, 500, 400, 1100,
@@ -159,7 +149,7 @@ export function AddEnPassantMove(move) {
   GameBoard.moveListStart[GameBoard.ply + 1]++;
 }
 
-export function addSummonMove(move, summonPce) {
+export function addSummonMove(move) {
   // if (move & MFLAGSWAP) return;
   // whiteArcaneConfig[
   //   `sumn${pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''}${PceChar.split('')[
@@ -581,9 +571,6 @@ export function GenerateMoves(
   let sq;
   // let sqP;
   let pceIndex = 0;
-  let pceIndexPrimeVar = 0;
-  let pcePrimeVar;
-  let dyadPrimeVar;
   let pce;
   let t_sq;
   let dir;
@@ -848,7 +835,7 @@ export function GenerateMoves(
   const blackLimit = 20 + 10 * (8 - GameBoard.summonRankLimits[1]);
 
   if (generateSummons !== '' && !herrings.length) {
-    const royaltyIndexes = [14, 15, 16, 17, 18, 34, 35, 36, 37, 38];
+    const royaltyIndexes = [15, 16, 17, 18, 19, 34, 35, 36, 37, 38];
     if (userSummonPceRty !== '' || generateSummons !== 'PLAYER') {
       while (summonPce !== 0) {
         for (let sq = 21; sq <= 98; sq++) {
@@ -881,7 +868,10 @@ export function GenerateMoves(
             if (sq < whiteLimit) {
               if (
                 summonFlag < 16384 &&
-                ((summonPce === PIECES[`w${userSummonPceRty}`] &&
+                ((summonPce ===
+                  PIECES[
+                    userSummonPceRty === 'X' ? 'EXILE' : `w${userSummonPceRty}`
+                  ] &&
                   generateSummons === 'PLAYER') ||
                   generateSummons !== 'PLAYER') &&
                 !royaltyIndexes.includes(summonIndex) &&
@@ -924,7 +914,10 @@ export function GenerateMoves(
             if (sq > blackLimit) {
               if (
                 summonFlag < 16384 &&
-                ((summonPce === PIECES[`b${userSummonPceRty}`] &&
+                ((summonPce ===
+                  PIECES[
+                    userSummonPceRty === 'X' ? 'EXILE' : `b${userSummonPceRty}`
+                  ] &&
                   generateSummons === 'PLAYER') ||
                   generateSummons !== 'PLAYER') &&
                 !royaltyIndexes.includes(summonIndex) &&

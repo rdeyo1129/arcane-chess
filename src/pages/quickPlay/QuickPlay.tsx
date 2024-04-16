@@ -110,7 +110,7 @@ interface State {
     modsTEM?: number | undefined;
   };
   bArcana: {
-    [key: string]: number | string | undefined;
+    [key: string]: number | string | boolean | undefined;
     modsIMP?: number | undefined;
     modsORA?: number | undefined;
     modsTEM?: number | undefined;
@@ -375,7 +375,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
         resolve(engineResult);
       }, 3000);
     }).then((reply: any) => {
-      const { bestMove, bestScore, temporalPincer } = reply;
+      const { bestMove, temporalPincer } = reply;
 
       if (level === 1) {
         this.setState({
@@ -419,7 +419,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     return this.chessclockRef.current?.stopTimer();
   };
 
-  handleVictory = (auth: object, timeLeft: number | null) => {
+  handleVictory = (timeLeft: number | null) => {
     const LS = getLocalStorage(this.props.auth.user.username);
     setLocalStorage({
       ...getLocalStorage(this.props.auth.user.username),
@@ -569,10 +569,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   `${this.state.playerColor} mates`
                 )
               ) {
-                this.handleVictory(
-                  this.props.auth,
-                  this.stopAndReturnTime() as number | null
-                );
+                this.handleVictory(this.stopAndReturnTime() as number | null);
               }
             }
           );
@@ -648,26 +645,39 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
   }
 
   updateQuickPlayState = (property: string, value: any) => {
-    console.log(property, value);
-    this.setState(
-      (prevState) => ({
-        ...prevState,
-        [property]: value,
-      }),
-      () => {
-        this.setState({
-          fen: `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
-          fenHistory: [
-            `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
-          ],
-        });
-        console.log(this.state);
-      }
-    );
+    if (property === 'wArcana' || property === 'bArcana') {
+      this.setState(
+        (prevState) => ({
+          ...prevState,
+          [property]: {
+            ...(property === 'wArcana' ? prevState.wArcana : prevState.bArcana),
+            ...value,
+          },
+        }),
+        () => {
+          console.log('3-69i356265', this.state.wArcana, this.state.bArcana);
+        }
+      );
+    } else {
+      this.setState(
+        (prevState) => ({
+          ...prevState,
+          [property]: value,
+        }),
+        () => {
+          this.setState({
+            fen: `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
+            fenHistory: [
+              `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
+            ],
+          });
+        }
+      );
+    }
   };
 
   render() {
-    const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
+    // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
@@ -680,8 +690,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               this.setState({ quickPlayModalOpen: false }, () => {
                 this.arcaneChess().startGame(
                   this.state.fen,
-                  this.props.config.whiteArcana,
-                  this.props.config.blackArcana,
+                  this.state.wArcana,
+                  this.state.bArcana,
                   this.state.royalties,
                   this.state.preset
                 );
@@ -862,6 +872,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                     swapType: '',
                                   });
                                 } else {
+                                  console.log(key);
                                   this.setState({
                                     placingRoyalty: 0,
                                     placingPiece:
@@ -881,13 +892,13 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               }
                               if (key.includes('swap')) {
                                 if (this.state.swapType === '') {
-                                  this.setState((prevState) => ({
+                                  this.setState({
                                     swapType: key.split('swap')[1],
-                                  }));
+                                  });
                                 } else {
-                                  this.setState((prevState) => ({
+                                  this.setState({
                                     swapType: '',
-                                  }));
+                                  });
                                 }
                               }
                               if (key.includes('modsSUS')) {
@@ -1025,6 +1036,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   events={{
                     change: () => {},
                     dropNewPiece: (piece: string, key: string) => {
+                      console.log(piece);
                       if (
                         GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
                       ) {
@@ -1067,7 +1079,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                     )
                                   ) {
                                     this.handleVictory(
-                                      this.props.auth,
                                       this.stopAndReturnTime() as number | null
                                     );
                                   }
@@ -1303,7 +1314,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                         )
                                       ) {
                                         this.handleVictory(
-                                          this.props.auth,
                                           this.stopAndReturnTime() as
                                             | number
                                             | null

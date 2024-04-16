@@ -9,7 +9,7 @@ import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
-import { Chessground } from 'src/chessground/chessgroundMod';
+// import { Chessground } from 'src/chessground/chessgroundMod';
 
 import Button from '../Button/Button';
 import Select from '../Select/Select';
@@ -286,11 +286,12 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             isOpen={this.props.isOpen}
             ariaHideApp={false}
           >
-            <div className="cg-wrap armory-board">
+            {/* <div className="cg-wrap armory-board">
               <Chessground
                 // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
                 // check={this.tactorius.inCheck().isAttacked}
                 // viewOnly={this.isCheckmate()}
+
                 fen="8/8/P7/QRRRRK2"
                 coordinates={false}
                 // notation={true}
@@ -372,7 +373,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   // },
                 }}
               />
-            </div>
+            </div> */}
           </Modal>
         ) : this.props.type === 'victory' ? (
           <Modal
@@ -596,23 +597,41 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                               name
                             ) && this.state.whiteArcana[name];
                           if (isEnabledOrNonNull) {
-                            this.setState((prevState) => ({
-                              whiteArcana: {
-                                ...prevState.whiteArcana,
-                                [name]: null,
-                              },
-                            }));
+                            this.setState(
+                              (prevState) => ({
+                                whiteArcana: {
+                                  ...prevState.whiteArcana,
+                                  [name]: null,
+                                },
+                              }),
+                              () => {
+                                if (this.props.updateConfig)
+                                  this.props.updateConfig(
+                                    'wArcana',
+                                    this.state.whiteArcana
+                                  );
+                              }
+                            );
                           } else {
-                            this.setState((prevState) => ({
-                              whiteArcana: {
-                                ...prevState.whiteArcana,
-                                [name]:
-                                  currentArcaneType === 'active' ||
-                                  currentArcaneType === 'passive'
-                                    ? 2
-                                    : true,
-                              },
-                            }));
+                            this.setState(
+                              (prevState) => ({
+                                whiteArcana: {
+                                  ...prevState.whiteArcana,
+                                  [name]:
+                                    currentArcaneType === 'active' ||
+                                    currentArcaneType === 'passive'
+                                      ? 2
+                                      : true,
+                                },
+                              }),
+                              () => {
+                                if (this.props.updateConfig)
+                                  this.props.updateConfig(
+                                    'wArcana',
+                                    this.state.whiteArcana
+                                  );
+                              }
+                            );
                           }
                         }}
                         onMouseEnter={() => this.toggleHover(`${name}-white`)}
@@ -664,23 +683,41 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                               name
                             ) && this.state.blackArcana[name];
                           if (isEnabledOrNonNull) {
-                            this.setState((prevState) => ({
-                              blackArcana: {
-                                ...prevState.blackArcana,
-                                [name]: null,
-                              },
-                            }));
+                            this.setState(
+                              (prevState) => ({
+                                blackArcana: {
+                                  ...prevState.blackArcana,
+                                  [name]: null,
+                                },
+                              }),
+                              () => {
+                                if (this.props.updateConfig)
+                                  this.props.updateConfig(
+                                    'bArcana',
+                                    this.state.whiteArcana
+                                  );
+                              }
+                            );
                           } else {
-                            this.setState((prevState) => ({
-                              blackArcana: {
-                                ...prevState.blackArcana,
-                                [name]:
-                                  currentArcaneType === 'active' ||
-                                  currentArcaneType === 'passive'
-                                    ? 2
-                                    : true,
-                              },
-                            }));
+                            this.setState(
+                              (prevState) => ({
+                                blackArcana: {
+                                  ...prevState.blackArcana,
+                                  [name]:
+                                    currentArcaneType === 'active' ||
+                                    currentArcaneType === 'passive'
+                                      ? 2
+                                      : true,
+                                },
+                              }),
+                              () => {
+                                if (this.props.updateConfig)
+                                  this.props.updateConfig(
+                                    'bArcana',
+                                    this.state.whiteArcana
+                                  );
+                              }
+                            );
                           }
                         }}
                         onMouseEnter={() => this.toggleHover(`${name}-black`)}

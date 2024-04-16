@@ -11,6 +11,7 @@
     "prereq": "",
     "opponent": "Sidian",
     "boss": false,
+    "theme": "black",
     "panels": {
       "panel-1": {
         "fen": "b2r3r/k4p1p/p2q1np1/NppP4/3p1Q2/P4PPB/1PP4P/1K1RR3 w - - 1 24",
@@ -35,7 +36,8 @@
           "modsINH": "true"
         },
         "config": {},
-        "correctMoves": []
+        "correctMoves": [],
+        "orientation": "white"
       },
       "panel-2": {
         "fen": "b2r3r/k4p1p/p2q1np1/NppP4/3R1Q2/P4PPB/1PP4P/1K2R3 b - - 0 24",
@@ -62,7 +64,8 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": []
+        "correctMoves": [],
+        "orientation": "white"
       }
     }
   },
@@ -78,6 +81,7 @@
     "prereq": "",
     "opponent": "Sidian",
     "boss": false,
+    "theme": "black",
     "panels": {
       "panel-1": {
         "fen": "r5k1/pp1b2pp/4p1p1/2p5/2PqNQ2/3P4/PP4PP/5R1K b - - 4 20",
@@ -100,7 +104,8 @@
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
-        "correctMoves": ["d7c6", "f4f7", "g8h8", "f7f8", "a8f8", "f1f8"]
+        "correctMoves": ["d7c6", "f4f7", "g8h8", "f7f8", "a8f8", "f1f8"],
+        "orientation": "white"
       },
       "panel-2": {
         "fen": "r3r1k1/p1pQ2pp/q4p2/8/8/1P3N2/P4PPP/2R2R1K w - - 4 25",
@@ -127,7 +132,7 @@
   },
   "mission-1": {
     "id": "mission-1",
-    "title": "Example Title",
+    "title": "mission 1",
     "time": [
       [100, 3],
       [5, 1]
@@ -157,6 +162,7 @@
           "sumnB": 2,
           "sumnQ": 2,
           "sumnM": 2,
+          "sumnX": 2,
           "shftP": 2,
           "sumnRE": 3,
           "sumnRQ": 3,
@@ -286,6 +292,48 @@
         },
         "preset": "DELIVERANCE",
         "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-5": {
+    "id": "mission-5",
+    "title": "Example Title",
+    "time": [
+      [100, 100],
+      [100, 100]
+    ],
+    "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
+    "panelText": "Second Description",
+    "reward": [500, "a", "b", "c"],
+    "prereq": "Some prerequisite",
+    "opponent": "Sidian",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Panel Description ;soihgasog1",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {
+          "sumnX": 1
+        },
         "blackArcane": {},
         "config": {},
         "correctMoves": [],

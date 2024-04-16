@@ -101,7 +101,7 @@ interface ArcanaMap {
 interface Node {
   id: string;
   title: string;
-  time: [number[], number[]];
+  time: number[][];
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
@@ -128,7 +128,7 @@ interface Node {
       config: {
         [key: string]: boolean | string | number;
       };
-      correctMoves: string[];
+      correctMoves?: string[];
       orientation: string;
       // dialogue: [
       //   // [ 'narrator', 'message']
@@ -469,7 +469,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         resolve(engineResult);
       }, 3000);
     }).then((reply: any) => {
-      const { bestMove, bestScore, temporalPincer } = reply;
+      const { bestMove, temporalPincer } = reply;
 
       if (level === 1) {
         this.setState({
@@ -513,7 +513,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     return this.chessclockRef.current?.stopTimer();
   };
 
-  handleVictory = (auth: object, timeLeft: number | null) => {
+  handleVictory = (timeLeft: number | null) => {
     const LS = getLocalStorage(this.props.auth.user.username);
     setLocalStorage({
       ...getLocalStorage(this.props.auth.user.username),
@@ -572,7 +572,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               chapterNumber: getLocalStorage(this.props.auth.user.username)
                 .chapter,
             })
-            .then((res) => {
+            .then(() => {
               // console.log(res);
             })
             .catch((err) => {
@@ -663,10 +663,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   `${this.state.playerColor} mates`
                 )
               ) {
-                this.handleVictory(
-                  this.props.auth,
-                  this.stopAndReturnTime() as number | null
-                );
+                this.handleVictory(this.stopAndReturnTime() as number | null);
               }
             }
           );
@@ -774,7 +771,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   }
 
   render() {
-    const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
+    // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
@@ -930,30 +927,36 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                       swapType: '',
                                     });
                                   } else {
-                                    this.setState({
-                                      placingRoyalty: 0,
-                                      placingPiece:
-                                        pieces[
-                                          key.split('sumn')[1].toUpperCase() ===
-                                          'X'
-                                            ? 'EXILE'
-                                            : `${
-                                                this.state.selectedSide ===
-                                                'white'
-                                                  ? 'w'
-                                                  : 'b'
-                                              }${key.split('sumn')[1]}`
-                                        ],
-                                    });
+                                    this.setState(
+                                      {
+                                        placingRoyalty: 0,
+                                        placingPiece:
+                                          pieces[
+                                            key
+                                              .split('sumn')[1]
+                                              .toUpperCase() === 'X'
+                                              ? 'EXILE'
+                                              : `${
+                                                  this.state.selectedSide ===
+                                                  'white'
+                                                    ? 'w'
+                                                    : 'b'
+                                                }${key.split('sumn')[1]}`
+                                          ],
+                                      },
+                                      () => {
+                                        console.log(this.state.placingPiece);
+                                      }
+                                    );
                                   }
                                 }
                                 if (key.includes('swap')) {
                                   if (this.state.swapType === '') {
-                                    this.setState((prevState) => ({
+                                    this.setState(() => ({
                                       swapType: key.split('swap')[1],
                                     }));
                                   } else {
-                                    this.setState((prevState) => ({
+                                    this.setState(() => ({
                                       swapType: '',
                                     }));
                                   }
@@ -1095,6 +1098,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     events={{
                       change: () => {},
                       dropNewPiece: (piece: string, key: string) => {
+                        console.log(piece);
                         if (
                           GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
                         ) {
@@ -1137,7 +1141,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                       )
                                     ) {
                                       this.handleVictory(
-                                        this.props.auth,
                                         this.stopAndReturnTime() as
                                           | number
                                           | null
@@ -1381,7 +1384,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                           )
                                         ) {
                                           this.handleVictory(
-                                            this.props.auth,
                                             this.stopAndReturnTime() as
                                               | number
                                               | null

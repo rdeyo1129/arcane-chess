@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import _, { property } from 'lodash';
+import _ from 'lodash';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
@@ -48,7 +48,6 @@ import Button from '../../components/Button/Button';
 import ChessClock from '../../components/Clock/Clock';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
-import { config } from 'process';
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
@@ -147,16 +146,12 @@ interface Props {
     blackSetup: string;
     whiteFaction: string;
     blackFaction: string;
-    whiteTime: number;
-    blackTime: number;
-    whiteInc: number;
-    blackInc: number;
     whiteArcana: { [key: string]: number };
     blackArcana: { [key: string]: number };
-    engineThinkingTime: number;
+    thinkingTime: number;
     engineDepth: number;
     varVar: string;
-    promotion: string;
+    promotion: number;
   };
 }
 
@@ -174,10 +169,10 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       blackInc: 0,
       whiteArcana: {},
       blackArcana: {},
-      engineThinkingTime: 1000,
+      thinkingTime: 1,
       engineDepth: 4,
       varVar: 'normal',
-      promotion: 'normal',
+      promotion: 'Select',
     },
   };
   hasMounted = false;
@@ -188,15 +183,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     super(props);
     this.state = {
       turn: 'white',
-      playerInc:
-        this.props.config.playerColor === 'white'
-          ? this.props.config.whiteInc
-          : this.props.config.blackInc,
+      playerInc: null,
       timeLeft: null,
-      playerClock:
-        this.props.config.playerColor === 'white'
-          ? this.props.config.whiteTime
-          : this.props.config.blackTime,
+      playerClock: null,
       playerColor: this.props.config.playerColor,
       engineColor:
         this.props.config.playerColor === 'white' ? 'black' : 'white',
@@ -218,10 +207,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       ],
       thinking: SearchController.thinking,
       engineLastMove: [],
-      thinkingTime:
-        getLocalStorage(this.props.auth.user.username).config.thinkingTime *
-        1000,
-      engineDepth: getLocalStorage(this.props.auth.user.username).config.depth,
+      thinkingTime: this.props.config.thinkingTime,
+      engineDepth: this.props.config.engineDepth,
       whiteFaction: 'normal',
       blackFaction: 'normal',
       selected: 'a',
@@ -661,20 +648,20 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
   }
 
   updateQuickPlayState = (property: string, value: any) => {
-    console.log('updateQuickPlayStat1324566134251425e', property, value);
+    console.log(property, value);
     this.setState(
       (prevState) => ({
         ...prevState,
         [property]: value,
       }),
       () => {
-        console.log('updateQuickPlayState', this.state);
         this.setState({
           fen: `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
           fenHistory: [
             `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
           ],
         });
+        console.log(this.state);
       }
     );
   };
@@ -721,7 +708,18 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               property: string,
               value: number | string | { [key: string]: number }
             ) => {
-              console.log('updateConfig', property, value);
+              if (property === 'placingPromotion') {
+                if (value === 'select') {
+                  value = 0;
+                } else {
+                  value =
+                    pieces[
+                      `${
+                        this.state.playerColor === 'white' ? 'w' : 'b'
+                      }${value}`
+                    ];
+                }
+              }
               this.updateQuickPlayState(property, value);
             }}
             type="quickPlay"
@@ -762,9 +760,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                 <div className="avatar"></div>
                 <div className="info">
                   <h3 className="name">Medavas</h3>
-                  <div className="opponent-time">
-                    <h3>10:00</h3>
-                  </div>
+                  <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
                   <div className="thinking">
                     {this.state.thinking ? <Dots /> : null}
                   </div>
@@ -1418,7 +1414,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   <h3 className="name">Medavas</h3>
                   <div className="player-time">
                     <h3>
-                      <ChessClock
+                      {/* <ChessClock
                         ref={this.chessclockRef}
                         type="inc"
                         playerTurn={gameBoardTurn === this.state.playerColor}
@@ -1431,7 +1427,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             gameOverType: 'player timed out',
                           });
                         }}
-                      />
+                      /> */}
                     </h3>
                   </div>
                   <div className="thinking">

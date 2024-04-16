@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import axios from 'axios';
+import _ from 'lodash';
 
 import { withRouter } from '../withRouter/withRouter';
 import { connect } from 'react-redux';
@@ -16,6 +16,8 @@ import Select from '../Select/Select';
 import Toggle from '../Toggle/Toggle';
 
 import './Modal.scss';
+
+import arcanaJson from 'src/data/arcana.json';
 
 interface ModalProps {
   isOpen: boolean;
@@ -34,7 +36,43 @@ interface ModalProps {
 }
 interface ModalState {
   config: { [key: string]: any };
+  hoverArcane: string;
+  whiteArcana: { [key: string]: boolean | number | string | null };
+  blackArcana: { [key: string]: boolean | number | string | null };
 }
+
+interface ArcanaDetail {
+  name: string;
+  description: string;
+  type: string;
+  imagePath: string;
+}
+interface ArcanaMap {
+  [key: string]: ArcanaDetail;
+}
+
+const quickPlayArcana = [
+  'sumnX',
+  'sumnN',
+  'sumnB',
+  'sumnR',
+  'sumnRQ',
+  'sumnRE',
+  'swapADJ',
+  'shftP',
+  'shftB',
+  'shftR',
+  'modsSUS',
+  'modsIMP',
+  'modsORA',
+  'modsTEM',
+  'modsFUT',
+  'modsCON',
+  'modsFUG',
+  'modsINH',
+];
+
+const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
   constructor(props: ModalProps) {
@@ -51,6 +89,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         checkVision: false,
         hints: false,
       },
+      hoverArcane: '',
+      whiteArcana: {},
+      blackArcana: {},
     };
   }
 
@@ -92,6 +133,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       chapterEnd: false,
     });
     this.props.navigate('/chapter');
+  };
+
+  toggleHover = (arcane: string) => {
+    this.setState({ hoverArcane: arcane });
   };
 
   render() {
@@ -241,7 +286,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             isOpen={this.props.isOpen}
             ariaHideApp={false}
           >
-            hello armory
             <div className="cg-wrap armory-board">
               <Chessground
                 // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
@@ -509,78 +553,212 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             isOpen={this.props.isOpen}
             ariaHideApp={false}
           >
-            <div className="quickplay-select">
-              <Select
-                options={['white', 'black']}
-                title="Color"
-                type="string"
-                onChange={(val) => this.updateConfig(val, 'color', 0)}
-              />
+            <div className="quickplay">
+              <div className="setup-arcana">
+                <div className="setup">
+                  <Select
+                    // title="whiteSetup"
+                    type="string"
+                    height={'30px'}
+                    width={'180px'}
+                    options={['RNBQKBNR', 'RZBTKBUR']}
+                    onChange={(val) => {
+                      if (this.props.updateConfig)
+                        this.props.updateConfig('whiteSetup', val);
+                    }}
+                  />
+                </div>
+                <div className="arcana">
+                  {_.map(quickPlayArcana, (name: string, key: number) => {
+                    return (
+                      <img
+                        key={key}
+                        className="arcane"
+                        src={`${arcana[name].imagePath}${
+                          this.state.hoverArcane === `${name}-white`
+                            ? '-hover'
+                            : ''
+                        }.svg`}
+                        style={{
+                          opacity:
+                            _.includes(
+                              Object.keys(this.state.whiteArcana),
+                              name
+                            ) && this.state.whiteArcana[name]
+                              ? 1
+                              : 0.5,
+                        }}
+                        onClick={() => {
+                          const currentArcaneType = arcana[name].type;
+                          const isEnabledOrNonNull =
+                            _.includes(
+                              Object.keys(this.state.whiteArcana),
+                              name
+                            ) && this.state.whiteArcana[name];
+                          if (isEnabledOrNonNull) {
+                            this.setState((prevState) => ({
+                              whiteArcana: {
+                                ...prevState.whiteArcana,
+                                [name]: null,
+                              },
+                            }));
+                          } else {
+                            this.setState((prevState) => ({
+                              whiteArcana: {
+                                ...prevState.whiteArcana,
+                                [name]:
+                                  currentArcaneType === 'active' ||
+                                  currentArcaneType === 'passive'
+                                    ? 2
+                                    : true,
+                              },
+                            }));
+                          }
+                        }}
+                        onMouseEnter={() => this.toggleHover(`${name}-white`)}
+                        onMouseLeave={() => this.toggleHover('')}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="setup-arcana">
+                <div className="setup-select">
+                  <Select
+                    // title="blackSetup"
+                    type="string"
+                    height={'30px'}
+                    width={'180px'}
+                    options={['rnbqkbnr', 'rbztkubr']}
+                    onChange={(val) => {
+                      if (this.props.updateConfig)
+                        this.props.updateConfig('blackSetup', val);
+                    }}
+                  />
+                </div>
+                <div className="arcana">
+                  {_.map(quickPlayArcana, (name: string, key: number) => {
+                    return (
+                      <img
+                        key={key}
+                        className="arcane"
+                        src={`${arcana[name].imagePath}${
+                          this.state.hoverArcane === `${name}-black`
+                            ? '-hover'
+                            : ''
+                        }.svg`}
+                        style={{
+                          opacity:
+                            _.includes(
+                              Object.keys(this.state.blackArcana),
+                              name
+                            ) && this.state.blackArcana[name]
+                              ? 1
+                              : 0.5,
+                        }}
+                        onClick={() => {
+                          const currentArcaneType = arcana[name].type;
+                          const isEnabledOrNonNull =
+                            _.includes(
+                              Object.keys(this.state.blackArcana),
+                              name
+                            ) && this.state.blackArcana[name];
+                          if (isEnabledOrNonNull) {
+                            this.setState((prevState) => ({
+                              blackArcana: {
+                                ...prevState.blackArcana,
+                                [name]: null,
+                              },
+                            }));
+                          } else {
+                            this.setState((prevState) => ({
+                              blackArcana: {
+                                ...prevState.blackArcana,
+                                [name]:
+                                  currentArcaneType === 'active' ||
+                                  currentArcaneType === 'passive'
+                                    ? 2
+                                    : true,
+                              },
+                            }));
+                          }
+                        }}
+                        onMouseEnter={() => this.toggleHover(`${name}-black`)}
+                        onMouseLeave={() => this.toggleHover('')}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="settings-start">
+                <div className="quickplay-select">
+                  <Select
+                    options={['white', 'black']}
+                    title="Color"
+                    type="string"
+                    onChange={(val) => this.updateConfig(val, 'color', 0)}
+                  />
+                </div>
+                <div className="quickplay-select">
+                  <Select
+                    title="Thinking Time"
+                    type="number"
+                    options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+                    onChange={(val) => {
+                      if (this.props.updateConfig)
+                        this.props.updateConfig(
+                          'thinkingTime',
+                          Number(val) * 1000
+                        );
+                    }}
+                  />
+                </div>
+                <div className="quickplay-select">
+                  <Select
+                    title="Depth"
+                    type="number"
+                    options={[1, 2, 3, 4, 5, 6, 7, 8]}
+                    onChange={(val) => {
+                      if (this.props.updateConfig)
+                        this.props.updateConfig('engineDepth', Number(val));
+                    }}
+                  />
+                </div>
+                <div className="quickplay-select">
+                  <Select
+                    title="Promotion"
+                    type="string"
+                    options={[
+                      'Select',
+                      'N',
+                      'Z',
+                      'U',
+                      'B',
+                      'R',
+                      'Q',
+                      'T',
+                      'M',
+                      'W',
+                      'S',
+                    ]}
+                    onChange={(val) => {
+                      if (this.props.updateConfig)
+                        this.props.updateConfig('placingPromotion', val);
+                    }}
+                  />
+                </div>
+                <Button
+                  text="START"
+                  className="primary"
+                  color="Y"
+                  width={160}
+                  height={40}
+                  onClick={() => {
+                    this.props.handleClose();
+                  }}
+                />
+              </div>
             </div>
-            <div className="quickplay-select">
-              <Select
-                title="Thinking Time"
-                type="number"
-                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                onChange={(val) =>
-                  this.updateConfig(Number(val), 'thinkingTime', 0)
-                }
-              />
-            </div>
-            <div className="quickplay-select">
-              <Select
-                title="Depth"
-                type="number"
-                options={[1, 2, 3, 4, 5, 6, 7, 8]}
-                onChange={(val) => this.updateConfig(Number(val), 'depth', 0)}
-              />
-            </div>
-            <Toggle
-              title="Clock"
-              initialState={true}
-              callback={(val: boolean) => this.updateConfig(val, 'clock', 0)}
-            />
-            <div className="quickplay-select">
-              <Select
-                title="Autopromotion"
-                type="string"
-                options={[
-                  'Select',
-                  'N',
-                  'Z',
-                  'U',
-                  'B',
-                  'R',
-                  'Q',
-                  'T',
-                  'M',
-                  'W',
-                  'S',
-                ]}
-                onChange={(val) => this.updateConfig(val, 'autopromotion', 0)}
-              />
-            </div>
-            <div className="quickplay-select">
-              <Select
-                title="whiteSetup"
-                type="string"
-                options={['RNBQKBNR', 'RZBTKBUR']}
-                onChange={(val) => {
-                  if (this.props.updateConfig)
-                    this.props.updateConfig('whiteSetup', val);
-                }}
-              />
-            </div>
-            <Button
-              text="START"
-              className="primary"
-              color="V"
-              width={160}
-              height={40}
-              onClick={() => {
-                this.props.handleClose();
-              }}
-            />
           </Modal>
         ) : (
           <div>other modal</div>
@@ -616,13 +794,13 @@ const quickPlayModal = {
     display: 'flex',
     height: '500px',
     width: '1000px',
-    background: '#111111',
+    background: '#000000',
     borderRadius: '10px',
-    border: '2px solid #a043a2',
+    border: 'none',
   },
   overlay: {
     zIndex: 10,
-    backgroundColor: '#111111EE',
+    backgroundColor: '#111111',
   },
 };
 

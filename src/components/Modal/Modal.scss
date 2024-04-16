@@ -79,3 +79,28 @@
     }
   }
 }
+
+.quickplay {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .setup-arcana {
+    margin: 20px;
+    .setup {
+    }
+    .arcana {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+      .arcane {
+        height: 60px;
+        width: 60px;
+      }
+      .arcane:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

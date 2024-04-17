@@ -48,12 +48,13 @@ export default class Hero extends React.Component {
       'u-piece',
       'z-piece',
       'v-piece',
+      'w-piece',
       'x-piece',
     ];
     const faction = ['normal', 'chi', 'mu', 'nu', 'sigma', 'omega', 'lambda'];
 
     return {
-      piece: piece[this.getRandomNumber(0, 13)],
+      piece: piece[this.getRandomNumber(0, 14)],
       color: color[this.getRandomNumber(0, 1)],
       faction: faction[this.getRandomNumber(0, 6)],
     };
@@ -93,8 +94,8 @@ export default class Hero extends React.Component {
       <div className="hero">
         <div className="hero-curtain"></div>
         <div className="hero-grid">
-          {[...Array(50).keys()].map((x) => {
-            return [...Array(36).keys()].map((y) => {
+          {[...Array(12).keys()].map((x) => {
+            return [...Array(22).keys()].map((y) => {
               return x % 2 === 0 ? (
                 y % 2 === 0 ? (
                   <div key={y} className="hero-square light">

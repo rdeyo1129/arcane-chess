@@ -276,13 +276,13 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Button
                   text="CANCEL"
                   className="secondary"
-                  color="V"
+                  color="B"
                   onClick={() => this.props.toggleModal()}
                 />
                 <Button
                   text="START"
                   className="primary"
-                  color="V"
+                  color="B"
                   onClick={() => this.saveSettingsStartBook()}
                 />
               </div>
@@ -539,7 +539,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             <Button
               text="CONTINUE"
               className="primary"
-              color="V"
+              color="B"
               width={160}
               height={40}
               onClick={() => {

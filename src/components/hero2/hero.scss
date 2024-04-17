@@ -2,7 +2,7 @@
   position: absolute;
   /* display: block; */
   width: 100%;
-  height: 1350px;
+  height: 100%;
   z-index: -1;
   background-image: url('public/assets/istockphoto-916080864-2048x2048.jpg');
   background-size: cover;
@@ -14,8 +14,8 @@
   position: absolute;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(36, 60px);
-  grid-template-rows: repeat(50, 60px);
+  grid-template-columns: repeat(22, 60px);
+  grid-template-rows: repeat(12, 60px);
   width: 100%;
   height: 100%;
   overflow: hidden;

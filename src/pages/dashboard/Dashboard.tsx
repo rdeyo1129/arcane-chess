@@ -67,7 +67,7 @@ export class UnwrappedDashboard extends React.Component<
               text="CAMPAIGN"
               // onClick={() => this.calculateFen()}
               className="tertiary"
-              color="G"
+              color="B"
               height={50}
               width={200}
               // disabled={this.state.fen === ''}
@@ -84,7 +84,7 @@ export class UnwrappedDashboard extends React.Component<
               text="QUICKPLAY"
               // onClick={() => this.calculateFen()}
               className="tertiary"
-              color="G"
+              color="B"
               height={50}
               width={200}
               // disabled={this.state.fen === ''}
@@ -101,7 +101,7 @@ export class UnwrappedDashboard extends React.Component<
               text="UNDERGROUND"
               // onClick={() => this.calculateFen()}
               className="tertiary"
-              color="G"
+              color="B"
               height={50}
               width={200}
               // disabled={this.state.fen === ''}
@@ -118,7 +118,7 @@ export class UnwrappedDashboard extends React.Component<
               text="LEAGUE"
               // onClick={() => this.calculateFen()}
               className="tertiary"
-              color="G"
+              color="B"
               height={50}
               width={200}
               // disabled={this.state.fen === ''}
@@ -135,7 +135,7 @@ export class UnwrappedDashboard extends React.Component<
               text="LEXICON"
               // onClick={() => this.calculateFen()}
               className="tertiary"
-              color="G"
+              color="B"
               height={50}
               width={200}
               // disabled={this.state.fen === ''}
@@ -152,7 +152,7 @@ export class UnwrappedDashboard extends React.Component<
               text="CREATE"
               onClick={() => null}
               className="tertiary"
-              color="G"
+              color="B"
               height={50}
               width={200}
               // disabled={this.state.fen === ''}
@@ -164,7 +164,7 @@ export class UnwrappedDashboard extends React.Component<
         <div className="hover-image">
           <img
             className="hover-image"
-            src={`public/assets/${this.state.hoverNav}.jpg`}
+            src={`public/assets/${this.state.hoverNav}.webp`}
             alt={this.state.hoverNav}
           />
         </div>
@@ -173,7 +173,7 @@ export class UnwrappedDashboard extends React.Component<
             text="LOGOUT"
             // onClick={() => this.calculateFen()}
             className="tertiary"
-            color="G"
+            color="B"
             height={50}
             width={200}
             // disabled={this.state.fen === ''}

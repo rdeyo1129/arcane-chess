@@ -60,7 +60,7 @@ export class UnwrappedCampaign extends React.Component<
             <Button
               text="BACK"
               className="tertiary"
-              color="V"
+              color="B"
               width={200}
               height={40}
               disabled={false}
@@ -83,7 +83,7 @@ export class UnwrappedCampaign extends React.Component<
                   key={i}
                   text={isUnlocked ? book : '?'}
                   className="tertiary"
-                  color="V"
+                  color="B"
                   width={200}
                   height={80}
                   onClick={() => {
@@ -105,7 +105,7 @@ export class UnwrappedCampaign extends React.Component<
           <Button
             text="RESET CHAPTER"
             className="tertiary"
-            color="V"
+            color="B"
             width={200}
             height={40}
             onClick={() => {

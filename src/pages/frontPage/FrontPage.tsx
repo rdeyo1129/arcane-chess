@@ -72,7 +72,7 @@ class UnwrappedFrontPage extends React.Component {
           </div>
         </div>
         <div className="divider"></div>
-        <div className="row-a">
+        {/* <div className="row-a">
           <div className="intro-box">
             <img className="image" src={'/assets/hero.webp'} alt="" />
             <div className="intro">
@@ -124,7 +124,7 @@ class UnwrappedFrontPage extends React.Component {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row-b">
           <Hero />
         </div>

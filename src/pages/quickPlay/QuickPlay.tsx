@@ -142,6 +142,7 @@ interface Props {
   };
   config: {
     playerColor: string;
+    engineColor: string;
     whiteSetup: string;
     blackSetup: string;
     whiteFaction: string;
@@ -159,8 +160,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
   static defaultProps = {
     config: {
       playerColor: 'white',
-      whiteSetup: 'RBNQKNBR',
-      blackSetup: 'rbnqknbr',
+      engineColor: 'black',
+      whiteSetup: 'RNBQKBNR',
+      blackSetup: 'rnbqkbnr',
       whiteFaction: 'normal',
       blackFaction: 'normal',
       whiteTime: 600,
@@ -187,8 +189,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       timeLeft: null,
       playerClock: null,
       playerColor: this.props.config.playerColor,
-      engineColor:
-        this.props.config.playerColor === 'white' ? 'black' : 'white',
+      engineColor: this.props.config.engineColor,
       hasMounted: false,
       nodeId: getLocalStorage(this.props.auth.user.username).nodeId,
       gameOver: false,
@@ -670,6 +671,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             fenHistory: [
               `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
             ],
+            orientation: this.state.playerColor,
           });
         }
       );
@@ -769,7 +771,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               <div className="info-avatar">
                 <div className="avatar"></div>
                 <div className="info">
-                  <h3 className="name">Medavas</h3>
+                  <h3 className="name">ENGINE</h3>
                   <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
                   <div className="thinking">
                     {this.state.thinking ? <Dots /> : null}
@@ -785,7 +787,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     <p>{arcana[this.state.hoverArcane].description}</p>
                   </div>
                 ) : (
-                  <div>dialogue</div>
+                  <div></div>
                   // hints, taunts, eval + or - dialogue
                 )}
               </div>
@@ -986,7 +988,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     royalties: true,
                   }}
                   lastMove={this.state.lastMove}
-                  orientation={this.state.orientation}
+                  orientation={this.state.playerColor}
                   disableContextMenu={false}
                   turnColor={gameBoardTurn}
                   movable={{
@@ -1421,7 +1423,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               <div className="info-avatar">
                 <div className="avatar"></div>
                 <div className="info">
-                  <h3 className="name">Medavas</h3>
+                  <h3 className="name">PLAYER</h3>
                   <div className="player-time">
                     <h3>
                       {/* <ChessClock

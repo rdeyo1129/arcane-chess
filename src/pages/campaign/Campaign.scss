@@ -9,7 +9,7 @@
   align-items: center;
 
   .back {
-    width: 830px;
+    width: 815px;
     display: flex;
     text-align: left;
     justify-content: start;
@@ -39,11 +39,11 @@
       align-items: center;
       grid-template-columns: repeat(4, 200px);
       grid-template-rows: repeat(3, 80px);
-      grid-gap: 10px;
+      grid-gap: 5px;
     }
   }
   .reset {
-    width: 830px;
+    width: 815px;
     display: flex;
     text-align: right;
     justify-content: end;

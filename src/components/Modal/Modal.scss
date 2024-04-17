@@ -87,12 +87,10 @@
   justify-content: center;
   align-items: center;
   .setup-arcana {
-    margin: 20px;
-    .setup {
-    }
+    margin: 15px;
     .arcana {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
       .arcane {
         height: 60px;
@@ -101,6 +99,17 @@
       .arcane:hover {
         cursor: pointer;
       }
+    }
+  }
+  .settings-start {
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 15px;
+    .arcana-detail {
+      width: 240px;
+      height: 200px;
     }
   }
 }

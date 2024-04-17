@@ -175,25 +175,25 @@
   },
   "sumnRQ": {
     "name": "Royalty Queen",
-    "description": "Summon a Queen Royalty condition to an empty square for a certain number of turns. Pieces on this move like a Queen.",
+    "description": "Summon a Queen Royalty condition to an empty square for a certain number of turns. Pieces on this square move like a Queen.",
     "type": "active",
     "imagePath": "src/data/arcanaImages/sumnR"
   },
   "sumnRT": {
     "name": "Royalty Templar",
-    "description": "Summon a Templar Royalty condition to an empty square for a certain number of turns. Pieces on this move like a Templar.",
+    "description": "Summon a Templar Royalty condition to an empty square for a certain number of turns. Pieces on this square move like a Templar.",
     "type": "active",
     "imagePath": "src/data/arcanaImages/sumnR"
   },
   "sumnRM": {
     "name": "Royalty Mystic",
-    "description": "Summon a Mystic Royalty condition to an empty square for a certain number of turns. Pieces on this move like a Mystic.",
+    "description": "Summon a Mystic Royalty condition to an empty square for a certain number of turns. Pieces on this square move like a Mystic.",
     "type": "active",
     "imagePath": "src/data/arcanaImages/sumnR"
   },
   "sumnRV": {
     "name": "Royalty Vanguard",
-    "description": "Summon a Vanguard Royalty condition to an empty square for a certain number of turns. Pieces on this move like a Vanguard.",
+    "description": "Summon a Vanguard Royalty condition to an empty square for a certain number of turns. Pieces on this square move like a Vanguard.",
     "type": "active",
     "imagePath": "src/data/arcanaImages/sumnR"
   },

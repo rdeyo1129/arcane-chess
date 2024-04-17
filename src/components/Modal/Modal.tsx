@@ -39,6 +39,7 @@ interface ModalState {
   hoverArcane: string;
   whiteArcana: { [key: string]: boolean | number | string | null };
   blackArcana: { [key: string]: boolean | number | string | null };
+  playerColor: string;
 }
 
 interface ArcanaDetail {
@@ -52,14 +53,20 @@ interface ArcanaMap {
 }
 
 const quickPlayArcana = [
-  'sumnX',
+  'sumnP',
   'sumnN',
   'sumnB',
   'sumnR',
+  'sumnW',
+  'sumnS',
+  'sumnX',
   'sumnRQ',
+  'sumnRT',
+  'sumnRM',
   'sumnRE',
   'swapADJ',
   'shftP',
+  'shftN',
   'shftB',
   'shftR',
   'modsSUS',
@@ -92,6 +99,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       hoverArcane: '',
       whiteArcana: {},
       blackArcana: {},
+      playerColor: 'white',
     };
   }
 
@@ -149,7 +157,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="image-text">
-              <img className="image" src={this.props.imgPath} />
+              {/* <img className="image" src={this.props.imgPath} /> */}
             </div>
             <div className="multiplier-settings-buttons">
               <span className="multiplier">
@@ -556,13 +564,60 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
           >
             <div className="quickplay">
               <div className="setup-arcana">
+                <Button
+                  text={
+                    this.state.playerColor === 'white' ? 'PLAYER' : 'ENGINE'
+                  }
+                  className="tertiary"
+                  color="B"
+                  backgroundColorOverride="#AAAAAA"
+                  width={240}
+                  height={30}
+                  onClick={() =>
+                    this.setState(
+                      (prevState) => ({
+                        playerColor:
+                          prevState.playerColor === 'white' ? 'black' : 'white',
+                      }),
+                      () => {
+                        if (this.props.updateConfig) {
+                          this.props.updateConfig(
+                            'playerColor',
+                            this.state.playerColor === 'white'
+                              ? 'white'
+                              : 'black'
+                          );
+                          this.props.updateConfig(
+                            'engineColor',
+                            this.state.playerColor === 'white'
+                              ? 'black'
+                              : 'white'
+                          );
+                        }
+                      }
+                    )
+                  }
+                />
                 <div className="setup">
                   <Select
                     // title="whiteSetup"
                     type="string"
                     height={'30px'}
-                    width={'180px'}
-                    options={['RNBQKBNR', 'RZBTKBUR']}
+                    width={'240px'}
+                    options={[
+                      'RNBQKBNR',
+                      'RNBTKBNR',
+                      'RBNMKBNR',
+                      'RZBTKBUR',
+                      'RUWMKSUR',
+                      'RZSQKSZR',
+                      'RUWTKWUR',
+                      'RNNMKBBR',
+                      'RUUBKSBR',
+                      'RSBBKNZR',
+                      'MNZQUBTK',
+                      'UBBTUKZZ',
+                    ]}
                     onChange={(val) => {
                       if (this.props.updateConfig)
                         this.props.updateConfig('whiteSetup', val);
@@ -642,13 +697,60 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 </div>
               </div>
               <div className="setup-arcana">
+                <Button
+                  text={
+                    this.state.playerColor === 'black' ? 'PLAYER' : 'ENGINE'
+                  }
+                  className="tertiary"
+                  color="B"
+                  backgroundColorOverride="#333333"
+                  width={240}
+                  height={30}
+                  onClick={() =>
+                    this.setState(
+                      (prevState) => ({
+                        playerColor:
+                          prevState.playerColor === 'white' ? 'black' : 'white',
+                      }),
+                      () => {
+                        if (this.props.updateConfig) {
+                          this.props.updateConfig(
+                            'playerColor',
+                            this.state.playerColor === 'white'
+                              ? 'white'
+                              : 'black'
+                          );
+                          this.props.updateConfig(
+                            'engineColor',
+                            this.state.playerColor === 'white'
+                              ? 'black'
+                              : 'white'
+                          );
+                        }
+                      }
+                    )
+                  }
+                />
                 <div className="setup-select">
                   <Select
                     // title="blackSetup"
                     type="string"
                     height={'30px'}
-                    width={'180px'}
-                    options={['rnbqkbnr', 'rbztkubr']}
+                    width={'240px'}
+                    options={[
+                      'rnbqkbnr',
+                      'rnbtkbnr',
+                      'rbnmkbnr',
+                      'rzbtkbur',
+                      'ruwmksur',
+                      'rzsqkszr',
+                      'ruwtkwur',
+                      'rnnmkbbr',
+                      'ruubksbr',
+                      'rsbbknzr',
+                      'mnzqubtk',
+                      'ubbttukzz',
+                    ]}
                     onChange={(val) => {
                       if (this.props.updateConfig)
                         this.props.updateConfig('blackSetup', val);
@@ -728,18 +830,18 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 </div>
               </div>
               <div className="settings-start">
-                <div className="quickplay-select">
-                  <Select
-                    options={['white', 'black']}
-                    title="Color"
-                    type="string"
-                    onChange={(val) => this.updateConfig(val, 'color', 0)}
-                  />
+                <div className="arcana-detail">
+                  <p>{arcana[this.state.hoverArcane.split('-')[0]]?.name}</p>
+                  <p>
+                    {arcana[this.state.hoverArcane.split('-')[0]]?.description}
+                  </p>
                 </div>
                 <div className="quickplay-select">
                   <Select
                     title="Thinking Time"
                     type="number"
+                    width={240}
+                    height={40}
                     options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
                     onChange={(val) => {
                       if (this.props.updateConfig)
@@ -754,6 +856,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   <Select
                     title="Depth"
                     type="number"
+                    width={240}
+                    height={40}
                     options={[1, 2, 3, 4, 5, 6, 7, 8]}
                     onChange={(val) => {
                       if (this.props.updateConfig)
@@ -765,6 +869,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   <Select
                     title="Promotion"
                     type="string"
+                    width={240}
+                    height={40}
                     options={[
                       'Select',
                       'N',
@@ -787,9 +893,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Button
                   text="START"
                   className="primary"
-                  color="Y"
-                  width={160}
-                  height={40}
+                  color="B"
+                  width={240}
+                  height={60}
+                  styles={{ marginTop: '20px' }}
                   onClick={() => {
                     this.props.handleClose();
                   }}
@@ -852,13 +959,13 @@ const bookSettingsModal = {
     display: 'flex',
     height: '500px',
     width: '1000px',
-    background: '#111111',
+    background: '#000000',
     borderRadius: '10px',
-    border: '2px solid #a043a2',
+    border: 'none',
   },
   overlay: {
     zIndex: 10,
-    backgroundColor: '#111111EE',
+    backgroundColor: '#111111',
   },
 };
 

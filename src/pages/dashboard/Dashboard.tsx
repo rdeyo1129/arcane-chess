@@ -44,18 +44,21 @@ export class UnwrappedDashboard extends React.Component<
           {/* <Dots /> */}
         </div>
         <div className="news-bar">
-          <div className="news-text">NEWS HERE.</div>
+          <div className="news-text">
+            This is a work in progress. Please report any bugs to the
+            Underground.
+          </div>
         </div>
         <div className="profile-hud">
           <div className="profile-text">
             <div className="username">{this.props.auth.user.username}</div>
-            <div className="level">LEVEL 1</div>
+            {/* <div className="level">LEVEL 1</div> */}
           </div>
-          <img
+          {/* <img
             className="avatar"
             src="public/assets/logoblue.png"
             alt="avatar"
-          />
+          /> */}
         </div>
         <div className="nav-bar">
           <Link
@@ -65,40 +68,6 @@ export class UnwrappedDashboard extends React.Component<
           >
             <Button
               text="CAMPAIGN"
-              // onClick={() => this.calculateFen()}
-              className="tertiary"
-              color="B"
-              height={50}
-              width={200}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-          </Link>
-          <Link
-            className="home-button"
-            to="/quickplay"
-            onMouseEnter={() => this.setState({ hoverNav: 'quickplay' })}
-          >
-            <Button
-              text="QUICKPLAY"
-              // onClick={() => this.calculateFen()}
-              className="tertiary"
-              color="B"
-              height={50}
-              width={200}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
-          </Link>
-          <Link
-            className="home-button"
-            to="https://discord.gg/JYV3SWnc"
-            onMouseEnter={() => this.setState({ hoverNav: 'hub' })}
-          >
-            <Button
-              text="UNDERGROUND"
               // onClick={() => this.calculateFen()}
               className="tertiary"
               color="B"
@@ -128,11 +97,45 @@ export class UnwrappedDashboard extends React.Component<
           </Link>
           <Link
             className="home-button"
+            to="/quickplay"
+            onMouseEnter={() => this.setState({ hoverNav: 'quickplay' })}
+          >
+            <Button
+              text="QUICKPLAY"
+              // onClick={() => this.calculateFen()}
+              className="tertiary"
+              color="B"
+              height={50}
+              width={200}
+              // disabled={this.state.fen === ''}
+              disabled={false}
+              // strong={true}
+            />
+          </Link>
+          <Link
+            className="home-button"
             to="/lexicon"
             onMouseEnter={() => this.setState({ hoverNav: 'lexicon' })}
           >
             <Button
               text="LEXICON"
+              // onClick={() => this.calculateFen()}
+              className="tertiary"
+              color="B"
+              height={50}
+              width={200}
+              // disabled={this.state.fen === ''}
+              disabled={false}
+              // strong={true}
+            />
+          </Link>
+          <Link
+            className="home-button"
+            to="https://discord.gg/JYV3SWnc"
+            onMouseEnter={() => this.setState({ hoverNav: 'underground' })}
+          >
+            <Button
+              text="UNDERGROUND"
               // onClick={() => this.calculateFen()}
               className="tertiary"
               color="B"
@@ -168,14 +171,17 @@ export class UnwrappedDashboard extends React.Component<
             alt={this.state.hoverNav}
           />
         </div>
-        <div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div className="logout">
           <Button
             text="LOGOUT"
             // onClick={() => this.calculateFen()}
             className="tertiary"
             color="B"
             height={50}
-            width={200}
+            width={'100%'}
             // disabled={this.state.fen === ''}
             disabled={false}
             onClick={() => {

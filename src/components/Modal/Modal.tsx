@@ -395,17 +395,14 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   style={{
                     textAlign: 'center',
                     background: '#333333',
-                    padding: '10px',
+                    // padding: '10px',
                   }}
                 >
                   <h1>Victory!</h1>
                   <span>{this.props.message}</span>
                 </div>
-                <img
-                  className="endgame-image"
-                  src="public/assets/victory.jpg"
-                />
-                <div
+                <img className="victory" src="public/assets/victory.webp" />
+                {/* <div
                   style={{
                     textAlign: 'center',
                     background: '#333333',
@@ -415,7 +412,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   You fought with great resource and conqured your opponent! You
                   are eager for the obstacles and challenges that you are
                   working hard towards. Your Progress has been saved.
-                </div>
+                </div> */}
               </div>
               <div className="middle"></div>
               <div className="right">
@@ -468,8 +465,11 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   <h1>Defeat...</h1>
                   <span>{this.props.message}</span>
                 </div>
-                <img className="endgame-image" src="public/assets/reaper.jpg" />
-                <div
+                <img
+                  className="endgame-image"
+                  src="public/assets/defeat.webp"
+                />
+                {/* <div
                   style={{
                     textAlign: 'center',
                     background: '#333333',
@@ -479,7 +479,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   You have fought honorably and accept your loss with a critical
                   yet respectful mindset. You are eager to learn from your
                   mistakes and improve.
-                </div>
+                </div> */}
               </div>
               <div className="middle"></div>
               <div className="right">
@@ -999,7 +999,7 @@ const endgameModal = {
     marginRight: 'auto',
     transform: 'translate(-50%, -50%)',
     display: 'flex',
-    height: '100%',
+    height: '100vh',
     maxHight: '574px',
     width: '100%',
     background: '#00000000',

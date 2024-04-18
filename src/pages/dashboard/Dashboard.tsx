@@ -6,8 +6,6 @@ import { logoutUser } from '../../actions/authActions';
 import { withRouter } from 'src/components/withRouter/withRouter';
 
 import Button from 'src/components/Button/Button';
-import Spinner from 'src/components/Loader/Spinner';
-import Dots from 'src/components/Loader/Dots';
 
 import './Dashboard.scss';
 
@@ -45,8 +43,8 @@ export class UnwrappedDashboard extends React.Component<
         </div>
         <div className="news-bar">
           <div className="news-text">
-            This is a work in progress. Please report any bugs to the
-            Underground.
+            {/* This is a work in progress. Please report any bugs to the
+            Underground. */}
           </div>
         </div>
         <div className="profile-hud">

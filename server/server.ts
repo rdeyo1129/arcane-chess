@@ -11,36 +11,31 @@ import bodyParser from 'body-parser';
 // Load Game and User model
 // import { Game } from "./src/models/Game.mjs";
 // import User from "./src/models/User.mjs";
-import { keys } from './config/keys.js';
+
+// import { keys } from './config/keys.js';
+
 // { ConnectOptions } from "mongoose";
 import mongoose from 'mongoose';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
+import dotenv from 'dotenv';
+
+const envPath = path.resolve(process.cwd(), `.env.${process.env.NODE_ENV}`);
+dotenv.config({ path: envPath });
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // db config
-const db = keys.mongoURI;
-
-// const dbOptions: {
-//   useNewUrlParser: boolean;
-//   useUnifiedTopology: boolean;
-// } = ;
+const dbURI = process.env.DB_URI as string;
 
 mongoose.set('strictQuery', false);
 
 // Connect to MongoDB
 mongoose
-  .connect(
-    db
-    // todo
-    //   , {
-    //   useNewUrlParser: true,
-    //   useUnifiedTopology: true,
-    // }
-  )
+  .connect(dbURI)
   .then(() => console.log('MongoDB successfully connected'))
   .catch((err) => console.log(err));
 

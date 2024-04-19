@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
+import { Link } from 'react-router-dom';
 
 import book1 from 'src/data/books/book1.json';
 import book2 from 'src/data/books/book2.json';
@@ -175,30 +176,30 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       // todo, just make this an array of fenHistory, simplify state...
       // todo make dyanamic
       playerClock: LS.config.clock
-        ? booksMap[`book${LS.chapter}`][`${LS.nodeId}`].time[
+        ? booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].time[
             LS.config.color === 'white' ? 0 : 1
           ]
         : 0,
       turn:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
           `panel-1`
         ].fen.split(' ')[0] === 'w'
           ? 'white'
           : 'black',
       playerColor:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
           `panel-1`
         ].fen.split(' ')[0] === 'w'
           ? 'black'
           : 'white',
       engineColor:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
           `panel-1`
         ].fen.split(' ')[0] === 'w'
           ? 'white'
           : 'black',
       arrowsCircles:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`]
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
           .arrowsCircles || [],
       hasMounted: false,
       nodeId: LS.nodeId,
@@ -209,17 +210,18 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       //   getLocalStorage(this.props.auth.user.username).nodeId
       // ] > 0,
       gameOverType: '',
-      fen: booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`].fen,
+      fen: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
+        .fen,
       pvLine: [],
       history: [
-        ...booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1']
-          .history,
+        ...(booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1']
+          .history || []),
       ],
       fenHistory: [
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1'].fen,
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1'].fen,
       ],
       correctMoves:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1']
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1']
           .correctMoves,
       thinking: SearchController.thinking,
       engineLastMove: [],
@@ -238,13 +240,13 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       },
       arcaneHover: '',
       wArcana:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1']
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1']
           .whiteArcane,
       bArcana:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1']
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1']
           .blackArcane,
       lastMove: [],
-      hideCompletedPage: LS.nodeId.split('-')[0] !== 'lesson',
+      hideCompletedPage: LS.nodeId?.split('-')[0] !== 'lesson',
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen, this.props.auth, {});
@@ -413,13 +415,52 @@ class UnwrappedLessonView extends React.Component<Props, State> {
   }
 
   render() {
-    const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
+    // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
+    const LS = getLocalStorage(auth.user.username);
     return (
       <div className="tactorius-board fade">
-        {this.state.hideCompletedPage ? (
-          <div className="completed-node">
-            <div className="completed-node-text">Node Completed</div>
+        {LS.chapter === 0 ? (
+          <div
+            className="completed-node"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100vw',
+              height: '100vh',
+            }}
+          >
+            <Link to="/campaign">
+              <Button
+                text="BACK TO CAMPAIGN"
+                className="primary"
+                color="B"
+                height={200}
+                width={400}
+              />
+            </Link>
+          </div>
+        ) : this.state.hideCompletedPage ? (
+          <div
+            className="completed-node"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100vw',
+              height: '100vh',
+            }}
+          >
+            <Link to="/chapter">
+              <Button
+                text="BACK TO CHAPTER"
+                className="primary"
+                color="B"
+                height={200}
+                width={400}
+              />
+            </Link>
           </div>
         ) : (
           <>

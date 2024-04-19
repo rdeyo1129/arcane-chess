@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
+import { Link } from 'react-router-dom';
 
 import 'src/pages/missionView/MissionView.scss';
 import 'src/chessground/styles/chessground.scss';
@@ -227,11 +228,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.username);
+    console.log('LS: ', LS);
     this.state = {
       turn:
         booksMap[
           `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
           'panel-1'
         ].fen.split(' ')[1] === 'w'
           ? 'white'
@@ -240,10 +242,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         getLocalStorage(this.props.auth.user.username).config.color === 'white'
           ? booksMap[
               `book${getLocalStorage(this.props.auth.user.username).chapter}`
-            ][getLocalStorage(this.props.auth.user.username).nodeId].time[0][1]
+            ]?.[getLocalStorage(this.props.auth.user.username).nodeId]
+              .time[0][1]
           : booksMap[
               `book${getLocalStorage(this.props.auth.user.username).chapter}`
-            ][getLocalStorage(this.props.auth.user.username).nodeId].time[1][1],
+            ]?.[getLocalStorage(this.props.auth.user.username).nodeId]
+              .time[1][1],
       timeLeft: null,
       playerClock:
         getLocalStorage(this.props.auth.user.username).config.clock === false
@@ -252,10 +256,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             'white'
           ? booksMap[
               `book${getLocalStorage(this.props.auth.user.username).chapter}`
-            ][getLocalStorage(this.props.auth.user.username).nodeId].time[0][0]
+            ]?.[getLocalStorage(this.props.auth.user.username).nodeId]
+              .time[0][0]
           : booksMap[
               `book${getLocalStorage(this.props.auth.user.username).chapter}`
-            ][getLocalStorage(this.props.auth.user.username).nodeId].time[1][0],
+            ]?.[getLocalStorage(this.props.auth.user.username).nodeId]
+              .time[1][0],
       playerColor: getLocalStorage(this.props.auth.user.username).config.color,
       engineColor:
         getLocalStorage(this.props.auth.user.username).config.color === 'white'
@@ -270,15 +276,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       gameOverType: '',
       fen: booksMap[
         `book${getLocalStorage(this.props.auth.user.username).chapter}`
-      ][getLocalStorage(this.props.auth.user.username).nodeId].panels['panel-1']
-        .fen,
+      ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
+        'panel-1'
+      ].fen,
       pvLine: [],
       historyPly: 0,
       history: [],
       fenHistory: [
         booksMap[
           `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
           'panel-1'
         ].fen,
       ],
@@ -309,7 +316,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       royalties:
         booksMap[
           `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
           'panel-1'
         ].royalties,
       lastMove: [],
@@ -317,7 +324,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       preset:
         booksMap[
           `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
           'panel-1'
         ].preset,
       promotionModalOpen: false,
@@ -326,10 +333,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       theme:
         booksMap[
           `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ][getLocalStorage(this.props.auth.user.username).nodeId].theme,
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].theme,
       hideCompletedPage:
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
-        LS.nodeId.split('-')[0] !== 'mission',
+        LS.nodeId?.split('-')[0] !== 'mission',
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen);
@@ -732,19 +739,20 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    const LS = getLocalStorage(this.props.auth.user.username);
     window.addEventListener('keydown', this.handleKeyDown);
-    if (!this.hasMounted) {
+    if (!this.hasMounted && LS.chapter !== 0) {
       this.hasMounted = true;
       this.arcaneChess().startGame(
         this.state.fen,
         booksMap[
           `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
           'panel-1'
         ].whiteArcane,
         booksMap[
           `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ][getLocalStorage(this.props.auth.user.username).nodeId].panels[
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
           'panel-1'
         ].blackArcane,
         this.state.royalties,
@@ -777,9 +785,47 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const LS = getLocalStorage(this.props.auth.user.username);
     return (
       <div className="tactorius-board fade">
-        {this.state.hideCompletedPage ? (
-          <div className="completed-node">
-            <div className="completed-node-text">Node Completed</div>
+        {LS.chapter === 0 ? (
+          <div
+            className="completed-node"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100vw',
+              height: '100vh',
+            }}
+          >
+            <Link to="/campaign">
+              <Button
+                text="BACK TO CAMPAIGN"
+                className="primary"
+                color="B"
+                height={200}
+                width={400}
+              />
+            </Link>
+          </div>
+        ) : this.state.hideCompletedPage ? (
+          <div
+            className="completed-node"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100vw',
+              height: '100vh',
+            }}
+          >
+            <Link to="/chapter">
+              <Button
+                text="BACK TO CHAPTER"
+                className="primary"
+                color="B"
+                height={200}
+                width={400}
+              />
+            </Link>
           </div>
         ) : (
           <>

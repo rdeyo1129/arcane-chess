@@ -86,7 +86,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     super(props);
     this.state = {
       config: {
-        multiplier: 600,
+        multiplier: 4,
         color: 'white',
         thinkingTime: 1,
         depth: 1,
@@ -170,11 +170,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     title="Color"
                     type="string"
                     onChange={(val) =>
-                      this.updateConfig(
-                        val,
-                        'color',
-                        val === 'white' ? -450 : 450
-                      )
+                      this.updateConfig(val, 'color', val === 'white' ? -6 : 6)
                     }
                   />
                 </div>
@@ -187,8 +183,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       this.updateConfig(
                         Number(val),
                         'thinkingTime',
-                        (-this.state.config.thinkingTime * 100 +
-                          Number(val) * 100) as number
+                        (-this.state.config.thinkingTime +
+                          Number(val)) as number
                       )
                     }
                   />
@@ -198,7 +194,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     title="Clock"
                     initialState={true}
                     callback={(val: boolean) =>
-                      this.updateConfig(val, 'clock', val ? 300 : -300)
+                      this.updateConfig(val, 'clock', val ? 3 : -3)
                     }
                   />
                 </div>
@@ -233,8 +229,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       this.updateConfig(
                         Number(val),
                         'depth',
-                        (-this.state.config.depth * 100 +
-                          Number(val) * 100) as number
+                        (-this.state.config.depth + Number(val)) as number
                       )
                     }
                   />
@@ -390,35 +385,36 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="left">
+              <div className="left"></div>
+              <div className="middle">
                 <div
                   style={{
-                    textAlign: 'center',
-                    background: '#333333',
-                    // padding: '10px',
+                    backgroundColor: '#000000',
                   }}
-                >
-                  <h1>Victory!</h1>
-                  <span>{this.props.message}</span>
-                </div>
-                <img className="victory" src="public/assets/victory.webp" />
-                {/* <div
+                ></div>
+                <div
                   style={{
-                    textAlign: 'center',
-                    background: '#333333',
-                    padding: '10px',
+                    backgroundColor: '00000000',
+                    height: '480px',
+                    width: '480px',
                   }}
-                >
-                  You fought with great resource and conqured your opponent! You
-                  are eager for the obstacles and challenges that you are
-                  working hard towards. Your Progress has been saved.
-                </div> */}
+                ></div>
+                <div
+                  style={{
+                    backgroundColor: '#000000',
+                  }}
+                ></div>
               </div>
-              <div className="middle"></div>
               <div className="right">
-                {this.props.score && <span>SCORE: {this.props.score}</span>}
+                <p>
+                  Victory... {this.props.message} + {this.props.score}
+                </p>
+                <img
+                  className="endgame-image"
+                  src="public/assets/victory.webp"
+                />
                 <div className="buttons">
-                  <Button
+                  {/* <Button
                     text={this.props.lessonBackButton ? 'BACK' : 'ANALYZE'}
                     className="secondary"
                     color="B"
@@ -432,7 +428,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         this.props.navigate('/chapter');
                       }
                     }}
-                  />
+                  /> */}
                   <Button
                     text="CONTINUE"
                     className="primary"
@@ -454,35 +450,32 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="left">
+              <div className="left"></div>
+              <div className="middle">
                 <div
                   style={{
-                    textAlign: 'center',
-                    background: '#333333',
-                    padding: '10px',
+                    backgroundColor: '#000000',
                   }}
-                >
-                  <h1>Defeat...</h1>
-                  <span>{this.props.message}</span>
-                </div>
+                ></div>
+                <div
+                  style={{
+                    backgroundColor: '00000000',
+                    height: '480px',
+                    width: '480px',
+                  }}
+                ></div>
+                <div
+                  style={{
+                    backgroundColor: '#000000',
+                  }}
+                ></div>
+              </div>
+              <div className="right">
+                <p>Defeat... {this.props.message}</p>
                 <img
                   className="endgame-image"
                   src="public/assets/defeat.webp"
                 />
-                {/* <div
-                  style={{
-                    textAlign: 'center',
-                    background: '#333333',
-                    padding: '10px',
-                  }}
-                >
-                  You have fought honorably and accept your loss with a critical
-                  yet respectful mindset. You are eager to learn from your
-                  mistakes and improve.
-                </div> */}
-              </div>
-              <div className="middle"></div>
-              <div className="right">
                 <div className="buttons">
                   <div className="left-buttons">
                     <Button
@@ -999,7 +992,7 @@ const endgameModal = {
     marginRight: 'auto',
     transform: 'translate(-50%, -50%)',
     display: 'flex',
-    height: '100vh',
+    height: '100%',
     maxHight: '574px',
     width: '100%',
     background: '#00000000',

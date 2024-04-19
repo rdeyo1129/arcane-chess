@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 import axios from 'axios';
-import _, { get, set } from 'lodash';
+import _ from 'lodash';
 // import { Link, withRouter } from "react-router-dom";
 // import { connect } from "react-redux";
 
@@ -8,6 +8,7 @@ import _, { get, set } from 'lodash';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
+import { Link } from 'react-router-dom';
 
 import book1 from 'src/data/books/book1.json';
 import book2 from 'src/data/books/book2.json';
@@ -35,8 +36,6 @@ import TactoriusModal from 'src/components/Modal/Modal';
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-import Dots from 'src/components/Loader/Dots';
-
 // import Hero from "../components/Hero";
 
 // import arcaneChess from "./././validation-engine/arcaneChess";
@@ -46,20 +45,12 @@ import { PerftTest } from '../../arcaneChess/perft.mjs';
 
 import {
   GameBoard,
-  GameController,
-  ParseFen,
   PrintBoard,
   PrintPieceLists,
-  ResetBoard,
 } from '../../arcaneChess/board.mjs';
-import {
-  MovePiece,
-  AddPiece,
-  ClearPiece,
-} from '../../arcaneChess/makemove.mjs';
-import { PrMove, PrintMoveList } from 'src/arcaneChess/io.mjs';
+import { PrMove } from 'src/arcaneChess/io.mjs';
 import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
-import { prettyToSquare, BOOL, PIECES } from '../../arcaneChess/defs.mjs';
+import { BOOL } from '../../arcaneChess/defs.mjs';
 import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
 import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
@@ -67,14 +58,10 @@ import { TakeMove } from '../../arcaneChess/makemove.mjs';
 // import engine
 // import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
-import { SinglePlayer } from '../singlePlayer/SinglePlayer';
-
 // import arcaneChess correctly
 // import arcaneChess from "@shared/arcaneChess/arcaneChess";
 
-import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
-import Toggle from '../../components/Toggle/Toggle';
 import ChessClock from '../../components/Clock/Clock';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
@@ -224,27 +211,27 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     this.state = {
       playerClock:
         LS.config.color === 'white'
-          ? booksMap[`book${LS.chapter}`][LS.nodeId].time[0][0]
-          : booksMap[`book${LS.chapter}`][LS.nodeId].time[1][0],
+          ? booksMap[`book${LS.chapter}`]?.[LS.nodeId].time[0][0]
+          : booksMap[`book${LS.chapter}`]?.[LS.nodeId].time[1][0],
       timeLeft: null,
       playerDec:
         LS.config.color === 'white'
-          ? booksMap[`book${LS.chapter}`][LS.nodeId].time[0][1]
-          : booksMap[`book${LS.chapter}`][LS.nodeId].time[1][1],
+          ? booksMap[`book${LS.chapter}`]?.[LS.nodeId].time[0][1]
+          : booksMap[`book${LS.chapter}`]?.[LS.nodeId].time[1][1],
       turn:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
           `panel-1`
         ].fen.split(' ')[1] === 'w'
           ? 'white'
           : 'black',
       playerColor:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
           `panel-1`
         ].fen.split(' ')[1] === 'w'
           ? 'black'
           : 'white',
       engineColor:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
           `panel-1`
         ].fen.split(' ')[1] === 'w'
           ? 'white'
@@ -257,14 +244,15 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       //   getLocalStorage(this.props.auth.user.username).nodeId
       // ] > 0,
       gameOverType: '',
-      fen: booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`].fen,
+      fen: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
+        .fen,
       pvLine: [],
       history: [],
       fenHistory: [
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1'].fen,
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1'].fen,
       ],
       correctMoves:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1']
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1']
           .correctMoves,
       thinking: SearchController.thinking,
       engineLastMove: [],
@@ -284,17 +272,17 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       },
       arcaneHover: '',
       wArcana:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1']
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1']
           .whiteArcane,
       bArcana:
-        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels['panel-1']
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1']
           .blackArcane,
       lastMove: [],
       royalties:
-        booksMap[`book${LS.chapter}`][LS.nodeId].panels['panel-1'].royalties,
+        booksMap[`book${LS.chapter}`]?.[LS.nodeId].panels['panel-1'].royalties,
       hideCompletedPage:
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
-        LS.nodeId.split('-')[0] !== 'temple',
+        LS.nodeId?.split('-')[0] !== 'temple',
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen, this.props.auth, {});
@@ -314,10 +302,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     const LS = getLocalStorage(this.props.auth.user.username);
     if (
       this.state.currPanel ===
-      Object.keys(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels).length
+      Object.keys(booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels).length
     ) {
       const timeLeft = this.stopAndReturnTime() as number | null;
-      this.handleVictory(this.props.auth, timeLeft);
+      this.handleVictory(timeLeft);
       return;
     }
     this.setState(
@@ -502,7 +490,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     }
   };
 
-  handleVictory = (auth: object, timeLeft: number | null) => {
+  handleVictory = (timeLeft: number | null) => {
     const LS = getLocalStorage(this.props.auth.user.username);
     this.setState({
       gameOver: true,
@@ -566,10 +554,11 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   };
 
   componentDidMount() {
+    const LS = getLocalStorage(this.props.auth.user.username);
     if (this.state.hideCompletedPage) {
       return;
     }
-    if (!this.hasMounted) {
+    if (!this.hasMounted && LS.chapter !== 0) {
       this.hasMounted = true;
       this.arcaneChess().startGame(
         this.state.fen,
@@ -583,15 +572,53 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   }
 
   render() {
-    const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
+    // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(auth.user.username);
     return (
       <div className="tactorius-board fade">
-        {this.state.hideCompletedPage ? (
-          <div className="completed-node">
-            <div className="completed-node-text">Node Completed</div>
+        {LS.chapter === 0 ? (
+          <div
+            className="completed-node"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100vw',
+              height: '100vh',
+            }}
+          >
+            <Link to="/campaign">
+              <Button
+                text="BACK TO CAMPAIGN"
+                className="primary"
+                color="B"
+                height={200}
+                width={400}
+              />
+            </Link>
+          </div>
+        ) : this.state.hideCompletedPage ? (
+          <div
+            className="completed-node"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100vw',
+              height: '100vh',
+            }}
+          >
+            <Link to="/chapter">
+              <Button
+                text="BACK TO CHAPTER"
+                className="primary"
+                color="B"
+                height={200}
+                width={400}
+              />
+            </Link>
           </div>
         ) : (
           <>
@@ -635,7 +662,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     />
                   </div>
                   <div className="arcana-select">
-                    {_.map(this.state.wArcana, (value: number, key: string) => {
+                    {_.map(this.state.wArcana, (key: string) => {
                       return (
                         <img
                           key={key}
@@ -717,8 +744,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                       },
                       move: (
                         orig: string,
-                        dest: string,
-                        capturedPiece: number
+                        dest: string
+                        // capturedPiece: number
                       ) => {
                         console.log('todo promotion');
                         const parsed = this.arcaneChess().makeUserMove(

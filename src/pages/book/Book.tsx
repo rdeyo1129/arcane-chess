@@ -204,7 +204,26 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
     return (
       <div className="book">
         {LS.chapter === 0 ? (
-          <>NO CHAPTER SELECTED, NAGIVATE TO CAMPAIGN</>
+          <div
+            className="completed-node"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100vw',
+              height: '100vh',
+            }}
+          >
+            <Link to="/campaign">
+              <Button
+                text="BACK TO CAMPAIGN"
+                className="primary"
+                color="B"
+                height={200}
+                width={400}
+              />
+            </Link>
+          </div>
         ) : (
           <>
             {' '}

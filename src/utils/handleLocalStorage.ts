@@ -9,6 +9,7 @@ export const setLocalStorage = ({
   chapter = 0,
   config = {},
   nodeScores = {},
+  lessonsCompleted = [],
   inventory = {},
   nodeId = '',
   chapterEnd = false,
@@ -24,20 +25,24 @@ export const setLocalStorage = ({
   // You might want to handle the case where some properties are not provided
   const existingData = JSON.parse(localStorage.getItem(username) || '{}');
 
+  existingData.lessonsCompleted = Array.isArray(existingData.lessonsCompleted)
+    ? [...existingData.lessonsCompleted]
+    : [];
+
   // Merge existing data with new data
   const newData = {
     [username]: {
-      // ...existingData,
+      ...existingData[username],
       auth: { ...existingData.auth, ...auth },
       chapter: existingData.chapter || chapter,
       config: { ...existingData.config, ...config },
       nodeScores: { ...existingData.nodeScores, ...nodeScores },
+      lessonsCompleted: [...existingData.lessonsCompleted, ...lessonsCompleted],
       inventory: { ...existingData.inventory, ...inventory },
       nodeId: nodeId || existingData.nodeId,
       chapterEnd: chapterEnd || existingData.chapterEnd,
     },
   };
-
   localStorage.setItem(username, JSON.stringify(newData));
 };
 

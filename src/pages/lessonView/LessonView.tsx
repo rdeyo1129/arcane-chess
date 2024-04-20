@@ -382,13 +382,15 @@ class UnwrappedLessonView extends React.Component<Props, State> {
   };
 
   handleVictory = (auth: object) => {
+    const LS = getLocalStorage(this.props.auth.user.username);
     setLocalStorage({
       ...getLocalStorage(this.props.auth.user.username),
       auth,
       nodeScores: {
-        ...getLocalStorage(this.props.auth.user.username).nodeScores,
+        ...LS.nodeScores,
         [this.state.nodeId]: 0,
       },
+      lessonsCompleted: [...LS.lessonsCompleted, `${LS.chapter}-${LS.nodeId}`],
     });
     this.setState({ gameOver: true });
   };

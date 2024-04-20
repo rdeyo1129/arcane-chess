@@ -80,18 +80,19 @@ export const loginUser =
             chapter: 0,
             config: {},
             nodeScores: {},
+            lessonsCompleted: [],
             inventory: {},
             nodeId: '',
           });
         }
         navigate('/dashboard');
       })
-      .catch((err) =>
+      .catch((err) => {
         dispatch({
           type: GET_ERRORS,
           payload: err.response.data,
-        })
-      );
+        });
+      });
   };
 
 // Set logged in user

@@ -194,9 +194,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         {char}
       </span>
     ));
-    console.log(
-      this.state.book[this.state.selectedSwatch]?.panels['panel-1'].time
-    );
     return (
       <>
         {LS.chapter === 0 ? (
@@ -402,7 +399,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                             'panel-1'
                           ].whiteArcane || {},
                           (value: number, key: string) => {
-                            console.log(value);
                             return (
                               <img
                                 key={key}

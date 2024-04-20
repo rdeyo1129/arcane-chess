@@ -399,9 +399,10 @@ export function SearchPosition() {
 
     PvNum = GetPvLine(currentDepth);
     line += ' Pv:';
+    temporalPincer += `Depth ${currentDepth}` + ' ';
     for (c = 0; c < PvNum; c++) {
       line += ' ' + PrMove(GameBoard.PvArray[c]);
-      temporalPincer += ' ' + PrMove(GameBoard.PvArray[c]);
+      temporalPincer += PrMove(GameBoard.PvArray[c]) + ' ';
     }
     if (currentDepth !== 1) {
       line +=
@@ -409,6 +410,7 @@ export function SearchPosition() {
         ((SearchController.fhf / SearchController.fh) * 100).toFixed(2) +
         '%';
     }
+    temporalPincer += ' ';
     console.log(line);
   }
 

@@ -308,7 +308,7 @@ export function CheckAndSet() {
 
 export function engineSuggestion(thinkingTime, depth) {
   SearchController.depth = depth;
-  SearchController.time = thinkingTime;
+  SearchController.time = thinkingTime * 1000;
   const { bestMove, bestScore, temporalPincer } = SearchPosition();
   return { bestMove, bestScore, temporalPincer };
 }

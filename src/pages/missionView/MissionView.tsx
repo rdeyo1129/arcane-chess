@@ -228,7 +228,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.username);
-    console.log('LS: ', LS);
     this.state = {
       turn:
         booksMap[
@@ -468,7 +467,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       setTimeout(() => {
         SearchController.thinking = BOOL.TRUE;
         const engineResult = arcaneChess().engineSuggestion(
-          this.state.thinkingTime,
+          4,
           4,
           this.state.playerColor,
           level
@@ -780,6 +779,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
+    const sortedHistory = _.chunk(this.state.history, 2);
     return (
       <div className="tactorius-board fade">
         {LS.chapter === 0 ? (
@@ -861,10 +861,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 <div className="info-avatar">
                   <div className="avatar"></div>
                   <div className="info">
-                    <h3 className="name">Medavas</h3>
-                    <div className="opponent-time">
-                      <h3>10:00</h3>
-                    </div>
+                    <h3 className="name">ENGINE</h3>
+                    <div className="opponent-time"></div>
                     <div className="thinking">
                       {this.state.thinking ? <Dots /> : null}
                     </div>
@@ -879,7 +877,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       <p>{arcana[this.state.hoverArcane].description}</p>
                     </div>
                   ) : (
-                    <div>dialogue</div>
+                    <div></div>
                     // hints, taunts, eval + or - dialogue
                   )}
                 </div>
@@ -1141,7 +1139,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     events={{
                       change: () => {},
                       dropNewPiece: (piece: string, key: string) => {
-                        console.log(piece);
                         if (
                           GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
                         ) {
@@ -1500,9 +1497,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   />
                 </div>
                 <div className="history">
-                  {this.state.history.map((move, i) => (
-                    <div key={i}>{move}</div>
-                  ))}
+                  {sortedHistory.map((fullMove, i) => {
+                    return (
+                      <p className="full-move" key={i}>
+                        <span className="move-number">{i + 1}.</span>
+                        <span className="pgn-item">{fullMove[0]}</span>
+                        <span className="pgn-item">{fullMove[1]}</span>
+                      </p>
+                    );
+                  })}
                 </div>
                 <div className="buttons">
                   {/* <Button
@@ -1534,7 +1537,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 <div className="info-avatar">
                   <div className="avatar"></div>
                   <div className="info">
-                    <h3 className="name">Medavas</h3>
+                    <h3 className="name">PLAYER</h3>
                     <div className="player-time">
                       <h3>
                         <ChessClock

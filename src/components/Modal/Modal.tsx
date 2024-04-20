@@ -789,7 +789,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                                 if (this.props.updateConfig)
                                   this.props.updateConfig(
                                     'bArcana',
-                                    this.state.whiteArcana
+                                    this.state.blackArcana
                                   );
                               }
                             );
@@ -809,7 +809,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                                 if (this.props.updateConfig)
                                   this.props.updateConfig(
                                     'bArcana',
-                                    this.state.whiteArcana
+                                    this.state.blackArcana
                                   );
                               }
                             );
@@ -1002,8 +1002,11 @@ const endgameModal = {
     // border: '2px solid #a043a2',
   },
   overlay: {
-    width: '100%',
-    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100vw',
+    height: '100vh',
     zIndex: 10,
     backgroundColor: '#00000000',
   },

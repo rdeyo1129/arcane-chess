@@ -223,7 +223,7 @@
         "orientation": "white"
       }
     },
-    "boss": true
+    "boss": false
   },
   "mission-3": {
     "id": "mission-3",

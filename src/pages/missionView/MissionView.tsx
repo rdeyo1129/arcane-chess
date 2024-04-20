@@ -528,11 +528,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         ...getLocalStorage(this.props.auth.user.username).nodeScores,
         [this.state.nodeId]:
           Math.abs(
-            100000 -
-              Math.abs(
-                GameBoard.material[this.state.playerColor === 'white' ? 0 : 1] -
-                  GameBoard.material[this.state.playerColor === 'white' ? 1 : 0]
-              )
+            GameBoard.material[this.state.playerColor === 'white' ? 0 : 1] -
+              GameBoard.material[this.state.playerColor === 'white' ? 1 : 0]
           ) *
           (timeLeft || 1) *
           LS.config.multiplier,
@@ -1129,14 +1126,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               role: `${PceChar.split('')[
                                 this.state.placingPiece
                               ].toLowerCase()}-piece`,
-                              color: 'white',
+                              color: this.state.playerColor,
                             }
                           : this.state.placingRoyalty !== 0
                           ? {
                               role: `r${RtyChar.split('')[
                                 this.state.placingRoyalty
                               ].toLowerCase()}-piece`,
-                              color: 'white',
+                              color: this.state.playerColor,
                             }
                           : null,
                       fromPocket: false,

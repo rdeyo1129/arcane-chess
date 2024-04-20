@@ -463,7 +463,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
             </Link>
           </div>
         ) : (
-          <>
+          <div className="outer-lesson">
             <TactoriusModal
               isOpen={this.state.gameOver}
               handleClose={() =>
@@ -616,7 +616,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     );

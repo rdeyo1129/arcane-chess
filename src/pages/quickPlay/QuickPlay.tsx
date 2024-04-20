@@ -647,18 +647,13 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
 
   updateQuickPlayState = (property: string, value: any) => {
     if (property === 'wArcana' || property === 'bArcana') {
-      this.setState(
-        (prevState) => ({
-          ...prevState,
-          [property]: {
-            ...(property === 'wArcana' ? prevState.wArcana : prevState.bArcana),
-            ...value,
-          },
-        }),
-        () => {
-          console.log('3-69i356265', this.state.wArcana, this.state.bArcana);
-        }
-      );
+      this.setState((prevState) => ({
+        ...prevState,
+        [property]: {
+          ...(property === 'wArcana' ? prevState.wArcana : prevState.bArcana),
+          ...value,
+        },
+      }));
     } else {
       this.setState(
         (prevState) => ({
@@ -1023,14 +1018,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             role: `${PceChar.split('')[
                               this.state.placingPiece
                             ].toLowerCase()}-piece`,
-                            color: 'white',
+                            color: this.state.playerColor,
                           }
                         : this.state.placingRoyalty !== 0
                         ? {
                             role: `r${RtyChar.split('')[
                               this.state.placingRoyalty
                             ].toLowerCase()}-piece`,
-                            color: 'white',
+                            color: this.state.playerColor,
                           }
                         : null,
                     fromPocket: false,

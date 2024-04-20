@@ -502,8 +502,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         ...getLocalStorage(this.props.auth.user.username).nodeScores,
         [this.state.nodeId]:
           this.state.playerColor === 'white'
-            ? (timeLeft ? timeLeft : 1) * LS.config.multiplier
-            : (timeLeft ? timeLeft : 1) * LS.config.multiplier,
+            ? (timeLeft ? timeLeft : 1) * 1000 * LS.config.multiplier
+            : (timeLeft ? timeLeft : 1) * 1000 * LS.config.multiplier,
       },
       chapterEnd: booksMap[`book${LS.chapter}`][this.state.nodeId].boss
         ? true
@@ -621,7 +621,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
             </Link>
           </div>
         ) : (
-          <>
+          <div className="outer-temple">
             <TactoriusModal
               isOpen={this.state.gameOver}
               // handleClose={() => this.handleModalClose()}
@@ -841,7 +841,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     );

@@ -77,7 +77,7 @@ export class UnwrappedCampaign extends React.Component<
             {this.state.books.map((book, i) => {
               const LS = getLocalStorage(this.props.auth.user.username);
               const isUnlocked =
-                LS.auth.user.campaign.topScores[i - 1] || i === 0;
+                LS.auth.user.campaign?.topScores[i - 1] || i === 0;
               return (
                 <Button
                   key={i}

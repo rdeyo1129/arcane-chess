@@ -216,7 +216,7 @@
           "sumnRQ": 1,
           "sumnRM": 1
         },
-        "blackArcane": {},
+        "blackArcane": { "sumnRE": 1, "sumnRQ": 1, "sumnRM": 1 },
         "config": {},
         "correctMoves": [],
         "viewOnly": false,
@@ -240,8 +240,8 @@
     "theme": "purple",
     "panels": {
       "panel-1": {
-        "fen": "k3MR2/ppp5/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["k3MR2/ppp5/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "k5MR/ppp5/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["k5MR/ppp5/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
         "panelText": "Panel Description ;soihgasog2",
         "arrowsCircles": [],
@@ -254,7 +254,7 @@
         },
         "preset": "HORDE",
         "whiteArcane": {},
-        "blackArcane": {},
+        "blackArcane": { "sumnQ": 1 },
         "config": {},
         "correctMoves": [],
         "viewOnly": false,

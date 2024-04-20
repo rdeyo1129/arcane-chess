@@ -31,11 +31,70 @@
           }
         }
       }
-      .arcane-time {
-        background: #333333;
-        .arcane {
-          height: 60px;
-          width: 60px;
+      .tactorius-board {
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        // background: #333333;
+        height: 480px;
+        width: 480px;
+        .tactorius {
+          height: 480px;
+          width: 480px;
+        }
+      }
+
+      .description-inventory {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        height: 480px;
+        .description {
+          width: 400px;
+          height: 180px;
+          .node {
+            margin: 10px;
+            .node-title {
+              text-align: center;
+            }
+          }
+        }
+        .inventory {
+          display: flex;
+          // flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 400px;
+          height: 300px;
+          // background: #333333;
+          .time-arcana {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .time {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 60px;
+              width: 180px;
+            }
+            .arcana {
+              display: grid;
+              justify-content: center;
+              align-items: center;
+              grid-template-columns: 60px 60px 60px;
+              grid-template-rows: 60px 60px 60px 60px;
+              height: 240px;
+              width: 200px;
+              .arcane {
+                height: 60px;
+                width: 60px;
+              }
+            }
+          }
         }
       }
     }
@@ -46,6 +105,7 @@
       width: 100%;
       height: 100%;
       background: #222222;
+      padding: 10px;
       .left {
         z-index: 30;
         display: flex;
@@ -59,7 +119,7 @@
           border: 1px solid #ccc;
           border-radius: 4px;
           margin-right: 4px;
-          padding: 8px;
+          padding: 12px;
           width: 300px;
           min-width: 20px;
           .digit-box {

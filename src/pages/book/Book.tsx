@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import _, { get } from 'lodash';
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -7,17 +7,12 @@ import 'src/pages/book/Book.scss';
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 
-// import 'src/pages/inGameMenu/InGameMenu.scss';
-
 import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
 
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
-/*
-  // // DYNAMIC IMPORTS \\ \\ THIS RUNS INTO AN ISSUE, JUST IMPORT THEM ALL
-*/
 import book1 from 'src/data/books/book1.json';
 import book2 from 'src/data/books/book2.json';
 import book3 from 'src/data/books/book3.json';
@@ -199,6 +194,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         {char}
       </span>
     ));
+    console.log(
+      this.state.book[this.state.selectedSwatch]?.panels['panel-1'].time
+    );
     return (
       <>
         {LS.chapter === 0 ? (
@@ -285,7 +283,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     );
                   })}
                 </div>
-                {/* <div className="board-view"> */}
                 <div className="cg-wrap tactorius-board">
                   <Chessground
                     // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
@@ -370,62 +367,88 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     }}
                   />
                 </div>
-                <div className="arcane-time">
-                  {this.state.selectedSwatch !== '' ? (
-                    <div className="node">
-                      <div className="node-title">
-                        {this.state.book[this.state.selectedSwatch].title}
+                <div className="description-inventory">
+                  <div className="description">
+                    {this.state.selectedSwatch !== '' ? (
+                      <div className="node">
+                        <h2 className="node-title">
+                          {this.state.book[this.state.selectedSwatch].title}
+                        </h2>
+                        <div className="node-description">
+                          {this.state.book[this.state.selectedSwatch].nodeText
+                            .split('\n\n')
+                            .map((p: string, i: number) => (
+                              <p className="description-paragraph" key={i}>
+                                {p}
+                              </p>
+                            ))}
+                        </div>
                       </div>
-                      <div className="node-description">
-                        {this.state.book[this.state.selectedSwatch].nodeText
-                          .split('\n\n')
-                          .map((p: string, i: number) => (
-                            <p className="description-paragraph" key={i}>
-                              {p}
-                            </p>
-                          ))}
+                    ) : null}
+                  </div>
+                  <div className="inventory">
+                    <div
+                      className="time-arcana"
+                      style={{ background: '#777777' }}
+                    >
+                      <h2 className="time">
+                        {this.state.book[this.state.selectedSwatch]?.time[0][0]}{' '}
+                        {this.state.selectedSwatch !== '' ? '+' : ''}{' '}
+                        {this.state.book[this.state.selectedSwatch]?.time[0][1]}
+                      </h2>
+                      <div className="arcana">
+                        {_.map(
+                          this.state.book[this.state.selectedSwatch]?.panels[
+                            'panel-1'
+                          ].whiteArcane || {},
+                          (value: number, key: string) => {
+                            console.log(value);
+                            return (
+                              <img
+                                key={key}
+                                className="arcane"
+                                src={`${arcana[key].imagePath}${
+                                  this.state.arcaneHover === key ? '-hover' : ''
+                                }.svg`}
+                                // onMouseEnter={() => this.toggleHover(key)}
+                                // onMouseLeave={() => this.toggleHover('')}
+                              />
+                            );
+                          }
+                        )}
                       </div>
                     </div>
-                  ) : null}
-                  <div className="white-arcana">
-                    {_.map(
-                      this.state.book[this.state.selectedSwatch]?.panels[
-                        'panel-1'
-                      ].whiteArcane || {},
-                      (value: number, key: string) => {
-                        return (
-                          <img
-                            key={key}
-                            className="arcane"
-                            src={`${arcana[key].imagePath}${
-                              this.state.arcaneHover === key ? '-hover' : ''
-                            }.svg`}
-                            // onMouseEnter={() => this.toggleHover(key)}
-                            // onMouseLeave={() => this.toggleHover('')}
-                          />
-                        );
-                      }
-                    )}
-                  </div>
-                  <div className="black-arcana">
-                    {_.map(
-                      this.state.book[this.state.selectedSwatch]?.panels[
-                        'panel-1'
-                      ].blackArcane || {},
-                      (value: number, key: string) => {
-                        return (
-                          <img
-                            key={key}
-                            className="arcane"
-                            src={`${arcana[key].imagePath}${
-                              this.state.arcaneHover === key ? '-hover' : ''
-                            }.svg`}
-                            // onMouseEnter={() => this.toggleHover(key)}
-                            // onMouseLeave={() => this.toggleHover('')}
-                          />
-                        );
-                      }
-                    )}
+                    <div
+                      className="time-arcana"
+                      style={{ background: '#333333' }}
+                    >
+                      <h2 className="time">
+                        {this.state.book[this.state.selectedSwatch]?.time[0][0]}{' '}
+                        {this.state.selectedSwatch !== '' ? '+' : ''}{' '}
+                        {this.state.book[this.state.selectedSwatch]?.time[0][1]}
+                      </h2>
+                      <div className="arcana">
+                        {_.map(
+                          this.state.book[this.state.selectedSwatch]?.panels[
+                            'panel-1'
+                          ].blackArcane || {},
+                          (value: number, key: string) => {
+                            console.log(value);
+                            return (
+                              <img
+                                key={key}
+                                className="arcane"
+                                src={`${arcana[key].imagePath}${
+                                  this.state.arcaneHover === key ? '-hover' : ''
+                                }.svg`}
+                                // onMouseEnter={() => this.toggleHover(key)}
+                                // onMouseLeave={() => this.toggleHover('')}
+                              />
+                            );
+                          }
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -385,13 +385,18 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="left"></div>
+              <div className="left">
+                <img
+                  className="endgame-image"
+                  src="public/assets/victory.webp"
+                />
+              </div>
               <div className="middle">
-                <div
+                {/* <div
                   style={{
                     backgroundColor: '#000000',
                   }}
-                ></div>
+                ></div> */}
                 <div
                   style={{
                     backgroundColor: '00000000',
@@ -399,20 +404,17 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     width: '480px',
                   }}
                 ></div>
-                <div
+                {/* <div
                   style={{
                     backgroundColor: '#000000',
                   }}
-                ></div>
+                ></div> */}
               </div>
               <div className="right">
-                <p>
+                <p className="endgame-text">
                   Victory... {this.props.message} + {this.props.score}
                 </p>
-                <img
-                  className="endgame-image"
-                  src="public/assets/victory.webp"
-                />
+
                 <div className="buttons">
                   {/* <Button
                     text={this.props.lessonBackButton ? 'BACK' : 'ANALYZE'}
@@ -450,7 +452,12 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="left"></div>
+              <div className="left">
+                <img
+                  className="endgame-image"
+                  src="public/assets/defeat.webp"
+                />
+              </div>
               <div className="middle">
                 <div
                   style={{
@@ -472,10 +479,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
               <div className="right">
                 <p>Defeat... {this.props.message}</p>
-                <img
-                  className="endgame-image"
-                  src="public/assets/defeat.webp"
-                />
+
                 <div className="buttons">
                   <div className="left-buttons">
                     <Button
@@ -992,8 +996,8 @@ const endgameModal = {
     marginRight: 'auto',
     transform: 'translate(-50%, -50%)',
     display: 'flex',
-    height: '100%',
-    maxHight: '574px',
+    height: '480px',
+    // maxHight: '574px',
     width: '100%',
     background: '#00000000',
     border: 'none',

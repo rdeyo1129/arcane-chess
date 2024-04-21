@@ -1,11 +1,6 @@
 import React, { createRef } from 'react';
 import _ from 'lodash';
-import fs from 'fs';
 import axios from 'axios';
-// import { Link, withRouter } from "react-router-dom";
-// import { connect } from "react-redux";
-
-// import "../styles/front-page.css";
 
 import 'src/styles/main.scss';
 import 'src/pages/inGameMenu/InGameMenu.scss';
@@ -27,14 +22,9 @@ import {
   PrintPieceLists,
   FROMSQ,
   TOSQ,
-  ResetBoard,
 } from '../../arcaneChess/board.mjs';
-import {
-  MovePiece,
-  AddPiece,
-  ClearPiece,
-} from '../../arcaneChess/makemove.mjs';
-import { PrMove, PrintMoveList, PrSq } from 'src/arcaneChess/io.mjs';
+import { AddPiece, ClearPiece } from '../../arcaneChess/makemove.mjs';
+import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
 import {
   prettyToSquare,
@@ -43,37 +33,26 @@ import {
   PceChar,
   RtyChar,
   ARCANE_BIT_VALUES,
-  NOMOVE,
   COLOURS,
 } from '../../arcaneChess/defs.mjs';
 import {
   outputFenOfCurrentPosition,
-  randomize,
   InCheck,
 } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
-import {
-  editAddPiece,
-  editClearPiece,
-  editMovePiece,
-  validSummonMoves,
-} from '../../arcaneChess/gui.mjs';
+import { editMovePiece } from '../../arcaneChess/gui.mjs';
 
 // import engine
 // import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
-
-import { SinglePlayer } from '../singlePlayer/SinglePlayer';
 
 // import arcaneChess correctly
 // import arcaneChess from "@shared/arcaneChess/arcaneChess";
 
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
-import Toggle from '../../components/Toggle/Toggle';
 import Select from '../../components/Select/Select';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
-import e from 'express';
 
 import book1 from 'src/data/books/book1.json';
 import book2 from 'src/data/books/book2.json';
@@ -87,14 +66,6 @@ import book9 from 'src/data/books/book9.json';
 import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
-
-import { blackArcaneConfig } from 'src/arcaneChess/arcaneDefs.mjs';
-
-// interface FrontPageProps {
-//   // whiteFaction: Faction;
-//   // blackFaction: Faction;
-//   // arcaneChess: () => void;
-// }
 
 export const whitePiecePickupArray = [
   'wW',
@@ -163,11 +134,36 @@ interface ArcanaDetail {
 interface ArcanaMap {
   [key: string]: ArcanaDetail;
 }
+interface PanelInfo {
+  fen: string;
+  fenHistory: string[];
+  history: string[];
+  panelText: string;
+  preset: any;
+  viewOnly: boolean;
+  orientation: string;
+  whiteArcane: any;
+  blackArcane: any;
+  correctMoves: string[];
+}
+
+interface PuzzleData {
+  PuzzleId: string;
+  FEN: string;
+  Moves: string;
+  Rating: number;
+  RatingDeviation: number;
+  Popularity: number;
+  NbPlays: number;
+  Themes: string;
+  GameUrl: string;
+  OpeningTags: string;
+}
 
 interface Node {
   id: string; // 'lesson-1';
   title: string;
-  time: [number[], number[]]; // seconds
+  time: number[][]; // seconds
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
@@ -189,8 +185,8 @@ interface Node {
         [key: string]: { [key: string]: number };
       };
       preset: string;
-      whiteArcane?: { [key: string]: number };
-      blackArcane?: { [key: string]: number };
+      whiteArcane?: { [key: string]: number | string };
+      blackArcane?: { [key: string]: number | string };
       // orientation: string;
       config: {
         [key: string]: boolean | string | number;
@@ -208,7 +204,7 @@ interface Node {
 
 interface State {
   title: string;
-  time: [number[], number[]];
+  time: number[][];
   thinking: boolean;
   thinkingTime: number;
   history: string[];
@@ -255,8 +251,8 @@ interface State {
       [key: string]: { [key: string]: number };
     };
     preset: string;
-    whiteArcane?: { [key: string]: number };
-    blackArcane?: { [key: string]: number };
+    whiteArcane?: { [key: string]: number | string };
+    blackArcane?: { [key: string]: number | string };
     // orientation: string;
     config: {
       [key: string]: boolean | string | number;
@@ -571,7 +567,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
   };
 
   componentDidMount(): void {
-    const arcanaKeys = Object.keys(arcana);
+    // const arcanaKeys = Object.keys(arcana);
     ParseFen(this.state.fen);
     // this.chessgroundRef.current?.setAutoShapes([{ orig: 'e2', brush: 'blue' }]);
   }
@@ -630,909 +626,910 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     // const { auth } = this.props;
     return (
-      <div className="creator">
-        <div className="top-left">
-          <div className="arcane-history">
-            <div className="arcane-input">
-              {this.state.playing ? (
-                <div className="arcana">
-                  <div className="arcana-side-buttons">
-                    <Button
-                      className="tertiary"
-                      onClick={() => {
-                        this.setState({ selectedSide: 'W' });
-                      }}
-                      backgroundColorOverride="#333333"
-                      color="B"
-                      text="WHITE"
-                      width={190}
-                    />
-                    <Button
-                      className="tertiary"
-                      onClick={() => {
-                        this.setState({ selectedSide: 'BK' });
-                      }}
-                      backgroundColorOverride="#333333"
-                      color="B"
-                      text="BLACK"
-                      width={190}
-                      disabled={false}
-                    />
-                  </div>
-                  <div className="arcana-select">
-                    {_.map(
-                      this.state.config[this.state.selectedSide].arcana,
-                      (value: number, key: string) => {
-                        return (
-                          <img
-                            key={key}
-                            className="arcane"
-                            src={`${arcana[key].imagePath}${
-                              this.state.hoverArcane === key ? '-hover' : ''
-                            }.svg`}
-                            onClick={() => {
-                              if (
-                                this.state.placingPiece > 0 ||
-                                this.state.swapType !== '' ||
-                                this.state.placingRoyalty !== 0
-                              ) {
-                                this.setState({
-                                  placingPiece: 0,
-                                  swapType: '',
-                                  placingRoyalty: 0,
-                                });
-                              } else {
-                                if (key.includes('sumn')) {
-                                  if (
-                                    key.includes('sumnR') &&
-                                    key !== 'sumnR'
-                                  ) {
-                                    this.setState({
-                                      placingPiece: 0,
-                                      placingRoyalty:
-                                        royalties[`${key.split('sumn')[1]}`],
-                                      swapType: '',
-                                    });
-                                  } else {
-                                    this.setState({
-                                      placingRoyalty: 0,
-                                      placingPiece:
-                                        pieces[
-                                          key.split('sumn')[1].toUpperCase() ===
-                                          'X'
-                                            ? 'EXILE'
-                                            : `${
-                                                this.state.selectedSide === 'W'
-                                                  ? 'w'
-                                                  : 'b'
-                                              }${key.split('sumn')[1]}`
-                                        ],
-                                    });
-                                  }
-                                }
-                                if (key.includes('swap')) {
-                                  if (this.state.swapType === '') {
-                                    this.setState((prevState) => ({
-                                      swapType: key.split('swap')[1],
-                                    }));
-                                  } else {
-                                    this.setState((prevState) => ({
-                                      swapType: '',
-                                    }));
-                                  }
-                                }
-                                if (key.includes('modsSUS')) {
-                                  if (GameBoard.suspend > 0) return;
-                                  GameBoard.suspend = 6;
-                                }
-                              }
-                            }}
-                            onMouseEnter={() => this.toggleHover(key)}
-                            onMouseLeave={() => this.toggleHover('')}
-                          />
-                        );
-                      }
-                    )}
-                  </div>
-                </div>
-              ) : (
-                _.map(arcanaJson, (arcane, arcaneId) => {
-                  return (
-                    <div
-                      className="create-arcane-item"
-                      key={arcaneId}
-                      onMouseEnter={() => {
-                        this.setState({ hoverArcane: arcaneId });
-                      }}
-                      onMouseLeave={() => this.setState({ hoverArcane: '' })}
-                    >
-                      <span className="title">{arcane['name']}</span>
-                      <div className="select-extension">
-                        <div className="uses">
-                          <span>
-                            {this.state.config[this.state.selectedSide][
-                              'arcana'
-                            ][arcaneId]
-                              ? this.state.config[this.state.selectedSide][
-                                  'arcana'
-                                ][arcaneId]
-                              : arcane.type === 'active' ||
-                                arcane.type === 'passive'
-                              ? 0
-                              : 'false'}
-                          </span>
-                        </div>
-                        <select
-                          className="arcane-use-drop"
-                          value={
-                            this.state.config[this.state.selectedSide][
-                              'arcana'
-                            ][arcaneId]
-                              ? this.state.config[this.state.selectedSide][
-                                  'arcana'
-                                ][arcaneId]
-                              : arcane.type === 'active' ||
-                                arcane.type === 'passive'
-                              ? 0
-                              : 'false'
-                          }
-                          onChange={(e) => {
-                            console.log(e, arcaneId);
-                            this.onChangeUses(e, arcaneId.toString());
-                          }}
-                        >
-                          {arcane.type === 'active' || arcane.type === 'passive'
-                            ? Array.from({ length: 9 }, (_, index) => (
-                                <option key={index} value={index}>
-                                  {index}
-                                </option>
-                              ))
-                            : ['false', 'true'].map((value, i) => (
-                                <option key={i} value={value}>
-                                  {value}
-                                </option>
-                              ))}
-                        </select>
-                      </div>
+      <div className="outer-creator">
+        <div className="creator">
+          <div className="top-left">
+            <div className="arcane-history">
+              <div className="arcane-input">
+                {this.state.playing ? (
+                  <div className="arcana">
+                    <div className="arcana-side-buttons">
+                      <Button
+                        className="tertiary"
+                        onClick={() => {
+                          this.setState({ selectedSide: 'W' });
+                        }}
+                        backgroundColorOverride="#333333"
+                        color="B"
+                        text="WHITE"
+                        width={190}
+                      />
+                      <Button
+                        className="tertiary"
+                        onClick={() => {
+                          this.setState({ selectedSide: 'BK' });
+                        }}
+                        backgroundColorOverride="#333333"
+                        color="B"
+                        text="BLACK"
+                        width={190}
+                        disabled={false}
+                      />
                     </div>
-                  );
-                })
-              )}
-            </div>
-            <div className="history">
-              {this.state.playing ? (
-                this.state.history.map((move, i) => <div key={i}>{move}</div>)
-              ) : (
-                <div>
-                  <Select
-                    options={[
-                      'red',
-                      'orange',
-                      'yellow',
-                      'green',
-                      'blue',
-                      'purple',
-                      'grey',
-                      'black',
-                    ]}
-                    onChange={(val) => {
-                      this.setState({
-                        theme: val,
-                      });
-                    }}
-                  />
-                  <Select
-                    options={[
-                      'book1',
-                      'book2',
-                      'book3',
-                      'book4',
-                      'book5',
-                      'book6',
-                      'book7',
-                      'book8',
-                      'book9',
-                      'book10',
-                      'book11',
-                      'book12',
-                    ]}
-                    onChange={(val) => {
-                      this.setState({
-                        currBook: val,
-                        bookObject: this.booksMap[val],
-                      });
-                    }}
-                  />
-                  {/* bookmark */}
-                  {_.map(this.state.bookObject, (node: any, key: string) => {
+                    <div className="arcana-select">
+                      {_.map(
+                        this.state.config[this.state.selectedSide].arcana,
+                        (_value: number, key: string) => {
+                          return (
+                            <img
+                              key={key}
+                              className="arcane"
+                              src={`${arcana[key].imagePath}${
+                                this.state.hoverArcane === key ? '-hover' : ''
+                              }.svg`}
+                              onClick={() => {
+                                if (
+                                  this.state.placingPiece > 0 ||
+                                  this.state.swapType !== '' ||
+                                  this.state.placingRoyalty !== 0
+                                ) {
+                                  this.setState({
+                                    placingPiece: 0,
+                                    swapType: '',
+                                    placingRoyalty: 0,
+                                  });
+                                } else {
+                                  if (key.includes('sumn')) {
+                                    if (
+                                      key.includes('sumnR') &&
+                                      key !== 'sumnR'
+                                    ) {
+                                      this.setState({
+                                        placingPiece: 0,
+                                        placingRoyalty:
+                                          royalties[`${key.split('sumn')[1]}`],
+                                        swapType: '',
+                                      });
+                                    } else {
+                                      this.setState({
+                                        placingRoyalty: 0,
+                                        placingPiece:
+                                          pieces[
+                                            key
+                                              .split('sumn')[1]
+                                              .toUpperCase() === 'X'
+                                              ? 'EXILE'
+                                              : `${
+                                                  this.state.selectedSide ===
+                                                  'W'
+                                                    ? 'w'
+                                                    : 'b'
+                                                }${key.split('sumn')[1]}`
+                                          ],
+                                      });
+                                    }
+                                  }
+                                  if (key.includes('swap')) {
+                                    if (this.state.swapType === '') {
+                                      this.setState(() => ({
+                                        swapType: key.split('swap')[1],
+                                      }));
+                                    } else {
+                                      this.setState(() => ({
+                                        swapType: '',
+                                      }));
+                                    }
+                                  }
+                                  if (key.includes('modsSUS')) {
+                                    if (GameBoard.suspend > 0) return;
+                                    GameBoard.suspend = 6;
+                                  }
+                                }
+                              }}
+                              onMouseEnter={() => this.toggleHover(key)}
+                              onMouseLeave={() => this.toggleHover('')}
+                            />
+                          );
+                        }
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  _.map(arcanaJson, (arcane, arcaneId) => {
                     return (
                       <div
-                        className="book-node"
-                        key={key}
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          background:
-                            this.state.currNode === key
-                              ? 'darkblue'
-                              : '#444444',
+                        className="create-arcane-item"
+                        key={arcaneId}
+                        onMouseEnter={() => {
+                          this.setState({ hoverArcane: arcaneId });
                         }}
-                        onClick={() => {
-                          // this.state.nodeObject[key];
-                          const nodeA = this.state.bookObject[key];
-                          // this.booksMap[this.state.currBook][node.id];
-                          this.setState({
-                            currNode: node.id,
-                            currPanel: '',
-                            nodeObject: nodeA.panels,
-                            panelObject: nodeA.panels['panel-1'],
-                            title: nodeA.title,
-                            time: nodeA.time,
-                            nodeText: nodeA.nodeText,
-                            panelText: nodeA.panels['panel-1'].panelText,
-                            reward: nodeA.reward,
-                            prereq: '', // split node name and decrement
-                            opponent: nodeA.opponent,
-                            theme: nodeA.theme,
-                          });
-                        }}
+                        onMouseLeave={() => this.setState({ hoverArcane: '' })}
                       >
-                        {node.id}
-                        {/* <div
-                          className="delete-node"
-                          // delete node
-                          onClick={() => {
-                            this.setState((prevState) => ({
-                              ...prevState,
-                              bookObject: _.omit(prevState.bookObject, node.id),
-                            }));
-                          }}
-                        >
-                          -
-                        </div> */}
+                        <span className="title">{arcane['name']}</span>
+                        <div className="select-extension">
+                          <div className="uses">
+                            <span>
+                              {this.state.config[this.state.selectedSide][
+                                'arcana'
+                              ][arcaneId]
+                                ? this.state.config[this.state.selectedSide][
+                                    'arcana'
+                                  ][arcaneId]
+                                : arcane.type === 'active' ||
+                                  arcane.type === 'passive'
+                                ? 0
+                                : 'false'}
+                            </span>
+                          </div>
+                          <select
+                            className="arcane-use-drop"
+                            value={
+                              this.state.config[this.state.selectedSide][
+                                'arcana'
+                              ][arcaneId]
+                                ? this.state.config[this.state.selectedSide][
+                                    'arcana'
+                                  ][arcaneId]
+                                : arcane.type === 'active' ||
+                                  arcane.type === 'passive'
+                                ? 0
+                                : 'false'
+                            }
+                            onChange={(e) => {
+                              console.log(e, arcaneId);
+                              this.onChangeUses(e, arcaneId.toString());
+                            }}
+                          >
+                            {arcane.type === 'active' ||
+                            arcane.type === 'passive'
+                              ? Array.from({ length: 9 }, (_, index) => (
+                                  <option key={index} value={index}>
+                                    {index}
+                                  </option>
+                                ))
+                              : ['false', 'true'].map((value, i) => (
+                                  <option key={i} value={value}>
+                                    {value}
+                                  </option>
+                                ))}
+                          </select>
+                        </div>
                       </div>
                     );
-                  })}
-                  <Input
-                    color="B"
-                    value={this.state.newNodeName}
-                    width={110}
-                    onChange={(value) => {
-                      this.setState({ newNodeName: value });
-                    }}
-                    placeholder="mission-x"
-                    password={false}
-                  />
-                  <Button
-                    text="+"
-                    className="tertiary"
-                    color="G"
-                    height={31}
-                    width={110}
-                    onClick={() => {
-                      this.setState((prevState) => ({
-                        ...prevState,
-                        currNode: this.state.newNodeName,
-                        bookObject: {
-                          ...prevState.bookObject,
-                          [this.state.newNodeName]: {
-                            id: this.state.newNodeName,
-                            title: 'Example Title',
-                            time: [
-                              [300, 3],
-                              [300, 3],
-                            ],
-                            nodeText: 'First Description',
-                            panelText: 'Second Description',
-                            reward: [500, 'a', 'b', 'c'],
-                            prereq: 'Some prerequisite',
-                            opponent: 'Opponent Name',
-                            theme: 'red',
-                            panels: {},
+                  })
+                )}
+              </div>
+              <div className="history">
+                {this.state.playing ? (
+                  this.state.history.map((move, i) => <div key={i}>{move}</div>)
+                ) : (
+                  <div>
+                    <Select
+                      options={[
+                        'red',
+                        'orange',
+                        'yellow',
+                        'green',
+                        'blue',
+                        'purple',
+                        'grey',
+                        'black',
+                      ]}
+                      onChange={(val) => {
+                        this.setState({
+                          theme: val,
+                        });
+                      }}
+                    />
+                    <Select
+                      options={[
+                        'book1',
+                        'book2',
+                        'book3',
+                        'book4',
+                        'book5',
+                        'book6',
+                        'book7',
+                        'book8',
+                        'book9',
+                        'book10',
+                        'book11',
+                        'book12',
+                      ]}
+                      onChange={(val) => {
+                        this.setState({
+                          currBook: val,
+                          bookObject: this.booksMap[val],
+                        });
+                      }}
+                    />
+                    {_.map(this.state.bookObject, (node: any, key: string) => {
+                      return (
+                        <div
+                          className="book-node"
+                          key={key}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            background:
+                              this.state.currNode === key
+                                ? 'darkblue'
+                                : '#444444',
+                          }}
+                          onClick={() => {
+                            // this.state.nodeObject[key];
+                            const nodeA = this.state.bookObject[key];
+                            // this.booksMap[this.state.currBook][node.id];
+                            this.setState({
+                              currNode: node.id,
+                              currPanel: '',
+                              nodeObject: nodeA.panels,
+                              panelObject: nodeA.panels['panel-1'],
+                              title: nodeA.title,
+                              time: nodeA.time,
+                              nodeText: nodeA.nodeText,
+                              panelText: nodeA.panels['panel-1'].panelText,
+                              reward: nodeA.reward,
+                              prereq: nodeA.prereq, // split node name and decrement
+                              opponent: nodeA.opponent,
+                              theme: nodeA.theme,
+                            });
+                          }}
+                        >
+                          {node.id}
+                        </div>
+                      );
+                    })}
+                    <Input
+                      color="B"
+                      value={this.state.newNodeName}
+                      width={110}
+                      onChange={(value) => {
+                        this.setState({ newNodeName: value });
+                      }}
+                      placeholder="mission-x"
+                      password={false}
+                    />
+                    <Button
+                      text="+"
+                      className="tertiary"
+                      color="G"
+                      height={31}
+                      width={110}
+                      onClick={() => {
+                        this.setState((prevState) => ({
+                          ...prevState,
+                          currNode: this.state.newNodeName,
+                          bookObject: {
+                            ...prevState.bookObject,
+                            [this.state.newNodeName]: {
+                              id: this.state.newNodeName,
+                              title: 'Example Title',
+                              time: [
+                                [0, 0],
+                                [0, 0],
+                              ],
+                              nodeText: '',
+                              panelText: '',
+                              reward: [500, 'a', 'b', 'c'],
+                              prereq: '',
+                              opponent: '',
+                              theme: 'red',
+                              panels: {},
+                            },
                           },
-                        },
-                        nodeObject: {},
-                      }));
-                    }}
-                  />
-                </div>
-              )}
+                          nodeObject: {},
+                        }));
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="preset-correct-moves">
-            {/* <Select
+            <div className="preset-correct-moves">
+              {/* <Select
               options={['LESSON', 'STANDARD', 'UYA', 'PUZZLE']}
               onChange={(value) => {
                 this.setState({ preset: value });
               }}
               type="string"
             /> */}
-            <Select
-              options={[
-                '',
-                'CLEAR',
-                'CHESS',
-                'HORDE',
-                'THRONE',
-                'DELIVERANCE',
-                'XCHECK',
-                'CRAZYHOUSE',
-                'CAPALL',
-              ]}
-              onChange={(value) => {
-                if (value === 'CLEAR') {
-                  this.setState({
-                    fen: '8/8/8/8/8/8/8/8 w - - 0 1',
-                    fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
-                  });
-                  ParseFen('8/8/8/8/8/8/8/8 w - - 0 1');
-                }
-                if (value === 'CHESS') {
-                  this.setState({
-                    fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-                    fenHistory: [
-                      'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-                    ],
-                  });
-                  ParseFen(
-                    'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-                  );
-                }
-                if (value === 'HORDE') {
-                  this.setState({
-                    fen: 'rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1',
-                    fenHistory: [
-                      'rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1',
-                    ],
-                    preset: 'HORDE',
-                  });
-                  ParseFen(
-                    'rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1'
-                  );
-                }
-                if (value === 'THRONE') {
-                  this.setState({
-                    fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-                    fenHistory: [
-                      'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-                    ],
-                    preset: 'THRONE',
-                  });
-                  ParseFen(
-                    'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-                  );
-                }
-                if (value === 'DELIVERANCE') {
-                  this.setState({
-                    fen: '8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1',
-                    fenHistory: ['8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1'],
-                    preset: 'DELIVERANCE',
-                  });
-                  ParseFen('8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1');
-                }
-                if (value === 'XCHECK') {
-                  this.setState({
-                    fen: '8/8/8/8/8/8/8/8 w - - 0 1',
-                    fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
-                    preset: 'XCHECK',
-                  });
-                  ParseFen('8/8/8/8/8/8/8/8 w - - 0 1');
-                }
-                if (value === 'CRAZYHOUSE') {
-                  this.setState({
-                    fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-                    fenHistory: [
-                      'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-                    ],
-                    preset: 'CRAZYHOUSE',
-                  });
-                  ParseFen(
-                    'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-                  );
-                }
-                if (value === 'CAPALL') {
-                  this.setState({
-                    fen: '8/8/8/8/8/8/8/8 w - - 0 1',
-                    fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
-                    preset: 'CAPALL',
-                  });
-                  ParseFen('8/8/8/8/8/8/8/8 w - - 0 1');
-                }
-              }}
-              type="string"
-            />
-            <div className="puzzle-input">
+              <Select
+                options={[
+                  '',
+                  'CLEAR',
+                  'CHESS',
+                  'HORDE',
+                  'THRONE',
+                  'DELIVERANCE',
+                  'XCHECK',
+                  'CRAZYHOUSE',
+                  'CAPALL',
+                ]}
+                onChange={(value) => {
+                  if (value === 'CLEAR') {
+                    this.setState({
+                      fen: '8/8/8/8/8/8/8/8 w - - 0 1',
+                      fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
+                    });
+                    ParseFen('8/8/8/8/8/8/8/8 w - - 0 1');
+                  }
+                  if (value === 'CHESS') {
+                    this.setState({
+                      fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                      fenHistory: [
+                        'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                      ],
+                    });
+                    ParseFen(
+                      'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+                    );
+                  }
+                  if (value === 'HORDE') {
+                    this.setState({
+                      fen: 'rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1',
+                      fenHistory: [
+                        'rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1',
+                      ],
+                      preset: 'HORDE',
+                    });
+                    ParseFen(
+                      'rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1'
+                    );
+                  }
+                  if (value === 'THRONE') {
+                    this.setState({
+                      fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                      fenHistory: [
+                        'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                      ],
+                      preset: 'THRONE',
+                    });
+                    ParseFen(
+                      'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+                    );
+                  }
+                  if (value === 'DELIVERANCE') {
+                    this.setState({
+                      fen: '8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1',
+                      fenHistory: ['8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1'],
+                      preset: 'DELIVERANCE',
+                    });
+                    ParseFen('8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1');
+                  }
+                  if (value === 'XCHECK') {
+                    this.setState({
+                      fen: '8/8/8/8/8/8/8/8 w - - 0 1',
+                      fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
+                      preset: 'XCHECK',
+                    });
+                    ParseFen('8/8/8/8/8/8/8/8 w - - 0 1');
+                  }
+                  if (value === 'CRAZYHOUSE') {
+                    this.setState({
+                      fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                      fenHistory: [
+                        'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                      ],
+                      preset: 'CRAZYHOUSE',
+                    });
+                    ParseFen(
+                      'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+                    );
+                  }
+                  if (value === 'CAPALL') {
+                    this.setState({
+                      fen: '8/8/8/8/8/8/8/8 w - - 0 1',
+                      fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
+                      preset: 'CAPALL',
+                    });
+                    ParseFen('8/8/8/8/8/8/8/8 w - - 0 1');
+                  }
+                }}
+                type="string"
+              />
+              <div className="puzzle-input">
+                <Input
+                  color="B"
+                  value={this.state.puzzleEpsilon}
+                  width={160}
+                  height={60}
+                  onChange={(value) => {
+                    this.setState({
+                      puzzleEpsilon: value,
+                    });
+                  }}
+                  placeholder="rating and keyword"
+                  password={false}
+                />
+                <Button
+                  text="<"
+                  onClick={() => {
+                    if (!this.state.puzzleResponse.length) return;
+                    if (this.state.puzzleNum === 0) return;
+                    if (this.state.playing) return;
+                    this.setState((prevState) => {
+                      const newPuzzleNum = prevState.puzzleNum - 1;
+                      return {
+                        puzzleNum: newPuzzleNum,
+                        fen: this.state.puzzleResponse[newPuzzleNum].FEN,
+                        fenHistory: [
+                          this.state.puzzleResponse[newPuzzleNum].FEN,
+                        ],
+                        correctMoves:
+                          this.state.puzzleResponse[newPuzzleNum].Moves.split(
+                            ' '
+                          ),
+                      };
+                    });
+                    ParseFen(
+                      this.state.puzzleResponse[this.state.puzzleNum].FEN
+                    );
+                  }}
+                  className="tertiary"
+                  color="B"
+                  height={60}
+                  width={20}
+                />
+                <Button
+                  text=">"
+                  onClick={() => {
+                    if (!this.state.puzzleResponse.length) return;
+                    if (
+                      this.state.puzzleNum ===
+                      this.state.puzzleResponse.length - 1
+                    )
+                      return;
+                    if (this.state.playing) return;
+                    this.setState((prevState) => {
+                      const newPuzzleNum = prevState.puzzleNum + 1;
+                      return {
+                        puzzleNum: newPuzzleNum,
+                        fen: this.state.puzzleResponse[newPuzzleNum].FEN,
+                        fenHistory: [
+                          this.state.puzzleResponse[newPuzzleNum].FEN,
+                        ],
+                        correctMoves:
+                          this.state.puzzleResponse[newPuzzleNum].Moves.split(
+                            ' '
+                          ),
+                      };
+                    });
+                    ParseFen(
+                      this.state.puzzleResponse[this.state.puzzleNum].FEN
+                    );
+                  }}
+                  className="tertiary"
+                  color="B"
+                  height={60}
+                  width={20}
+                />
+              </div>
+              <div className="nav">
+                <Button
+                  text="<<"
+                  onClick={() => {
+                    // this.setState((prevState) => ({
+                    //   ...prevState,
+                    //   correctMoves: [],
+                    // }));
+                  }}
+                  className="tertiary"
+                  color="B"
+                  height={60}
+                  width={50}
+                />
+                <Button
+                  text="<"
+                  onClick={() => {
+                    // this.setState((prevState) => ({
+                    //   ...prevState,
+                    //   correctMoves: [],
+                    // }));
+                  }}
+                  className="tertiary"
+                  color="B"
+                  height={60}
+                  width={50}
+                />
+                <Button
+                  text=">"
+                  onClick={() => {
+                    // this.setState((prevState) => ({
+                    //   ...prevState,
+                    //   correctMoves: [],
+                    // }));
+                  }}
+                  className="tertiary"
+                  color="B"
+                  height={60}
+                  width={50}
+                />
+                <Button
+                  text=">>"
+                  onClick={() => {
+                    // this.setState((prevState) => ({
+                    //   ...prevState,
+                    //   correctMoves: [],
+                    // }));
+                  }}
+                  className="tertiary"
+                  color="B"
+                  height={60}
+                  width={50}
+                />
+              </div>
               <Input
                 color="B"
-                value={this.state.puzzleEpsilon}
-                width={160}
+                value={this.state.correctMoves.join(' ')}
+                width={200}
                 height={60}
                 onChange={(value) => {
                   this.setState({
                     puzzleEpsilon: value,
                   });
                 }}
-                placeholder="rating and keyword"
+                placeholder="correct moves"
                 password={false}
               />
-              <Button
-                text="<"
-                onClick={() => {
-                  if (!this.state.puzzleResponse.length) return;
-                  if (this.state.puzzleNum === 0) return;
-                  if (this.state.playing) return;
-                  this.setState((prevState) => {
-                    const newPuzzleNum = prevState.puzzleNum - 1;
-                    return {
-                      puzzleNum: newPuzzleNum,
-                      fen: this.state.puzzleResponse[newPuzzleNum].FEN,
-                      fenHistory: [this.state.puzzleResponse[newPuzzleNum].FEN],
-                      correctMoves:
-                        this.state.puzzleResponse[newPuzzleNum].Moves.split(
-                          ' '
-                        ),
-                    };
-                  });
-                  ParseFen(this.state.puzzleResponse[this.state.puzzleNum].FEN);
-                }}
-                className="tertiary"
-                color="B"
-                height={60}
-                width={20}
-              />
-              <Button
-                text=">"
-                onClick={() => {
-                  if (!this.state.puzzleResponse.length) return;
-                  if (
-                    this.state.puzzleNum ===
-                    this.state.puzzleResponse.length - 1
-                  )
-                    return;
-                  if (this.state.playing) return;
-                  this.setState((prevState) => {
-                    const newPuzzleNum = prevState.puzzleNum + 1;
-                    return {
-                      puzzleNum: newPuzzleNum,
-                      fen: this.state.puzzleResponse[newPuzzleNum].FEN,
-                      fenHistory: [this.state.puzzleResponse[newPuzzleNum].FEN],
-                      correctMoves:
-                        this.state.puzzleResponse[newPuzzleNum].Moves.split(
-                          ' '
-                        ),
-                    };
-                  });
-                  ParseFen(this.state.puzzleResponse[this.state.puzzleNum].FEN);
-                }}
-                className="tertiary"
-                color="B"
-                height={60}
-                width={20}
-              />
             </div>
-            <div className="nav">
-              <Button
-                text="<<"
-                onClick={() => {
-                  // this.setState((prevState) => ({
-                  //   ...prevState,
-                  //   correctMoves: [],
-                  // }));
-                }}
-                className="tertiary"
-                color="B"
-                height={60}
-                width={50}
-              />
-              <Button
-                text="<"
-                onClick={() => {
-                  // this.setState((prevState) => ({
-                  //   ...prevState,
-                  //   correctMoves: [],
-                  // }));
-                }}
-                className="tertiary"
-                color="B"
-                height={60}
-                width={50}
-              />
-              <Button
-                text=">"
-                onClick={() => {
-                  // this.setState((prevState) => ({
-                  //   ...prevState,
-                  //   correctMoves: [],
-                  // }));
-                }}
-                className="tertiary"
-                color="B"
-                height={60}
-                width={50}
-              />
-              <Button
-                text=">>"
-                onClick={() => {
-                  // this.setState((prevState) => ({
-                  //   ...prevState,
-                  //   correctMoves: [],
-                  // }));
-                }}
-                className="tertiary"
-                color="B"
-                height={60}
-                width={50}
-              />
-            </div>
-            <Input
-              color="B"
-              value={this.state.correctMoves.join(' ')}
-              width={200}
-              height={60}
-              onChange={(value) => {
-                this.setState({
-                  puzzleEpsilon: value,
-                });
-              }}
-              placeholder="correct moves"
-              password={false}
-            />
           </div>
-        </div>
-        <div className="creator-board fade">
-          <Chessground
-            // theme={this.state.theme}
-            forwardedRef={this.chessgroundRef}
-            // viewOnly={this.isCheckmate()}
-            fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
-            resizable={true}
-            wFaction={this.state.whiteFaction}
-            bFaction={this.state.blackFaction}
-            royalties={this.state.royalties}
-            // wVisible={this.state.wVisCount === 0}
-            // bVisible={this.state.bVisCount === 0}
-            width={480}
-            height={480}
-            check={InCheck() ? true : false}
-            animation={{
-              enabled: true,
-              duration: 200,
-            }}
-            highlight={{
-              lastMove: true,
-              check: true,
-              royalties: true,
-            }}
-            lastMove={this.state.lastMove}
-            orientation={this.state.orientation}
-            disableContextMenu={false}
-            turnColor={
-              this.state.playing
-                ? GameBoard.side === 0
-                  ? 'white'
-                  : 'black'
-                : ''
-            }
-            movable={{
-              free: this.state.playing ? false : true,
-              rookCastle: false,
-              color: this.state.playing
-                ? GameBoard.side === 0
-                  ? 'white'
-                  : 'black'
-                : 'both',
-              dests:
-                this.state.placingPiece === 0
-                  ? this.state.placingRoyalty === 0
-                    ? this.state.swapType === ''
-                      ? this.arcaneChess().getGroundMoves()
-                      : this.arcaneChess().getSwapMoves(this.state.swapType)
+          <div className="creator-board fade">
+            <Chessground
+              // theme={this.state.theme}
+              forwardedRef={this.chessgroundRef}
+              // viewOnly={this.isCheckmate()}
+              fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
+              resizable={true}
+              wFaction={this.state.whiteFaction}
+              bFaction={this.state.blackFaction}
+              royalties={this.state.royalties}
+              // wVisible={this.state.wVisCount === 0}
+              // bVisible={this.state.bVisCount === 0}
+              width={480}
+              height={480}
+              check={InCheck() ? true : false}
+              animation={{
+                enabled: true,
+                duration: 200,
+              }}
+              highlight={{
+                lastMove: true,
+                check: true,
+                royalties: true,
+              }}
+              lastMove={this.state.lastMove}
+              orientation={this.state.orientation}
+              disableContextMenu={false}
+              turnColor={
+                this.state.playing
+                  ? GameBoard.side === 0
+                    ? 'white'
+                    : 'black'
+                  : ''
+              }
+              movable={{
+                free: this.state.playing ? false : true,
+                rookCastle: false,
+                color: this.state.playing
+                  ? GameBoard.side === 0
+                    ? 'white'
+                    : 'black'
+                  : 'both',
+                dests:
+                  this.state.placingPiece === 0
+                    ? this.state.placingRoyalty === 0
+                      ? this.state.swapType === ''
+                        ? this.arcaneChess().getGroundMoves()
+                        : this.arcaneChess().getSwapMoves(this.state.swapType)
+                      : this.arcaneChess().getSummonMoves(
+                          `R${RtyChar.split('')[this.state.placingRoyalty]}`
+                        )
                     : this.arcaneChess().getSummonMoves(
-                        `R${RtyChar.split('')[this.state.placingRoyalty]}`
-                      )
-                  : this.arcaneChess().getSummonMoves(
-                      PceChar.split('')[this.state.placingPiece]
-                    ),
-              events: {},
-            }}
-            selectable={{
-              enabled: true,
-              selected:
-                this.state.placingPiece !== 0
-                  ? {
-                      role: `${PceChar.split('')[
-                        this.state.placingPiece
-                      ].toLowerCase()}-piece`,
-                      color: 'white',
-                    }
-                  : this.state.placingRoyalty !== 0
-                  ? {
-                      role: `r${RtyChar.split('')[
-                        this.state.placingRoyalty
-                      ].toLowerCase()}-piece`,
-                      color: 'white',
-                    }
-                  : null,
-              fromPocket: false,
-            }}
-            events={{
-              change: () => {},
-              dropNewPiece: (piece: string, key: string) => {
-                if (
-                  this.state.playing &&
-                  GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
-                ) {
-                  const parsed = this.arcaneChess().makeUserMove(
-                    null,
-                    key,
-                    this.state.placingPiece,
-                    '',
-                    this.state.placingRoyalty
-                  );
-                  if (!PrMove(parsed)) {
-                    console.log('invalid move');
-                  }
-                  this.setState(
-                    (prevState) => ({
-                      history: [...prevState.history, PrMove(parsed)],
-                      fen: outputFenOfCurrentPosition(),
-                      fenHistory: [
-                        ...prevState.fenHistory,
-                        outputFenOfCurrentPosition(),
-                      ],
-                      lastMove: [key, key],
-                      placingPiece: 0,
-                      placingRoyalty: 0,
-                      swapType: '',
-                    }),
-                    () => {
-                      this.engineGo();
-                    }
-                  );
-                }
-                if (this.state.placingRoyalty !== 0) {
-                  this.setState((prevState) => ({
-                    ...prevState,
-                    royalties: {
-                      ...prevState.royalties,
-                      [`royalty${
-                        RtyChar.split('')[this.state.placingRoyalty]
-                      }`]: {
-                        ...prevState.royalties[
-                          `royalty${
-                            RtyChar.split('')[this.state.placingRoyalty]
-                          }`
-                        ],
-                        [key]: 6,
-                      },
-                    },
-                    placingRoyalty: this.state.playing
-                      ? 0
-                      : this.state.placingRoyalty,
-                  }));
-                }
-              },
-              move: (orig: string, dest: string) => {
-                if (this.state.playing) {
-                  // to pass promotion to makeusermove epsilon
-                  // console.log(capturedPiece);
-                  const parsed = this.arcaneChess().makeUserMove(
-                    orig,
-                    dest,
-                    0,
-                    this.state.swapType,
-                    this.state.placingRoyalty
-                  );
-                  if (!PrMove(parsed)) {
-                    console.log('invalid move');
-                    // debugger;
-                  }
-                  this.setState(
-                    (prevState) => ({
-                      history: [...prevState.history, PrMove(parsed)],
-                      fen: outputFenOfCurrentPosition(),
-                      fenHistory: [
-                        ...prevState.fenHistory,
-                        outputFenOfCurrentPosition(),
-                      ],
-                      lastMove: [orig, dest],
-                      placingPiece: 0,
-                      placingRoyalty: 0,
-                      swapType: '',
-                      royalties: {
-                        royaltyQ: _.mapValues(
-                          prevState.royalties.royaltyQ,
-                          (value) => value - 1
-                        ),
-                        royaltyT: _.mapValues(
-                          prevState.royalties.royaltyT,
-                          (value) => value - 1
-                        ),
-                        royaltyM: _.mapValues(
-                          prevState.royalties.royaltyM,
-                          (value) => value - 1
-                        ),
-                        royaltyV: _.mapValues(
-                          prevState.royalties.royaltyV,
-                          (value) => value - 1
-                        ),
-                        royaltyE: _.mapValues(
-                          prevState.royalties.royaltyE,
-                          (value) => value - 1
-                        ),
-                      },
-                    }),
-                    () => this.engineGo()
-                  );
-                } else {
-                  editMovePiece(orig, dest);
-                  this.setState({
-                    fen: outputFenOfCurrentPosition(),
-                    fenHistory: [outputFenOfCurrentPosition()],
-                  });
-                }
-              },
-              select: (key: string) => {
-                const char = RtyChar.split('')[this.state.placingRoyalty];
-                const whiteLimit =
-                  100 - 10 * (8 - GameBoard.summonRankLimits[0]);
-                const blackLimit =
-                  20 + 10 * (8 - GameBoard.summonRankLimits[1]);
-                if (this.state.playing) {
-                  if (this.state.placingRoyalty > 0) {
-                    if (
-                      ((GameBoard.side === COLOURS.WHITE &&
-                        prettyToSquare(key) < whiteLimit) ||
-                        (GameBoard.side === COLOURS.BLACK &&
-                          prettyToSquare(key) > blackLimit)) &&
-                      GameBoard.pieces[prettyToSquare(key)] !== PIECES.EMPTY
-                    ) {
-                      const parsed = this.arcaneChess().makeUserMove(
-                        null,
-                        key,
-                        this.state.placingPiece,
-                        '',
-                        this.state.placingRoyalty
-                      );
-                      if (!PrMove(parsed)) {
-                        console.log('invalid move');
+                        PceChar.split('')[this.state.placingPiece]
+                      ),
+                events: {},
+              }}
+              selectable={{
+                enabled: true,
+                selected:
+                  this.state.placingPiece !== 0
+                    ? {
+                        role: `${PceChar.split('')[
+                          this.state.placingPiece
+                        ].toLowerCase()}-piece`,
+                        color: 'white',
                       }
-                      this.setState(
-                        (prevState) => ({
-                          ...prevState,
-                          history: [...prevState.history, PrMove(parsed)],
-                          fen: outputFenOfCurrentPosition(),
-                          fenHistory: [
-                            ...prevState.fenHistory,
-                            outputFenOfCurrentPosition(),
-                          ],
-                          royalties: {
-                            // todo remove old keys
-                            ...prevState.royalties,
-                            [`royalty${char}`]: {
-                              ...prevState.royalties[`royalty${char}`],
-                              [key]: 8,
-                            },
-                          },
-                          lastMove: [key, key],
-                          placingPiece: 0,
-                          placingRoyalty: 0,
-                          swapType: '',
-                        }),
-                        () => this.engineGo()
-                      );
-                    } else {
-                      this.setState({
-                        placingRoyalty: this.state.placingRoyalty,
-                      });
-                    }
-                  }
-                } else {
+                    : this.state.placingRoyalty !== 0
+                    ? {
+                        role: `r${RtyChar.split('')[
+                          this.state.placingRoyalty
+                        ].toLowerCase()}-piece`,
+                        color: 'white',
+                      }
+                    : null,
+                fromPocket: false,
+              }}
+              events={{
+                change: () => {},
+                dropNewPiece: (_piece: string, key: string) => {
                   if (
-                    this.state.placingPiece === 0 &&
-                    this.state.placingRoyalty === 0
-                  )
-                    return;
-                  if (this.state.placingPiece === 333)
-                    ClearPiece(prettyToSquare(key));
+                    this.state.playing &&
+                    GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
+                  ) {
+                    const parsed = this.arcaneChess().makeUserMove(
+                      null,
+                      key,
+                      this.state.placingPiece,
+                      '',
+                      this.state.placingRoyalty
+                    );
+                    if (!PrMove(parsed)) {
+                      console.log('invalid move');
+                    }
+                    this.setState(
+                      (prevState) => ({
+                        history: [...prevState.history, PrMove(parsed)],
+                        fen: outputFenOfCurrentPosition(),
+                        fenHistory: [
+                          ...prevState.fenHistory,
+                          outputFenOfCurrentPosition(),
+                        ],
+                        lastMove: [key, key],
+                        placingPiece: 0,
+                        placingRoyalty: 0,
+                        swapType: '',
+                      }),
+                      () => {
+                        this.engineGo();
+                      }
+                    );
+                  }
                   if (this.state.placingRoyalty !== 0) {
-                    this.arcaneChess().addRoyalty(`royalty${char}`, key, 8);
                     this.setState((prevState) => ({
                       ...prevState,
                       royalties: {
                         ...prevState.royalties,
-                        [`royalty${char}`]: {
-                          ...prevState.royalties[`royalty${char}`],
-                          [key]: 8,
+                        [`royalty${
+                          RtyChar.split('')[this.state.placingRoyalty]
+                        }`]: {
+                          ...prevState.royalties[
+                            `royalty${
+                              RtyChar.split('')[this.state.placingRoyalty]
+                            }`
+                          ],
+                          [key]: 6,
                         },
                       },
+                      placingRoyalty: this.state.playing
+                        ? 0
+                        : this.state.placingRoyalty,
                     }));
-                  } else {
-                    AddPiece(prettyToSquare(key), this.state.placingPiece);
                   }
-                  this.setState({
-                    fen: outputFenOfCurrentPosition(),
-                    fenHistory: [outputFenOfCurrentPosition()],
-                  });
-                }
-              },
-            }}
-            draggable={{
-              enabled: this.state.placingRoyalty === 0 ? true : false,
-            }}
-          />
-        </div>
-        <div className="top-right">
-          <div className="panels-title-description">
-            <div className="panels">
-              {_.map(this.state.nodeObject, (panel: any, key: string) => {
-                return (
-                  <div
-                    className="panel"
-                    key={key}
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      background:
-                        this.state.currPanel === key ? 'darkblue' : '#444444',
-                    }}
-                    onClick={() => {
-                      const nodeA = this.state.bookObject[this.state.currNode];
-                      const panelA = this.state.nodeObject[key];
-
-                      // No need to retrieve newPanelData using a function unless it's coming from outside this onClick handler's scope.
-                      // If panelA already contains the data you need, just use it directly.
-
-                      // Deep clone objects that you're going to update to ensure immutability.
-                      // This includes royalties, whiteArcane, and blackArcane.
-                      // Adjust the cloning method based on your data structure and what you need to copy (shallow vs. deep clone).
-                      const newRoyalties = JSON.parse(
-                        JSON.stringify(panelA.royalties)
-                      );
-                      const newWhiteArcane = JSON.parse(
-                        JSON.stringify(panelA.whiteArcane)
-                      );
-                      const newBlackArcane = JSON.parse(
-                        JSON.stringify(panelA.blackArcane)
-                      );
-
-                      this.chessgroundRef.current?.setAutoShapes([
-                        ...(panelA.arrowsCircles ?? []),
-                      ]);
-
+                },
+                move: (orig: string, dest: string) => {
+                  if (this.state.playing) {
+                    // to pass promotion to makeusermove epsilon
+                    // console.log(capturedPiece);
+                    const parsed = this.arcaneChess().makeUserMove(
+                      orig,
+                      dest,
+                      0,
+                      this.state.swapType,
+                      this.state.placingRoyalty
+                    );
+                    if (!PrMove(parsed)) {
+                      console.log('invalid move');
+                      // debugger;
+                    }
+                    this.setState(
+                      (prevState) => ({
+                        history: [...prevState.history, PrMove(parsed)],
+                        fen: outputFenOfCurrentPosition(),
+                        fenHistory: [
+                          ...prevState.fenHistory,
+                          outputFenOfCurrentPosition(),
+                        ],
+                        lastMove: [orig, dest],
+                        placingPiece: 0,
+                        placingRoyalty: 0,
+                        swapType: '',
+                        royalties: {
+                          royaltyQ: _.mapValues(
+                            prevState.royalties.royaltyQ,
+                            (value) => value - 1
+                          ),
+                          royaltyT: _.mapValues(
+                            prevState.royalties.royaltyT,
+                            (value) => value - 1
+                          ),
+                          royaltyM: _.mapValues(
+                            prevState.royalties.royaltyM,
+                            (value) => value - 1
+                          ),
+                          royaltyV: _.mapValues(
+                            prevState.royalties.royaltyV,
+                            (value) => value - 1
+                          ),
+                          royaltyE: _.mapValues(
+                            prevState.royalties.royaltyE,
+                            (value) => value - 1
+                          ),
+                        },
+                      }),
+                      () => this.engineGo()
+                    );
+                  } else {
+                    editMovePiece(orig, dest);
+                    this.setState({
+                      fen: outputFenOfCurrentPosition(),
+                      fenHistory: [outputFenOfCurrentPosition()],
+                    });
+                  }
+                },
+                select: (key: string) => {
+                  const char = RtyChar.split('')[this.state.placingRoyalty];
+                  const whiteLimit =
+                    100 - 10 * (8 - GameBoard.summonRankLimits[0]);
+                  const blackLimit =
+                    20 + 10 * (8 - GameBoard.summonRankLimits[1]);
+                  if (this.state.playing) {
+                    if (this.state.placingRoyalty > 0) {
+                      if (
+                        ((GameBoard.side === COLOURS.WHITE &&
+                          prettyToSquare(key) < whiteLimit) ||
+                          (GameBoard.side === COLOURS.BLACK &&
+                            prettyToSquare(key) > blackLimit)) &&
+                        GameBoard.pieces[prettyToSquare(key)] !== PIECES.EMPTY
+                      ) {
+                        const parsed = this.arcaneChess().makeUserMove(
+                          null,
+                          key,
+                          this.state.placingPiece,
+                          '',
+                          this.state.placingRoyalty
+                        );
+                        if (!PrMove(parsed)) {
+                          console.log('invalid move');
+                        }
+                        this.setState(
+                          (prevState) => ({
+                            ...prevState,
+                            history: [...prevState.history, PrMove(parsed)],
+                            fen: outputFenOfCurrentPosition(),
+                            fenHistory: [
+                              ...prevState.fenHistory,
+                              outputFenOfCurrentPosition(),
+                            ],
+                            royalties: {
+                              // todo remove old keys
+                              ...prevState.royalties,
+                              [`royalty${char}`]: {
+                                ...prevState.royalties[`royalty${char}`],
+                                [key]: 8,
+                              },
+                            },
+                            lastMove: [key, key],
+                            placingPiece: 0,
+                            placingRoyalty: 0,
+                            swapType: '',
+                          }),
+                          () => this.engineGo()
+                        );
+                      } else {
+                        this.setState({
+                          placingRoyalty: this.state.placingRoyalty,
+                        });
+                      }
+                    }
+                  } else {
+                    if (
+                      this.state.placingPiece === 0 &&
+                      this.state.placingRoyalty === 0
+                    )
+                      return;
+                    if (this.state.placingPiece === 333)
+                      ClearPiece(prettyToSquare(key));
+                    if (this.state.placingRoyalty !== 0) {
+                      this.arcaneChess().addRoyalty(`royalty${char}`, key, 8);
                       this.setState((prevState) => ({
                         ...prevState,
-                        currPanel: key,
-                        panelObject: {
-                          ...panelA,
-                          royalties: newRoyalties,
-                          whiteArcane: newWhiteArcane,
-                          blackArcane: newBlackArcane,
-                        },
-                        royalties: newRoyalties,
-                        panelText: panelA.panelText,
-                        fen: panelA.fen,
-                        fenHistory: [...panelA.fenHistory],
-                        history: [...panelA.history],
-                        preset: panelA.preset,
-                        config: {
-                          ...prevState.config,
-                          W: {
-                            ...prevState.config.W,
-                            arcana: newWhiteArcane,
-                          },
-                          BK: {
-                            ...prevState.config.BK,
-                            arcana: newBlackArcane,
+                        royalties: {
+                          ...prevState.royalties,
+                          [`royalty${char}`]: {
+                            ...prevState.royalties[`royalty${char}`],
+                            [key]: 8,
                           },
                         },
-                        correctMoves: [...panelA.correctMoves],
                       }));
-                      ParseFen(panelA.fen);
-                    }}
-                  >
-                    {key}
-                    {/* <div
+                    } else {
+                      AddPiece(prettyToSquare(key), this.state.placingPiece);
+                    }
+                    this.setState({
+                      fen: outputFenOfCurrentPosition(),
+                      fenHistory: [outputFenOfCurrentPosition()],
+                    });
+                  }
+                },
+              }}
+              draggable={{
+                enabled: this.state.placingRoyalty === 0 ? true : false,
+              }}
+            />
+          </div>
+          <div className="top-right">
+            <div className="panels-title-description">
+              <div className="panels">
+                {_.map(this.state.nodeObject, (_panel: any, key: string) => {
+                  return (
+                    <div
+                      className="panel"
+                      key={key}
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        background:
+                          this.state.currPanel === key ? 'darkblue' : '#444444',
+                      }}
+                      onClick={() => {
+                        // const nodeA =
+                        //   this.state.bookObject[this.state.currNode];
+                        const panelA = this.state.nodeObject[key];
+
+                        // No need to retrieve newPanelData using a function unless it's coming from outside this onClick handler's scope.
+                        // If panelA already contains the data you need, just use it directly.
+
+                        // Deep clone objects that you're going to update to ensure immutability.
+                        // This includes royalties, whiteArcane, and blackArcane.
+                        // Adjust the cloning method based on your data structure and what you need to copy (shallow vs. deep clone).
+                        const newRoyalties = JSON.parse(
+                          JSON.stringify(panelA.royalties)
+                        );
+                        const newWhiteArcane = JSON.parse(
+                          JSON.stringify(panelA.whiteArcane)
+                        );
+                        const newBlackArcane = JSON.parse(
+                          JSON.stringify(panelA.blackArcane)
+                        );
+
+                        this.chessgroundRef.current?.setAutoShapes([
+                          ...(panelA.arrowsCircles ?? []),
+                        ]);
+
+                        this.setState((prevState) => ({
+                          ...prevState,
+                          currPanel: key,
+                          panelObject: {
+                            ...panelA,
+                            royalties: newRoyalties,
+                            whiteArcane: newWhiteArcane,
+                            blackArcane: newBlackArcane,
+                          },
+                          royalties: newRoyalties,
+                          panelText: panelA.panelText,
+                          fen: panelA.fen,
+                          fenHistory: [...panelA.fenHistory],
+                          history: [...panelA.history],
+                          preset: panelA.preset,
+                          description: panelA.panelText,
+                          config: {
+                            ...prevState.config,
+                            W: {
+                              ...prevState.config.W,
+                              arcana: newWhiteArcane,
+                            },
+                            BK: {
+                              ...prevState.config.BK,
+                              arcana: newBlackArcane,
+                            },
+                          },
+                          correctMoves: [...panelA.correctMoves],
+                        }));
+                        ParseFen(panelA.fen);
+                      }}
+                    >
+                      {key}
+                      {/* <div
                       className="delete-panel"
                       onClick={() => {
                         this.setState((prevState) => ({
@@ -1546,109 +1543,121 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     >
                       -
                     </div> */}
-                  </div>
-                );
-              })}
-              <Input
-                placeholder="panel-x"
-                color="B"
-                value={this.state.newBoardName}
-                width={110}
-                onChange={(value) => {
-                  this.setState({ newBoardName: value });
-                }}
-                password={false}
-              />
-              <Button
-                text="+"
-                className="tertiary"
-                color="G"
-                height={31}
-                width={110}
-                onClick={() => {
-                  this.setState((prevState) => ({
-                    ...prevState,
-                    currNode: this.state.newNodeName,
-                    currPanel: this.state.newBoardName,
-                    bookObject: {
-                      ...prevState.bookObject,
-                      [this.state.currNode]: {
-                        ...prevState.bookObject[this.state.currNode],
-                        panels: {
-                          ...prevState.bookObject[this.state.currNode].panels,
-                          [this.state.newBoardName]: {
-                            fen: '8/8/8/8/8/8/8/8 w - - 0 1',
-                            fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
-                            history: [],
-                            panelText: 'Panel Description ;soihgasog1',
-                            arrowsCircles: [],
-                            royalties: {
-                              royaltyQ: {},
-                              royaltyT: {},
-                              royaltyM: {},
-                              royaltyV: {},
-                              royaltyE: {},
+                    </div>
+                  );
+                })}
+                <Input
+                  placeholder="panel-x"
+                  color="B"
+                  value={this.state.newBoardName}
+                  width={110}
+                  onChange={(value) => {
+                    this.setState({ newBoardName: value });
+                  }}
+                  password={false}
+                />
+                <Button
+                  text="+"
+                  className="tertiary"
+                  color="G"
+                  height={31}
+                  width={110}
+                  onClick={() => {
+                    this.setState((prevState) => ({
+                      ...prevState,
+                      currNode: this.state.newNodeName,
+                      currPanel: this.state.newBoardName,
+                      bookObject: {
+                        ...prevState.bookObject,
+                        [this.state.currNode]: {
+                          ...prevState.bookObject[this.state.currNode],
+                          panels: {
+                            ...prevState.bookObject[this.state.currNode].panels,
+                            [this.state.newBoardName]: {
+                              fen: '8/8/8/8/8/8/8/8 w - - 0 1',
+                              fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
+                              history: [],
+                              panelText: '',
+                              arrowsCircles: [],
+                              royalties: {
+                                royaltyQ: {},
+                                royaltyT: {},
+                                royaltyM: {},
+                                royaltyV: {},
+                                royaltyE: {},
+                              },
+                              preset: 'CLEAR',
+                              whiteArcane: {},
+                              blackArcane: {},
+                              config: {},
+                              correctMoves: [],
                             },
-                            preset: 'CLEAR',
-                            whiteArcane: {},
-                            blackArcane: {},
-                            config: {},
-                            correctMoves: [],
                           },
                         },
                       },
-                    },
-                    nodeObject: {
-                      ...prevState.nodeObject,
-                      [this.state.newBoardName]: {
-                        fen: '8/8/8/8/8/8/8/8 w - - 0 1',
-                        fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
-                        history: [],
-                        panelText: 'Panel Description ;soihgasog2',
-                        arrowsCircles: [],
-                        royalties: {
-                          royaltyQ: {},
-                          royaltyT: {},
-                          royaltyM: {},
-                          royaltyV: {},
-                          royaltyE: {},
+                      nodeObject: {
+                        ...prevState.nodeObject,
+                        [this.state.newBoardName]: {
+                          fen: '8/8/8/8/8/8/8/8 w - - 0 1',
+                          fenHistory: ['8/8/8/8/8/8/8/8 w - - 0 1'],
+                          history: [],
+                          panelText: '',
+                          arrowsCircles: [],
+                          nodeText: '',
+                          reward: [],
+                          description: '',
+                          opponent: '',
+                          prereq: '',
+                          royalties: {
+                            royaltyQ: {},
+                            royaltyT: {},
+                            royaltyM: {},
+                            royaltyV: {},
+                            royaltyE: {},
+                          },
+                          preset: 'CLEAR',
+                          whiteArcane: {},
+                          blackArcane: {},
+                          config: {},
+                          correctMoves: [],
                         },
-                        preset: 'CLEAR',
-                        whiteArcane: {},
-                        blackArcane: {},
-                        config: {},
-                        correctMoves: [],
                       },
-                    },
-                    panelObject: this.state.nodeObject[this.state.newBoardName],
-                  }));
-                }}
-              />
-            </div>
-            <div className="title-description">
-              <Input
-                // id="test"
-                className="input title"
-                color="B"
-                height={40}
-                width={280}
-                placeholder="TITLE"
-                value={this.state.title}
-                onChange={(value) => this.setState({ title: value })}
-                password={false}
-              />
-              <Input
-                // id="test"
-                className="input title"
-                color="B"
-                height={40}
-                width={280}
-                placeholder="OPPONENT"
-                value={this.state.opponent}
-                onChange={(value) => this.setState({ opponent: value })}
-                password={false}
-              />
-              {/* <input
+                      title: '',
+                      panelObject:
+                        this.state.nodeObject[this.state.newBoardName],
+                      nodeText: '',
+                      reward: [],
+                      description: '',
+                      opponent: '',
+                      prereq: '',
+                    }));
+                  }}
+                />
+              </div>
+              <div className="title-description">
+                <Input
+                  // id="test"
+                  className="input title"
+                  color="B"
+                  height={40}
+                  width={280}
+                  placeholder="TITLE"
+                  value={this.state.title}
+                  onChange={(value) => this.setState({ title: value })}
+                  password={false}
+                />
+                <Input
+                  // id="test"
+                  className="input title"
+                  color="B"
+                  height={40}
+                  width={280}
+                  placeholder="OPPONENT"
+                  value={this.state.opponent}
+                  onChange={(value) => this.setState({ opponent: value })}
+                  password={false}
+                />
+                {/* <input
                 className="input description"
                 color="B"
                 height={280}
@@ -1660,365 +1669,367 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 // textArg={this.state.fenHistory[this.state.fenHistory.length - 1]}
                 // setTextArg={() => this.setFen}
               /> */}
-              <textarea
-                className="description"
-                placeholder="NODE DESCRIPTIONS"
-                style={{
-                  color: 'white',
-                  background: '#333333',
-                  border: 'solid #555555 2px',
-                  borderRadius: '5px',
-                  resize: 'none',
-                }}
-                value={this.state.nodeText}
-                onChange={(event) =>
-                  this.setState({ nodeText: event.target.value })
-                }
-              ></textarea>
-              <textarea
-                className="description"
-                placeholder="PANEL TEXT"
-                style={{
-                  color: 'white',
-                  background: '#333333',
-                  border: 'solid #555555 2px',
-                  borderRadius: '5px',
-                  resize: 'none',
-                }}
-                value={this.state.panelText}
-                onChange={(event) =>
-                  this.setState({ panelText: event.target.value })
-                }
-              ></textarea>
-            </div>
-          </div>
-          <div className="piece-pickup">
-            <div className="piece-pickup-white">
-              {whitePiecePickupArray.map((piece, index) => (
-                <div
-                  className="piece-pickup-square"
-                  key={index}
-                  onClick={() => {
-                    this.setState({
-                      placingPiece: pieces[piece],
-                      placingRoyalty: 0,
-                    });
+                <textarea
+                  className="description"
+                  placeholder="NODE DESCRIPTIONS"
+                  style={{
+                    color: 'white',
+                    background: '#333333',
+                    border: 'solid #555555 2px',
+                    borderRadius: '5px',
+                    resize: 'none',
                   }}
-                >
+                  value={this.state.nodeText}
+                  onChange={(event) =>
+                    this.setState({ nodeText: event.target.value })
+                  }
+                ></textarea>
+                <textarea
+                  className="description"
+                  placeholder="PANEL TEXT"
+                  style={{
+                    color: 'white',
+                    background: '#333333',
+                    border: 'solid #555555 2px',
+                    borderRadius: '5px',
+                    resize: 'none',
+                  }}
+                  value={this.state.panelText}
+                  onChange={(event) =>
+                    this.setState({ panelText: event.target.value })
+                  }
+                ></textarea>
+              </div>
+            </div>
+            <div className="piece-pickup">
+              <div className="piece-pickup-white">
+                {whitePiecePickupArray.map((piece, index) => (
                   <div
-                    className={`${piece
-                      .substring(1, 2)
-                      .toLocaleLowerCase()}-piece ${
-                      piece.substring(0, 1) === 'w'
-                        ? `white ${this.state.whiteFaction}`
-                        : `black ${this.state.blackFaction}`
-                    }`}
-                    style={{
-                      position: 'relative',
-                      top: '4px',
-                      left: '4px',
-                      width: '40px',
-                      height: '40px',
-                      transform: 'scale(1.25)',
+                    className="piece-pickup-square"
+                    key={index}
+                    onClick={() => {
+                      this.setState({
+                        placingPiece: pieces[piece],
+                        placingRoyalty: 0,
+                      });
                     }}
-                  ></div>
-                </div>
-              ))}
-            </div>
-            <div className="piece-pickup-extra">
-              {_.map(extraPickupArray, (value, key: string) => (
-                <div
-                  key={key}
-                  className="piece-pickup-square"
-                  onMouseEnter={() => this.setState({ royaltyHover: key })}
-                  onMouseLeave={() => this.setState({ royaltyHover: '' })}
-                  onClick={() => {
-                    this.setState({
-                      placingRoyalty: royalties[`R${key}`],
-                      placingPiece: 0,
-                    });
-                  }}
-                >
+                  >
+                    <div
+                      className={`${piece
+                        .substring(1, 2)
+                        .toLocaleLowerCase()}-piece ${
+                        piece.substring(0, 1) === 'w'
+                          ? `white ${this.state.whiteFaction}`
+                          : `black ${this.state.blackFaction}`
+                      }`}
+                      style={{
+                        position: 'relative',
+                        top: '4px',
+                        left: '4px',
+                        width: '40px',
+                        height: '40px',
+                        transform: 'scale(1.25)',
+                      }}
+                    ></div>
+                  </div>
+                ))}
+              </div>
+              <div className="piece-pickup-extra">
+                {_.map(extraPickupArray, (value, key: string) => (
                   <div
-                    className="royalty-hover"
-                    style={{
-                      width: '50px',
-                      height: '50px',
-                      background: '#333333',
-                      position: 'relative',
-                      backgroundImage: `radial-gradient(
+                    key={key}
+                    className="piece-pickup-square"
+                    onMouseEnter={() => this.setState({ royaltyHover: key })}
+                    onMouseLeave={() => this.setState({ royaltyHover: '' })}
+                    onClick={() => {
+                      this.setState({
+                        placingRoyalty: royalties[`R${key}`],
+                        placingPiece: 0,
+                      });
+                    }}
+                  >
+                    <div
+                      className="royalty-hover"
+                      style={{
+                        width: '50px',
+                        height: '50px',
+                        background: '#333333',
+                        position: 'relative',
+                        backgroundImage: `radial-gradient(
           circle at 50% 50%,
           ${value} 0%,
           rgba(0, 0, 0, 0) 100%
         )`,
-                      backgroundColor:
-                        this.state.royaltyHover === key ? '#555555' : '#333333',
-                    }}
-                  ></div>
-                </div>
-              ))}
-              <div className="piece-pickup-square">
-                <div
-                  className="x-piece"
-                  style={{
-                    position: 'relative',
-                    top: '-25px',
-                    left: '-25px',
-                    width: '100px',
-                    height: '100px',
-                    transform: 'scale(.4)',
-                  }}
-                  onClick={() => {
-                    this.setState({
-                      placingPiece: pieces.EXILE,
-                      placingRoyalty: 0,
-                    });
-                  }}
-                ></div>
-              </div>
-            </div>
-            <div className="piece-pickup-black">
-              {blackPiecePickupArray.map((piece, index) => (
-                <div
-                  className="piece-pickup-square"
-                  key={index}
-                  onClick={() => {
-                    this.setState({
-                      placingPiece: pieces[piece],
-                      placingRoyalty: 0,
-                    });
-                  }}
-                >
+                        backgroundColor:
+                          this.state.royaltyHover === key
+                            ? '#555555'
+                            : '#333333',
+                      }}
+                    ></div>
+                  </div>
+                ))}
+                <div className="piece-pickup-square">
                   <div
-                    className={`${piece
-                      .substring(1, 2)
-                      .toLocaleLowerCase()}-piece ${
-                      piece.substring(0, 1) === 'w'
-                        ? `white ${this.state.whiteFaction}`
-                        : `black ${this.state.blackFaction}`
-                    }`}
+                    className="x-piece"
                     style={{
                       position: 'relative',
-                      top: '4px',
-                      left: '4px',
-                      width: '40px',
-                      height: '40px',
-                      transform: 'scale(1.25)',
+                      top: '-25px',
+                      left: '-25px',
+                      width: '100px',
+                      height: '100px',
+                      transform: 'scale(.4)',
+                    }}
+                    onClick={() => {
+                      this.setState({
+                        placingPiece: pieces.EXILE,
+                        placingRoyalty: 0,
+                      });
                     }}
                   ></div>
                 </div>
-              ))}
+              </div>
+              <div className="piece-pickup-black">
+                {blackPiecePickupArray.map((piece, index) => (
+                  <div
+                    className="piece-pickup-square"
+                    key={index}
+                    onClick={() => {
+                      this.setState({
+                        placingPiece: pieces[piece],
+                        placingRoyalty: 0,
+                      });
+                    }}
+                  >
+                    <div
+                      className={`${piece
+                        .substring(1, 2)
+                        .toLocaleLowerCase()}-piece ${
+                        piece.substring(0, 1) === 'w'
+                          ? `white ${this.state.whiteFaction}`
+                          : `black ${this.state.blackFaction}`
+                      }`}
+                      style={{
+                        position: 'relative',
+                        top: '4px',
+                        left: '4px',
+                        width: '40px',
+                        height: '40px',
+                        transform: 'scale(1.25)',
+                      }}
+                    ></div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="bottom-left">
-          <div className="faction-input">
-            {['R', 'O', 'W', 'Y', 'G', 'BK', 'B', 'V'].map((color, index) => (
-              <Button
-                text={greekLetters[index]}
-                key={index}
-                // className=""
-                className={`faction-swatch${
-                  this.state.selectedSide === color ||
-                  this.state.selectedFaction === color
-                    ? '-selected'
-                    : ''
-                } tertiary`}
-                color={color}
-                width={50}
-                height={46}
-                onClick={() => {
-                  this.selectFaction(color);
-                  this.selectSide(color);
-                }}
-                backgroundColorOverride={
-                  this.state.selectedSide === color ||
-                  this.state.selectedFaction === color
-                    ? factionColorMap[color]
-                    : ''
-                }
-              ></Button>
-            ))}
+          <div className="bottom-left">
+            <div className="faction-input">
+              {['R', 'O', 'W', 'Y', 'G', 'BK', 'B', 'V'].map((color, index) => (
+                <Button
+                  text={greekLetters[index]}
+                  key={index}
+                  // className=""
+                  className={`faction-swatch${
+                    this.state.selectedSide === color ||
+                    this.state.selectedFaction === color
+                      ? '-selected'
+                      : ''
+                  } tertiary`}
+                  color={color}
+                  width={50}
+                  height={30}
+                  onClick={() => {
+                    this.selectFaction(color);
+                    this.selectSide(color);
+                  }}
+                  backgroundColorOverride={
+                    this.state.selectedSide === color ||
+                    this.state.selectedFaction === color
+                      ? factionColorMap[color]
+                      : ''
+                  }
+                ></Button>
+              ))}
+            </div>
+            <div className="pv-line">
+              {this.state.hoverArcane ? (
+                <div className="arcana-detail">
+                  <p>{arcana[this.state.hoverArcane].name}</p>
+                  <p>{arcana[this.state.hoverArcane].description}</p>
+                </div>
+              ) : (
+                this.state.pvLine
+              )}
+            </div>
           </div>
-          <div className="pv-line">
-            {this.state.hoverArcane ? (
-              <div className="arcana-detail">
-                <p>{arcana[this.state.hoverArcane].name}</p>
-                <p>{arcana[this.state.hoverArcane].description}</p>
-              </div>
-            ) : (
-              this.state.pvLine
-            )}
-          </div>
-        </div>
-        <div className="bottom-center">
-          <div className="fen-input">
-            <Input
-              // id="test"
-              className="input fen-text-box"
-              color="B"
-              height={26}
-              width={360}
-              placeholder="FEN"
-              // current
-              value={this.state.fen} // Changed to use the value prop
-              onChange={(value) => {
-                this.setFen(value);
-              }}
-              password={false}
-              // textArg={this.state.fenHistory[this.state.fenHistory.length - 1]}
-              // setTextArg={() => this.setFen}
-            />
-            {this.state.playing ? (
-              <Button
-                text="RESET"
-                onClick={() => {
-                  // this.calculateFen();
-                  this.setState({
-                    playing: false,
-                    fen: this.booksMap[this.state.currBook][
-                      this.state.currNode
-                    ]['panels'][this.state.currPanel].fen,
-                    fenHistory: [
-                      this.booksMap[this.state.currBook][this.state.currNode][
-                        'panels'
-                      ][this.state.currPanel].fen,
-                    ],
-                    history:
-                      this.booksMap[this.state.currBook][this.state.currNode][
-                        'panels'
-                      ][this.state.currPanel].history,
-                    arrowsCircles:
-                      this.booksMap[this.state.currBook][this.state.currNode][
-                        'panels'
-                      ][this.state.currPanel].arrowsCircles,
-                    royalties:
-                      this.booksMap[this.state.currBook][this.state.currNode][
-                        'panels'
-                      ][this.state.currPanel].royalties,
-                    preset:
-                      this.booksMap[this.state.currBook][this.state.currNode][
-                        'panels'
-                      ][this.state.currPanel].preset,
-                  });
-                }}
-                className="primary"
+          <div className="bottom-center">
+            <div className="fen-input">
+              <Input
+                // id="test"
+                className="input fen-text-box"
                 color="B"
                 height={26}
-                width={120}
-                // disabled={this.state.fen === ''}
-                disabled={false}
-                // strong={true}
+                width={360}
+                placeholder="FEN"
+                // current
+                value={this.state.fen} // Changed to use the value prop
+                onChange={(value) => {
+                  this.setFen(value);
+                }}
+                password={false}
+                // textArg={this.state.fenHistory[this.state.fenHistory.length - 1]}
+                // setTextArg={() => this.setFen}
               />
-            ) : (
-              <Button
-                text="PLAY"
-                onClick={() => {
-                  console.log(
-                    this.state.config.W.arcana,
-                    this.state.config.BK.arcana
-                  );
-                  const fischer = randomize(
-                    this.state.config.W.arcana,
-                    this.state.config.BK.arcana
-                  );
-                  this.arcaneChess().startGame(
-                    this.state.fen,
-                    this.state.config.W.arcana,
-                    this.state.config.BK.arcana,
-                    this.state.royalties,
-                    this.state.preset
-                  );
-                  if (this.state.fen.split(' ')[1] === 'b') {
-                    this.engineGo();
-                  }
+              {this.state.playing ? (
+                <Button
+                  text="RESET"
+                  onClick={() => {
+                    // this.calculateFen();
+                    this.setState({
+                      playing: false,
+                      fen: this.booksMap[this.state.currBook][
+                        this.state.currNode
+                      ]['panels'][this.state.currPanel].fen,
+                      fenHistory: [
+                        this.booksMap[this.state.currBook][this.state.currNode][
+                          'panels'
+                        ][this.state.currPanel].fen,
+                      ],
+                      history:
+                        this.booksMap[this.state.currBook][this.state.currNode][
+                          'panels'
+                        ][this.state.currPanel].history,
+                      arrowsCircles:
+                        this.booksMap[this.state.currBook][this.state.currNode][
+                          'panels'
+                        ][this.state.currPanel].arrowsCircles,
+                      royalties:
+                        this.booksMap[this.state.currBook][this.state.currNode][
+                          'panels'
+                        ][this.state.currPanel].royalties,
+                      preset:
+                        this.booksMap[this.state.currBook][this.state.currNode][
+                          'panels'
+                        ][this.state.currPanel].preset,
+                    });
+                  }}
+                  className="primary"
+                  color="B"
+                  height={26}
+                  width={120}
+                  // disabled={this.state.fen === ''}
+                  disabled={false}
+                  // strong={true}
+                />
+              ) : (
+                <Button
+                  text="PLAY"
+                  onClick={() => {
+                    console.log(
+                      this.state.config.W.arcana,
+                      this.state.config.BK.arcana
+                    );
+                    // const fischer = randomize(
+                    //   this.state.config.W.arcana,
+                    //   this.state.config.BK.arcana
+                    // );
+                    this.arcaneChess().startGame(
+                      this.state.fen,
+                      this.state.config.W.arcana,
+                      this.state.config.BK.arcana,
+                      this.state.royalties,
+                      this.state.preset
+                    );
+                    if (this.state.fen.split(' ')[1] === 'b') {
+                      this.engineGo();
+                    }
 
+                    this.setState((prevState) => ({
+                      ...prevState,
+                      playing: true,
+                      placingPiece: 0,
+                      placingRoyalty: 0,
+                      swapType: '',
+                      fen: this.state.fen,
+                      fenHistory: [this.state.fen],
+                      royalties: {
+                        royaltyQ: _.fromPairs(
+                          _.map(GameBoard.royaltyQ, (v, k) => [PrSq(k), v])
+                        ),
+                        royaltyT: _.fromPairs(
+                          _.map(GameBoard.royaltyT, (v, k) => [PrSq(k), v])
+                        ),
+                        royaltyM: _.fromPairs(
+                          _.map(GameBoard.royaltyM, (v, k) => [PrSq(k), v])
+                        ),
+                        royaltyV: _.fromPairs(
+                          _.map(GameBoard.royaltyV, (v, k) => [PrSq(k), v])
+                        ),
+                        royaltyE: _.fromPairs(
+                          _.map(GameBoard.royaltyE, (v, k) => [PrSq(k), v])
+                        ),
+                      },
+                    }));
+                  }}
+                  className="primary"
+                  color="B"
+                  height={26}
+                  width={120}
+                  // disabled={this.state.fen === ''}
+                  disabled={false}
+                  // strong={true}
+                />
+              )}
+            </div>
+            <div></div>
+            <div className="time-input">
+              <Select
+                type="number"
+                width={90}
+                height={26}
+                options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
+                onChange={(value) => {
                   this.setState((prevState) => ({
                     ...prevState,
-                    playing: true,
-                    placingPiece: 0,
-                    placingRoyalty: 0,
-                    swapType: '',
-                    fen: this.state.fen,
-                    fenHistory: [this.state.fen],
-                    royalties: {
-                      royaltyQ: _.fromPairs(
-                        _.map(GameBoard.royaltyQ, (v, k) => [PrSq(k), v])
-                      ),
-                      royaltyT: _.fromPairs(
-                        _.map(GameBoard.royaltyT, (v, k) => [PrSq(k), v])
-                      ),
-                      royaltyM: _.fromPairs(
-                        _.map(GameBoard.royaltyM, (v, k) => [PrSq(k), v])
-                      ),
-                      royaltyV: _.fromPairs(
-                        _.map(GameBoard.royaltyV, (v, k) => [PrSq(k), v])
-                      ),
-                      royaltyE: _.fromPairs(
-                        _.map(GameBoard.royaltyE, (v, k) => [PrSq(k), v])
-                      ),
-                    },
+                    time: [
+                      [Number(value), prevState.time[0][1]],
+                      [prevState.time[1][0], prevState.time[1][1]],
+                    ],
                   }));
                 }}
-                className="primary"
-                color="B"
-                height={26}
-                width={120}
-                // disabled={this.state.fen === ''}
-                disabled={false}
-                // strong={true}
               />
-            )}
-          </div>
-          <div></div>
-          <div className="time-input">
-            <Select
-              type="number"
-              width={90}
-              height={26}
-              options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
-              onChange={(value) => {
-                this.setState((prevState) => ({
-                  ...prevState,
-                  time: [
-                    [Number(value), prevState.time[0][1]],
-                    [prevState.time[1][0], prevState.time[1][1]],
-                  ],
-                }));
-              }}
-            />
-            <Select
-              type="number"
-              width={90}
-              height={26}
-              options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
-              onChange={(value) => {
-                this.setState((prevState) => ({
-                  ...prevState,
-                  time: [
-                    [prevState.time[0][0], Number(value)],
-                    [prevState.time[1][0], prevState.time[1][1]],
-                  ],
-                }));
-              }}
-            />
-          </div>
-          <div className="reward-input">
-            <Input
-              color="B"
-              value={this.state.reward.toString()}
-              placeholder="REWARD"
-              width={180}
-              height={26}
-              onChange={(value) => {
-                this.setState({ thinkingTime: Number(value) });
-              }}
-              password={false}
-            ></Input>
-          </div>
-          <div></div>
-          {/* <div></div> */}
-          {/* <Button
+              <Select
+                type="number"
+                width={90}
+                height={26}
+                options={[1, 2, 3, 4, 5, 10, 15, 20, 30, 60]}
+                onChange={(value) => {
+                  this.setState((prevState) => ({
+                    ...prevState,
+                    time: [
+                      [prevState.time[0][0], Number(value)],
+                      [prevState.time[1][0], prevState.time[1][1]],
+                    ],
+                  }));
+                }}
+              />
+            </div>
+            <div className="reward-input">
+              <Input
+                color="B"
+                value={this.state.prereq}
+                placeholder="PREREQ"
+                width={180}
+                height={26}
+                onChange={(value) => {
+                  this.setState({ thinkingTime: Number(value) });
+                }}
+                password={false}
+              ></Input>
+            </div>
+            <div></div>
+            {/* <div></div> */}
+            {/* <Button
             text="SIM"
             onClick={() => this.arcaneChess().gameSim(100)}
             className="primary"
@@ -2029,165 +2040,173 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             disabled={false}
             // strong={true}
           /> */}
-          <div className="time-input">
-            <Select
-              type="number"
-              width={90}
-              height={26}
-              options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
-              onChange={(value) => {
-                this.setState((prevState) => ({
-                  ...prevState,
-                  time: [
-                    [prevState.time[0][0], prevState.time[0][1]],
-                    [Number(value), prevState.time[1][1]],
-                  ],
-                }));
-              }}
-            />
-            <Select
-              type="number"
-              width={90}
-              height={26}
-              options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
-              onChange={(value) => {
-                this.setState((prevState) => ({
-                  ...prevState,
-                  time: [
-                    [prevState.time[0][0], prevState.time[0][1]],
-                    [prevState.time[1][0], Number(value)],
-                  ],
-                }));
-              }}
-            />
-          </div>
-          <div className="material">
-            <div className="white-material">
-              {GameBoard.material[0] ? GameBoard.material[0] - 150000 : 0}
-            </div>
-            <div className="black-material">
-              {GameBoard.material[1] ? GameBoard.material[1] - 150000 : 0}
-            </div>
-          </div>
-          <Button
-            text="FACTIONIZE"
-            onClick={() => this.calculateFen()}
-            className="primary"
-            color="B"
-            height={31}
-            width={120}
-            // disabled={this.state.fen === ''}
-            disabled={false}
-            // strong={true}
-          />
-        </div>
-        <div className="bottom-right">
-          <div className="create-buttons">
-            <div className="content">
-              <Button
-                text="PUZZLE"
-                onClick={() => {
-                  const rating = this.state.puzzleEpsilon.split(' ')[0];
-                  const keyword = this.state.puzzleEpsilon
-                    .split(' ')
-                    .slice(1)
-                    .join(' ');
-
-                  axios
-                    .get(
-                      `http://localhost:8080/api/puzzles?rating=${rating}&keyword=${keyword}`
-                    )
-                    .then((response) => {
-                      // todo to be looped through
-                      this.setState((prevState) => ({
-                        fen: response.data[prevState.puzzleNum].FEN,
-                        fenHistory: [response.data[prevState.puzzleNum].FEN],
-                        // history: response.data.history,
-                        // arrowsCircles: response.data.arrowsCircles,
-                        // royalities: response.data.royalties,
-                        // preset: response.data.preset,
-                        // config: {
-                        //   W: {
-                        //     arcana: { ...response.data.whiteArcane },
-                        //   },
-                        //   BK: {
-                        //     arcana: { ...response.data.blackArcane },
-                        //   },
-                        // },
-                        correctMoves:
-                          response.data[prevState.puzzleNum].Moves.split(' '),
-                        puzzleResponse: [...response.data],
-                      }));
-                      ParseFen(response.data[this.state.puzzleNum].FEN);
-                    })
-                    .catch((error) => console.error('Error:', error));
+            <div className="time-input">
+              <Select
+                type="number"
+                width={90}
+                height={26}
+                options={[20, 30, 45, 60, 90, 120, 180, 300, 600]}
+                onChange={(value) => {
+                  this.setState((prevState) => ({
+                    ...prevState,
+                    time: [
+                      [prevState.time[0][0], prevState.time[0][1]],
+                      [Number(value), prevState.time[1][1]],
+                    ],
+                  }));
                 }}
-                className="tertiary"
-                color="B"
-                height={46}
-                width={100}
-                disabled={false}
               />
-              <Button
-                text="RAND"
-                className="tertiary"
-                color="B"
-                height={46}
-                width={100}
-                disabled={false}
-                onClick={() => {
-                  this.toggleAndRandomizeArcana(
-                    this.state.selectedSide === 'W' ? 'W' : 'BK'
-                  );
-                  // this.toggleAndRandomizeArcana('BK');
+              <Select
+                type="number"
+                width={90}
+                height={26}
+                options={[1, 2, 3, 4, 5, 10, 15, 20, 30, 60]}
+                onChange={(value) => {
+                  this.setState((prevState) => ({
+                    ...prevState,
+                    time: [
+                      [prevState.time[0][0], prevState.time[0][1]],
+                      [prevState.time[1][0], Number(value)],
+                    ],
+                  }));
                 }}
               />
             </div>
-            <div className="picker-extension">
-              <Button
-                className="tertiary"
-                color="B"
-                text="MOUSE"
-                height={46}
-                onClick={() => this.setState({ placingPiece: 0 })}
-              />
-              <Button
-                className="tertiary"
-                color="B"
-                text="TRASH"
-                height={46}
-                onClick={() => this.setState({ placingPiece: 333 })}
-              />
+            <div className="material">
+              <div className="white-material">
+                {GameBoard.material[0] ? GameBoard.material[0] - 150000 : 0}
+              </div>
+              <div className="black-material">
+                {GameBoard.material[1] ? GameBoard.material[1] - 150000 : 0}
+              </div>
             </div>
-            <div className="reset-output">
-              <Button
-                text="OUTPUT PANEL"
-                onClick={() => {
-                  const elements = document.getElementsByTagName('g');
-                  const arrowsCircles = [];
+            <Button
+              text="FACTIONIZE"
+              onClick={() => this.calculateFen()}
+              className="primary"
+              color="B"
+              height={31}
+              width={120}
+              // disabled={this.state.fen === ''}
+              disabled={false}
+              // strong={true}
+            />
+          </div>
+          <div className="bottom-right">
+            <div className="create-buttons">
+              <div className="content">
+                <Button
+                  text="PUZZLE"
+                  onClick={() => {
+                    const rating = this.state.puzzleEpsilon.split(' ')[0];
+                    const keyword = this.state.puzzleEpsilon
+                      .split(' ')
+                      .slice(1)
+                      .join(' ');
 
-                  for (let i = 0; i < elements.length; i++) {
-                    const children = elements[i].children;
-                    for (let j = 0; j < children.length; j++) {
-                      const items = children[j].getAttribute('cgHash');
-                      const itemsArray = items?.split(',');
-                      if (itemsArray?.length === 4) {
-                        arrowsCircles.push({
-                          orig: itemsArray[2],
-                          brush: itemsArray[3],
-                        });
-                      }
-                      if (itemsArray?.length === 5) {
-                        arrowsCircles.push({
-                          orig: itemsArray[2],
-                          dest: itemsArray[3],
-                          brush: itemsArray[4],
-                        });
+                    axios
+                      .get(
+                        `http://localhost:8080/api/puzzles?rating=${rating}&keyword=${keyword}`
+                      )
+                      .then((response) => {
+                        const allPanels: Record<string, PanelInfo> = {};
+
+                        console.log(response.data);
+
+                        response.data.forEach(
+                          (item: PuzzleData, index: number) => {
+                            const panelKey = `panel-${index + 1}`;
+                            allPanels[panelKey] = {
+                              ...this.state.nodeObject[this.state.currPanel],
+                              fen: item.FEN,
+                              fenHistory: [item.FEN],
+                              history: [...this.state.history],
+                              panelText: '',
+                              preset: '',
+                              viewOnly: false,
+                              orientation: 'white',
+                              whiteArcane: { ...this.state.config.W.arcana },
+                              blackArcane: { ...this.state.config.BK.arcana },
+                              correctMoves: item.Moves.split(' '),
+                            };
+                          }
+                        );
+                        console.log(allPanels);
+                        // navigator.clipboard.writeText(
+                        //   JSON.stringify(allPanels, null, 2)
+                        // );
+                        if (response.data.length > 0) {
+                          ParseFen(response.data[0].FEN);
+                        }
+                      })
+                      .catch((error) => {
+                        console.error('Error:', error);
+                      });
+                  }}
+                  className="tertiary"
+                  color="B"
+                  height={30}
+                  width={100}
+                  disabled={false}
+                />
+                <Button
+                  text="RAND"
+                  className="tertiary"
+                  color="B"
+                  height={30}
+                  width={100}
+                  disabled={false}
+                  onClick={() => {
+                    this.toggleAndRandomizeArcana(
+                      this.state.selectedSide === 'W' ? 'W' : 'BK'
+                    );
+                    // this.toggleAndRandomizeArcana('BK');
+                  }}
+                />
+              </div>
+              <div className="picker-extension">
+                {/* <Button
+                  className="tertiary"
+                  color="B"
+                  text="MOUSE"
+                  height={30}
+                  onClick={() => this.setState({ placingPiece: 0 })}
+                />
+                <Button
+                  className="tertiary"
+                  color="B"
+                  text="TRASH"
+                  height={30}
+                  onClick={() => this.setState({ placingPiece: 333 })}
+                /> */}
+              </div>
+              <div className="reset-output">
+                <Button
+                  text="PANEL"
+                  onClick={() => {
+                    const elements = document.getElementsByTagName('g');
+                    const arrowsCircles = [];
+                    for (let i = 0; i < elements.length; i++) {
+                      const children = elements[i].children;
+                      for (let j = 0; j < children.length; j++) {
+                        const items = children[j].getAttribute('cgHash');
+                        const itemsArray = items?.split(',');
+                        if (itemsArray?.length === 4) {
+                          arrowsCircles.push({
+                            orig: itemsArray[2],
+                            brush: itemsArray[3],
+                          });
+                        }
+                        if (itemsArray?.length === 5) {
+                          arrowsCircles.push({
+                            orig: itemsArray[2],
+                            dest: itemsArray[3],
+                            brush: itemsArray[4],
+                          });
+                        }
                       }
                     }
-                  }
-                  console.log({
-                    [this.state.currPanel]: {
+                    const objectToCopy = {
                       ...this.state.nodeObject[this.state.currPanel],
                       fen: this.state.fen,
                       fenHistory: [...this.state.fenHistory],
@@ -2202,44 +2221,50 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       blackArcane: { ...this.state.config.BK.arcana },
                       // config: { ...this.state.config },
                       correctMoves: [...this.state.correctMoves],
-                    },
-                  });
-                }}
-                className="tertiary"
-                color="B"
-                height={46}
-                width={133}
-                disabled={false}
-              />
-              <Button
-                text="OUTPUT NODE"
-                onClick={() => {
-                  console.log({
-                    [this.state.currNode]: {
+                    };
+                    console.log(objectToCopy);
+                    navigator.clipboard.writeText(
+                      JSON.stringify(objectToCopy, null, 2)
+                    );
+                  }}
+                  className="tertiary"
+                  color="B"
+                  height={30}
+                  width={133}
+                  disabled={false}
+                />
+                <Button
+                  text="NODE"
+                  onClick={() => {
+                    const objectToCopy = {
                       ...this.state.bookObject[this.state.currNode],
                       nodeText: this.state.nodeText,
                       opponent: this.state.opponent,
                       theme: this.state.theme,
                       time: this.state.time,
                       boss: false,
-                    },
-                  });
-                }}
-                className="tertiary"
-                color="B"
-                height={46}
-                width={133}
-                disabled={false}
-              />
-              <Button
-                text="RESET PANEL"
-                onClick={() => null}
-                className="tertiary"
-                color="B"
-                height={46}
-                width={133}
-                disabled={false}
-              />
+                    };
+                    console.log(objectToCopy);
+                    navigator.clipboard.writeText(
+                      JSON.stringify(objectToCopy, null, 2)
+                    );
+                  }}
+                  className="tertiary"
+                  color="B"
+                  height={30}
+                  width={133}
+                  disabled={false}
+                />
+                <Button
+                  text="TEMPLE"
+                  onClick={() => null}
+                  className="tertiary"
+                  color="B"
+                  height={30}
+                  width={133}
+                  disabled={false}
+                />
+              </div>
             </div>
           </div>
         </div>

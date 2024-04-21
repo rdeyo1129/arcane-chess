@@ -63,6 +63,7 @@ import book9 from 'src/data/books/book9.json';
 import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
+import { GenerateMoves, generatePowers } from 'src/arcaneChess/movegen.mjs';
 
 const booksMap: { [key: string]: { [key: string]: Node } } = {
   book1,
@@ -364,6 +365,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.setState({
       thinking: true,
     });
+
+    generatePowers();
+    GenerateMoves();
 
     new Promise((resolve) => {
       setTimeout(() => {
@@ -968,27 +972,21 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                       swapType: '',
                                     });
                                   } else {
-                                    this.setState(
-                                      {
-                                        placingRoyalty: 0,
-                                        placingPiece:
-                                          pieces[
-                                            key
-                                              .split('sumn')[1]
-                                              .toUpperCase() === 'X'
-                                              ? 'EXILE'
-                                              : `${
-                                                  this.state.selectedSide ===
-                                                  'white'
-                                                    ? 'w'
-                                                    : 'b'
-                                                }${key.split('sumn')[1]}`
-                                          ],
-                                      },
-                                      () => {
-                                        console.log(this.state.placingPiece);
-                                      }
-                                    );
+                                    this.setState({
+                                      placingRoyalty: 0,
+                                      placingPiece:
+                                        pieces[
+                                          key.split('sumn')[1].toUpperCase() ===
+                                          'X'
+                                            ? 'EXILE'
+                                            : `${
+                                                this.state.selectedSide ===
+                                                'white'
+                                                  ? 'w'
+                                                  : 'b'
+                                              }${key.split('sumn')[1]}`
+                                        ],
+                                    });
                                   }
                                 }
                                 if (key.includes('swap')) {
@@ -1150,7 +1148,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             this.state.placingRoyalty
                           );
                           if (!PrMove(parsed)) {
-                            console.log('invalid move');
+                            console.log('invalid move', piece);
                           }
                           this.setState(
                             (prevState) => ({

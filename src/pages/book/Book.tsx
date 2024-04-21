@@ -52,7 +52,7 @@ interface BookState {
 interface Node {
   id: string; // 'lesson-1';
   title: string;
-  time: number[]; // seconds
+  time: number[][]; // seconds
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
@@ -73,8 +73,8 @@ interface Node {
         [key: string]: { [key: string]: number };
       };
       preset: string;
-      whiteArcane?: { [key: string]: number };
-      blackArcane?: { [key: string]: number };
+      whiteArcane?: { [key: string]: number | string };
+      blackArcane?: { [key: string]: number | string };
       // orientation: string;
       config: {
         [key: string]: boolean | string | number;
@@ -398,7 +398,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                           this.state.book[this.state.selectedSwatch]?.panels[
                             'panel-1'
                           ].whiteArcane || {},
-                          (value: number, key: string) => {
+                          (_value: number, key: string) => {
                             return (
                               <img
                                 key={key}
@@ -406,8 +406,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                 src={`${arcana[key].imagePath}${
                                   this.state.arcaneHover === key ? '-hover' : ''
                                 }.svg`}
-                                // onMouseEnter={() => this.toggleHover(key)}
-                                // onMouseLeave={() => this.toggleHover('')}
                               />
                             );
                           }
@@ -428,8 +426,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                           this.state.book[this.state.selectedSwatch]?.panels[
                             'panel-1'
                           ].blackArcane || {},
-                          (value: number, key: string) => {
-                            console.log(value);
+                          (_value: number, key: string) => {
                             return (
                               <img
                                 key={key}
@@ -437,8 +434,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                 src={`${arcana[key].imagePath}${
                                   this.state.arcaneHover === key ? '-hover' : ''
                                 }.svg`}
-                                // onMouseEnter={() => this.toggleHover(key)}
-                                // onMouseLeave={() => this.toggleHover('')}
                               />
                             );
                           }

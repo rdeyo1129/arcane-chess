@@ -81,16 +81,6 @@ const booksMap: { [key: string]: { [key: string]: Node } } = {
   book12,
 };
 
-interface missionJsonI {
-  [key: string]: {
-    fen: string;
-    id: string;
-    prereq: string;
-    boss?: boolean;
-    playerClock: number | null;
-  };
-}
-
 interface ArcanaDetail {
   name: string;
   description: string;
@@ -105,7 +95,7 @@ interface ArcanaMap {
 interface Node {
   id: string;
   title: string;
-  time: [number[], number[]];
+  time: number[][];
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
@@ -118,14 +108,18 @@ interface Node {
       history: string[];
       panelText: string;
       // is arrows this a map?
-      arrowsCircles?: string[][] | undefined;
+      arrowsCircles?: {
+        orig: string;
+        brush: string;
+        dest?: string | undefined;
+      }[];
       // todo initRoyalties in arcaneChess return object
       royalties: {
         [key: string]: { [key: string]: number };
       };
       preset: string;
-      whiteArcane?: { [key: string]: number };
-      blackArcane?: { [key: string]: number };
+      whiteArcane?: { [key: string]: number | string };
+      blackArcane?: { [key: string]: number | string };
       // orientation: string;
       config: {
         [key: string]: boolean | string | number;
@@ -177,12 +171,12 @@ interface State {
   arcaneHover: string;
   wArcana:
     | {
-        [key: string]: number;
+        [key: string]: number | string;
       }
     | undefined;
   bArcana:
     | {
-        [key: string]: number;
+        [key: string]: number | string;
       }
     | undefined;
   lastMove: string[];
@@ -190,6 +184,7 @@ interface State {
     [key: string]: { [key: string]: number };
   };
   hideCompletedPage: boolean;
+  visitedPanels: string[];
 }
 
 interface Props {
@@ -205,9 +200,21 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   arcaneChess;
   chessgroundRef = createRef<IChessgroundApi>();
   chessclockRef = createRef<ChessClock>();
+
+  getRandomPanelKey = () => {
+    const LS = getLocalStorage(this.props.auth.user.username);
+    const panels = booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels;
+    const panelKeys = Object.keys(panels);
+    const randomPanelIndex = Math.floor(Math.random() * panelKeys.length);
+    return panelKeys[randomPanelIndex];
+  };
+
   constructor(props: Props) {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.username);
+    const initialPanelKey = this.getRandomPanelKey();
+    const initialPanelData =
+      booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[initialPanelKey];
     this.state = {
       playerClock:
         LS.config.color === 'white'
@@ -220,19 +227,19 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           : booksMap[`book${LS.chapter}`]?.[LS.nodeId].time[1][1],
       turn:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
-          `panel-1`
+          `panel-${parseInt(initialPanelKey.split('-')[1])}`
         ].fen.split(' ')[1] === 'w'
           ? 'white'
           : 'black',
       playerColor:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
-          `panel-1`
+          `panel-${parseInt(initialPanelKey.split('-')[1])}`
         ].fen.split(' ')[1] === 'w'
           ? 'black'
           : 'white',
       engineColor:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
-          `panel-1`
+          `panel-${parseInt(initialPanelKey.split('-')[1])}`
         ].fen.split(' ')[1] === 'w'
           ? 'white'
           : 'black',
@@ -240,24 +247,19 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       nodeId: LS.nodeId,
       moveNumber: 0,
       gameOver: false,
-      // getLocalStorage(this.props.auth.user.username).nodeScores[
-      //   getLocalStorage(this.props.auth.user.username).nodeId
-      // ] > 0,
       gameOverType: '',
-      fen: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
-        .fen,
+      fen: initialPanelData.fen,
       pvLine: [],
       history: [],
-      fenHistory: [
-        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1'].fen,
-      ],
+      fenHistory: [initialPanelData.fen],
       correctMoves:
-        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1']
-          .correctMoves,
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
+          `panel-${parseInt(initialPanelKey.split('-')[1])}`
+        ].correctMoves,
       thinking: SearchController.thinking,
       engineLastMove: [],
       thinkingTime: 500,
-      currPanel: 1,
+      currPanel: parseInt(initialPanelKey.split('-')[1]),
       whiteFaction: 'normal',
       blackFaction: 'normal',
       selected: 'a',
@@ -272,17 +274,22 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       },
       arcaneHover: '',
       wArcana:
-        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1']
-          .whiteArcane,
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
+          `panel-${parseInt(initialPanelKey.split('-')[1])}`
+        ].whiteArcane,
       bArcana:
-        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels['panel-1']
-          .blackArcane,
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
+          `panel-${parseInt(initialPanelKey.split('-')[1])}`
+        ].blackArcane,
       lastMove: [],
       royalties:
-        booksMap[`book${LS.chapter}`]?.[LS.nodeId].panels['panel-1'].royalties,
+        booksMap[`book${LS.chapter}`]?.[LS.nodeId].panels[
+          `panel-${parseInt(initialPanelKey.split('-')[1])}`
+        ].royalties,
       hideCompletedPage:
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
         LS.nodeId?.split('-')[0] !== 'temple',
+      visitedPanels: [initialPanelKey],
     };
     this.arcaneChess = (fen?: string) => {
       return arcaneChess({}, {}, fen, this.props.auth, {});
@@ -300,69 +307,50 @@ class UnwrappedTempleView extends React.Component<Props, State> {
 
   incrementPanel = () => {
     const LS = getLocalStorage(this.props.auth.user.username);
-    if (
-      this.state.currPanel ===
-      Object.keys(booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels).length
-    ) {
+    const panels = booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels;
+    const panelKeys = Object.keys(panels).filter(
+      (key) => !this.state.visitedPanels.includes(key)
+    );
+    const panelCount = panelKeys.length;
+
+    if (this.state.visitedPanels.length >= 10) {
+      // Check if 10 panels have been visited
       const timeLeft = this.stopAndReturnTime() as number | null;
       this.handleVictory(timeLeft);
+      console.log('Victory: 10 panels have been solved.');
       return;
     }
+
+    if (panelCount === 0) {
+      // No more panels to visit
+      console.log('All possible panels have been visited.');
+      return;
+    }
+
+    const randomPanelIndex = Math.floor(Math.random() * panelCount); // Generate a random panel index
+    const randomPanelKey = panelKeys[randomPanelIndex]; // Get the panel key corresponding to the random index
+
     this.setState(
       (prevState) => {
-        const newPanel = prevState.currPanel + 1;
+        const panelData = panels[randomPanelKey];
         this.chessgroundRef.current?.setAutoShapes([
-          ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].arrowsCircles ?? []),
+          ...(panelData.arrowsCircles ?? []),
         ]);
+        const newVisitedPanels = [...prevState.visitedPanels, randomPanelKey];
         return {
           gameOver: false,
-          currPanel: newPanel,
+          currPanel: parseInt(randomPanelKey.split('-')[1]), // Assumes your keys are in the format "panel-x"
           moveNumber: 0,
-          turn:
-            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-              `panel-${newPanel}`
-            ].fen.split(' ')[1] === 'w'
-              ? 'white'
-              : 'black',
-          playerColor:
-            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-              `panel-${newPanel}`
-            ].fen.split(' ')[1] === 'w'
-              ? 'black'
-              : 'white',
-          engineColor:
-            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-              `panel-${newPanel}`
-            ].fen.split(' ')[1] === 'w'
-              ? 'white'
-              : 'black',
-          fen: booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].fen,
-          fenHistory: [
-            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-              `panel-${newPanel}`
-            ].fen,
-          ],
-          correctMoves:
-            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-              `panel-${newPanel}`
-            ].correctMoves,
-          wArcana:
-            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-              `panel-${newPanel}`
-            ].whiteArcane,
-          bArcana:
-            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-              `panel-${newPanel}`
-            ].blackArcane,
-          royalties:
-            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-              `panel-${newPanel}`
-            ].royalties,
-          // orientation
+          turn: panelData.fen.split(' ')[1] === 'w' ? 'white' : 'black',
+          playerColor: panelData.fen.split(' ')[1] === 'w' ? 'black' : 'white',
+          engineColor: panelData.fen.split(' ')[1] === 'w' ? 'white' : 'black',
+          fen: panelData.fen,
+          fenHistory: [panelData.fen],
+          correctMoves: panelData.correctMoves,
+          wArcana: panelData.whiteArcane,
+          bArcana: panelData.blackArcane,
+          royalties: panelData.royalties,
+          visitedPanels: newVisitedPanels,
         };
       },
       () => {
@@ -371,13 +359,11 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           this.state.wArcana,
           this.state.bArcana,
           this.state.royalties
-          // this.state.preset
         );
         this.compTempleMove();
       }
     );
   };
-
   perftTest = (fen: string) => {
     PrintPieceLists();
     PrintBoard();
@@ -475,7 +461,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         this.state.correctMoves[this.state.moveNumber].slice(2, 4)
       );
       if (!PrMove(parsed)) {
-        console.log('invalid move');
+        // console.log('invalid move');
       }
       this.setState((prevState) => ({
         history: [...prevState.history, PrMove(parsed)],
@@ -747,7 +733,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                         dest: string
                         // capturedPiece: number
                       ) => {
-                        console.log('todo promotion');
+                        // console.log('todo promotion');
                         const parsed = this.arcaneChess().makeUserMove(
                           orig,
                           dest

@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     // Apply filtering if the parameters are provided
     const filteredData = filterData(data, rating, keyword);
 
-    res.json(getRandomSubset(filteredData, 32));
+    res.json(getRandomSubset(filteredData, 60));
   } catch (error) {
     console.error(error);
     res.status(500).send('Error processing CSV');

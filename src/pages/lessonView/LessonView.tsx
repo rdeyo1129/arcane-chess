@@ -69,7 +69,7 @@ interface ArcanaMap {
 interface Node {
   id: string;
   title: string;
-  time: number[];
+  time: number[][];
   nodeText: string;
   reward: (number | string)[];
   prereq: string;
@@ -91,8 +91,8 @@ interface Node {
         [key: string]: { [key: string]: number };
       };
       preset: string;
-      whiteArcane?: { [key: string]: number };
-      blackArcane?: { [key: string]: number };
+      whiteArcane?: { [key: string]: number | string };
+      blackArcane?: { [key: string]: number | string };
       // orientation: string;
       config: {
         [key: string]: boolean | string | number;
@@ -112,7 +112,6 @@ interface Node {
 
 interface State {
   turn: string;
-  playerClock: number | null;
   playerColor: string;
   engineColor: string;
   currPanel: number;
@@ -145,12 +144,12 @@ interface State {
   arcaneHover: string;
   wArcana:
     | {
-        [key: string]: number;
+        [key: string]: number | string;
       }
     | undefined;
   bArcana:
     | {
-        [key: string]: number;
+        [key: string]: number | string;
       }
     | undefined;
   lastMove: string[];
@@ -173,13 +172,6 @@ class UnwrappedLessonView extends React.Component<Props, State> {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.username);
     this.state = {
-      // todo, just make this an array of fenHistory, simplify state...
-      // todo make dyanamic
-      playerClock: LS.config.clock
-        ? booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].time[
-            LS.config.color === 'white' ? 0 : 1
-          ]
-        : 0,
       turn:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
           `panel-1`
@@ -206,9 +198,6 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       moveNumber: 0,
       currPanel: 1,
       gameOver: false,
-      // getLocalStorage(this.props.auth.user.username).nodeScores[
-      //   getLocalStorage(this.props.auth.user.username).nodeId
-      // ] > 0,
       gameOverType: '',
       fen: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
         .fen,
@@ -509,6 +498,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                       ? _.map(
                           this.state.wArcana,
                           (value: number, key: string) => {
+                            console.log('key', key, 'value', value);
                             return (
                               <img
                                 key={key}
@@ -524,7 +514,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                         )
                       : _.map(
                           this.state.bArcana,
-                          (value: number, key: string) => {
+                          (_value: number, key: string) => {
                             return (
                               <img
                                 key={key}

@@ -412,9 +412,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
               <div className="right">
                 <p className="endgame-text">
-                  Victory... {this.props.message} + {this.props.score}
+                  Victory... {this.props.message} {this.props.score ? '+' : ''}{' '}
+                  {this.props.score}
                 </p>
-
                 <div className="buttons">
                   {/* <Button
                     text={this.props.lessonBackButton ? 'BACK' : 'ANALYZE'}

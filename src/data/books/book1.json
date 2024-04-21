@@ -3,13 +3,13 @@
     "id": "lesson-1",
     "title": "Into the Unknown",
     "time": [
-      [100, 100],
-      [100, 100]
+      [0, 0],
+      [0, 0]
     ],
     "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
-    "reward": [500, "a", "b", "c"],
+    "reward": [],
     "prereq": "",
-    "opponent": "Sidian",
+    "opponent": "",
     "boss": false,
     "theme": "black",
     "panels": {
@@ -29,14 +29,11 @@
         },
         "arrowsCircles": [],
         "preset": "NORMAL",
-        "whiteArcane": {
-          "modsFUG": "true"
-        },
-        "blackArcane": {
-          "modsINH": "true"
-        },
+        "whiteArcane": {},
+        "blackArcane": {},
         "config": {},
         "correctMoves": [],
+        "viewOnly": true,
         "orientation": "white"
       },
       "panel-2": {
@@ -65,278 +62,1394 @@
         "blackArcane": {},
         "config": {},
         "correctMoves": [],
+        "viewOnly": true,
         "orientation": "white"
       }
     }
   },
   "temple-1": {
     "id": "temple-1",
-    "title": "temple 1",
+    "title": "Example Title",
     "time": [
-      [20, 5],
-      [100, 10]
+      [0, 0],
+      [0, 0]
     ],
-    "nodeText": "Complete puzzles.",
+    "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
+    "panelText": "",
     "reward": [500, "a", "b", "c"],
     "prereq": "",
-    "opponent": "Sidian",
-    "boss": false,
-    "theme": "black",
-    "panels": {
-      "panel-1": {
-        "fen": "r5k1/pp1b2pp/4p1p1/2p5/2PqNQ2/3P4/PP4PP/5R1K b - - 4 20",
-        "fenHistory": [
-          "r5k1/pp1b2pp/4p1p1/2p5/2PqNQ2/3P4/PP4PP/5R1K b - - 4 20"
-        ],
-        "history": ["e2e4", "e7e5"],
-        "panelText": "Lesson content example.\n\nThis is a new line.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyM": {
-            "e4": 4
-          },
-          "royaltyT": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "config": {},
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": ["d7c6", "f4f7", "g8h8", "f7f8", "a8f8", "f1f8"],
-        "orientation": "white"
-      },
-      "panel-2": {
-        "fen": "r3r1k1/p1pQ2pp/q4p2/8/8/1P3N2/P4PPP/2R2R1K w - - 4 25",
-        "fenHistory": ["r3r1k1/p1pQ2pp/q4p2/8/8/1P3N2/P4PPP/2R2R1K w - - 4 25"],
-        "history": [],
-        "panelText": "Panel Description ;soihgasog2",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": ["c1c7", "a6f1", "f3g1", "f1g1", "h1g1", "e8e1"],
-        "viewOnly": false,
-        "orientation": "white"
-      }
-    }
-  },
-  "mission-1": {
-    "id": "mission-1",
-    "title": "mission 1",
-    "time": [
-      [100, 3],
-      [5, 1]
-    ],
-    "nodeText": "First Description",
-    "reward": [500, "a", "b", "c"],
-    "prereq": "Some prerequisite",
     "opponent": "",
-    "boss": true,
-    "theme": "black",
-    "panels": {
-      "panel-1": {
-        "fen": "5k2/p7/8/2P5/p3b1p1/2R4p/3P1B2/3K4 w - - 0 1",
-        "fenHistory": ["5k2/p7/8/2P5/p3b1p1/2R4p/3P1B2/3K4 w - - 0 1"],
-        "history": [],
-        "panelText": "Panel Description ;soihgasog1",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": { "c5": 3 },
-          "royaltyM": { "h1": 3 },
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CAPALL",
-        "whiteArcane": {
-          "sumnB": 2,
-          "sumnQ": 2,
-          "sumnM": 2,
-          "sumnX": 2,
-          "shftP": 2,
-          "sumnRE": 3,
-          "sumnRQ": 3,
-          "swapADJ": 1,
-          "modsIMP": 1,
-          "modsORA": 3,
-          "modsTEM": 4,
-          "modsCON": 2
-        },
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [],
-        "viewOnly": false,
-        "orientation": "white"
-      }
-    }
-  },
-  "mission-2": {
-    "id": "mission-2",
-    "title": "Example Title",
-    "time": [
-      [100, 3],
-      [5, 1]
-    ],
-    "nodeText": "First Description",
-    "panelText": "Second Description",
-    "reward": [500, "a", "b", "c"],
-    "prereq": "Some prerequisite",
-    "opponent": "",
-    "theme": "yellow",
-    "panels": {
-      "panel-1": {
-        "fen": "7k/6pp/8/7V/8/7K/8/8 w - - 0 1",
-        "fenHistory": ["7k/6pp/8/7V/8/7K/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Panel Description ;soihgasog1",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CHESS",
-        "whiteArcane": {
-          "modsFUT": 1,
-          "sumnP": 1,
-          "sumnQ": 2,
-          "sumnRE": 1,
-          "sumnRQ": 1,
-          "sumnRM": 1
-        },
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [],
-        "viewOnly": false,
-        "orientation": "white"
-      }
-    },
-    "boss": false
-  },
-  "mission-3": {
-    "id": "mission-3",
-    "title": "Example Title",
-    "time": [
-      [100, 3],
-      [5, 1]
-    ],
-    "nodeText": "First Description",
-    "panelText": "Second Description",
-    "reward": [500, "a", "b", "c"],
-    "prereq": "Some prerequisite",
-    "opponent": "",
-    "theme": "purple",
-    "panels": {
-      "panel-1": {
-        "fen": "k5MR/ppp5/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["k5MR/ppp5/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Panel Description ;soihgasog2",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "HORDE",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [],
-        "viewOnly": false,
-        "orientation": "white"
-      }
-    },
-    "boss": false
-  },
-  "mission-4": {
-    "id": "mission-4",
-    "title": "Example Title",
-    "time": [
-      [100, 100],
-      [100, 100]
-    ],
-    "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
-    "panelText": "Second Description",
-    "reward": [500, "a", "b", "c"],
-    "prereq": "Some prerequisite",
-    "opponent": "Sidian",
-    "theme": "blue",
-    "panels": {
-      "panel-1": {
-        "fen": "8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/KRBNnbrk/QRBNnbrq w - - 0 1"],
-        "history": [],
-        "panelText": "Panel Description ;soihgasog2",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "DELIVERANCE",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [],
-        "viewOnly": false,
-        "orientation": "white"
-      }
-    },
-    "boss": false
-  },
-  "mission-5": {
-    "id": "mission-5",
-    "title": "Example Title",
-    "time": [
-      [100, 100],
-      [100, 100]
-    ],
-    "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
-    "panelText": "Second Description",
-    "reward": [500, "a", "b", "c"],
-    "prereq": "Some prerequisite",
-    "opponent": "Sidian",
     "theme": "",
     "panels": {
       "panel-1": {
-        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "fen": "r5n1/p1p3Qp/1p1k1p2/2b5/2B1pP2/1PN2bPK/P1P4P/q6R b - - 7 24",
         "fenHistory": [
-          "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+          "r5n1/p1p3Qp/1p1k1p2/2b5/2B1pP2/1PN2bPK/P1P4P/q6R b - - 7 24"
         ],
         "history": [],
-        "panelText": "Panel Description ;soihgasog1",
-        "arrowsCircles": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
         "royalties": {
           "royaltyQ": {},
-          "royaltyT": {},
           "royaltyM": {},
+          "royaltyT": {},
           "royaltyV": {},
           "royaltyE": {}
         },
+        "arrowsCircles": [],
         "preset": "CLEAR",
-        "whiteArcane": {
-          "sumnX": 1
-        },
+        "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
+        "correctMoves": ["a1h1", "c3b5", "d6c6", "g7c7"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "1r4k1/6pp/1qp5/p2pQ3/1Pp5/P6P/K1P3P1/4R3 b - - 1 36",
+        "fenHistory": ["1r4k1/6pp/1qp5/p2pQ3/1Pp5/P6P/K1P3P1/4R3 b - - 1 36"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["a5b4", "e5e6", "g8h8", "e6e8", "b8e8", "e1e8"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "1Q6/7p/5pp1/3K4/5PP1/2k1P2P/8/q7 w - - 1 43",
+        "fenHistory": ["1Q6/7p/5pp1/3K4/5PP1/2k1P2P/8/q7 w - - 1 43"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["d5e4", "a1h1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "2r2rk1/4b1p1/p2pB1Pp/8/q3bp2/2BQ4/1P6/1K1R3R b - - 1 29",
+        "fenHistory": [
+          "2r2rk1/4b1p1/p2pB1Pp/8/q3bp2/2BQ4/1P6/1K1R3R b - - 1 29"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g8h8", "h1h6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "4r1rk/1p3pbp/p2q1B1R/P1pP1PQ1/2B5/4p2P/1P6/6RK b - - 0 31",
+        "fenHistory": [
+          "4r1rk/1p3pbp/p2q1B1R/P1pP1PQ1/2B5/4p2P/1P6/6RK b - - 0 31"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g7f6", "h6h7", "h8h7", "g5h5"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "6k1/2R4p/1N1p2p1/1p1P4/1P2p3/Prb1BbPP/5P2/4K3 w - - 13 45",
+        "fenHistory": [
+          "6k1/2R4p/1N1p2p1/1p1P4/1P2p3/Prb1BbPP/5P2/4K3 w - - 13 45"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e3d2", "b3b1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "3r2k1/ppp2p2/1bn4Q/5qN1/8/8/PP3PPP/4RRK1 w - - 4 23",
+        "fenHistory": ["3r2k1/ppp2p2/1bn4Q/5qN1/8/8/PP3PPP/4RRK1 w - - 4 23"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e1e4", "f5f2", "f1f2", "d8d1", "e4e1", "d1e1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "r1bqkb1r/1ppnnp2/p6p/4N1pN/4P3/2PB4/PP3PPP/R1BQR1K1 b kq - 0 13",
+        "fenHistory": [
+          "r1bqkb1r/1ppnnp2/p6p/4N1pN/4P3/2PB4/PP3PPP/R1BQR1K1 b kq - 0 13"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["d7e5", "h5f6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "8/1p2k1p1/p2r2p1/6R1/PPPKP3/8/8/8 w - - 1 49",
+        "fenHistory": ["8/1p2k1p1/p2r2p1/6R1/PPPKP3/8/8/8 w - - 1 49"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["d4c5", "b7b6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-10": {
+        "fen": "8/8/pR2R1n1/1b3k1p/5P2/2p2KP1/3r4/8 b - - 3 44",
+        "fenHistory": ["8/8/pR2R1n1/1b3k1p/5P2/2p2KP1/3r4/8 b - - 3 44"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["c3c2", "e6f6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-11": {
+        "fen": "r1bq1b1r/pp1kn1pp/8/3Q4/2B2B2/2p5/PPP2PPP/2K1R3 b - - 0 14",
+        "fenHistory": [
+          "r1bq1b1r/pp1kn1pp/8/3Q4/2B2B2/2p5/PPP2PPP/2K1R3 b - - 0 14"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e7d5", "c4b5"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-12": {
+        "fen": "1r3rk1/4bpp1/1q1p2P1/p5P1/n3PB2/3B4/pPP5/K1QR3R b - - 0 26",
+        "fenHistory": [
+          "1r3rk1/4bpp1/1q1p2P1/p5P1/n3PB2/3B4/pPP5/K1QR3R b - - 0 26"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [
+          "a4b2",
+          "h1h8",
+          "g8h8",
+          "d1h1",
+          "h8g8",
+          "h1h8",
+          "g8h8",
+          "c1h1",
+          "h8g8",
+          "h1h7"
+        ],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-13": {
+        "fen": "r6r/pppk1pp1/3b2p1/4p3/2P1N3/3P4/PP2nPPP/R1B2R1K w - - 4 16",
+        "fenHistory": [
+          "r6r/pppk1pp1/3b2p1/4p3/2P1N3/3P4/PP2nPPP/R1B2R1K w - - 4 16"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e4d6", "h8h2", "h1h2", "a8h8", "c1h6", "h8h6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-14": {
+        "fen": "1q2r3/2n1p1kp/5p2/2pP1Q1N/2P5/8/p4PPP/3r1RK1 b - - 1 34",
+        "fenHistory": [
+          "1q2r3/2n1p1kp/5p2/2pP1Q1N/2P5/8/p4PPP/3r1RK1 b - - 1 34"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g7g8", "f5g4", "g8f7", "g4g7"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-15": {
+        "fen": "4r3/7p/p5k1/Pp1p1R2/1P1P3P/2r5/3K4/5R2 b - - 3 39",
+        "fenHistory": ["4r3/7p/p5k1/Pp1p1R2/1P1P3P/2r5/3K4/5R2 b - - 3 39"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["c3c4", "f5g5", "g6h6", "f1f6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-16": {
+        "fen": "6r1/1b3kp1/p3pnB1/2r1Q3/1q6/2N5/1PP2P2/2KR2R1 b - - 2 25",
+        "fenHistory": [
+          "6r1/1b3kp1/p3pnB1/2r1Q3/1q6/2N5/1PP2P2/2KR2R1 b - - 2 25"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["f7e7", "e5d6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-17": {
+        "fen": "8/1b3ppk/7p/pp6/2pP4/P1P4q/1P3Q2/R3RK2 w - - 0 29",
+        "fenHistory": ["8/1b3ppk/7p/pp6/2pP4/P1P4q/1P3Q2/R3RK2 w - - 0 29"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["f1g1", "h3h1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-18": {
+        "fen": "2r5/pb3P1p/1p3Qpk/3q4/5P2/6N1/P5PP/4R2K w - - 4 35",
+        "fenHistory": ["2r5/pb3P1p/1p3Qpk/3q4/5P2/6N1/P5PP/4R2K w - - 4 35"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e1g1", "d5g2", "g1g2", "c8c1", "g3f1", "c1f1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-19": {
+        "fen": "1r3rk1/p1q1bppp/1p1pbn2/8/2PQN3/1P4P1/PB3PBP/3R1RK1 b - - 5 15",
+        "fenHistory": [
+          "1r3rk1/p1q1bppp/1p1pbn2/8/2PQN3/1P4P1/PB3PBP/3R1RK1 b - - 5 15"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["f6e4", "d4g7"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-20": {
+        "fen": "r4rk1/pp3ppp/1qp2R2/8/3P4/2R5/PPP2QPP/6K1 b - - 0 20",
+        "fenHistory": ["r4rk1/pp3ppp/1qp2R2/8/3P4/2R5/PPP2QPP/6K1 b - - 0 20"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g7f6", "c3g3", "g8h8", "f2f6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-21": {
+        "fen": "6Q1/8/1p2ppk1/6p1/5Pq1/1P2n1P1/6P1/6K1 b - - 5 52",
+        "fenHistory": ["6Q1/8/1p2ppk1/6p1/5Pq1/1P2n1P1/6P1/6K1 b - - 5 52"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g6f5", "g8h7"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-22": {
+        "fen": "2r1r1k1/1bq1bpPp/p2p1Bn1/8/1p1pP3/4QP2/PPP3P1/1NKR1B1R w - - 0 20",
+        "fenHistory": [
+          "2r1r1k1/1bq1bpPp/p2p1Bn1/8/1p1pP3/4QP2/PPP3P1/1NKR1B1R w - - 0 20"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e3h6", "c7c2"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-23": {
+        "fen": "r5k1/pp2rppp/8/8/8/4RQ2/PPq3PP/5R1K b - - 1 22",
+        "fenHistory": ["r5k1/pp2rppp/8/8/8/4RQ2/PPq3PP/5R1K b - - 1 22"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["a8e8", "f3f7", "e7f7", "e3e8", "f7f8", "f1f8"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-24": {
+        "fen": "r4r1k/1b1qNpbp/p2p1Np1/1p6/2n1P2Q/1B2P3/PPP3PP/R4RK1 b - - 4 18",
+        "fenHistory": [
+          "r4r1k/1b1qNpbp/p2p1Np1/1p6/2n1P2Q/1B2P3/PPP3PP/R4RK1 b - - 4 18"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g7f6", "h4f6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-25": {
+        "fen": "r2q1r2/1ppnbppk/p3b2p/8/3BP3/P1NB3P/1PPQ2P1/2KR3R b - - 2 16",
+        "fenHistory": [
+          "r2q1r2/1ppnbppk/p3b2p/8/3BP3/P1NB3P/1PPQ2P1/2KR3R b - - 2 16"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["h7h8", "d2h6", "h8g8", "h6g7"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-26": {
+        "fen": "5rk1/p4p2/1p1rp1p1/3p2NR/2q2P2/2P3Q1/P1P3PP/6K1 b - - 0 24",
+        "fenHistory": [
+          "5rk1/p4p2/1p1rp1p1/3p2NR/2q2P2/2P3Q1/P1P3PP/6K1 b - - 0 24"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g6h5", "g5e6", "g8h7", "g3g7"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-27": {
+        "fen": "6k1/1p3pnp/p3pNp1/3b4/1P4P1/P1r4P/5P1B/4R1K1 b - - 2 35",
+        "fenHistory": [
+          "6k1/1p3pnp/p3pNp1/3b4/1P4P1/P1r4P/5P1B/4R1K1 b - - 2 35"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g8f8", "h2d6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-28": {
+        "fen": "8/pp1R4/4r1k1/P4pBp/2bN2nP/4p3/2B2bP1/7K b - - 1 36",
+        "fenHistory": ["8/pp1R4/4r1k1/P4pBp/2bN2nP/4p3/2B2bP1/7K b - - 1 36"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e3e2", "c2f5"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-29": {
+        "fen": "8/6pk/6p1/p5q1/3P4/3R4/4QR2/5KNr w - - 0 38",
+        "fenHistory": ["8/6pk/6p1/p5q1/3P4/3R4/4QR2/5KNr w - - 0 38"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e2f3", "g5g1", "f1e2", "g1e1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-30": {
+        "fen": "r2k3r/1bppnQp1/1p2p2p/p1q5/P7/2N1RP2/1PP2KPP/3R4 b - - 0 20",
+        "fenHistory": [
+          "r2k3r/1bppnQp1/1p2p2p/p1q5/P7/2N1RP2/1PP2KPP/3R4 b - - 0 20"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e7f5", "f7d7"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-31": {
+        "fen": "2b1k3/pp4Q1/3b1p2/3Pp3/4p3/2P3R1/Pq4PP/RN5K w - - 0 26",
+        "fenHistory": [
+          "2b1k3/pp4Q1/3b1p2/3Pp3/4p3/2P3R1/Pq4PP/RN5K w - - 0 26"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g7f6", "b2c1", "f6f1", "c1f1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-32": {
+        "fen": "7r/4kp2/pp1pr2q/2pRP3/P1P2P2/1P2Q1P1/3R2K1/8 w - - 1 32",
+        "fenHistory": [
+          "7r/4kp2/pp1pr2q/2pRP3/P1P2P2/1P2Q1P1/3R2K1/8 w - - 1 32"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["d5d6", "h6h1", "g2f2", "h8h2"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-33": {
+        "fen": "5rk1/pp3rpp/4Q3/4R3/8/2n1q3/P5PP/5R1K b - - 0 21",
+        "fenHistory": ["5rk1/pp3rpp/4Q3/4R3/8/2n1q3/P5PP/5R1K b - - 0 21"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e3d3", "e6f7", "f8f7", "e5e8", "f7f8", "f1f8"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-34": {
+        "fen": "5rk1/ppp3p1/5q1p/4p2Q/5P2/3P4/P1nBn1PP/R4R1K w - - 0 18",
+        "fenHistory": [
+          "5rk1/ppp3p1/5q1p/4p2Q/5P2/3P4/P1nBn1PP/R4R1K w - - 0 18"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["f4e5", "f6f1", "a1f1", "f8f1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-35": {
+        "fen": "r2qkb1r/3bn1p1/5p1p/1p1PR2Q/p1p5/P1N4P/BP3PP1/R1B3K1 b kq - 1 20",
+        "fenHistory": [
+          "r2qkb1r/3bn1p1/5p1p/1p1PR2Q/p1p5/P1N4P/BP3PP1/R1B3K1 b kq - 1 20"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g7g6", "h5g6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-36": {
+        "fen": "1kr2r2/pp2N1p1/3p4/4n1Pp/3BP2P/1P3PQ1/q7/2KR1R2 w - - 1 27",
+        "fenHistory": [
+          "1kr2r2/pp2N1p1/3p4/4n1Pp/3BP2P/1P3PQ1/q7/2KR1R2 w - - 1 27"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e7c8", "f8c8", "d4c5", "c8c5"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-37": {
+        "fen": "1B4k1/6p1/p3pb2/7p/P5nP/q5P1/2Q3B1/2KR1R2 w - - 1 29",
+        "fenHistory": ["1B4k1/6p1/p3pb2/7p/P5nP/q5P1/2Q3B1/2KR1R2 w - - 1 29"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["c1d2", "a3e3"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-38": {
+        "fen": "2kr4/2p2pp1/p1Pp1n1r/1p5p/4P3/P1N1QN1q/1PB2P2/R3R1K1 w - - 1 20",
+        "fenHistory": [
+          "2kr4/2p2pp1/p1Pp1n1r/1p5p/4P3/P1N1QN1q/1PB2P2/R3R1K1 w - - 1 20"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e3a7", "h6g6", "f3g5", "g6g5"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-39": {
+        "fen": "8/1kp3B1/1p5p/2p2r2/2K2n2/2P2P2/1r5P/3R1R2 w - - 2 32",
+        "fenHistory": ["8/1kp3B1/1p5p/2p2r2/2K2n2/2P2P2/1r5P/3R1R2 w - - 2 32"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g7h6", "b6b5"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-40": {
+        "fen": "3Nrr2/2R3pp/1p6/p3P3/1kP2nP1/8/PPK4P/3R4 b - - 2 26",
+        "fenHistory": ["3Nrr2/2R3pp/1p6/p3P3/1kP2nP1/8/PPK4P/3R4 b - - 2 26"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [
+          "e8d8",
+          "a2a3",
+          "b4a4",
+          "b2b3",
+          "a4a3",
+          "d1a1",
+          "a3b4",
+          "a1a4"
+        ],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-41": {
+        "fen": "r1b1k2r/p4ppp/2Nq4/2bp4/2p1nP2/8/PPPPQ1PP/RNB2R1K w kq - 3 13",
+        "fenHistory": [
+          "r1b1k2r/p4ppp/2Nq4/2bp4/2p1nP2/8/PPPPQ1PP/RNB2R1K w kq - 3 13"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["c6e5", "e4g3", "h2g3", "d6h6", "e2h5", "h6h5"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-42": {
+        "fen": "r1b1k2r/pp1p1ppp/4p3/q1b5/1n2nP2/P1Q2N2/1PPB2PP/R2NKB1R w KQkq - 0 12",
+        "fenHistory": [
+          "r1b1k2r/pp1p1ppp/4p3/q1b5/1n2nP2/P1Q2N2/1PPB2PP/R2NKB1R w KQkq - 0 12"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["c3g7", "b4c2", "e1e2", "a5b5"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-43": {
+        "fen": "2r2rkb/1p1qp2n/p2p2P1/2p1nN2/2P1P3/P2P3N/1P1Q1RP1/5RK1 b - - 0 31",
+        "fenHistory": [
+          "2r2rkb/1p1qp2n/p2p2P1/2p1nN2/2P1P3/P2P3N/1P1Q1RP1/5RK1 b - - 0 31"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e5g6", "f5h6", "g8g7", "f2f7", "f8f7", "f1f7"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-44": {
+        "fen": "r3kb1r/pp3ppp/1q2p1n1/3p2B1/P2N4/8/P1P1QPPP/R4RK1 b kq - 0 14",
+        "fenHistory": [
+          "r3kb1r/pp3ppp/1q2p1n1/3p2B1/P2N4/8/P1P1QPPP/R4RK1 b kq - 0 14"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["b6d4", "e2b5"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-45": {
+        "fen": "2r1r1k1/1pp2p2/3p2pp/2nN4/P3PP1q/6R1/1Q5P/6RK b - - 1 28",
+        "fenHistory": [
+          "2r1r1k1/1pp2p2/3p2pp/2nN4/P3PP1q/6R1/1Q5P/6RK b - - 1 28"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["c5e4", "g3g6", "f7g6", "g1g6", "g8f7", "b2g7"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-46": {
+        "fen": "r5k1/2Q2pp1/2n1B1p1/8/1n1p1P2/3Pq2P/2r1N1P1/R3RK2 b - - 0 37",
+        "fenHistory": [
+          "r5k1/2Q2pp1/2n1B1p1/8/1n1p1P2/3Pq2P/2r1N1P1/R3RK2 b - - 0 37"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["a8a1", "c7f7", "g8h7", "f7g8", "h7h6", "g8h8"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-47": {
+        "fen": "rn2kb1r/pp3p2/7p/4q1p1/1P6/P2b4/B3NPPP/2RQK2R b Kkq - 1 17",
+        "fenHistory": [
+          "rn2kb1r/pp3p2/7p/4q1p1/1P6/P2b4/B3NPPP/2RQK2R b Kkq - 1 17"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["d3e2", "c1c8", "e8e7", "d1d8"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-48": {
+        "fen": "5rk1/p2Rqppp/8/2r1PQ2/8/7P/6P1/5R1K b - - 2 29",
+        "fenHistory": ["5rk1/p2Rqppp/8/2r1PQ2/8/7P/6P1/5R1K b - - 2 29"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [
+          "e7e5",
+          "f5f7",
+          "f8f7",
+          "d7d8",
+          "e5e8",
+          "d8e8",
+          "f7f8",
+          "f1f8"
+        ],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-49": {
+        "fen": "5rk1/pp3qpp/2n5/1PpNp3/2P5/P2PQ1Pb/1B5P/R3RrK1 w - - 3 26",
+        "fenHistory": [
+          "5rk1/pp3qpp/2n5/1PpNp3/2P5/P2PQ1Pb/1B5P/R3RrK1 w - - 3 26"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e1f1", "f7f1", "a1f1", "f8f1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-50": {
+        "fen": "2r3rk/ppq2p1p/4pPpQ/8/3PBR2/2P4P/P2n2P1/6K1 b - - 3 24",
+        "fenHistory": [
+          "2r3rk/ppq2p1p/4pPpQ/8/3PBR2/2P4P/P2n2P1/6K1 b - - 3 24"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["d2e4", "h6h7", "h8h7", "f4h4"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-51": {
+        "fen": "r1b1Rqr1/pp1n3k/6p1/2pP3p/6N1/4Q1N1/P4PPP/4R1K1 b - - 1 24",
+        "fenHistory": [
+          "r1b1Rqr1/pp1n3k/6p1/2pP3p/6N1/4Q1N1/P4PPP/4R1K1 b - - 1 24"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["f8e8", "e3h6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-52": {
+        "fen": "5rk1/pp4pp/3QP2q/8/2P1B3/1P4P1/P4r1P/2R2RK1 w - - 0 23",
+        "fenHistory": [
+          "5rk1/pp4pp/3QP2q/8/2P1B3/1P4P1/P4r1P/2R2RK1 w - - 0 23"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e6e7", "h6h2"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-53": {
+        "fen": "8/p5rk/2Q1p2p/2b2p1P/8/1P3Bq1/P6R/5R1K w - - 3 37",
+        "fenHistory": ["8/p5rk/2Q1p2p/2b2p1P/8/1P3Bq1/P6R/5R1K w - - 3 37"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["h2g2", "g3h3", "g2h2", "h3f1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-54": {
+        "fen": "1n1qk2r/4b2p/2bpBnp1/8/8/1Q6/1PP2PPP/1NB1R1K1 b k - 4 16",
+        "fenHistory": [
+          "1n1qk2r/4b2p/2bpBnp1/8/8/1Q6/1PP2PPP/1NB1R1K1 b k - 4 16"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["b8d7", "e6f7", "e8f8", "c1h6"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-55": {
+        "fen": "8/Qp4k1/8/4qp2/6pp/7B/PP4PK/8 w - - 1 45",
+        "fenHistory": ["8/Qp4k1/8/4qp2/6pp/7B/PP4PK/8 w - - 1 45"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["h2g1", "e5e1", "g1h2", "g4g3"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-56": {
+        "fen": "Nr6/Q2nkpp1/4p3/8/1PB5/P2P2P1/2P1qP1p/2R2R1K w - - 1 26",
+        "fenHistory": [
+          "Nr6/Q2nkpp1/4p3/8/1PB5/P2P2P1/2P1qP1p/2R2R1K w - - 1 26"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["a8b6", "e2f3", "h1h2", "b8h8", "h2g1", "h8h1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-57": {
+        "fen": "8/2pr2k1/4N1p1/1p5p/8/2P1Q1K1/2q3PP/8 b - - 10 41",
+        "fenHistory": ["8/2pr2k1/4N1p1/1p5p/8/2P1Q1K1/2q3PP/8 b - - 10 41"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g7h8", "e3h6", "h8g8", "h6f8", "g8h7", "e6g5"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-58": {
+        "fen": "r5k1/3qb1pp/3p1p2/3P2NQ/p2pP1P1/3r4/1P3R1P/5RK1 b - - 1 30",
+        "fenHistory": [
+          "r5k1/3qb1pp/3p1p2/3P2NQ/p2pP1P1/3r4/1P3R1P/5RK1 b - - 1 30"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [
+          "f6g5",
+          "h5f7",
+          "g8h8",
+          "f7f8",
+          "e7f8",
+          "f2f8",
+          "a8f8",
+          "f1f8"
+        ],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-59": {
+        "fen": "4r1k1/pQ3ppp/1b3n2/8/8/2N3B1/PPq2PPP/3R2K1 w - - 2 23",
+        "fenHistory": ["4r1k1/pQ3ppp/1b3n2/8/8/2N3B1/PPq2PPP/3R2K1 w - - 2 23"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["b7c6", "c2d1", "c3d1", "e8e1"],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-60": {
+        "fen": "3r2k1/6p1/4Q3/4Bp2/5P2/P3rb1P/1P5K/4b3 b - - 0 39",
+        "fenHistory": ["3r2k1/6p1/4Q3/4Bp2/5P2/P3rb1P/1P5K/4b3 b - - 0 39"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["g8h8", "e6h6", "h8g8", "h6g7"],
         "viewOnly": false,
         "orientation": "white"
       }

@@ -547,7 +547,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         },
         0
       );
-      // set user top score if new
+      // set user top score if new high
       if (
         chapterPoints >
         getLocalStorage(this.props.auth.user.username).auth.user.campaign

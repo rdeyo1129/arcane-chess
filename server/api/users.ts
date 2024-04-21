@@ -10,6 +10,7 @@ import validateLoginInput from '../validation/login.js';
 
 // Load User model
 import { User } from '../models/User.js';
+import { Score } from '../models/Score.js';
 
 // @route POST api/users/register
 // @desc Register user
@@ -64,6 +65,16 @@ router.post('/register', (req, res) => {
             .catch((err) => console.log(err));
         });
       });
+
+      // new user score db instance
+      new Score({
+        userId: newUser._id,
+        username: newUser.username,
+        scores: new Map(),
+      })
+        .save()
+        .then((score) => res.json(score))
+        .catch((err) => console.log(err));
     }
   });
 });

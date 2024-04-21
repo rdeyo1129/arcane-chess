@@ -30,6 +30,7 @@ import { LessonView } from '././pages/lessonView/LessonView';
 import { TempleView } from '././pages/templeView/TempleView';
 import { MissionView } from '././pages/missionView/MissionView';
 import { QuickPlay } from '././pages/quickPlay/QuickPlay';
+import { League } from '././pages/league/League';
 
 import ReactDOM from 'react-dom/client';
 // import App from './App';
@@ -123,6 +124,14 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <MissionView />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/league"
+        element={
+          <PrivateRoute>
+            <League />
           </PrivateRoute>
         }
       />

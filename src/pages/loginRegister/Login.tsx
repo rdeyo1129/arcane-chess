@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
-import { Link, useLocation } from 'react-router-dom';
-// import { TextField } from '@mui/material';
-import { connect, useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -13,16 +11,7 @@ import Button from 'src/components/Button/Button';
 import Input from 'src/components/Input/Input';
 import Hero from 'src/components/hero2/Hero';
 
-// import Hero from '../components/Hero';
-
-// import { loginUser } from '../actions/authActions';
-
 import { loginUser } from '../../actions/authActions';
-
-interface AuthState {
-  isAuthenticated: boolean;
-  // add other properties of auth state
-}
 
 interface UserData {
   username: string;
@@ -30,22 +19,15 @@ interface UserData {
   guest: boolean;
 }
 
-interface RootState {
-  auth: AuthState;
-  // add other properties of your root state
-}
-
 const UnwrappedLogin: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [maskedPassword, setMaskedPassword] = useState('');
   // const auth = useSelector((state: RootState) => state.auth);
   const loginRegisterErrors = useSelector(
     (state: any) => state.loginRegisterErrors || {}
   );
-  const auth = useSelector((state: any) => state.auth);
 
   // const router = useRoutes();
   // constructor(props) {

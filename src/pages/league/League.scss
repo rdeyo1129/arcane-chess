@@ -1,0 +1,36 @@
+@import 'src/styles/main.scss';
+
+.outer-leaderboard {
+  margin: 20px;
+  .leaderboard {
+    width: 400px;
+    height: 400px;
+    background: #222222;
+    .user-score {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      width: 100%;
+      background: #333333;
+      .points {
+        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+        padding: 12px;
+        width: 400px;
+        .digit-box {
+          display: flex;
+          width: 16px;
+          flex-grow: 0;
+          flex-shrink: 0;
+          justify-content: flex-end;
+        }
+      }
+    }
+    .user-score > div {
+      width: 150px;
+      text-align: left;
+      margin-left: 10px;
+    }
+  }
+}

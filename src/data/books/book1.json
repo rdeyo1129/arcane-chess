@@ -216,7 +216,7 @@
           "sumnRQ": 1,
           "sumnRM": 1
         },
-        "blackArcane": { "sumnRE": 1, "sumnRQ": 1, "sumnRM": 1 },
+        "blackArcane": {},
         "config": {},
         "correctMoves": [],
         "viewOnly": false,
@@ -254,7 +254,7 @@
         },
         "preset": "HORDE",
         "whiteArcane": {},
-        "blackArcane": { "sumnQ": 1 },
+        "blackArcane": {},
         "config": {},
         "correctMoves": [],
         "viewOnly": false,

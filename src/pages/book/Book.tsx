@@ -141,13 +141,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       animatedValue: 0,
       targetValue: 0,
       credits: 4000,
-      // _.reduce(
-      //   getLocalStorage(this.props.auth.user.username).nodeScores,
-      //   (accumulator, value) => {
-      //     return accumulator + value;
-      //   },
-      //   0
-      // ),
       creditsAnimation: 0,
     };
   }

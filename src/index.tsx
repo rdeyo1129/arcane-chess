@@ -31,6 +31,7 @@ import { TempleView } from '././pages/templeView/TempleView';
 import { MissionView } from '././pages/missionView/MissionView';
 import { QuickPlay } from '././pages/quickPlay/QuickPlay';
 import { League } from '././pages/league/League';
+import { Lexicon } from '././pages/lexicon/Lexicon';
 
 import ReactDOM from 'react-dom/client';
 // import App from './App';
@@ -132,6 +133,14 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <League />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/lexicon"
+        element={
+          <PrivateRoute>
+            <Lexicon />
           </PrivateRoute>
         }
       />

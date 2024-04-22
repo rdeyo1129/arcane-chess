@@ -1,8 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { connect } from "react-redux";
-
-// import "../styles/front-page.scss";
 
 import './FrontPage.scss';
 import Hero from 'src/components/hero2/Hero';
@@ -13,7 +10,7 @@ type RandomSloganState = {
   currentSlogan: string;
 };
 
-class UnwrappedFrontPage extends React.Component<{}, RandomSloganState> {
+class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
   private slogans: string[];
   private intervalId: NodeJS.Timeout | undefined = undefined;
   constructor(props: object) {
@@ -157,16 +154,4 @@ class UnwrappedFrontPage extends React.Component<{}, RandomSloganState> {
   }
 }
 
-// function mapStateToProps({}) {
-//   return {};
-// }
-
 export const FrontPage = UnwrappedFrontPage;
-// connect(mapStateToProps)(
-//   withRouter(UnwrappedFrontPage)
-// );
-
-// .hero-text {
-//   font-size: 48px;
-//   font-weight: 800;
-// }

@@ -2238,6 +2238,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   onClick={() => {
                     const objectToCopy = {
                       ...this.state.bookObject[this.state.currNode],
+                      title: this.state.title,
                       nodeText: this.state.nodeText,
                       opponent: this.state.opponent,
                       theme: this.state.theme,

@@ -9,17 +9,41 @@ import Hero from 'src/components/hero2/Hero';
 
 import Button from '../../components/Button/Button';
 
-// interface FrontPageProps {
-//   // whiteFaction: Faction;
-//   // blackFaction: Faction;
-//   // arcaneChess: () => void;
-// }
+type RandomSloganState = {
+  currentSlogan: string;
+};
 
-class UnwrappedFrontPage extends React.Component {
-  // arcaneChess;
+class UnwrappedFrontPage extends React.Component<{}, RandomSloganState> {
+  private slogans: string[];
+  private intervalId: NodeJS.Timeout | undefined = undefined;
   constructor(props: object) {
     super(props);
-    this.state = {};
+    this.slogans = [
+      'Your mind is the armory.',
+      'Call it theory, I call it a game plan.',
+      "Let's see a more advanced setup.",
+      'Time to mitigate.',
+      'Let your chess do the talking.',
+      'Not your grandfather’s chess set.',
+      'Metagame just got a new name.',
+      'Initiative. Formulation. Execution.',
+      'Difficult to learn, impossible to master.',
+    ];
+    this.state = { currentSlogan: '' };
+  }
+
+  fetchRandomSlogan = () => {
+    const randomIndex = Math.floor(Math.random() * this.slogans.length);
+    this.setState({ currentSlogan: this.slogans[randomIndex] });
+  };
+
+  componentDidMount() {
+    this.fetchRandomSlogan();
+    this.intervalId = setInterval(this.fetchRandomSlogan, 6000); // update every 10 seconds
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
   }
 
   render() {
@@ -38,7 +62,7 @@ class UnwrappedFrontPage extends React.Component {
                 </div>
               </h1>
               <p>
-                <i>Your mind is the armory.</i>
+                <i>{this.state.currentSlogan}</i>
               </p>
             </div>
           </div>

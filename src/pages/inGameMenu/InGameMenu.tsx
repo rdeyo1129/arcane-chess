@@ -2124,7 +2124,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                               history: [...this.state.history],
                               panelText: '',
                               preset: '',
-                              viewOnly: false,
+                              viewOnly: true,
                               orientation: 'white',
                               whiteArcane: { ...this.state.config.W.arcana },
                               blackArcane: { ...this.state.config.BK.arcana },

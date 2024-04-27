@@ -82,10 +82,10 @@
     "theme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "8/8/5b2/3r4/8/5K2/8/8 w - - 0 1",
+        "fenHistory": ["8/8/5b2/3r4/8/5K2/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "What is the goal here? The normal chess ending is checkmate. This happens when a King is attacked and there’s no move to stop it from being captured on the next turn. Take a look the King’s movement now by moving it around the board.",
+        "panelText": "Take a look the King’s movement now by moving it around the board.",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
@@ -108,14 +108,16 @@
         "orientation": "white"
       },
       "panel-2": {
-        "fen": "8/8/8/3k4/5N2/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/3k4/5N2/8/8/8 w - - 0 1"],
+        "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 0 1",
+        "fenHistory": [
+          "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 0 1"
+        ],
         "history": [],
-        "panelText": "The key mechanic here is attacking the King… this is called check. The side in check is forced to take action. There are at most 3 options to save here: move the King, block the attack, or capture the attacking piece. Depending on the situation you might only have one way out, but keep an eye out for your options.",
+        "panelText": "What is the goal here? The normal chess ending is checkmate. This happens when a King is attacked and there’s no move to stop it from being captured on the next turn. ",
         "arrowsCircles": [
           {
-            "orig": "f4",
-            "dest": "d5",
+            "orig": "h5",
+            "dest": "f7",
             "brush": "green"
           }
         ],
@@ -137,6 +139,261 @@
         "config": {},
         "correctMoves": [],
         "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "r1bqkb1r/pppp1Qpp/2n2n2/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 0 1",
+        "fenHistory": [
+          "r1bqkb1r/pppp1Qpp/2n2n2/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "What is the goal here? The normal chess ending is checkmate. This happens when a King is attacked and there’s no move to stop it from being captured on the next turn. ",
+        "arrowsCircles": [
+          {
+            "orig": "e8",
+            "brush": "red"
+          },
+          {
+            "orig": "e7",
+            "brush": "red"
+          },
+          {
+            "orig": "c4",
+            "dest": "f7",
+            "brush": "blue"
+          },
+          {
+            "orig": "f7",
+            "brush": "blue"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "6rK/8/5n2/8/4k3/8/8/8 w - - 0 1",
+        "fenHistory": ["6rK/8/5n2/8/4k3/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "There are many types of mating nets.",
+        "arrowsCircles": [
+          {
+            "orig": "g8",
+            "brush": "blue"
+          },
+          {
+            "orig": "g7",
+            "brush": "blue"
+          },
+          {
+            "orig": "h7",
+            "brush": "blue"
+          },
+          {
+            "orig": "h8",
+            "brush": "red"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/R3Q3/5kq1/5w2/8/8/1K6/8 w - - 0 1",
+        "fenHistory": ["8/R3Q3/5kq1/5w2/8/8/1K6/8 w - - 0 1"],
+        "history": [],
+        "panelText": "There are many types of mating nets.",
+        "arrowsCircles": [
+          {
+            "orig": "e7",
+            "dest": "e5",
+            "brush": "red"
+          },
+          {
+            "orig": "e7",
+            "dest": "g5",
+            "brush": "red"
+          },
+          {
+            "orig": "e7",
+            "dest": "g7",
+            "brush": "red"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "8/1k6/ppp5/8/8/8/5nPP/6RK w - - 0 1",
+        "fenHistory": ["8/1k6/ppp5/8/8/8/5nPP/6RK w - - 0 1"],
+        "history": [],
+        "panelText": "There are many types of mating nets.",
+        "arrowsCircles": [
+          {
+            "orig": "f2",
+            "dest": "h1",
+            "brush": "red"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "k7/8/2M5/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["k7/8/2M5/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "There are many types of mating nets.",
+        "arrowsCircles": [
+          {
+            "orig": "b7",
+            "brush": "blue"
+          },
+          {
+            "orig": "a7",
+            "brush": "blue"
+          },
+          {
+            "orig": "b8",
+            "brush": "blue"
+          },
+          {
+            "orig": "a8",
+            "brush": "red"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "8/K7/8/8/8/7k/8/8 w - - 0 1",
+        "fenHistory": ["8/K7/8/8/8/7k/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Other game-ending rules exist. Delivering check a certain number of times, getting a King to a key square, or capturing all pieces. These are considered variants and do not apply in vanilla chess, only when you and your opponent agree to it.",
+        "arrowsCircles": [
+          {
+            "orig": "a7",
+            "dest": "a8",
+            "brush": "green"
+          },
+          {
+            "orig": "a8",
+            "brush": "green"
+          },
+          {
+            "orig": "b8",
+            "brush": "green"
+          },
+          {
+            "orig": "c8",
+            "brush": "green"
+          },
+          {
+            "orig": "d8",
+            "brush": "green"
+          },
+          {
+            "orig": "e8",
+            "brush": "green"
+          },
+          {
+            "orig": "f8",
+            "brush": "green"
+          },
+          {
+            "orig": "g8",
+            "brush": "green"
+          },
+          {
+            "orig": "h8",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
         "orientation": "white"
       }
     },

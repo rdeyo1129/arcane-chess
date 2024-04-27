@@ -450,6 +450,24 @@ class UnwrappedLessonView extends React.Component<Props, State> {
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
+    if (!this.state.viewOnly) {
+      this.arcaneChess().startGame(
+        this.state.fen,
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
+          'panel-1'
+        ].whiteArcane,
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
+          'panel-1'
+        ].blackArcane,
+        {},
+        'CHESS'
+      );
+      this.setState({});
+    }
   }
 
   render() {
@@ -600,7 +618,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                       lastMove: true,
                       check: true,
                     }}
-                    check={InCheck() ? true : false}
+                    // check={InCheck() ? true : false}
                     orientation={this.state.playerColor}
                     disableContextMenu={false}
                     turnColor={this.state.playerColor}

@@ -76,7 +76,7 @@
     ],
     "nodeText": "What are you fighting for? Learn about why chess is a zero-sum game.",
     "panelText": "",
-    "reward": [500, "a", "b", "c"],
+    "reward": [],
     "prereq": "",
     "opponent": "",
     "theme": "",
@@ -394,6 +394,209 @@
         "config": {},
         "correctMoves": [],
         "viewOnly": false,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "lesson-3": {
+    "id": "lesson-3",
+    "title": "The Sliders",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "Learn about the bread and butter of pieces.",
+    "panelText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/1u6/8/1R3X2/1P6/8/8 w - - 0 1",
+        "fenHistory": ["8/8/1u6/8/1R3X2/1P6/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Let’s introduce some basic pieces. Sliders are pieces that move in a straight line… any number of squares unless it’s blocked by something.",
+        "arrowsCircles": [
+          {
+            "orig": "b4",
+            "dest": "a4",
+            "brush": "green"
+          },
+          {
+            "orig": "b4",
+            "dest": "b6",
+            "brush": "green"
+          },
+          {
+            "orig": "b4",
+            "dest": "b3",
+            "brush": "green"
+          },
+          {
+            "orig": "b4",
+            "dest": "f4",
+            "brush": "green"
+          },
+          {
+            "orig": "b6",
+            "brush": "red"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
+        "orientation": "white",
+        "panels": []
+      },
+      "panel-2": {
+        "fen": "8/8/3X2p1/8/3R4/5p2/7p/8 w - - 0 1",
+        "fenHistory": ["8/8/3X2p1/8/3R4/5p2/7p/8 w - - 0 1"],
+        "history": [],
+        "panelText": "This is the Rook. It moves orthogonally: up, right, left down. Try it out now, try capturing a piece.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "3r4/8/3K4/8/8/8/8/3Q4 w - - 0 1",
+        "fenHistory": ["3r4/8/3K4/8/8/8/8/3Q4 w - - 0 1"],
+        "history": [],
+        "panelText": "The slider mechanic allows for tactical pins, skewers, and x-rays to happen… well go over those later.",
+        "arrowsCircles": [
+          {
+            "orig": "d8",
+            "dest": "d1",
+            "brush": "green"
+          },
+          {
+            "orig": "d6",
+            "brush": "red"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "8/p4p2/1p2p3/2p4p/8/8/8/1B6 w - - 0 1",
+        "fenHistory": ["8/p4p2/1p2p3/2p4p/8/8/8/1B6 w - - 0 1"],
+        "history": [],
+        "panelText": "This is the Bishop. It moves in any diagonal direction. Try it out now. Do you notice anything about what squares it can move to?",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/p4p2/1p2p3/2p4p/8/8/8/1B6 w - - 0 1",
+        "fenHistory": ["8/p4p2/1p2p3/2p4p/8/8/8/1B6 w - - 0 1"],
+        "history": [],
+        "panelText": "That's right! It is restricted to only one color complex. It can never land on an opposite color. Some of these Pawns are unable to be captured by the Bishop.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "rn1qk1nr/pppppppp/8/8/8/8/PPPPPPPP/R1BQKB1R w KQkq - 0 1",
+        "fenHistory": [
+          "rn1qk1nr/pppppppp/8/8/8/8/PPPPPPPP/R1BQKB1R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "The “Bishop pair” is a common advantage where if you happen to hang onto both of your bishops and your opponent doesn’t then you have better influence over both square colors.",
+        "arrowsCircles": [
+          {
+            "orig": "c1",
+            "brush": "green"
+          },
+          {
+            "orig": "f1",
+            "brush": "green"
+          },
+          {
+            "orig": "b8",
+            "brush": "red"
+          },
+          {
+            "orig": "g8",
+            "brush": "red"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
         "orientation": "white"
       }
     },

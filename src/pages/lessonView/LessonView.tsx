@@ -40,7 +40,6 @@ import { editMovePiece } from '../../arcaneChess/gui.mjs';
 import Button from '../../components/Button/Button';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
-import { PrintMoveList } from 'src/arcaneChess/io.mjs';
 
 const booksMap: { [key: string]: { [key: string]: Node } } = {
   book1,
@@ -181,12 +180,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         ].fen.split(' ')[0] === 'w'
           ? 'white'
           : 'black',
-      playerColor:
-        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
-          `panel-1`
-        ].fen.split(' ')[0] === 'w'
-          ? 'black'
-          : 'white',
+      playerColor: 'white',
       engineColor:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
           `panel-1`
@@ -463,7 +457,17 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         {},
         'CHESS'
       );
-      this.setState({});
+    } else {
+      const LS = getLocalStorage(this.props.auth.user.username);
+      this.chessgroundRef.current?.setAutoShapes([
+        ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`]
+          .arrowsCircles ?? []),
+      ]);
+      this.setState({
+        arrowsCircles:
+          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`]
+            .arrowsCircles || [],
+      });
     }
   }
 
@@ -471,7 +475,6 @@ class UnwrappedLessonView extends React.Component<Props, State> {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const LS = getLocalStorage(auth.user.username);
-    console.log(PrintMoveList());
     return (
       <div className="tactorius-board fade">
         {LS.chapter === 0 ? (

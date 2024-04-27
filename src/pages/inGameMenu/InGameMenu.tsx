@@ -2216,7 +2216,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       arrowsCircles: [...arrowsCircles],
                       royalties: { ...this.state.royalties },
                       preset: this.state.preset,
-                      viewOnly: false,
+                      viewOnly: true,
                       orientation: 'white',
                       whiteArcane: { ...this.state.config.W.arcana },
                       blackArcane: { ...this.state.config.BK.arcana },
@@ -2239,6 +2239,8 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   onClick={() => {
                     const objectToCopy = {
                       ...this.state.bookObject[this.state.currNode],
+                      panels: {},
+                      reward: [],
                       title: this.state.title,
                       nodeText: this.state.nodeText,
                       opponent: this.state.opponent,

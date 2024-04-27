@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 // import all vars and functions from arcanechess folder that are not defined
 import {
   FilesBrd,
@@ -35,8 +33,6 @@ import {
   HrDir,
   ZeDir,
   UnDir,
-  PceDir,
-  PieceSlides,
   PieceVanguard,
   PieceHerring,
   PieceSpectre,
@@ -46,12 +42,10 @@ import {
   RankChar,
   SideChar,
   SQ120,
-  updateStartFen,
   PCEINDEX,
   Kings,
 } from './defs';
 import { PrSq } from './io';
-import { whiteArcaneConfig, blackArcaneConfig } from './arcaneDefs';
 
 export function FROMSQ(m) {
   return m & 0x7f;

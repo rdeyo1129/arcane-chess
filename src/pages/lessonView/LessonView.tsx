@@ -33,12 +33,17 @@ const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
-import { GameBoard } from '../../arcaneChess/board.mjs';
+import {
+  InCheck,
+  outputFenOfCurrentPosition,
+} from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
+import { editMovePiece } from '../../arcaneChess/gui.mjs';
 
 import Button from '../../components/Button/Button';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
+import { PrintMoveList } from 'src/arcaneChess/io.mjs';
 
 const booksMap: { [key: string]: { [key: string]: Node } } = {
   book1,
@@ -154,6 +159,7 @@ interface State {
     | undefined;
   lastMove: string[];
   hideCompletedPage: boolean;
+  viewOnly: boolean;
 }
 
 interface Props {
@@ -236,9 +242,12 @@ class UnwrappedLessonView extends React.Component<Props, State> {
           .blackArcane,
       lastMove: [],
       hideCompletedPage: LS.nodeId?.split('-')[0] !== 'lesson',
+      viewOnly:
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
+          .viewOnly,
     };
     this.arcaneChess = (fen?: string) => {
-      return arcaneChess({}, {}, fen, this.props.auth, {});
+      return arcaneChess({}, {}, fen);
     };
     this.chessgroundRef = React.createRef();
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -256,64 +265,102 @@ class UnwrappedLessonView extends React.Component<Props, State> {
   };
 
   changePanel = (direction: 'inc' | 'dec') => {
-    this.setState((prevState) => {
-      const LS = getLocalStorage(this.props.auth.user.username);
-      const newPanel = prevState.currPanel + (direction === 'inc' ? 1 : -1);
-      this.chessgroundRef.current?.setAutoShapes([
-        ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-          `panel-${newPanel}`
-        ].arrowsCircles ?? []),
-      ]);
-      return {
-        ...prevState,
-        currPanel: newPanel,
-        moveNumber: 0,
-        viewOnly:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+    this.setState(
+      (prevState) => {
+        const LS = getLocalStorage(this.props.auth.user.username);
+        const newPanel = prevState.currPanel + (direction === 'inc' ? 1 : -1);
+        this.chessgroundRef.current?.setAutoShapes([
+          ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
             `panel-${newPanel}`
-          ].viewOnly,
-        orientation:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].orientation,
-        playerColor:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].fen.split(' ')[0] === 'w'
-            ? 'black'
-            : 'white',
-        engineColor:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].fen.split(' ')[0] === 'w'
-            ? 'white'
-            : 'black',
-        fen: booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-          `panel-${newPanel}`
-        ].fen,
-        fenHistory: [
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+          ].arrowsCircles ?? []),
+        ]);
+        return {
+          ...prevState,
+          currPanel: newPanel,
+          moveNumber: 0,
+          viewOnly:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].viewOnly,
+          orientation:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].orientation,
+          playerColor:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].fen.split(' ')[0] === 'w'
+              ? 'black'
+              : 'white',
+          engineColor:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].fen.split(' ')[0] === 'w'
+              ? 'white'
+              : 'black',
+          fen: booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
             `panel-${newPanel}`
           ].fen,
-        ],
-        correctMoves:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].correctMoves,
-        wArcana:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].whiteArcane,
-        bArcana:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].blackArcane,
-        arrowsCircles:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].arrowsCircles || [],
-      };
-    });
+          fenHistory: [
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].fen,
+          ],
+          correctMoves:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].correctMoves,
+          wArcana:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].whiteArcane,
+          bArcana:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].blackArcane,
+          arrowsCircles:
+            booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+              `panel-${newPanel}`
+            ].arrowsCircles || [],
+        };
+      },
+      () => {
+        if (!this.state.viewOnly) {
+          this.arcaneChess().startGame(
+            this.state.fen,
+            booksMap[
+              `book${getLocalStorage(this.props.auth.user.username).chapter}`
+            ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
+              'panel-1'
+            ].whiteArcane,
+            booksMap[
+              `book${getLocalStorage(this.props.auth.user.username).chapter}`
+            ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
+              'panel-1'
+            ].blackArcane,
+            {},
+            'CHESS'
+          );
+          this.setState({});
+        }
+        // this.setState(
+        //   {
+        //     turn: GameBoard.side === 0 ? 'white' : 'black',
+        //     wArcana: {
+        //       ...whiteArcaneConfig,
+        //     },
+        //     bArcana: {
+        //       ...blackArcaneConfig,
+        //     },
+        //   },
+        //   () => {
+        //     if (this.state.engineColor === this.state.turn) {
+        //       this.engineGo();
+        //     }
+        //   }
+        // );
+      }
+    );
   };
 
   stepForward = () => {
@@ -409,6 +456,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const { auth } = this.props;
     const LS = getLocalStorage(auth.user.username);
+    console.log(PrintMoveList());
     return (
       <div className="tactorius-board fade">
         {LS.chapter === 0 ? (
@@ -552,13 +600,27 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                       lastMove: true,
                       check: true,
                     }}
+                    check={InCheck() ? true : false}
                     orientation={this.state.playerColor}
                     disableContextMenu={false}
-                    turnColor={GameBoard.side === 0 ? 'white' : 'black'}
+                    turnColor={this.state.playerColor}
                     movable={{
                       free: false,
                       color: this.state.playerColor,
+                      rookCastle: false,
                       dests: this.arcaneChess().getGroundMoves(),
+                    }}
+                    events={{
+                      move: (orig: string, dest: string) => {
+                        editMovePiece(orig, dest);
+                        this.setState({
+                          fen: outputFenOfCurrentPosition(),
+                          fenHistory: [outputFenOfCurrentPosition()],
+                        });
+                      },
+                    }}
+                    selectable={{
+                      enabled: true,
                     }}
                     lastMove={this.state.lastMove}
                   />

@@ -66,5 +66,80 @@
         "orientation": "white"
       }
     }
+  },
+  "lesson-2": {
+    "id": "lesson-2",
+    "title": "The Objective",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "What are you fighting for? Learn about why chess is a zero-sum game.",
+    "panelText": "",
+    "reward": [500, "a", "b", "c"],
+    "prereq": "",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "What is the goal here? The normal chess ending is checkmate. This happens when a King is attacked and there’s no move to stop it from being captured on the next turn. Take a look the King’s movement now by moving it around the board.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": false,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "8/8/8/3k4/5N2/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/3k4/5N2/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The key mechanic here is attacking the King… this is called check. The side in check is forced to take action. There are at most 3 options to save here: move the King, block the attack, or capture the attacking piece. Depending on the situation you might only have one way out, but keep an eye out for your options.",
+        "arrowsCircles": [
+          {
+            "orig": "f4",
+            "dest": "d5",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
   }
 }

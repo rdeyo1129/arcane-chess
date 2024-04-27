@@ -165,7 +165,7 @@ export default function arcaneChess(
 
   return {
     // filesRanksBoard: () => InitFilesRanksBrd(),
-    activateDyad: (type) => activateDyad(type),
+    // activateDyad: (type) => activateDyad(type),
     startGame: (fen, whiteConfig, blackConfig, royalties, preset) =>
       startGame(fen, whiteConfig, blackConfig, royalties, preset),
     randomize: (whiteConfig, blackConfig) =>

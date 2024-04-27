@@ -455,8 +455,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         );
       })
       .then(() => {
-        // generatePowers();
-        // GenerateMoves();
+        generatePowers();
+        GenerateMoves();
       })
       .catch((error) => {
         console.error('An error occurred:', error);

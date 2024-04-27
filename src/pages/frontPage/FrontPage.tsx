@@ -8,6 +8,7 @@ import Button from '../../components/Button/Button';
 
 type RandomSloganState = {
   currentSlogan: string;
+  currentIndex: number;
 };
 
 class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
@@ -16,33 +17,39 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
   constructor(props: object) {
     super(props);
     this.slogans = [
-      'Your mind is the armory.',
-      'Call it theory, I call it a game plan.',
-      "Let's see a more advanced setup.",
-      'Time to mitigate.',
-      'Let your chess do the talking.',
-      'Not your grandfather’s chess set.',
-      'Metagame just got a new name.',
+      'You wanted the Knook and we heard you.',
       'Initiative. Formulation. Execution.',
+      'Is this theory?',
+      "This time it's personal.",
+      "Let's see a more advanced setup.",
+      "Not your grandfather's chess set.",
+      'Let your chess do the talking.',
+      'Metagame just got a new name.',
+      "User used plan. It's super effective.",
       'Difficult to learn, impossible to master.',
+      'Your mind is the armory.',
+      'Time to mitigate.',
     ];
-    this.state = { currentSlogan: '' };
+    this.state = { currentSlogan: '', currentIndex: 0 };
   }
 
-  fetchRandomSlogan = () => {
-    const randomIndex = Math.floor(Math.random() * this.slogans.length);
-    this.setState({ currentSlogan: this.slogans[randomIndex] });
+  fetchNextSlogan = () => {
+    const nextIndex = (this.state.currentIndex + 1) % this.slogans.length;
+    this.setState({
+      currentSlogan: this.slogans[nextIndex],
+      currentIndex: nextIndex,
+    });
   };
 
   componentDidMount() {
-    this.fetchRandomSlogan();
-    this.intervalId = setInterval(this.fetchRandomSlogan, 6000); // update every 10 seconds
-  }
+    const randomIndex = Math.floor(Math.random() * this.slogans.length);
+    this.setState({
+      currentSlogan: this.slogans[randomIndex],
+      currentIndex: randomIndex,
+    });
 
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
+    this.intervalId = setInterval(this.fetchNextSlogan, 4000);
   }
-
   render() {
     return (
       <div className="front-page fade">

@@ -670,6 +670,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
             ],
             orientation: this.state.playerColor,
+            selectedSide: this.state.playerColor,
           });
         }
       );
@@ -743,8 +744,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             score={LS.nodeScores[this.state.nodeId]}
             type={
               this.state.gameOverType.split(' ')[1] === 'mates' &&
-              getLocalStorage(this.props.auth.user.username).config.color ===
-                this.state.gameOverType.split(' ')[0]
+              this.state.playerColor === this.state.gameOverType.split(' ')[0]
                 ? 'victory'
                 : 'defeat'
             }

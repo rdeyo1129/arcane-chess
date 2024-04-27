@@ -874,7 +874,7 @@ export function GenerateMoves(
                   ] &&
                   generateSummons === 'PLAYER') ||
                   generateSummons !== 'PLAYER') &&
-                !royaltyIndexes.includes(summonIndex) &&
+                !royaltyIndexes.includes(summonPce) &&
                 GameBoard.pieces[sq] === PIECES.EMPTY &&
                 GameBoard.whiteArcane[3] & summonFlag
               ) {
@@ -920,7 +920,7 @@ export function GenerateMoves(
                   ] &&
                   generateSummons === 'PLAYER') ||
                   generateSummons !== 'PLAYER') &&
-                !royaltyIndexes.includes(summonIndex) &&
+                !royaltyIndexes.includes(summonPce) &&
                 GameBoard.pieces[sq] === PIECES.EMPTY &&
                 GameBoard.blackArcane[3] & summonFlag
               ) {

@@ -1626,6 +1626,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       panelObject:
                         this.state.nodeObject[this.state.newBoardName],
                       nodeText: '',
+                      panelText: '',
                       reward: [],
                       description: '',
                       opponent: '',
@@ -2022,7 +2023,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 width={180}
                 height={26}
                 onChange={(value) => {
-                  this.setState({ thinkingTime: Number(value) });
+                  this.setState({ prereq: value });
                 }}
                 password={false}
               ></Input>
@@ -2242,6 +2243,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       nodeText: this.state.nodeText,
                       opponent: this.state.opponent,
                       theme: this.state.theme,
+                      prereq: this.state.prereq,
                       time: this.state.time,
                       boss: false,
                     };

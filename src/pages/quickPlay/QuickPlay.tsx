@@ -238,8 +238,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       theme: '',
       quickPlayModalOpen: true,
     };
-    this.arcaneChess = (fen?: string) => {
-      return arcaneChess({}, {}, fen);
+    this.arcaneChess = () => {
+      return arcaneChess();
     };
     this.chessgroundRef = React.createRef();
     this.handleKeyDown = this.handleKeyDown.bind(this);

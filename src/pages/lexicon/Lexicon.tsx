@@ -237,8 +237,8 @@ class UnwrappedLexicon extends React.Component<Props, State> {
       lastMove: [],
       hideCompletedPage: LS.nodeId?.split('-')[0] !== 'lesson',
     };
-    this.arcaneChess = (fen?: string) => {
-      return arcaneChess({}, {}, fen, this.props.auth, {});
+    this.arcaneChess = () => {
+      return arcaneChess();
     };
     this.chessgroundRef = React.createRef();
     this.handleKeyDown = this.handleKeyDown.bind(this);

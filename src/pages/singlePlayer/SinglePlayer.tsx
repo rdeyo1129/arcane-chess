@@ -9,7 +9,7 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 
 import { PerftTest } from '../../arcaneChess/perft.mjs';
-import { ParseFen, PrintBoard } from '../../arcaneChess/board.mjs';
+import { ParseFen } from '../../arcaneChess/board.mjs';
 
 // interface FrontPageProps {
 //   // whiteFaction: Faction;
@@ -28,7 +28,7 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
     this.state = {
       fen: '',
     };
-    this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
+    this.arcaneChess = () => arcaneChess();
     // this.arcaneChess();
   }
 

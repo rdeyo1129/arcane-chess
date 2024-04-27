@@ -395,7 +395,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       puzzleResponse: [],
     };
 
-    this.arcaneChess = (fen?: string) => arcaneChess({}, {}, fen);
+    this.arcaneChess = () => arcaneChess();
     this.chessgroundRef = React.createRef();
 
     // this.puzzleWorker = new Worker(

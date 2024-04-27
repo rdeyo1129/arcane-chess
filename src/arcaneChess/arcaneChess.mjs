@@ -40,7 +40,6 @@ import {
   InitSq120To64,
   InitBoardVars,
 } from './main';
-import { PrintMoveList, PrSq } from './io';
 import { InitMvvLva, GenerateMoves, generatePowers } from './movegen';
 import {
   GameBoard,
@@ -66,12 +65,12 @@ import {
 import { COLOURS, PIECES, prettyToSquare } from './defs.mjs';
 import { TakeMove } from './makemove.mjs';
 
-export default function arcaneChess(
-  whiteConfig = {},
-  blackConfig = {},
-  fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-  auth = {},
-  preset = {}
+export default function arcaneChess() {
+  // whiteConfig = {},
+  // blackConfig = {},
+  // fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+  // auth = {},
+  // preset = {}
   // fen = 'n1n5/PPPk4/8/8/8/8/4Kppp/5N1N b - - 0 1'
   // 4k3/8/8/K2P3r/8/8/8/8 w - - 0 1
   // normal starting position
@@ -87,7 +86,6 @@ export default function arcaneChess(
   // fen = '8/4r3/8/8/8/8/PPPP4/4K3 w - - 0 1'
 
   // handicaps parameter
-) {
   InitFilesRanksBrd();
   InitHashKeys();
   InitSq120To64();

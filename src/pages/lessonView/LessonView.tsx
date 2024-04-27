@@ -33,10 +33,7 @@ const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
-import {
-  InCheck,
-  outputFenOfCurrentPosition,
-} from '../../arcaneChess/board.mjs';
+import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
 import { editMovePiece } from '../../arcaneChess/gui.mjs';
 
@@ -246,8 +243,8 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
           .viewOnly,
     };
-    this.arcaneChess = (fen?: string) => {
-      return arcaneChess({}, {}, fen);
+    this.arcaneChess = () => {
+      return arcaneChess();
     };
     this.chessgroundRef = React.createRef();
     this.handleKeyDown = this.handleKeyDown.bind(this);

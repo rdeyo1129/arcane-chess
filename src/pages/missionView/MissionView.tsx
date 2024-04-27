@@ -338,8 +338,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
         LS.nodeId?.split('-')[0] !== 'mission',
     };
-    this.arcaneChess = (fen?: string) => {
-      return arcaneChess({}, {}, fen);
+    this.arcaneChess = () => {
+      return arcaneChess();
     };
     this.chessgroundRef = React.createRef();
     this.handleKeyDown = this.handleKeyDown.bind(this);

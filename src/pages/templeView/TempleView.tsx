@@ -291,8 +291,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         LS.nodeId?.split('-')[0] !== 'temple',
       visitedPanels: [initialPanelKey],
     };
-    this.arcaneChess = (fen?: string) => {
-      return arcaneChess({}, {}, fen, this.props.auth, {});
+    this.arcaneChess = () => {
+      return arcaneChess();
     };
     this.chessgroundRef = React.createRef();
   }

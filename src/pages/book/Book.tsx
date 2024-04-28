@@ -229,17 +229,26 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     const currLS = getLocalStorage(
                       this.props.auth.user.username
                     );
-
-                    // Exclude nodes that are already in nodeScores
-                    if (currLS.nodeScores && currLS.nodeScores[node.id]) {
+                    if (
+                      (_.includes(node.id, 'mission') ||
+                        _.includes(node.id, 'temple')) &&
+                      currLS.nodeScores[node.id]
+                    ) {
                       return false;
                     }
-
-                    // Check for prerequisites
-                    // if (node.prereq && !currLS.nodeScores[node.prereq]) {
-                    //   return false;
-                    // }
-                    if (_.includes(node.id, 'lesson')) return true;
+                    if (
+                      !_.includes(node.id, 'lesson') &&
+                      currLS.nodeScores &&
+                      currLS.nodeScores[node.id]
+                    ) {
+                      return false;
+                    }
+                    if (
+                      node.prereq &&
+                      !_.includes(Object.keys(currLS.nodeScores), node.prereq)
+                    ) {
+                      return false;
+                    }
                     return true;
                   }).map((node, i) => {
                     return (

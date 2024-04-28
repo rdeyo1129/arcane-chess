@@ -457,18 +457,17 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         {},
         'CHESS'
       );
-    } else {
-      const LS = getLocalStorage(this.props.auth.user.username);
-      this.chessgroundRef.current?.setAutoShapes([
-        ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`]
-          .arrowsCircles ?? []),
-      ]);
-      this.setState({
-        arrowsCircles:
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`]
-            .arrowsCircles || [],
-      });
     }
+    const LS = getLocalStorage(this.props.auth.user.username);
+    this.chessgroundRef.current?.setAutoShapes([
+      ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`]
+        .arrowsCircles ?? []),
+    ]);
+    this.setState({
+      arrowsCircles:
+        booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[`panel-1`]
+          .arrowsCircles || [],
+    });
   }
 
   render() {

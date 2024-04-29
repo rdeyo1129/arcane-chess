@@ -145,6 +145,8 @@ interface PanelInfo {
   whiteArcane: any;
   blackArcane: any;
   correctMoves: string[];
+  config: object;
+  royalties: object;
 }
 
 interface PuzzleData {
@@ -2129,6 +2131,14 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                               whiteArcane: { ...this.state.config.W.arcana },
                               blackArcane: { ...this.state.config.BK.arcana },
                               correctMoves: item.Moves.split(' '),
+                              config: {},
+                              royalties: {
+                                royaltyQ: {},
+                                royaltyT: {},
+                                royaltyM: {},
+                                royaltyV: {},
+                                royaltyE: {},
+                              },
                             };
                           }
                         );

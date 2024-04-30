@@ -9,13 +9,13 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #bbb;
+  background: #333333;
 }
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #555555;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #666666;
 }
 
 .ReactModal__Overlay {

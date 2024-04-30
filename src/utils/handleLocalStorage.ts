@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const setLocalStorage = ({
   auth = {
     user: {
@@ -14,7 +16,7 @@ export const setLocalStorage = ({
   nodeId = '',
   chapterEnd = false,
 } = {}) => {
-  const username = auth.user.username; // Replace 'defaultId' with a suitable default
+  const username = auth.user.username;
 
   // If there is no username, you might not want to proceed
   if (username === '') {
@@ -22,27 +24,48 @@ export const setLocalStorage = ({
     return;
   }
 
-  // You might want to handle the case where some properties are not provided
+  // Retrieve existing data or initialize if not present
   const existingData = JSON.parse(localStorage.getItem(username) || '{}');
 
-  existingData.lessonsCompleted = Array.isArray(existingData.lessonsCompleted)
-    ? [...existingData.lessonsCompleted]
-    : [];
+  // Ensure existingData[username] is initialized properly
+  if (!existingData[username]) {
+    existingData[username] = {
+      auth: {},
+      chapter: 0,
+      config: {},
+      nodeScores: {},
+      lessonsCompleted: [],
+      inventory: {},
+      nodeId: '',
+      chapterEnd: false,
+    };
+  }
+
+  existingData[username].lessonsCompleted =
+    existingData[username].lessonsCompleted || [];
+
+  // Merge and update the lessonsCompleted by checking each lesson individually
+  lessonsCompleted.forEach((lesson) => {
+    if (!_.includes(existingData[username].lessonsCompleted, lesson)) {
+      existingData[username].lessonsCompleted.push(lesson);
+    }
+  });
 
   // Merge existing data with new data
   const newData = {
     [username]: {
       ...existingData[username],
-      auth: { ...existingData.auth, ...auth },
-      chapter: existingData.chapter || chapter,
-      config: { ...existingData.config, ...config },
-      nodeScores: { ...existingData.nodeScores, ...nodeScores },
-      lessonsCompleted: [...existingData.lessonsCompleted, ...lessonsCompleted],
-      inventory: { ...existingData.inventory, ...inventory },
-      nodeId: nodeId || existingData.nodeId,
-      chapterEnd: chapterEnd || existingData.chapterEnd,
+      auth: { ...existingData[username].auth, ...auth },
+      chapter: existingData[username].chapter || chapter,
+      config: { ...existingData[username].config, ...config },
+      nodeScores: { ...existingData[username].nodeScores, ...nodeScores },
+      lessonsCompleted: [...existingData[username].lessonsCompleted],
+      inventory: { ...existingData[username].inventory, ...inventory },
+      nodeId: nodeId || existingData[username].nodeId,
+      chapterEnd: chapterEnd || existingData[username].chapterEnd,
     },
   };
+
   localStorage.setItem(username, JSON.stringify(newData));
 };
 

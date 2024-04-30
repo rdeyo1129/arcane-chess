@@ -260,7 +260,11 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         disabled={false}
                         key={i}
                         className={`select-node tertiary`}
-                        backgroundColorOverride="#444444"
+                        backgroundColorOverride={
+                          _.includes(Object.keys(LS.nodeScores), node.id)
+                            ? '#222222'
+                            : '#333333'
+                        }
                         onClick={() => {
                           const currLS = getLocalStorage(
                             this.props.auth.user.username

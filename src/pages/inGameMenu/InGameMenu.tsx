@@ -2176,7 +2176,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 />
               </div>
               <div className="picker-extension">
-                {/* <Button
+                <Button
                   className="tertiary"
                   color="B"
                   text="MOUSE"
@@ -2189,7 +2189,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   text="TRASH"
                   height={30}
                   onClick={() => this.setState({ placingPiece: 333 })}
-                /> */}
+                />
               </div>
               <div className="reset-output">
                 <Button
@@ -2226,6 +2226,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       arrowsCircles: [...arrowsCircles],
                       royalties: { ...this.state.royalties },
                       preset: this.state.preset,
+                      config: {},
                       viewOnly: true,
                       orientation: 'white',
                       whiteArcane: { ...this.state.config.W.arcana },

@@ -11,7 +11,7 @@ export const setLocalStorage = ({
   chapter = 0,
   config = {},
   nodeScores = {},
-  lessonsCompleted = [],
+  lessonsCompleted = [] as string[],
   inventory = {},
   nodeId = '',
   chapterEnd = false,
@@ -41,8 +41,9 @@ export const setLocalStorage = ({
     };
   }
 
-  existingData[username].lessonsCompleted =
-    existingData[username].lessonsCompleted || [];
+  if (Object.keys(nodeScores).length === 0) {
+    existingData[username].nodeScores = {};
+  }
 
   // Merge and update the lessonsCompleted by checking each lesson individually
   lessonsCompleted.forEach((lesson) => {
@@ -56,13 +57,13 @@ export const setLocalStorage = ({
     [username]: {
       ...existingData[username],
       auth: { ...existingData[username].auth, ...auth },
-      chapter: existingData[username].chapter || chapter,
+      chapter: chapter,
       config: { ...existingData[username].config, ...config },
       nodeScores: { ...existingData[username].nodeScores, ...nodeScores },
       lessonsCompleted: [...existingData[username].lessonsCompleted],
       inventory: { ...existingData[username].inventory, ...inventory },
-      nodeId: nodeId || existingData[username].nodeId,
-      chapterEnd: chapterEnd || existingData[username].chapterEnd,
+      nodeId: nodeId,
+      chapterEnd: chapterEnd,
     },
   };
 

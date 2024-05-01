@@ -555,12 +555,7 @@
           },
           {
             "orig": "b4",
-            "dest": "b3",
-            "brush": "green"
-          },
-          {
-            "orig": "b4",
-            "dest": "f4",
+            "dest": "e4",
             "brush": "green"
           },
           {
@@ -614,7 +609,7 @@
         "fen": "3r4/8/3K4/8/8/8/8/3Q4 w - - 0 1",
         "fenHistory": ["3r4/8/3K4/8/8/8/8/3Q4 w - - 0 1"],
         "history": [],
-        "panelText": "The slider mechanic allows for tactical pins, skewers, and x-rays to happen… well go over those later.",
+        "panelText": "The slider mechanic allows for tactical pins, skewers, and x-rays to happen… we'll go over those later.",
         "arrowsCircles": [
           {
             "orig": "d8",
@@ -689,7 +684,7 @@
           "rn1qk1nr/pppppppp/8/8/8/8/PPPPPPPP/R1BQKB1R w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "The “Bishop pair” is a common advantage where if you happen to hang onto both of your bishops and your opponent doesn’t then you have better influence over both square colors.",
+        "panelText": "The “Bishop pair” is a common advantage where if you happen to hang onto both of your Bishops and your opponent doesn’t then you have better influence over both color complexes.",
         "arrowsCircles": [
           {
             "orig": "c1",
@@ -874,7 +869,7 @@
           "r1bqkbnr/ppppp1pp/2n5/8/2PP4/2N3p1/PP2PP1P/R1BQKBNR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "Here’s the trick, black has the option to move the Pawn forward. BUT, the condition is now correct for “En Passant” to take place, so black is also able to capture that white pawn without landing on the same square. It must happen right after the victim Pawn moves 2 squares or else the condition will disappear. This is a rule is in place to help prevent locked up, boring positions.",
+        "panelText": "Here’s the trick, black has the option to move the Pawn forward. BUT, the condition is now correct for “En Passant” to take place, so black is also able to capture that white Pawn by landing on the square behind it. It must happen immediately after the victim Pawn moves the 2 squares up or else the condition will no longer exist until another takes place. This is a rule is in place to help prevent locked up, boring positions.",
         "arrowsCircles": [
           {
             "orig": "f4",

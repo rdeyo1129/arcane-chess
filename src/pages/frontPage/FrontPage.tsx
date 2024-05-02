@@ -24,11 +24,14 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
       "Let's see a more advanced setup.",
       "Not your grandfather's chess set.",
       'Let your chess do the talking.',
+      'Read. Recognize. React.',
       'Metagame just got a new name.',
       "User used plan. It's super effective.",
       'Difficult to learn, impossible to master.',
       'Your mind is the armory.',
       'Time to mitigate.',
+      'Patience. Planning. Persistence.',
+      'The war continues... so does your learning.',
     ];
     this.state = { currentSlogan: '', currentIndex: 0 };
   }

@@ -1,1 +1,631 @@
-{}
+{
+  "lesson-1": {
+    "id": "lesson-1",
+    "title": "The Draw",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "The endgame scenario that may or may not be in your favor.",
+    "panelText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "theme": "red",
+    "panels": {
+      "panel-1": {
+        "fen": "3k4/3P4/3K4/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["3k4/3P4/3K4/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Draws are a game-ending scenario where both sides attain half a point. One way is for a player to offer a draw and the opponent can choose to agree or play on. There are four on-board types of draws.",
+        "arrowsCircles": [
+          {
+            "orig": "d7",
+            "brush": "green"
+          },
+          {
+            "orig": "c7",
+            "brush": "green"
+          },
+          {
+            "orig": "e7",
+            "brush": "green"
+          },
+          {
+            "orig": "e8",
+            "brush": "blue"
+          },
+          {
+            "orig": "c8",
+            "brush": "blue"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "7k/5KR1/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["7k/5KR1/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Stalemate: when it is a player’s turn and has no legal moves to play and is not in check.",
+        "arrowsCircles": [
+          {
+            "orig": "g7",
+            "dest": "g8",
+            "brush": "green"
+          },
+          {
+            "orig": "g7",
+            "dest": "h7",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "8/8/8/8/P7/p7/2K5/kR6 w - - 0 1",
+        "fenHistory": ["8/8/8/8/P7/p7/2K5/kR6 w - - 0 1"],
+        "history": [],
+        "panelText": "Repetition: when the same on-board position occurs three times.",
+        "arrowsCircles": [
+          {
+            "orig": "b8",
+            "dest": "b1",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "config": {},
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-4": {
+        "fen": "8/8/8/8/P7/p7/k1K5/1R6 w - - 0 1",
+        "fenHistory": ["8/8/8/8/P7/p7/k1K5/1R6 w - - 0 1"],
+        "history": [],
+        "panelText": "Repetition: when the same on-board position occurs three times.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "config": {},
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-5": {
+        "fen": "8/8/8/8/P7/p7/kRK5/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/P7/p7/kRK5/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Repetition: when the same on-board position occurs three times.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "config": {},
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-6": {
+        "fen": "8/8/8/8/P7/p7/1RK5/k7 w - - 0 1",
+        "fenHistory": ["8/8/8/8/P7/p7/1RK5/k7 w - - 0 1"],
+        "history": [],
+        "panelText": "Repetition: when the same on-board position occurs three times.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "config": {},
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-7": {
+        "fen": "8/8/8/8/P7/p7/2K5/kR6 w - - 0 1",
+        "fenHistory": ["8/8/8/8/P7/p7/2K5/kR6 w - - 0 1"],
+        "history": [],
+        "panelText": "Repetition: when the same on-board position occurs three times.",
+        "arrowsCircles": [
+          {
+            "orig": "b2",
+            "dest": "b1",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "config": {},
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-8": {
+        "fen": "8/8/8/8/P7/p7/k1K5/1R6 w - - 0 1",
+        "fenHistory": ["8/8/8/8/P7/p7/k1K5/1R6 w - - 0 1"],
+        "history": [],
+        "panelText": "Repetition: when the same on-board position occurs three times.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "config": {},
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-9": {
+        "fen": "8/8/8/8/P7/p7/kRK5/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/P7/p7/kRK5/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Repetition: when the same on-board position occurs three times.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "config": {},
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-10": {
+        "fen": "8/8/8/8/P7/p7/1RK5/k7 w - - 0 1",
+        "fenHistory": ["8/8/8/8/P7/p7/1RK5/k7 w - - 0 1"],
+        "history": [],
+        "panelText": "Repetition: when the same on-board position occurs three times.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "config": {},
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-11": {
+        "fen": "8/8/8/8/P7/p7/2K5/kR6 w - - 0 1",
+        "fenHistory": ["8/8/8/8/P7/p7/2K5/kR6 w - - 0 1"],
+        "history": [],
+        "panelText": "This particular repitition is an example of the tactic:  perpetual check. White is winning and shouldn't have made the draw, but there are other scenarios where the losing side might be able to force a repitition to save the game and half point.",
+        "arrowsCircles": [
+          {
+            "orig": "b2",
+            "dest": "b1",
+            "brush": "green"
+          },
+          {
+            "orig": "a1",
+            "brush": "red"
+          },
+          {
+            "orig": "b1",
+            "brush": "red"
+          },
+          {
+            "orig": "c2",
+            "brush": "red"
+          },
+          {
+            "orig": "a3",
+            "brush": "red"
+          },
+          {
+            "orig": "a4",
+            "brush": "red"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "config": {},
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-12": {
+        "fen": "8/8/3bk3/8/3KB3/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/3bk3/8/3KB3/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Insufficient material: if enough material is traded off, then there might not be enough to deliver a checkmate.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "config": {},
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-13": {
+        "fen": "8/7p/1k4pP/p2p1pP1/P1pPpP2/K1P1P3/8/8 w - - 0 1",
+        "fenHistory": ["8/7p/1k4pP/p2p1pP1/P1pPpP2/K1P1P3/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The last is the 50-move rule. If 50 moves go by without a Pawn move or a capture move, then each player gets the half point.",
+        "arrowsCircles": [
+          {
+            "orig": "a3",
+            "brush": "red"
+          },
+          {
+            "orig": "b6",
+            "brush": "red"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "lesson-2": {
+    "id": "lesson-2",
+    "title": "The Principles",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "If you want to hold your own through a full game, keep in mind these conventions when deciding on your moves.",
+    "panelText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Keep in mind that some of the chess rule of thumbs like these are subjective and depends on what position you are in",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "r1bqk1nr/pp2ppbp/2n3p1/2pp4/8/3P1NP1/PPPBPPBP/RN1QK2R w KQkq - 0 1",
+        "fenHistory": [
+          "r1bqk1nr/pp2ppbp/2n3p1/2pp4/8/3P1NP1/PPPBPPBP/RN1QK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Games typically start with a Pawn move. A Pawn duo near the center is optimal, just enough to let your pieces into the fight. Make minimum Pawn moves as to not show your hand so quick.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "black",
+        "config": {},
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-3": {
+        "fen": "r1b2rk1/pp2npbp/2n3p1/2pqp3/2Np4/2PP1NP1/PPQBPPBP/R4RK1 w KQkq - 0 1",
+        "fenHistory": [
+          "r1b2rk1/pp2npbp/2n3p1/2pqp3/2Np4/2PP1NP1/PPQBPPBP/R4RK1 w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Development: move your pieces toward the center of the board. Minor pieces: Knights first, then Bishops. Careful with your Queen placement. It’s valuable so you want to make sure it doesn’t get kicked around by less-expensive pieces. Once you connect your Rooks and they can see each other, you’ll know you’ve done a good job with this principle. In about the first 10 moves, the recommendation is to move your pieces once.",
+        "arrowsCircles": [
+          {
+            "orig": "b1",
+            "dest": "f1",
+            "brush": "green"
+          },
+          {
+            "orig": "e1",
+            "dest": "a1",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "8/8/8/8/2BPPB2/2N2N2/PPP1QPPP/3R1RK1 w - - 0 1",
+        "fenHistory": ["8/8/8/8/2BPPB2/2N2N2/PPP1QPPP/3R1RK1 w - - 0 1"],
+        "history": [],
+        "panelText": "Center Control: placing your pieces in the center is good, but even better is keeping an influence on the center. This is the dream setup for white. A Pawn duo, and pieces attacking the center. Keep in mind that a piece does not control the square that it occupies, it will need support.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "King Safety: Let’s cover castling. The path must be clear between your King and Rook. If you move your King or the respective Rook then you lose the right to castle. Take note of the following sequence.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      },
+      "panel-6": {
+        "fen": "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQ2KR w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQ2KR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "The King moves right (or left for queenside) two squares.",
+        "arrowsCircles": [
+          {
+            "orig": "e1",
+            "dest": "g1",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "config": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-7": {
+        "fen": "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "The Rook hops over the King to the next square.",
+        "arrowsCircles": [
+          {
+            "orig": "h1",
+            "dest": "f1",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "config": {},
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      },
+      "panel-8": {
+        "fen": "1kr5/ppp5/8/8/8/8/5PPP/5RK1 w - - 0 1",
+        "fenHistory": ["1kr5/ppp5/8/8/8/8/5PPP/5RK1 w - - 0 1"],
+        "history": [],
+        "panelText": "Castle early. This gets your King out of the center of the board and brings your Rook into the action. An important note here: be mindful about moving the Pawns in front of the side you plan to castle on, it might not be a good idea. We will cover more on Pawn weaknesses later on.",
+        "arrowsCircles": [
+          {
+            "orig": "h2",
+            "brush": "green"
+          },
+          {
+            "orig": "g2",
+            "brush": "green"
+          },
+          {
+            "orig": "f2",
+            "brush": "green"
+          },
+          {
+            "orig": "c7",
+            "brush": "green"
+          },
+          {
+            "orig": "b7",
+            "brush": "green"
+          },
+          {
+            "orig": "a7",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "viewOnly": true,
+        "orientation": "white",
+        "config": {},
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": []
+      }
+    },
+    "boss": false
+  }
+}

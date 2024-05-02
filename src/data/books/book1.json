@@ -1094,640 +1094,11 @@
     },
     "boss": false
   },
-  "lesson-6": {
-    "id": "lesson-6",
-    "title": "The Draw",
-    "time": [
-      [0, 0],
-      [0, 0]
-    ],
-    "nodeText": "The endgame scenario that may or may not be in your favor.",
-    "panelText": "",
-    "reward": [],
-    "prereq": "lesson-2",
-    "opponent": "",
-    "theme": "red",
-    "panels": {
-      "panel-1": {
-        "fen": "3k4/3P4/3K4/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["3k4/3P4/3K4/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Draws are a game-ending scenario where both sides attain half a point. One way is for a player to offer a draw and the opponent can choose to agree or play on. There are four on-board types of draws.",
-        "arrowsCircles": [
-          {
-            "orig": "d7",
-            "brush": "green"
-          },
-          {
-            "orig": "c7",
-            "brush": "green"
-          },
-          {
-            "orig": "e7",
-            "brush": "green"
-          },
-          {
-            "orig": "e8",
-            "brush": "blue"
-          },
-          {
-            "orig": "c8",
-            "brush": "blue"
-          }
-        ],
-        "nodeText": "",
-        "reward": [],
-        "description": "",
-        "opponent": "",
-        "prereq": "",
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-2": {
-        "fen": "7k/5KR1/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["7k/5KR1/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Stalemate: when it is a player’s turn and has no legal moves to play and is not in check.",
-        "arrowsCircles": [
-          {
-            "orig": "g7",
-            "dest": "g8",
-            "brush": "green"
-          },
-          {
-            "orig": "g7",
-            "dest": "h7",
-            "brush": "green"
-          }
-        ],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-3": {
-        "fen": "8/8/8/8/P7/p7/2K5/kR6 w - - 0 1",
-        "fenHistory": ["8/8/8/8/P7/p7/2K5/kR6 w - - 0 1"],
-        "history": [],
-        "panelText": "Repetition: when the same on-board position occurs three times.",
-        "arrowsCircles": [
-          {
-            "orig": "b8",
-            "dest": "b1",
-            "brush": "green"
-          }
-        ],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "config": {},
-        "orientation": "white",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-4": {
-        "fen": "8/8/8/8/P7/p7/k1K5/1R6 w - - 0 1",
-        "fenHistory": ["8/8/8/8/P7/p7/k1K5/1R6 w - - 0 1"],
-        "history": [],
-        "panelText": "Repetition: when the same on-board position occurs three times.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "config": {},
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-5": {
-        "fen": "8/8/8/8/P7/p7/kRK5/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/P7/p7/kRK5/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Repetition: when the same on-board position occurs three times.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "config": {},
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-6": {
-        "fen": "8/8/8/8/P7/p7/1RK5/k7 w - - 0 1",
-        "fenHistory": ["8/8/8/8/P7/p7/1RK5/k7 w - - 0 1"],
-        "history": [],
-        "panelText": "Repetition: when the same on-board position occurs three times.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "config": {},
-        "orientation": "white",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-7": {
-        "fen": "8/8/8/8/P7/p7/2K5/kR6 w - - 0 1",
-        "fenHistory": ["8/8/8/8/P7/p7/2K5/kR6 w - - 0 1"],
-        "history": [],
-        "panelText": "Repetition: when the same on-board position occurs three times.",
-        "arrowsCircles": [
-          {
-            "orig": "b2",
-            "dest": "b1",
-            "brush": "green"
-          }
-        ],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "config": {},
-        "orientation": "white",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-8": {
-        "fen": "8/8/8/8/P7/p7/k1K5/1R6 w - - 0 1",
-        "fenHistory": ["8/8/8/8/P7/p7/k1K5/1R6 w - - 0 1"],
-        "history": [],
-        "panelText": "Repetition: when the same on-board position occurs three times.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "config": {},
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-9": {
-        "fen": "8/8/8/8/P7/p7/kRK5/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/P7/p7/kRK5/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Repetition: when the same on-board position occurs three times.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "config": {},
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-10": {
-        "fen": "8/8/8/8/P7/p7/1RK5/k7 w - - 0 1",
-        "fenHistory": ["8/8/8/8/P7/p7/1RK5/k7 w - - 0 1"],
-        "history": [],
-        "panelText": "Repetition: when the same on-board position occurs three times.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "config": {},
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-11": {
-        "fen": "8/8/8/8/P7/p7/2K5/kR6 w - - 0 1",
-        "fenHistory": ["8/8/8/8/P7/p7/2K5/kR6 w - - 0 1"],
-        "history": [],
-        "panelText": "Repetition: when the same on-board position occurs three times.",
-        "arrowsCircles": [
-          {
-            "orig": "b2",
-            "dest": "b1",
-            "brush": "green"
-          },
-          {
-            "orig": "a1",
-            "brush": "red"
-          },
-          {
-            "orig": "b1",
-            "brush": "red"
-          },
-          {
-            "orig": "c2",
-            "brush": "red"
-          },
-          {
-            "orig": "a3",
-            "brush": "red"
-          },
-          {
-            "orig": "a4",
-            "brush": "red"
-          }
-        ],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "config": {},
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-12": {
-        "fen": "8/8/3bk3/8/3KB3/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/3bk3/8/3KB3/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Insufficient material: if enough material is traded off, then there might not be enough to deliver a checkmate.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyM": {},
-          "royaltyT": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "config": {},
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-13": {
-        "fen": "8/7p/1k4pP/p2p1pP1/P1pPpP2/K1P1P3/8/8 w - - 0 1",
-        "fenHistory": ["8/7p/1k4pP/p2p1pP1/P1pPpP2/K1P1P3/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "The last is the 50-move rule. If 50 moves go by without a Pawn move or a capture move, then each player gets the half point.",
-        "arrowsCircles": [
-          {
-            "orig": "a3",
-            "brush": "red"
-          },
-          {
-            "orig": "b6",
-            "brush": "red"
-          }
-        ],
-        "nodeText": "",
-        "reward": [],
-        "description": "",
-        "opponent": "",
-        "prereq": "",
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyM": {},
-          "royaltyT": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [],
-        "viewOnly": true,
-        "orientation": "white"
-      }
-    },
-    "boss": false
-  },
-  "lesson-7": {
-    "id": "lesson-7",
-    "title": "The Principles",
-    "time": [
-      [0, 0],
-      [0, 0]
-    ],
-    "nodeText": "If you want to hold your own through a full game, keep in mind these conventions when deciding on your moves.",
-    "panelText": "",
-    "reward": [],
-    "prereq": "lesson-5",
-    "opponent": "",
-    "theme": "",
-    "panels": {
-      "panel-1": {
-        "fen": "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1",
-        "fenHistory": [
-          "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1"
-        ],
-        "history": [],
-        "panelText": "Keep in mind that some of the chess rule of thumbs like these are subjective and depends on what position you are in",
-        "arrowsCircles": [],
-        "nodeText": "",
-        "reward": [],
-        "description": "",
-        "opponent": "",
-        "prereq": "",
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-2": {
-        "fen": "r1bqk1nr/pp2ppbp/2n3p1/2pp4/8/3P1NP1/PPPBPPBP/RN1QK2R w KQkq - 0 1",
-        "fenHistory": [
-          "r1bqk1nr/pp2ppbp/2n3p1/2pp4/8/3P1NP1/PPPBPPBP/RN1QK2R w KQkq - 0 1"
-        ],
-        "history": [],
-        "panelText": "Games typically start with a Pawn move. A Pawn duo near the center is optimal, just enough to let your pieces into the fight. Make minimum Pawn moves as to not show your hand so quick.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "black",
-        "config": {},
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-3": {
-        "fen": "r1b2rk1/pp2npbp/2n3p1/2pqp3/2Np4/2PP1NP1/PPQBPPBP/R4RK1 w KQkq - 0 1",
-        "fenHistory": [
-          "r1b2rk1/pp2npbp/2n3p1/2pqp3/2Np4/2PP1NP1/PPQBPPBP/R4RK1 w KQkq - 0 1"
-        ],
-        "history": [],
-        "panelText": "Development: move your pieces toward the center of the board. Minor pieces: Knights first, then Bishops. Careful with your Queen placement. It’s valuable so you want to make sure it doesn’t get kicked around by less-expensive pieces. Once you connect your Rooks and they can see each other, you’ll know you’ve done a good job with this principle. In about the first 10 moves, the recommendation is to move your pieces once.",
-        "arrowsCircles": [
-          {
-            "orig": "b1",
-            "dest": "f1",
-            "brush": "green"
-          },
-          {
-            "orig": "e1",
-            "dest": "a1",
-            "brush": "green"
-          }
-        ],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-4": {
-        "fen": "8/8/8/8/2BPPB2/2N2N2/PPP1QPPP/3R1RK1 w - - 0 1",
-        "fenHistory": ["8/8/8/8/2BPPB2/2N2N2/PPP1QPPP/3R1RK1 w - - 0 1"],
-        "history": [],
-        "panelText": "Center Control: placing your pieces in the center is good, but even better is keeping an influence on the center. This is the dream setup for white. A Pawn duo, and pieces attacking the center. Keep in mind that a piece does not control the square that it occupies, it will need support.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-5": {
-        "fen": "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1",
-        "fenHistory": [
-          "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1"
-        ],
-        "history": [],
-        "panelText": "King Safety: Let’s cover castling. The path must be clear between your King and Rook. If you move your King or the respective Rook then you lose the right to castle. Take note of the following sequence.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": []
-      },
-      "panel-6": {
-        "fen": "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQ2KR w KQkq - 0 1",
-        "fenHistory": [
-          "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQ2KR w KQkq - 0 1"
-        ],
-        "history": [],
-        "panelText": "The King moves right (or left for queenside) two squares.",
-        "arrowsCircles": [
-          {
-            "orig": "e1",
-            "dest": "g1",
-            "brush": "green"
-          }
-        ],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "whiteArcane": {},
-        "config": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-7": {
-        "fen": "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 w KQkq - 0 1",
-        "fenHistory": [
-          "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 w KQkq - 0 1"
-        ],
-        "history": [],
-        "panelText": "The Rook hops over the King to the next square.",
-        "arrowsCircles": [
-          {
-            "orig": "h1",
-            "dest": "f1",
-            "brush": "green"
-          }
-        ],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "config": {},
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      },
-      "panel-8": {
-        "fen": "1kr5/ppp5/8/8/8/8/5PPP/5RK1 w - - 0 1",
-        "fenHistory": ["1kr5/ppp5/8/8/8/8/5PPP/5RK1 w - - 0 1"],
-        "history": [],
-        "panelText": "Castle early. This gets your King out of the center of the board and brings your Rook into the action. An important note here: be mindful about moving the Pawns in front of the side you plan to castle on, it might not be a good idea. We will cover more on Pawn weaknesses later on.",
-        "arrowsCircles": [
-          {
-            "orig": "h2",
-            "brush": "green"
-          },
-          {
-            "orig": "g2",
-            "brush": "green"
-          },
-          {
-            "orig": "f2",
-            "brush": "green"
-          },
-          {
-            "orig": "c7",
-            "brush": "green"
-          },
-          {
-            "orig": "b7",
-            "brush": "green"
-          },
-          {
-            "orig": "a7",
-            "brush": "green"
-          }
-        ],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "viewOnly": true,
-        "orientation": "white",
-        "config": {},
-        "whiteArcane": {},
-        "blackArcane": {},
-        "correctMoves": []
-      }
-    },
-    "boss": false
-  },
   "temple-1": {
     "id": "temple-1",
     "title": "Temple of Rook Endings I",
     "time": [
-      [0, 0],
+      [60, 0],
       [0, 0]
     ],
     "nodeText": "",
@@ -2998,6 +2369,2488 @@
         "correctMoves": ["d8d7", "e1e8", "f6f8", "e8f8"],
         "viewOnly": true,
         "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "temple-2": {
+    "id": "temple-2",
+    "title": "Temple of Rook Endings II",
+    "time": [
+      [90, 0],
+      [0, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "temple-1",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "4r1k1/pp3ppp/8/4r3/PPR5/8/5PPP/R5K1 w - - 0 21",
+        "fenHistory": ["4r1k1/pp3ppp/8/4r3/PPR5/8/5PPP/R5K1 w - - 0 21"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a1c1", "e5e1", "c1e1", "e8e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-2": {
+        "fen": "5k2/2R5/p6p/6p1/P3Pp2/1PK2P2/6PP/3r4 w - - 3 41",
+        "fenHistory": ["5k2/2R5/p6p/6p1/P3Pp2/1PK2P2/6PP/3r4 w - - 3 41"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c7c6", "d1c1", "c3b2", "c1c6"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-3": {
+        "fen": "2r3k1/pp2pp1p/6p1/3P4/4P3/2r5/5PPP/RR4K1 w - - 0 23",
+        "fenHistory": ["2r3k1/pp2pp1p/6p1/3P4/4P3/2r5/5PPP/RR4K1 w - - 0 23"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b1b7", "c3c1", "a1c1", "c8c1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-4": {
+        "fen": "2r3k1/5p2/R7/p3p1pP/1p2r3/6P1/PPPR4/1K6 w - - 0 36",
+        "fenHistory": ["2r3k1/5p2/R7/p3p1pP/1p2r3/6P1/PPPR4/1K6 w - - 0 36"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a6a5", "e4e1", "d2d1", "e1d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-5": {
+        "fen": "r7/P2k4/5R2/1p2p1p1/3pP1P1/8/2K5/8 b - - 0 42",
+        "fenHistory": ["r7/P2k4/5R2/1p2p1p1/3pP1P1/8/2K5/8 b - - 0 42"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a8a7", "f6f7", "d7c6", "f7a7"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-6": {
+        "fen": "4r1k1/5ppp/8/p7/8/P7/1P1q1PPP/3R2K1 w - - 0 31",
+        "fenHistory": ["4r1k1/5ppp/8/p7/8/P7/1P1q1PPP/3R2K1 w - - 0 31"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d1d2", "e8e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-7": {
+        "fen": "5rk1/6pp/1P1p4/pP6/3Pp3/8/6PP/4Rr1K w - - 0 26",
+        "fenHistory": ["5rk1/6pp/1P1p4/pP6/3Pp3/8/6PP/4Rr1K w - - 0 26"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e1f1", "f8f1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-8": {
+        "fen": "8/5p2/3r3p/R3kPp1/3pr1P1/3R3P/6K1/8 b - - 3 49",
+        "fenHistory": ["8/5p2/3r3p/R3kPp1/3pr1P1/3R3P/6K1/8 b - - 3 49"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e5f4", "d3f3"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-9": {
+        "fen": "2r3k1/1p3ppp/p7/3q4/PP6/8/5PPP/3R2K1 w - - 0 27",
+        "fenHistory": ["2r3k1/1p3ppp/p7/3q4/PP6/8/5PPP/3R2K1 w - - 0 27"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d1d5", "c8c1", "d5d1", "c1d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-10": {
+        "fen": "2r4k/p1Q3pp/5p2/8/P4PP1/7P/8/1R4K1 b - - 0 33",
+        "fenHistory": ["2r4k/p1Q3pp/5p2/8/P4PP1/7P/8/1R4K1 b - - 0 33"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c8c7", "b1b8", "c7c8", "b8c8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-11": {
+        "fen": "2k5/7p/2K5/p4r2/1p6/6R1/6PP/8 b - - 2 38",
+        "fenHistory": ["2k5/7p/2K5/p4r2/1p6/6R1/6PP/8 b - - 2 38"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a5a4", "g3g8", "f5f8", "g8f8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-12": {
+        "fen": "2r5/2P5/8/3p4/3Pp3/4Pk1p/2R2P1K/8 w - - 1 66",
+        "fenHistory": ["2r5/2P5/8/3p4/3Pp3/4Pk1p/2R2P1K/8 w - - 1 66"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h2h3", "c8h8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-13": {
+        "fen": "7K/r4k1P/2R5/8/8/8/8/8 w - - 5 69",
+        "fenHistory": ["7K/r4k1P/2R5/8/8/8/8/8 w - - 5 69"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c6b6", "a7a8", "b6b8", "a8b8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-14": {
+        "fen": "4r2k/1R3p1p/3p1Pp1/8/8/5P1P/8/7K b - - 2 41",
+        "fenHistory": ["4r2k/1R3p1p/3p1Pp1/8/8/5P1P/8/7K b - - 2 41"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e8e6", "b7b8", "e6e8", "b8e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-15": {
+        "fen": "r5k1/1p1R1ppp/pB4r1/8/1P3K2/P4P2/5P2/3R4 b - - 0 32",
+        "fenHistory": ["r5k1/1p1R1ppp/pB4r1/8/1P3K2/P4P2/5P2/3R4 b - - 0 32"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g6b6", "d7d8", "a8d8", "d1d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-16": {
+        "fen": "3r2k1/p4ppp/1p2p3/4P3/8/1P4P1/P4PKP/2R5 b - - 0 22",
+        "fenHistory": ["3r2k1/p4ppp/1p2p3/4P3/8/1P4P1/P4PKP/2R5 b - - 0 22"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d8d5", "c1c8", "d5d8", "c8d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-17": {
+        "fen": "8/1kpRn3/3r4/5p1p/8/8/5PPP/6K1 w - - 0 28",
+        "fenHistory": ["8/1kpRn3/3r4/5p1p/8/8/5PPP/6K1 w - - 0 28"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d7e7", "d6d1", "e7e1", "d1e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-18": {
+        "fen": "6k1/5ppp/1p6/2pP4/r1P5/8/4RPPP/6K1 w - - 0 30",
+        "fenHistory": ["6k1/5ppp/1p6/2pP4/r1P5/8/4RPPP/6K1 w - - 0 30"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d5d6", "a4a1", "e2e1", "a1e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-19": {
+        "fen": "r7/6pp/8/1P2kp2/pP2p3/2K3P1/5P1P/3R4 w - - 2 40",
+        "fenHistory": ["r7/6pp/8/1P2kp2/pP2p3/2K3P1/5P1P/3R4 w - - 2 40"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c3c4", "a8c8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-20": {
+        "fen": "6k1/r4p1p/4p1p1/4P3/1R1P4/8/5PPP/6K1 w - - 0 32",
+        "fenHistory": ["6k1/r4p1p/4p1p1/4P3/1R1P4/8/5PPP/6K1 w - - 0 32"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b4c4", "a7a1", "c4c1", "a1c1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-21": {
+        "fen": "2rr3k/2RR2pp/2p5/ppP2p2/5P2/6P1/PP5P/6K1 b - - 5 27",
+        "fenHistory": ["2rr3k/2RR2pp/2p5/ppP2p2/5P2/6P1/PP5P/6K1 b - - 5 27"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d8d7", "c7c8", "d7d8", "c8d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-22": {
+        "fen": "8/4R3/4prpk/6p1/7p/7P/6K1/8 b - - 1 34",
+        "fenHistory": ["8/4R3/4prpk/6p1/7p/7P/6K1/8 b - - 1 34"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h6h5", "e7h7"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-23": {
+        "fen": "6k1/p4p1p/2r3p1/8/P2p4/8/5PPP/3R2K1 w - - 0 26",
+        "fenHistory": ["6k1/p4p1p/2r3p1/8/P2p4/8/5PPP/3R2K1 w - - 0 26"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d1d4", "c6c1", "d4d1", "c1d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-24": {
+        "fen": "8/6pp/5pk1/8/PR6/5P2/r5PP/3K4 b - - 2 36",
+        "fenHistory": ["8/6pp/5pk1/8/PR6/5P2/r5PP/3K4 b - - 2 36"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a2g2", "b4g4", "g2g4", "f3g4"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-25": {
+        "fen": "1r4k1/6p1/6P1/2p5/2P5/2P5/Rp6/1K6 b - - 0 41",
+        "fenHistory": ["1r4k1/6p1/6P1/2p5/2P5/2P5/Rp6/1K6 b - - 0 41"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b8b6", "a2a8", "b6b8", "a8b8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-26": {
+        "fen": "1k6/p7/1pK3p1/2p4p/2P5/1P5r/P6P/5R2 b - - 3 37",
+        "fenHistory": ["1k6/p7/1pK3p1/2p4p/2P5/1P5r/P6P/5R2 b - - 3 37"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h3d3", "f1f8", "d3d8", "f8d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-27": {
+        "fen": "1k6/p4p1p/Pp1q1p2/1Pr5/4P3/8/5PPP/3R2K1 w - - 0 28",
+        "fenHistory": ["1k6/p4p1p/Pp1q1p2/1Pr5/4P3/8/5PPP/3R2K1 w - - 0 28"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d1d6", "c5c1", "d6d1", "c1d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-28": {
+        "fen": "1r4k1/5ppp/R3p3/4P3/1R6/P7/3r1PPP/5K2 b - - 1 32",
+        "fenHistory": ["1r4k1/5ppp/R3p3/4P3/1R6/P7/3r1PPP/5K2 b - - 1 32"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b8b4", "a6a8", "b4b8", "a8b8", "d2d8", "b8d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-29": {
+        "fen": "8/1p3p1p/p3p1p1/2PkP3/PP1r2P1/2rRKP1P/8/3R4 b - - 0 32",
+        "fenHistory": [
+          "8/1p3p1p/p3p1p1/2PkP3/PP1r2P1/2rRKP1P/8/3R4 b - - 0 32"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c3d3", "d1d3", "d4d3", "e3d3"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-30": {
+        "fen": "2k5/7R/2K5/1P2pp2/4P3/5r2/8/8 b - - 1 40",
+        "fenHistory": ["2k5/7R/2K5/1P2pp2/4P3/5r2/8/8 b - - 1 40"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f5e4", "h7h8", "f3f8", "h8f8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-31": {
+        "fen": "8/P4R2/7p/8/r7/6k1/8/6K1 w - - 5 55",
+        "fenHistory": ["8/P4R2/7p/8/r7/6k1/8/6K1 w - - 5 55"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f7b7", "a4a1", "b7b1", "a1b1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-32": {
+        "fen": "7k/p1r2p1p/4p2P/1R6/8/1P6/2P5/2K5 b - - 4 39",
+        "fenHistory": ["7k/p1r2p1p/4p2P/1R6/8/1P6/2P5/2K5 b - - 4 39"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f7f5", "b5b8", "c7c8", "b8c8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-33": {
+        "fen": "6k1/6p1/p7/1p6/3PR3/2P3pP/Pr4P1/6K1 w - - 0 39",
+        "fenHistory": ["6k1/6p1/p7/1p6/3PR3/2P3pP/Pr4P1/6K1 w - - 0 39"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d4d5", "b2b1", "e4e1", "b1e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-34": {
+        "fen": "8/P4R2/1R6/5p2/r2p4/3P2kP/6P1/7K w - - 1 44",
+        "fenHistory": ["8/P4R2/1R6/5p2/r2p4/3P2kP/6P1/7K w - - 1 44"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b6b8", "a4a1", "b8b1", "a1b1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-35": {
+        "fen": "6k1/5ppp/4p3/3RP3/3r4/7P/5PP1/R5K1 b - - 0 33",
+        "fenHistory": ["6k1/5ppp/4p3/3RP3/3r4/7P/5PP1/R5K1 b - - 0 33"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d4d5", "a1a8", "d5d8", "a8d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-36": {
+        "fen": "8/1R4R1/6p1/8/3P3P/p3P1Pk/P1r2P2/6K1 w - - 3 32",
+        "fenHistory": ["8/1R4R1/6p1/8/3P3P/p3P1Pk/P1r2P2/6K1 w - - 3 32"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g7g6", "c2c1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-37": {
+        "fen": "5rk1/6pp/p7/1p5P/2p3P1/4q3/PPP5/1K2R3 w - - 0 36",
+        "fenHistory": ["5rk1/6pp/p7/1p5P/2p3P1/4q3/PPP5/1K2R3 w - - 0 36"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e1e3", "f8f1", "e3e1", "f1e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-38": {
+        "fen": "4r1k1/1p3p1p/6pP/p3Q3/8/6P1/5P2/3R2K1 b - - 0 28",
+        "fenHistory": ["4r1k1/1p3p1p/6pP/p3Q3/8/6P1/5P2/3R2K1 b - - 0 28"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e8e5", "d1d8", "e5e8", "d8e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-39": {
+        "fen": "r4rk1/6pp/5p2/8/2b1R3/1P6/2PR1PPP/6K1 w - - 0 28",
+        "fenHistory": ["r4rk1/6pp/5p2/8/2b1R3/1P6/2PR1PPP/6K1 w - - 0 28"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e4c4", "a8a1", "d2d1", "a1d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-40": {
+        "fen": "5k2/r4p2/1R6/1pP3pp/4p3/4P3/5PPP/6K1 w - - 0 33",
+        "fenHistory": ["5k2/r4p2/1R6/1pP3pp/4p3/4P3/5PPP/6K1 w - - 0 33"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b6b5", "a7a1", "b5b1", "a1b1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-41": {
+        "fen": "6k1/5ppp/2r1p3/P7/3P1P2/1p6/1K5P/2R5 b - - 1 30",
+        "fenHistory": ["6k1/5ppp/2r1p3/P7/3P1P2/1p6/1K5P/2R5 b - - 1 30"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c6a6", "c1c8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-42": {
+        "fen": "3r2k1/pp4pp/2p5/2Pr1p2/1P2p3/P3P1P1/5P1P/R2R2K1 w - - 2 24",
+        "fenHistory": [
+          "3r2k1/pp4pp/2p5/2Pr1p2/1P2p3/P3P1P1/5P1P/R2R2K1 w - - 2 24"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g1f1", "d5d1", "a1d1", "d8d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-43": {
+        "fen": "8/8/8/1R4pp/8/5kPK/8/r7 w - - 2 66",
+        "fenHistory": ["8/8/8/1R4pp/8/5kPK/8/r7 w - - 2 66"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b5g5", "a1h1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-44": {
+        "fen": "1r6/3k4/2R5/3Pp3/pp2Pp1p/P4PpP/1P4P1/6K1 w - - 0 50",
+        "fenHistory": ["1r6/3k4/2R5/3Pp3/pp2Pp1p/P4PpP/1P4P1/6K1 w - - 0 50"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a3b4", "b8b4"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-45": {
+        "fen": "8/8/8/6kp/7R/6PK/6P1/3r4 w - - 15 89",
+        "fenHistory": ["8/8/8/6kp/7R/6PK/6P1/3r4 w - - 15 89"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h4f4", "d1h1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-46": {
+        "fen": "4r3/8/8/1R6/2p5/2Pk4/1P3P2/1K6 w - - 1 44",
+        "fenHistory": ["4r3/8/8/1R6/2p5/2Pk4/1P3P2/1K6 w - - 1 44"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b1c1", "e8e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-47": {
+        "fen": "5r1k/6pp/3p4/8/5Q2/7P/6P1/R6K b - - 0 36",
+        "fenHistory": ["5r1k/6pp/3p4/8/5Q2/7P/6P1/R6K b - - 0 36"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f8f4", "a1a8", "f4f8", "a8f8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-48": {
+        "fen": "8/2K5/4kp2/1P6/4P1p1/8/7p/3R4 w - - 0 52",
+        "fenHistory": ["8/2K5/4kp2/1P6/4P1p1/8/7p/3R4 w - - 0 52"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d1h1", "g4g3", "b5b6", "g3g2", "h1h2", "g2g1q"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-49": {
+        "fen": "8/1r6/5p2/1P1p1k1p/3P3K/2P2PP1/1R6/8 w - - 5 47",
+        "fenHistory": ["8/1r6/5p2/1P1p1k1p/3P3K/2P2PP1/1R6/8 w - - 5 47"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h4h5", "b7h7"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-50": {
+        "fen": "3r4/6pk/p7/1p6/4R3/P5Pp/1P3P1P/6K1 w - - 1 34",
+        "fenHistory": ["3r4/6pk/p7/1p6/4R3/P5Pp/1P3P1P/6K1 w - - 1 34"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b2b4", "d8d1", "e4e1", "d1e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-51": {
+        "fen": "r4r2/6k1/4ppp1/1p5p/1P1Pq3/2P2R2/5PPP/4R1K1 w - - 0 28",
+        "fenHistory": [
+          "r4r2/6k1/4ppp1/1p5p/1P1Pq3/2P2R2/5PPP/4R1K1 w - - 0 28"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e1e4", "a8a1", "e4e1", "a1e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-52": {
+        "fen": "1R6/8/7r/8/6p1/5p1k/5K2/8 b - - 3 77",
+        "fenHistory": ["1R6/8/7r/8/6p1/5p1k/5K2/8 b - - 3 77"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h6d6", "b8h8", "d6h6", "h8h6"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-53": {
+        "fen": "8/p1r2k2/K4p2/8/P6R/2p5/5P1P/8 b - - 3 36",
+        "fenHistory": ["8/p1r2k2/K4p2/8/P6R/2p5/5P1P/8 b - - 3 36"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c3c2", "h4h7", "f7e6", "h7c7", "c2c1q", "c7c1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-54": {
+        "fen": "2R5/1k3r1p/p4rp1/8/P7/2R2PK1/5P1P/8 b - - 4 39",
+        "fenHistory": ["2R5/1k3r1p/p4rp1/8/P7/2R2PK1/5P1P/8 b - - 4 39"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f6f3", "c3f3", "f7f3", "g3f3"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-55": {
+        "fen": "8/4P2R/8/5P2/8/5kPK/8/4r3 w - - 1 52",
+        "fenHistory": ["8/4P2R/8/5P2/8/5kPK/8/4r3 w - - 1 52"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f5f6", "e1h1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-56": {
+        "fen": "5r2/pp5R/1k6/3b4/6r1/2P5/PP5P/3R3K w - - 0 33",
+        "fenHistory": ["5r2/pp5R/1k6/3b4/6r1/2P5/PP5P/3R3K w - - 0 33"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d1d5", "f8f1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-57": {
+        "fen": "5k2/5p1p/1R3P2/ppp5/8/8/Pr4PP/6K1 b - - 0 28",
+        "fenHistory": ["5k2/5p1p/1R3P2/ppp5/8/8/Pr4PP/6K1 b - - 0 28"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b5b4", "b6b8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-58": {
+        "fen": "r7/1kp5/1p6/1P1P4/2P1R3/5PpP/6P1/5K2 w - - 5 40",
+        "fenHistory": ["r7/1kp5/1p6/1P1P4/2P1R3/5PpP/6P1/5K2 w - - 5 40"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f1g1", "a8a1", "e4e1", "a1e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-59": {
+        "fen": "8/2p1R2r/r2pR1k1/5p2/1P3Ppp/P5P1/3K3P/8 b - - 7 38",
+        "fenHistory": ["8/2p1R2r/r2pR1k1/5p2/1P3Ppp/P5P1/3K3P/8 b - - 7 38"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g6h5", "e7h7"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-60": {
+        "fen": "r6k/6pp/2R5/5p2/3p4/P4rP1/6KP/2R5 b - - 1 35",
+        "fenHistory": ["r6k/6pp/2R5/5p2/3p4/P4rP1/6KP/2R5 b - - 1 35"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f3a3", "c6c8", "a8c8", "c1c8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      }
+    },
+    "boss": false
+  },
+  "temple-3": {
+    "id": "temple-3",
+    "title": "Temple of Singularities II",
+    "time": [
+      [90, 0],
+      [0, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "temple-1",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "2r2Q1k/6p1/3p3p/2b5/P3B3/2q5/6PP/5R1K b - - 5 33",
+        "fenHistory": ["2r2Q1k/6p1/3p3p/2b5/P3B3/2q5/6PP/5R1K b - - 5 33"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c8f8", "f1f8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-2": {
+        "fen": "3r3k/R5pp/8/2P5/1P6/5B1P/5PP1/2nq1K2 w - - 0 37",
+        "fenHistory": ["3r3k/R5pp/8/2P5/1P6/5B1P/5PP1/2nq1K2 w - - 0 37"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f3d1", "d8d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-3": {
+        "fen": "r5k1/pp1q3p/2p2Bp1/3pp3/4P3/2PP4/PP2QP1P/6RK w - - 0 25",
+        "fenHistory": [
+          "r5k1/pp1q3p/2p2Bp1/3pp3/4P3/2PP4/PP2QP1P/6RK w - - 0 25"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h2h4", "d7h3"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-4": {
+        "fen": "3r3k/1p4pp/p7/2pQ4/3P4/2P2R1P/PP1q1PP1/5RK1 b - - 0 28",
+        "fenHistory": [
+          "3r3k/1p4pp/p7/2pQ4/3P4/2P2R1P/PP1q1PP1/5RK1 b - - 0 28"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d8d5", "f3f8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-5": {
+        "fen": "8/8/5kp1/5p2/5r2/1PR5/4p1PP/6K1 w - - 0 35",
+        "fenHistory": ["8/8/5kp1/5p2/5r2/1PR5/4p1PP/6K1 w - - 0 35"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c3e3", "f4f1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-6": {
+        "fen": "4r3/p4k2/7p/b2p2p1/3P1p2/B7/P1r2PPP/2R2K2 w - - 0 36",
+        "fenHistory": ["4r3/p4k2/7p/b2p2p1/3P1p2/B7/P1r2PPP/2R2K2 w - - 0 36"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c1c2", "e8e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-7": {
+        "fen": "2k1b1r1/ppp3q1/1b2p3/5p2/3PpP1B/1NP1P2P/PP1R4/4Q1rK w - - 0 30",
+        "fenHistory": [
+          "2k1b1r1/ppp3q1/1b2p3/5p2/3PpP1B/1NP1P2P/PP1R4/4Q1rK w - - 0 30"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e1g1", "g7g1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-8": {
+        "fen": "1k1r4/1pp3p1/5p2/1p4p1/1P3n2/P1RB2R1/5P2/5K2 w - - 0 34",
+        "fenHistory": [
+          "1k1r4/1pp3p1/5p2/1p4p1/1P3n2/P1RB2R1/5P2/5K2 w - - 0 34"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d3f5", "d8d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-9": {
+        "fen": "k2Q4/pp6/8/3q4/8/PP6/K1PR4/4r3 b - - 0 41",
+        "fenHistory": ["k2Q4/pp6/8/3q4/8/PP6/K1PR4/4r3 b - - 0 41"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d5d8", "d2d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-10": {
+        "fen": "2n1r1k1/pp3ppp/8/1Qp1q3/2P5/1P4P1/P4P1P/5RK1 b - - 4 28",
+        "fenHistory": [
+          "2n1r1k1/pp3ppp/8/1Qp1q3/2P5/1P4P1/P4P1P/5RK1 b - - 4 28"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e5c7", "b5e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-11": {
+        "fen": "6k1/1p4pp/1q2B3/1P3Q2/8/7P/5PPK/r7 b - - 0 29",
+        "fenHistory": ["6k1/1p4pp/1q2B3/1P3Q2/8/7P/5PPK/r7 b - - 0 29"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g8h8", "f5f8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-12": {
+        "fen": "r3Q1k1/6pp/1R1B4/p2pQp2/2pq3P/1n6/5PPK/8 b - - 0 38",
+        "fenHistory": ["r3Q1k1/6pp/1R1B4/p2pQp2/2pq3P/1n6/5PPK/8 b - - 0 38"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a8e8", "e5e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-13": {
+        "fen": "2k1Qr2/1b1n4/p1pP2pp/1p1n4/2pq4/6P1/PP3PBP/R1B1R1K1 b - - 2 20",
+        "fenHistory": [
+          "2k1Qr2/1b1n4/p1pP2pp/1p1n4/2pq4/6P1/PP3PBP/R1B1R1K1 b - - 2 20"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f8e8", "e1e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-14": {
+        "fen": "8/p4rpk/3p1q1p/2pQ3P/3pP3/6R1/6KP/R4q2 w - - 0 35",
+        "fenHistory": ["8/p4rpk/3p1q1p/2pQ3P/3pP3/6R1/6KP/R4q2 w - - 0 35"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a1f1", "f6f1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-15": {
+        "fen": "5r2/pp1k4/4p3/3pPr1p/1P5Q/2P1q3/P2R1PPP/6K1 w - - 4 28",
+        "fenHistory": [
+          "5r2/pp1k4/4p3/3pPr1p/1P5Q/2P1q3/P2R1PPP/6K1 w - - 4 28"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f2e3", "f5f1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-16": {
+        "fen": "3r2k1/p3Rppp/1p2b3/3QPp2/3B1P2/8/6PP/6K1 b - - 0 28",
+        "fenHistory": ["3r2k1/p3Rppp/1p2b3/3QPp2/3B1P2/8/6PP/6K1 b - - 0 28"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d8d5", "e7e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-17": {
+        "fen": "r1bq1Q1k/pppp2p1/7p/4P1n1/8/2NBb3/PP4PP/R4R1K b - - 3 18",
+        "fenHistory": [
+          "r1bq1Q1k/pppp2p1/7p/4P1n1/8/2NBb3/PP4PP/R4R1K b - - 3 18"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d8f8", "f1f8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-18": {
+        "fen": "1k2Qr2/p1p5/Pq1p4/7p/7P/2P2rP1/1P3P2/R3R1K1 b - - 6 30",
+        "fenHistory": [
+          "1k2Qr2/p1p5/Pq1p4/7p/7P/2P2rP1/1P3P2/R3R1K1 b - - 6 30"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f8e8", "e1e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-19": {
+        "fen": "r1bq1rk1/b1pp1pp1/p1n4p/1p1nP3/3P4/3Q1N2/PPB2PPP/RNB1R1K1 b - - 2 13",
+        "fenHistory": [
+          "r1bq1rk1/b1pp1pp1/p1n4p/1p1nP3/3P4/3Q1N2/PPB2PPP/RNB1R1K1 b - - 2 13"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c6b4", "d3h7"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-20": {
+        "fen": "3r2k1/ppp2ppp/8/4p3/1nq1P3/1B6/PP4PP/1K4NR w - - 0 23",
+        "fenHistory": ["3r2k1/ppp2ppp/8/4p3/1nq1P3/1B6/PP4PP/1K4NR w - - 0 23"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["b3c4", "d8d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-21": {
+        "fen": "r5qk/3n1pB1/2p2n2/p2pp1Qp/4P2P/P2P1P2/BPP2P2/2K3R1 b - - 1 22",
+        "fenHistory": [
+          "r5qk/3n1pB1/2p2n2/p2pp1Qp/4P2P/P2P1P2/BPP2P2/2K3R1 b - - 1 22"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g8g7", "g5g7"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-22": {
+        "fen": "1k6/ppp3pp/3r4/8/4b3/1P2PB2/P4PPP/R1B3K1 w - - 1 18",
+        "fenHistory": ["1k6/ppp3pp/3r4/8/4b3/1P2PB2/P4PPP/R1B3K1 w - - 1 18"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f3e4", "d6d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-23": {
+        "fen": "r1brQ1k1/p4p1p/1qp3pB/2np4/8/3B4/PPP2PPP/RN2R1K1 b - - 4 16",
+        "fenHistory": [
+          "r1brQ1k1/p4p1p/1qp3pB/2np4/8/3B4/PPP2PPP/RN2R1K1 b - - 4 16"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d8e8", "e1e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-24": {
+        "fen": "2r3k1/3q2pp/p4p2/1pbp4/5p2/P1P4r/1PQN2P1/3RR2K w - - 0 37",
+        "fenHistory": [
+          "2r3k1/3q2pp/p4p2/1pbp4/5p2/P1P4r/1PQN2P1/3RR2K w - - 0 37"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g2h3", "d7h3"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-25": {
+        "fen": "r5k1/1b1p1r1p/p1p1p1BQ/8/8/7R/6PP/2R2q1K w - - 1 32",
+        "fenHistory": ["r5k1/1b1p1r1p/p1p1p1BQ/8/8/7R/6PP/2R2q1K w - - 1 32"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c1f1", "f7f1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-26": {
+        "fen": "2R5/p4ppk/1p6/8/4q3/P1B4P/1P4P1/7K b - - 3 39",
+        "fenHistory": ["2R5/p4ppk/1p6/8/4q3/P1B4P/1P4P1/7K b - - 3 39"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g7g6", "c8h8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-27": {
+        "fen": "4r1k1/1p1Q1prp/p7/7R/1PP2n2/P7/2P4P/5K2 b - - 0 38",
+        "fenHistory": ["4r1k1/1p1Q1prp/p7/7R/1PP2n2/P7/2P4P/5K2 b - - 0 38"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f4h5", "d7e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-28": {
+        "fen": "8/1kpprppp/2b5/1n6/6B1/1R4P1/r4P1P/R5K1 w - - 0 27",
+        "fenHistory": ["8/1kpprppp/2b5/1n6/6B1/1R4P1/r4P1P/R5K1 w - - 0 27"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a1a2", "e7e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-29": {
+        "fen": "6Qk/pp4p1/6Pp/3p4/3p3P/6K1/PP2R1N1/1q6 b - - 0 37",
+        "fenHistory": ["6Qk/pp4p1/6Pp/3p4/3p3P/6K1/PP2R1N1/1q6 b - - 0 37"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h8g8", "e2e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-30": {
+        "fen": "8/5pk1/5p1p/2R5/P2r4/1P6/5PPP/6K1 w - - 0 27",
+        "fenHistory": ["8/5pk1/5p1p/2R5/P2r4/1P6/5PPP/6K1 w - - 0 27"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a4a5", "d4d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-31": {
+        "fen": "8/8/8/8/8/6p1/1r2k1P1/R5K1 w - - 16 55",
+        "fenHistory": ["8/8/8/8/8/6p1/1r2k1P1/R5K1 w - - 16 55"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a1a3", "b2b1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-32": {
+        "fen": "r3r1k1/ppp2pp1/2n2q1p/3n4/3P4/B1PQ1N1b/P1B2PP1/R4RK1 b - - 1 17",
+        "fenHistory": [
+          "r3r1k1/ppp2pp1/2n2q1p/3n4/3P4/B1PQ1N1b/P1B2PP1/R4RK1 b - - 1 17"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h3g4", "d3h7"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-33": {
+        "fen": "3Q2k1/4qpp1/4b2p/8/2p5/2P1P1P1/r1B1KPPN/3R4 b - - 10 27",
+        "fenHistory": [
+          "3Q2k1/4qpp1/4b2p/8/2p5/2P1P1P1/r1B1KPPN/3R4 b - - 10 27"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e7d8", "d1d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-34": {
+        "fen": "6rr/1k6/3p4/2pNp3/1pP1P3/3P1q2/2Q4p/5R1K w - - 0 38",
+        "fenHistory": ["6rr/1k6/3p4/2pNp3/1pP1P3/3P1q2/2Q4p/5R1K w - - 0 38"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f1f3", "g8g1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-35": {
+        "fen": "8/8/8/6pk/6r1/P2R4/7K/8 b - - 8 51",
+        "fenHistory": ["8/8/8/6pk/6r1/P2R4/7K/8 b - - 8 51"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h5h4", "d3h3"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-36": {
+        "fen": "5r1k/6bp/p2NQ1p1/1p1P4/1P6/P2p4/6PP/3R1q1K w - - 2 29",
+        "fenHistory": ["5r1k/6bp/p2NQ1p1/1p1P4/1P6/P2p4/6PP/3R1q1K w - - 2 29"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d1f1", "f8f1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-37": {
+        "fen": "6k1/5p1p/p2q2p1/P1p1r3/2Qp4/1P5P/2P2PP1/3R2K1 w - - 0 28",
+        "fenHistory": [
+          "6k1/5p1p/p2q2p1/P1p1r3/2Qp4/1P5P/2P2PP1/3R2K1 w - - 0 28"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d1d3", "e5e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-38": {
+        "fen": "r1bq1rk1/3pbppp/p1n1p3/1p6/8/2PQ4/PPB2PPP/RNB2RK1 b - - 1 13",
+        "fenHistory": [
+          "r1bq1rk1/3pbppp/p1n1p3/1p6/8/2PQ4/PPB2PPP/RNB2RK1 b - - 1 13"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d7d5", "d3h7"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-39": {
+        "fen": "8/p3kpp1/1p2r2p/8/8/P3rP2/1P3RPP/3R1K2 w - - 6 30",
+        "fenHistory": ["8/p3kpp1/1p2r2p/8/8/P3rP2/1P3RPP/3R1K2 w - - 6 30"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d1d4", "e3e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-40": {
+        "fen": "r3Q1k1/3p1ppp/p7/6q1/8/8/PP3P1P/R3R2K b - - 0 24",
+        "fenHistory": ["r3Q1k1/3p1ppp/p7/6q1/8/8/PP3P1P/R3R2K b - - 0 24"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a8e8", "e1e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-41": {
+        "fen": "k3Q1r1/pp6/5p2/6qp/1P6/7P/P4PP1/4R1K1 b - - 0 37",
+        "fenHistory": ["k3Q1r1/pp6/5p2/6qp/1P6/7P/P4PP1/4R1K1 b - - 0 37"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g8e8", "e1e8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-42": {
+        "fen": "1r3rk1/p1qp1ppp/1p1Np3/4Pn2/4Q3/3B1N2/PPP3PP/5RK1 b - - 4 18",
+        "fenHistory": [
+          "1r3rk1/p1qp1ppp/1p1Np3/4Pn2/4Q3/3B1N2/PPP3PP/5RK1 b - - 4 18"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["f5d6", "e4h7"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-43": {
+        "fen": "2R3k1/pp3ppp/8/n2r4/3Np3/P3P3/1P3PPP/6K1 b - - 1 24",
+        "fenHistory": ["2R3k1/pp3ppp/8/n2r4/3Np3/P3P3/1P3PPP/6K1 b - - 1 24"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d5d8", "c8d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-44": {
+        "fen": "8/7P/8/8/1n6/1k6/p7/K7 w - - 2 71",
+        "fenHistory": ["8/7P/8/8/1n6/1k6/p7/K7 w - - 2 71"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h7h8q", "b4c2"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-45": {
+        "fen": "6rk/p7/6q1/2Qp4/5p2/2PP1R1P/P7/6rK w - - 1 37",
+        "fenHistory": ["6rk/p7/6q1/2Qp4/5p2/2PP1R1P/P7/6rK w - - 1 37"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c5g1", "g6g1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-46": {
+        "fen": "6k1/p3qppn/2pb3p/8/3B2Q1/2P4P/PP3PP1/R3r2K w - - 6 31",
+        "fenHistory": ["6k1/p3qppn/2pb3p/8/3B2Q1/2P4P/PP3PP1/R3r2K w - - 6 31"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a1e1", "e7e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-47": {
+        "fen": "r4rk1/pp1qbppp/2pp4/4n3/2PQP3/1P3BPb/PB1RNP1P/2K4R b - - 6 15",
+        "fenHistory": [
+          "r4rk1/pp1qbppp/2pp4/4n3/2PQP3/1P3BPb/PB1RNP1P/2K4R b - - 6 15"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e5f3", "d4g7"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-48": {
+        "fen": "6rk/6q1/2Q5/7p/1P6/2P5/P5B1/7K w - - 0 31",
+        "fenHistory": ["6rk/6q1/2Q5/7p/1P6/2P5/P5B1/7K w - - 0 31"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c6c5", "g7g2"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-49": {
+        "fen": "1k1R3r/ppp5/8/2P5/5rpp/P7/1P3PBP/3R2K1 b - - 1 25",
+        "fenHistory": ["1k1R3r/ppp5/8/2P5/5rpp/P7/1P3PBP/3R2K1 b - - 1 25"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h8d8", "d1d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-50": {
+        "fen": "8/1p5k/p6p/4p1pK/3p2P1/2r4r/1R6/7R w - - 0 38",
+        "fenHistory": ["8/1p5k/p6p/4p1pK/3p2P1/2r4r/1R6/7R w - - 0 38"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h1h3", "c3h3"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-51": {
+        "fen": "6k1/Q4ppp/4p3/8/3P4/4q3/PP4RP/2r4K w - - 1 26",
+        "fenHistory": ["6k1/Q4ppp/4p3/8/3P4/4q3/PP4RP/2r4K w - - 1 26"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g2g1", "c1g1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-52": {
+        "fen": "4B2k/pp2Q1pp/2p5/8/4P3/2Pq2bP/PP4P1/R1B1Rr1K w - - 4 22",
+        "fenHistory": [
+          "4B2k/pp2Q1pp/2p5/8/4P3/2Pq2bP/PP4P1/R1B1Rr1K w - - 4 22"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["e1f1", "d3f1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-53": {
+        "fen": "7k/5pp1/5n1p/2Q5/p4P2/2N5/P2q2PP/3Rr1K1 w - - 6 32",
+        "fenHistory": ["7k/5pp1/5n1p/2Q5/p4P2/2N5/P2q2PP/3Rr1K1 w - - 6 32"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d1e1", "d2e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-54": {
+        "fen": "2rR2k1/6rp/4P3/6P1/pp3P2/1p4P1/1K6/3R4 b - - 1 40",
+        "fenHistory": ["2rR2k1/6rp/4P3/6P1/pp3P2/1p4P1/1K6/3R4 b - - 1 40"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["c8d8", "d1d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-55": {
+        "fen": "r2qkbnr/pb1pp2p/1pn2pQ1/2p5/2P5/1P1BP3/PB1P1PPP/RN2K1NR b KQkq - 0 7",
+        "fenHistory": [
+          "r2qkbnr/pb1pp2p/1pn2pQ1/2p5/2P5/1P1BP3/PB1P1PPP/RN2K1NR b KQkq - 0 7"
+        ],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h7g6", "d3g6"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-56": {
+        "fen": "8/pp3pk1/2p3p1/4b2r/4r3/3B4/PPP3R1/1K5R w - - 0 30",
+        "fenHistory": ["8/pp3pk1/2p3p1/4b2r/4r3/3B4/PPP3R1/1K5R w - - 0 30"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h1h5", "e4e1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-57": {
+        "fen": "3r4/pp4pk/6np/4p3/6QP/2P2pP1/5P2/2B2qK1 w - - 0 35",
+        "fenHistory": ["3r4/pp4pk/6np/4p3/6QP/2P2pP1/5P2/2B2qK1 w - - 0 35"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["g1f1", "d8d1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-58": {
+        "fen": "q7/P5pk/6rp/2p2p2/2p5/2P4Q/5BPP/R6K w - - 1 40",
+        "fenHistory": ["q7/P5pk/6rp/2p2p2/2p5/2P4Q/5BPP/R6K w - - 1 40"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["h3f5", "a8g2"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-59": {
+        "fen": "8/8/8/1R6/P7/KPk5/8/7r w - - 8 54",
+        "fenHistory": ["8/8/8/1R6/P7/KPk5/8/7r w - - 8 54"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["a4a5", "h1a1"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
+      },
+      "panel-60": {
+        "fen": "6k1/5ppp/8/p2b4/P7/3R3P/1b4P1/7K b - - 0 43",
+        "fenHistory": ["6k1/5ppp/8/p2b4/P7/3R3P/1b4P1/7K b - - 0 43"],
+        "history": [],
+        "panelText": "",
+        "preset": "",
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": ["d5e6", "d3d8"],
+        "config": {},
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        }
       }
     },
     "boss": false

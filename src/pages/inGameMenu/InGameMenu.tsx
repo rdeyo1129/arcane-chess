@@ -273,6 +273,7 @@ interface State {
   currNode: string;
   currPanel: string;
   correctMoves: string[];
+  correctMovesString: string;
   arcaneHover: string;
   placingPiece: number;
   placingRoyalty: number;
@@ -374,6 +375,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       currPanel: 'panel-1',
       preset: 'CLEAR',
       correctMoves: [],
+      correctMovesString: '',
       arcaneHover: '',
       placingPiece: 0,
       placingRoyalty: 0,
@@ -1163,13 +1165,11 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               </div>
               <Input
                 color="B"
-                value={this.state.correctMoves.join(' ')}
+                value={this.state.correctMovesString}
                 width={200}
                 height={60}
                 onChange={(value) => {
-                  this.setState({
-                    puzzleEpsilon: value,
-                  });
+                  this.setState({ correctMovesString: value });
                 }}
                 placeholder="correct moves"
                 password={false}
@@ -2232,7 +2232,9 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       whiteArcane: { ...this.state.config.W.arcana },
                       blackArcane: { ...this.state.config.BK.arcana },
                       // config: { ...this.state.config },
-                      correctMoves: [...this.state.correctMoves],
+                      correctMoves: [
+                        ...this.state.correctMovesString.split(' '),
+                      ],
                     };
                     console.log(objectToCopy);
                     navigator.clipboard.writeText(

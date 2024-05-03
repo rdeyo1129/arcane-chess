@@ -57,16 +57,17 @@ import {
 import { MakeMove, TakeMove } from './makemove';
 
 const MvvLvaValue = [
-  0, 100, 300, 600, 700, 1000, 1400, 1200, 200, 900, 800, 1300, 500, 400, 1100,
-  100, 300, 600, 700, 1000, 1400, 1200, 200, 900, 800, 1300, 500, 400, 1100,
+  0, 100, 500, 600, 700, 1200, 1400, 100, 500, 600, 700, 1200, 1400, 0, 900,
+  200, 1100, 1000, 1300, 900, 200, 1100, 1000, 1300, 400, 300, 400, 300, 800,
+  800,
 ];
 const MvvLvaScores = new Array(30 * 30);
 export function InitMvvLva() {
   let Attacker;
   let Victim;
 
-  for (Attacker = 1; Attacker <= 28; Attacker++) {
-    for (Victim = 1; Victim <= 28; Victim++) {
+  for (Attacker = PIECES.wP; Attacker <= PIECES.bW; Attacker++) {
+    for (Victim = PIECES.wP; Victim <= PIECES.bW; Victim++) {
       MvvLvaScores[Victim * 30 + Attacker] =
         MvvLvaValue[Victim] + 14 - MvvLvaValue[Attacker] / 100;
     }

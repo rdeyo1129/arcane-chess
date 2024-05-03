@@ -263,38 +263,41 @@ cg-board square.move-dest:hover {
 .cg-wrap svg image {
   opacity: 0.5;
 }
+
 .cg-wrap coords {
   position: absolute;
   display: flex;
   pointer-events: none;
   opacity: 0.8;
   font-size: 9px;
+  color: white;
+  font-weight: bold;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
 }
-.cg-wrap coords.ranks {
-  right: -15px;
+
+.cg-wrap coords.side {
+  height: 480px;
+  right: 0;
   top: 0;
   flex-flow: column-reverse;
-  height: 100%;
-  width: 12px;
+  text-align: right;
 }
-.cg-wrap coords.ranks.black {
+.cg-wrap coords.side.black {
   flex-flow: column;
 }
-.cg-wrap coords.files {
-  bottom: -16px;
+
+.cg-wrap coords.bottom {
+  bottom: 0;
   left: 0;
   flex-flow: row;
-  width: 100%;
-  height: 16px;
-  text-transform: uppercase;
-  text-align: center;
+  width: 480px;
 }
-.cg-wrap coords.files.black {
+.cg-wrap coords.bottom.black {
   flex-flow: row-reverse;
 }
+
 .cg-wrap coords coord {
   flex: 1 1 auto;
-}
-.cg-wrap coords.ranks coord {
-  transform: translateY(39%);
 }

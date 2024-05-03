@@ -37,27 +37,6 @@ export class UnwrappedDashboard extends React.Component<
   render() {
     return (
       <div className="dashboard">
-        <div>
-          {/* <Spinner /> */}
-          {/* <Dots /> */}
-        </div>
-        <div className="news-bar">
-          <div className="news-text">
-            {/* This is a work in progress. Please report any bugs to the
-            Underground. */}
-          </div>
-        </div>
-        <div className="profile-hud">
-          <div className="profile-text">
-            <div className="username">{this.props.auth.user.username}</div>
-            {/* <div className="level">LEVEL 1</div> */}
-          </div>
-          {/* <img
-            className="avatar"
-            src="public/assets/logoblue.png"
-            alt="avatar"
-          /> */}
-        </div>
         <div className="nav-bar">
           <Link
             className="home-button"
@@ -73,6 +52,7 @@ export class UnwrappedDashboard extends React.Component<
               width={200}
               // disabled={this.state.fen === ''}
               disabled={false}
+              backgroundColorOverride="#11111188"
               // strong={true}
             />
           </Link>
@@ -91,6 +71,7 @@ export class UnwrappedDashboard extends React.Component<
               // disabled={this.state.fen === ''}
               disabled={false}
               // strong={true}
+              backgroundColorOverride="#11111188"
             />
           </Link>
           <Link
@@ -107,6 +88,7 @@ export class UnwrappedDashboard extends React.Component<
               width={200}
               // disabled={this.state.fen === ''}
               disabled={false}
+              backgroundColorOverride="#11111188"
               // strong={true}
             />
           </Link>
@@ -124,6 +106,7 @@ export class UnwrappedDashboard extends React.Component<
               width={200}
               // disabled={this.state.fen === ''}
               disabled={false}
+              backgroundColorOverride="#11111188"
               // strong={true}
             />
           </Link>
@@ -141,6 +124,7 @@ export class UnwrappedDashboard extends React.Component<
               width={200}
               // disabled={this.state.fen === ''}
               disabled={false}
+              backgroundColorOverride="#11111188"
               // strong={true}
             />
           </Link>
@@ -158,35 +142,32 @@ export class UnwrappedDashboard extends React.Component<
               width={200}
               // disabled={this.state.fen === ''}
               disabled={false}
+              backgroundColorOverride="#11111188"
               // strong={true}
             />
           </Link>
-        </div>
-        <div className="hover-image">
-          <img
-            className="hover-image"
-            src={`public/assets/${this.state.hoverNav}.webp`}
-            alt={this.state.hoverNav}
-          />
-        </div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div className="logout">
           <Button
             text="LOGOUT"
             // onClick={() => this.calculateFen()}
             className="tertiary"
             color="B"
             height={50}
-            width={'100%'}
+            width={200}
             // disabled={this.state.fen === ''}
             disabled={false}
             onClick={() => {
               this.props.logoutUser();
               this.props.navigate('/login');
             }}
+            backgroundColorOverride="#11111188"
             // strong={true}
+          />
+        </div>
+        <div className="hover-image">
+          <img
+            className="hover-image"
+            src={`public/assets/${this.state.hoverNav}.webp`}
+            alt={this.state.hoverNav}
           />
         </div>
       </div>

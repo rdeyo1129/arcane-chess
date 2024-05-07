@@ -19,18 +19,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 80px;
+    margin-right: 125px;
     .books {
-      width: 80px;
+      width: 120px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 10px;
+      align-items: center;
+      gap: 5px;
+      margin-right: 5px;
       span {
         display: flex;
-        // margin-right: 20px;
+        justify-content: center;
         align-items: center;
         height: 80px;
+        width: 120px;
+        background: #11111188;
       }
     }
     .chapters {
@@ -48,5 +52,13 @@
     text-align: right;
     justify-content: end;
     margin-top: 10px;
+  }
+  .background-image {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    // max-height: 400px;
+    object-fit: cover;
   }
 }

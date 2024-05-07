@@ -54,7 +54,14 @@ export class UnwrappedCampaign extends React.Component<
 
   render() {
     return (
-      <div className="campaign">
+      <div
+        className="campaign"
+        style={{
+          maxWidth: '100vw',
+          background: `url(assets/chapters.webp) no-repeat center center fixed`,
+          backgroundSize: 'cover',
+        }}
+      >
         <div className="back">
           <Link to="/dashboard">
             <Button
@@ -64,6 +71,7 @@ export class UnwrappedCampaign extends React.Component<
               width={200}
               height={40}
               disabled={false}
+              backgroundColorOverride="#11111188"
             />
           </Link>
         </div>
@@ -86,6 +94,7 @@ export class UnwrappedCampaign extends React.Component<
                   color="B"
                   width={200}
                   height={80}
+                  backgroundColorOverride="#11111188"
                   onClick={() => {
                     if (this.state.chapter !== 0) {
                       this.props.navigate('/chapter');
@@ -108,6 +117,7 @@ export class UnwrappedCampaign extends React.Component<
             color="B"
             width={200}
             height={40}
+            backgroundColorOverride="#11111188"
             onClick={() => {
               const currLS = getLocalStorage(this.props.auth.user.username);
               setLocalStorage({
@@ -124,7 +134,6 @@ export class UnwrappedCampaign extends React.Component<
             disabled={false}
           />
         </div>
-
         <TactoriusModal
           toggleModal={() => {
             const currLS = getLocalStorage(this.props.auth.user.username);

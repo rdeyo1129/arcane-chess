@@ -588,7 +588,7 @@
         "fen": "8/8/3X2p1/8/3R4/5p2/7p/8 w - - 0 1",
         "fenHistory": ["8/8/3X2p1/8/3R4/5p2/7p/8 w - - 0 1"],
         "history": [],
-        "panelText": "This is the Rook, a major piece worth 5 points of material. It moves orthogonally: up, right, left down. Try it out now, try capturing a piece.",
+        "panelText": "This is the Rook, a major piece worth 5 points of material. It moves orthogonally: up, right, left down. Try capturing some pieces.",
         "arrowsCircles": [],
         "royalties": {
           "royaltyQ": {},

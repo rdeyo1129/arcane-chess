@@ -745,7 +745,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             type={
               this.state.gameOverType.split(' ')[1] === 'mates' &&
               this.state.playerColor === this.state.gameOverType.split(' ')[0]
-                ? 'victory'
+                ? 'victory-qp'
                 : 'defeat'
             }
           />

@@ -443,7 +443,7 @@ export function gameSim(thinkingTime) {
 
     MakeMove(bestMove);
     CheckAndSet();
-    PrintMoveList();
+    // PrintMoveList();
     PrintBoard();
   }
 }

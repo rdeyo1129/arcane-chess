@@ -2032,17 +2032,17 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             </div>
             <div></div>
             {/* <div></div> */}
-            {/* <Button
-            text="SIM"
-            onClick={() => this.arcaneChess().gameSim(100)}
-            className="primary"
-            color="B"
-            height={31}
-            width={120}
-            // disabled={this.state.fen === ''}
-            disabled={false}
-            // strong={true}
-          /> */}
+            <Button
+              text="SIM"
+              onClick={() => this.arcaneChess().gameSim(1000)}
+              className="primary"
+              color="B"
+              height={31}
+              width={120}
+              // disabled={this.state.fen === ''}
+              disabled={false}
+              // strong={true}
+            />
             <div className="time-input">
               <Select
                 type="number"

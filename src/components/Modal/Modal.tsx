@@ -479,7 +479,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
               <div className="right">
                 <p>Defeat... {this.props.message}</p>
-
                 <div className="buttons">
                   <div className="left-buttons">
                     <Button
@@ -898,6 +897,71 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     this.props.handleClose();
                   }}
                 />
+              </div>
+            </div>
+          </Modal>
+        ) : this.props.type === 'victory-qp' ? (
+          <Modal
+            style={endgameModal}
+            isOpen={this.props.isOpen}
+            ariaHideApp={false}
+          >
+            <div className="endgame">
+              <div className="left">
+                <img
+                  className="endgame-image"
+                  src="public/assets/victory.webp"
+                />
+              </div>
+              <div className="middle">
+                <div
+                  style={{
+                    backgroundColor: '00000000',
+                    height: '480px',
+                    width: '480px',
+                  }}
+                ></div>
+              </div>
+              <div className="right">
+                <p className="endgame-text">
+                  Victory... {this.props.message} {this.props.score ? '+' : ''}{' '}
+                  {this.props.score}
+                </p>
+                <div className="buttons">
+                  <div className="left-buttons">
+                    <Button
+                      text="HOME"
+                      className="secondary"
+                      color="B"
+                      width={160}
+                      height={40}
+                      onClick={() => {
+                        this.props.navigate('/dashboard');
+                      }}
+                    />
+                    <Button
+                      text="ANALYZE"
+                      className="secondary"
+                      color="B"
+                      width={160}
+                      height={40}
+                      disabled
+                      // onClick={() => {
+                      //   this.props.navigate('/chapter');
+                      // }}
+                    />
+                  </div>
+                  <Button
+                    text="REMATCH"
+                    className="primary"
+                    width={180}
+                    height={90}
+                    color="B"
+                    onClick={() => {
+                      location.reload();
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </Modal>

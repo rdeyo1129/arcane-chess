@@ -120,7 +120,7 @@ interface Node {
       preset: string;
       whiteArcane?: { [key: string]: number | string };
       blackArcane?: { [key: string]: number | string };
-      // orientation: string;
+      orientation: string;
       config: {
         [key: string]: boolean | string | number;
       };
@@ -157,6 +157,7 @@ interface State {
   whiteFaction: string;
   blackFaction: string;
   selected: string;
+  orientation: string;
   config: {
     [key: string | number]: {
       disabled: boolean;
@@ -290,6 +291,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
         LS.nodeId?.split('-')[0] !== 'temple',
       visitedPanels: [initialPanelKey],
+      orientation: initialPanelData.orientation,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -351,6 +353,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           bArcana: panelData.blackArcane,
           royalties: panelData.royalties,
           visitedPanels: newVisitedPanels,
+          orientation: panelData.orientation,
         };
       },
       () => {
@@ -704,7 +707,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                       lastMove: true,
                       check: true,
                     }}
-                    orientation={this.state.playerColor}
+                    orientation={this.state.orientation}
                     disableContextMenu={false}
                     turnColor={GameBoard.side === 0 ? 'white' : 'black'}
                     movable={{

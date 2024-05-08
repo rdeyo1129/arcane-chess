@@ -7,7 +7,7 @@ import 'src/pages/book/Book.scss';
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 
-import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
+// import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
@@ -91,7 +91,7 @@ interface Node {
 }
 
 export class UnwrappedBook extends React.Component<BookProps, BookState> {
-  chessgroundRef = createRef<IChessgroundApi>();
+  // chessgroundRef = createRef<IChessgroundApi>();
   booksMap: { [key: string]: { [key: string]: Node } } = {
     book1,
     book2,
@@ -222,7 +222,17 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               type="chapterEnd"
               // imgPath="public/assets/treeBoat.jpg"
             />
-            <div className="book">
+            <div
+              className="book"
+              style={{
+                height: '100vh',
+                width: '100vw',
+                background:
+                  this.state.theme === 'black'
+                    ? ''
+                    : `url(assets/chapter${LS.chapter}.webp) no-repeat center center fixed`,
+              }}
+            >
               <div className="top">
                 <div className="nodes">
                   {_.filter(this.state.book, (node) => {
@@ -262,8 +272,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         className={`select-node tertiary`}
                         backgroundColorOverride={
                           _.includes(Object.keys(LS.nodeScores), node.id)
-                            ? '#222222'
-                            : '#333333'
+                            ? '#11111100'
+                            : '#11111188'
                         }
                         onClick={() => {
                           const currLS = getLocalStorage(
@@ -286,7 +296,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     );
                   })}
                 </div>
-                <div className="cg-wrap tactorius-board">
+                {/* <div className="cg-wrap tactorius-board">
                   <Chessground
                     // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
                     // check={this.tactorius.inCheck().isAttacked}
@@ -369,7 +379,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       // },
                     }}
                   />
-                </div>
+                </div> */}
+                <div />
                 <div className="description-inventory">
                   <div className="description">
                     {this.state.selectedSwatch !== '' ? (
@@ -389,10 +400,10 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       </div>
                     ) : null}
                   </div>
-                  <div className="inventory">
+                  {/* <div className="inventory">
                     <div
                       className="time-arcana"
-                      style={{ background: '#777777' }}
+                      style={{ background: '#77777788' }}
                     >
                       <h2 className="time">
                         {this.state.book[this.state.selectedSwatch]?.time[0][0]}{' '}
@@ -420,7 +431,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     </div>
                     <div
                       className="time-arcana"
-                      style={{ background: '#333333' }}
+                      style={{ background: '#33333388' }}
                     >
                       <h2 className="time">
                         {this.state.book[this.state.selectedSwatch]?.time[0][0]}{' '}
@@ -446,7 +457,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         )}
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="bottom">

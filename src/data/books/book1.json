@@ -1098,8 +1098,8 @@
     "id": "temple-1",
     "title": "Temple of Singularities I",
     "time": [
-      [120, 0],
-      [100, 0]
+      [120, 10],
+      [100, 10]
     ],
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
     "panelText": "",

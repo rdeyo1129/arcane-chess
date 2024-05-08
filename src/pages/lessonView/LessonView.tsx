@@ -156,6 +156,7 @@ interface State {
   lastMove: string[];
   hideCompletedPage: boolean;
   viewOnly: boolean;
+  theme: string;
 }
 
 interface Props {
@@ -236,6 +237,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       viewOnly:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
           .viewOnly,
+      theme: 'red',
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -532,7 +534,17 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               lessonBackButton={true}
               type="victory"
             />
-            <div className="lesson-view">
+            <div
+              className="lesson-view"
+              style={{
+                height: '100vh',
+                width: '100vw',
+                background:
+                  this.state.theme === 'black'
+                    ? ''
+                    : `url(assets/chapter${LS.chapter}.webp) no-repeat center center fixed`,
+              }}
+            >
               <div className="opponent-dialogue-arcana">
                 <div className="arcana">
                   <div className="arcana-side-buttons">
@@ -541,7 +553,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                       onClick={() => {
                         this.setState({ selected: 'white' });
                       }}
-                      backgroundColorOverride="#333333"
+                      backgroundColorOverride="#11111188"
                       color="B"
                       text="WHITE"
                       width={190}
@@ -551,7 +563,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                       onClick={() => {
                         this.setState({ selected: 'black' });
                       }}
-                      backgroundColorOverride="#333333"
+                      backgroundColorOverride="#11111188"
                       color="B"
                       text="BLACK"
                       width={190}
@@ -670,7 +682,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     text="<"
                     width={180}
                     fontSize={36}
-                    backgroundColorOverride="#222222"
+                    backgroundColorOverride="#11111188"
                   />
                   <Button
                     className="tertiary"
@@ -682,7 +694,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     text=">"
                     width={180}
                     fontSize={36}
-                    backgroundColorOverride="#222222"
+                    backgroundColorOverride="#11111188"
                   />
                 </div>
               </div>

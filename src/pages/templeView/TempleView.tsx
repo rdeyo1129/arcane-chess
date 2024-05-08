@@ -186,6 +186,7 @@ interface State {
   };
   hideCompletedPage: boolean;
   visitedPanels: string[];
+  theme: string;
 }
 
 interface Props {
@@ -292,6 +293,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         LS.nodeId?.split('-')[0] !== 'temple',
       visitedPanels: [initialPanelKey],
       orientation: initialPanelData.orientation,
+      theme: 'purple',
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -624,7 +626,17 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                   : 'defeat'
               }
             />
-            <div className="temple-view">
+            <div
+              className="temple-view"
+              style={{
+                height: '100vh',
+                width: '100vw',
+                background:
+                  this.state.theme === 'black'
+                    ? ''
+                    : `url(assets/chapter${LS.chapter}.webp) no-repeat center center fixed`,
+              }}
+            >
               <div className="opponent-dialogue-arcana">
                 <div className="arcana">
                   <div className="arcana-side-buttons">
@@ -633,7 +645,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                       // onClick={() => {
                       //   this.setState({ selected: 'a' });
                       // }}
-                      backgroundColorOverride="#333333"
+                      backgroundColorOverride="#11111188"
                       color="B"
                       text="WHITE"
                       width={190}
@@ -643,7 +655,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                       // onClick={() => {
                       //   this.setState({ selected: 'a' });
                       // }}
-                      backgroundColorOverride="#333333"
+                      backgroundColorOverride="#11111188"
                       color="B"
                       text="BLACK"
                       width={190}
@@ -809,8 +821,9 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     }}
                     color="B"
                     text=""
-                    width={160}
-                    disabled={this.state.config.a.disabled}
+                    width={180}
+                    disabled
+                    backgroundColorOverride="#11111188"
                   />
                   <Button
                     className="tertiary"
@@ -823,9 +836,9 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     color="B"
                     // strong={true}
                     text="RESIGN"
-                    width={160}
+                    width={180}
                     // fontSize={30}
-                    backgroundColorOverride="#222222"
+                    backgroundColorOverride="#11111188"
                   />
                 </div>
               </div>

@@ -1,1 +1,1 @@
-web: nodemon --exec ts-node --project server/tsconfig.json server/server.ts
+web: node --exec ts-node --project server/tsconfig.json server/server.ts

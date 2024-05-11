@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "nodemon --exec ts-node --project server/tsconfig.json server/server.ts"
+    "server": "nodemon --exec ts-node --project server/tsconfig.json server/server.ts",
+    "start": "npm run build && node server/build/server.js"
   },
   "dependencies": {
     "@fontsource/exo": "^5.0.0",

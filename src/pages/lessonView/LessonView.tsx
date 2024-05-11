@@ -163,6 +163,10 @@ interface Props {
   auth: {
     user: {
       username: string;
+      id: string;
+      campaign: {
+        topScores: number[];
+      };
     };
   };
 }
@@ -412,6 +416,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
 
   handleVictory = (auth: object) => {
     const LS = getLocalStorage(this.props.auth.user.username);
+    console.log('auth', auth);
     setLocalStorage({
       ...getLocalStorage(this.props.auth.user.username),
       auth,
@@ -542,7 +547,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                 background:
                   this.state.theme === 'black'
                     ? ''
-                    : `url(assets/chapter${LS.chapter}.webp) no-repeat center center fixed`,
+                    : `url(assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
               }}
             >
               <div className="opponent-dialogue-arcana">

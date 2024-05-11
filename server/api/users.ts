@@ -93,6 +93,9 @@ router.post('/login', (req, res) => {
     const payload = {
       id: '0',
       username: req.body.username,
+      campaign: {
+        topScores: [...Array(12).fill(0)],
+      },
     };
 
     // Sign token

@@ -1098,8 +1098,8 @@
     "id": "temple-1",
     "title": "Temple of Singularities I",
     "time": [
-      [120, 10],
-      [100, 10]
+      [120, 0],
+      [100, 0]
     ],
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
     "panelText": "",
@@ -1525,8 +1525,360 @@
         "whiteArcane": {},
         "blackArcane": {},
         "correctMoves": ["d6e5", "f3d5", "f7f5", "d5e5"]
+      },
+      "panel-7": {
+        "fen": "3r4/8/6p1/4k2p/1b3N2/P2U4/1PP2K2/8 b - - 0 1",
+        "fenHistory": ["3r4/8/6p1/4k2p/1b3N2/P2U4/1PP2K2/8 b - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["d8d3", "f4d3", "e5e4", "d3b4"],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "2k2r2/1pp1pp2/p7/4z3/3p4/1P3P2/P1PBPNPP/1K6 w - - 0 1",
+        "fenHistory": ["2k2r2/1pp1pp2/p7/4z3/3p4/1P3P2/P1PBPNPP/1K6 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["e2e4", "d4e3", "d2e3", "e5e3"],
+        "viewOnly": true,
+        "orientation": "black"
+      },
+      "panel-9": {
+        "fen": "3k4/8/4K3/t7/8/2R5/8/8 b - - 0 1",
+        "fenHistory": ["3k4/8/4K3/t7/8/2R5/8/8 b - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["a5c6", "c3c6", "d8e8", "c6c8"],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-10": {
+        "fen": "8/8/8/8/5P2/5k2/2K1p3/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/5P2/5k2/2K1p3/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": ["c2d2", "f3f2", "f4f5", "e2e1"],
+        "viewOnly": true,
+        "orientation": "black"
       }
     },
     "boss": false
+  },
+  "mission-1": {
+    "id": "mission-1",
+    "title": "",
+    "time": [
+      [480, 2],
+      [240, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "lesson-4",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "4k3/3pp3/8/8/8/8/8/3RK3 w - - 0 1",
+        "fenHistory": ["4k3/3pp3/8/8/8/8/8/3RK3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CAPALL",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": true
+  },
+  "mission-2": {
+    "id": "mission-2",
+    "title": "",
+    "time": [
+      [400, 4],
+      [160, 1]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-1",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "3bk3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1",
+        "fenHistory": ["3bk3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CAPALL",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-3": {
+    "id": "mission-3",
+    "title": "",
+    "time": [
+      [500, 5],
+      [140, 2]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-2",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "2b1kb2/2pppp2/8/8/8/8/2PPP3/2R1KR2 w - - 0 1",
+        "fenHistory": ["2b1kb2/2pppp2/8/8/8/8/2PPP3/2R1KR2 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CAPALL",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-4": {
+    "id": "mission-4",
+    "title": "",
+    "time": [
+      [600, 6],
+      [400, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-3",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "3uku2/2ppppp1/8/8/8/8/2PPPP2/2BZKB2 w - - 0 1",
+        "fenHistory": ["3uku2/2ppppp1/8/8/8/8/2PPPP2/2BZKB2 w - - 0 1"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CAPALL",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": true
+  },
+  "mission-5": {
+    "id": "mission-5",
+    "title": "",
+    "time": [
+      [400, 3],
+      [200, 1]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-4",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "2zzrr2/8/8/8/8/8/8/1ZZNNUU1 w - - 0 1",
+        "fenHistory": ["2zzrr2/8/8/8/8/8/8/1ZZNNUU1 w - - 0 1"],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CAPALL",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-6": {
+    "id": "mission-6",
+    "title": "",
+    "time": [
+      [720, 0],
+      [480, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-5",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "1rb1kbr1/1pppppp1/8/8/8/8/1PPPPPP1/1RBUKBR1 w - - 0 1",
+        "fenHistory": ["1rb1kbr1/1pppppp1/8/8/8/8/1PPPPPP1/1RBUKBR1 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CAPALL",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": true
   }
 }

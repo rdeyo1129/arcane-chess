@@ -5,7 +5,7 @@ export const setLocalStorage = ({
     user: {
       id: '',
       username: '',
-      campaign: { topScores: [] as number[] },
+      campaign: { topScores: [...Array(12).fill(0)] as number[] },
     },
   },
   chapter = 0,

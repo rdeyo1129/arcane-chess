@@ -50,6 +50,7 @@
     "serve-favicon": "^2.5.0",
     "socket.io": "^3.0.4",
     "socket.io-client": "^3.0.4",
+    "ts-node": "^10.9.2",
     "url": "^0.11.1",
     "uuid": "^8.3.2",
     "validator": "^13.6.0",
@@ -87,7 +88,7 @@
     "nodemon": "^2.0.22",
     "prettier": "^3.0.3",
     "sass": "^1.66.0",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2",
     "vite": "^4.3.9",
     "vite-plugin-style-import": "^2.0.0"

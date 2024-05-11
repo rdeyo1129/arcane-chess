@@ -1635,7 +1635,7 @@
   },
   "mission-1": {
     "id": "mission-1",
-    "title": "",
+    "title": "The Cutoff",
     "time": [
       [480, 2],
       [240, 0]
@@ -1678,7 +1678,7 @@
   },
   "mission-2": {
     "id": "mission-2",
-    "title": "",
+    "title": "Up the Exchange",
     "time": [
       [400, 4],
       [160, 1]
@@ -1721,7 +1721,7 @@
   },
   "mission-3": {
     "id": "mission-3",
-    "title": "",
+    "title": "Accelerate",
     "time": [
       [500, 5],
       [140, 2]
@@ -1764,7 +1764,7 @@
   },
   "mission-4": {
     "id": "mission-4",
-    "title": "",
+    "title": "Unicorn and Zebra",
     "time": [
       [600, 6],
       [400, 0]
@@ -1780,7 +1780,7 @@
         "fen": "3uku2/2ppppp1/8/8/8/8/2PPPP2/2BZKB2 w - - 0 1",
         "fenHistory": ["3uku2/2ppppp1/8/8/8/8/2PPPP2/2BZKB2 w - - 0 1"],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1802,7 +1802,7 @@
   },
   "mission-5": {
     "id": "mission-5",
-    "title": "",
+    "title": "Equus and Tower",
     "time": [
       [400, 3],
       [200, 1]
@@ -1818,7 +1818,7 @@
         "fen": "2zzrr2/8/8/8/8/8/8/1ZZNNUU1 w - - 0 1",
         "fenHistory": ["2zzrr2/8/8/8/8/8/8/1ZZNNUU1 w - - 0 1"],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1840,7 +1840,7 @@
   },
   "mission-6": {
     "id": "mission-6",
-    "title": "",
+    "title": "Fair is Fair",
     "time": [
       [720, 0],
       [480, 0]

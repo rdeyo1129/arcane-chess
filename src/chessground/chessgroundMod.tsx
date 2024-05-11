@@ -92,21 +92,7 @@ export class Chessground extends React.Component<IChessground> {
       this.cg = NativeChessground(
         this.el,
         this.buildConfigFromProps(this.props)
-      );
-
-      if (this.props.forwardedRef) {
-        const refObj = this.props.forwardedRef as React.RefObject<IChessground>;
-        if (refObj) {
-          refObj.current = {
-            set: this.cg.set.bind(this.cg),
-            destroy: this.cg.destroy.bind(this.cg),
-            selectPocket: this.cg.selectPocket.bind(this.cg),
-            setShapes: this.cg.setShapes.bind(this.cg),
-            setAutoShapes: this.cg.setAutoShapes.bind(this.cg),
-            // Bind any other API methods you want to expose
-          };
-        }
-      }
+      ) as unknown as IChessground; // Add a type assertion to ensure the returned object matches the IChessground interface
     }
   }
 
@@ -151,6 +137,6 @@ export class Chessground extends React.Component<IChessground> {
   }
 }
 
-export default React.forwardRef<IChessground, IChessground>((props, ref) => (
+export default React.forwardRef<IChessgroundApi, IChessground>((props, ref) => (
   <Chessground {...props} forwardedRef={ref} />
 ));

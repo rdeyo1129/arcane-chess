@@ -50,7 +50,7 @@ import {
 } from '../../arcaneChess/board.mjs';
 import { PrMove } from 'src/arcaneChess/io.mjs';
 import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
-import { BOOL } from '../../arcaneChess/defs.mjs';
+import { BOOL, PIECES } from '../../arcaneChess/defs.mjs';
 import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
 import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
@@ -369,6 +369,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       }
     );
   };
+
   perftTest = (fen: string) => {
     PrintPieceLists();
     PrintBoard();
@@ -724,37 +725,30 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     turnColor={GameBoard.side === 0 ? 'white' : 'black'}
                     movable={{
                       free: false,
-                      // todo swap out placeholder for comment
-                      // color: "both",
                       color: this.state.playerColor,
-                      // todo show summon destinations
                       dests: this.arcaneChess().getGroundMoves(),
                     }}
                     lastMove={this.state.lastMove}
                     viewOnly={false}
                     events={{
-                      change: () => {
-                        // if (this.state.)
-                        // this.setState({
-                        //   fen:
-                        // })
-                        // this.arcaneChess().engineReply();
-                        // this.setState({})
-                        // console.log(cg.FEN);
-                        // send moves to redux store, then to server (db), then to opponent
-                      },
-                      move: (
-                        orig: string,
-                        dest: string
-                        // capturedPiece: number
-                      ) => {
-                        // console.log('todo promotion');
+                      move: (orig: string, dest: string) => {
+                        const correctPromotion =
+                          this.state.correctMoves[
+                            this.state.moveNumber
+                          ][4].toLocaleLowerCase();
                         const parsed = this.arcaneChess().makeUserMove(
                           orig,
-                          dest
+                          dest,
+                          PIECES[
+                            `${
+                              gameBoardTurn === 'white' ? 'w' : 'b'
+                            }${this.state.correctMoves[
+                              this.state.moveNumber
+                            ][4].toUpperCase()}` as keyof typeof PIECES
+                          ]
                         );
                         if (
-                          `${orig}${dest}` ===
+                          `${orig}${dest}${correctPromotion}` ===
                           this.state.correctMoves[this.state.moveNumber]
                         ) {
                           this.setState(
@@ -783,14 +777,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                           this.handleWrongMove();
                         }
                       },
-                      // select: (key) => {
-                      //   ParseFen(this.state.fen);
-                      //   AddPiece(prettyToSquare(key), PIECES.wN);
-                      //   this.setState({
-                      //     fen: outputFenOfCurrentPosition(),
-                      //     fenHistory: [outputFenOfCurrentPosition()],
-                      //   });
-                      // },
                     }}
                   />
                 </div>

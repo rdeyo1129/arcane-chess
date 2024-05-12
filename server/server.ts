@@ -31,9 +31,11 @@ const __dirname = dirname(__filename);
 
 mongoose.set('strictQuery', false);
 
+const dbURI = process.env.MONGO_URI;
+
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI as string)
+  .connect(process.env.MONGODB_URI || (dbURI as string))
   .then(() => console.log('MongoDB successfully connected'))
   .catch((err) => console.log(err, 'mongo uri:', process.env.MONGO_URI));
 

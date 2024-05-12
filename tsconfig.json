@@ -21,7 +21,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
 
-    "outDir": "dist/frontend",
+    "outDir": "./dist/frontend",
 
     "baseUrl": ".",
     "paths": {

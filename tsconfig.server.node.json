@@ -5,7 +5,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "outDir": "./dist"
+    "outDir": "./dist/server"
   },
   "include": ["server/**/*.ts"]
 }

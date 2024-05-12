@@ -30,13 +30,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // db config
-const dbURI = process.env.MONGO_URI as string;
+const dbURI = process.env.MONGO_URI;
 
 mongoose.set('strictQuery', false);
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI || dbURI)
+  .connect(dbURI as string)
   .then(() => console.log('MongoDB successfully connected'))
   .catch((err) => console.log(err));
 

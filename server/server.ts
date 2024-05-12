@@ -97,7 +97,8 @@ app.use((_req, res, next) => {
 });
 
 app.get('*', (_req, res) => {
-  res.sendFile(path.resolve(__dirname, '/frontend', 'index.html'));
+  console.log('dir:', __dirname);
+  res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

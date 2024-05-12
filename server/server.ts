@@ -91,14 +91,13 @@ app.use('/api/puzzles', puzzles);
 app.use((_req, res, next) => {
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'none'; font-src <URL>; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none';"
+    "default-src 'none'; font-src https://example.com/; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none';"
   );
   next();
 });
 
-app.get('*', (_req, res) => {
-  console.log('dir:', __dirname);
-  res.sendFile(path.resolve('/dist/frontend/', 'index.html'));
-});
+const frontendPath = path.join(__dirname, 'dist', 'frontend');
+
+app.use(express.static(frontendPath));
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

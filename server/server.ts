@@ -88,7 +88,7 @@ app.use('/api/templates', templates);
 app.use('/api/puzzles', puzzles);
 
 // Set Content Security Policy headers
-app.use((req, res, next) => {
+app.use((_req, res, next) => {
   res.setHeader(
     'Content-Security-Policy',
     "default-src 'none'; font-src <URL>; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none';"

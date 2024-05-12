@@ -9,7 +9,7 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server": "nodemon --exec ts-node --project server/tsconfig.json server/server.ts",
-    "start": "node server/server.ts",
+    "start": "node server/server.js",
     "postinstall": "npm run build"
   },
   "dependencies": {

@@ -20,11 +20,11 @@ import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
-// const nodeEnv = process.env.NODE_ENV || 'development';
-// const envPath = path.resolve(process.cwd(), `.env.${nodeEnv}`);
-// dotenv.config({ path: envPath });
+const nodeEnv = process.env.NODE_ENV || 'development';
+const envPath = path.resolve(process.cwd(), `.env.${nodeEnv}`);
+dotenv.config({ path: envPath });
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

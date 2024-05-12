@@ -21,6 +21,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
 
+    "outDir": "server",
+
     "baseUrl": ".",
     "paths": {
       "src/*": ["src/*"],

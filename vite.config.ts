@@ -4,7 +4,11 @@ import { resolve } from 'path';
 import fs from 'fs/promises';
 import commonjs from 'vite-plugin-commonjs';
 
-export default ({ mode }) => {
+interface ConfigEnv {
+  mode: string;
+}
+
+export default ({ mode }: ConfigEnv) => {
   // Load app-level env vars to node-level env vars.
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 

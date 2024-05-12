@@ -5,7 +5,7 @@ import {
 } from 'passport-jwt';
 import { PassportStatic } from 'passport';
 // import mongoose from 'mongoose';
-import { keys } from './keys.js';
+// import { keys } from './keys.ts';
 
 import { User } from '../models/User';
 
@@ -14,7 +14,7 @@ const opts: {
   secretOrKey: string;
 } = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: keys.secretOrKey,
+  secretOrKey: 'secret',
 };
 
 export default (passport: PassportStatic) => {

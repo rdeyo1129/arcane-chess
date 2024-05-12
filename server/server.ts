@@ -35,7 +35,7 @@ mongoose.set('strictQuery', false);
 
 // Connect to MongoDB
 mongoose
-  .connect(dbURI as string)
+  .connect(process.env.dbURI || dbURI)
   .then(() => console.log('MongoDB successfully connected'))
   .catch((err) => console.log(err));
 

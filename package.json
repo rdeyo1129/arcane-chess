@@ -11,7 +11,7 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server": "nodemon --exec ts-node --project server/tsconfig.json server/server.ts",
-    "start": "node dist/server/index.js",
+    "start": "node dist/server/server.js",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {

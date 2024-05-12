@@ -21,16 +21,16 @@
     "esModuleInterop": true,
 
     "outDir": "./dist/server",
-    "rootDir": "src/",
+    "rootDir": "./server",
 
     "baseUrl": ".",
     "paths": {
-      "server/*": ["server/*"]
+      "server/*": ["./server/*"]
     }
   },
   "ts-node": {
     "esm": true
   },
-  "include": ["src/server/**/*.ts", "src/**/*.ts"],
+  "include": ["server/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

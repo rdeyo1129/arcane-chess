@@ -87,8 +87,17 @@ app.use('/api/campaign', campaign);
 app.use('/api/templates', templates);
 app.use('/api/puzzles', puzzles);
 
+// Set Content Security Policy headers
+app.use((req, res, next) => {
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'none'; font-src <URL>; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none';"
+  );
+  next();
+});
+
 app.get('*', (_req, res) => {
-  res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '/frontend', 'index.html'));
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

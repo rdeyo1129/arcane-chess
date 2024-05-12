@@ -60,9 +60,8 @@ const port = process.env.PORT || 8080;
 
 // todo
 if (process.env.NODE_ENV === 'production') {
-  const distPath = path.join(__dirname, '../dist');
-  console.log('Dist path:', distPath);
-  app.use(express.static(distPath));
+  console.log('dir:', __dirname);
+  app.use(express.static(__dirname));
   // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 }
 // if (process.env.NODE_ENV === 'development') { include separate DB/cluster here? }

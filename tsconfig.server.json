@@ -20,7 +20,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
 
-    "outDir": "./dist/server",
+    "outDir": "./server",
     "rootDir": "./server",
 
     "baseUrl": ".",

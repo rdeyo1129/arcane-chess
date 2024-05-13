@@ -52,6 +52,9 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 8080;
 
+const staticPath = path.join(__dirname, 'dist', 'frontend');
+console.log(`Serving static files from: ${staticPath}`);
+
 app.use(express.static('dist/frontend'));
 if (process.env.NODE_ENV === 'production') {
   app.use(favicon(path.join(__dirname, '..', '..', 'favicon.ico')));

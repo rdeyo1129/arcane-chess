@@ -52,9 +52,6 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 8080;
 
-const staticPath = path.join(__dirname, 'dist', 'frontend');
-console.log(`Serving static files from: ${staticPath}`);
-
 app.use(express.static('dist/frontend'));
 if (process.env.NODE_ENV === 'production') {
   app.use(favicon(path.join(__dirname, '..', '..', 'favicon.ico')));
@@ -76,9 +73,11 @@ app.use((_req, res, next) => {
   next();
 });
 
+const staticPath = path.join(__dirname, '..', 'dist', 'frontend');
+const indexPath = path.join(staticPath, 'index.html');
+
 // Serve HTML with nonce
 app.get('*', (_req, res) => {
-  const indexPath = path.join(__dirname, 'dist', 'frontend', 'index.html');
   fs.readFile(indexPath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading the index.html file:', err);

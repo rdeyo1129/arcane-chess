@@ -61,8 +61,8 @@ const port = process.env.PORT || 8080;
 
 if (process.env.NODE_ENV === 'production') {
   console.log('dir:', __dirname);
-  app.use(express.static(path.join(__dirname, '../../favicon')));
-  app.use(favicon(path.join(__dirname, '../../favicon', 'favicon.ico')));
+  app.use(express.static(path.join(__dirname, '../../')));
+  app.use(favicon(path.join(__dirname, '../../', 'favicon.ico')));
 }
 
 // use body parser

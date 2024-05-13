@@ -151,7 +151,7 @@ export class UnwrappedCampaign extends React.Component<
           chapterNumber={this.state.chapter}
           isOpen={this.state.configModalOpen}
           type="bookSettings"
-          imgPath="public/assets/treeBoat.jpg"
+          imgPath="/assets/treeBoat.jpg"
         />
       </div>
     );

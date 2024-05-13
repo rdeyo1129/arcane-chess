@@ -230,7 +230,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                 background:
                   this.state.theme === 'black'
                     ? ''
-                    : `url(assets/chapter${LS.chapter}.webp) no-repeat center center fixed`,
+                    : `url(/assets/chapter${LS.chapter}.webp) no-repeat center center fixed`,
               }}
             >
               <div className="top">

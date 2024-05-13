@@ -386,10 +386,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
           >
             <div className="endgame">
               <div className="left">
-                <img
-                  className="endgame-image"
-                  src="public/assets/victory.webp"
-                />
+                <img className="endgame-image" src="/assets/victory.webp" />
               </div>
               <div className="middle">
                 {/* <div
@@ -453,10 +450,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
           >
             <div className="endgame">
               <div className="left">
-                <img
-                  className="endgame-image"
-                  src="public/assets/defeat.webp"
-                />
+                <img className="endgame-image" src="/assets/defeat.webp" />
               </div>
               <div className="middle">
                 <div

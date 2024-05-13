@@ -166,7 +166,7 @@ export class UnwrappedDashboard extends React.Component<
         <div className="hover-image">
           <img
             className="hover-image"
-            src={`public/assets/${this.state.hoverNav}.webp`}
+            src={`/assets/${this.state.hoverNav}.webp`}
             alt={this.state.hoverNav}
           />
         </div>

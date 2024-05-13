@@ -452,7 +452,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
   componentWillUnmount(): void {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     // Check if relevant data has changed
     if (
       this.props.auth.user.username !== prevProps.auth.user.username ||

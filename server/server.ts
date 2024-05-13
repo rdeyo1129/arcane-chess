@@ -51,7 +51,7 @@ import path from 'path';
 import { createServer } from 'http';
 // import { Server } from 'socket.io';
 
-// import favicon from 'serve-favicon';
+import favicon from 'serve-favicon';
 
 const app = express();
 const server = createServer(app);
@@ -63,7 +63,7 @@ const port = process.env.PORT || 8080;
 if (process.env.NODE_ENV === 'production') {
   console.log('dir:', __dirname);
   app.use(express.static(__dirname));
-  // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+  app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 }
 // if (process.env.NODE_ENV === 'development') { include separate DB/cluster here? }
 

@@ -103,14 +103,19 @@ app.get('/', (_req, res) => {
   const htmlResponse = `
     <!DOCTYPE html>
     <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>Arcane Chess</title>
-      ${cspMetaTag}
-    </head>
-    <body>
-      <!-- HTML -->
-    </body>
+      <head>
+        <meta charset="UTF-8">
+        <title>Tactorius</title>
+        ${cspMetaTag}
+        <link rel="icon" type="image/png" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tactorius</title>
+        <link rel="stylesheet" href="./main.css" />
+      </head>
+      <body>
+        <div id="root"></div>
+      </body>
+      <script type="module" src="/src/index.tsx"></script>
     </html>
   `;
   res.send(htmlResponse);

@@ -60,16 +60,8 @@ const server = createServer(app);
 const port = process.env.PORT || 8080;
 
 if (process.env.NODE_ENV === 'production') {
-  console.log('dir:', __dirname);
-  const pathToCss = path.join(__dirname, '..', '..', 'main.css');
-  app.use(
-    '/css',
-    express.static(pathToCss, {
-      setHeaders: (res) => {
-        res.setHeader('Content-Type', 'text/css');
-      },
-    })
-  );
+  const staticPath = path.join(__dirname, '..', '..', 'static');
+  app.use('/css', express.static(staticPath));
   app.use(favicon(path.join(__dirname, '..', '..', 'favicon.ico')));
 }
 

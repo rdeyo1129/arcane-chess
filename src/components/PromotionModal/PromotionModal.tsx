@@ -16,7 +16,7 @@ export default class PromotionModal extends React.Component<Props> {
     this.state = {};
   }
   componentDidMount(): void {
-    Modal.setAppElement('#root');
+    Modal.setAppElement('#modal-root');
   }
   render() {
     const {

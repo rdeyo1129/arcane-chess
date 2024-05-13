@@ -3,7 +3,7 @@ import { Chessground as NativeChessground } from 'chessgroundx';
 
 import './styles/chessground.scss';
 
-type AnyHacker = {
+type AnyChessground = {
   [key: string]: number | string | React.CSSProperties | null;
 };
 
@@ -45,7 +45,7 @@ export interface IChessground {
 }
 
 export interface IChessgroundApi {
-  set: (config: Record<string, AnyHacker>) => void;
+  set: (config: Record<string, AnyChessground>) => void;
   destroy: () => void;
   selectPocket: (piece: object) => void;
   setShapes: (shapes: object[]) => void;

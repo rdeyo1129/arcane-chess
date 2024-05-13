@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 
 import './PromotionModal.scss';
 
+Modal.setAppElement('#root');
+
 interface Props {
   isOpen: boolean;
   playerColor: string;
@@ -14,9 +16,6 @@ export default class PromotionModal extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.state = {};
-  }
-  componentDidMount(): void {
-    Modal.setAppElement('#modal-root');
   }
   render() {
     const {

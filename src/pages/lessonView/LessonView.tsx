@@ -266,6 +266,11 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       (prevState) => {
         const LS = getLocalStorage(this.props.auth.user.username);
         const newPanel = prevState.currPanel + (direction === 'inc' ? 1 : -1);
+        console.log(
+          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+            `panel-${newPanel}`
+          ].arrowsCircles
+        );
         this.chessgroundRef.current?.setAutoShapes([
           ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
             `panel-${newPanel}`

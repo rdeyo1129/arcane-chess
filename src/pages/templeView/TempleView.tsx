@@ -732,19 +732,28 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     viewOnly={false}
                     events={{
                       move: (orig: string, dest: string) => {
-                        const correctPromotion =
-                          this.state.correctMoves[
-                            this.state.moveNumber
-                          ][4].toLocaleLowerCase();
+                        console.log(
+                          `ID: 312-458639-06235`,
+                          // `State: ${JSON.stringify(this.state, null, 2)}`,
+                          `Correct Move: ${(
+                            this.state.correctMoves[this.state.moveNumber][4] ||
+                            ''
+                          ).toLowerCase()}`
+                        );
+                        const correctPromotion = (
+                          this.state.correctMoves[this.state.moveNumber][4] ||
+                          ''
+                        ).toLowerCase();
+
                         const parsed = this.arcaneChess().makeUserMove(
                           orig,
                           dest,
                           PIECES[
-                            `${
-                              gameBoardTurn === 'white' ? 'w' : 'b'
-                            }${this.state.correctMoves[
-                              this.state.moveNumber
-                            ][4].toUpperCase()}` as keyof typeof PIECES
+                            `${gameBoardTurn === 'white' ? 'w' : 'b'}${(
+                              this.state.correctMoves[
+                                this.state.moveNumber
+                              ][4] || ''
+                            ).toUpperCase()}` as keyof typeof PIECES
                           ]
                         );
                         if (

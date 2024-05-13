@@ -87,7 +87,6 @@ const cspMiddleware = (_req: Request, res: Response, next: NextFunction) => {
     "script-src 'self' 'unsafe-inline';"
   );
   res.setHeader('Cache-Control', 'no-store');
-  console.log('CSP Nonce:', nonce);
   next();
 };
 

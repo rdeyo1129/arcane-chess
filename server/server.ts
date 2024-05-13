@@ -61,7 +61,15 @@ const port = process.env.PORT || 8080;
 
 if (process.env.NODE_ENV === 'production') {
   console.log('dir:', __dirname);
-  app.use(express.static(path.join(__dirname, '../../')));
+  app.use(
+    express.static(path.join(__dirname, '../../'), {
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.js')) {
+          res.setHeader('Content-Type', 'application/javascript');
+        }
+      },
+    })
+  );
   app.use(favicon(path.join(__dirname, '../../', 'favicon.ico')));
 }
 

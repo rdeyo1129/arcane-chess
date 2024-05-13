@@ -271,6 +271,13 @@ class UnwrappedLessonView extends React.Component<Props, State> {
             `panel-${newPanel}`
           ].arrowsCircles
         );
+        const autoShapes =
+          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
+            `panel-${newPanel}`
+          ].arrowsCircles ?? [];
+        console.log('Auto Shapes:', autoShapes);
+        console.log('Chessground Ref:', this.chessgroundRef.current);
+
         this.chessgroundRef.current?.setAutoShapes([
           ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
             `panel-${newPanel}`
@@ -449,6 +456,35 @@ class UnwrappedLessonView extends React.Component<Props, State> {
 
   componentWillUnmount(): void {
     window.removeEventListener('keydown', this.handleKeyDown);
+  }
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    // Check if relevant data has changed
+    if (
+      this.props.auth.user.username !== prevProps.auth.user.username ||
+      this.state.currPanel !== prevState.currPanel
+    ) {
+      const LS = getLocalStorage(this.props.auth.user.username);
+
+      // Ensure the LS data is available and valid
+      if (LS && LS.chapter && LS.nodeId) {
+        const autoShapes =
+          booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels?.[
+            `panel-${this.state.currPanel}`
+          ]?.arrowsCircles ?? [];
+
+        console.log('Auto Shapes:', autoShapes);
+        console.log('Chessground Ref:', this.chessgroundRef.current);
+
+        // Ensure the ref is available before setting auto shapes
+        if (this.chessgroundRef.current) {
+          this.chessgroundRef.current.setAutoShapes([...autoShapes]);
+        } else {
+          console.error('Chessground Ref is not available.');
+        }
+      } else {
+        console.error('LS data is not available or invalid.');
+      }
+    }
   }
 
   componentDidMount() {

@@ -73,7 +73,7 @@ app.use((_req, res, next) => {
   next();
 });
 
-const staticPath = path.join(__dirname, '..', 'dist', 'frontend');
+const staticPath = path.join(__dirname, '..', 'frontend');
 const indexPath = path.join(staticPath, 'index.html');
 
 // Serve HTML with nonce

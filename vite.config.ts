@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import fs from 'fs/promises';
 import commonjs from 'vite-plugin-commonjs';
+import copy from 'vite-plugin-copy';
 
 interface ConfigEnv {
   mode: string;
@@ -41,6 +42,11 @@ export default ({ mode }: ConfigEnv) => {
               }));
             },
           },
+          copy({
+            targets: [
+              { src: 'server/public/favicon.ico', dest: 'dist/server/public' },
+            ],
+          }),
         ],
       },
     },

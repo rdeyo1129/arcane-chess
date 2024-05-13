@@ -55,7 +55,7 @@ const port = process.env.PORT || 8080;
 const staticPath = path.join(__dirname, 'dist', 'frontend');
 app.use(express.static(staticPath));
 if (process.env.NODE_ENV === 'production') {
-  app.use(favicon(path.join(staticPath, 'favicon.ico')));
+  app.use(favicon(path.join(__dirname, '..', '..', 'favicon.ico')));
 }
 
 // Routes

@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:server && npm run build:frontend && build:css",
+    "build": "npm run build:server && npm run build:frontend && build-css",
     "build:frontend": "vite build --outDir dist/frontend && tsc -p tsconfig.json",
     "build:server": "tsc -p tsconfig.server.json",
-    "build:css": "sass src/styles/main.scss main.css",
+    "build-css": "sass src/styles/main.scss main.css",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server": "nodemon --exec ts-node --project tsconfig.server.json server/server.ts",

@@ -87,15 +87,6 @@ app.use('/api/campaign', campaign);
 app.use('/api/templates', templates);
 app.use('/api/puzzles', puzzles);
 
-// Set Content Security Policy headers
-app.use((_req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'none'; font-src https://example.com/; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none';"
-  );
-  next();
-});
-
 const frontendPath = path.join(__dirname, 'dist', 'frontend');
 
 app.use(express.static(frontendPath));

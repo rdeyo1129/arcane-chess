@@ -61,16 +61,16 @@ const port = process.env.PORT || 8080;
 
 if (process.env.NODE_ENV === 'production') {
   console.log('dir:', __dirname);
+  const pathToCss = path.join(__dirname, '..', '..', 'main.css');
   app.use(
-    express.static(path.join(__dirname, '../../'), {
-      setHeaders: (res, filePath) => {
-        if (filePath.endsWith('.css')) {
-          res.setHeader('Content-Type', 'text/css');
-        }
+    '/css',
+    express.static(pathToCss, {
+      setHeaders: (res) => {
+        res.setHeader('Content-Type', 'text/css');
       },
     })
   );
-  app.use(favicon(path.join(__dirname, '../../', 'favicon.ico')));
+  app.use(favicon(path.join(__dirname, '..', '..', 'favicon.ico')));
 }
 
 // use body parser

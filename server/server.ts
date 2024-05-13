@@ -106,12 +106,12 @@ app.get('/', (_req, res) => {
         <link rel="icon" type="image/png" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tactorius</title>
-        <link rel="stylesheet" href="./main.css" />
+        <link rel="stylesheet" href="/main.css" />
       </head>
       <body>
         <div id="root"></div>
       </body>
-      <script type="module" src="/src/index.tsx"></script>
+      <script type="module" src="/index.js"></script>
     </html>
   `;
   res.send(htmlResponse);

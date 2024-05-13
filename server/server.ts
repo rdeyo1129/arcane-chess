@@ -64,8 +64,8 @@ if (process.env.NODE_ENV === 'production') {
   app.use(
     express.static(path.join(__dirname, '../../'), {
       setHeaders: (res, filePath) => {
-        if (filePath.endsWith('.js')) {
-          res.setHeader('Content-Type', 'application/javascript');
+        if (filePath.endsWith('.css')) {
+          res.setHeader('Content-Type', 'text/css');
         }
       },
     })

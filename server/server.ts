@@ -60,6 +60,10 @@ const server = createServer(app);
 const port = process.env.PORT || 8080;
 
 if (process.env.NODE_ENV === 'production') {
+  console.log(
+    'Serving CSS from:',
+    path.join(__dirname, '..', '..', 'main.css')
+  );
   const staticPath = path.join(__dirname, '..', '..', 'static');
   app.use('/css', express.static(staticPath));
   app.use(favicon(path.join(__dirname, '..', '..', 'favicon.ico')));

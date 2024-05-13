@@ -26,20 +26,20 @@ import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
 
-import arcanaJson from 'src/data/arcana.json';
+// import arcanaJson from 'src/data/arcana.json';
 
-const arcana: ArcanaMap = arcanaJson as ArcanaMap;
+// const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-interface ArcanaMap {
-  [key: string]: ArcanaDetail;
-}
+// interface ArcanaMap {
+//   [key: string]: ArcanaDetail;
+// }
 
-interface ArcanaDetail {
-  name: string;
-  description: string;
-  type: string;
-  imagePath: string;
-}
+// interface ArcanaDetail {
+//   name: string;
+//   description: string;
+//   type: string;
+//   imagePath: string;
+// }
 
 interface BookProps {
   auth: { user: { id: string; username: string } };

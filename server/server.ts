@@ -13,7 +13,7 @@ import campaign from './api/campaign.js';
 import templates from './api/templates.js';
 import puzzles from './api/puzzles.js';
 
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import crypto from 'crypto';
 import path from 'path';
 import { createServer } from 'http';
@@ -76,19 +76,29 @@ app.use((_req, res, next) => {
 const staticPath = path.join(__dirname, '..', 'frontend');
 const indexPath = path.join(staticPath, 'index.html');
 
-// Serve HTML with nonce
+// Middleware to generate and inject nonce
+const cspMiddleware = (_req: Request, res: Response, next: NextFunction) => {
+  const nonce = crypto.randomBytes(16).toString('base64');
+  res.locals.nonce = nonce;
+  res.setHeader('Content-Security-Policy', `script-src 'nonce-${nonce}'`);
+  next();
+};
+
+app.use(cspMiddleware);
+
+// Modify the HTML serving route to inject nonce into the script tags
 app.get('*', (_req, res) => {
   fs.readFile(indexPath, 'utf8', (err, data) => {
     if (err) {
-      console.error('Error reading the index.html file:', err);
+      console.error('Error reading index.html:', err);
       return res.status(500).send('Error serving the application');
     }
-    // Inject nonce in meta tag
-    data = data.replace(
-      /<head>/,
-      `<head><meta http-equiv="Content-Security-Policy" content="script-src 'nonce-${res.locals.nonce}'">`
+    // Replace script tags with nonce
+    const updatedData = data.replace(
+      /<script src="(.*?)"<\/script>/g,
+      `<script src="$1" nonce="${res.locals.nonce}"></script>`
     );
-    res.send(data);
+    res.send(updatedData);
   });
 });
 

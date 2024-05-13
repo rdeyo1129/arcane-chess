@@ -46,6 +46,7 @@ import templates from './api/templates.js';
 import puzzles from './api/puzzles.js';
 
 import express from 'express';
+import crypto from 'crypto';
 import path from 'path';
 import { createServer } from 'http';
 // import { Server } from 'socket.io';
@@ -90,5 +91,29 @@ app.use('/api/puzzles', puzzles);
 const frontendPath = path.join(__dirname, 'dist', 'frontend');
 
 app.use(express.static(frontendPath));
+
+// Generate a random nonce value
+const generateNonce = () => {
+  return crypto.randomBytes(16).toString('base64');
+};
+
+app.get('/', (_req, res) => {
+  const nonce = generateNonce();
+  const cspMetaTag = `<meta property="csp-nonce" content="${nonce}" />`;
+  const htmlResponse = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Arcane Chess</title>
+      ${cspMetaTag}
+    </head>
+    <body>
+      <!-- HTML -->
+    </body>
+    </html>
+  `;
+  res.send(htmlResponse);
+});
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

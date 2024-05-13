@@ -154,18 +154,18 @@ function App() {
   return <RouterProvider router={router}></RouterProvider>;
 }
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
-      <App />
-      {/* </PersistGate> */}
-    </Provider>
-  </React.StrictMode>
-);
+document.addEventListener('DOMContentLoaded', () => {
+  const root = ReactDOM.createRoot(
+    document.getElementById('root') as HTMLElement
+  );
+  root.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
+  );
+});
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

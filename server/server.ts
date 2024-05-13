@@ -2,6 +2,7 @@
 
 // import _ from 'lodash';
 import bodyParser from 'body-parser';
+import fs from 'fs';
 
 // import passport from "passport";
 // import passportConfig from "./config/passport.mjs";
@@ -88,33 +89,33 @@ const frontendPath = path.join(__dirname, 'dist', 'frontend');
 
 app.use(express.static(frontendPath));
 
-// Generate a random nonce value
-const generateNonce = () => {
-  return crypto.randomBytes(16).toString('base64');
-};
+// Helper to generate nonce
+const generateNonce = () => crypto.randomBytes(16).toString('base64');
 
-app.get('/', (_req, res) => {
-  const nonce = generateNonce();
-  const cspMetaTag = `<meta property="csp-nonce" content="${nonce}" />`;
-  const htmlResponse = `
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <title>Tactorius</title>
-        ${cspMetaTag}
-        <link rel="icon" type="image/png" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Tactorius</title>
-        <link rel="stylesheet" href="/main.css" />
-      </head>
-      <body>
-        <div id="root"></div>
-      </body>
-      <script type="module" src="/index.js"></script>
-    </html>
-  `;
-  res.send(htmlResponse);
+// Middleware to inject CSP nonce
+app.use((_req, res, next) => {
+  res.locals.nonce = generateNonce();
+  next();
+});
+
+// Serve static files from the correct directory
+app.use(express.static('dist/frontend'));
+
+// Serve HTML with nonce
+app.get('*', (_req, res) => {
+  const indexPath = path.join(__dirname, 'dist', 'frontend', 'index.html');
+  fs.readFile(indexPath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading the index.html file:', err);
+      return res.status(500).send('Error serving the application');
+    }
+    // Inject nonce in meta tag
+    data = data.replace(
+      /<head>/,
+      `<head><meta http-equiv="Content-Security-Policy" content="script-src 'nonce-${res.locals.nonce}'">`
+    );
+    res.send(data);
+  });
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

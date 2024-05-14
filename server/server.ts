@@ -70,7 +70,6 @@ const generateNonce = () => crypto.randomBytes(16).toString('base64');
 // Middleware to inject CSP nonce
 app.use((_req, res, next) => {
   res.locals.nonce = generateNonce();
-
   next();
 });
 
@@ -81,10 +80,9 @@ const indexPath = path.join(staticPath, 'index.html');
 const cspMiddleware = (_req: Request, res: Response, next: NextFunction) => {
   const nonce = crypto.randomBytes(16).toString('base64');
   res.locals.nonce = nonce;
-  res.setHeader('Content-Security-Policy', `script-src 'nonce-${nonce}'`);
   res.setHeader(
     'Content-Security-Policy',
-    "script-src 'self' 'unsafe-inline';"
+    `script-src 'self' 'nonce-${nonce}'; object-src 'none'; base-uri 'self';`
   );
   res.setHeader('Cache-Control', 'no-store');
   next();

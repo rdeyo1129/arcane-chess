@@ -86,13 +86,38 @@ export class Chessground extends React.Component<IChessground> {
 
     return config;
   }
-
   componentDidMount() {
     if (this.el) {
       this.cg = NativeChessground(
         this.el,
         this.buildConfigFromProps(this.props)
-      ) as unknown as IChessground; // Add a type assertion to ensure the returned object matches the IChessground interface
+      ) as unknown as IChessground & IChessgroundApi; // Add the missing properties from IChessground to IChessgroundApi
+    }
+
+    if (this.props.forwardedRef) {
+      if (typeof this.props.forwardedRef === 'function') {
+        this.props.forwardedRef({
+          set: this.cg.set.bind(this.cg),
+          destroy: this.cg.destroy.bind(this.cg),
+          selectPocket: this.cg.selectPocket.bind(this.cg),
+          setShapes: this.cg.setShapes.bind(this.cg),
+          setAutoShapes: this.cg.setAutoShapes.bind(this.cg),
+          getFen: this.cg.getFen.bind(this.cg),
+          unselect: this.cg.unselect.bind(this.cg),
+        });
+      } else if (this.props.forwardedRef) {
+        (
+          this.props.forwardedRef as React.MutableRefObject<IChessgroundApi>
+        ).current = {
+          set: this.cg.set.bind(this.cg),
+          destroy: this.cg.destroy.bind(this.cg),
+          selectPocket: this.cg.selectPocket.bind(this.cg),
+          setShapes: this.cg.setShapes.bind(this.cg),
+          setAutoShapes: this.cg.setAutoShapes.bind(this.cg),
+          getFen: this.cg.getFen.bind(this.cg),
+          unselect: this.cg.unselect.bind(this.cg),
+        };
+      }
     }
   }
 

@@ -3,8 +3,6 @@ import Modal from 'react-modal';
 
 import './PromotionModal.scss';
 
-Modal.setAppElement('#root');
-
 interface Props {
   isOpen: boolean;
   playerColor: string;

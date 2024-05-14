@@ -34,6 +34,10 @@ import { League } from '././pages/league/League';
 import { Lexicon } from '././pages/lexicon/Lexicon';
 
 import ReactDOM from 'react-dom/client';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
+
 // import App from './App';
 
 // Check for token to keep user logged in

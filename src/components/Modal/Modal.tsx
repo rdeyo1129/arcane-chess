@@ -81,7 +81,7 @@ const quickPlayArcana = [
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 
 class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
   constructor(props: ModalProps) {

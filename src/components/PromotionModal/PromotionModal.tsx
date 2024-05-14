@@ -10,7 +10,7 @@ interface Props {
   handleClose: (piece: string) => void;
 }
 
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 
 export default class PromotionModal extends React.Component<Props> {
   constructor(props: Props) {

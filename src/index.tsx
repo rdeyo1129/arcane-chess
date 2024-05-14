@@ -36,8 +36,6 @@ import { Lexicon } from '././pages/lexicon/Lexicon';
 import ReactDOM from 'react-dom/client';
 import Modal from 'react-modal';
 
-Modal.setAppElement('#root');
-
 // import App from './App';
 
 // Check for token to keep user logged in
@@ -162,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
   );
+  Modal.setAppElement('#root');
   root.render(
     <React.StrictMode>
       <Provider store={store}>

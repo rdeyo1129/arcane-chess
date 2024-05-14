@@ -10,6 +10,8 @@ interface Props {
   handleClose: (piece: string) => void;
 }
 
+Modal.setAppElement('#root');
+
 export default class PromotionModal extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
@@ -24,7 +26,7 @@ export default class PromotionModal extends React.Component<Props> {
     } = this.props;
     return (
       <div className="modal">
-        <Modal isOpen={isOpen} style={promotionModal}>
+        <Modal isOpen={isOpen} style={promotionModal} ariaHideApp={false}>
           <div className="promotion-selection-container">
             <img
               onClick={() => handleClose('N')}

@@ -84,7 +84,28 @@ export const getLocalStorage = (username: string) => {
       return null;
     }
   } else {
-    // console.error('No data found in localStorage');
-    return null;
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+
+      if (key && key.startsWith('guest')) {
+        const guestData = localStorage.getItem(key);
+
+        if (guestData) {
+          const parsedGuestData = JSON.parse(guestData);
+          const guestUserData = parsedGuestData[`${key}`];
+
+          if (guestUserData) {
+            return guestUserData;
+          } else {
+            console.error('User data not found for the provided ID');
+            return null;
+          }
+        }
+      }
+    }
   }
+  console.error(
+    'No data found in localStorage for the provided username or a key starting with "guest"'
+  );
+  return null;
 };

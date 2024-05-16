@@ -11,7 +11,10 @@ import Button from 'src/components/Button/Button';
 import Input from 'src/components/Input/Input';
 import Hero from 'src/components/hero2/Hero';
 
-import { loginUser } from '../../actions/authActions';
+import {
+  loginUser,
+  getGuestUserFromLocalStorage,
+} from '../../actions/authActions';
 
 interface UserData {
   username: string;
@@ -76,13 +79,26 @@ const UnwrappedLogin: React.FC = () => {
       guest,
     };
 
-    const testUser: UserData = {
-      username: `guest_${Math.random().toString(36).substring(2)}`,
-      password: '123456',
-      guest: true,
-    };
+    let guestUserData: UserData | null = null;
 
-    dispatch(loginUser(guest ? testUser : userData, navigate));
+    if (guest) {
+      const existingGuestUser = getGuestUserFromLocalStorage();
+      if (existingGuestUser) {
+        guestUserData = {
+          username: existingGuestUser.key,
+          password: '123456',
+          guest: true,
+        };
+      } else {
+        guestUserData = {
+          username: `guest_${Math.random().toString(36).substring(2)}`,
+          password: '123456',
+          guest: true,
+        };
+      }
+    }
+
+    dispatch(loginUser(guest ? guestUserData : userData, navigate));
   };
 
   return (

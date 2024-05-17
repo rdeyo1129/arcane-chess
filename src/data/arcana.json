@@ -227,24 +227,13 @@
     "type": "passive",
     "imagePath": "/assets/arcanaImages/shftR"
   },
-  "swapATK": {
-    "name": "Adversary Translocate",
-    "description": "Swap the positions of a friendly and enemy Rook, Bishop, or Knight.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/swapATK"
-  },
   "swapDEP": {
     "name": "Ally Translocate",
-    "description": "Swap the positions of a friendly Rook, Bishop, or Knight.",
+    "description": "Swap the positions of a friendly minor or major piece (no P, H, V, K).",
     "type": "active",
     "imagePath": "/assets/arcanaImages/swapDEP"
   },
-  "swapADJ": {
-    "name": "Proximity Translocate",
-    "description": "Swap the positions of any orthogonally adjacent pieces, no Pawn promotions.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/swapADJ"
-  },
+
   "modsCON": {
     "name": "Jaws of Betrayal",
     "description": "Capture any friendly piece.",
@@ -262,12 +251,6 @@
     "description": "Castle while in or through check.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/modsFUG"
-  },
-  "modsRAN": {
-    "name": "War Dice",
-    "description": "Randomize your opponent's back rank to a 960 position.",
-    "type": "inherent",
-    "imagePath": "/assets/arcanaImages/modsRAN"
   },
   "modsINH": {
     "name": "Legacy Ascension",
@@ -310,12 +293,6 @@
     "description": "Get engine's best calculate line of moves after 3 seconds of thinking time.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsTEM"
-  },
-  "modsPRE": {
-    "name": "Premonition Implant",
-    "description": "See all of your opponent's premoves or bets.",
-    "type": "inherent",
-    "imagePath": "/assets/arcanaImages/modsPRE"
   },
   "modsBET": {
     "name": "Gambler Implant",

@@ -35,8 +35,8 @@ import {
   SQUARES,
   PceChar,
 } from './defs';
-import { ARCANEFLAG, PrintBoard, SideText } from './board.mjs';
-import { PrMove, PrintMoveList } from './io';
+import { ARCANEFLAG, SideText } from './board.mjs';
+import { PrMove } from './io';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
 export function ClearPiece(sq, summon = false) {

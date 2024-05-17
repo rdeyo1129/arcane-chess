@@ -240,5 +240,29 @@
     "title": "Invisiblity",
     "description": "Your opponent cannot see your pieces for 2 turns.",
     "image": "invisibility"
+  },
+  "swapATK": {
+    "name": "Adversary Translocate",
+    "description": "Swap the positions of a friendly and enemy Rook, Bishop, or Knight.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/swapATK"
+  },
+  "modsRAN": {
+    "name": "War Dice",
+    "description": "Randomize your opponent's back rank to a 960 position.",
+    "type": "inherent",
+    "imagePath": "/assets/arcanaImages/modsRAN"
+  },
+  "modsPRE": {
+    "name": "Premonition Implant",
+    "description": "See all of your opponent's premoves or bets.",
+    "type": "inherent",
+    "imagePath": "/assets/arcanaImages/modsPRE"
+  },
+  "swapADJ": {
+    "name": "Proximity Translocate",
+    "description": "Swap the positions of any orthogonally adjacent pieces, no Pawn promotions.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/swapADJ"
   }
 }

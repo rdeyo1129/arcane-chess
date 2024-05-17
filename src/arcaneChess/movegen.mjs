@@ -595,7 +595,7 @@ export function GenerateMoves(
     herrings = [];
   }
 
-  const NBRSQS = [[], []];
+  const NZUBRMTQSWSQS = [[], []];
 
   // todo note does swap override entangle and suspend? I think so maybe no entangle though
 
@@ -610,174 +610,46 @@ export function GenerateMoves(
     if (herrings.length) {
       break;
     }
-    if (generateSwaps === 'ADJ' || generateSwaps === 'COMP') {
-      for (let i = 0; i < 4; i++) {
-        dir = RkDir[i];
-        t_sq = sq + dir;
-        pce = GameBoard.pieces[t_sq];
-
-        // no swapping into promotion
-        if (
-          (GameBoard.pieces[sq] === PIECES.wP &&
-            GameBoard.whiteArcane[4] & 16 &&
-            RanksBrd[t_sq] === RANKS.RANK_7) ||
-          (pce === PIECES.wP &&
-            GameBoard.whiteArcane[4] & 16 &&
-            RanksBrd[sq] === RANKS.RANK_7) ||
-          (GameBoard.pieces[sq] === PIECES.wP &&
-            RanksBrd[t_sq] === RANKS.RANK_8) ||
-          (pce === PIECES.wP && RanksBrd[sq] === RANKS.RANK_8)
-        ) {
-          continue;
-        }
-        if (
-          (GameBoard.pieces[sq] === PIECES.bP &&
-            GameBoard.blackArcane[4] & 16 &&
-            RanksBrd[t_sq] === RANKS.RANK_2) ||
-          (pce === PIECES.bP &&
-            GameBoard.blackArcane[4] & 16 &&
-            RanksBrd[sq] === RANKS.RANK_2) ||
-          (GameBoard.pieces[sq] === PIECES.bP &&
-            RanksBrd[t_sq] === RANKS.RANK_1) ||
-          (pce === PIECES.bP && RanksBrd[sq] === RANKS.RANK_1)
-        ) {
-          continue;
-        }
-
-        if (GameBoard.pieces[sq] === GameBoard.pieces[t_sq]) {
-          continue;
-        }
-
-        if (
-          SQOFFBOARD(t_sq) === BOOL.FALSE &&
-          pce !== PIECES.EMPTY &&
-          GameBoard.pieces[sq] !== PIECES.EMPTY &&
-          GameBoard.side === COLOURS.WHITE &&
-          GameBoard.whiteArcane[2] & 4
-        ) {
-          AddCaptureMove(
-            MOVE(
-              sq,
-              t_sq,
-              GameBoard.pieces[t_sq],
-              ARCANE_BIT_VALUES.ADJ,
-              MFLAGSWAP
-            ),
-            false,
-            capturesOnly
-          );
-        }
-        if (
-          SQOFFBOARD(t_sq) === BOOL.FALSE &&
-          pce !== PIECES.EMPTY &&
-          GameBoard.pieces[sq] !== PIECES.EMPTY &&
-          GameBoard.side === COLOURS.BLACK &&
-          GameBoard.blackArcane[2] & 4
-        ) {
-          AddCaptureMove(
-            MOVE(
-              sq,
-              t_sq,
-              GameBoard.pieces[t_sq],
-              ARCANE_BIT_VALUES.ADJ,
-              MFLAGSWAP
-            ),
-            false,
-            capturesOnly
-          );
-        }
-      }
+    if (
+      PieceCol[GameBoard.pieces[sq]] === COLOURS.WHITE &&
+      (GameBoard.pieces[sq] === PIECES.wN ||
+        GameBoard.pieces[sq] === PIECES.wZ ||
+        GameBoard.pieces[sq] === PIECES.wU ||
+        GameBoard.pieces[sq] === PIECES.wB ||
+        GameBoard.pieces[sq] === PIECES.wR ||
+        GameBoard.pieces[sq] === PIECES.wM ||
+        GameBoard.pieces[sq] === PIECES.wT ||
+        GameBoard.pieces[sq] === PIECES.wQ ||
+        GameBoard.pieces[sq] === PIECES.wS ||
+        GameBoard.pieces[sq] === PIECES.wW)
+    ) {
+      NZUBRMTQSWSQS[COLOURS.WHITE].push(sq);
     }
-    // if (
-    //   PieceCol[GameBoard.pieces[sq]] === COLOURS.WHITE &&
-    //   (GameBoard.pieces[sq] === PIECES.wN ||
-    //     GameBoard.pieces[sq] === PIECES.wB ||
-    //     GameBoard.pieces[sq] === PIECES.wR)
-    // ) {
-    //   NBRSQS[COLOURS.WHITE].push(sq);
-    // }
-    // if (
-    //   PieceCol[GameBoard.pieces[sq]] === COLOURS.BLACK &&
-    //   (GameBoard.pieces[sq] === PIECES.bN ||
-    //     GameBoard.pieces[sq] === PIECES.bB ||
-    //     GameBoard.pieces[sq] === PIECES.bR)
-    // ) {
-    //   NBRSQS[COLOURS.BLACK].push(sq);
-    // }
-  }
-
-  // SWAP ATK 1
-  if (generateSwaps === 'ATK' || generateSwaps === 'COMP') {
-    for (let i = 0; i < NBRSQS[GameBoard.side].length; i++) {
-      for (let j = 0; j < NBRSQS[GameBoard.side ^ 1].length; j++) {
-        if (
-          GameBoard.side === COLOURS.WHITE &&
-          GameBoard.whiteArcane[2] & 1 &&
-          !herrings.length
-        ) {
-          AddCaptureMove(
-            MOVE(
-              NBRSQS[COLOURS.WHITE][i],
-              NBRSQS[COLOURS.BLACK][j],
-              GameBoard.pieces[NBRSQS[COLOURS.BLACK][j]],
-              ARCANE_BIT_VALUES.ATK,
-              MFLAGSWAP
-            ),
-            false,
-            capturesOnly
-          );
-          AddCaptureMove(
-            MOVE(
-              NBRSQS[COLOURS.BLACK][j],
-              NBRSQS[COLOURS.WHITE][i],
-              GameBoard.pieces[NBRSQS[COLOURS.WHITE][i]],
-              ARCANE_BIT_VALUES.ATK,
-              MFLAGSWAP
-            ),
-            false,
-            capturesOnly
-          );
-        }
-        if (
-          GameBoard.side === COLOURS.BLACK &&
-          GameBoard.blackArcane[2] & 1 &&
-          !herrings.length
-        ) {
-          AddCaptureMove(
-            MOVE(
-              NBRSQS[COLOURS.BLACK][i],
-              NBRSQS[COLOURS.WHITE][j],
-              GameBoard.pieces[NBRSQS[COLOURS.WHITE][j]],
-              ARCANE_BIT_VALUES.ATK,
-              MFLAGSWAP
-            ),
-            false,
-            capturesOnly
-          );
-          AddCaptureMove(
-            MOVE(
-              NBRSQS[COLOURS.WHITE][j],
-              NBRSQS[COLOURS.BLACK][i],
-              GameBoard.pieces[NBRSQS[COLOURS.BLACK][i]],
-              ARCANE_BIT_VALUES.ATK,
-              MFLAGSWAP
-            ),
-            false,
-            capturesOnly
-          );
-        }
-      }
+    if (
+      PieceCol[GameBoard.pieces[sq]] === COLOURS.BLACK &&
+      (GameBoard.pieces[sq] === PIECES.bN ||
+        GameBoard.pieces[sq] === PIECES.bZ ||
+        GameBoard.pieces[sq] === PIECES.bU ||
+        GameBoard.pieces[sq] === PIECES.bB ||
+        GameBoard.pieces[sq] === PIECES.bR ||
+        GameBoard.pieces[sq] === PIECES.bM ||
+        GameBoard.pieces[sq] === PIECES.bT ||
+        GameBoard.pieces[sq] === PIECES.bQ ||
+        GameBoard.pieces[sq] === PIECES.bS ||
+        GameBoard.pieces[sq] === PIECES.bW)
+    ) {
+      NZUBRMTQSWSQS[COLOURS.BLACK].push(sq);
     }
   }
 
   // SWAP DEP 2
   if (generateSwaps === 'DEP' || generateSwaps === 'COMP') {
-    for (let i = 0; i < NBRSQS[GameBoard.side].length; i++) {
-      for (let j = 0; j < NBRSQS[GameBoard.side].length; j++) {
+    for (let i = 0; i < NZUBRMTQSWSQS[GameBoard.side].length; i++) {
+      for (let j = 0; j < NZUBRMTQSWSQS[GameBoard.side].length; j++) {
         if (
           i === j ||
-          GameBoard.pieces[NBRSQS[GameBoard.side][i]] ===
-            GameBoard.pieces[NBRSQS[GameBoard.side][j]]
+          GameBoard.pieces[NZUBRMTQSWSQS[GameBoard.side][i]] ===
+            GameBoard.pieces[NZUBRMTQSWSQS[GameBoard.side][j]]
         ) {
           continue;
         }
@@ -788,9 +660,9 @@ export function GenerateMoves(
         ) {
           AddCaptureMove(
             MOVE(
-              NBRSQS[COLOURS.WHITE][i],
-              NBRSQS[COLOURS.WHITE][j],
-              GameBoard.pieces[NBRSQS[COLOURS.WHITE][j]],
+              NZUBRMTQSWSQS[COLOURS.WHITE][i],
+              NZUBRMTQSWSQS[COLOURS.WHITE][j],
+              GameBoard.pieces[NZUBRMTQSWSQS[COLOURS.WHITE][j]],
               ARCANE_BIT_VALUES.DEP,
               MFLAGSWAP
             ),
@@ -805,9 +677,9 @@ export function GenerateMoves(
         ) {
           AddCaptureMove(
             MOVE(
-              NBRSQS[COLOURS.BLACK][i],
-              NBRSQS[COLOURS.BLACK][j],
-              GameBoard.pieces[NBRSQS[COLOURS.BLACK][j]],
+              NZUBRMTQSWSQS[COLOURS.BLACK][i],
+              NZUBRMTQSWSQS[COLOURS.BLACK][j],
+              GameBoard.pieces[NZUBRMTQSWSQS[COLOURS.BLACK][j]],
               ARCANE_BIT_VALUES.DEP,
               MFLAGSWAP
             ),
@@ -819,19 +691,13 @@ export function GenerateMoves(
     }
   }
 
-  if (
-    generateSwaps === 'ADJ' ||
-    generateSwaps === 'ATK' ||
-    generateSwaps === 'DEP'
-  )
-    return;
+  if (generateSwaps === 'ADJ' || generateSwaps === 'DEP') return;
 
   // SUMMONS
   let summonIndex = loopSummonIndex[GameBoard.side];
   let summonPce = loopSummon[summonIndex];
   let summonFlag = loopSummonFlag[summonIndex++];
 
-  // todo
   const whiteLimit = 100 - 10 * (8 - GameBoard.summonRankLimits[0]);
   const blackLimit = 20 + 10 * (8 - GameBoard.summonRankLimits[1]);
 

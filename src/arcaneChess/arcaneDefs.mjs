@@ -1,7 +1,5 @@
 import _ from 'lodash';
 
-import { GameBoard } from './board';
-
 export const whiteArcaneConfig = {
   // dyadP: 3,
   // dyadZ: 5,
@@ -65,7 +63,7 @@ export const setBlackArcana = (config) => {
   return blackArcaneConfig;
 };
 
-export const activateDyad = (type) => {
+export const activateDyad = () => {
   // GameBoard.dyad = type;
 };
 

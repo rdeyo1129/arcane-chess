@@ -2032,17 +2032,19 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             </div>
             <div></div>
             {/* <div></div> */}
-            <Button
-              text="SIM"
-              onClick={() => this.arcaneChess().gameSim(1000)}
-              className="primary"
-              color="B"
-              height={31}
-              width={120}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              // strong={true}
-            />
+            {process.env.NODE_ENV === 'development' && (
+              <Button
+                text="SIM"
+                onClick={() => this.arcaneChess().gameSim(1000)}
+                className="primary"
+                color="B"
+                height={31}
+                width={120}
+                // disabled={this.state.fen === ''}
+                disabled={false}
+                // strong={true}
+              />
+            )}
             <div className="time-input">
               <Select
                 type="number"
@@ -2101,6 +2103,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 <Button
                   text="PUZZLE"
                   onClick={() => {
+                    if (process.env.NODE_ENV === 'production') return;
                     const rating = this.state.puzzleEpsilon.split(' ')[0];
                     const keyword = this.state.puzzleEpsilon
                       .split(' ')

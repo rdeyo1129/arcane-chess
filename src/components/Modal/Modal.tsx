@@ -64,7 +64,7 @@ const quickPlayArcana = [
   'sumnRT',
   'sumnRM',
   'sumnRE',
-  'swapADJ',
+  'swapDEP',
   'shftP',
   'shftN',
   'shftB',

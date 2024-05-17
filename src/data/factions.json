@@ -258,11 +258,5 @@
     "description": "See all of your opponent's premoves or bets.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/modsPRE"
-  },
-  "swapADJ": {
-    "name": "Proximity Translocate",
-    "description": "Swap the positions of any orthogonally adjacent pieces, no Pawn promotions.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/swapADJ"
   }
 }

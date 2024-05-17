@@ -607,8 +607,92 @@ export function GenerateMoves(
     if (SQOFFBOARD(sq) === BOOL.TRUE) {
       continue;
     }
+    if (PieceKing[GameBoard.pieces[sq]] === BOOL.TRUE) {
+      continue;
+    }
+    if (PieceKing[GameBoard.pieces[t_sq]] === BOOL.TRUE) {
+      continue;
+    }
     if (herrings.length) {
       break;
+    }
+    if (generateSwaps === 'ADJ' || generateSwaps === 'COMP') {
+      for (let i = 0; i < 4; i++) {
+        dir = RkDir[i];
+        t_sq = sq + dir;
+        pce = GameBoard.pieces[t_sq];
+
+        // no swapping into promotion
+        if (
+          (GameBoard.pieces[sq] === PIECES.wP &&
+            GameBoard.whiteArcane[4] & 16 &&
+            RanksBrd[t_sq] === RANKS.RANK_7) ||
+          (pce === PIECES.wP &&
+            GameBoard.whiteArcane[4] & 16 &&
+            RanksBrd[sq] === RANKS.RANK_7) ||
+          (GameBoard.pieces[sq] === PIECES.wP &&
+            RanksBrd[t_sq] === RANKS.RANK_8) ||
+          (pce === PIECES.wP && RanksBrd[sq] === RANKS.RANK_8)
+        ) {
+          continue;
+        }
+        if (
+          (GameBoard.pieces[sq] === PIECES.bP &&
+            GameBoard.blackArcane[4] & 16 &&
+            RanksBrd[t_sq] === RANKS.RANK_2) ||
+          (pce === PIECES.bP &&
+            GameBoard.blackArcane[4] & 16 &&
+            RanksBrd[sq] === RANKS.RANK_2) ||
+          (GameBoard.pieces[sq] === PIECES.bP &&
+            RanksBrd[t_sq] === RANKS.RANK_1) ||
+          (pce === PIECES.bP && RanksBrd[sq] === RANKS.RANK_1)
+        ) {
+          continue;
+        }
+
+        if (GameBoard.pieces[sq] === GameBoard.pieces[t_sq]) {
+          continue;
+        }
+
+        if (
+          SQOFFBOARD(t_sq) === BOOL.FALSE &&
+          pce !== PIECES.EMPTY &&
+          GameBoard.pieces[sq] !== PIECES.EMPTY &&
+          GameBoard.side === COLOURS.WHITE &&
+          GameBoard.whiteArcane[2] & 4
+        ) {
+          AddCaptureMove(
+            MOVE(
+              sq,
+              t_sq,
+              GameBoard.pieces[t_sq],
+              ARCANE_BIT_VALUES.ADJ,
+              MFLAGSWAP
+            ),
+            false,
+            capturesOnly
+          );
+        }
+        if (
+          SQOFFBOARD(t_sq) === BOOL.FALSE &&
+          pce !== PIECES.EMPTY &&
+          GameBoard.pieces[sq] !== PIECES.EMPTY &&
+          GameBoard.side === COLOURS.BLACK &&
+          GameBoard.blackArcane[2] & 4
+        ) {
+          AddCaptureMove(
+            MOVE(
+              sq,
+              t_sq,
+              GameBoard.pieces[t_sq],
+              ARCANE_BIT_VALUES.ADJ,
+              MFLAGSWAP
+            ),
+            false,
+            capturesOnly
+          );
+        }
+      }
     }
     if (
       PieceCol[GameBoard.pieces[sq]] === COLOURS.WHITE &&

@@ -607,6 +607,12 @@ export function GenerateMoves(
     if (SQOFFBOARD(sq) === BOOL.TRUE) {
       continue;
     }
+    if (PieceKing[GameBoard.pieces[sq]] === BOOL.TRUE) {
+      continue;
+    }
+    if (PieceKing[GameBoard.pieces[t_sq]] === BOOL.TRUE) {
+      continue;
+    }
     if (herrings.length) {
       break;
     }
@@ -616,6 +622,7 @@ export function GenerateMoves(
         t_sq = sq + dir;
         pce = GameBoard.pieces[t_sq];
 
+<<<<<<< HEAD
         // no swapping kings
         if (PieceKing[GameBoard.pieces[sq]] === BOOL.TRUE) {
           continue;
@@ -640,6 +647,8 @@ export function GenerateMoves(
           continue;
         }
 
+=======
+>>>>>>> f42f8a8f1b99b2e605bb3b5144fa87e6834574f3
         // no swapping into promotion
         if (
           (GameBoard.pieces[sq] === PIECES.wP &&

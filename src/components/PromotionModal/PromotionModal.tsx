@@ -30,7 +30,7 @@ export default class PromotionModal extends React.Component<Props> {
           <div className="promotion-selection-container">
             <img
               onClick={() => handleClose('N')}
-              src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
+              src={`/assets/pieces/tactorius/${playerFaction}/${
                 playerColor === 'white' ? 'w' : 'b'
               }N.svg`}
               alt=""
@@ -38,7 +38,7 @@ export default class PromotionModal extends React.Component<Props> {
             />
             <img
               onClick={() => handleClose('Z')}
-              src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
+              src={`/assets/pieces/tactorius/${playerFaction}/${
                 playerColor === 'white' ? 'w' : 'b'
               }Z.svg`}
               alt=""
@@ -46,7 +46,7 @@ export default class PromotionModal extends React.Component<Props> {
             />
             <img
               onClick={() => handleClose('U')}
-              src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
+              src={`/assets/pieces/tactorius/${playerFaction}/${
                 playerColor === 'white' ? 'w' : 'b'
               }U.svg`}
               alt=""
@@ -54,7 +54,7 @@ export default class PromotionModal extends React.Component<Props> {
             />
             <img
               onClick={() => handleClose('B')}
-              src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
+              src={`/assets/pieces/tactorius/${playerFaction}/${
                 playerColor === 'white' ? 'w' : 'b'
               }B.svg`}
               alt=""
@@ -62,7 +62,7 @@ export default class PromotionModal extends React.Component<Props> {
             />
             <img
               onClick={() => handleClose('R')}
-              src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
+              src={`/assets/pieces/tactorius/${playerFaction}/${
                 playerColor === 'white' ? 'w' : 'b'
               }R.svg`}
               alt=""
@@ -70,7 +70,7 @@ export default class PromotionModal extends React.Component<Props> {
             />
             <img
               onClick={() => handleClose('Q')}
-              src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
+              src={`/assets/pieces/tactorius/${playerFaction}/${
                 playerColor === 'white' ? 'w' : 'b'
               }Q.svg`}
               alt=""
@@ -78,7 +78,7 @@ export default class PromotionModal extends React.Component<Props> {
             />
             <img
               onClick={() => handleClose('T')}
-              src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
+              src={`/assets/pieces/tactorius/${playerFaction}/${
                 playerColor === 'white' ? 'w' : 'b'
               }T.svg`}
               alt=""
@@ -86,7 +86,7 @@ export default class PromotionModal extends React.Component<Props> {
             />
             <img
               onClick={() => handleClose('M')}
-              src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
+              src={`/assets/pieces/tactorius/${playerFaction}/${
                 playerColor === 'white' ? 'w' : 'b'
               }M.svg`}
               alt=""
@@ -94,7 +94,7 @@ export default class PromotionModal extends React.Component<Props> {
             />
             <img
               onClick={() => handleClose('W')}
-              src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
+              src={`/assets/pieces/tactorius/${playerFaction}/${
                 playerColor === 'white' ? 'w' : 'b'
               }W.svg`}
               alt=""
@@ -102,7 +102,7 @@ export default class PromotionModal extends React.Component<Props> {
             />
             <img
               onClick={() => handleClose('S')}
-              src={`../src/chessground/images/pieces/tactorius/${playerFaction}/${
+              src={`/assets/pieces/tactorius/${playerFaction}/${
                 playerColor === 'white' ? 'w' : 'b'
               }S.svg`}
               alt=""

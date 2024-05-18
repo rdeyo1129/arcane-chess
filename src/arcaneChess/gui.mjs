@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { GameBoard } from './board';
 import { GenerateMoves, generatePowers } from './movegen';
 import { SearchController, SearchPosition } from './search';
@@ -132,7 +131,11 @@ export function DrawMaterial() {
     GameBoard.pceNum[PIECES.wQ] != 0 ||
     GameBoard.pceNum[PIECES.bQ] != 0 ||
     GameBoard.pceNum[PIECES.wR] != 0 ||
-    GameBoard.pceNum[PIECES.bR] != 0
+    GameBoard.pceNum[PIECES.bR] != 0 ||
+    GameBoard.pceNum[PIECES.wT] != 0 ||
+    GameBoard.pceNum[PIECES.bT] != 0 ||
+    GameBoard.pceNum[PIECES.wM] != 0 ||
+    GameBoard.pceNum[PIECES.bM] != 0
   )
     return BOOL.FALSE;
   if (GameBoard.pceNum[PIECES.wB] > 1 || GameBoard.pceNum[PIECES.bB] > 1) {

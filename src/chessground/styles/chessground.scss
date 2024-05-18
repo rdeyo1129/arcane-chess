@@ -9,8 +9,8 @@
 .tactorius-board .cg-wrap,
 .creator-board .cg-wrap {
   background-image: 
-  // url('src/chessground/images/white-texture.png'),
-    url('../images/board/tactoriusBoard.svg');
+  // url('src/chessgrou/assets/images/white-texture.png'),
+    url('/assets/images/board/tactoriusBoard.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
   background-repeat: repeat, no-repeat; /* Example: SVG doesn't repeat, PNG does */
   background-position:
@@ -20,12 +20,12 @@
   /* z-index: 10; */
 }
 .armory-board .cg-wrap {
-  background-image: url('../images/board/armoryBoard.svg');
+  background-image: url('/assets/images/board/armoryBoard.svg');
   overflow: hidden;
   // z-index: 10;
 }
 .connect4-board .cg-wrap {
-  background-image: url('../images/board/connect4Board.svg');
+  background-image: url('/assets/images/board/connect4Board.svg');
 }
 
 cg-helper {
@@ -61,7 +61,7 @@ cg-board {
 
 .cg-wrap piece.x-piece,
 .x-piece {
-  background-image: url('../images/pieces/tactorius/exile.svg');
+  background-image: url('/assets/images/pieces/tactorius/exile.svg');
 }
 
 cg-board square {

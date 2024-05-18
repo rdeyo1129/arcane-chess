@@ -226,6 +226,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   arcaneChess;
   chessgroundRef = createRef<IChessgroundApi>();
   chessclockRef = createRef<ChessClock>();
+  intervalId: NodeJS.Timeout | null = null;
   constructor(props: Props) {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.username);
@@ -598,16 +599,18 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     }));
   };
 
-  promotionSelectAsync(callback: () => void) {
-    const loop = () => {
+  promotionSelectAsync(callback: () => void): Promise<void> {
+    return new Promise((resolve) => {
       this.setState({ promotionModalOpen: true });
-      if (!this.state.placingPromotion) {
-        setTimeout(loop, 0);
-      } else {
-        callback();
-      }
-    };
-    loop();
+      this.intervalId = setInterval(() => {
+        if (this.state.placingPromotion) {
+          clearInterval(this.intervalId!);
+          this.intervalId = null;
+          callback();
+          resolve();
+        }
+      }, 100);
+    });
   }
 
   handleModalClose = (pieceType: string) => {

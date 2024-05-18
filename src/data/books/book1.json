@@ -1506,8 +1506,8 @@
         "orientation": "white"
       },
       "panel-6": {
-        "fen": "8/2k2t2/3z4/8/8/2KN1U2/8/8 b - - 0 1",
-        "fenHistory": ["8/2k2t2/3z4/8/8/2KN1U2/8/8 b - - 0 1"],
+        "fen": "8/1k1z1t2/8/8/8/2KN1U2/8/8 b - - 0 1",
+        "fenHistory": ["8/1k1z1t2/8/8/8/2KN1U2/8/8 b - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -1524,7 +1524,7 @@
         "orientation": "white",
         "whiteArcane": {},
         "blackArcane": {},
-        "correctMoves": ["d6e5", "f3d5", "f7f5", "d5e5"]
+        "correctMoves": ["d7d5", "f3d5", "b7c6", "d5f7"]
       },
       "panel-7": {
         "fen": "3r4/8/6p1/4k2p/1b3N2/P2U4/1PP2K2/8 b - - 0 1",
@@ -1605,8 +1605,8 @@
         "orientation": "white"
       },
       "panel-10": {
-        "fen": "8/8/8/8/5P2/5k2/2K1p3/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/5P2/5k2/2K1p3/8 w - - 0 1"],
+        "fen": "8/8/8/8/8/5k2/2K1p3/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/5k2/2K1p3/8 w - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -1626,7 +1626,7 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": ["c2d2", "f3f2", "f4f5", "e2e1"],
+        "correctMoves": ["c2d2", "f3f2", "d2c3", "e2e1"],
         "viewOnly": true,
         "orientation": "black"
       }

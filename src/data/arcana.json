@@ -233,7 +233,12 @@
     "type": "active",
     "imagePath": "/assets/arcanaImages/swapDEP"
   },
-
+  "swapADJ": {
+    "name": "Proximity Translocate",
+    "description": "Swap the positions of any orthogonally adjacent pieces, no Pawn promotions.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/swapADJ"
+  },
   "modsCON": {
     "name": "Jaws of Betrayal",
     "description": "Capture any friendly piece.",

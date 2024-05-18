@@ -53,7 +53,6 @@ interface ArcanaMap {
 }
 
 const quickPlayArcana = [
-  'sumnP',
   'sumnN',
   'sumnB',
   'sumnR',
@@ -65,6 +64,7 @@ const quickPlayArcana = [
   'sumnRM',
   'sumnRE',
   'swapDEP',
+  'swapADJ',
   'shftP',
   'shftN',
   'shftB',

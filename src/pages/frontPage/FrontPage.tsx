@@ -29,7 +29,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
       "User used plan. It's super effective.",
       'Difficult to learn, impossible to master.',
       'Your mind is the armory.',
-      'Time to mitigate.',
+      // 'Time to mitigate.',
       'Patience. Planning. Persistence.',
       'The war continues... so does your learning.',
     ];
@@ -76,18 +76,18 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
           <div className="header-buttons">
             <Link to={'/login'}>
               <Button
-                text="LOGIN"
+                text="ENTER"
                 // onClick={() => this.calculateFen()}
                 className="primary"
                 color="Y"
-                height={50}
-                width={140}
+                height={70}
+                width={200}
                 // disabled={this.state.fen === ''}
                 disabled={false}
                 // strong={true}
               />
             </Link>
-            <Link to={'/register'}>
+            {/* <Link to={'/register'}>
               <Button
                 text="REGISTER"
                 // onClick={() => this.calculateFen()}
@@ -99,7 +99,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
                 disabled={false}
                 // strong={true}
               />
-            </Link>
+            </Link> */}
           </div>
         </div>
         <div className="divider"></div>

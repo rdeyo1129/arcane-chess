@@ -235,7 +235,7 @@
   },
   "swapADJ": {
     "name": "Proximity Translocate",
-    "description": "Swap the positions of any orthogonally adjacent pieces, no Pawn promotions.",
+    "description": "Swap the positions of any orthogonally adjacent pieces, no Pawn promotions or swaping just your opponent's pieces.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/swapADJ"
   },

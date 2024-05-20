@@ -17,6 +17,7 @@ import {
   COLOURS,
   PIECES,
   Kings,
+  PceChar,
 } from './defs';
 import { PrMove, ParseMove } from './io';
 import { SqAttacked } from './board.mjs';
@@ -41,20 +42,16 @@ export const validSummonMoves = (piece) => {
   const validMovesReturn = validMoves('PLAYER', '', piece);
 
   for (let move of validMovesReturn) {
-    const from = `${piece.toUpperCase()}@`;
+    const from =
+      typeof piece === 'number'
+        ? `${PceChar.split('')[piece].toUpperCase()}@`
+        : `${piece}@`;
     const to = PrMove(move, 'array')[1];
 
-    if (from.includes('R') && from !== 'R@') {
-      if (!moveMap.has(from)) {
-        moveMap.set(from, []);
-      }
-      moveMap.get(from).push(to);
-    } else {
-      if (!moveMap.has(from)) {
-        moveMap.set(from, []);
-      }
-      moveMap.get(from).push(to);
+    if (!moveMap.has(from)) {
+      moveMap.set(from, []);
     }
+    moveMap.get(from).push(to);
   }
   return moveMap;
 };
@@ -62,7 +59,7 @@ export const validSummonMoves = (piece) => {
 export function validMoves(
   summon = 'COMP',
   swap = 'COMP',
-  userSummonPieceRoyalty = ''
+  userSummonPieceRoyalty
 ) {
   const moves = [];
   let moveFound = NOMOVE;
@@ -109,8 +106,7 @@ export function MakeUserMove(
     dest,
     pieceEpsilon,
     swapType,
-    royaltyEpsilon,
-    true
+    royaltyEpsilon
   );
 
   if (isInitPromotion && pieceEpsilon === PIECES.EMPTY) {

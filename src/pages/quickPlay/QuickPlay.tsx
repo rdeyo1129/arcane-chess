@@ -1011,9 +1011,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               `R${RtyChar.split('')[this.state.placingRoyalty]}`
                             )
                         : this.arcaneChess().getSummonMoves(
-                            PceChar.split('')[
-                              this.state.placingPiece
-                            ].toUpperCase()
+                            this.state.placingPiece
                           ),
                     events: {},
                   }}
@@ -1052,7 +1050,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           this.state.placingRoyalty
                         );
                         if (!PrMove(parsed)) {
-                          console.log('invalid move');
+                          console.log('invalid move', PrMove(parsed));
                         }
                         this.setState(
                           (prevState) => ({
@@ -1214,15 +1212,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           GameBoard.pieces[prettyToSquare(key)] !== PIECES.EMPTY
                         ) {
                           if (
-                            (this.state.royalties.royaltyQ[key] as number) >
-                              0 ||
-                            (this.state.royalties.royaltyT[key] as number) >
-                              0 ||
-                            (this.state.royalties.royaltyM[key] as number) >
-                              0 ||
-                            (this.state.royalties.royaltyV[key] as number) >
-                              0 ||
-                            (this.state.royalties.royaltyE[key] as number) > 0
+                            (this.state.royalties?.royaltyQ?.[key] ?? 0) > 0 ||
+                            (this.state.royalties?.royaltyT?.[key] ?? 0) > 0 ||
+                            (this.state.royalties?.royaltyM?.[key] ?? 0) > 0 ||
+                            (this.state.royalties?.royaltyV?.[key] ?? 0) > 0 ||
+                            (this.state.royalties?.royaltyE?.[key] ?? 0) > 0
                           ) {
                             this.setState({
                               placingRoyalty: this.state.placingRoyalty,
@@ -1236,6 +1230,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               '',
                               this.state.placingRoyalty
                             );
+                            console.log('parsed', parsed, PrMove(parsed));
                             if (parsed === 0) {
                               console.log('parsed === 0');
                               // this.arcaneChess().takeUserMove();

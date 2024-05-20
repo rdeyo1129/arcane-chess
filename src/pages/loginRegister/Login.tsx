@@ -136,7 +136,7 @@ const UnwrappedLogin: React.FC = () => {
               {/* <div style={{ height: '44px' }}></div> */}
               <Button
                 className="secondary"
-                text={'GUEST'}
+                text={'AS GUEST'}
                 color={'Y'}
                 width={140}
                 onClick={(e) => onSubmitLogin(e, true)}

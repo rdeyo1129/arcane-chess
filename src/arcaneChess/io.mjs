@@ -135,7 +135,7 @@ export function PrMove(move, returnType) {
     ) {
       MvStr = 'R' + RtyChar.split('')[CAPTURED(move)] + '@' + PrSq(TOSQ(move));
     } else {
-      MvStr = getPceChar(pieceEpsilon) + '@' + PrSq(TOSQ(move));
+      MvStr = PceChar.split('')[PROMOTED(move)] + '@' + PrSq(TOSQ(move));
     }
   }
   // offer
@@ -318,7 +318,7 @@ export function ParseMove(
         FROMSQ(Move) === prettyToSquare(from) &&
         TOSQ(Move) === prettyToSquare(to))
     ) {
-      PromPce = PROMOTED(Move);
+      PromPce = pieceEpsilon || PROMOTED(Move);
       if (isInitPromotion(Move) && pieceEpsilon === PIECES.EMPTY) {
         found = BOOL.TRUE;
         break;

@@ -561,7 +561,7 @@ export function GenerateMoves(
   capturesOnly = false,
   generateSummons = '',
   generateSwaps = '',
-  userSummonPceRty = ''
+  userSummonPceRty = 0
 ) {
   GameBoard.moveListStart[GameBoard.ply + 1] =
     GameBoard.moveListStart[GameBoard.ply];
@@ -835,22 +835,20 @@ export function GenerateMoves(
             if (sq < whiteLimit) {
               if (
                 summonFlag < 16384 &&
-                ((summonPce ===
-                  PIECES[
-                    userSummonPceRty === 'X' ? 'EXILE' : `w${userSummonPceRty}`
-                  ] &&
+                ((summonPce === userSummonPceRty &&
                   generateSummons === 'PLAYER') ||
                   generateSummons !== 'PLAYER') &&
                 !royaltyIndexes.includes(summonPce) &&
                 GameBoard.pieces[sq] === PIECES.EMPTY &&
                 GameBoard.whiteArcane[3] & summonFlag
               ) {
+                console.log('29-14u51-394jt30t9j3t3', userSummonPceRty);
                 addSummonMove(
                   MOVE(
                     0,
                     sq,
                     PIECES.EMPTY,
-                    userSummonPceRty === '' ? summonPce : userSummonPceRty,
+                    userSummonPceRty === 0 ? summonPce : userSummonPceRty,
                     MFLAGSUMN
                   )
                 );
@@ -881,10 +879,7 @@ export function GenerateMoves(
             if (sq > blackLimit) {
               if (
                 summonFlag < 16384 &&
-                ((summonPce ===
-                  PIECES[
-                    userSummonPceRty === 'X' ? 'EXILE' : `b${userSummonPceRty}`
-                  ] &&
+                ((summonPce === userSummonPceRty &&
                   generateSummons === 'PLAYER') ||
                   generateSummons !== 'PLAYER') &&
                 !royaltyIndexes.includes(summonPce) &&
@@ -896,7 +891,7 @@ export function GenerateMoves(
                     0,
                     sq,
                     PIECES.EMPTY,
-                    userSummonPceRty === '' ? summonPce : userSummonPceRty,
+                    userSummonPceRty === 0 ? summonPce : userSummonPceRty,
                     MFLAGSUMN
                   )
                 );

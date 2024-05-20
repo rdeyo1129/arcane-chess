@@ -1111,9 +1111,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 }`
                               )
                           : this.arcaneChess().getSummonMoves(
-                              PceChar.split('')[
-                                this.state.placingPiece
-                              ].toUpperCase()
+                              this.state.placingPiece
                             ),
                       events: {},
                     }}
@@ -1317,15 +1315,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               PIECES.EMPTY
                           ) {
                             if (
-                              (this.state.royalties.royaltyQ[key] as number) >
+                              (this.state.royalties?.royaltyQ?.[key] ?? 0) >
                                 0 ||
-                              (this.state.royalties.royaltyT[key] as number) >
+                              (this.state.royalties?.royaltyT?.[key] ?? 0) >
                                 0 ||
-                              (this.state.royalties.royaltyM[key] as number) >
+                              (this.state.royalties?.royaltyM?.[key] ?? 0) >
                                 0 ||
-                              (this.state.royalties.royaltyV[key] as number) >
+                              (this.state.royalties?.royaltyV?.[key] ?? 0) >
                                 0 ||
-                              (this.state.royalties.royaltyE[key] as number) > 0
+                              (this.state.royalties?.royaltyE?.[key] ?? 0) > 0
                             ) {
                               this.setState({
                                 placingRoyalty: this.state.placingRoyalty,

@@ -118,10 +118,10 @@ export function PrMove(move, returnType) {
   // swap
   if (move & MFLAGSWAP) {
     MvStr =
-      getPceChar(GameBoard.pieces[TOSQ(move)]) +
+      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
       PrSq(FROMSQ(move)) +
       '&' +
-      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
+      getPceChar(GameBoard.pieces[TOSQ(move)]) +
       PrSq(TOSQ(move));
   }
   // summon

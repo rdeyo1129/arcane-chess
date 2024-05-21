@@ -59,7 +59,7 @@ export const validSummonMoves = (piece) => {
 export function validMoves(
   summon = 'COMP',
   swap = 'COMP',
-  userSummonPieceRoyalty
+  userSummonPieceRoyalty = 0
 ) {
   const moves = [];
   let moveFound = NOMOVE;

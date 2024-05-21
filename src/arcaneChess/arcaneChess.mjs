@@ -158,7 +158,7 @@ export default function arcaneChess() {
     // todo herring, forced ep, and find all working instances and replace with this
     ParseFen(outputFenOfCurrentPosition());
     generatePowers();
-    GenerateMoves(true, false, 'COMP', '');
+    GenerateMoves(true, false, 'COMP', 'COMP');
   };
 
   return {

@@ -610,9 +610,6 @@ export function GenerateMoves(
     if (PieceKing[GameBoard.pieces[sq]] === BOOL.TRUE) {
       continue;
     }
-    if (PieceKing[GameBoard.pieces[t_sq]] === BOOL.TRUE) {
-      continue;
-    }
     if (herrings.length) {
       break;
     }
@@ -622,19 +619,7 @@ export function GenerateMoves(
         t_sq = sq + dir;
         pce = GameBoard.pieces[t_sq];
 
-        // no swapping opponents pieces
-        if (
-          GameBoard.side === COLOURS.WHITE &&
-          PieceCol[GameBoard.pieces[sq]] === COLOURS.BLACK &&
-          PieceCol[GameBoard.pieces[t_sq]] === COLOURS.BLACK
-        ) {
-          continue;
-        }
-        if (
-          GameBoard.side === COLOURS.BLACK &&
-          PieceCol[GameBoard.pieces[sq]] === COLOURS.WHITE &&
-          PieceCol[GameBoard.pieces[t_sq]] === COLOURS.WHITE
-        ) {
+        if (PieceKing[GameBoard.pieces[t_sq]] === BOOL.TRUE) {
           continue;
         }
 

@@ -19,14 +19,12 @@ import {
   PCEINDEX,
   Kings,
   BRD_SQ_NUM,
-  PIECES,
 } from './defs';
 import { EvalPosition } from './evaluate';
 import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { PrMove } from './io';
 import { StorePvMove, ProbePvTable, GetPvLine } from './pvtable.mjs';
-import { PrintMoveList } from './io.mjs';
 import { GameController } from './board.mjs';
 import { CheckAndSet } from './gui.mjs';
 
@@ -439,11 +437,10 @@ export function gameSim(thinkingTime) {
     generatePowers();
     GenerateMoves(true, false, 'COMP', 'COMP');
 
-    const { score, bestMove, line } = SearchPosition();
+    const { bestMove } = SearchPosition();
 
     MakeMove(bestMove);
     CheckAndSet();
-    // PrintMoveList();
     PrintBoard();
   }
 }

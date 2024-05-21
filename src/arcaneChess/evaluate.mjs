@@ -1,6 +1,5 @@
 import { GameBoard } from './board';
 import { PCEINDEX, PIECES, SQ64, COLOURS, MIRROR64 } from './defs';
-import { ARCANE_BIT_VALUES } from './defs.mjs';
 
 // prettier-ignore
 const PawnTable = [

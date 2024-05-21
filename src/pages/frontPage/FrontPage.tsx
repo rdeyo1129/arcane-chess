@@ -80,7 +80,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
                 // onClick={() => this.calculateFen()}
                 className="primary"
                 color="Y"
-                height={70}
+                height={60}
                 width={200}
                 // disabled={this.state.fen === ''}
                 disabled={false}

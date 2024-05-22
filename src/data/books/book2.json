@@ -1115,7 +1115,7 @@
         "fen": "7k/4Q3/8/8/8/8/8/3K4 w - - 0 1",
         "fenHistory": ["7k/4Q3/8/8/8/8/8/3K4 w - - 0 1"],
         "history": [],
-        "panelText": "Pause here. Notice if we make this next Queen move the black King will not have any options and will not be in check. It would be a draw and you don't want that in this scenario. Instead, we leave space for him and walk our King up the board.",
+        "panelText": "Pause here. Notice if we make this next Queen move the black King will not have any options and will not be in check. It would be a draw and you don't want that in this scenario. Instead, we leave space for him to breath while we walk our King up the board to support.",
         "arrowsCircles": [
           {
             "orig": "e7",
@@ -1577,6 +1577,840 @@
         "history": [],
         "panelText": "Let's see a more advanced setup.  Will the white King catch the black Pawn if it's black's turn to play? What if it's white's turn?",
         "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "lesson-5": {
+    "id": "lesson-5",
+    "title": "Opposition",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "Outflank your opponents King in this endgame scenario.",
+    "panelText": "",
+    "reward": [],
+    "prereq": "lesson-4",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/3k4/8/3K4/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/3k4/8/3K4/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Consider the following position. Imagine objective here is to get your King to the last rank. What if it's white's turn?",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "8/8/3k4/8/4K3/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/3k4/8/4K3/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Consider the following position. Imagine objective here is to get your King to the last rank. What if it's white's turn?",
+        "arrowsCircles": [
+          {
+            "orig": "d4",
+            "dest": "e4",
+            "brush": "green"
+          },
+          {
+            "orig": "c5",
+            "brush": "green"
+          },
+          {
+            "orig": "d5",
+            "brush": "green"
+          },
+          {
+            "orig": "e5",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "8/8/4k3/8/4K3/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/4k3/8/4K3/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The black King maintains his position. In other words, black has the opposition here... by preventing the white King from ever stepping forward",
+        "arrowsCircles": [
+          {
+            "orig": "d6",
+            "dest": "e6",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "8/8/4k3/8/4K3/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/4k3/8/4K3/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "What if it's black's turn?",
+        "arrowsCircles": [
+          {
+            "orig": "d5",
+            "brush": "green"
+          },
+          {
+            "orig": "f5",
+            "brush": "green"
+          },
+          {
+            "orig": "e5",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/8/5k2/8/4K3/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/5k2/8/4K3/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "What if it's black's turn?",
+        "arrowsCircles": [
+          {
+            "orig": "e6",
+            "dest": "f6",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "8/8/5k2/3K4/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/5k2/3K4/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Success! White had the opposition and was able to bypass into black's position.",
+        "arrowsCircles": [
+          {
+            "orig": "e4",
+            "dest": "d5",
+            "brush": "green"
+          },
+          {
+            "orig": "d5",
+            "dest": "c6",
+            "brush": "green"
+          },
+          {
+            "orig": "c6",
+            "dest": "b7",
+            "brush": "green"
+          },
+          {
+            "orig": "b7",
+            "dest": "a8",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "8/3k4/8/8/8/3K4/3P4/8 w - - 0 1",
+        "fenHistory": ["8/3k4/8/8/8/3K4/3P4/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Let's take a look at a more advanced setup. This is the most common endgame motif you will see. Pay close attention to this sequence:",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "8/3k4/8/8/3K4/8/3P4/8 w - - 0 1",
+        "fenHistory": ["8/3k4/8/8/3K4/8/3P4/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Let's take a look at a more advanced setup. This is the most common endgame motif you will see. Pay close attention to this sequence:",
+        "arrowsCircles": [
+          {
+            "orig": "d3",
+            "dest": "d4",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "8/3k4/8/8/3K4/8/3P4/8 w - - 0 1",
+        "fenHistory": ["8/3k4/8/8/3K4/8/3P4/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Let's take a look at a real, more advanced setup. This is the most common endgame motif you will see. Pay close attention to this sequence:",
+        "arrowsCircles": [
+          {
+            "orig": "d3",
+            "dest": "d4",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-10": {
+        "fen": "8/8/3k4/8/3K4/8/3P4/8 w - - 0 1",
+        "fenHistory": ["8/8/3k4/8/3K4/8/3P4/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Black has taken the opposition!",
+        "arrowsCircles": [
+          {
+            "orig": "d7",
+            "dest": "d6",
+            "brush": "green"
+          },
+          {
+            "orig": "c5",
+            "brush": "green"
+          },
+          {
+            "orig": "d5",
+            "brush": "green"
+          },
+          {
+            "orig": "e5",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-11": {
+        "fen": "8/8/3k4/8/3K4/3P4/8/8 w - - 0 1",
+        "fenHistory": ["8/8/3k4/8/3K4/3P4/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "With the extra Pawn move, we can wait them out a turn. It's black's turn again and white has taken back the opposition.",
+        "arrowsCircles": [
+          {
+            "orig": "c5",
+            "brush": "green"
+          },
+          {
+            "orig": "d5",
+            "brush": "green"
+          },
+          {
+            "orig": "e5",
+            "brush": "green"
+          },
+          {
+            "orig": "d2",
+            "dest": "d3",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-12": {
+        "fen": "8/8/2k5/8/3K4/3P4/8/8 w - - 0 1",
+        "fenHistory": ["8/8/2k5/8/3K4/3P4/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Continue this pattern:",
+        "arrowsCircles": [
+          {
+            "orig": "d6",
+            "dest": "c6",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-13": {
+        "fen": "8/8/2k5/4K3/8/3P4/8/8 w - - 0 1",
+        "fenHistory": ["8/8/2k5/4K3/8/3P4/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Continue this pattern:",
+        "arrowsCircles": [
+          {
+            "orig": "d4",
+            "dest": "e5",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-14": {
+        "fen": "8/2k5/8/4K3/8/3P4/8/8 w - - 0 1",
+        "fenHistory": ["8/2k5/8/4K3/8/3P4/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "If black decides to step forward, we can simply walk our Pawn forward. However, they might make it tricky with this move.",
+        "arrowsCircles": [
+          {
+            "orig": "c6",
+            "dest": "c7",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-15": {
+        "fen": "8/2k5/4K3/8/8/3P4/8/8 w - - 0 1",
+        "fenHistory": ["8/2k5/4K3/8/8/3P4/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "We step forward again to maintain the opposition since we have Pawn moves to wait them out.",
+        "arrowsCircles": [
+          {
+            "orig": "e5",
+            "dest": "e6",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-16": {
+        "fen": "8/8/2k1K3/8/8/3P4/8/8 w - - 0 1",
+        "fenHistory": ["8/8/2k1K3/8/8/3P4/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Black tries to take the opposition back. If you're not careful you can lose the Pawn. The reason for advancing your King is to pave a protected path for your Pawn.",
+        "arrowsCircles": [
+          {
+            "orig": "c7",
+            "dest": "c6",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-17": {
+        "fen": "8/8/2k1K3/8/3P4/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/2k1K3/8/3P4/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Continue this pattern, we have one more go at taking back the opposition.",
+        "arrowsCircles": [
+          {
+            "orig": "c5",
+            "brush": "green"
+          },
+          {
+            "orig": "d5",
+            "brush": "green"
+          },
+          {
+            "orig": "d6",
+            "brush": "green"
+          },
+          {
+            "orig": "d7",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-18": {
+        "fen": "8/2k5/4K3/8/3P4/8/8/8 w - - 0 1",
+        "fenHistory": ["8/2k5/4K3/8/3P4/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Continue this pattern, we have one more go at taking back the opposition.",
+        "arrowsCircles": [
+          {
+            "orig": "c6",
+            "dest": "c7",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-19": {
+        "fen": "8/2k5/4K3/3P4/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/2k5/4K3/3P4/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Continue this pattern, we have one more go at taking back the opposition.",
+        "arrowsCircles": [
+          {
+            "orig": "d4",
+            "dest": "d5",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-20": {
+        "fen": "3k4/8/4K3/3P4/8/8/8/8 w - - 0 1",
+        "fenHistory": ["3k4/8/4K3/3P4/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Continue this pattern, we have one more go at taking back the opposition.",
+        "arrowsCircles": [
+          {
+            "orig": "c7",
+            "dest": "d8",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-21": {
+        "fen": "3k4/8/3K4/3P4/8/8/8/8 w - - 0 1",
+        "fenHistory": ["3k4/8/3K4/3P4/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Continue this pattern, we have one more go at taking back the opposition.",
+        "arrowsCircles": [
+          {
+            "orig": "e6",
+            "dest": "d6",
+            "brush": "green"
+          },
+          {
+            "orig": "c7",
+            "brush": "green"
+          },
+          {
+            "orig": "d7",
+            "brush": "green"
+          },
+          {
+            "orig": "e7",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-22": {
+        "fen": "4k3/8/3K4/3P4/8/8/8/8 w - - 0 1",
+        "fenHistory": ["4k3/8/3K4/3P4/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Continue this pattern, we have one more go at taking back the opposition.",
+        "arrowsCircles": [
+          {
+            "orig": "d8",
+            "dest": "e8",
+            "brush": "green"
+          }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-23": {
+        "fen": "4k3/2K5/8/3P4/8/8/8/8 w - - 0 1",
+        "fenHistory": ["4k3/2K5/8/3P4/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The final nail in the coffin. Take note how white controls d8... the promotion square. The Pawn is protected for the rest of his journey.",
+        "arrowsCircles": [
+          {
+            "orig": "d6",
+            "brush": "green"
+          },
+          {
+            "orig": "d7",
+            "brush": "green"
+          },
+          {
+            "orig": "d8",
+            "brush": "green"
+          },
+          {
+            "orig": "d5",
+            "dest": "d8",
+            "brush": "green"
+          }
+        ],
         "nodeText": "",
         "reward": [],
         "description": "",

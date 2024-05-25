@@ -798,6 +798,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
             }}
           >
             <Link to="/campaign">
@@ -819,6 +823,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
             }}
           >
             <Link to="/chapter">
@@ -832,7 +840,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             </Link>
           </div>
         ) : (
-          <>
+          <div
+            style={{
+              width: '100vw',
+              height: '100vh',
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
+            }}
+          >
             <TactoriusModal
               isOpen={this.state.gameOver}
               // handleClose={() => this.handleModalClose()}
@@ -855,15 +872,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 this.handleModalClose(pieceType)
               }
             />
-            <div
-              className="mission-view"
-              style={{
-                background:
-                  this.state.theme === 'black'
-                    ? ''
-                    : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
-              }}
-            >
+            <div className="mission-view">
               <div className="opponent-dialogue-arcana">
                 <div className="info-avatar">
                   <div className="avatar"></div>
@@ -1562,7 +1571,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     );

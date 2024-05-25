@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import 'src/pages/book/Book.scss';
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 
-// import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
+import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
@@ -26,20 +26,20 @@ import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
 
-// import arcanaJson from 'src/data/arcana.json';
+import arcanaJson from 'src/data/arcana.json';
 
-// const arcana: ArcanaMap = arcanaJson as ArcanaMap;
+const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-// interface ArcanaMap {
-//   [key: string]: ArcanaDetail;
-// }
+interface ArcanaMap {
+  [key: string]: ArcanaDetail;
+}
 
-// interface ArcanaDetail {
-//   name: string;
-//   description: string;
-//   type: string;
-//   imagePath: string;
-// }
+interface ArcanaDetail {
+  name: string;
+  description: string;
+  type: string;
+  imagePath: string;
+}
 
 interface BookProps {
   auth: { user: { id: string; username: string } };
@@ -91,7 +91,7 @@ interface Node {
 }
 
 export class UnwrappedBook extends React.Component<BookProps, BookState> {
-  // chessgroundRef = createRef<IChessgroundApi>();
+  chessgroundRef = createRef<IChessgroundApi>();
   booksMap: { [key: string]: { [key: string]: Node } } = {
     book1,
     book2,
@@ -211,7 +211,15 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
             </Link>
           </div>
         ) : (
-          <div className="outer-book">
+          <div
+            className="outer-book"
+            style={{
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}.webp) no-repeat center center fixed`,
+            }}
+          >
             <TactoriusModal
               isOpen={this.state.armoryOpen}
               type="armory"
@@ -222,18 +230,42 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               type="chapterEnd"
               // imgPath="public/assets/treeBoat.jpg"
             />
-            <div
-              className="book"
-              style={{
-                height: '100vh',
-                width: '100vw',
-                background:
-                  this.state.theme === 'black'
-                    ? ''
-                    : `url(/assets/chapter${LS.chapter}.webp) no-repeat center center fixed`,
-              }}
-            >
-              <div className="top">
+            <div className="book">
+              <div className="hud">
+                <div className="left">
+                  <Link to="/campaign">
+                    <Button
+                      text="BACK"
+                      className="tertiary"
+                      color="B"
+                      width={160}
+                      height={60}
+                      disabled={false}
+                      backgroundColorOverride="#33333388"
+                    />
+                  </Link>
+                </div>
+                <div className="center">
+                  <div className="points">
+                    <span className="digit-box">{digits}</span>
+                  </div>
+                  kudos
+                </div>
+                <div className="right">
+                  <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
+                    <Button
+                      text="START"
+                      className="tertiary"
+                      color="B"
+                      width={240}
+                      height={60}
+                      disabled={this.state.selectedSwatch === ''}
+                      backgroundColorOverride="#33333388"
+                    />
+                  </Link>
+                </div>
+              </div>
+              <div className="content">
                 <div className="nodes">
                   {_.filter(this.state.book, (node) => {
                     const currLS = getLocalStorage(
@@ -296,7 +328,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     );
                   })}
                 </div>
-                {/* <div className="cg-wrap tactorius-board">
+                <div className="cg-wrap tactorius-board">
                   <Chessground
                     // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
                     // check={this.tactorius.inCheck().isAttacked}
@@ -379,8 +411,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       // },
                     }}
                   />
-                </div> */}
-                <div />
+                </div>
                 <div className="description-inventory">
                   <div className="description">
                     {this.state.selectedSwatch !== '' ? (
@@ -400,7 +431,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       </div>
                     ) : null}
                   </div>
-                  {/* <div className="inventory">
+                  <div className="inventory">
                     <div
                       className="time-arcana"
                       style={{ background: '#77777788' }}
@@ -457,50 +488,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         )}
                       </div>
                     </div>
-                  </div> */}
-                </div>
-              </div>
-              <div className="bottom">
-                <div className="left">
-                  <div className="points">
-                    <span className="digit-box">{digits}</span>
                   </div>
-                  kudos
-                </div>
-                {/* <div className="center"></div> */}
-                <div className="right">
-                  <Link to="/campaign">
-                    <Button
-                      text="BACK"
-                      className="secondary"
-                      color="B"
-                      width={160}
-                      height={50}
-                      disabled={false}
-                    />
-                  </Link>
-                  {/* <Button
-                text="ARMORY"
-                className="secondary"
-                color="B"
-                width={160}
-                height={60}
-                disabled={false}
-                onClick={() => {
-                  this.setState({ armoryOpen: true });
-                }}
-              /> */}
-                  <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
-                    <Button
-                      text="START"
-                      className="primary"
-                      color="B"
-                      width={160}
-                      height={50}
-                      // todo until clickthrough messages are done, keep button disabled
-                      disabled={this.state.selectedSwatch === ''}
-                    />
-                  </Link>
                 </div>
               </div>
             </div>

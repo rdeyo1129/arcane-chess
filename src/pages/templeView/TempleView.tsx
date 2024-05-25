@@ -579,6 +579,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
             }}
           >
             <Link to="/campaign">
@@ -600,6 +604,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
             }}
           >
             <Link to="/chapter">
@@ -613,7 +621,17 @@ class UnwrappedTempleView extends React.Component<Props, State> {
             </Link>
           </div>
         ) : (
-          <div className="outer-temple">
+          <div
+            className="outer-temple"
+            style={{
+              height: '100vh',
+              width: '100vw',
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
+            }}
+          >
             <TactoriusModal
               isOpen={this.state.gameOver}
               // handleClose={() => this.handleModalClose()}
@@ -627,17 +645,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                   : 'defeat'
               }
             />
-            <div
-              className="temple-view"
-              style={{
-                height: '100vh',
-                width: '100vw',
-                background:
-                  this.state.theme === 'black'
-                    ? ''
-                    : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
-              }}
-            >
+            <div className="temple-view">
               <div className="opponent-dialogue-arcana">
                 <div className="arcana">
                   <div className="arcana-side-buttons">
@@ -816,7 +824,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     }}
                     color="B"
                     text=""
-                    width={180}
+                    width={190}
                     disabled
                     backgroundColorOverride="#11111188"
                   />
@@ -831,7 +839,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     color="B"
                     // strong={true}
                     text="RESIGN"
-                    width={180}
+                    width={190}
                     // fontSize={30}
                     backgroundColorOverride="#11111188"
                   />

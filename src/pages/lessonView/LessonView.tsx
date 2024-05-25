@@ -471,10 +471,6 @@ class UnwrappedLessonView extends React.Component<Props, State> {
           booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels?.[
             `panel-${this.state.currPanel}`
           ]?.arrowsCircles ?? [];
-
-        console.log('Auto Shapes:', autoShapes);
-        console.log('Chessground Ref:', this.chessgroundRef.current);
-
         // Ensure the ref is available before setting auto shapes
         if (this.chessgroundRef.current) {
           this.chessgroundRef.current.setAutoShapes([...autoShapes]);
@@ -533,6 +529,10 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
             }}
           >
             <Link to="/campaign">
@@ -554,6 +554,10 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
             }}
           >
             <Link to="/chapter">
@@ -567,7 +571,17 @@ class UnwrappedLessonView extends React.Component<Props, State> {
             </Link>
           </div>
         ) : (
-          <div className="outer-lesson">
+          <div
+            className="outer-lesson"
+            style={{
+              height: '100vh',
+              width: '100vw',
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
+            }}
+          >
             <TactoriusModal
               isOpen={this.state.gameOver}
               handleClose={() =>
@@ -580,17 +594,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               lessonBackButton={true}
               type="victory"
             />
-            <div
-              className="lesson-view"
-              style={{
-                height: '100vh',
-                width: '100vw',
-                background:
-                  this.state.theme === 'black'
-                    ? ''
-                    : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
-              }}
-            >
+            <div className="lesson-view">
               <div className="opponent-dialogue-arcana">
                 <div className="arcana">
                   <div className="arcana-side-buttons">
@@ -726,7 +730,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     color="B"
                     strong={true}
                     text="<"
-                    width={180}
+                    width={190}
                     fontSize={36}
                     backgroundColorOverride="#11111188"
                   />
@@ -738,7 +742,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     color="B"
                     strong={true}
                     text=">"
-                    width={180}
+                    width={190}
                     fontSize={36}
                     backgroundColorOverride="#11111188"
                   />

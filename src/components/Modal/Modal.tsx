@@ -387,49 +387,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="left">
+              <div className="endgame-left">
                 <img className="endgame-image" src="/assets/victory.webp" />
               </div>
-              <div className="middle">
-                {/* <div
-                  style={{
-                    backgroundColor: '#000000',
-                  }}
-                ></div> */}
-                <div
-                  style={{
-                    backgroundColor: '00000000',
-                    height: '480px',
-                    width: '480px',
-                  }}
-                ></div>
-                {/* <div
-                  style={{
-                    backgroundColor: '#000000',
-                  }}
-                ></div> */}
-              </div>
-              <div className="right">
+              <div className="endgame-right">
                 <p className="endgame-text">
                   Victory... {this.props.message} {this.props.score ? '+' : ''}{' '}
                   {this.props.score}
                 </p>
                 <div className="buttons">
-                  {/* <Button
-                    text={this.props.lessonBackButton ? 'BACK' : 'ANALYZE'}
-                    className="secondary"
-                    color="B"
-                    width={160}
-                    height={90}
-                    disabled={this.props.disableSecondary}
-                    onClick={() => {
-                      if (this.props.lessonBackButton) {
-                        this.props.handleClose();
-                      } else {
-                        this.props.navigate('/chapter');
-                      }
-                    }}
-                  /> */}
                   <Button
                     text="CONTINUE"
                     className="primary"
@@ -451,29 +417,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="left">
+              <div className="endgame-left">
                 <img className="endgame-image" src="/assets/defeat.webp" />
               </div>
-              <div className="middle">
-                <div
-                  style={{
-                    backgroundColor: '#000000',
-                  }}
-                ></div>
-                <div
-                  style={{
-                    backgroundColor: '00000000',
-                    height: '480px',
-                    width: '480px',
-                  }}
-                ></div>
-                <div
-                  style={{
-                    backgroundColor: '#000000',
-                  }}
-                ></div>
-              </div>
-              <div className="right">
+              <div className="endgame-right">
                 <p>Defeat... {this.props.message}</p>
                 <div className="buttons">
                   <div className="left-buttons">
@@ -1050,7 +997,7 @@ const endgameModal = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    marginRight: 'auto',
+    // marginRight: 'auto',
     transform: 'translate(-50%, -50%)',
     display: 'flex',
     height: '480px',
@@ -1060,6 +1007,7 @@ const endgameModal = {
     border: 'none',
     padding: '0',
     borderRadius: '0',
+    overflow: 'hidden',
     // border: '2px solid #a043a2',
   },
   overlay: {

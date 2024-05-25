@@ -1862,7 +1862,7 @@
         "orientation": "white"
       }
     },
-    "boss": true
+    "boss": false
   },
   "mission-5": {
     "id": "mission-5",

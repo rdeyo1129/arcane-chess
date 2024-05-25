@@ -20,9 +20,9 @@
       gap: 10px;
       flex-direction: column;
       justify-content: center;
-      width: 400px;
+      width: 380px;
       background: #11111188;
-      margin: 20px;
+      margin: 10px;
       .arcana {
         display: flex;
         flex-direction: column;
@@ -38,8 +38,6 @@
           grid-template-columns: 60px 60px 60px 60px 60px;
           grid-template-rows: 60px 60px 60px 60px 60px 60px;
           grid-gap: 11px;
-          // height: 100%;
-
           width: 100%;
           overflow-y: scroll;
           padding: 13px 13px 0 13px;
@@ -80,18 +78,18 @@
     .temple-clock-buttons {
       display: flex;
       flex-direction: column;
-      width: 400px;
-      height: 100%;
+      width: 380px;
+      height: 480px;
       justify-content: center;
       align-items: center;
       // background: #33333388;
-      margin: 20px;
+      margin: 10px;
       .temple-clock {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 360px;
-        height: 200px;
+        width: 380px;
+        height: 100%;
         background-color: #11111188;
         .time-text {
           font-size: 72px;

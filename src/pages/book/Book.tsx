@@ -198,6 +198,13 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              background:
+                this.state.theme === 'black'
+                  ? ''
+                  : `url(/assets/chapter${LS.chapter}.webp)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
             }}
           >
             <Link to="/campaign">
@@ -214,10 +221,15 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
           <div
             className="outer-book"
             style={{
+              height: '100vh',
+              width: '100vw',
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/chapter${LS.chapter}.webp) no-repeat center center fixed`,
+                  : `url(/assets/chapter${LS.chapter}.webp)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
             }}
           >
             <TactoriusModal

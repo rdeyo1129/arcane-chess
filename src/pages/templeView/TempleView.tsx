@@ -582,7 +582,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
+                  : `url(/assets/chapter${LS.chapter}-room.webp)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
             }}
           >
             <Link to="/campaign">
@@ -607,7 +610,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
+                  : `url(/assets/chapter${LS.chapter}-room.webp)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
             }}
           >
             <Link to="/chapter">
@@ -629,7 +635,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/chapter${LS.chapter}-room.webp) no-repeat center center fixed`,
+                  : `url(/assets/chapter${LS.chapter}-room.webp)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
             }}
           >
             <TactoriusModal

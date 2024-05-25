@@ -29,6 +29,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
       "User used plan. It's super effective.",
       'Difficult to learn, impossible to master.',
       'Your mind is the armory.',
+      'Built for GMs, instructive for all.',
       // 'Time to mitigate.',
       'Patience. Planning. Persistence.',
       'The war continues... so does your learning.',
@@ -55,7 +56,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
   }
   render() {
     return (
-      <div className="front-page fade">
+      <div className="front-page fade offset-hero">
         <div className="header">
           <div className="inner-header">
             <img className="logo" src={'/assets/logogold.png'} alt="" />
@@ -102,11 +103,18 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
             </Link> */}
           </div>
         </div>
-        <div className="divider"></div>
-        {/* <div className="row-a">
+        {/* <div className="divider"></div> */}
+        <div className="row-a">
           <div className="intro-box">
-            <img className="image" src={'/assets/hero.webp'} alt="" />
             <div className="intro">
+              <h3>
+                Education in Chess has to be an education in independent
+                thinking and judgment. Chess must not be memorized. - Emanuel
+                Lasker
+              </h3>
+            </div>
+            {/* <img className="image" src={'/assets/hero.webp'} alt="" /> */}
+            {/* <div className="intro">
               <p>
                 In a parallel universe, woven into the intricate cosmic
                 tapestry, lies a unique planet governed by factions. This world
@@ -153,12 +161,10 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
                 sets forth on a path that weaves through the heart of the
                 wilderness.
               </p>
-            </div>
+            </div> */}
           </div>
-        </div> */}
-        <div className="row-b">
-          <Hero />
         </div>
+        <Hero />
       </div>
     );
   }

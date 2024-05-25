@@ -1,6 +1,5 @@
 .hero {
   position: absolute;
-  /* display: block; */
   width: 100%;
   height: 100%;
   z-index: -1;
@@ -8,37 +7,33 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-}
-.hero-grid {
-  position: absolute;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(50, 60px);
-  grid-template-rows: repeat(36, 60px);
-  width: 100%;
-  height: 100%;
   overflow: hidden;
-  z-index: -1;
-  /* opacity: 0; */
-}
-.hero-square.light {
-  height: 60px;
-  width: 60px;
-  /* background: #b87d48; */
-  background: #8e7200;
-}
-.hero-square.dark {
-  height: 60px;
-  width: 60px;
-  /* background: #7f4f1a; */
-  background: #424242;
+  .hero-grid {
+    position: relative;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(50, 60px);
+    grid-template-rows: repeat(36, 60px);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+  .hero-square.light {
+    height: 60px;
+    width: 60px;
+    /* background: #b87d48; */
+    background: #8e7200;
+  }
+  .hero-square.dark {
+    height: 60px;
+    width: 60px;
+    /* background: #7f4f1a; */
+    background: #424242;
+  }
 }
 
-/* $O_LGHT: #b87d48;
-$O_DARK: #7f4f1a; */
-
-/* $B_LGHT: #1c7293;
-$B_DARK: #065a82; */
-
-/* $GS_4: #444444;
-$GS_5: #555555; */
+.offset-hero .hero {
+  top: 100px;
+  height: calc(100% - 100px);
+}

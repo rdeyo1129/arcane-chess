@@ -262,7 +262,7 @@
       [0, 0],
       [0, 0]
     ],
-    "nodeText": "What are you fighting for? Learn about why chess is a zero-sum game.",
+    "nodeText": "What are you fighting for? Learn about why Chess is a zero-sum game.",
     "panelText": "",
     "reward": [],
     "prereq": "lesson-1",
@@ -301,7 +301,7 @@
           "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "What is the goal here? The normal chess ending is checkmate. This happens when a King is attacked and there’s no move to stop it from being captured on the next turn. ",
+        "panelText": "What is the goal here? The normal Chess ending is checkmate. This happens when a King is attacked and there’s no move to stop it from being captured on the next turn. ",
         "arrowsCircles": [
           {
             "orig": "h5",
@@ -335,7 +335,7 @@
           "r1bqkb1r/pppp1Qpp/2n2n2/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "What is the goal here? The normal chess ending is checkmate. This happens when a King is attacked and there’s no move to stop it from being captured on the next turn. ",
+        "panelText": "What is the goal here? The normal Chess ending is checkmate. This happens when a King is attacked and there’s no move to stop it from being captured on the next turn. ",
         "arrowsCircles": [
           {
             "orig": "e8",
@@ -529,7 +529,7 @@
         "fen": "8/K7/8/8/8/7k/8/8 w - - 0 1",
         "fenHistory": ["8/K7/8/8/8/7k/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "Other game-ending rules exist. Delivering check a certain number of times, getting a King to a key square, or capturing all pieces. These are considered variants and do not apply in vanilla chess, only when you and your opponent agree to it.",
+        "panelText": "Other game-ending rules exist. Delivering check a certain number of times, getting a King to a key square, or capturing all pieces. These are considered variants and do not apply in vanilla Chess, only when you and your opponent agree to it.",
         "arrowsCircles": [
           {
             "orig": "a7",
@@ -803,7 +803,7 @@
         "fen": "8/1pp1kpp1/p2p3p/3P4/2P5/1P2K1P1/P4P1P/8 w - - 0 1",
         "fenHistory": ["8/1pp1kpp1/p2p3p/3P4/2P5/1P2K1P1/P4P1P/8 w - - 0 1"],
         "history": [],
-        "panelText": "Pawns are the soul of chess. They are worth 1 point of material… but don’t underestimate them or treat them as expendable. They work together well in chains and in supporting outposts for minor pieces. Be mindful of how you trade off because they can be vulnerable without an adjacent pawn friend to protect them.",
+        "panelText": "Pawns are the soul of Chess. They are worth 1 point of material… but don’t underestimate them or treat them as expendable. They work together well in chains and in supporting outposts for minor pieces. Be mindful of how you trade off because they can be vulnerable without an adjacent pawn friend to protect them.",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
@@ -1033,7 +1033,7 @@
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "A critical skill to help begin your journey in chess is communication. Ask yourself the important questions. Start with inquires like: “What is story is the position telling me?”, or “Why did I just play that move?”.",
+        "panelText": "A critical skill to help begin your journey in Chess is communication. Ask yourself the important questions. Start with inquires like: “What is story is the position telling me?”, or “Why did I just play that move?”.",
         "arrowsCircles": [],
         "royalties": {
           "royaltyQ": {},
@@ -1075,7 +1075,7 @@
         "fen": "3p4/8/2X5/p6p/3N4/1p3X2/8/8 w - - 0 1",
         "fenHistory": ["3p4/8/2X5/p6p/3N4/1p3X2/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "Let’s look at some more pieces. The Knight is recognized as apart of the normal variation of chess. It moves 2 squares orthogonally then 1 square perpendicular. Think in the shape of an L. Watch out for Knights, they are tricky and can hop over other pieces. Try moving it now.",
+        "panelText": "Let’s look at some more pieces. The Knight is recognized as apart of the normal variation of Chess. It moves 2 squares orthogonally then 1 square perpendicular. Think in the shape of an L. Watch out for Knights, they are tricky and can hop over other pieces. Try moving it now.",
         "arrowsCircles": [],
         "royalties": {
           "royaltyQ": {},

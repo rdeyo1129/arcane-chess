@@ -30,7 +30,6 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
       'Difficult to learn, impossible to master.',
       'Your mind is the armory.',
       'Built for GMs, instructive for all.',
-      // 'Time to mitigate.',
       'Patience. Planning. Persistence.',
       'The war continues... so does your learning.',
     ];
@@ -103,7 +102,6 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
             </Link> */}
           </div>
         </div>
-        {/* <div className="divider"></div> */}
         <div className="row-a">
           <div className="intro-box">
             <div className="intro">

@@ -139,7 +139,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       config: this.state.config,
       nodeScores: {},
       inventory: {},
-      nodeId: '',
+      nodeId: 'lesson-1',
       chapterEnd: false,
     });
     this.props.navigate('/chapter');

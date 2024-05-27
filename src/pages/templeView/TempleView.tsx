@@ -101,6 +101,7 @@ interface Node {
   prereq: string;
   opponent: string;
   boss: boolean;
+  theme: string;
   panels: {
     [key: string]: {
       fen: string;
@@ -293,7 +294,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         LS.nodeId?.split('-')[0] !== 'temple',
       visitedPanels: [initialPanelKey],
       orientation: initialPanelData.orientation,
-      theme: 'purple',
+      theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -699,7 +700,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               </div>
               <div className="time-board-time">
                 <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
-                <div className="board-view">
+                <div className={`board-view ${this.state.theme}-board`}>
                   <Chessground
                     forwardedRef={this.chessgroundRef}
                     // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}

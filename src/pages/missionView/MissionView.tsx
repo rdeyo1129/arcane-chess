@@ -109,6 +109,7 @@ interface Node {
   prereq: string;
   opponent: string;
   boss: boolean;
+  theme: string;
   panels: {
     [key: string]: {
       fen: string;
@@ -140,7 +141,6 @@ interface Node {
       // ];
     };
   };
-  theme: string;
 }
 
 interface State {
@@ -331,10 +331,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       promotionModalOpen: false,
       placingPromotion: 0,
       hint: '',
-      theme:
-        booksMap[
-          `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].theme,
+      theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
       hideCompletedPage:
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
         LS.nodeId?.split('-')[0] !== 'mission',
@@ -1074,7 +1071,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               </div>
               <div className="time-board-time">
                 <div className="board-frame"></div>
-                <div className="board-view">
+                <div className={`board-view ${this.state.theme}-board`}>
                   <Chessground
                     // theme={this.state.theme}
                     forwardedRef={this.chessgroundRef}

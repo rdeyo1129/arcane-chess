@@ -57,6 +57,7 @@ interface Node {
   reward: (number | string)[];
   prereq: string;
   opponent: string;
+  theme: string;
   panels: {
     [key: string]: {
       fen: string;
@@ -108,6 +109,13 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
   };
   constructor(props: BookProps) {
     super(props);
+    console.log(this.booksMap);
+    const LS = getLocalStorage(this.props.auth.user.username);
+    console.log(
+      LS,
+      this.booksMap[`book${LS.chapter}`],
+      this.booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]
+    );
     this.state = {
       armoryOpen: false,
       // get all nodes from json import and .map in render
@@ -142,6 +150,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       targetValue: 0,
       credits: 4000,
       creditsAnimation: 0,
+      theme: this.booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.theme,
     };
   }
 
@@ -340,7 +349,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     );
                   })}
                 </div>
-                <div className="cg-wrap tactorius-board">
+                <div
+                  className={`cg-wrap tactorius-board ${this.state.theme}-board`}
+                >
                   <Chessground
                     // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
                     // check={this.tactorius.inCheck().isAttacked}

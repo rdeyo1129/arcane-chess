@@ -11,7 +11,7 @@
     "prereq": "",
     "opponent": "",
     "boss": false,
-    "theme": "black",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "b2r3r/k4p1p/p2q1np1/NppP4/3p1Q2/P4PPB/1PP4P/1K1RR3 w - - 1 24",
@@ -267,7 +267,7 @@
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "8/8/5b2/3r4/8/5K2/8/8 w - - 0 1",
@@ -599,7 +599,7 @@
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "8/8/1u6/8/1R3X2/1P6/8/8 w - - 0 1",
@@ -797,7 +797,7 @@
     "reward": [],
     "prereq": "lesson-3",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "8/1pp1kpp1/p2p3p/3P4/2P5/1P2K1P1/P4P1P/8 w - - 0 1",
@@ -1170,7 +1170,7 @@
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/1r6/5N2/8/8/8 w - - 0 1",
@@ -1437,7 +1437,7 @@
     "reward": [],
     "prereq": "lesson-5",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/7T/4N3/8/6u1/8 w - - 0 1",
@@ -1709,7 +1709,7 @@
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "4k3/3pp3/8/8/8/8/8/3RK3 w - - 0 1",
@@ -1752,7 +1752,7 @@
     "reward": [],
     "prereq": "mission-1",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "3bk3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1",
@@ -1795,7 +1795,7 @@
     "reward": [],
     "prereq": "mission-2",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "2b1kb2/2pppp2/8/8/8/8/2PPP3/2R1KR2 w - - 0 1",
@@ -1838,7 +1838,7 @@
     "reward": [],
     "prereq": "mission-3",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "3uku2/2ppppp1/8/8/8/8/2PPPP2/2BZKB2 w - - 0 1",
@@ -1876,7 +1876,7 @@
     "reward": [],
     "prereq": "mission-4",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "2zzrr2/8/8/8/8/8/8/1ZZNNUU1 w - - 0 1",
@@ -1914,7 +1914,7 @@
     "reward": [],
     "prereq": "mission-5",
     "opponent": "",
-    "theme": "",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "1rb1kbr1/1pppppp1/8/8/8/8/1PPPPPP1/1RBUKBR1 w - - 0 1",

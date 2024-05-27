@@ -76,6 +76,7 @@ interface Node {
   prereq: string;
   opponent: string;
   boss: boolean;
+  theme: string;
   panels: {
     [key: string]: {
       fen: string;
@@ -241,7 +242,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       viewOnly:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
           .viewOnly,
-      theme: 'red',
+      theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -271,13 +272,6 @@ class UnwrappedLessonView extends React.Component<Props, State> {
             `panel-${newPanel}`
           ].arrowsCircles
         );
-        const autoShapes =
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].arrowsCircles ?? [];
-        console.log('Auto Shapes:', autoShapes);
-        console.log('Chessground Ref:', this.chessgroundRef.current);
-
         this.chessgroundRef.current?.setAutoShapes([
           ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
             `panel-${newPanel}`
@@ -669,7 +663,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               </div>
               <div className="time-board-time">
                 <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
-                <div className="board-view">
+                <div className={`board-view ${this.state.theme}-board`}>
                   <Chessground
                     forwardedRef={this.chessgroundRef}
                     fen={

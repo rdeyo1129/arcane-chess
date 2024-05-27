@@ -11,7 +11,7 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
-    "theme": "",
+    "theme": "blue",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/3Q4/8/8/8 w - - 0 1",
@@ -225,7 +225,7 @@
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "",
-    "theme": "",
+    "theme": "blue",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/1R4k1/2K5/8/R7 w - - 0 1",
@@ -615,7 +615,7 @@
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "",
-    "theme": "",
+    "theme": "blue",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/5k2/3Q4/8/3K4 w - - 0 1",
@@ -1202,7 +1202,7 @@
     "reward": [],
     "prereq": "lesson-3",
     "opponent": "",
-    "theme": "",
+    "theme": "blue",
     "panels": {
       "panel-1": {
         "fen": "7k/8/8/3K4/7p/8/8/8 w - - 0 1",
@@ -1602,6 +1602,554 @@
   },
   "lesson-5": {
     "id": "lesson-5",
+    "title": "Overkills III",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "Dive into this last overkill variant. You are up a full Rook and need to mate.",
+    "panelText": "",
+    "reward": [],
+    "prereq": "lesson-4",
+    "opponent": "",
+    "theme": "blue",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/3k1K2/4R3/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/3k1K2/4R3/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Consider the following position: a checkmate is possible. You need to use technique to coerce the King to an edge of the board. It will require some waiting moves, and not giving back any ranks or files.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "8/8/8/2k2K2/4R3/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/2k2K2/4R3/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Black is forced back in one direction.",
+        "arrowsCircles": [
+          {
+            "orig": "d5",
+            "dest": "c5",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "8/8/8/2k1K3/4R3/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/2k1K3/4R3/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "White is able to improve their King position.",
+        "arrowsCircles": [
+          {
+            "orig": "f5",
+            "dest": "e5",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "8/8/2k5/4K3/4R3/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/2k5/4K3/4R3/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Black goes the other direction. If they went Kb5 then white would push Kd5, again taking the better position.",
+        "arrowsCircles": [
+          {
+            "orig": "c5",
+            "dest": "c6",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/8/2k5/4K3/2R5/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/2k5/4K3/2R5/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The Rook swoops in, giving the black King dismal options.",
+        "arrowsCircles": [
+          {
+            "orig": "e4",
+            "dest": "c4",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "8/3k4/8/4K3/2R5/8/8/8 w - - 0 1",
+        "fenHistory": ["8/3k4/8/4K3/2R5/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "If black chooses Kb5 here, we have a similar pattern as before.",
+        "arrowsCircles": [
+          {
+            "orig": "c6",
+            "dest": "d7",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "8/3k4/8/2R1K3/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/3k4/8/2R1K3/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "In this position we play a waiting move. Black will be forced to give up either a rank or file.",
+        "arrowsCircles": [
+          {
+            "orig": "c8",
+            "brush": "green"
+          },
+          {
+            "orig": "c7",
+            "brush": "green"
+          },
+          {
+            "orig": "c6",
+            "brush": "green"
+          },
+          {
+            "orig": "d6",
+            "brush": "green"
+          },
+          {
+            "orig": "e6",
+            "brush": "green"
+          },
+          {
+            "orig": "c4",
+            "dest": "c5",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "8/4k3/8/2R1K3/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/4k3/8/2R1K3/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Black maintains the rank. If Kd8: Ke6, Ke8, Rc8#.",
+        "arrowsCircles": [
+          {
+            "orig": "d7",
+            "dest": "e7",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "8/2R1k3/8/4K3/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/2R1k3/8/4K3/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The Rook cuts the black King off to the last rank.",
+        "arrowsCircles": [
+          {
+            "orig": "c5",
+            "dest": "c7",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-10": {
+        "fen": "5k2/2R5/8/4K3/8/8/8/8 w - - 0 1",
+        "fenHistory": ["5k2/2R5/8/4K3/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [
+          {
+            "orig": "e7",
+            "dest": "f8",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-11": {
+        "fen": "5k2/2R5/5K2/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["5k2/2R5/5K2/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [
+          {
+            "orig": "e5",
+            "dest": "f6",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-12": {
+        "fen": "6k1/2R5/5K2/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["6k1/2R5/5K2/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [
+          {
+            "orig": "f8",
+            "dest": "g8",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-13": {
+        "fen": "6k1/5R2/5K2/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["6k1/5R2/5K2/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [
+          {
+            "orig": "c7",
+            "dest": "f7",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-14": {
+        "fen": "7k/5R2/5K2/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["7k/5R2/5K2/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Don't stalemate!!!",
+        "arrowsCircles": [
+          {
+            "orig": "f7",
+            "dest": "g7",
+            "brush": "red"
+          },
+          {
+            "orig": "g8",
+            "dest": "h8",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-15": {
+        "fen": "7k/5R2/6K1/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["7k/5R2/6K1/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [
+          {
+            "orig": "f6",
+            "dest": "g6",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-16": {
+        "fen": "6k1/5R2/6K1/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["6k1/5R2/6K1/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "One way or another, white will have to play a waiting move or two to get make sure their Rook is out of the attack range of the King.",
+        "arrowsCircles": [
+          {
+            "orig": "h8",
+            "dest": "g8",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-17": {
+        "fen": "6k1/8/6K1/8/8/8/8/5R2 w - - 0 1",
+        "fenHistory": ["6k1/8/6K1/8/8/8/8/5R2 w - - 0 1"],
+        "history": [],
+        "panelText": "Any move along this file will do.",
+        "arrowsCircles": [
+          {
+            "orig": "f7",
+            "dest": "f1",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-18": {
+        "fen": "7k/8/6K1/8/8/8/8/5R2 w - - 0 1",
+        "fenHistory": ["7k/8/6K1/8/8/8/8/5R2 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [
+          {
+            "orig": "g8",
+            "dest": "h8",
+            "brush": "green"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-19": {
+        "fen": "5R1k/8/6K1/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["5R1k/8/6K1/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Checkmate! With this exercise, make sure you are always protecting your Rook or playing waiting moves to give the black King no choice but to relinquish his file or rank.",
+        "arrowsCircles": [
+          {
+            "orig": "h8",
+            "brush": "red"
+          }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "lesson-6": {
+    "id": "lesson-6",
     "title": "Opposition",
     "time": [
       [0, 0],
@@ -1610,9 +2158,9 @@
     "nodeText": "Outflank your opponents King in this endgame scenario.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-4",
+    "prereq": "lesson-5",
     "opponent": "",
-    "theme": "",
+    "theme": "blue",
     "panels": {
       "panel-1": {
         "fen": "8/8/3k4/8/3K4/8/8/8 w - - 0 1",

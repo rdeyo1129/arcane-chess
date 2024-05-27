@@ -749,7 +749,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               this.state.gameOverType.split(' ')[1] === 'mates' &&
               this.state.playerColor === this.state.gameOverType.split(' ')[0]
                 ? 'victory-qp'
-                : 'defeat'
+                : 'defeat-qp'
             }
           />
           <PromotionModal
@@ -958,7 +958,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             </div>
             <div className="time-board-time">
               <div className="board-frame"></div>
-              <div className="board-view">
+              <div className="board-view blue-board">
                 <Chessground
                   // theme={this.state.theme}
                   forwardedRef={this.chessgroundRef}

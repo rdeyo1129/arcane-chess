@@ -1707,7 +1707,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-4",
+    "prereq": "",
     "opponent": "",
     "theme": "brown",
     "panels": {
@@ -1738,7 +1738,7 @@
         "orientation": "white"
       }
     },
-    "boss": false
+    "boss": true
   },
   "mission-2": {
     "id": "mission-2",

@@ -162,25 +162,30 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
     const targetValue = this.state.reducedScore;
     this.setState({ targetValue });
 
-    const startTime = Date.now();
-    const duration = 1000;
+    const startAnimation = () => {
+      const startTime = Date.now();
+      const duration = 2000;
 
-    const animate = () => {
-      const currentTime = Date.now();
-      const elapsed = currentTime - startTime;
-      const normalizedTime = elapsed / duration;
+      const animate = () => {
+        const currentTime = Date.now();
+        const elapsed = currentTime - startTime;
+        const normalizedTime = elapsed / duration;
 
-      if (normalizedTime < 1) {
-        const easedTime = normalizedTime;
-        const nextValue = targetValue * easedTime;
-        this.setState({ animatedValue: nextValue });
-        requestAnimationFrame(animate);
-      } else {
-        this.setState({ animatedValue: targetValue });
-      }
+        if (normalizedTime < 1) {
+          const easedTime = normalizedTime;
+          const nextValue = targetValue * easedTime;
+          this.setState({ animatedValue: nextValue });
+          requestAnimationFrame(animate);
+        } else {
+          this.setState({ animatedValue: targetValue });
+        }
+      };
+
+      requestAnimationFrame(animate);
     };
 
-    requestAnimationFrame(animate);
+    const pauseDuration = 1000;
+    setTimeout(startAnimation, pauseDuration);
   }
 
   render() {

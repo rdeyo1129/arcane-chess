@@ -25,7 +25,6 @@
       .left {
         z-index: 30;
         display: flex;
-        // justify-content: space-between;
         align-items: center;
         width: 430px;
       }
@@ -38,7 +37,6 @@
           text-align: right;
           display: flex;
           justify-content: flex-end;
-          // border: 1px solid #cccccc88;
           border-radius: 4px;
           margin-right: 4px;
           padding: 12px;
@@ -80,10 +78,6 @@
         }
       }
       .tactorius-board {
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
-        // background: #333333;
         height: 480px;
         width: 480px;
         .tactorius {
@@ -117,12 +111,10 @@
         }
         .inventory {
           display: flex;
-          // flex-direction: column;
           justify-content: center;
           align-items: center;
           width: 400px;
           height: 300px;
-          // background: #333333;
           .time-arcana {
             display: flex;
             flex-direction: column;

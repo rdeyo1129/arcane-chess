@@ -40,6 +40,9 @@ interface ModalState {
   whiteArcana: { [key: string]: boolean | number | string | null };
   blackArcana: { [key: string]: boolean | number | string | null };
   playerColor: string;
+  animatedValue: number;
+  targetValue: number;
+  reducedScore: number;
 }
 
 interface ArcanaDetail {
@@ -102,6 +105,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       whiteArcana: {},
       blackArcana: {},
       playerColor: 'white',
+      animatedValue: 0,
+      targetValue: 0,
+      reducedScore: _.reduce(
+        getLocalStorage(this.props.auth.user.username).nodeScores,
+        (accumulator, value) => {
+          return accumulator + value;
+        },
+        0
+      ),
     };
   }
 
@@ -149,7 +161,47 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     this.setState({ hoverArcane: arcane });
   };
 
+  componentDidMount() {
+    const targetValue = this.state.reducedScore;
+    this.setState({ targetValue });
+
+    const startAnimation = () => {
+      const startTime = Date.now();
+      const duration = 2000;
+
+      const animate = () => {
+        const currentTime = Date.now();
+        const elapsed = currentTime - startTime;
+        const normalizedTime = elapsed / duration;
+
+        if (normalizedTime < 1) {
+          const easedTime = normalizedTime;
+          const nextValue = targetValue * easedTime;
+          this.setState({ animatedValue: nextValue });
+          requestAnimationFrame(animate);
+        } else {
+          this.setState({ animatedValue: targetValue });
+        }
+      };
+
+      requestAnimationFrame(animate);
+    };
+
+    const pauseDuration = 1000;
+    setTimeout(startAnimation, pauseDuration);
+  }
+
   render() {
+    // Convert number to string with comma formatting
+    const formattedNumber = Math.round(
+      this.state.animatedValue
+    ).toLocaleString();
+    // Split formatted number into individual characters
+    const digits = formattedNumber.split('').map((char, index) => (
+      <span key={index} className="digit-box">
+        {char}
+      </span>
+    ));
     return (
       <div className="container">
         {this.props.type === 'bookSettings' ? (
@@ -466,34 +518,53 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             isOpen={this.props.isOpen}
             ariaHideApp={false}
           >
-            <span>
-              YOU HAVE DEFEATED THE BOSS. CHAPTER END. YOUR SCORE:{' '}
-              {
-                getLocalStorage(this.props.auth.user.username).auth.user
-                  .campaign?.topScores[
-                  getLocalStorage(this.props.auth.user.username).chapter - 1
-                ]
-              }
-            </span>
-            <Button
-              text="CONTINUE"
-              className="primary"
-              color="B"
-              width={160}
-              height={40}
-              onClick={() => {
-                setLocalStorage({
-                  ...getLocalStorage(this.props.auth.user.username),
-                  chapter: 0,
-                  config: {},
-                  nodeScores: {},
-                  inventory: {},
-                  nodeId: '',
-                  chapterEnd: false,
-                });
-                this.props.navigate('/campaign');
+            <div
+              className="chapter-end"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                maxHeight: '456px',
+                background:
+                  'url(/assets/chapterend.webp) no-repeat center center',
+                backgroundSize: 'contain',
               }}
-            />
+            >
+              <div className="chapter-end-text">
+                <div
+                  className="chapter-end-text-top"
+                  style={{ marginTop: '20px' }}
+                >
+                  <h1>CHAPTER END</h1>
+                  <div className="chapter-end-points">
+                    <h1 className="digit-box">{digits}</h1>
+                    <h1 className="digit-kudos">kudos</h1>
+                  </div>
+                </div>
+                <div className="chapter-end-buttons">
+                  <Button
+                    text="CONTINUE"
+                    className="primary"
+                    color="B"
+                    width={200}
+                    height={60}
+                    onClick={() => {
+                      setLocalStorage({
+                        ...getLocalStorage(this.props.auth.user.username),
+                        chapter: 0,
+                        config: {},
+                        nodeScores: {},
+                        inventory: {},
+                        nodeId: '',
+                        chapterEnd: false,
+                      });
+                      this.props.navigate('/campaign');
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
           </Modal>
         ) : this.props.type === 'quickPlay' ? (
           <Modal
@@ -850,19 +921,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="left">
+              <div className="endgame-left">
                 <img className="endgame-image" src="/assets/victory.webp" />
               </div>
-              <div className="middle">
-                <div
-                  style={{
-                    backgroundColor: '00000000',
-                    height: '480px',
-                    width: '480px',
-                  }}
-                ></div>
-              </div>
-              <div className="right">
+              <div className="endgame-right">
                 <p className="endgame-text">
                   Victory... {this.props.message} {this.props.score ? '+' : ''}{' '}
                   {this.props.score}
@@ -893,6 +955,56 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   </div>
                   <Button
                     text="REMATCH"
+                    className="primary"
+                    width={180}
+                    height={90}
+                    color="B"
+                    onClick={() => {
+                      location.reload();
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </Modal>
+        ) : this.props.type === 'defeat-qp' ? (
+          <Modal
+            style={endgameModal}
+            isOpen={this.props.isOpen}
+            ariaHideApp={false}
+          >
+            <div className="endgame">
+              <div className="endgame-left">
+                <img className="endgame-image" src="/assets/defeat.webp" />
+              </div>
+              <div className="endgame-right">
+                <p>Defeat... {this.props.message}</p>
+                <div className="buttons">
+                  <div className="left-buttons">
+                    <Button
+                      text="HOME"
+                      className="secondary"
+                      color="B"
+                      width={160}
+                      height={40}
+                      onClick={() => {
+                        this.props.navigate('/dashboard');
+                      }}
+                    />
+                    <Button
+                      text="ANALYZE"
+                      className="secondary"
+                      color="B"
+                      width={160}
+                      height={40}
+                      disabled
+                      // onClick={() => {
+                      //   this.props.navigate('/chapter');
+                      // }}
+                    />
+                  </div>
+                  <Button
+                    text="RETRY"
                     className="primary"
                     width={180}
                     height={90}
@@ -1034,10 +1146,10 @@ const chapterEndModal = {
     width: '1000px',
     background: '#111111',
     borderRadius: '10px',
-    border: '2px solid #a043a2',
+    border: '2px solid #3f48cc',
   },
   overlay: {
-    zIndex: 10,
-    backgroundColor: '#111111EE',
+    zIndex: 30,
+    backgroundColor: '#111111',
   },
 };

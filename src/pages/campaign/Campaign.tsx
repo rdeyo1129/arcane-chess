@@ -34,7 +34,7 @@ export class UnwrappedCampaign extends React.Component<
     this.state = {
       books: [
         // TODO: To be read from db
-        'ARRIVAL',
+        'NONARRIVAL',
         'ANAMNESIS',
         'PENTAGRAMS',
         '?',

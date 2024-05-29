@@ -200,13 +200,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       gameOverType: '',
       whiteSetup: this.props.config.whiteSetup,
       blackSetup: this.props.config.blackSetup,
-      fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
+      fen: `8/1P6/5k2/8/8/8/4K2p/8 w - - 0 1`,
       pvLine: [],
       historyPly: 0,
       history: [],
-      fenHistory: [
-        `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
-      ],
+      fenHistory: [`8/1P6/5k2/8/8/8/4K2p/8 w - - 0 1`],
       thinking: SearchController.thinking,
       engineLastMove: [],
       thinkingTime: this.props.config.thinkingTime,
@@ -668,10 +666,10 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
         }),
         () => {
           this.setState({
-            fen: `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
-            fenHistory: [
-              `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
-            ],
+            // fen: `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
+            // fenHistory: [
+            //   `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
+            // ],
             orientation: this.state.playerColor,
             selectedSide: this.state.playerColor,
           });
@@ -1172,22 +1170,17 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                         );
                       if (isInitPromotion) {
                         this.promotionSelectAsync(() => {
-                          const parsedPromotion =
-                            this.arcaneChess().makeUserMove(
-                              orig,
-                              dest,
-                              this.state.placingPromotion,
-                              this.state.swapType,
-                              this.state.placingRoyalty
-                            );
+                          const { parsed } = this.arcaneChess().makeUserMove(
+                            orig,
+                            dest,
+                            this.state.placingPromotion,
+                            this.state.swapType,
+                            this.state.placingRoyalty
+                          );
                           if (!PrMove(parsed)) {
                             console.log('invalid move');
                           }
-                          this.normalMoveStateAndEngineGo(
-                            parsedPromotion.parsed,
-                            orig,
-                            dest
-                          );
+                          this.normalMoveStateAndEngineGo(parsed, orig, dest);
                         });
                       } else {
                         if (!PrMove(parsed)) {

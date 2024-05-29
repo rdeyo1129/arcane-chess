@@ -410,6 +410,7 @@ export function AddBlackPawnCaptureMove(from, to, cap, consume, capturesOnly) {
 
 export function AddWhitePawnQuietMove(from, to, flag, capturesOnly) {
   if (GameBoard.whiteArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_7) {
+    if (GameBoard.suspend > 0) return;
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wQ, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wT, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wM, flag), capturesOnly);
@@ -422,6 +423,7 @@ export function AddWhitePawnQuietMove(from, to, flag, capturesOnly) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wW, flag), capturesOnly);
   }
   if (RanksBrd[to] === RANKS.RANK_8) {
+    if (GameBoard.suspend > 0) return;
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wQ, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wT, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wM, flag), capturesOnly);
@@ -442,6 +444,7 @@ export function AddWhitePawnQuietMove(from, to, flag, capturesOnly) {
 
 export function AddBlackPawnQuietMove(from, to, flag, capturesOnly) {
   if (GameBoard.blackArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_2) {
+    if (GameBoard.suspend > 0) return;
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bQ, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bT, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bM, flag), capturesOnly);
@@ -454,6 +457,7 @@ export function AddBlackPawnQuietMove(from, to, flag, capturesOnly) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bW, flag), capturesOnly);
   }
   if (RanksBrd[to] === RANKS.RANK_1) {
+    if (GameBoard.suspend > 0) return;
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bQ, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bT, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bM, flag), capturesOnly);

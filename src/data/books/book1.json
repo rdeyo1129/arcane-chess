@@ -1738,7 +1738,7 @@
         "orientation": "white"
       }
     },
-    "boss": true
+    "boss": false
   },
   "mission-2": {
     "id": "mission-2",

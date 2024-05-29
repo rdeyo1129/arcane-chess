@@ -303,7 +303,6 @@ export function ParseMove(
   GenerateMoves(true, false, 'COMP', swapType, pieceEpsilon);
 
   let Move = NOMOVE;
-  let PromPce = PIECES.EMPTY;
   let found = BOOL.FALSE;
 
   for (
@@ -318,7 +317,6 @@ export function ParseMove(
         FROMSQ(Move) === prettyToSquare(from) &&
         TOSQ(Move) === prettyToSquare(to))
     ) {
-      PromPce = pieceEpsilon || PROMOTED(Move);
       if (isInitPromotion(Move) && pieceEpsilon === PIECES.EMPTY) {
         found = BOOL.TRUE;
         break;
@@ -341,8 +339,8 @@ export function ParseMove(
           break;
         }
         continue;
-      } else if (PromPce !== PIECES.EMPTY) {
-        if (PromPce === pieceEpsilon) {
+      } else if (pieceEpsilon !== PIECES.EMPTY) {
+        if (PROMOTED(Move) === pieceEpsilon) {
           found = BOOL.TRUE;
           break;
         }

@@ -317,7 +317,7 @@ export function ParseMove(
         FROMSQ(Move) === prettyToSquare(from) &&
         TOSQ(Move) === prettyToSquare(to))
     ) {
-      if (isInitPromotion(Move) && pieceEpsilon === PIECES.EMPTY) {
+      if (isInitPromotion(Move) && PROMOTED(Move) === PIECES.EMPTY) {
         found = BOOL.TRUE;
         break;
       }

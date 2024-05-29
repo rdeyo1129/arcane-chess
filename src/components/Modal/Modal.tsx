@@ -100,6 +100,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         threatVision: false,
         checkVision: false,
         hints: false,
+        autopromotion: 'Select',
       },
       hoverArcane: '',
       whiteArcana: {},
@@ -258,16 +259,16 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     type="string"
                     options={[
                       'Select',
-                      'N',
-                      'Z',
-                      'U',
-                      'B',
-                      'R',
-                      'Q',
-                      'T',
-                      'M',
-                      'W',
-                      'S',
+                      // 'N',
+                      // 'Z',
+                      // 'U',
+                      // 'B',
+                      // 'R',
+                      // 'Q',
+                      // 'T',
+                      // 'M',
+                      // 'W',
+                      // 'S',
                     ]}
                     onChange={(val) =>
                       this.updateConfig(val, 'autopromotion', 0)

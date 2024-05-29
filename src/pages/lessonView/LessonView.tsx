@@ -267,11 +267,6 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       (prevState) => {
         const LS = getLocalStorage(this.props.auth.user.username);
         const newPanel = prevState.currPanel + (direction === 'inc' ? 1 : -1);
-        console.log(
-          booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
-            `panel-${newPanel}`
-          ].arrowsCircles
-        );
         this.chessgroundRef.current?.setAutoShapes([
           ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
             `panel-${newPanel}`
@@ -381,7 +376,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         `panel-${this.state.currPanel}`
       )
     ) {
-      this.handleVictory(this.props.auth);
+      this.handleVictory();
     } else if (this.state.moveNumber === this.state.fenHistory.length - 1) {
       this.changePanel('inc');
     } else {
@@ -420,12 +415,10 @@ class UnwrappedLessonView extends React.Component<Props, State> {
     this.setState({ arcaneHover: arcane });
   };
 
-  handleVictory = (auth: object) => {
+  handleVictory = () => {
     const LS = getLocalStorage(this.props.auth.user.username);
-    console.log('auth', auth);
     setLocalStorage({
       ...getLocalStorage(this.props.auth.user.username),
-      auth,
       nodeScores: {
         ...LS.nodeScores,
         [this.state.nodeId]: 0,

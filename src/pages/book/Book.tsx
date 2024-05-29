@@ -109,13 +109,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
   };
   constructor(props: BookProps) {
     super(props);
-    console.log(this.booksMap);
     const LS = getLocalStorage(this.props.auth.user.username);
-    console.log(
-      LS,
-      this.booksMap[`book${LS.chapter}`],
-      this.booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]
-    );
     this.state = {
       armoryOpen: false,
       // get all nodes from json import and .map in render

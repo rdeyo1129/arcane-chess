@@ -200,11 +200,13 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       gameOverType: '',
       whiteSetup: this.props.config.whiteSetup,
       blackSetup: this.props.config.blackSetup,
-      fen: `8/1P6/5k2/8/8/8/4K2p/8 w - - 0 1`,
+      fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
+      fenHistory: [
+        `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
+      ],
       pvLine: [],
       historyPly: 0,
       history: [],
-      fenHistory: [`8/1P6/5k2/8/8/8/4K2p/8 w - - 0 1`],
       thinking: SearchController.thinking,
       engineLastMove: [],
       thinkingTime: this.props.config.thinkingTime,
@@ -666,10 +668,10 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
         }),
         () => {
           this.setState({
-            // fen: `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
-            // fenHistory: [
-            //   `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
-            // ],
+            fen: `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
+            fenHistory: [
+              `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
+            ],
             orientation: this.state.playerColor,
             selectedSide: this.state.playerColor,
           });
@@ -680,7 +682,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
 
   render() {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
-    const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
@@ -874,7 +875,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                     swapType: '',
                                   });
                                 } else {
-                                  console.log(key);
                                   this.setState({
                                     placingRoyalty: 0,
                                     placingPiece:
@@ -1156,15 +1156,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                         this.arcaneChess().makeUserMove(
                           orig,
                           dest,
-                          getLocalStorage(auth.user.username).config
-                            .autopromotion === 'Select'
-                            ? 0
-                            : pieces[
-                                `${this.state.playerColor[0]}${
-                                  getLocalStorage(auth.user.username).config
-                                    .autopromotion
-                                }`
-                              ],
+                          this.state.placingPromotion,
                           this.state.swapType,
                           this.state.placingRoyalty
                         );
@@ -1223,10 +1215,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               '',
                               this.state.placingRoyalty
                             );
-                            console.log('parsed', parsed, PrMove(parsed));
                             if (parsed === 0) {
                               console.log('parsed === 0');
-                              // this.arcaneChess().takeUserMove();
                               return;
                             }
                             this.setState(

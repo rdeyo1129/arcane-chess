@@ -329,7 +329,18 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           'panel-1'
         ].preset,
       promotionModalOpen: false,
-      placingPromotion: 0,
+      placingPromotion:
+        getLocalStorage(this.props.auth.user.username).config.autopromotion ===
+        'Select'
+          ? 0
+          : pieces[
+              `${
+                getLocalStorage(this.props.auth.user.username).config.color[0]
+              }${
+                getLocalStorage(this.props.auth.user.username).config
+                  .autopromotion
+              }`
+            ],
       hint: '',
       theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
       hideCompletedPage:
@@ -780,7 +791,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
 
   render() {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
-    const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
@@ -1274,33 +1284,24 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           this.arcaneChess().makeUserMove(
                             orig,
                             dest,
-                            getLocalStorage(auth.user.username).config
-                              .autopromotion === 'Select'
-                              ? 0
-                              : pieces[
-                                  `${this.state.playerColor[0]}${
-                                    getLocalStorage(auth.user.username).config
-                                      .autopromotion
-                                  }`
-                                ],
+                            this.state.placingPromotion,
                             this.state.swapType,
                             this.state.placingRoyalty
                           );
                         if (isInitPromotion) {
                           this.promotionSelectAsync(() => {
-                            const parsedPromotion =
-                              this.arcaneChess().makeUserMove(
-                                orig,
-                                dest,
-                                this.state.placingPromotion,
-                                this.state.swapType,
-                                this.state.placingRoyalty
-                              );
+                            const parsedMove = this.arcaneChess().makeUserMove(
+                              orig,
+                              dest,
+                              this.state.placingPromotion,
+                              this.state.swapType,
+                              this.state.placingRoyalty
+                            );
                             if (!PrMove(parsed)) {
                               console.log('invalid move');
                             }
                             this.normalMoveStateAndEngineGo(
-                              parsedPromotion.parsed,
+                              parsedMove.parsed,
                               orig,
                               dest
                             );

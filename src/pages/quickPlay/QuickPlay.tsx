@@ -271,14 +271,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     GenerateMoves();
 
     new Promise((resolve) => {
-      setTimeout(() => {
-        SearchController.thinking = BOOL.TRUE;
-        const engineResult = arcaneChess().engineReply(
-          this.state.thinkingTime,
-          this.state.engineDepth
-        );
-        resolve(engineResult);
-      }, this.state.thinkingTime);
+      arcaneChess()
+        .engineReply(this.state.thinkingTime, this.state.engineDepth)
+        .then(resolve);
     })
       .then((reply) => {
         this.setState(
@@ -373,7 +368,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
         SearchController.thinking = BOOL.TRUE;
         const engineResult = arcaneChess().engineSuggestion(
           this.state.thinkingTime,
-          4,
+          8,
           this.state.playerColor,
           level
         );

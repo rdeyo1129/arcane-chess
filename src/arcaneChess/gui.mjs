@@ -305,6 +305,15 @@ export function CheckAndSet() {
   }
 }
 
+export async function PreSearch(thinkingTime, depth) {
+  if (GameController.GameOver === BOOL.FALSE) {
+    SearchController.thinking = BOOL.TRUE;
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    const bestMove = startSearch(thinkingTime, depth);
+    return bestMove;
+  }
+}
+
 export function engineSuggestion(thinkingTime, depth) {
   SearchController.depth = depth;
   SearchController.time = thinkingTime * 1000;
@@ -312,9 +321,9 @@ export function engineSuggestion(thinkingTime, depth) {
   return { bestMove, bestScore, temporalPincer };
 }
 
-export function engineMove(thinkingTime, depth) {
-  SearchController.depth = depth;
-  SearchController.time = thinkingTime;
+export function startSearch(thinkingTime, depth) {
+  SearchController.depth = depth || 8;
+  SearchController.time = thinkingTime * 1000;
   const { bestMove } = SearchPosition();
   MakeMove(bestMove);
   CheckAndSet();

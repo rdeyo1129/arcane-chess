@@ -856,10 +856,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
                     onChange={(val) => {
                       if (this.props.updateConfig)
-                        this.props.updateConfig(
-                          'thinkingTime',
-                          Number(val) * 1000
-                        );
+                        this.props.updateConfig('thinkingTime', Number(val));
                     }}
                   />
                 </div>

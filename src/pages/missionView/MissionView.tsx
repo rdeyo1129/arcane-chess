@@ -379,14 +379,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     GenerateMoves();
 
     new Promise((resolve) => {
-      setTimeout(() => {
-        SearchController.thinking = BOOL.TRUE;
-        const engineResult = arcaneChess().engineReply(
-          this.state.thinkingTime,
-          this.state.engineDepth
-        );
-        resolve(engineResult);
-      }, this.state.thinkingTime);
+      arcaneChess()
+        .engineReply(this.state.thinkingTime, this.state.engineDepth)
+        .then(resolve);
     })
       .then((reply) => {
         this.setState(

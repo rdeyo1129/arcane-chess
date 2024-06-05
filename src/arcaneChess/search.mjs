@@ -122,7 +122,6 @@ export function Quiescence(alpha, beta) {
   }
 
   generatePowers();
-
   GenerateMoves(true, true, 'COMP', 'COMP');
 
   let MoveNum = 0;

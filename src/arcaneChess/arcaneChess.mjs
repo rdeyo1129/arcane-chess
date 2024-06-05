@@ -51,7 +51,7 @@ import {
   validGroundMoves,
   validSummonMoves,
   MakeUserMove,
-  engineMove,
+  PreSearch,
   engineSuggestion,
 } from './gui';
 import { SearchPosition, gameSim } from './search.mjs';
@@ -194,8 +194,8 @@ export default function arcaneChess() {
     ) => {
       return MakeUserMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
     },
-    engineReply: (thinkingTime, depth = 4) => {
-      return engineMove(thinkingTime, depth);
+    engineReply: async (thinkingTime, depth = 4) => {
+      return await PreSearch(thinkingTime, depth);
     },
     engineSuggestion: (thinkingTime, depth = 6, playerColor, level) => {
       const playerArcana =

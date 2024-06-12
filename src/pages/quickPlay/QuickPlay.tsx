@@ -364,16 +364,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       thinking: true,
     });
     new Promise((resolve) => {
-      setTimeout(() => {
-        SearchController.thinking = BOOL.TRUE;
-        const engineResult = arcaneChess().engineSuggestion(
-          this.state.thinkingTime,
-          8,
-          this.state.playerColor,
-          level
-        );
-        resolve(engineResult);
-      }, 3000);
+      arcaneChess()
+        .engineReply(this.state.thinkingTime, this.state.engineDepth)
+        .then(resolve);
     }).then((reply: any) => {
       const { bestMove, temporalPincer } = reply;
 

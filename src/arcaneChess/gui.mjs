@@ -315,7 +315,7 @@ export async function PreSearch(thinkingTime, depth) {
 }
 
 export function engineSuggestion(thinkingTime, depth) {
-  SearchController.depth = depth;
+  SearchController.depth = 8;
   SearchController.time = thinkingTime * 1000;
   const { bestMove, bestScore, temporalPincer } = SearchPosition();
   return { bestMove, bestScore, temporalPincer };

@@ -234,13 +234,19 @@ export function CheckResult(preset = GameBoard.preset) {
   }
 
   if (preset === 'CAPALL') {
-    if (GameBoard.material[COLOURS.WHITE] === 150000) {
+    if (
+      GameBoard.material[COLOURS.WHITE] === 150000 ||
+      GameBoard.material[COLOURS.WHITE] === 0
+    ) {
       return {
         gameOver: true,
         gameResult: 'black mates (all white material captured)',
       };
     }
-    if (GameBoard.material[COLOURS.BLACK] === 150000) {
+    if (
+      GameBoard.material[COLOURS.BLACK] === 150000 ||
+      GameBoard.material[COLOURS.BLACK] === 0
+    ) {
       return {
         gameOver: true,
         gameResult: 'white mates (all black material captured)',
@@ -314,7 +320,7 @@ export async function PreSearch(thinkingTime, depth) {
   }
 }
 
-export function engineSuggestion(thinkingTime, depth) {
+export function engineSuggestion(thinkingTime) {
   SearchController.depth = 8;
   SearchController.time = thinkingTime * 1000;
   const { bestMove, bestScore, temporalPincer } = SearchPosition();

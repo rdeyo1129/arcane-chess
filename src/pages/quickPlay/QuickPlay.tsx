@@ -28,7 +28,6 @@ import { GameBoard, InCheck, TOSQ, FROMSQ } from '../../arcaneChess/board.mjs';
 import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import {
   prettyToSquare,
-  BOOL,
   PIECES,
   ARCANE_BIT_VALUES,
   COLOURS,
@@ -42,6 +41,7 @@ import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
 import {
   whiteArcaneConfig,
   blackArcaneConfig,
+  clearArcanaConfig,
 } from 'src/arcaneChess/arcaneDefs.mjs';
 
 import Button from '../../components/Button/Button';
@@ -242,6 +242,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     this.arcaneChess = () => {
       return arcaneChess();
     };
+    clearArcanaConfig();
     this.chessgroundRef = React.createRef();
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
@@ -360,12 +361,16 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
   };
 
   getHintAndScore = (level: number) => {
-    this.setState({
-      thinking: true,
-    });
+    // this.setState({
+    //   thinking: true,
+    // });
     new Promise((resolve) => {
       arcaneChess()
-        .engineReply(this.state.thinkingTime, this.state.engineDepth)
+        .engineSuggestion(
+          this.state.thinkingTime,
+          this.state.playerColor,
+          level
+        )
         .then(resolve);
     }).then((reply: any) => {
       const { bestMove, temporalPincer } = reply;
@@ -630,6 +635,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     //     royaltyE: {},
     //   },
     // });
+    clearArcanaConfig();
   }
 
   componentDidMount() {

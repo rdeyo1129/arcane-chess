@@ -19,6 +19,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
     this.slogans = [
       'You wanted the Knook and we heard you.',
       'Initiative. Formulation. Execution.',
+      'As in war, so in life.',
       'Is this theory?',
       "This time it's personal.",
       "Let's see a more advanced setup.",
@@ -107,9 +108,9 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
             <div className="intro">
               <h3>
                 Education in Chess has to be an education in independent
-                thinking and judgment. Chess must not be memorized. - Emanuel
-                Lasker
+                thinking and judgment. Chess must not be memorized.
               </h3>
+              <h5>&emsp; - Emanuel Lasker, Second World Chess Champion</h5>
             </div>
             {/* <img className="image" src={'/assets/hero.webp'} alt="" /> */}
             {/* <div className="intro">

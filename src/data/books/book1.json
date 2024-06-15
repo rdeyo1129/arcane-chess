@@ -1027,13 +1027,13 @@
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "",
-    "theme": "red",
+    "theme": "brown",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "A critical skill to help begin your journey in Chess is communication. Ask yourself the important questions. Start with inquires like: “What is story is the position telling me?”, or “Why did I just play that move?”.",
+        "panelText": "A critical skill to help begin your journey in Chess is communication. Ask yourself the important questions. Start with inquires like: “What story is being told in this position?”, or “Why did I just play that move?”. Be observational.",
         "arrowsCircles": [],
         "royalties": {
           "royaltyQ": {},
@@ -1730,7 +1730,7 @@
           "royaltyE": {}
         },
         "preset": "CAPALL",
-        "whiteArcane": {},
+        "whiteArcane": { "modsIMP": 1, "modsORA": 1, "modsTEM": 2 },
         "blackArcane": {},
         "config": {},
         "correctMoves": [""],
@@ -1879,8 +1879,8 @@
     "theme": "brown",
     "panels": {
       "panel-1": {
-        "fen": "2zzrr2/8/8/8/8/8/8/1ZZNNUU1 w - - 0 1",
-        "fenHistory": ["2zzrr2/8/8/8/8/8/8/1ZZNNUU1 w - - 0 1"],
+        "fen": "2zzrr2/4pp2/8/8/8/8/1PPP4/1ZZNNUU1 w - - 0 1",
+        "fenHistory": ["2zzrr2/4pp2/8/8/8/8/1PPP4/1ZZNNUU1 w - - 0 1"],
         "history": [],
         "panelText": "",
         "royalties": {

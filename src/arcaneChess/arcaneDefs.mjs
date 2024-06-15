@@ -63,6 +63,15 @@ export const setBlackArcana = (config) => {
   return blackArcaneConfig;
 };
 
+export const clearArcanaConfig = () => {
+  Object.keys(whiteArcaneConfig).forEach(
+    (key) => delete whiteArcaneConfig[key]
+  );
+  Object.keys(blackArcaneConfig).forEach(
+    (key) => delete blackArcaneConfig[key]
+  );
+};
+
 export const activateDyad = () => {
   // GameBoard.dyad = type;
 };

@@ -1,10 +1,8 @@
-import { GameBoard, PrintBoard, ParseFen, randomize } from './board';
-import { PrMove, PrintMoveList } from './io';
-import { GenerateMoves, generatePowers, herrings } from './movegen';
+import { GameBoard } from './board';
+import { PrMove } from './io';
+import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { BOOL } from './defs';
-import { InCheck } from './board';
-import { validMoves, validGroundMoves } from './gui';
 
 let perft_leafNodes;
 
@@ -44,7 +42,7 @@ export function Perft(depth) {
   return;
 }
 
-export function PerftTest(depth, fen) {
+export function PerftTest(depth) {
   console.log('Starting Test To Depth:' + depth);
   perft_leafNodes = 0;
 

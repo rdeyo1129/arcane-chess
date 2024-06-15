@@ -30,7 +30,6 @@ import { GameBoard, InCheck, TOSQ, FROMSQ } from '../../arcaneChess/board.mjs';
 import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import {
   prettyToSquare,
-  BOOL,
   PIECES,
   ARCANE_BIT_VALUES,
   COLOURS,
@@ -468,12 +467,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   };
 
   getHintAndScore = (level: number) => {
-    this.setState({
-      thinking: true,
-    });
+    // this.setState({
+    //   thinking: true,
+    // });
     new Promise((resolve) => {
       arcaneChess()
-        .engineReply(this.state.thinkingTime, this.state.engineDepth)
+        .engineSuggestion(
+          this.state.thinkingTime,
+          this.state.playerColor,
+          level
+        )
         .then(resolve);
     }).then((reply: any) => {
       const { bestMove, temporalPincer } = reply;

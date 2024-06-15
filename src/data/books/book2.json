@@ -2166,7 +2166,7 @@
         "fen": "8/8/3k4/8/3K4/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/3k4/8/3K4/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "Consider the following position. Imagine objective here is to get your King to the last rank. What if it's white's turn?",
+        "panelText": "Consider the following position. Imagine that the objective here is to get your King to the last rank. What if it's white's turn?",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
@@ -2192,7 +2192,7 @@
         "fen": "8/8/3k4/8/4K3/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/3k4/8/4K3/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "Consider the following position. Imagine objective here is to get your King to the last rank. What if it's white's turn?",
+        "panelText": "Consider the following position. Imagine that the objective here is to get your King to the last rank. What if it's white's turn?",
         "arrowsCircles": [
           {
             "orig": "d4",
@@ -2444,7 +2444,7 @@
         "fen": "8/3k4/8/8/3K4/8/3P4/8 w - - 0 1",
         "fenHistory": ["8/3k4/8/8/3K4/8/3P4/8 w - - 0 1"],
         "history": [],
-        "panelText": "Let's take a look at a real, more advanced setup. This is the most common endgame motif you will see. Pay close attention to this sequence:",
+        "panelText": "Let's take a look at a real, more advanced setup. This is a common endgame motif. Pay close attention to this sequence:",
         "arrowsCircles": [
           {
             "orig": "d3",

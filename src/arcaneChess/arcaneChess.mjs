@@ -197,7 +197,7 @@ export default function arcaneChess() {
     engineReply: async (thinkingTime, depth = 4) => {
       return await PreSearch(thinkingTime, depth);
     },
-    engineSuggestion: (thinkingTime, depth = 6, playerColor, level) => {
+    engineSuggestion: async (thinkingTime, playerColor, level) => {
       const playerArcana =
         playerColor === 'white' ? whiteArcaneConfig : blackArcaneConfig;
       if (level === 1) {
@@ -209,7 +209,7 @@ export default function arcaneChess() {
       if (level === 3) {
         playerArcana.modsTEM -= 1;
       }
-      return engineSuggestion(thinkingTime, depth);
+      return await engineSuggestion(thinkingTime);
     },
     takeBackMove: (halfPly, side) => {
       if (side === 'white') {

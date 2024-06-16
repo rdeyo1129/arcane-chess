@@ -2939,7 +2939,7 @@
         "fen": "4k3/2K5/8/3P4/8/8/8/8 w - - 0 1",
         "fenHistory": ["4k3/2K5/8/3P4/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "The final nail in the coffin. Take note how white controls d8... the promotion square. The Pawn is protected for the rest of his journey.",
+        "panelText": "The final nail in the coffin. Take note how white controls d8... the promotion square. The Pawn is protected for the rest of its journey.",
         "arrowsCircles": [
           {
             "orig": "d6",

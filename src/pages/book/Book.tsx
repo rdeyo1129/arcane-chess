@@ -447,6 +447,14 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                             .map((p: string, i: number) => (
                               <p className="description-paragraph" key={i}>
                                 {p}
+                                {this.state.book[this.state.selectedSwatch]
+                                  .boss && (
+                                  <span style={{ color: 'red' }}>
+                                    This is a boss level. Completing this
+                                    mission will reset your progress in this
+                                    chapter.
+                                  </span>
+                                )}
                               </p>
                             ))}
                         </div>

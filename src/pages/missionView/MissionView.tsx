@@ -43,6 +43,7 @@ import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
 import {
   whiteArcaneConfig,
   blackArcaneConfig,
+  clearArcanaConfig,
 } from 'src/arcaneChess/arcaneDefs.mjs';
 
 import Button from '../../components/Button/Button';
@@ -349,6 +350,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.arcaneChess = () => {
       return arcaneChess();
     };
+    clearArcanaConfig();
     this.chessgroundRef = React.createRef();
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }

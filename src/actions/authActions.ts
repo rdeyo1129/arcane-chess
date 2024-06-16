@@ -81,7 +81,7 @@ export const loginUser =
         const existingGuestUser = getGuestUserFromLocalStorage();
         console.log('Existing Guest User: ', existingGuestUser); // Log for debugging
 
-        if (userData.guest || getLocalStorage(userData.username) === null) {
+        if (userData.guest) {
           if (
             existingGuestUser &&
             existingGuestUser.data.auth &&
@@ -120,7 +120,6 @@ export const loginUser =
               },
               chapter: 0,
               config: {},
-              // nodeScores: {},
               lessonsCompleted: [],
               inventory: {},
               nodeId: '',

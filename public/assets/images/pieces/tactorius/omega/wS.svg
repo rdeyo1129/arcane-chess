@@ -1,6 +1,7 @@
-<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <g id="2ws" transform="matrix(1.538462 0 0 1.538462 0 0)">
-            <path transform="matrix(1 0 0 1 0 0)" d="M13 2.5C 13 4.5 7.5 4.5 7.5 11.5C 7.5 15.328 7.4461 20.5 6 20.5C 4 20.5 2.9548 22.5 4.5 22.5L4.5 22.5L13 22.5L21.5 22.5C 23.045 22.5 22 20.5 20 20.5C 18.554 20.5 18.5 15.328 18.5 11.5C 18.5 4.5 13 4.5 13 2.5z" stroke-width="1" style="stroke: rgb(255, 255, 255); fill: rgb(255, 255, 255);"/>
-            <path transform="matrix(1 0 0 1 0 0)" d="M13 12L13 18L13 12zM10 12L16 12" stroke-width="2" style="fill: rgb(255, 255, 255); stroke: rgb(242, 117, 0);"/>
-        </g>
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
+  <g id="g4008" style="fill:#f9f9f9" transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, -5.684341886080802e-14, 2.842170943040401e-14)">
+    <path id="path4002" d="M 452.64407,1857.0848 H 1598.1356 L 1619.0861,1747.3845 1025.3899,485.9661 428.62548,1747.3845 Z" style="fill-opacity: 1; stroke-width: 75; stroke-linecap: butt; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; fill: rgb(255, 255, 255); stroke: rgb(199, 124, 53);"/>
+    <path id="path4006" d="m 770.38491,1491.53 c 51.10242,249.2065 348.15929,273.6358 459.93219,104.1356 112.5284,-190.019 -59.6375,-369.7617 -186.5764,-374.2373 138.0477,110.2442 136.4872,221.499 64.2859,311.0813 -93.6905,83.4603 -233.56875,68.6906 -337.64169,-40.9796 z" style="fill-opacity: 1; stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1; stroke: rgb(128, 128, 128); fill: rgb(199, 124, 53);"/>
+  </g>
 </svg>

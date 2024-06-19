@@ -218,8 +218,8 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       thinking: SearchController.thinking,
       engineLastMove: [],
       thinkingTime: 500,
-      whiteFaction: 'normal',
-      blackFaction: 'normal',
+      whiteFaction: 'lambda',
+      blackFaction: 'lambda',
       selected: 'white',
       config: {
         // todo disable if no abilities selected

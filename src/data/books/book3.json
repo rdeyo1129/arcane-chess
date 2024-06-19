@@ -11,7 +11,7 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
-    "theme": "red",
+    "theme": "green",
     "panels": {
       "panel-1": {
         "fen": "3k4/3P4/3K4/8/8/8/8/8 w - - 0 1",
@@ -390,7 +390,7 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
-    "theme": "",
+    "theme": "green",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1",
@@ -627,5 +627,43 @@
       }
     },
     "boss": false
+  },
+  "mission-1": {
+    "id": "mission-1",
+    "title": "Fair is Fair",
+    "time": [
+      [180, 15],
+      [45, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "theme": "green",
+    "panels": {
+      "panel-1": {
+        "fen": "3rk3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1",
+        "fenHistory": ["3rk3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": true
   }
 }

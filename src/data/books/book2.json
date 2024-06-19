@@ -2994,13 +2994,40 @@
     "reward": [],
     "prereq": "lesson-6",
     "opponent": "",
-    "theme": "orange",
-    "panels": {},
+    "theme": "blue",
+    "panels": {
+      "panel-1": {
+        "fen": "3k4/8/8/8/8/8/3K4/3P4 w - - 0 1",
+        "fenHistory": ["3k4/8/8/8/8/8/3K4/3P4 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
     "boss": false
   },
   "temple-1": {
     "id": "temple-1",
-    "title": "Temple of Overkill I",
+    "title": "Temple of Overkills I",
     "time": [
       [90, 5],
       [45, 5]
@@ -3274,5 +3301,124 @@
       }
     },
     "boss": false
+  },
+  "mission-2": {
+    "id": "mission-2",
+    "title": "A Little Push",
+    "time": [
+      [400, 0],
+      [140, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "lesson-3",
+    "opponent": "",
+    "theme": "blue",
+    "panels": {
+      "panel-1": {
+        "fen": "3k4/2ppp3/8/8/8/2PPP3/3K4/8 w - - 0 1",
+        "fenHistory": ["3k4/2ppp3/8/8/8/2PPP3/3K4/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "config": {},
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": [""]
+      }
+    },
+    "boss": false
+  },
+  "mission-3": {
+    "id": "mission-3",
+    "title": "Swindler's Plunder",
+    "time": [
+      [270, 2],
+      [70, 1]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "theme": "blue",
+    "panels": {
+      "panel-1": {
+        "fen": "2nnkn2/2pppp2/8/8/8/8/2PPPP2/2BBKR2 w - - 0 1",
+        "fenHistory": ["2nnkn2/2pppp2/8/8/8/8/2PPPP2/2BBKR2 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "config": {},
+        "viewOnly": true,
+        "orientation": "white",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "correctMoves": [""]
+      }
+    },
+    "boss": false
+  },
+  "mission-4": {
+    "id": "mission-4",
+    "title": "Ghost a Ghost",
+    "time": [
+      [300, 4],
+      [90, 2]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "theme": "blue",
+    "panels": {
+      "panel-1": {
+        "fen": "3wk3/3pp3/8/8/8/8/3PP3/3SK3 w - - 0 1",
+        "fenHistory": ["3wk3/3pp3/8/8/8/8/3PP3/3SK3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": true
   }
 }

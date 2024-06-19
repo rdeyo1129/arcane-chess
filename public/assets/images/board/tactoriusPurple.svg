@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 800">
+  <g id="brown-board">
+    <!-- <g id="Light" fill="rgba(128, 34, 34, .7)"> -->
+    <g id="Light" fill="#44006DBB">
+    <!-- #A57FD4 purple -->
+      <rect width="800" height="800"/>
+    </g>
+    <g id="Frame" fill="none">
+      <rect width="800" height="800"/>
+    </g>
+    <!-- <g id="Dark" fill="rgba(34, 34, 34, .7)"> -->
+    <g id="Dark" fill="#360045BB">
+    <!-- #585858 grey -->
+      <g id="raz">
+        <g id="dva">
+          <g id="tri">
+            <rect x="100" width="100" height="100"/>
+            <rect x="300" width="100" height="100"/>
+            <rect x="500" width="100" height="100"/>
+            <rect x="700" width="100" height="100"/>
+          </g>
+        <use transform="translate(-100,100)" xlink:href="#tri"/>
+      </g>
+      <use transform="translate(0,200)" xlink:href="#dva"/>
+    </g>
+    <use transform="translate(0,400)" xlink:href="#raz"/>
+    </g>
+  </g>
+</svg>
+
+<!-- color  light  dark   bg     faction glow -->
+<!-- green  588157 3a5a40 132a13 760078    -->
+<!-- blue   1c7293 065a82 00072d 760078   -->
+<!-- orange BF7A3F 543512 BF7A3F F27500  orange -->
+<!-- yellow c0a409 957f07 2b2402 FFD500   -->
+<!-- red    a7333f 74121d 38040e B30000   -->
+<!-- purple 44006D 360045 2c0735 760078  darkorchid -->
+
+<!-- sage steel #456743 #6E8189 brown #7f4f1a #b87d48 -->

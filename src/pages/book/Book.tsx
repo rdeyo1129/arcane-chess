@@ -367,8 +367,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     //   console.log('hello', move);
                     // }}
                     resizable={true}
-                    wFaction={'normal'}
-                    bFaction={'normal'}
+                    wFaction={'mu'}
+                    bFaction={'nu'}
                     // wRoyalty={this.state.wRoyalty}
                     // bRoyalty={this.state.bRoyalty}
                     // wVisible={this.state.wVisCount === 0}

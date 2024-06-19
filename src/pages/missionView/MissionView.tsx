@@ -296,8 +296,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         getLocalStorage(this.props.auth.user.username).config.thinkingTime *
         1000,
       engineDepth: getLocalStorage(this.props.auth.user.username).config.depth,
-      whiteFaction: 'normal',
-      blackFaction: 'normal',
+      whiteFaction: 'chi',
+      blackFaction: 'mu',
       selected: 'a',
       config: {
         a: { disabled: false, powers: {}, picks: 0 },

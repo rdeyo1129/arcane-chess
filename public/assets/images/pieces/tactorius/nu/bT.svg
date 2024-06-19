@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
+  <g id="g3831-3" transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)">
+    <g style="fill:#000000" transform="matrix(0.95,0,0,-1,85.911883,2038.8062)" id="g4-6">
+      <path style="stroke: rgb(128, 128, 128);" d="M 1024 205 L 448 205 L 509 570 C 517.96 817.412 523.021 787.475 522.354 957.475 C 1544.149 930.381 357.702 1005.551 1520.871 966.143 C 1502.182 787.465 1546.729 808.734 1539 570 L 1600 205 L 1024 205 Z" id="path6-7"/>
+    </g>
+    <path id="path3825-5" d="M 616.1356,1206.2373 V 616.1356 l 364.47457,-10e-6 v 225.62712 c 1.31577,139.37991 168.49423,138.10351 164.88133,8.67797 V 616.1356 l 381.8306,-10e-6 -8.678,590.10171" style="fill-opacity: 1; stroke-width: 75; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; stroke: rgb(128, 128, 128); fill: rgb(255, 255, 255);"/>
+  </g>
+  <g id="g3831" transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)">
+    <g style="fill:#000000" transform="matrix(0.95,0,0,-1,85.911883,2038.8062)" id="g4">
+      <path style="stroke: rgb(128, 128, 128); fill: rgb(63, 72, 204);" d="M 577,529 551,373 696,457 Z M 1024,205 H 448 l 61,365 c 8.96045,247.41243 9.1764,217.47457 13.35415,387.47457 1021.79475,-27.0931 -137.14036,13.37476 1026.02845,-26.03389 -4.9633,-182.51312 2.5568,-122.70622 -5.172,-361.44068 l 58.8947,-365 z m 0,74 h 489 l -50,298 c -144,56 -290.3333,84 -439,84 -148.66667,0 -295,-28 -439,-84 L 535,279 Z m 447,250 26,-156 -145,84 z m -586,-27 141,84 137,-86 -141,-84 z" id="path6"/>
+    </g>
+    <path id="path3827" d="m 648.16949,1360.5231 8.0339,-301.8113 823.72881,8.678 0.1648,293.1333 c -318.4411,-98.8908 -499.30764,-99.0114 -831.92751,0 z" style="fill-opacity: 1; stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1; stroke: rgb(255, 255, 255);"/>
+    <path id="path3825" d="M 616.1356,1206.2373 V 616.1356 l 364.47457,-10e-6 v 225.62712 c 1.31577,139.37991 168.49423,138.10351 164.88133,8.67797 V 616.1356 l 379.8306,-10e-6 -8.678,590.10171" style="fill-opacity: 1; stroke-width: 74; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; stroke: rgb(63, 72, 204);"/>
+  </g>
+</svg>

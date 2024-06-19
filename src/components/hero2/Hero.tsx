@@ -51,12 +51,12 @@ export default class Hero extends React.Component {
       'w-piece',
       'x-piece',
     ];
-    const faction = ['normal', 'chi', 'mu', 'nu', 'sigma', 'omega', 'lambda'];
+    const faction = ['chi', 'mu', 'nu', 'sigma', 'omega', 'lambda'];
 
     return {
       piece: piece[this.getRandomNumber(0, 14)],
       color: color[this.getRandomNumber(0, 1)],
-      faction: faction[this.getRandomNumber(0, 6)],
+      faction: faction[this.getRandomNumber(0, 2)],
     };
   };
 
@@ -64,14 +64,13 @@ export default class Hero extends React.Component {
     const piece = this.randomizeHelper(false)?.piece;
 
     // ${this.randomizeHelper(false)?.faction}
-    // ${this.randomizeHelper(false)?.color}
 
     return this.randomizeHelper(true) ? (
       <div
         className={`
               ${piece} 
               ${this.randomizeHelper(false)?.color}
-              normal
+              ${this.randomizeHelper(false)?.faction}
             `}
         style={{
           position: 'relative',

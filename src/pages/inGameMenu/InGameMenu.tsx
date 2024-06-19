@@ -411,10 +411,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
     // this.puzzleWorker.onmessage = this.handleWorkerMessage.bind(this);
   }
 
-  perftTest = (fen: string) => {
+  perftTest = () => {
     PrintPieceLists();
     PrintBoard();
-    PerftTest(3, fen);
+    PerftTest(3);
   };
 
   setFen = (fen: string) => {

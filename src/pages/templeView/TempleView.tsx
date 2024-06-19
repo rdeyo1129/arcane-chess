@@ -371,10 +371,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     );
   };
 
-  perftTest = (fen: string) => {
+  perftTest = () => {
     PrintPieceLists();
     PrintBoard();
-    PerftTest(3, fen);
+    PerftTest(3);
   };
 
   setFen = (fen: string) => {

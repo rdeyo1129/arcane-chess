@@ -863,21 +863,44 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                           onClick={() => {
                             // this.state.nodeObject[key];
                             const nodeA = this.state.bookObject[key];
+                            const panelA = nodeA.panels['panel-1'];
                             // this.booksMap[this.state.currBook][node.id];
-                            this.setState({
-                              currNode: node.id,
-                              currPanel: '',
-                              nodeObject: nodeA.panels,
-                              panelObject: nodeA.panels['panel-1'],
-                              title: nodeA.title,
-                              time: nodeA.time,
-                              nodeText: nodeA.nodeText,
-                              panelText: nodeA.panels['panel-1'].panelText,
-                              reward: nodeA.reward,
-                              prereq: nodeA.prereq, // split node name and decrement
-                              opponent: nodeA.opponent,
-                              theme: nodeA.theme,
-                            });
+                            const newRoyalties = JSON.parse(
+                              JSON.stringify(panelA.royalties)
+                            );
+                            const newWhiteArcane = JSON.parse(
+                              JSON.stringify(panelA.whiteArcane)
+                            );
+                            const newBlackArcane = JSON.parse(
+                              JSON.stringify(panelA.blackArcane)
+                            );
+                            this.setState(
+                              {
+                                currNode: node.id,
+                                currPanel: 'panel-1',
+                                nodeObject: nodeA.panels,
+                                panelObject: {
+                                  ...panelA,
+                                  royalties: newRoyalties,
+                                  whiteArcane: newWhiteArcane,
+                                  blackArcane: newBlackArcane,
+                                },
+                                title: nodeA.title,
+                                time: nodeA.time,
+                                nodeText: nodeA.nodeText,
+                                panelText: nodeA.panels['panel-1'].panelText,
+                                reward: nodeA.reward,
+                                prereq: nodeA.prereq, // split node name and decrement
+                                opponent: nodeA.opponent,
+                                theme: nodeA.theme,
+                                fen: panelA.fen,
+                                fenHistory: [...panelA.fenHistory],
+                                history: [...panelA.history],
+                              },
+                              () => {
+                                ParseFen(panelA.fen);
+                              }
+                            );
                           }}
                         >
                           {node.id}
@@ -1498,36 +1521,38 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                           ...(panelA.arrowsCircles ?? []),
                         ]);
 
-                        this.setState((prevState) => ({
-                          ...prevState,
-                          currPanel: key,
-                          panelObject: {
-                            ...panelA,
+                        this.setState(
+                          (prevState) => ({
+                            ...prevState,
+                            currPanel: key,
+                            panelObject: {
+                              ...panelA,
+                              royalties: newRoyalties,
+                              whiteArcane: newWhiteArcane,
+                              blackArcane: newBlackArcane,
+                            },
                             royalties: newRoyalties,
-                            whiteArcane: newWhiteArcane,
-                            blackArcane: newBlackArcane,
-                          },
-                          royalties: newRoyalties,
-                          panelText: panelA.panelText,
-                          fen: panelA.fen,
-                          fenHistory: [...panelA.fenHistory],
-                          history: [...panelA.history],
-                          preset: panelA.preset,
-                          description: panelA.panelText,
-                          config: {
-                            ...prevState.config,
-                            W: {
-                              ...prevState.config.W,
-                              arcana: newWhiteArcane,
+                            panelText: panelA.panelText,
+                            fen: panelA.fen,
+                            fenHistory: [...panelA.fenHistory],
+                            history: [...panelA.history],
+                            preset: panelA.preset,
+                            description: panelA.panelText,
+                            config: {
+                              ...prevState.config,
+                              W: {
+                                ...prevState.config.W,
+                                arcana: newWhiteArcane,
+                              },
+                              BK: {
+                                ...prevState.config.BK,
+                                arcana: newBlackArcane,
+                              },
                             },
-                            BK: {
-                              ...prevState.config.BK,
-                              arcana: newBlackArcane,
-                            },
-                          },
-                          correctMoves: [...panelA.correctMoves],
-                        }));
-                        ParseFen(panelA.fen);
+                            correctMoves: [...panelA.correctMoves],
+                          }),
+                          () => ParseFen(panelA.fen)
+                        );
                       }}
                     >
                       {key}

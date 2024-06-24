@@ -130,7 +130,7 @@ export const POWERBIT = {
   swapADJ: 4,
   // 11 yellow
   modsCON: 1, // passive
-  modsOFF: 2, // active
+  modsOFF: 2, // active // todo expand to it's own section
   modsFUG: 4, // inherent
   modsRAN: 8, // inherent
   modsINH: 16, // inherent

@@ -211,8 +211,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       engineLastMove: [],
       thinkingTime: this.props.config.thinkingTime,
       engineDepth: this.props.config.engineDepth,
-      whiteFaction: 'chi',
-      blackFaction: 'nu',
+      whiteFaction: 'normal',
+      blackFaction: 'normal',
       selected: 'a',
       config: {
         a: { disabled: false, powers: {}, picks: 0 },

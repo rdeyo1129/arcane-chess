@@ -724,8 +724,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     // bVisible={this.state.bVisCount === 0}
                     // width={520}
                     // height={520}
-                    width={480}
-                    height={480}
+                    width={'100%'}
+                    height={'100%'}
                     // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
                     // don't, just go by the page type
                     // width={360}

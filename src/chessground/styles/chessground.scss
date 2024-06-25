@@ -268,7 +268,7 @@ cg-board square.current-premove {
 }
 .armory-board .cg-wrap piece {
   width: 12.5%;
-  height: 25%;
+  height: 12.5%;
 }
 .connect4-board .cg-wrap piece {
   width: 20%;
@@ -324,7 +324,7 @@ cg-board square.move-dest:hover {
 }
 
 .cg-wrap coords.side {
-  height: 480px;
+  height: 100%;
   right: 0;
   top: 0;
   flex-flow: column-reverse;
@@ -338,7 +338,7 @@ cg-board square.move-dest:hover {
   bottom: 0;
   left: 0;
   flex-flow: row;
-  width: 480px;
+  width: 100%;
 }
 .cg-wrap coords.bottom.black {
   flex-flow: row-reverse;

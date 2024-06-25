@@ -754,7 +754,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             }
           />
           <div
-            className="mission-view"
+            className="quickplay-view"
             style={{
               background:
                 this.state.theme === 'black'
@@ -949,7 +949,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               </div>
             </div>
             <div className="time-board-time">
-              <div className="board-frame"></div>
               <div className="board-view blue-board">
                 <Chessground
                   // theme={this.state.theme}
@@ -969,8 +968,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     // autoCastle: true,
                     // dests: this.arcaneChess().getGroundMoves(),
                   }}
-                  width={480}
-                  height={480}
+                  width={'100%'}
+                  height={'100%'}
                   check={InCheck() ? true : false}
                   animation={{
                     enabled: true,
@@ -1317,7 +1316,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   }}
                 />
               </div>
-              <div className="board-frame"></div>
             </div>
             <div className="nav-history-buttons-player">
               <div className="nav">

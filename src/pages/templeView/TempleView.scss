@@ -4,12 +4,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   .temple-view {
     width: 100%;
     height: 100vh;
-    max-height: 574px;
+    max-height: 960px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -52,27 +52,19 @@
       }
     }
     .time-board-time {
-      width: 480px;
-      height: 100vh;
-      max-height: 574px;
-      // overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      .opponent-time {
+      height: calc(100% - 10%);
+      max-height: 960px;
+      aspect-ratio: 1;
+      position: relative;
+      .board-view {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         display: flex;
+        justify-content: center;
         align-items: center;
-        width: 100%;
-        height: 100%;
-        // background: #22222288;
-      }
-      .player-time {
-        display: flex;
-        align-items: center;
-        flex-direction: row-reverse;
-        width: 100%;
-        height: 100%;
-        // background: #33333388;
-        text-align: right;
       }
     }
     .temple-clock-buttons {

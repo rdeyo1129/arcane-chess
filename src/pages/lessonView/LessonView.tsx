@@ -655,7 +655,6 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                 </div>
               </div>
               <div className="time-board-time">
-                <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
                 <div className={`board-view ${this.state.theme}-board`}>
                   <Chessground
                     forwardedRef={this.chessgroundRef}
@@ -665,8 +664,8 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     resizable={true}
                     wFaction={this.state.whiteFaction}
                     bFaction={this.state.blackFaction}
-                    width={480}
-                    height={480}
+                    width={'100%'}
+                    height={'100%'}
                     animation={{
                       enabled: true,
                       duration: 200,
@@ -700,7 +699,6 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     lastMove={this.state.lastMove}
                   />
                 </div>
-                <div className="player-time"></div>
               </div>
               <div className="temple-clock-buttons">
                 <div className="lesson-text">

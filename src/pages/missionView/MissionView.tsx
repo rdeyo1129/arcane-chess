@@ -1093,8 +1093,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       // autoCastle: true,
                       // dests: this.arcaneChess().getGroundMoves(),
                     }}
-                    width={480}
-                    height={480}
+                    width={'100%'}
+                    height={'100%'}
                     check={InCheck() ? true : false}
                     animation={{
                       enabled: true,

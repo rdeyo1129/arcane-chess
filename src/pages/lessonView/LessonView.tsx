@@ -263,9 +263,9 @@ class UnwrappedLessonView extends React.Component<Props, State> {
   };
 
   changePanel = (direction: 'inc' | 'dec') => {
+    const LS = getLocalStorage(this.props.auth.user.username);
     this.setState(
       (prevState) => {
-        const LS = getLocalStorage(this.props.auth.user.username);
         const newPanel = prevState.currPanel + (direction === 'inc' ? 1 : -1);
         this.chessgroundRef.current?.setAutoShapes([
           ...(booksMap[`book${LS.chapter}`][`${LS.nodeId}`].panels[
@@ -326,6 +326,23 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         if (!this.state.viewOnly) {
           this.arcaneChess().startGame(
             this.state.fen,
+            booksMap[
+              `book${getLocalStorage(this.props.auth.user.username).chapter}`
+            ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
+              'panel-1'
+            ].whiteArcane,
+            booksMap[
+              `book${getLocalStorage(this.props.auth.user.username).chapter}`
+            ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
+              'panel-1'
+            ].blackArcane,
+            {},
+            'CHESS'
+          );
+          this.setState({});
+        } else {
+          this.arcaneChess().startGame(
+            '8/8/8/8/8/8/8/8 w - - 0 1',
             booksMap[
               `book${getLocalStorage(this.props.auth.user.username).chapter}`
             ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
@@ -488,6 +505,8 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         {},
         'CHESS'
       );
+    } else {
+      this.arcaneChess().startGame('8/8/8/8/8/8/8/8 w - - 0 1');
     }
     const LS = getLocalStorage(this.props.auth.user.username);
     this.chessgroundRef.current?.setAutoShapes([

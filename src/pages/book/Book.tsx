@@ -111,6 +111,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.username);
     this.state = {
+      allNodesUnlocked: false,
       armoryOpen: false,
       // get all nodes from json import and .map in render
       // to conditionally render right side of view depending on current node id]
@@ -146,15 +147,33 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       creditsAnimation: 0,
       theme: this.booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.theme,
     };
+    this.toggleAllNodesUnlocked = this.toggleAllNodesUnlocked.bind(this);
+  }
+
+  toggleAllNodesUnlocked() {
+    this.setState(
+      (prevState) => ({
+        allNodesUnlocked: !prevState.allNodesUnlocked,
+      }),
+      () => console.log(this.state.allNodesUnlocked)
+    );
   }
 
   cubicEaseOut(t: number) {
     return 1 - Math.pow(1 - t, 3);
   }
 
+  componentDidUpdate(prevProps: BookProps, prevState: BookState) {
+    if (this.state.allNodesUnlocked && !prevState.allNodesUnlocked) {
+      this.setState({ allNodesUnlocked: !prevState.allNodesUnlocked });
+    }
+  }
+
   componentDidMount() {
     const targetValue = this.state.reducedScore;
     this.setState({ targetValue });
+
+    (window as any).toggleAllNodesUnlocked = this.toggleAllNodesUnlocked;
 
     const startAnimation = () => {
       const startTime = Date.now();
@@ -291,6 +310,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     const currLS = getLocalStorage(
                       this.props.auth.user.username
                     );
+                    if (this.state.allNodesUnlocked) {
+                      return true;
+                    }
                     if (
                       (_.includes(node.id, 'mission') ||
                         _.includes(node.id, 'temple')) &&

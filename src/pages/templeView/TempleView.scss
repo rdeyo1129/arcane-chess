@@ -52,8 +52,9 @@
       }
     }
     .time-board-time {
-      height: calc(100% - 10%);
+      height: calc(100% - 15%);
       max-height: 960px;
+      min-height: 480px;
       aspect-ratio: 1;
       position: relative;
       .board-view {

@@ -831,7 +831,6 @@ export function GenerateMoves(
                 GameBoard.pieces[sq] === PIECES.EMPTY &&
                 GameBoard.whiteArcane[3] & summonFlag
               ) {
-                console.log('29-14u51-394jt30t9j3t3', userSummonPceRty);
                 addSummonMove(
                   MOVE(
                     0,

@@ -1750,7 +1750,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "mission-1",
     "opponent": "",
     "theme": "brown",
     "panels": {
@@ -1816,7 +1816,7 @@
           "royaltyE": {}
         },
         "preset": "CAPALL",
-        "whiteArcane": {},
+        "whiteArcane": { "modsIMP": 4, "modsORA": 4, "sumnR": 4 },
         "blackArcane": {},
         "config": {},
         "correctMoves": [""],

@@ -469,39 +469,55 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   };
 
   getHintAndScore = (level: number) => {
-    // this.setState({
-    //   thinking: true,
-    // });
-    new Promise((resolve) => {
-      arcaneChess()
-        .engineSuggestion(
-          this.state.thinkingTime,
-          this.state.playerColor,
-          level
-        )
-        .then(resolve);
-    }).then((reply: any) => {
-      const { bestMove, temporalPincer } = reply;
+    this.setState(
+      {
+        thinking: true,
+      },
+      () => {
+        new Promise((resolve) => {
+          arcaneChess()
+            .engineSuggestion(1, this.state.playerColor, level)
+            .then(resolve);
+        }).then((reply: any) => {
+          const { bestMove, temporalPincer } = reply;
 
-      if (level === 1) {
-        this.setState({
-          hint: PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
-          thinking: false,
+          if (level === 1) {
+            this.setState({
+              hint: PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
+              thinking: false,
+            });
+            this.chessgroundRef.current?.setAutoShapes([
+              {
+                orig: PrSq(FROMSQ(bestMove)) || 'a0',
+                brush: 'yellow',
+              },
+            ]);
+          }
+          if (level === 2) {
+            this.setState({
+              hint: PrMove(bestMove),
+              thinking: false,
+            });
+            this.chessgroundRef.current?.setAutoShapes([
+              {
+                orig: PrSq(FROMSQ(bestMove)) || PrSq(TOSQ(bestMove)),
+                dest: !FROMSQ(bestMove) ? null : PrSq(TOSQ(bestMove)),
+                brush: 'yellow',
+              },
+            ]);
+          }
+          if (level === 3) {
+            this.setState({
+              hint: temporalPincer,
+              thinking: false,
+            });
+          }
+          this.setState({
+            thinking: false,
+          });
         });
       }
-      if (level === 2) {
-        this.setState({
-          hint: PrMove(bestMove),
-          thinking: false,
-        });
-      }
-      if (level === 3) {
-        this.setState({
-          hint: temporalPincer,
-          thinking: false,
-        });
-      }
-    });
+    );
   };
 
   onChangeUses = (e: React.ChangeEvent<HTMLSelectElement>, power: string) => {
@@ -1156,6 +1172,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     events={{
                       change: () => {},
                       dropNewPiece: (piece: string, key: string) => {
+                        this.chessgroundRef.current?.setAutoShapes([]);
                         if (
                           GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
                         ) {
@@ -1167,7 +1184,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             this.state.placingRoyalty
                           );
                           if (!PrMove(parsed)) {
-                            console.log('invalid move', piece);
+                            console.log('invalid move', PrMove(parsed), piece);
                           }
                           this.setState(
                             (prevState) => ({
@@ -1273,6 +1290,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         }
                       },
                       move: (orig: string, dest: string) => {
+                        this.chessgroundRef.current?.setAutoShapes([]);
                         const { parsed, isInitPromotion = false } =
                           this.arcaneChess().makeUserMove(
                             orig,
@@ -1315,6 +1333,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           20 + 10 * (8 - GameBoard.summonRankLimits[1]);
 
                         if (this.state.placingRoyalty > 0) {
+                          this.chessgroundRef.current?.setAutoShapes([]);
                           if (
                             ((GameBoard.side === COLOURS.WHITE &&
                               prettyToSquare(key) < whiteLimit) ||

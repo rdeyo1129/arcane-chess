@@ -163,7 +163,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
     return 1 - Math.pow(1 - t, 3);
   }
 
-  componentDidUpdate(prevProps: BookProps, prevState: BookState) {
+  componentDidUpdate(_prevProps: BookProps, prevState: BookState) {
     if (this.state.allNodesUnlocked && !prevState.allNodesUnlocked) {
       this.setState({ allNodesUnlocked: !prevState.allNodesUnlocked });
     }

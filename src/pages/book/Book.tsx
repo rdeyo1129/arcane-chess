@@ -12,7 +12,9 @@ import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
 import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
 
+import { swapArmies } from 'src/utils/utils';
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
+
 import book1 from 'src/data/books/book1.json';
 import book2 from 'src/data/books/book2.json';
 import book3 from 'src/data/books/book3.json';
@@ -134,6 +136,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       inventory: getLocalStorage(this.props.auth.user.username)?.inventory,
       endChapterOpen: getLocalStorage(this.props.auth.user.username)
         ?.chapterEnd,
+      playerColor: getLocalStorage(this.props.auth.user.username)?.config.color,
       reducedScore: _.reduce(
         getLocalStorage(this.props.auth.user.username).nodeScores,
         (accumulator, value) => {
@@ -156,6 +159,50 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         allNodesUnlocked: !prevState.allNodesUnlocked,
       }),
       () => console.log(this.state.allNodesUnlocked)
+    );
+  }
+
+  getFen() {
+    let fen = '';
+    if (!this.state.selectedSwatch.split('-')[0]) {
+      fen = '8/8/8/8/8/8/8/8 w - - 0 1';
+    } else if (
+      this.state.playerColor === 'black' &&
+      this.state.selectedSwatch.split('-')[0] === 'mission'
+    ) {
+      fen = swapArmies(
+        this.state.book[this.state.selectedSwatch]?.panels['panel-1'].fen
+      );
+    } else {
+      fen = this.state.book[this.state.selectedSwatch]?.panels['panel-1'].fen;
+    }
+    return fen;
+  }
+
+  getTimeDisplay() {
+    const { selectedSwatch, book } = this.state;
+
+    if (!selectedSwatch || selectedSwatch.split('-')[0] === 'lesson') {
+      return null;
+    }
+
+    const swatchKey = book[selectedSwatch];
+    if (!swatchKey || !swatchKey.time || !swatchKey.time[0]) {
+      return null;
+    }
+
+    const time = swatchKey.time[0];
+    const timeOperator =
+      selectedSwatch.split('-')[0] === 'mission'
+        ? '+'
+        : selectedSwatch.split('-')[0] === 'temple'
+        ? '-'
+        : '';
+
+    return (
+      <>
+        {time[0]} {timeOperator} {time[1]}
+      </>
     );
   }
 
@@ -378,11 +425,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     // check={this.tactorius.inCheck().isAttacked}
                     // viewOnly={this.isCheckmate()}
                     forwardedRef={this.chessgroundRef}
-                    fen={
-                      this.state.book[this.state.selectedSwatch]?.panels[
-                        'panel-1'
-                      ].fen || '8/8/8/8/8/8/8/8 w KQkq - 0 1'
-                    }
+                    fen={this.getFen()}
                     coordinates={false}
                     // notation={true}
                     // onChange={(move) => {
@@ -411,7 +454,12 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     //   lastMove: true,
                     //   check: true,
                     // }}
-                    // orientation={this.state.orientation}
+                    orientation={
+                      this.state.playerColor === 'black' &&
+                      this.state.selectedSwatch.split('-')[0] === 'mission'
+                        ? 'black'
+                        : 'white'
+                    }
                     // disableContextMenu={false}
                     // turnColor={GameBoard.side === 0 ? 'white' : 'black'}
                     // movable={{
@@ -488,11 +536,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       className="time-arcana"
                       style={{ background: '#77777788' }}
                     >
-                      <h2 className="time">
-                        {this.state.book[this.state.selectedSwatch]?.time[0][0]}{' '}
-                        {this.state.selectedSwatch !== '' ? '+' : ''}{' '}
-                        {this.state.book[this.state.selectedSwatch]?.time[0][1]}
-                      </h2>
+                      <h2 className="time">{this.getTimeDisplay()}</h2>
                       <div className="arcana">
                         {_.map(
                           this.state.book[this.state.selectedSwatch]?.panels[
@@ -516,11 +560,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       className="time-arcana"
                       style={{ background: '#33333388' }}
                     >
-                      <h2 className="time">
-                        {this.state.book[this.state.selectedSwatch]?.time[0][0]}{' '}
-                        {this.state.selectedSwatch !== '' ? '+' : ''}{' '}
-                        {this.state.book[this.state.selectedSwatch]?.time[0][1]}
-                      </h2>
+                      <h2 className="time">{this.getTimeDisplay()}</h2>
                       <div className="arcana">
                         {_.map(
                           this.state.book[this.state.selectedSwatch]?.panels[

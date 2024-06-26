@@ -145,7 +145,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
 
   saveSettingsStartBook = () => {
     const currLS = getLocalStorage(this.props.auth.user.username);
-    console.log(this.props);
     setLocalStorage({
       ...currLS,
       chapter: this.props.chapterNumber,

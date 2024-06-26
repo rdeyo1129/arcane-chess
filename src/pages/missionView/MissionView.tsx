@@ -12,6 +12,7 @@ import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
+import { swapArmies } from 'src/utils/utils';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import PromotionModal from 'src/components/PromotionModal/PromotionModal';
@@ -275,21 +276,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       //   getLocalStorage(this.props.auth.user.username).nodeId
       // ] > 0,
       gameOverType: '',
-      fen: booksMap[
-        `book${getLocalStorage(this.props.auth.user.username).chapter}`
-      ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
-        'panel-1'
-      ].fen,
+      fen: this.getFen(),
       pvLine: [],
       historyPly: 0,
       history: [],
-      fenHistory: [
-        booksMap[
-          `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
-          'panel-1'
-        ].fen,
-      ],
+      fenHistory: [this.getFen()],
       thinking: SearchController.thinking,
       engineLastMove: [],
       thinkingTime:
@@ -537,6 +528,29 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     }));
   };
 
+  getFen() {
+    let fen = '';
+    if (
+      getLocalStorage(this.props.auth.user.username).config.color === 'black'
+    ) {
+      fen = swapArmies(
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
+          'panel-1'
+        ].fen
+      );
+    } else {
+      fen =
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
+          'panel-1'
+        ].fen;
+    }
+    return fen;
+  }
+
   stopAndReturnTime = () => {
     return this.chessclockRef.current?.stopTimer();
   };
@@ -764,7 +778,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     if (!this.hasMounted && LS.chapter !== 0) {
       this.hasMounted = true;
       this.arcaneChess().startGame(
-        this.state.fen,
+        this.getFen(),
         booksMap[
           `book${getLocalStorage(this.props.auth.user.username).chapter}`
         ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[

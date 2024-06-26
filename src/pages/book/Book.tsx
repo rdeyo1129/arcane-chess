@@ -181,6 +181,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
 
   getTimeDisplay() {
     const { selectedSwatch, book } = this.state;
+    const LS = getLocalStorage(this.props.auth.user.username);
+    const color = LS.config.color;
 
     if (!selectedSwatch || selectedSwatch.split('-')[0] === 'lesson') {
       return null;
@@ -191,7 +193,10 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       return null;
     }
 
-    const time = swatchKey.time[0];
+    // Determine the index based on color
+    const index = color === 'black' ? 1 : 0;
+    const selectedTime = swatchKey.time[index];
+
     const timeOperator =
       selectedSwatch.split('-')[0] === 'mission'
         ? '+'
@@ -201,7 +206,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
 
     return (
       <>
-        {time[0]} {timeOperator} {time[1]}
+        {selectedTime[0]} {timeOperator} {selectedTime[1]}
       </>
     );
   }

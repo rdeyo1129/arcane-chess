@@ -555,6 +555,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                 src={`${arcana[key].imagePath}${
                                   this.state.arcaneHover === key ? '-hover' : ''
                                 }.svg`}
+                                style={{
+                                  cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
+                                }}
                               />
                             );
                           }
@@ -579,6 +582,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                 src={`${arcana[key].imagePath}${
                                   this.state.arcaneHover === key ? '-hover' : ''
                                 }.svg`}
+                                style={{
+                                  cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
+                                }}
                               />
                             );
                           }

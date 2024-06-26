@@ -37,12 +37,20 @@ class Select extends React.Component<SelectProps, SelectState> {
           style={{
             width: width ? width : '100%',
             height: height ? height : '100%',
+            cursor: "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
           }}
           onChange={this.onChangeUses}
         >
           {this.props.options.map((option, i) => {
             return (
-              <option key={i} value={option}>
+              <option
+                key={i}
+                value={option}
+                style={{
+                  cursor:
+                    "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
+                }}
+              >
                 {option}
               </option>
             );

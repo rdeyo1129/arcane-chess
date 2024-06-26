@@ -690,6 +690,9 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                           src={`${arcana[key].imagePath}${
                             this.state.arcaneHover === key ? '-hover' : ''
                           }.svg`}
+                          style={{
+                            cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
+                          }}
                           onMouseEnter={() => this.toggleHover(key)}
                           onMouseLeave={() => this.toggleHover('')}
                         />

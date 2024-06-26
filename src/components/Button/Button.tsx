@@ -37,6 +37,7 @@ const Button: React.FC<ButtonProps> = ({
         background: `${
           backgroundColorOverride === '' ? '' : backgroundColorOverride
         }`,
+        cursor: "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
       }}
       onClick={disabled ? undefined : onClick}
       disabled={disabled}

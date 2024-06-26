@@ -990,7 +990,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   this.state.engineColor ||
                                 noFutureSight
                                   ? 'not-allowed'
-                                  : 'pointer',
+                                  : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
                             }}
                             onClick={() => {
                               if (

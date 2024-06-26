@@ -653,6 +653,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                             ) && this.state.whiteArcana[name]
                               ? 1
                               : 0.5,
+                          cursor:
+                            "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                         }}
                         onClick={() => {
                           const currentArcaneType = arcana[name].type;
@@ -786,6 +788,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                             ) && this.state.blackArcana[name]
                               ? 1
                               : 0.5,
+                          cursor:
+                            "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                         }}
                         onClick={() => {
                           const currentArcaneType = arcana[name].type;

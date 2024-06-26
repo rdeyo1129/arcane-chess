@@ -102,7 +102,9 @@ cg-board {
   user-select: none;
   line-height: 0;
   background-size: cover;
-  cursor: pointer;
+  cursor:
+    url('/assets/images/cursors/openhand.svg') 16 16,
+    grab;
 }
 
 .cg-wrap piece.x-piece,
@@ -112,8 +114,8 @@ cg-board {
 
 cg-board square {
   position: absolute;
-  // top: 0;
-  // left: 0;
+  top: 0;
+  left: 0;
   pointer-events: none;
 }
 .module-board cg-board square,
@@ -278,8 +280,8 @@ cg-board square.current-premove {
 .cg-wrap piece.invisible {
   display: none;
 }
+
 cg-board piece.dragging {
-  cursor: move;
   z-index: 9;
 }
 cg-board piece.anim {

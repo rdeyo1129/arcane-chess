@@ -36,6 +36,7 @@ const Input: React.FC<InputProps> = ({
         height: `${height}px`,
         width: `${width}px`,
         color: `${color}`,
+        cursor: "url('/assets/images/cursors/text.svg') 16 16, text",
       }}
       placeholder={placeholder}
       value={value}

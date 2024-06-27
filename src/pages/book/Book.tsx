@@ -11,6 +11,7 @@ import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
+import ArcanaSelect from 'src/pages/book/ArcanaSelect';
 
 import { swapArmies } from 'src/utils/utils';
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
@@ -27,21 +28,6 @@ import book9 from 'src/data/books/book9.json';
 import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
-
-import arcanaJson from 'src/data/arcana.json';
-
-const arcana: ArcanaMap = arcanaJson as ArcanaMap;
-
-interface ArcanaMap {
-  [key: string]: ArcanaDetail;
-}
-
-interface ArcanaDetail {
-  name: string;
-  description: string;
-  type: string;
-  imagePath: string;
-}
 
 interface BookProps {
   auth: { user: { id: string; username: string } };
@@ -132,6 +118,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       ],
       selectedSwatch: '',
       config: getLocalStorage(this.props.auth.user.username)?.config,
+      multiplier: getLocalStorage(this.props.auth.user.username)?.config
+        .multiplier,
       nodeScores: getLocalStorage(this.props.auth.user.username)?.nodeScores,
       inventory: getLocalStorage(this.props.auth.user.username)?.inventory,
       endChapterOpen: getLocalStorage(this.props.auth.user.username)
@@ -154,12 +142,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
   }
 
   toggleAllNodesUnlocked() {
-    this.setState(
-      (prevState) => ({
-        allNodesUnlocked: !prevState.allNodesUnlocked,
-      }),
-      () => console.log(this.state.allNodesUnlocked)
-    );
+    this.setState((prevState) => ({
+      allNodesUnlocked: !prevState.allNodesUnlocked,
+    }));
   }
 
   getFen() {
@@ -215,6 +200,24 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
     return 1 - Math.pow(1 - t, 3);
   }
 
+  updateMultiplier(value: number) {
+    this.setState(
+      (prevState) => ({
+        multiplier: prevState.multiplier + value,
+      }),
+      () => {
+        console.log('multiplier updated', this.state.multiplier);
+        setLocalStorage({
+          ...getLocalStorage(this.props.auth.user.username),
+          config: {
+            ...this.state.config,
+            multiplier: this.state.multiplier,
+          },
+        });
+      }
+    );
+  }
+
   componentDidUpdate(_prevProps: BookProps, prevState: BookState) {
     if (this.state.allNodesUnlocked && !prevState.allNodesUnlocked) {
       this.setState({ allNodesUnlocked: !prevState.allNodesUnlocked });
@@ -266,6 +269,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         {char}
       </span>
     ));
+    const isMission = this.state.selectedSwatch.split('-')[0] === 'mission';
     return (
       <>
         {LS.chapter === 0 ? (
@@ -337,6 +341,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   </Link>
                 </div>
                 <div className="center">
+                  multiplier: {this.state.multiplier} x
                   <div className="points">
                     <span className="digit-box">{digits}</span>
                   </div>
@@ -412,6 +417,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                             auth: currLS.auth,
                             chapter: currLS.chapter,
                             config: currLS.config,
+                            arcana: currLS.arcana,
                             nodeScores: currLS.nodeScores,
                             inventory: currLS.inventory,
                             nodeId: node.id,
@@ -543,24 +549,30 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     >
                       <h2 className="time">{this.getTimeDisplay()}</h2>
                       <div className="arcana">
-                        {_.map(
-                          this.state.book[this.state.selectedSwatch]?.panels[
-                            'panel-1'
-                          ].whiteArcane || {},
-                          (_value: number, key: string) => {
-                            return (
-                              <img
-                                key={key}
-                                className="arcane"
-                                src={`${arcana[key].imagePath}${
-                                  this.state.arcaneHover === key ? '-hover' : ''
-                                }.svg`}
-                                style={{
-                                  cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
-                                }}
-                              />
-                            );
-                          }
+                        {this.state.selectedSwatch === '' ? null : this.state
+                            .playerColor === 'white' ? (
+                          <ArcanaSelect
+                            auth={this.props.auth}
+                            isPlayerArcana
+                            isMission={isMission}
+                            updateBookMultiplier={(value) =>
+                              this.updateMultiplier(value)
+                            }
+                          />
+                        ) : (
+                          <ArcanaSelect
+                            auth={this.props.auth}
+                            isPlayerArcana={false}
+                            engineArcana={{
+                              ...this.booksMap[`book${LS.chapter}`]?.[
+                                this.state.selectedSwatch
+                              ]?.panels['panel-1'].blackArcane,
+                            }}
+                            isMission={isMission}
+                            updateBookMultiplier={(value) =>
+                              this.updateMultiplier(value)
+                            }
+                          />
                         )}
                       </div>
                     </div>
@@ -570,24 +582,30 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     >
                       <h2 className="time">{this.getTimeDisplay()}</h2>
                       <div className="arcana">
-                        {_.map(
-                          this.state.book[this.state.selectedSwatch]?.panels[
-                            'panel-1'
-                          ].blackArcane || {},
-                          (_value: number, key: string) => {
-                            return (
-                              <img
-                                key={key}
-                                className="arcane"
-                                src={`${arcana[key].imagePath}${
-                                  this.state.arcaneHover === key ? '-hover' : ''
-                                }.svg`}
-                                style={{
-                                  cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
-                                }}
-                              />
-                            );
-                          }
+                        {this.state.selectedSwatch === '' ? null : this.state
+                            .playerColor === 'black' ? (
+                          <ArcanaSelect
+                            auth={this.props.auth}
+                            isPlayerArcana
+                            isMission={isMission}
+                            updateBookMultiplier={(value) =>
+                              this.updateMultiplier(value)
+                            }
+                          />
+                        ) : (
+                          <ArcanaSelect
+                            auth={this.props.auth}
+                            isPlayerArcana={false}
+                            engineArcana={{
+                              ...this.booksMap[`book${LS.chapter}`]?.[
+                                this.state.selectedSwatch
+                              ]?.panels['panel-1'].blackArcane,
+                            }}
+                            isMission={isMission}
+                            updateBookMultiplier={(value) =>
+                              this.updateMultiplier(value)
+                            }
+                          />
                         )}
                       </div>
                     </div>

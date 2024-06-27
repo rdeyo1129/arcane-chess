@@ -3412,7 +3412,7 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {},
-        "blackArcane": {},
+        "blackArcane": { "modsINH": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,

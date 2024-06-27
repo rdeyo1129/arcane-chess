@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 import axios from 'axios';
-import _ from 'lodash';
+import _, { get } from 'lodash';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
@@ -176,13 +176,13 @@ interface State {
   };
   gameOver: boolean;
   gameOverType: string;
-  wArcana: {
+  whiteArcana: {
     [key: string]: number | string | undefined;
     modsIMP?: number | undefined;
     modsORA?: number | undefined;
     modsTEM?: number | undefined;
   };
-  bArcana: {
+  blackArcana: {
     [key: string]: number | string | undefined;
     modsIMP?: number | undefined;
     modsORA?: number | undefined;
@@ -228,6 +228,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   chessgroundRef = createRef<IChessgroundApi>();
   chessclockRef = createRef<ChessClock>();
   intervalId: NodeJS.Timeout | null = null;
+  LS = getLocalStorage(this.props.auth.user.username);
   constructor(props: Props) {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.username);
@@ -298,8 +299,18 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         e: { disabled: false, powers: {}, picks: 0 },
         f: { disabled: false, powers: {}, picks: 0 },
       },
-      wArcana: {},
-      bArcana: {},
+      whiteArcana:
+        LS.config.color === 'white'
+          ? LS.arcana
+          : // black should always be engine arcana
+            booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
+              .blackArcane,
+      blackArcana:
+        LS.config.color === 'black'
+          ? LS.arcana
+          : // black should always be engine arcana
+            booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
+              .blackArcane,
       placingPiece: 0,
       swapType: '',
       placingRoyalty: 0,
@@ -344,6 +355,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     clearArcanaConfig();
     this.chessgroundRef = React.createRef();
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    console.log(booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]);
   }
 
   toggleHover = (arcane: string) => {
@@ -779,16 +791,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       this.hasMounted = true;
       this.arcaneChess().startGame(
         this.getFen(),
-        booksMap[
-          `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
-          'panel-1'
-        ].whiteArcane,
-        booksMap[
-          `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
-          'panel-1'
-        ].blackArcane,
+        this.state.whiteArcana,
+        this.state.blackArcana,
         this.state.royalties,
         this.state.preset
       );
@@ -796,12 +800,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       this.setState(
         {
           turn: GameBoard.side === 0 ? 'white' : 'black',
-          wArcana: {
-            ...whiteArcaneConfig,
-          },
-          bArcana: {
-            ...blackArcaneConfig,
-          },
+          // wArcana: {
+          //   ...whiteArcaneConfig,
+          // },
+          // bArcana: {
+          //   ...blackArcaneConfig,
+          // },
         },
         () => {
           if (this.state.engineColor === this.state.turn) {

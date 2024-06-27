@@ -125,14 +125,17 @@ export const POWERBIT = {
   shftB: 4,
   shftR: 8,
   // 3 active green
-  swapATK: 1,
+  swapATK: 1, // sunset
   swapDEP: 2,
   swapADJ: 4,
+  // offerings
+  offrQ: 1, // ?
+  offrMLT: 2, // ?
   // 11 yellow
   modsCON: 1, // passive
-  modsOFF: 2, // active // todo expand to it's own section
+  modsTEL: 2, // passive
   modsFUG: 4, // inherent
-  modsRAN: 8, // inherent
+  modsRAN: 8, // sunset
   modsINH: 16, // inherent
   modsSUS: 32, // active
   modsPHA: 64, // active
@@ -140,6 +143,7 @@ export const POWERBIT = {
   modsIMP: 256, // active
   modsORA: 512, // active
   modsTEM: 1024, // active
+  //
   modsPRE: 2048, // inherent
   // modsOFF: 512, add time, glitch (rand comp move), add random arcana / mana
 };

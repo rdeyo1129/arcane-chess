@@ -251,6 +251,12 @@
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsOFF"
   },
+  "modsTEL": {
+    "name": "Teleportation",
+    "description": "Move a friendly piece to any empty square within your first three ranks.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/modsOFF"
+  },
   "modsFUG": {
     "name": "Sovereign Fugitive",
     "description": "Castle while in or through check.",

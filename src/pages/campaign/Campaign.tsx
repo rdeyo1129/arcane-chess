@@ -125,6 +125,7 @@ export class UnwrappedCampaign extends React.Component<
                 chapter: 0,
                 config: {},
                 nodeScores: {},
+                arcana: {},
                 inventory: {},
                 nodeId: '',
                 chapterEnd: false,

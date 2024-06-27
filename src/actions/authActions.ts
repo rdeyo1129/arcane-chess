@@ -104,27 +104,23 @@ export const loginUser =
               },
             };
             setLocalStorage(updatedGuestData);
-          } else {
-            // Set new localStorage data if no existing guest is found
-            setLocalStorage({
-              auth: {
-                user: {
-                  id: res.data.id || '0',
-                  username: userData.username,
-                  campaign: {
-                    topScores: userData.guest
-                      ? [...Array(12).fill(0)]
-                      : ([...res.data.campaign.topScores] as number[]),
-                  },
+          }
+        } else {
+          // Set new localStorage data if no existing guest is found
+          setLocalStorage({
+            ...getLocalStorage(userData.username),
+            auth: {
+              user: {
+                id: res.data.id || '0',
+                username: userData.username,
+                campaign: {
+                  topScores: userData.guest
+                    ? [...Array(12).fill(0)]
+                    : ([...res.data.campaign.topScores] as number[]),
                 },
               },
-              chapter: 0,
-              config: {},
-              lessonsCompleted: [],
-              inventory: {},
-              nodeId: '',
-            });
-          }
+            },
+          });
         }
         navigate('/dashboard');
       })

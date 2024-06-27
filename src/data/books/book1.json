@@ -1730,8 +1730,8 @@
           "royaltyE": {}
         },
         "preset": "CAPALL",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "modsCON": 1 },
+        "blackArcane": { "modsCON": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,

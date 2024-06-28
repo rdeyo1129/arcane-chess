@@ -284,9 +284,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       fenHistory: [this.getFen()],
       thinking: SearchController.thinking,
       engineLastMove: [],
-      thinkingTime:
-        getLocalStorage(this.props.auth.user.username).config.thinkingTime *
-        1000,
+      thinkingTime: getLocalStorage(this.props.auth.user.username).config
+        .thinkingTime,
       engineDepth: getLocalStorage(this.props.auth.user.username).config.depth,
       whiteFaction: 'normal',
       blackFaction: 'normal',

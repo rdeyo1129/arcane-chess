@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 import axios from 'axios';
-import _, { get } from 'lodash';
+import _ from 'lodash';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
@@ -18,8 +18,6 @@ import TactoriusModal from 'src/components/Modal/Modal';
 import PromotionModal from 'src/components/PromotionModal/PromotionModal';
 
 import arcanaJson from 'src/data/arcana.json';
-
-import Dots from 'src/components/Loader/Dots';
 
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 // import {
@@ -298,15 +296,18 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         e: { disabled: false, powers: {}, picks: 0 },
         f: { disabled: false, powers: {}, picks: 0 },
       },
+      // hacky code, but whiteArcana will always be player and blackArcana will always be engine
       whiteArcana:
         LS.config.color === 'white'
-          ? LS.arcana
+          ? booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
+              .whiteArcane || LS.arcana
           : // black should always be engine arcana
             booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
               .blackArcane,
       blackArcana:
         LS.config.color === 'black'
-          ? LS.arcana
+          ? booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
+              .whiteArcane || LS.arcana
           : // black should always be engine arcana
             booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
               .blackArcane,
@@ -354,7 +355,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     clearArcanaConfig();
     this.chessgroundRef = React.createRef();
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    console.log(booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]);
   }
 
   toggleHover = (arcane: string) => {
@@ -922,7 +922,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     <h3 className="name">ENGINE</h3>
                     <div className="opponent-time"></div>
                     <div className="thinking">
-                      {this.state.thinking ? <Dots /> : null}
+                      {/* {this.state.thinking ? <Dots /> : null} */}
                     </div>
                   </div>
                 </div>

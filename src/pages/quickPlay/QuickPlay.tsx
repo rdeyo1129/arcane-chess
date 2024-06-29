@@ -16,8 +16,6 @@ import PromotionModal from 'src/components/PromotionModal/PromotionModal';
 
 import arcanaJson from 'src/data/arcana.json';
 
-import Dots from 'src/components/Loader/Dots';
-
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 // import {
 //   arcane as arcaneChess,
@@ -785,7 +783,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   <h3 className="name">ENGINE</h3>
                   <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
                   <div className="thinking">
-                    {this.state.thinking ? <Dots /> : null}
+                    {/* {this.state.thinking ? <Dots /> : null} */}
                   </div>
                 </div>
               </div>

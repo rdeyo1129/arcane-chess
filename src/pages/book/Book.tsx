@@ -206,7 +206,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         multiplier: prevState.multiplier + value,
       }),
       () => {
-        console.log('multiplier updated', this.state.multiplier);
         setLocalStorage({
           ...getLocalStorage(this.props.auth.user.username),
           config: {
@@ -341,11 +340,10 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   </Link>
                 </div>
                 <div className="center">
-                  multiplier: {this.state.multiplier} x
+                  multiplier per challenge = x{this.state.multiplier}
                   <div className="points">
                     <span className="digit-box">{digits}</span>
                   </div>
-                  kudos
                 </div>
                 <div className="right">
                   <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
@@ -558,6 +556,11 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                             updateBookMultiplier={(value) =>
                               this.updateMultiplier(value)
                             }
+                            missionArcana={{
+                              ...this.booksMap[`book${LS.chapter}`]?.[
+                                this.state.selectedSwatch
+                              ]?.panels['panel-1'].whiteArcane,
+                            }}
                           />
                         ) : (
                           <ArcanaSelect
@@ -591,6 +594,11 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                             updateBookMultiplier={(value) =>
                               this.updateMultiplier(value)
                             }
+                            missionArcana={{
+                              ...this.booksMap[`book${LS.chapter}`]?.[
+                                this.state.selectedSwatch
+                              ]?.panels['panel-1'].whiteArcane,
+                            }}
                           />
                         ) : (
                           <ArcanaSelect

@@ -24,6 +24,7 @@ interface ArcanaSelectProps {
   engineArcana?: { [key: string]: number | string };
   isMission?: boolean;
   updateBookMultiplier: (value: number) => void;
+  missionArcana?: { [key: string]: number | string };
 }
 interface ArcanaSelectState {
   hoverArcane: string;
@@ -38,7 +39,7 @@ export const unlockableArcana = [
   // 1
   {
     sumnP: 1,
-    dyadP: 1,
+    // dyadP: 1,
     shftP: 1,
     modsFUT: 1,
   },
@@ -46,15 +47,15 @@ export const unlockableArcana = [
   {
     sumnN: 1,
     sumnU: 1,
-    dyadN: 1,
-    dyadU: 1,
+    // dyadN: 1,
+    // dyadU: 1,
   },
   // 3
   {
     sumnB: 1,
     sumnZ: 1,
-    dyadB: 1,
-    dyadZ: 1,
+    // dyadB: 1,
+    // dyadZ: 1,
     shftN: 1,
   },
   // 4
@@ -67,8 +68,8 @@ export const unlockableArcana = [
   // 5
   {
     sumnR: 1,
-    dyadR: 1,
-    dyadK: 1,
+    // dyadR: 1,
+    // dyadK: 1,
     shftR: 1,
     modsORA: 1,
   },
@@ -76,27 +77,27 @@ export const unlockableArcana = [
   {
     sumnM: 1,
     sumnRM: 1,
-    dyadM: 1,
+    // dyadM: 1,
     modsCON: 1,
   },
   // 7
   {
     sumnT: 1,
     sumnRT: 1,
-    dyadT: 1,
+    // dyadT: 1,
     shftB: 1,
   },
   // 8
   {
     sumnQ: 1,
     sumnRQ: 1,
-    dyadQ: 1,
-    modsTEL: 1,
+    // dyadQ: 1,
+    // modsTEL: 1,
   },
   // 9
   {
     sumnH: 1,
-    dyadH: 1,
+    // dyadH: 1,
     modsSUS: 1,
     modsINH: 1,
   },
@@ -109,14 +110,14 @@ export const unlockableArcana = [
   // 11
   {
     sumnW: 1,
-    sumnS: 1,
-    dyadA: 1,
+    // sumnS: 1,
+    // dyadA: 1,
   },
   // 12
   {
     sumnV: 1,
     sumnRV: 1,
-    dyadV: 1,
+    // dyadV: 1,
   },
 ];
 
@@ -164,11 +165,17 @@ export default class ArcanaSelect extends React.Component<
   };
 
   render() {
+    const arcanaObj =
+      this.props.missionArcana?.length === 0
+        ? this.props.missionArcana
+        : this.availableChapterArcana();
+    const hasMissionArcana =
+      this.props.missionArcana?.length === 0 ? true : false;
     if (!this.props.isMission) return null;
     return (
       <>
         {this.props.isPlayerArcana &&
-          _.map(this.availableChapterArcana(), (value: number, key: string) => {
+          _.map(arcanaObj, (value: number, key: string) => {
             return (
               <img
                 key={key}
@@ -179,15 +186,17 @@ export default class ArcanaSelect extends React.Component<
                 style={{
                   opacity: !this.props.isPlayerArcana
                     ? 0.5
-                    : _.includes(Object.keys(this.state.selectedArcana), key)
+                    : _.includes(Object.keys(this.state.selectedArcana), key) ||
+                      hasMissionArcana
                     ? 1
                     : 0.5,
-                  cursor: !this.props.isPlayerArcana
-                    ? 'not-allowed'
-                    : 'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
+                  cursor:
+                    !this.props.isPlayerArcana || hasMissionArcana
+                      ? 'not-allowed'
+                      : 'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
                 }}
                 onClick={() => {
-                  if (!this.props.isPlayerArcana) return;
+                  if (!this.props.isPlayerArcana || hasMissionArcana) return;
                   if (_.includes(Object.keys(this.state.selectedArcana), key)) {
                     const newSelectedArcana = _.omit(
                       this.state.selectedArcana,

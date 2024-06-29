@@ -91,7 +91,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     super(props);
     this.state = {
       config: {
-        multiplier: 4,
+        multiplier: 80,
         color: 'white',
         thinkingTime: 1,
         depth: 1,

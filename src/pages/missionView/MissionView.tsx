@@ -227,6 +227,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   chessclockRef = createRef<ChessClock>();
   intervalId: NodeJS.Timeout | null = null;
   LS = getLocalStorage(this.props.auth.user.username);
+  hasMissionArcana =
+    Object.keys(
+      booksMap[`book${this.LS.chapter}`]?.[`${this.LS.nodeId}`]?.panels[
+        'panel-1'
+      ].whiteArcane || {}
+    ).length !== 0;
   constructor(props: Props) {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.username);
@@ -299,15 +305,19 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       // hacky code, but whiteArcana will always be player and blackArcana will always be engine
       whiteArcana:
         LS.config.color === 'white'
-          ? booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
-              .whiteArcane || LS.arcana
+          ? this.hasMissionArcana
+            ? booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
+                .whiteArcane
+            : LS.arcana
           : // black should always be engine arcana
             booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
               .blackArcane,
       blackArcana:
         LS.config.color === 'black'
-          ? booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
-              .whiteArcane || LS.arcana
+          ? this.hasMissionArcana
+            ? booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
+                .whiteArcane
+            : LS.arcana
           : // black should always be engine arcana
             booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.panels['panel-1']
               .blackArcane,

@@ -1730,7 +1730,7 @@
           "royaltyE": {}
         },
         "preset": "CAPALL",
-        "whiteArcane": { "modsCON": 1 },
+        "whiteArcane": {},
         "blackArcane": { "modsCON": 1 },
         "config": {},
         "correctMoves": [""],

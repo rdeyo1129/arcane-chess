@@ -38,86 +38,86 @@ interface ArcanaSelectState {
 export const unlockableArcana = [
   // 1
   {
-    sumnP: 1,
+    sumnP: 2,
     // dyadP: 1,
     shftP: 1,
-    modsFUT: 1,
+    modsFUT: 2,
   },
   // 2
   {
-    sumnN: 1,
-    sumnU: 1,
-    // dyadN: 1,
-    // dyadU: 1,
+    sumnN: 4,
+    sumnU: 4,
+    // dyadN: 3,
+    // dyadU: 3,
   },
   // 3
   {
-    sumnB: 1,
-    sumnZ: 1,
-    // dyadB: 1,
-    // dyadZ: 1,
-    shftN: 1,
+    sumnB: 4,
+    sumnZ: 4,
+    // dyadB: 3,
+    // dyadZ: 3,
+    shftN: 3,
   },
   // 4
   {
-    sumnX: 1,
-    sumnRE: 1,
-    modsIMP: 1,
-    modsFUG: 1,
+    sumnX: 5,
+    sumnRE: 4,
+    modsIMP: 2,
+    modsFUG: 3,
   },
   // 5
   {
-    sumnR: 1,
-    // dyadR: 1,
-    // dyadK: 1,
-    shftR: 1,
-    modsORA: 1,
+    sumnR: 6,
+    // dyadR: 5,
+    // dyadK: 7,
+    shftR: 4,
+    modsORA: 4,
   },
   // 6
   {
-    sumnM: 1,
-    sumnRM: 1,
-    // dyadM: 1,
-    modsCON: 1,
+    sumnM: 10,
+    sumnRM: 6,
+    // dyadM: 8,
+    modsCON: 4,
   },
   // 7
   {
-    sumnT: 1,
-    sumnRT: 1,
-    // dyadT: 1,
-    shftB: 1,
+    sumnT: 11,
+    sumnRT: 6,
+    // dyadT: 9,
+    shftB: 4,
   },
   // 8
   {
-    sumnQ: 1,
-    sumnRQ: 1,
-    // dyadQ: 1,
-    // modsTEL: 1,
+    sumnQ: 12,
+    sumnRQ: 7,
+    // dyadQ: 11,
+    // modsTEL: 5,
   },
   // 9
   {
-    sumnH: 1,
-    // dyadH: 1,
-    modsSUS: 1,
-    modsINH: 1,
+    sumnH: 3,
+    // dyadH: 2,
+    modsSUS: 4,
+    modsINH: 7,
   },
   // 10
   {
-    dyadW: 1,
-    dyadS: 1,
-    modsTEM: 1,
+    dyadW: 8,
+    dyadS: 8,
+    modsTEM: 6,
   },
   // 11
   {
-    sumnW: 1,
-    // sumnS: 1,
-    // dyadA: 1,
+    sumnW: 9,
+    // sumnS: 9
+    // dyadA: 8,
   },
   // 12
   {
-    sumnV: 1,
-    sumnRV: 1,
-    // dyadV: 1,
+    sumnV: 15,
+    sumnRV: 13,
+    // dyadV: 14,
   },
 ];
 

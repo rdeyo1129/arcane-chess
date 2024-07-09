@@ -33,6 +33,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
       'Built for GMs, instructive for all.',
       'Patience. Planning. Persistence.',
       'The war continues... so does your learning.',
+      'TikTok? This is TakTic.',
     ];
     this.state = { currentSlogan: '', currentIndex: 0 };
   }

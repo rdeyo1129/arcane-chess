@@ -2264,10 +2264,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         ...this.state.correctMovesString.split(' '),
                       ],
                     };
-                    console.log(objectToCopy);
-                    navigator.clipboard.writeText(
-                      JSON.stringify(objectToCopy, null, 2)
-                    );
+                    const keyAndPanel = `"${
+                      this.state.currPanel
+                    }": ${JSON.stringify(objectToCopy)},`;
+                    navigator.clipboard.writeText(keyAndPanel);
                   }}
                   className="tertiary"
                   color="B"
@@ -2290,10 +2290,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       time: this.state.time,
                       boss: false,
                     };
-                    console.log(objectToCopy);
-                    navigator.clipboard.writeText(
-                      JSON.stringify(objectToCopy, null, 2)
-                    );
+                    const keyAndNode = `"${
+                      this.state.currNode
+                    }": ${JSON.stringify(objectToCopy)},`;
+                    navigator.clipboard.writeText(keyAndNode);
                   }}
                   className="tertiary"
                   color="B"

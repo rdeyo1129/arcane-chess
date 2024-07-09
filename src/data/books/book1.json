@@ -1158,6 +1158,101 @@
     },
     "boss": false
   },
+  "lesson-6": {
+    "id": "lesson-6",
+    "title": "Patience",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Patience is defined as the ability to endure difficult situations. More specifically: delays, frustrations and not getting upset when coming face to face with them.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "To make good choices, we need to think before we act. Before that happens we need to give ourselves the time to pause, take a breath, assess what is going on and pick our next move. On the board and in our life.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "This is a foundation to build upon for skills that you will pick up in the following lessons. Allow yourself to slow down and have patience to even pause in the face of a problem so you can avoid any mistakes.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
   "temple-1": {
     "id": "temple-1",
     "title": "Temple of Singularities I",

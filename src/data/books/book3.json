@@ -880,7 +880,7 @@
     "nodeText": "Learn about the Bishop and Equus pieces. They aren't the strongest, but they are important.",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-2",
     "opponent": "",
     "theme": "",
     "panels": {
@@ -1165,7 +1165,7 @@
     "nodeText": "Attain more details about the Bishop and Equus pieces.",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-5",
     "opponent": "",
     "theme": "red",
     "panels": {
@@ -1228,9 +1228,9 @@
         "orientation": "white"
       },
       "panel-3": {
-        "fen": "r2qk2r/p1pnbppp/1p2pn2/3pN3/2PP4/4PN2/PP3PPP/R1BQ1RK1 w KQkq - 0 1",
+        "fen": "r2qk2r/p1pnb1pp/1p2pn2/3pNp2/2PP4/4PN2/PP3PPP/R1BQ1RK1 w KQkq - 0 1",
         "fenHistory": [
-          "r2qk2r/p1pnbppp/1p2pn2/3pN3/2PP4/4PN2/PP3PPP/R1BQ1RK1 w KQkq - 0 1"
+          "r2qk2r/p1pnb1pp/1p2pn2/3pNp2/2PP4/4PN2/PP3PPP/R1BQ1RK1 w KQkq - 0 1"
         ],
         "history": [],
         "panelText": "Another motif you will see often is the outpost. This Knight is nested in the opponents territory, controlling key squares in Black’s weak position. While either side maintains an 'advanced support point’ like we have here, they will have a considerable advantage. If captured, it can be replaced by another piece or Pawn.",
@@ -1240,6 +1240,608 @@
           { "orig": "f7", "brush": "yellow" },
           { "orig": "g6", "brush": "yellow" },
           { "orig": "e5", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "The Steinitz Rule. To reiterate, you want advanced support points… specifically for your Knights. Think ahead here, what prospective square do you think this black Knight might be looking to land on some turn?",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "In this situation, it’s b5 and d5. Maybe not in every instance, but Steinitz Rule here states to take away the advanced (support) point for Knights. (next) Pushing a Pawn forward like this does just that.",
+        "arrowsCircles": [
+          { "orig": "c3", "dest": "b5", "brush": "green" },
+          { "orig": "c3", "dest": "d5", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "rnbqkbnr/pp1p1ppp/2p5/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pp1p1ppp/2p5/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "In this situation, it’s b5 and d5. Maybe not in every instance, but Steinitz Rule here states to take away the advanced (support) point for Knights. Pushing a Pawn forward like this does just that.",
+        "arrowsCircles": [
+          { "orig": "c7", "dest": "c6", "brush": "green" },
+          { "orig": "b5", "brush": "red" },
+          { "orig": "d5", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Similar to the open and closed position tradeoff, the Bishop vs Knight (Zebra and Unicorn for this as well) have certain advantages in different Pawn endgames.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "7B/1k6/6pp/2p5/1p5P/p4KP1/P7/8 w - - 0 1",
+        "fenHistory": ["7B/1k6/6pp/2p5/1p5P/p4KP1/P7/8 w - - 0 1"],
+        "history": [],
+        "panelText": "When there are Pawns on both sides of the board, the Bishop has the agility to move to either side of the board to guard or attack Pawns. The close-proximity attackers do not have this luxury.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "8/1kp5/p7/Pp6/1P6/U7/1KP5/8 w - - 0 1",
+        "fenHistory": ["8/1kp5/p7/Pp6/1P6/U7/1KP5/8 w - - 0 1"],
+        "history": [],
+        "panelText": "On the other hand, The Equus pieces operate well in endgames where there are only Pawns on one side the board. They excel here more than the Bishop because they have access to more squares.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-10": {
+        "fen": "r1bq1rk1/ppp2ppp/2n1pnz1/2bp4/5U2/2PP2P1/PPQBPPBP/RN2K1NR w KQkq - 0 1",
+        "fenHistory": [
+          "r1bq1rk1/ppp2ppp/2n1pnz1/2bp4/5U2/2PP2P1/PPQBPPBP/RN2K1NR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "The interplay between the minor pieces play an important role in the middlegame. They each hold their own built in advantages and disadvantages. Foster them with care, plan on which ones to keep and trade off based on the position. Each hold the ability to create tactical advantages which we'll cover next.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "lesson-7": {
+    "id": "lesson-7",
+    "title": "Tactics I",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "Learn about novice-level tactics and how to spot them.",
+    "panelText": "",
+    "reward": [],
+    "prereq": "lesson-6",
+    "opponent": "",
+    "theme": "red",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Tactics, they are the short-term advantages that gain you material or an edge in a sharp attack. Finding these patterns and acting upon them swiftly can make or break your match to a win or loss.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "5rk1/pp3ppp/1zp5/4p3/1P1nP3/P2P4/1B3PPP/3B1RK1 w - - 0 1",
+        "fenHistory": [
+          "5rk1/pp3ppp/1zp5/4p3/1P1nP3/P2P4/1B3PPP/3B1RK1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Not strictly a tactic, but a motif to look out for is pieces that are undefended or poorly defended. A hanging piece (undefended) is free material, a decisive advantage. The tactic to assert when a piece is poorly defended (1 maybe 2 defenders) is called removing the defender. (next) Here we see white is ‘undermining’ black’s center. If black takes, it’s removes the defender of the black Knight and winning white a material advantage.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "5rk1/pp3ppp/1zp5/4p3/1P1nPP2/P2P4/1B4PP/3B1RK1 w - - 0 1",
+        "fenHistory": [
+          "5rk1/pp3ppp/1zp5/4p3/1P1nPP2/P2P4/1B4PP/3B1RK1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Not strictly a tactic, but a motif to look out for is pieces that are undefended or poorly defended. A hanging piece (undefended) is free material, a decisive advantage. The tactic to assert when a piece is poorly defended (1 maybe 2 defenders) is called removing the defender. (next) Here we see white is ‘undermining’ black’s center. If black takes, it’s removes the defender of the black Knight and winning white a material advantage.",
+        "arrowsCircles": [
+          { "orig": "d4", "brush": "red" },
+          { "orig": "b2", "dest": "d4", "brush": "yellow" },
+          { "orig": "f2", "dest": "f4", "brush": "green" },
+          { "orig": "e5", "dest": "f4", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "4r1k1/ppp3pp/8/4b3/3n4/6P1/PP3P1P/3RR1K1 w - - 0 1",
+        "fenHistory": ["4r1k1/ppp3pp/8/4b3/3n4/6P1/PP3P1P/3RR1K1 w - - 0 1"],
+        "history": [],
+        "panelText": "There are more ways to remove the defender that we will discuss later. Any tactic we mention in this type of lesson are only relevant when there are undefended pieces, poorly defended pieces, and when you can check an opposing, unsafe King (see pattern recognition).",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "4r1k1/ppp3pp/8/4R3/3n4/6P1/PP3P1P/3R2K1 w - - 0 1",
+        "fenHistory": ["4r1k1/ppp3pp/8/4R3/3n4/6P1/PP3P1P/3R2K1 w - - 0 1"],
+        "history": [],
+        "panelText": "There are more ways to remove the defender that we will discuss later. Any tactic we mention in this type of lesson are only relevant when there are undefended pieces, poorly defended pieces, and when you can check an opposing, unsafe King (see pattern recognition).",
+        "arrowsCircles": [{ "orig": "e1", "dest": "e5", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "6k1/ppp3pp/8/4r3/3n4/6P1/PP3P1P/3R2K1 w - - 0 1",
+        "fenHistory": ["6k1/ppp3pp/8/4r3/3n4/6P1/PP3P1P/3R2K1 w - - 0 1"],
+        "history": [],
+        "panelText": "There are more ways to remove the defender that we will discuss later. Any tactic we mention in this type of lesson are only relevant when there are undefended pieces, poorly defended pieces, and when you can check an opposing, unsafe King (see pattern recognition).",
+        "arrowsCircles": [{ "orig": "e8", "dest": "e5", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "6k1/ppp3pp/8/4r3/3R4/6P1/PP3P1P/6K1 w - - 0 1",
+        "fenHistory": ["6k1/ppp3pp/8/4r3/3R4/6P1/PP3P1P/6K1 w - - 0 1"],
+        "history": [],
+        "panelText": "There are more ways to remove the defender that we will discuss later. Any tactic we mention in this type of lesson are only relevant when there are undefended pieces, poorly defended pieces, and when you can check an opposing, unsafe King (see pattern recognition).",
+        "arrowsCircles": [{ "orig": "d1", "dest": "d4", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "5rk1/4Nppp/6q1/8/8/3P4/PPPQ4/2KR4 w - - 0 1",
+        "fenHistory": ["5rk1/4Nppp/6q1/8/8/3P4/PPPQ4/2KR4 w - - 0 1"],
+        "history": [],
+        "panelText": "The arguably most important tactic is the fork. A type of double attack where one piece attacks two pieces. Any piece can do this, but is a specialty of the Knight. With it’s reach to odd surrounding squares, it has a good chance of catching undefended pieces or a checked King off guard.",
+        "arrowsCircles": [
+          { "orig": "g6", "brush": "red" },
+          { "orig": "g8", "brush": "red" },
+          { "orig": "e7", "dest": "g8", "brush": "green" },
+          { "orig": "e7", "dest": "g6", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Another tactical staple is called the pin. It is only realized on a slider piece (Rook or Bishop movement patterns). This happens when a slider piece aligns with two hostile pieces. It directly attacks a lower value piece, with a higher value piece indirectly attacked behind the first piece.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-10": {
+        "fen": "1k6/8/8/4r3/8/6B1/8/8 w - - 0 1",
+        "fenHistory": ["1k6/8/8/4r3/8/6B1/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Here are two examples. The first example is known as an ‘absolute’ pin. Black cannot move the Rook, it is illegal because it puts the Black King in check. The second example is a relative pin. Here black need to move the Knight because it is undefended, but once it does, well capture the Rook and win material.",
+        "arrowsCircles": [
+          { "orig": "g3", "dest": "b8", "brush": "green" },
+          { "orig": "e5", "brush": "red" },
+          { "orig": "b8", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-11": {
+        "fen": "8/rp1p4/p1p5/8/8/1P2n3/P5PP/2R3B1 w - - 0 1",
+        "fenHistory": ["8/rp1p4/p1p5/8/8/1P2n3/P5PP/2R3B1 w - - 0 1"],
+        "history": [],
+        "panelText": "Here are two examples. The first example is known as an ‘absolute’ pin. Black cannot move the Rook, it is illegal because it puts the Black King in check. The second example is a relative pin. Here black need to move the Knight because it is undefended, but once it does, well capture the Rook and win material.",
+        "arrowsCircles": [
+          { "orig": "a7", "brush": "red" },
+          { "orig": "e3", "brush": "red" },
+          { "orig": "g1", "dest": "a7", "brush": "green" }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-12": {
+        "fen": "3q4/8/8/3k4/8/8/3R4/8 w - - 0 1",
+        "fenHistory": ["3q4/8/8/3k4/8/8/3R4/8 w - - 0 1"],
+        "history": [],
+        "panelText": "A similar tactic is called the skewer. It works exactly like the pin, except the higher-valued piece is being directly attacked. Here black King is skewered to the Queen. The King is worth the game, the Queen is worth less than that. Once black moves out of check, we take the Queen.",
+        "arrowsCircles": [
+          { "orig": "d2", "dest": "d8", "brush": "green" },
+          { "orig": "d5", "brush": "yellow" },
+          { "orig": "d8", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-13": {
+        "fen": "rn2kb1r/pppq2pp/8/4np2/8/6N1/PPQ2PPP/RNB1R1K1 w - - 0 1",
+        "fenHistory": [
+          "rn2kb1r/pppq2pp/8/4np2/8/6N1/PPQ2PPP/RNB1R1K1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "They say “pin it to win it”. When you have an opponents piece in a pin you should put pressure on it when you can. Attacking with a Pawn can be decisive but if it’s only pieces, try to add pressure then convert from dynamic to static advantage.",
+        "arrowsCircles": [
+          { "orig": "c2", "dest": "c3", "brush": "green" },
+          { "orig": "c1", "dest": "f4", "brush": "green" },
+          { "orig": "e1", "dest": "e8", "brush": "green" },
+          { "orig": "f8", "dest": "d6", "brush": "green" },
+          { "orig": "d7", "dest": "b5", "brush": "green" },
+          { "orig": "e5", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-14": {
+        "fen": "4k3/5r2/3N4/1q6/8/8/8/8 w - - 0 1",
+        "fenHistory": ["4k3/5r2/3N4/1q6/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Be on the lookout for these rules and patterns in your matches. They are there lurking in some positions, you just need to find them!",
+        "arrowsCircles": [
+          { "orig": "d6", "dest": "e8", "brush": "green" },
+          { "orig": "d6", "dest": "f7", "brush": "green" },
+          { "orig": "d6", "dest": "b5", "brush": "green" }
         ],
         "nodeText": "",
         "reward": [],

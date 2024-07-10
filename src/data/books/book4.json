@@ -331,6 +331,604 @@
         "correctMoves": [""],
         "viewOnly": true,
         "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "8/4ppp1/3p3p/2pP4/8/8/PP3PPP/2R1R3 w - - 0 1",
+        "fenHistory": ["8/4ppp1/3p3p/2pP4/8/8/PP3PPP/2R1R3 w - - 0 1"],
+        "history": [],
+        "panelText": "The isolated Pawn is not always weak. In many variations, a Queen’s Pawn may be isolated. Though not protected, it may help control central or key squares and it also means you have two open files for major pieces to operate on.",
+        "arrowsCircles": [
+          { "orig": "c1", "dest": "c8", "brush": "green" },
+          { "orig": "e1", "dest": "e8", "brush": "green" },
+          { "orig": "e6", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "r1bqkbnr/1pp2ppp/p1p5/4p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1",
+        "fenHistory": [
+          "r1bqkbnr/1pp2ppp/p1p5/4p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Doubled Pawns are similar. It happens when there are two Pawns on a file and there’s a better chance they are both isolated. These Pawns should be treated similarly: take advantage of the squares they control and the open files they create. If you need to recapture with a Pawn (doubling them) then the rule of thumb is to capture towards the center of the board. There are exceptions, however. Capturing this way opens up the Bishop’s eyes.",
+        "arrowsCircles": [
+          { "orig": "d7", "dest": "c6", "brush": "green" },
+          { "orig": "c8", "dest": "h3", "brush": "green" }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "rnbtkb1r/ppp2pp1/4pn1p/3p2B1/2PP4/5N2/PP2PPPP/RN1TKB1R w KQkq - 0 1",
+        "fenHistory": [
+          "rnbtkb1r/ppp2pp1/4pn1p/3p2B1/2PP4/5N2/PP2PPPP/RN1TKB1R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Be careful of either of these Pawn types. You may find instances to isolate or double your opponents Pawn. You may decide to do this, then you can trade down to an endgame with a slight edge.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "rnbtkb1r/ppp2pp1/4pB1p/3p4/2PP4/5N2/PP2PPPP/RN1TKB1R w KQkq - 0 1",
+        "fenHistory": [
+          "rnbtkb1r/ppp2pp1/4pB1p/3p4/2PP4/5N2/PP2PPPP/RN1TKB1R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Be careful of either of these Pawn types. You may find instances to isolate or double your opponents Pawn. You may decide to do this, then you can trade down to an endgame with an slight edge.",
+        "arrowsCircles": [{ "orig": "g5", "dest": "f6", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "rnbtkb1r/ppp2p2/4pp1p/3p4/2PP4/5N2/PP2PPPP/RN1TKB1R w KQkq - 0 1",
+        "fenHistory": [
+          "rnbtkb1r/ppp2p2/4pp1p/3p4/2PP4/5N2/PP2PPPP/RN1TKB1R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Be careful of either of these Pawn types. You may find instances to isolate or double your opponents Pawn. You may decide to do this, then you can trade down to an endgame with an slight edge.",
+        "arrowsCircles": [
+          { "orig": "f6", "brush": "red" },
+          { "orig": "f7", "brush": "red" },
+          { "orig": "h6", "brush": "red" },
+          { "orig": "g7", "dest": "f6", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "8/4ppp1/7p/8/1P6/4P2P/5PP1/8 w - - 0 1",
+        "fenHistory": ["8/4ppp1/7p/8/1P6/4P2P/5PP1/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The last type is important: the passed Pawn. This is a Pawn that has no opposing-colored Pawn in front of it, on either adjacent file. Therefore there is a low chance of it being traded off in an equal exchange. Protect these Pawns with your life and push them down the board towards promotion. They are worth much more than a single point and are often a decisive winning advantage.",
+        "arrowsCircles": [
+          { "orig": "b2", "dest": "b4", "brush": "green" },
+          { "orig": "a8", "dest": "a1", "brush": "green" },
+          { "orig": "c8", "dest": "c1", "brush": "green" },
+          { "orig": "b8", "brush": "yellow" }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "8/8/8/3P4/2P2P2/1P4P1/P3R2P/8 w - - 0 1",
+        "fenHistory": ["8/8/8/3P4/2P2P2/1P4P1/P3R2P/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Pawn types are good to understand when evaluating a position. Keep in mind how you’re protecting them and your pieces. We’ll talk more about Pawn structures later where you can see these labeled Pawns in action.",
+        "arrowsCircles": [
+          { "orig": "e2", "dest": "a2", "brush": "green" },
+          { "orig": "e2", "dest": "h2", "brush": "green" },
+          { "orig": "h2", "brush": "red" },
+          { "orig": "a2", "brush": "red" },
+          { "orig": "b3", "brush": "green" },
+          { "orig": "c4", "brush": "green" },
+          { "orig": "d5", "brush": "green" },
+          { "orig": "g3", "brush": "green" },
+          { "orig": "f4", "brush": "green" }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "lesson-4": {
+    "id": "lesson-4",
+    "title": "Rooks",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "Open your lines and centralize as we cover intermediate ",
+    "panelText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "theme": "red",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/2R5/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/2R5/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Let’s talk about Rooks. As a major piece and slider they have access to every square on the board, in a predictable and powerful manner.",
+        "arrowsCircles": [
+          { "orig": "c3", "dest": "h3", "brush": "green" },
+          { "orig": "c3", "dest": "c8", "brush": "green" },
+          { "orig": "c3", "dest": "a3", "brush": "green" },
+          { "orig": "c3", "dest": "c1", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "7k/ppp2bpp/1nn1z3/4p3/4P2Q/8/PP3PPP/R2R2K1 w - - 0 1",
+        "fenHistory": ["7k/ppp2bpp/1nn1z3/4p3/4P2Q/8/PP3PPP/R2R2K1 w - - 0 1"],
+        "history": [],
+        "panelText": "In the principles discussion, it’s encouraged to connect them by developing all your other pieces and castling. Then what? At that point we expect there have been a few Pawns traded off. The most basic form of plan for Rook placement is along a file that doesn’t have any Pawns on it, known as an open file. Even if your opponent has a Pawn on that file (half-open) it might still be a good idea with the possibility of taking it later on.",
+        "arrowsCircles": [
+          { "orig": "c1", "dest": "c7", "brush": "green" },
+          { "orig": "d1", "dest": "d8", "brush": "green" }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "7k/ppp2bpp/1nn1z3/4p3/4P2Q/3R4/PP3PPP/R5K1 w - - 0 1",
+        "fenHistory": ["7k/ppp2bpp/1nn1z3/4p3/4P2Q/3R4/PP3PPP/R5K1 w - - 0 1"],
+        "history": [],
+        "panelText": "Once on a file like this, the Rook has more scope to be lifted, to be moved to a more active rank with lateral movement with chance at contributing to an attack.",
+        "arrowsCircles": [
+          { "orig": "d3", "dest": "h3", "brush": "green" },
+          { "orig": "h3", "dest": "h7", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "7k/ppp2bpp/1nn1z3/4p3/4P2Q/3R4/PP3PPP/3R2K1 w - - 0 1",
+        "fenHistory": ["7k/ppp2bpp/1nn1z3/4p3/4P2Q/3R4/PP3PPP/3R2K1 w - - 0 1"],
+        "history": [],
+        "panelText": "The second side effect of this vertical Rook movement on an open file is that it prepares for the second Rook to join that same file. The power of two Rooks down an open file can be a decisive advantage if you know what to do next.",
+        "arrowsCircles": [{ "orig": "d1", "dest": "d8", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "6bk/pppRR1pp/8/8/8/8/PP3PPP/6K1 w - - 0 1",
+        "fenHistory": ["6bk/pppRR1pp/8/8/8/8/PP3PPP/6K1 w - - 0 1"],
+        "history": [],
+        "panelText": "With two supported Rooks along an open file what do you do next? Penetrate your opponent’s position. Depending on the position if you adversary is holding their position well you move your Rook to the 7th or 8th rank if you’re white (2nd or 1st if you’re black). The second to last rank can be a vulnerable spot, look at all the Pawns for the taking. Look at the Pawns you can attack that are guarding your opponent’s King!",
+        "arrowsCircles": [
+          { "orig": "e7", "dest": "h7", "brush": "green" },
+          { "orig": "d7", "dest": "a7", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Consider the last few steps if you’re looking for something productive to do with your position. Make sure you read the position, create the open files.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "4r1k1/5ppp/8/8/q7/4R2P/5PP1/4R1K1 w - - 0 1",
+        "fenHistory": ["4r1k1/5ppp/8/8/q7/4R2P/5PP1/4R1K1 w - - 0 1"],
+        "history": [],
+        "panelText": "7th rank is a good spot, but if you can go for the King, do it. Here the black player failed to push any Pawns in front their King. They are vulnerable to a back-rank mate. Follow the sequence and observe the Pawns that cut off the King for a Rook to land a final blow.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "4R1k1/5ppp/8/8/q7/7P/5PP1/4R1K1 w - - 0 1",
+        "fenHistory": ["4R1k1/5ppp/8/8/q7/7P/5PP1/4R1K1 w - - 0 1"],
+        "history": [],
+        "panelText": "7th rank is a good spot, but if you can go for the King, do it. Here the black player failed to push any Pawns in front their King. They are vulnerable to a back-rank mate. Follow the sequence and observe the Pawns that cut off the King for a Rook to land a final blow.",
+        "arrowsCircles": [{ "orig": "e3", "dest": "e8", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "4q1k1/5ppp/8/8/8/7P/5PP1/4R1K1 w - - 0 1",
+        "fenHistory": ["4q1k1/5ppp/8/8/8/7P/5PP1/4R1K1 w - - 0 1"],
+        "history": [],
+        "panelText": "7th rank is a good spot, but if you can go for the King, do it. Here the black player failed to push any Pawns in front their King. They are vulnerable to a back-rank mate. Follow the sequence and observe the Pawns that cut off the King for a Rook to land a final blow.",
+        "arrowsCircles": [{ "orig": "a4", "dest": "e8", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-10": {
+        "fen": "4R1k1/5ppp/8/8/8/7P/5PP1/6K1 w - - 0 1",
+        "fenHistory": ["4R1k1/5ppp/8/8/8/7P/5PP1/6K1 w - - 0 1"],
+        "history": [],
+        "panelText": "7th rank is a good spot, but if you can go for the King, do it. Here the black player failed to push any Pawns in front their King. They are vulnerable to a back-rank mate. Follow the sequence and observe the Pawns that cut off the King for a Rook to land a final blow.",
+        "arrowsCircles": [
+          { "orig": "e8", "dest": "h8", "brush": "green" },
+          { "orig": "e1", "dest": "e8", "brush": "green" },
+          { "orig": "f7", "brush": "red" },
+          { "orig": "f8", "brush": "red" },
+          { "orig": "g8", "brush": "red" },
+          { "orig": "h8", "brush": "red" },
+          { "orig": "h7", "brush": "red" },
+          { "orig": "g7", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white",
+        "panel-11": {
+          "fen": "4r3/1ppz2kp/pu1pwzp1/5p2/2PP1P2/1P6/P1NZU1PP/R4RK1 w - - 0 1",
+          "fenHistory": [
+            "4r3/1ppz2kp/pu1pwzp1/5p2/2PP1P2/1P6/P1NZU1PP/R4RK1 w - - 0 1"
+          ],
+          "history": [],
+          "panelText": "Rooks aren’t only good for attacking. If the position is let’s say closed or there are no obvious Pawn breaks to open up the file we discussed, don’t be afraid to let your Rook defend the base of a Pawn chain (weaknesses are explained later on). Here we see the Rook providing support to a stable Pawn chain.",
+          "arrowsCircles": [
+            { "orig": "a1", "dest": "a2", "brush": "green" },
+            { "orig": "a2", "brush": "red" },
+            { "orig": "b3", "brush": "green" },
+            { "orig": "c4", "brush": "green" }
+          ],
+          "royalties": {
+            "royaltyQ": {},
+            "royaltyT": {},
+            "royaltyM": {},
+            "royaltyV": {},
+            "royaltyE": {}
+          },
+          "preset": "CLEAR",
+          "whiteArcane": {},
+          "blackArcane": {},
+          "config": {},
+          "correctMoves": [""],
+          "viewOnly": true,
+          "orientation": "white"
+        }
+      },
+      "panel-12": {
+        "fen": "3r4/5kp1/3P1p1p/5P1P/4K1P1/8/8/3R4 w - - 0 1",
+        "fenHistory": ["3r4/5kp1/3P1p1p/5P1P/4K1P1/8/8/3R4 w - - 0 1"],
+        "history": [],
+        "panelText": "We mentioned passed Pawns in the previous lesson. If you have a Rook lying around this late in the game, the only correct placement is behind the Pawn. If the Rook is behind or to the side of the Pawn you will have to keep moving to continue support or leave space for promotion.",
+        "arrowsCircles": [
+          { "orig": "d1", "dest": "d6", "brush": "yellow" },
+          { "orig": "d6", "brush": "yellow" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-13": {
+        "fen": "5rk1/2R2ppp/3N1n1n/8/5P2/5KP1/7P/5B2 w - - 0 1",
+        "fenHistory": ["5rk1/2R2ppp/3N1n1n/8/5P2/5KP1/7P/5B2 w - - 0 1"],
+        "history": [],
+        "panelText": "Finally, another endgame consideration and reminder, as with all other pieces, foster activity for your pieces. Activity, scope, mobility, just make sure your piece can move to more squares to help with attack, defense, or tactics.",
+        "arrowsCircles": [
+          { "orig": "g2", "brush": "green" },
+          { "orig": "f2", "brush": "green" },
+          { "orig": "e2", "brush": "green" },
+          { "orig": "e3", "brush": "green" },
+          { "orig": "e4", "brush": "green" },
+          { "orig": "g4", "brush": "green" },
+          { "orig": "d3", "brush": "green" },
+          { "orig": "c4", "brush": "green" },
+          { "orig": "b5", "brush": "green" },
+          { "orig": "a6", "brush": "green" },
+          { "orig": "f5", "brush": "green" },
+          { "orig": "b7", "brush": "green" },
+          { "orig": "a7", "brush": "green" },
+          { "orig": "c6", "brush": "green" },
+          { "orig": "c5", "brush": "green" },
+          { "orig": "c3", "brush": "green" },
+          { "orig": "c2", "brush": "green" },
+          { "orig": "c1", "brush": "green" },
+          { "orig": "f7", "brush": "green" },
+          { "orig": "e8", "brush": "green" },
+          { "orig": "c8", "brush": "green" },
+          { "orig": "d7", "brush": "green" },
+          { "orig": "e7", "brush": "green" },
+          { "orig": "f8", "brush": "red" },
+          { "orig": "h6", "brush": "red" },
+          { "orig": "g8", "brush": "red" },
+          { "orig": "h3", "brush": "green" }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       }
     },
     "boss": false

@@ -822,35 +822,35 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
-        "orientation": "white",
-        "panel-11": {
-          "fen": "4r3/1ppz2kp/pu1pwzp1/5p2/2PP1P2/1P6/P1NZU1PP/R4RK1 w - - 0 1",
-          "fenHistory": [
-            "4r3/1ppz2kp/pu1pwzp1/5p2/2PP1P2/1P6/P1NZU1PP/R4RK1 w - - 0 1"
-          ],
-          "history": [],
-          "panelText": "Rooks aren’t only good for attacking. If the position is let’s say closed or there are no obvious Pawn breaks to open up the file we discussed, don’t be afraid to let your Rook defend the base of a Pawn chain (weaknesses are explained later on). Here we see the Rook providing support to a stable Pawn chain.",
-          "arrowsCircles": [
-            { "orig": "a1", "dest": "a2", "brush": "green" },
-            { "orig": "a2", "brush": "red" },
-            { "orig": "b3", "brush": "green" },
-            { "orig": "c4", "brush": "green" }
-          ],
-          "royalties": {
-            "royaltyQ": {},
-            "royaltyT": {},
-            "royaltyM": {},
-            "royaltyV": {},
-            "royaltyE": {}
-          },
-          "preset": "CLEAR",
-          "whiteArcane": {},
-          "blackArcane": {},
-          "config": {},
-          "correctMoves": [""],
-          "viewOnly": true,
-          "orientation": "white"
-        }
+        "orientation": "white"
+      },
+      "panel-11": {
+        "fen": "4r3/1ppz2kp/pu1pwzp1/5p2/2PP1P2/1P6/P1NZU1PP/R4RK1 w - - 0 1",
+        "fenHistory": [
+          "4r3/1ppz2kp/pu1pwzp1/5p2/2PP1P2/1P6/P1NZU1PP/R4RK1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Rooks aren’t only good for attacking. If the position is let’s say closed or there are no obvious Pawn breaks to open up the file we discussed, don’t be afraid to let your Rook defend the base of a Pawn chain (weaknesses are explained later on). Here we see the Rook providing support to a stable Pawn chain.",
+        "arrowsCircles": [
+          { "orig": "a1", "dest": "a2", "brush": "green" },
+          { "orig": "a2", "brush": "red" },
+          { "orig": "b3", "brush": "green" },
+          { "orig": "c4", "brush": "green" }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       },
       "panel-12": {
         "fen": "3r4/5kp1/3P1p1p/5P1P/4K1P1/8/8/3R4 w - - 0 1",
@@ -1102,7 +1102,8 @@
         "panelText": "Chess may only be a 1 vs 1 game, but at the core it is built on team work. Pieces must work together and coordinate in order to win. What does this mean really? As always it depends on what position is in front of you, but we will break it down into two parts.",
         "arrowsCircles": [
           { "orig": "e3", "dest": "d5", "brush": "green" },
-          { "orig": "e2", "dest": "h5", "brush": "green" }
+          { "orig": "e2", "dest": "h5", "brush": "green" },
+          { "orig": "d5", "dest": "c7", "brush": "green" }
         ],
         "nodeText": "",
         "reward": [],
@@ -1125,11 +1126,11 @@
         "orientation": "white"
       },
       "panel-2": {
-        "fen": "8/8/8/1Z1R2Z1/3N4/1N6/3BB3/8 w - - 0 1",
-        "fenHistory": ["8/8/8/1Z1R2Z1/3N4/1N6/3BB3/8 w - - 0 1"],
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
         "panelText": "Defense. As covered in tactics, this is essential to avoiding quick short-term blunders. Before a move, ask yourself: are my pieces defended adequately? How can I solidify the integrity of my position before justifying an attack? Should I trade off a piece that is poorly defended?",
-        "arrowsCircles": [{ "orig": "b5", "dest": "b3", "brush": "green" }],
+        "arrowsCircles": [],
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1145,6 +1146,7 @@
         "viewOnly": true,
         "orientation": "white"
       },
+
       "panel-3": {
         "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p1N1/2B1P3/8/PPPP1PPP/RNBQK2R w KQkq - 0 1",
         "fenHistory": [
@@ -1180,7 +1182,10 @@
         ],
         "history": [],
         "panelText": "To apply convergence, you will need to apply your ability to think ahead and pick out what squares will be important. Are there any Pawn breaks you should be anticipating? How about open diagonals that a Bishop can contribute along? Answering these questions might help you identify your next move, even if it means spending a tempo to ‘redeploy’ your Knight to stand upon a wealthy outpost.",
-        "arrowsCircles": [{ "orig": "f3", "dest": "g5", "brush": "green" }],
+        "arrowsCircles": [
+          { "orig": "g5", "dest": "h7", "brush": "green" },
+          { "orig": "c2", "dest": "h7", "brush": "green" }
+        ],
         "nodeText": "",
         "reward": [],
         "description": "",
@@ -1289,15 +1294,16 @@
         "orientation": "white"
       },
       "panel-8": {
-        "fen": "r1bq1r1k/ppp2pp1/2n5/3n2N1/1b1P4/2N1B3/PP3PPP/R2QK2R w KQkq - 0 1",
+        "fen": "r1bq1r1k/ppp2pp1/2n5/3n2NQ/1b1P4/2N1B3/PP3PPP/R3K2R w KQkq - 0 1",
         "fenHistory": [
-          "r1bq1r1k/ppp2pp1/2n5/3n2N1/1b1P4/2N1B3/PP3PPP/R2QK2R w KQkq - 0 1"
+          "r1bq1r1k/ppp2pp1/2n5/3n2NQ/1b1P4/2N1B3/PP3PPP/R3K2R w KQkq - 0 1"
         ],
         "history": [],
         "panelText": "A basic example that you will see players try to pull off in the opening if f7. This is a weakness in black’s (f2 in white’s) camp. You’ll see the Queen work together with the Knight or Bishop often to pull off convergence like these. Ask yourself: “what is a key square can my pieces work together to attack? How do I achieve this objective?”.",
         "arrowsCircles": [
           { "orig": "g5", "dest": "h7", "brush": "green" },
-          { "orig": "d1", "dest": "h5", "brush": "green" }
+          { "orig": "d1", "dest": "h5", "brush": "green" },
+          { "orig": "h8", "brush": "red" }
         ],
         "nodeText": "",
         "reward": [],
@@ -1499,6 +1505,8 @@
         "arrowsCircles": [
           { "orig": "f4", "dest": "f5", "brush": "yellow" },
           { "orig": "d6", "dest": "d5", "brush": "yellow" },
+          { "orig": "e6", "dest": "e5", "brush": "yellow" },
+          { "orig": "e4", "dest": "e5", "brush": "yellow" },
           { "orig": "d5", "brush": "yellow" },
           { "orig": "e5", "brush": "yellow" },
           { "orig": "f5", "brush": "yellow" }

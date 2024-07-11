@@ -11,7 +11,7 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
-    "theme": "red",
+    "theme": "purple",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -127,7 +127,7 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
-    "theme": "red",
+    "theme": "purple",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -272,9 +272,9 @@
     "nodeText": "Learn intermediate Pawn patterns.",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-2",
     "opponent": "",
-    "theme": "red",
+    "theme": "purple",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -542,9 +542,9 @@
     "nodeText": "Open your lines and centralize as we cover intermediate ",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-3",
     "opponent": "",
-    "theme": "red",
+    "theme": "purple",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/2R5/8/8 w - - 0 1",
@@ -943,9 +943,9 @@
     "nodeText": "Space is a physical realization of the chessboard where pieces can be mobile.",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-4",
     "opponent": "",
-    "theme": "",
+    "theme": "purple",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -1089,9 +1089,9 @@
     "nodeText": "On the outside, chess is a singular-minded game. Warlords clashing it out against one another. On the inside it's a team sport. Let's find out why.",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-5",
     "opponent": "",
-    "theme": "",
+    "theme": "purple",
     "panels": {
       "panel-1": {
         "fen": "1k2nn2/2pu2up/p2p1p1q/1p1NpP1Z/1P1PP3/4N2P/2Q1B3/1K6 w - - 0 1",
@@ -1322,6 +1322,262 @@
     },
     "boss": false
   },
+  "lesson-7": {
+    "id": "lesson-7",
+    "title": "Patterns",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "The fianchetto, open lines, and batteries.",
+    "panelText": "",
+    "reward": [],
+    "prereq": "lesson-6",
+    "opponent": "",
+    "theme": "purple",
+    "panels": {
+      "panel-1": {
+        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Let’s cover a few more patterns. Normally we develop our bishops by moving our center Pawns. This is another way called the ‘fianchetto’.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "rnbqkbnr/pppppppp/8/8/8/5N2/PPPPPPPP/RNBQKB1R w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/8/5N2/PPPPPPPP/RNBQKB1R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Develop your Knight first as usual.",
+        "arrowsCircles": [{ "orig": "g1", "dest": "f3", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "THRONE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "rnbqkbnr/pppppppp/8/8/8/5NP1/PPPPPP1P/RNBQKB1R w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/8/5NP1/PPPPPP1P/RNBQKB1R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Move your g Pawn one square forward.",
+        "arrowsCircles": [{ "orig": "g2", "dest": "g3", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "THRONE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "rnbqkbnr/pppppppp/8/8/8/5NP1/PPPPPPBP/RNBQK2R w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/8/5NP1/PPPPPPBP/RNBQK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Then, your Bishop gets tucked within this Pawn structure. When playing as black, this setup is called “King’s Indian Defense”. It allows your opponent to capture the center with Pawns, but if you look closely the Bishop and Knight observe the center from afar. This is known as a hypermodern opening.",
+        "arrowsCircles": [
+          { "orig": "f1", "dest": "g2", "brush": "green" },
+          { "orig": "e1", "dest": "g1", "brush": "green" },
+          { "orig": "h1", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "HORDE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "rnbqkbnr/pppp1ppp/8/8/2B1P3/8/PB3PPP/RN1QK1NR w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppp1ppp/8/8/2B1P3/8/PB3PPP/RN1QK1NR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Lets talk about open lines. These can be files, diagonals, and even ranks. It is very important to give your sliders (any Rook or Bishop pattern pieces including Queen) many squares to move to in to thrive and have good activity.",
+        "arrowsCircles": [
+          { "orig": "b2", "dest": "g7", "brush": "green" },
+          { "orig": "c4", "dest": "f7", "brush": "green" },
+          { "orig": "d1", "dest": "d6", "brush": "green" },
+          { "orig": "d1", "dest": "h5", "brush": "green" },
+          { "orig": "c4", "brush": "green" },
+          { "orig": "b2", "brush": "green" },
+          { "orig": "c8", "brush": "red" },
+          { "orig": "f8", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "4rrk1/p3s1bp/1pbpp1p1/2p3Uz/2P1PPW1/PzNBB1P1/1P5P/1R3RK1 w - - 0 1",
+        "fenHistory": [
+          "4rrk1/p3s1bp/1pbpp1p1/2p3Uz/2P1PPW1/PzNBB1P1/1P5P/1R3RK1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "With open lines and activity comes resourcefulness and access into your opponents territory, their Pawn weaknesses, and their King. Treat this as a side quest, another objective to achieve during your match. Identify your good Bishop and where the Pawn breaks will occur. These are where your sliders should operate.",
+        "arrowsCircles": [
+          { "orig": "f4", "dest": "f5", "brush": "yellow" },
+          { "orig": "d6", "dest": "d5", "brush": "yellow" },
+          { "orig": "d5", "brush": "yellow" },
+          { "orig": "e5", "brush": "yellow" },
+          { "orig": "f5", "brush": "yellow" }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "r2q1rk1/pp1bbppp/2n2n2/2pp4/3P4/2N1PN2/PPQ2PPP/RBB1K2R w KQkq - 0 1",
+        "fenHistory": [
+          "r2q1rk1/pp1bbppp/2n2n2/2pp4/3P4/2N1PN2/PPQ2PPP/RBB1K2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "On open lines we have a semi-tactic called the battery. Place a Queen (typically in front of) a Rook or Bishop. Your opponent will have to rush to the defense of a key square. You may even get lucky and pull off a quick checkmate with one. Be careful if your opponent tries to build one though, this can be a long-ranged attack.",
+        "arrowsCircles": [
+          { "orig": "b1", "dest": "h7", "brush": "green" },
+          { "orig": "h7", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Keep making observations about what’s going on on the board. It’s an unfolding story. There are many patterns to watch for, be on the lookout!",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
   "mission-1": {
     "id": "mission-1",
     "title": "Skeletons",
@@ -1332,7 +1588,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-3",
     "opponent": "",
     "theme": "purple",
     "panels": {

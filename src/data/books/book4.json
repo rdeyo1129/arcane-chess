@@ -933,6 +933,395 @@
     },
     "boss": false
   },
+  "lesson-5": {
+    "id": "lesson-5",
+    "title": "Space",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "Space is a physical realization of the chessboard where pieces can be mobile.",
+    "panelText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Space is a built in mechanic of the chessboard. Each of the 64 squares represents a piece of it. That you want to control. The more space you have the better your chance of converting to an endgame with a Pawn that is fast to promote. Army to begin the game is confined to this close-quarter zone, each cornered against a hypothetical wall.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "8/1p1pp2p/2p2pp1/p2PPPPP/2P5/1P6/P7/8 w - - 0 1",
+        "fenHistory": ["8/1p1pp2p/2p2pp1/p2PPPPP/2P5/1P6/P7/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Pawns are the main definition of how much space a player controls. You push all your Pawns forward, you control more space. But at what cost?",
+        "arrowsCircles": [
+          { "orig": "d4", "brush": "green" },
+          { "orig": "c3", "brush": "green" },
+          { "orig": "b2", "brush": "green" },
+          { "orig": "a1", "brush": "green" },
+          { "orig": "b1", "brush": "green" },
+          { "orig": "c1", "brush": "green" },
+          { "orig": "d1", "brush": "green" },
+          { "orig": "e1", "brush": "green" },
+          { "orig": "f1", "brush": "green" },
+          { "orig": "g1", "brush": "green" },
+          { "orig": "h1", "brush": "green" },
+          { "orig": "h2", "brush": "green" },
+          { "orig": "h3", "brush": "green" },
+          { "orig": "h4", "brush": "green" },
+          { "orig": "g4", "brush": "green" },
+          { "orig": "f4", "brush": "green" },
+          { "orig": "e4", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "8/ppp1pppp/3p4/2PPPP2/8/8/PP4PP/8 w - - 0 1",
+        "fenHistory": ["8/ppp1pppp/3p4/2PPPP2/8/8/PP4PP/8 w - - 0 1"],
+        "history": [],
+        "panelText": "A principle taught everywhere is control the center with Pawns. The leading side effect is having space to move your pieces. However, in some scenarios like this one the Pawns have advanced to far for their own good and have created weaknesses that they can no longer go back to defend upon. White has space, but their Pawns do not control the center.",
+        "arrowsCircles": [
+          { "orig": "d5", "brush": "red" },
+          { "orig": "e5", "brush": "red" },
+          { "orig": "e4", "brush": "red" },
+          { "orig": "d4", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "r3k2r/1bqnnpbp/p1p1p1p1/PpPpP3/1P1P1P2/2N3P1/4N1BP/R1BQK2R w KQkq - 0 1",
+        "fenHistory": [
+          "r3k2r/1bqnnpbp/p1p1p1p1/PpPpP3/1P1P1P2/2N3P1/4N1BP/R1BQK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "When dealing with abundance or lack of space, the plans for each player is clear. if you’re the player with less space, a good bet is to trade off pieces and initiate pawn breaks. On the other hand if you have the space, keep pieces on the board. Your pieces have activity and the time and ability to decide upon a plan of attack, while your opponent has little activity and no choice but to wait out defeat.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "lesson-6": {
+    "id": "lesson-6",
+    "title": "Coordination",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "On the outside, chess is a singular-minded game. Warlords clashing it out against one another. On the inside it's a team sport. Let's find out why.",
+    "panelText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "1k2nn2/2pu2up/p2p1p1q/1p1NpP1Z/1P1PP3/4N2P/2Q1B3/1K6 w - - 0 1",
+        "fenHistory": [
+          "1k2nn2/2pu2up/p2p1p1q/1p1NpP1Z/1P1PP3/4N2P/2Q1B3/1K6 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Chess may only be a 1 vs 1 game, but at the core it is built on team work. Pieces must work together and coordinate in order to win. What does this mean really? As always it depends on what position is in front of you, but we will break it down into two parts.",
+        "arrowsCircles": [
+          { "orig": "e3", "dest": "d5", "brush": "green" },
+          { "orig": "e2", "dest": "h5", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "8/8/8/1Z1R2Z1/3N4/1N6/3BB3/8 w - - 0 1",
+        "fenHistory": ["8/8/8/1Z1R2Z1/3N4/1N6/3BB3/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Defense. As covered in tactics, this is essential to avoiding quick short-term blunders. Before a move, ask yourself: are my pieces defended adequately? How can I solidify the integrity of my position before justifying an attack? Should I trade off a piece that is poorly defended?",
+        "arrowsCircles": [{ "orig": "b5", "dest": "b3", "brush": "green" }],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p1N1/2B1P3/8/PPPP1PPP/RNBQK2R w KQkq - 0 1",
+        "fenHistory": [
+          "r1bqkb1r/pppp1ppp/2n2n2/4p1N1/2B1P3/8/PPPP1PPP/RNBQK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Convergence. A different way of say attack, but this is more realized when identifying what pieces or squares they can move two, specifically the same squares. Once you threaten an enemy piece or square with two pieces, one will be supported upon a capture or move. This may be a significant advantage.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "THRONE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "r3r1k1/1pp1qppp/p1n5/3p2N1/P2P2b1/2P5/1PQ2PPP/1B1RR2K w - - 0 1",
+        "fenHistory": [
+          "r3r1k1/1pp1qppp/p1n5/3p2N1/P2P2b1/2P5/1PQ2PPP/1B1RR2K w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "To apply convergence, you will need to apply your ability to think ahead and pick out what squares will be important. Are there any Pawn breaks you should be anticipating? How about open diagonals that a Bishop can contribute along? Answering these questions might help you identify your next move, even if it means spending a tempo to ‘redeploy’ your Knight to stand upon a wealthy outpost.",
+        "arrowsCircles": [{ "orig": "f3", "dest": "g5", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "r1bq1rk1/ppp2ppB/2n5/3n4/1b1P4/2N1BN2/PP3PPP/R2QK2R w KQkq - 0 1",
+        "fenHistory": [
+          "r1bq1rk1/ppp2ppB/2n5/3n4/1b1P4/2N1BN2/PP3PPP/R2QK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "A basic example that you will see players try to pull off in the opening if f7. This is a weakness in black’s (f2 in white’s) camp. You’ll see the Queen work together with the Knight or Bishop often to pull off convergence like these. Ask yourself: “what is a key square can my pieces work together to attack? How do I achieve this objective?”.",
+        "arrowsCircles": [{ "orig": "d3", "dest": "h7", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "HORDE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "r1bq1r2/ppp2ppk/2n5/3n4/1b1P4/2N1BN2/PP3PPP/R2QK2R w KQkq - 0 1",
+        "fenHistory": [
+          "r1bq1r2/ppp2ppk/2n5/3n4/1b1P4/2N1BN2/PP3PPP/R2QK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "A basic example that you will see players try to pull off in the opening if f7. This is a weakness in black’s (f2 in white’s) camp. You’ll see the Queen work together with the Knight or Bishop often to pull off convergence like these. Ask yourself: “what is a key square can my pieces work together to attack? How do I achieve this objective?”.",
+        "arrowsCircles": [{ "orig": "g8", "dest": "h7", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "HORDE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "r1bq1r2/ppp2ppk/2n5/3n2N1/1b1P4/2N1B3/PP3PPP/R2QK2R w KQkq - 0 1",
+        "fenHistory": [
+          "r1bq1r2/ppp2ppk/2n5/3n2N1/1b1P4/2N1B3/PP3PPP/R2QK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "A basic example that you will see players try to pull off in the opening if f7. This is a weakness in black’s (f2 in white’s) camp. You’ll see the Queen work together with the Knight or Bishop often to pull off convergence like these. Ask yourself: “what is a key square can my pieces work together to attack? How do I achieve this objective?”.",
+        "arrowsCircles": [
+          { "orig": "f3", "dest": "g5", "brush": "green" },
+          { "orig": "h7", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "HORDE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "r1bq1r1k/ppp2pp1/2n5/3n2N1/1b1P4/2N1B3/PP3PPP/R2QK2R w KQkq - 0 1",
+        "fenHistory": [
+          "r1bq1r1k/ppp2pp1/2n5/3n2N1/1b1P4/2N1B3/PP3PPP/R2QK2R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "A basic example that you will see players try to pull off in the opening if f7. This is a weakness in black’s (f2 in white’s) camp. You’ll see the Queen work together with the Knight or Bishop often to pull off convergence like these. Ask yourself: “what is a key square can my pieces work together to attack? How do I achieve this objective?”.",
+        "arrowsCircles": [
+          { "orig": "g5", "dest": "h7", "brush": "green" },
+          { "orig": "d1", "dest": "h5", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "HORDE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
   "mission-1": {
     "id": "mission-1",
     "title": "Skeletons",

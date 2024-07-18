@@ -17,6 +17,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
   constructor(props: object) {
     super(props);
     this.slogans = [
+      'Principle. Preparation. Process.',
       'You wanted the Knook and we heard you.',
       'Initiative. Formulation. Execution.',
       'As in war, so in life.',

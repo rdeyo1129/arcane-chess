@@ -130,7 +130,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-7",
     "opponent": "",
     "theme": "blue",
     "panels": {

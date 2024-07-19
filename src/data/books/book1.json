@@ -265,7 +265,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-1",
     "opponent": "",
     "theme": "brown",
     "panels": {
@@ -360,7 +360,7 @@
     "nodeText": "What are you fighting for? Learn about why Chess is a zero-sum game.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-1",
+    "prereq": "lesson-6",
     "opponent": "",
     "theme": "brown",
     "panels": {

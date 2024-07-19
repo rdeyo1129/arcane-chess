@@ -130,7 +130,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-3",
     "opponent": "",
     "theme": "green",
     "panels": {
@@ -251,7 +251,7 @@
     "nodeText": "The endgame scenario that may or may not be in your favor.",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-4",
     "opponent": "",
     "theme": "green",
     "panels": {

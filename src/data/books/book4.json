@@ -125,7 +125,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-1",
     "opponent": "",
     "theme": "purple",
     "panels": {

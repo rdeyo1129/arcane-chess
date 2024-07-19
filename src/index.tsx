@@ -74,7 +74,7 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
-      {process.env.NODE_ENV === 'production' && (
+      {process.env.NODE_ENV !== 'production' && (
         <Route
           path="/create"
           element={

@@ -1868,7 +1868,7 @@
   },
   "mission-1": {
     "id": "mission-1",
-    "title": "Fair is Fair",
+    "title": "A Throne for the Taking",
     "time": [
       [180, 15],
       [45, 0]
@@ -1876,13 +1876,15 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "lesson-2",
     "opponent": "",
     "theme": "green",
     "panels": {
       "panel-1": {
-        "fen": "3rk3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1",
-        "fenHistory": ["3rk3/3pp3/8/8/8/8/3PP3/3RK3 w - - 0 1"],
+        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        ],
         "history": [],
         "panelText": "",
         "royalties": {
@@ -1893,6 +1895,49 @@
           "royaltyE": {}
         },
         "arrowsCircles": [],
+        "preset": "THRONE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-2": {
+    "id": "mission-2",
+    "title": "Conversion Bias",
+    "time": [
+      [180, 15],
+      [45, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-1",
+    "opponent": "",
+    "theme": "green",
+    "panels": {
+      "panel-1": {
+        "fen": "4k3/3ppp2/8/8/8/8/2PPPP2/4K3 w - - 0 1",
+        "fenHistory": ["4k3/3ppp2/8/8/8/8/2PPPP2/4K3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
@@ -1902,6 +1947,268 @@
         "orientation": "white"
       }
     },
-    "boss": true
+    "boss": false
+  },
+  "mission-3": {
+    "id": "mission-3",
+    "title": "A Matter of Technique",
+    "time": [
+      [180, 15],
+      [45, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-2",
+    "opponent": "",
+    "theme": "green",
+    "panels": {
+      "panel-1": {
+        "fen": "4k3/3ppp2/8/8/8/8/8/3RK3 w - - 0 1",
+        "fenHistory": ["4k3/3ppp2/8/8/8/8/8/3RK3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-4": {
+    "id": "mission-4",
+    "title": "Team Jousting",
+    "time": [
+      [180, 15],
+      [45, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-3",
+    "opponent": "",
+    "theme": "green",
+    "panels": {
+      "panel-1": {
+        "fen": "3tkn2/3ppp2/8/8/8/8/2PPPP2/2BMKB2 w - - 0 1",
+        "fenHistory": ["3tkn2/3ppp2/8/8/8/8/2PPPP2/2BMKB2 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-5": {
+    "id": "mission-5",
+    "title": "Two Way Haunt",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-4",
+    "opponent": "",
+    "theme": "red",
+    "panels": {
+      "panel-1": {
+        "fen": "3wk3/3pp3/8/8/8/8/3PP3/3SK3 w - - 0 1",
+        "fenHistory": ["3wk3/3pp3/8/8/8/8/3PP3/3SK3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-6": {
+    "id": "mission-6",
+    "title": "Flank Haunt",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-5",
+    "opponent": "",
+    "theme": "red",
+    "panels": {
+      "panel-1": {
+        "fen": "1bbqkbb1/1pppppp1/8/8/8/8/1PPPPPP1/1RWSKWR1 w - - 0 1",
+        "fenHistory": ["1bbqkbb1/1pppppp1/8/8/8/8/1PPPPPP1/1RWSKWR1 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-7": {
+    "id": "mission-7",
+    "title": "Storm on the Safari",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-6",
+    "opponent": "",
+    "theme": "red",
+    "panels": {
+      "panel-1": {
+        "fen": "4k3/1ppppppp/1ppppppp/8/8/8/1PPPPPPP/2ZZKZZ1 w - - 0 1",
+        "fenHistory": [
+          "4k3/1ppppppp/1ppppppp/8/8/8/1PPPPPPP/2ZZKZZ1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-8": {
+    "id": "mission-8",
+    "title": "All Hands on Deck",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-7",
+    "opponent": "",
+    "theme": "red",
+    "panels": {
+      "panel-1": {
+        "fen": "mmmmkbbb/pppppppp/8/8/8/8/PPPPPPPP/TTTTKZNU w KQkq - 0 1",
+        "fenHistory": [
+          "mmmmkbbb/pppppppp/8/8/8/8/PPPPPPPP/TTTTKZNU w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
   }
 }

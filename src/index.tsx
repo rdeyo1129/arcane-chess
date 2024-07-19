@@ -74,14 +74,16 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
-      <Route
-        path="/create"
-        element={
-          <PrivateRoute>
-            <InGameMenu />
-          </PrivateRoute>
-        }
-      />
+      {process.env.NODE_ENV === 'production' && (
+        <Route
+          path="/create"
+          element={
+            <PrivateRoute>
+              <InGameMenu />
+            </PrivateRoute>
+          }
+        />
+      )}
       <Route
         path="/quickplay"
         element={

@@ -225,7 +225,7 @@
     "nodeText": "Learn about the strongest pieces in the game.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-1",
+    "prereq": "lesson-8",
     "opponent": "",
     "theme": "blue",
     "panels": {
@@ -3520,7 +3520,7 @@
   },
   "mission-2": {
     "id": "mission-2",
-    "title": "A Little Push",
+    "title": "In the Stronghold",
     "time": [
       [400, 0],
       [140, 0]
@@ -3533,8 +3533,8 @@
     "theme": "blue",
     "panels": {
       "panel-1": {
-        "fen": "3k4/2ppp3/8/8/8/2PPP3/3K4/8 w - - 0 1",
-        "fenHistory": ["3k4/2ppp3/8/8/8/2PPP3/3K4/8 w - - 0 1"],
+        "fen": "2nbkr2/2pppp2/8/8/8/8/2PPPP2/2RRKR2 w - - 0 1",
+        "fenHistory": ["2nbkr2/2pppp2/8/8/8/8/2PPPP2/2RRKR2 w - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -3566,13 +3566,13 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "mission-2",
     "opponent": "",
     "theme": "blue",
     "panels": {
       "panel-1": {
-        "fen": "2nnkn2/2pppp2/8/8/8/8/2PPPP2/2BBKR2 w - - 0 1",
-        "fenHistory": ["2nnkn2/2pppp2/8/8/8/8/2PPPP2/2BBKR2 w - - 0 1"],
+        "fen": "1rrrkr2/1ppppp2/8/8/8/8/PPPPPPP1/NNBBKZZ1 w - - 0 1",
+        "fenHistory": ["1rrrkr2/1ppppp2/8/8/8/8/PPPPPPP1/NNBBKZZ1 w - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -3596,7 +3596,7 @@
   },
   "mission-4": {
     "id": "mission-4",
-    "title": "Ghost a Ghost",
+    "title": "The Dark Priest",
     "time": [
       [300, 4],
       [90, 2]
@@ -3604,13 +3604,148 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "mission-3",
     "opponent": "",
     "theme": "blue",
     "panels": {
       "panel-1": {
-        "fen": "3wk3/3pp3/8/8/8/8/3PP3/3SK3 w - - 0 1",
-        "fenHistory": ["3wk3/3pp3/8/8/8/8/3PP3/3SK3 w - - 0 1"],
+        "fen": "2nnknn1/2ppppp1/8/8/8/8/2PPPPP1/2BBKBB1 w - - 0 1",
+        "fenHistory": ["2nnknn1/2ppppp1/8/8/8/8/2PPPPP1/2BBKBB1 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-5": {
+    "id": "mission-5",
+    "title": "Entrance of Demons",
+    "time": [
+      [300, 4],
+      [90, 2]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-4",
+    "opponent": "",
+    "theme": "blue",
+    "panels": {
+      "panel-1": {
+        "fen": "4k3/2pppp2/8/8/8/8/2PPPP2/4K3 w - - 0 1",
+        "fenHistory": ["4k3/2pppp2/8/8/8/8/2PPPP2/4K3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": { "sumnB": 2, "sumnN": 1, "sumnR": 1 },
+        "blackArcane": { "sumnN": 1, "sumnZ": 1, "sumnU": 1 },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-6": {
+    "id": "mission-6",
+    "title": "A Power Realized",
+    "time": [
+      [300, 4],
+      [90, 2]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-5",
+    "opponent": "",
+    "theme": "blue",
+    "panels": {
+      "panel-1": {
+        "fen": "4k3/4p3/8/8/8/8/4P3/4K3 w - - 0 1",
+        "fenHistory": ["4k3/4p3/8/8/8/8/4P3/4K3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {
+          "sumnB": 2,
+          "sumnN": 1,
+          "sumnZ": 1,
+          "sumnU": 1,
+          "sumnP": 3
+        },
+        "blackArcane": { "sumnR": 3, "sumnP": 3 },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-7": {
+    "id": "mission-7",
+    "title": "A Ghost Materializes",
+    "time": [
+      [300, 4],
+      [90, 2]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-6",
+    "opponent": "",
+    "theme": "blue",
+    "panels": {
+      "panel-1": {
+        "fen": "2rwkbb1/2ppppp1/8/8/8/8/2PPPPP1/2RWKNR1 w - - 0 1",
+        "fenHistory": ["2rwkbb1/2ppppp1/8/8/8/8/2PPPPP1/2RWKNR1 w - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -3628,7 +3763,93 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {},
-        "blackArcane": { "modsINH": 1 },
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-8": {
+    "id": "mission-8",
+    "title": "A Haunted Dream",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-7",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "1wwwkbb1/1pppppp1/8/8/8/8/PPPPPPPP/UZBWKBZN w - - 0 1",
+        "fenHistory": ["1wwwkbb1/1pppppp1/8/8/8/8/PPPPPPPP/UZBWKBZN w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-9": {
+    "id": "mission-9",
+    "title": "12 Midnight",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-8",
+    "opponent": "",
+    "theme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "1wwwkww1/1pppppp1/8/8/8/8/1PPPPPP1/1QWRKWQ1 w - - 0 1",
+        "fenHistory": ["1wwwkww1/1pppppp1/8/8/8/8/1PPPPPP1/1QWRKWQ1 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": { "sumnN": 2 },
+        "blackArcane": { "sumnB": 2 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,

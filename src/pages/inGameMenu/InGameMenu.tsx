@@ -2216,7 +2216,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   color="B"
                   text="TRASH"
                   height={30}
-                  onClick={() => this.setState({ placingPiece: 333 })}
+                  // onClick={() => this.setState({ placingPiece: 333 })}
                 />
               </div>
               <div className="reset-output">

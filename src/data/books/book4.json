@@ -1628,5 +1628,320 @@
       }
     },
     "boss": true
+  },
+  "mission-2": {
+    "id": "mission-2",
+    "title": "Tip the Balance",
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-1",
+    "opponent": "",
+    "theme": "purple",
+    "panels": {
+      "panel-1": {
+        "fen": "3nk3/2pppp2/8/8/8/8/3PPP2/3RK3 w - - 0 1",
+        "fenHistory": ["3nk3/2pppp2/8/8/8/8/3PPP2/3RK3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-3": {
+    "id": "mission-3",
+    "title": "An Unfamiliar Foe",
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-2",
+    "opponent": "",
+    "theme": "purple",
+    "panels": {
+      "panel-1": {
+        "fen": "3tk3/2pppp2/8/8/8/8/2PPPP2/2NUKZ2 w - - 0 1",
+        "fenHistory": ["3tk3/2pppp2/8/8/8/8/2PPPP2/2NUKZ2 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "mission-2",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-4": {
+    "id": "mission-4",
+    "title": "Under Siege",
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-3",
+    "opponent": "",
+    "theme": "purple",
+    "panels": {
+      "panel-1": {
+        "fen": "1rrkrr2/1ppppp2/8/8/8/8/1PPPPP2/1RRKRR2 w - - 0 1",
+        "fenHistory": ["1rrkrr2/1ppppp2/8/8/8/8/1PPPPP2/1RRKRR2 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {
+          "shftR": 1,
+          "sumnX": 1,
+          "sumnRQ": 1,
+          "sumnRT": 1,
+          "shftP": 1
+        },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-5": {
+    "id": "mission-5",
+    "title": "Power in Numbers",
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-4",
+    "opponent": "",
+    "theme": "purple",
+    "panels": {
+      "panel-1": {
+        "fen": "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "HORDE",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-6": {
+    "id": "mission-6",
+    "title": "Enchanted Derby",
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-5",
+    "opponent": "",
+    "theme": "purple",
+    "panels": {
+      "panel-1": {
+        "fen": "uuuukuuu/pppppppp/8/8/8/8/PPPPPPPP/ZZZZKZZZ w KQkq - 0 1",
+        "fenHistory": [
+          "uuuukuuu/pppppppp/8/8/8/8/PPPPPPPP/ZZZZKZZZ w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-7": {
+    "id": "mission-7",
+    "title": "Invasive Species",
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-6",
+    "opponent": "",
+    "theme": "purple",
+    "panels": {
+      "panel-1": {
+        "fen": "pppppppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/RNBQKBNR w - - 0 1",
+        "fenHistory": [
+          "pppppppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/RNBQKBNR w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CAPALL",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-8": {
+    "id": "mission-8",
+    "title": "The Butterfly Effect",
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "panelText": "",
+    "reward": [],
+    "prereq": "mission-7",
+    "opponent": "",
+    "theme": "purple",
+    "panels": {
+      "panel-1": {
+        "fen": "rnbtkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBTKBNR w KQkq - 0 1",
+        "fenHistory": [
+          "rnbtkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBTKBNR w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": { "sumnX": 1, "sumnRQ": 1, "sumnRE": 1, "shftB": 1 },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
   }
 }

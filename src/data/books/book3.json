@@ -2007,8 +2007,8 @@
     "theme": "green",
     "panels": {
       "panel-1": {
-        "fen": "3tkn2/3ppp2/8/8/8/8/2PPPP2/2BMKB2 w - - 0 1",
-        "fenHistory": ["3tkn2/3ppp2/8/8/8/8/2PPPP2/2BMKB2 w - - 0 1"],
+        "fen": "3mkn2/3ppp2/8/8/8/8/2PPPP2/2BMKB2 w - - 0 1",
+        "fenHistory": ["3mkn2/3ppp2/8/8/8/8/2PPPP2/2BMKB2 w - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -2181,9 +2181,9 @@
     "theme": "red",
     "panels": {
       "panel-1": {
-        "fen": "mmmmkbbb/pppppppp/8/8/8/8/PPPPPPPP/TTTTKZNU w KQkq - 0 1",
+        "fen": "mmmmkbbb/pppppppp/8/8/8/8/PPPPPPPP/MMMMKZNU w KQkq - 0 1",
         "fenHistory": [
-          "mmmmkbbb/pppppppp/8/8/8/8/PPPPPPPP/TTTTKZNU w KQkq - 0 1"
+          "mmmmkbbb/pppppppp/8/8/8/8/PPPPPPPP/MMMMKZNU w KQkq - 0 1"
         ],
         "history": [],
         "panelText": "",

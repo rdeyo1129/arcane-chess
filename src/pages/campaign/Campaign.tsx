@@ -76,11 +76,11 @@ export class UnwrappedCampaign extends React.Component<
           </Link>
         </div>
         <div className="book-grid">
-          <div className="books">
+          {/* <div className="book-titles">
             <span>Book I</span>
             <span>Book III</span>
             <span>Book IV</span>
-          </div>
+          </div> */}
           <div className="chapters">
             {this.state.books.map((book, i) => {
               const LS = getLocalStorage(this.props.auth.user.username);

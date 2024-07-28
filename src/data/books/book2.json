@@ -1,6 +1,6 @@
 {
-  "lesson-7": {
-    "id": "lesson-7",
+  "lesson-1": {
+    "id": "lesson-1",
     "title": "The Growth Mindset",
     "time": [
       [0, 0],
@@ -11,7 +11,7 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -120,8 +120,8 @@
     },
     "boss": false
   },
-  "lesson-8": {
-    "id": "lesson-8",
+  "lesson-2": {
+    "id": "lesson-2",
     "title": "Reflection",
     "time": [
       [0, 0],
@@ -130,9 +130,9 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-7",
+    "prereq": "lesson-1",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -215,8 +215,8 @@
     },
     "boss": false
   },
-  "lesson-1": {
-    "id": "lesson-1",
+  "lesson-3": {
+    "id": "lesson-3",
     "title": "Heavy Hitters",
     "time": [
       [0, 0],
@@ -225,9 +225,9 @@
     "nodeText": "Learn about the strongest pieces in the game.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-8",
+    "prereq": "lesson-2",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/3Q4/8/8/8 w - - 0 1",
@@ -429,8 +429,8 @@
     },
     "boss": false
   },
-  "lesson-2": {
-    "id": "lesson-2",
+  "lesson-4": {
+    "id": "lesson-4",
     "title": "Overkills I",
     "time": [
       [0, 0],
@@ -439,9 +439,9 @@
     "nodeText": "Learn about the KRR vs K endgame scenario.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-1",
+    "prereq": "lesson-3",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/1R4k1/2K5/8/R7 w - - 0 1",
@@ -819,8 +819,8 @@
     },
     "boss": false
   },
-  "lesson-3": {
-    "id": "lesson-3",
+  "lesson-5": {
+    "id": "lesson-5",
     "title": "Overkills II",
     "time": [
       [0, 0],
@@ -829,9 +829,9 @@
     "nodeText": "Learn about the KQ vs K endgame scenario.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-2",
+    "prereq": "lesson-4",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/5k2/3Q4/8/3K4 w - - 0 1",
@@ -1406,8 +1406,8 @@
     },
     "boss": false
   },
-  "lesson-4": {
-    "id": "lesson-4",
+  "lesson-6": {
+    "id": "lesson-6",
     "title": "The Box",
     "time": [
       [0, 0],
@@ -1416,9 +1416,9 @@
     "nodeText": "A quick rule to tell if a Pawn can be stopped from promotion.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-3",
+    "prereq": "lesson-5",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "7k/8/8/3K4/7p/8/8/8 w - - 0 1",
@@ -1816,8 +1816,8 @@
     },
     "boss": false
   },
-  "lesson-5": {
-    "id": "lesson-5",
+  "lesson-7": {
+    "id": "lesson-7",
     "title": "Overkills III",
     "time": [
       [0, 0],
@@ -1826,9 +1826,9 @@
     "nodeText": "Dive into this last overkill variant. You are up a full Rook and need to mate.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-4",
+    "prereq": "lesson-6",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/3k1K2/4R3/8/8/8 w - - 0 1",
@@ -2364,8 +2364,8 @@
     },
     "boss": false
   },
-  "lesson-6": {
-    "id": "lesson-6",
+  "lesson-8": {
+    "id": "lesson-8",
     "title": "Opposition",
     "time": [
       [0, 0],
@@ -2374,9 +2374,9 @@
     "nodeText": "Outflank your opponents King in this endgame scenario.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-5",
+    "prereq": "lesson-7",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/3k4/8/3K4/8/8/8 w - - 0 1",
@@ -3208,9 +3208,9 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-6",
+    "prereq": "lesson-8",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "3k4/8/8/8/8/8/3K4/3P4 w - - 0 1",
@@ -3251,9 +3251,9 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-3",
+    "prereq": "lesson-5",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "1k6/8/1K6/8/8/8/5R2/8 b - - 0 1",
@@ -3528,9 +3528,9 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-3",
+    "prereq": "lesson-5",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "2nbkr2/2pppp2/8/8/8/8/2PPPP2/2RRKR2 w - - 0 1",
@@ -3568,7 +3568,7 @@
     "reward": [],
     "prereq": "mission-2",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "1rrrkr2/1ppppp2/8/8/8/8/PPPPPPP1/NNBBKZZ1 w - - 0 1",
@@ -3606,7 +3606,7 @@
     "reward": [],
     "prereq": "mission-3",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "2nnknn1/2ppppp1/8/8/8/8/2PPPPP1/2BBKBB1 w - - 0 1",
@@ -3649,7 +3649,7 @@
     "reward": [],
     "prereq": "mission-4",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "4k3/2pppp2/8/8/8/8/2PPPP2/4K3 w - - 0 1",
@@ -3692,7 +3692,7 @@
     "reward": [],
     "prereq": "mission-5",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "4k3/4p3/8/8/8/8/4P3/4K3 w - - 0 1",
@@ -3741,7 +3741,7 @@
     "reward": [],
     "prereq": "mission-6",
     "opponent": "",
-    "theme": "blue",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "2rwkbb1/2ppppp1/8/8/8/8/2PPPPP1/2RWKNR1 w - - 0 1",
@@ -3784,7 +3784,7 @@
     "reward": [],
     "prereq": "mission-7",
     "opponent": "",
-    "theme": "",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "1wwwkbb1/1pppppp1/8/8/8/8/PPPPPPPP/UZBWKBZN w - - 0 1",
@@ -3827,7 +3827,7 @@
     "reward": [],
     "prereq": "mission-8",
     "opponent": "",
-    "theme": "",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "1wwwkww1/1pppppp1/8/8/8/8/1PPPPPP1/1QWRKWQ1 w - - 0 1",

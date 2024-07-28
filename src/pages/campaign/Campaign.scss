@@ -9,7 +9,7 @@
   align-items: center;
 
   .back {
-    width: 775px;
+    width: 815px;
     display: flex;
     text-align: left;
     justify-content: start;
@@ -19,8 +19,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 125px;
-    .books {
+    // margin-right: 125px;
+    .book-titles {
       width: 160px;
       display: flex;
       flex-direction: column;
@@ -47,7 +47,7 @@
     }
   }
   .reset {
-    width: 855px;
+    width: 815px;
     display: flex;
     text-align: right;
     justify-content: end;

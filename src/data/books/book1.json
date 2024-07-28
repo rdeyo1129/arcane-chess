@@ -7,11 +7,12 @@
       [0, 0]
     ],
     "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
+    "panelText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "reward": [],
     "prereq": "",
     "opponent": "",
     "boss": false,
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "b2r3r/k4p1p/p2q1np1/NppP4/3p1Q2/P4PPB/1PP4P/1K1RR3 w - - 1 24",
@@ -255,8 +256,8 @@
       }
     }
   },
-  "lesson-6": {
-    "id": "lesson-6",
+  "lesson-2": {
+    "id": "lesson-2",
     "title": "Into the Stillness",
     "time": [
       [0, 0],
@@ -267,7 +268,7 @@
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "",
-    "theme": "brown",
+    "theme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -350,8 +351,8 @@
     },
     "boss": false
   },
-  "lesson-2": {
-    "id": "lesson-2",
+  "lesson-3": {
+    "id": "lesson-3",
     "title": "Into the Objective",
     "time": [
       [0, 0],
@@ -360,9 +361,9 @@
     "nodeText": "What are you fighting for? Learn about why Chess is a zero-sum game.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-6",
+    "prereq": "lesson-2",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "8/8/5b2/3r4/8/5K2/8/8 w - - 0 1",
@@ -682,8 +683,8 @@
     },
     "boss": false
   },
-  "lesson-3": {
-    "id": "lesson-3",
+  "lesson-4": {
+    "id": "lesson-4",
     "title": "Sliders",
     "time": [
       [0, 0],
@@ -692,9 +693,9 @@
     "nodeText": "Learn about the bread and butter of pieces.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-2",
+    "prereq": "lesson-3",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "8/8/1u6/8/1R3X2/1P6/8/8 w - - 0 1",
@@ -880,8 +881,8 @@
     },
     "boss": false
   },
-  "lesson-4": {
-    "id": "lesson-4",
+  "lesson-5": {
+    "id": "lesson-5",
     "title": "Pawns I",
     "time": [
       [0, 0],
@@ -890,9 +891,9 @@
     "nodeText": "Learn about the backbone of every army... the Pawn.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-3",
+    "prereq": "lesson-4",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "8/1pp1kpp1/p2p3p/3P4/2P5/1P2K1P1/P4P1P/8 w - - 0 1",
@@ -1110,8 +1111,8 @@
     },
     "boss": false
   },
-  "lesson-5": {
-    "id": "lesson-5",
+  "lesson-6": {
+    "id": "lesson-6",
     "title": "Into the Meta",
     "time": [
       [0, 0],
@@ -1120,9 +1121,9 @@
     "nodeText": "Learn about curiosity, the framework behind your thinking during a game.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-4",
+    "prereq": "lesson-5",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -1263,9 +1264,9 @@
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-4",
+    "prereq": "lesson-5",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/1r6/5N2/8/8/8 w - - 0 1",
@@ -1530,9 +1531,9 @@
     "nodeText": "Play through two-move puzzles to further test your knowledge of the pieces.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-5",
+    "prereq": "lesson-6",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/7T/4N3/8/6u1/8 w - - 0 1",
@@ -1802,9 +1803,9 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-4",
+    "prereq": "lesson-5",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "4k3/3pp3/8/8/8/8/8/3RK3 w - - 0 1",
@@ -1847,7 +1848,7 @@
     "reward": [],
     "prereq": "mission-1",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "3nk3/3pp3/8/8/8/8/2PPP3/2BBK3 w - - 0 1",
@@ -1890,7 +1891,7 @@
     "reward": [],
     "prereq": "mission-2",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "2nkn3/2ppp3/8/8/8/8/2PPP3/2NKN3 w - - 0 1",
@@ -1933,7 +1934,7 @@
     "reward": [],
     "prereq": "mission-3",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "2kbb3/2ppp3/8/8/8/8/2PPP3/2RKR3 w - - 0 1",
@@ -1976,7 +1977,7 @@
     "reward": [],
     "prereq": "mission-4",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "2ukn3/2ppp3/8/8/8/8/2PPP3/2NKZ3 w - - 0 1",
@@ -2019,7 +2020,7 @@
     "reward": [],
     "prereq": "mission-5",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "2rkr3/2pppp2/8/8/8/8/1PPPPP2/1ZNKBU2 w - - 0 1",
@@ -2062,7 +2063,7 @@
     "reward": [],
     "prereq": "mission-6",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "2uqkz2/1ppppp2/8/8/8/8/1PPPPP2/2BQKR2 w - - 0 1",
@@ -2105,7 +2106,7 @@
     "reward": [],
     "prereq": "mission-7",
     "opponent": "",
-    "theme": "brown",
+    "theme": "forest",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",

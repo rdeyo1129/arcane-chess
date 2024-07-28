@@ -538,7 +538,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/chapter${LS.chapter}-room.webp)`,
+                  : `url(/assets/${this.state.theme}-room.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -566,7 +566,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/chapter${LS.chapter}-room.webp)`,
+                  : `url(/assets/${this.state.theme}-room.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -591,7 +591,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/chapter${LS.chapter}-room.webp)`,
+                  : `url(/assets/${this.state.theme}-room.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',

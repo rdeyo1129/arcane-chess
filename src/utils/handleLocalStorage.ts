@@ -34,6 +34,7 @@ export const setLocalStorage = ({
       auth: {},
       chapter: 0,
       config: {},
+      arcana: {},
       nodeScores: {},
       lessonsCompleted: [],
       inventory: {},

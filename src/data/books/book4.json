@@ -11,7 +11,7 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -127,7 +127,7 @@
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -274,7 +274,7 @@
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -544,7 +544,7 @@
     "reward": [],
     "prereq": "lesson-3",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/2R5/8/8 w - - 0 1",
@@ -945,7 +945,7 @@
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -1091,7 +1091,7 @@
     "reward": [],
     "prereq": "lesson-5",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "1k2nn2/2pu2up/p2p1p1q/1p1NpP1Z/1P1PP3/4N2P/2Q1B3/1K6 w - - 0 1",
@@ -1340,7 +1340,7 @@
     "reward": [],
     "prereq": "lesson-6",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
@@ -1598,7 +1598,7 @@
     "reward": [],
     "prereq": "lesson-3",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "4k3/pppppppp/8/8/8/8/PPPPPPPP/4K3 w - - 0 1",
@@ -1627,7 +1627,7 @@
         "orientation": "white"
       }
     },
-    "boss": true
+    "boss": false
   },
   "mission-2": {
     "id": "mission-2",
@@ -1641,7 +1641,7 @@
     "reward": [],
     "prereq": "mission-1",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "3nk3/2pppp2/8/8/8/8/3PPP2/3RK3 w - - 0 1",
@@ -1684,7 +1684,7 @@
     "reward": [],
     "prereq": "mission-2",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "3tk3/2pppp2/8/8/8/8/2PPPP2/2NUKZ2 w - - 0 1",
@@ -1727,7 +1727,7 @@
     "reward": [],
     "prereq": "mission-3",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "1rrkrr2/1ppppp2/8/8/8/8/1PPPPP2/1RRKRR2 w - - 0 1",
@@ -1776,7 +1776,7 @@
     "reward": [],
     "prereq": "mission-4",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1",
@@ -1821,7 +1821,7 @@
     "reward": [],
     "prereq": "mission-5",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "uuuukuuu/pppppppp/8/8/8/8/PPPPPPPP/ZZZZKZZZ w KQkq - 0 1",
@@ -1866,7 +1866,7 @@
     "reward": [],
     "prereq": "mission-6",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "pppppppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/RNBQKBNR w - - 0 1",
@@ -1911,7 +1911,7 @@
     "reward": [],
     "prereq": "mission-7",
     "opponent": "",
-    "theme": "purple",
+    "theme": "church",
     "panels": {
       "panel-1": {
         "fen": "rnbtkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBTKBNR w KQkq - 0 1",
@@ -1942,6 +1942,6 @@
         "orientation": "white"
       }
     },
-    "boss": false
+    "boss": true
   }
 }

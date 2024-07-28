@@ -844,7 +844,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/chapter${LS.chapter}-room.webp)`,
+                  : `url(/assets/${this.state.theme}-room.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -872,7 +872,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/chapter${LS.chapter}-room.webp)`,
+                  : `url(/assets/${this.state.theme}-room.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -896,7 +896,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/chapter${LS.chapter}-room.webp)`,
+                  : `url(/assets/chapter${this.state.theme}-room.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',

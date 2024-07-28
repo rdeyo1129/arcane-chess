@@ -129,18 +129,27 @@ export default class ArcanaSelect extends React.Component<
 > {
   constructor(props: ArcanaSelectProps) {
     super(props);
+    const currLS = getLocalStorage(this.props.auth.user.username);
     this.state = {
       hoverArcane: '',
-      selectedArcana: {
-        ...getLocalStorage(this.props.auth.user.username).arcana,
-      },
-      allowedArcana:
-        allowedArcanaPerChapter[
-          getLocalStorage(this.props.auth.user.username).chapter
-        ],
-      multiplier: getLocalStorage(this.props.auth.user.username).config
-        .multiplier,
+      selectedArcana: currLS.arcana || {},
+      allowedArcana: allowedArcanaPerChapter[currLS.chapter],
+      multiplier: currLS.config.multiplier,
     };
+  }
+
+  componentDidUpdate(prevProps: ArcanaSelectProps) {
+    if (
+      prevProps.auth.user.username !== this.props.auth.user.username ||
+      prevProps.missionArcana !== this.props.missionArcana
+    ) {
+      const currLS = getLocalStorage(this.props.auth.user.username);
+      this.setState({
+        selectedArcana: currLS.arcana || {},
+        allowedArcana: allowedArcanaPerChapter[currLS.chapter],
+        multiplier: currLS.config.multiplier,
+      });
+    }
   }
 
   availableChapterArcana = () => {
@@ -164,78 +173,70 @@ export default class ArcanaSelect extends React.Component<
     this.props.updateBookMultiplier(value);
   };
 
+  handleArcanaClick = (key: string, value: number) => {
+    const { selectedArcana, allowedArcana } = this.state;
+    const { auth } = this.props;
+    let newSelectedArcana = { ...selectedArcana };
+
+    if (_.includes(Object.keys(selectedArcana), key)) {
+      newSelectedArcana = _.omit(selectedArcana, key);
+      this.handleMultiplierChange(value);
+    } else if (Object.keys(selectedArcana).length < allowedArcana) {
+      newSelectedArcana[key] = value;
+      this.handleMultiplierChange(-value);
+    }
+
+    this.setState({
+      selectedArcana: newSelectedArcana,
+    });
+
+    setLocalStorage({
+      ...getLocalStorage(auth.user.username),
+      arcana: newSelectedArcana,
+    });
+  };
+
   render() {
+    const { isPlayerArcana, isMission, missionArcana } = this.props;
+    const { hoverArcane, selectedArcana } = this.state;
+
     const arcanaObj =
-      this.props.missionArcana?.length === 0
-        ? this.props.missionArcana
+      Object.keys(missionArcana || {}).length !== 0
+        ? missionArcana
         : this.availableChapterArcana();
-    const hasMissionArcana =
-      this.props.missionArcana?.length === 0 ? true : false;
-    if (!this.props.isMission) return null;
+    const hasMissionArcana = Object.keys(missionArcana || {}).length !== 0;
+
+    if (!isMission) return null;
+
     return (
       <>
-        {this.props.isPlayerArcana &&
+        {isPlayerArcana &&
           _.map(arcanaObj, (value: number, key: string) => {
+            const isSelected = _.includes(Object.keys(selectedArcana), key);
+            const isDisabled = !isPlayerArcana || hasMissionArcana;
             return (
               <img
                 key={key}
                 className="arcane"
                 src={`${arcana[key].imagePath}${
-                  this.state.hoverArcane === `${key}` ? '-hover' : ''
+                  hoverArcane === `${key}` ? '-hover' : ''
                 }.svg`}
                 style={{
-                  opacity: !this.props.isPlayerArcana
-                    ? 0.5
-                    : _.includes(Object.keys(this.state.selectedArcana), key) ||
-                      hasMissionArcana
-                    ? 1
-                    : 0.5,
-                  cursor:
-                    !this.props.isPlayerArcana || hasMissionArcana
-                      ? 'not-allowed'
-                      : 'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
+                  opacity: isDisabled || isSelected ? 1 : 0.5,
+                  cursor: isDisabled
+                    ? 'not-allowed'
+                    : 'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
                 }}
                 onClick={() => {
-                  if (!this.props.isPlayerArcana || hasMissionArcana) return;
-                  if (_.includes(Object.keys(this.state.selectedArcana), key)) {
-                    const newSelectedArcana = _.omit(
-                      this.state.selectedArcana,
-                      key
-                    );
-                    this.setState({
-                      selectedArcana: newSelectedArcana,
-                    });
-                    setLocalStorage({
-                      ...getLocalStorage(this.props.auth.user.username),
-                      arcana: newSelectedArcana,
-                    });
-                    this.handleMultiplierChange(value);
-                  } else if (
-                    Object.keys(this.state.selectedArcana).length <
-                    this.state.allowedArcana
-                  ) {
-                    this.setState({
-                      selectedArcana: {
-                        ...this.state.selectedArcana,
-                        [key]: value,
-                      },
-                    });
-                    setLocalStorage({
-                      ...getLocalStorage(this.props.auth.user.username),
-                      arcana: {
-                        ...this.state.selectedArcana,
-                        [key]: 1,
-                      },
-                    });
-                    this.handleMultiplierChange(-value);
-                  }
+                  if (isDisabled) return;
+                  this.handleArcanaClick(key, value);
                 }}
                 onMouseEnter={() => this.toggleHover(`${key}`)}
                 onMouseLeave={() => this.toggleHover('')}
               />
             );
           })}
-        {!this.props.isPlayerArcana &&
+        {!isPlayerArcana &&
           _.map(this.props.engineArcana, (_value: number, key: string) => {
             return (
               <img

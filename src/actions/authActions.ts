@@ -104,6 +104,19 @@ export const loginUser =
               },
             };
             setLocalStorage(updatedGuestData);
+          } else {
+            // Set new localStorage data if no existing guest is found
+            setLocalStorage({
+              auth: {
+                user: {
+                  id: res.data.id || '0',
+                  username: userData.username,
+                  campaign: {
+                    topScores: [...res.data.campaign.topScores] as number[],
+                  },
+                },
+              },
+            });
           }
         } else {
           // Set new localStorage data if no existing guest is found

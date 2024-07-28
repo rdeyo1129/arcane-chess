@@ -2135,15 +2135,13 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       .slice(1)
                       .join(' ');
 
+                    console.log('getting puzzles', rating, keyword);
                     axios
                       .get(
                         `http://localhost:8080/api/puzzles?rating=${rating}&keyword=${keyword}`
                       )
                       .then((response) => {
                         const allPanels: Record<string, PanelInfo> = {};
-
-                        console.log(response.data);
-
                         response.data.forEach(
                           (item: PuzzleData, index: number) => {
                             const panelKey = `panel-${index + 1}`;
@@ -2170,10 +2168,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                             };
                           }
                         );
-                        console.log(allPanels);
-                        // navigator.clipboard.writeText(
-                        //   JSON.stringify(allPanels, null, 2)
-                        // );
+                        console.log(response.data, allPanels);
                         if (response.data.length > 0) {
                           ParseFen(response.data[0].FEN);
                         }

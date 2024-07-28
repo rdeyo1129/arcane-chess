@@ -18,6 +18,8 @@ router.get('/', async (req, res) => {
     const rating = req.query.rating;
     const keyword = req.query.keyword;
 
+    console.log('getting puzzles', rating, keyword);
+
     const data = await readAndProcessCSV();
 
     // Apply filtering if the parameters are provided

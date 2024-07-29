@@ -1827,7 +1827,7 @@
         },
         "preset": "CAPALL",
         "whiteArcane": {},
-        "blackArcane": { "modsCON": 1 },
+        "blackArcane": {},
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,

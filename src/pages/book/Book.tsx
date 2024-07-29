@@ -13,6 +13,8 @@ import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
 import ArcanaSelect from 'src/pages/book/ArcanaSelect';
 
+import arcanaJson from 'src/data/arcana.json';
+
 import { swapArmies } from 'src/utils/utils';
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
@@ -29,6 +31,19 @@ import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
 
+const arcana: ArcanaMap = arcanaJson as ArcanaMap;
+
+interface ArcanaDetail {
+  name: string;
+  description: string;
+  type: string;
+  imagePath: string;
+}
+
+interface ArcanaMap {
+  [key: string]: ArcanaDetail;
+}
+
 interface BookProps {
   auth: { user: { id: string; username: string } };
 }
@@ -36,6 +51,7 @@ interface BookState {
   [key: string]: any;
   endChapterOpen: boolean;
   selectedTab: string;
+  hoverArcane: string;
 }
 
 interface Node {
@@ -139,6 +155,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       creditsAnimation: 0,
       theme: this.booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.theme,
       selectedTab: 'chess',
+      hoverArcane: '',
     };
     this.toggleAllNodesUnlocked = this.toggleAllNodesUnlocked.bind(this);
   }
@@ -148,6 +165,10 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       allNodesUnlocked: !prevState.allNodesUnlocked,
     }));
   }
+
+  toggleHover = (arcane: string) => {
+    this.setState({ hoverArcane: arcane });
+  };
 
   getFen() {
     let fen = '';
@@ -637,28 +658,50 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       <div className="description">
                         {this.state.selectedSwatch !== '' ? (
                           <div className="node">
-                            <b className="node-title">
-                              {this.state.book[this.state.selectedSwatch].title}
-                            </b>
-                            <div className="node-description">
-                              {this.state.book[
-                                this.state.selectedSwatch
-                              ].nodeText
-                                .split('\n\n')
-                                .map((p: string, i: number) => (
-                                  <p className="description-paragraph" key={i}>
-                                    {p}
-                                    {this.state.book[this.state.selectedSwatch]
-                                      .boss && (
-                                      <span style={{ color: 'red' }}>
-                                        This is a boss level. Completing this
-                                        mission will reset your progress in this
-                                        chapter.
-                                      </span>
-                                    )}
+                            {this.state.hoverArcane !== '' ? (
+                              <>
+                                <b className="node-title">
+                                  {arcana[this.state.hoverArcane].name}
+                                </b>
+                                <div className="node-description">
+                                  <p className="description-paragraph">
+                                    {arcana[this.state.hoverArcane].description}
                                   </p>
-                                ))}
-                            </div>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <b className="node-title">
+                                  {
+                                    this.state.book[this.state.selectedSwatch]
+                                      .title
+                                  }
+                                </b>
+                                <div className="node-description">
+                                  {this.state.book[
+                                    this.state.selectedSwatch
+                                  ].nodeText
+                                    .split('\n\n')
+                                    .map((p: string, i: number) => (
+                                      <p
+                                        className="description-paragraph"
+                                        key={i}
+                                      >
+                                        {p}
+                                        {this.state.book[
+                                          this.state.selectedSwatch
+                                        ].boss && (
+                                          <span style={{ color: 'red' }}>
+                                            This is a boss level. Completing
+                                            this mission will reset your
+                                            progress in this chapter.
+                                          </span>
+                                        )}
+                                      </p>
+                                    ))}
+                                </div>
+                              </>
+                            )}
                           </div>
                         ) : null}
                       </div>
@@ -683,6 +726,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                     this.state.selectedSwatch
                                   ]?.panels['panel-1'].whiteArcane,
                                 }}
+                                onToggleHover={(arcane: string) => {
+                                  this.toggleHover(arcane);
+                                }}
                               />
                             ) : (
                               <ArcanaSelect
@@ -697,6 +743,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                 updateBookMultiplier={(value) =>
                                   this.updateMultiplier(value)
                                 }
+                                onToggleHover={(arcane: string) => {
+                                  this.toggleHover(arcane);
+                                }}
                               />
                             )}
                           </div>
@@ -721,6 +770,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                     this.state.selectedSwatch
                                   ]?.panels['panel-1'].whiteArcane,
                                 }}
+                                onToggleHover={(arcane: string) => {
+                                  this.toggleHover(arcane);
+                                }}
                               />
                             ) : (
                               <ArcanaSelect
@@ -735,6 +787,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                 updateBookMultiplier={(value) =>
                                   this.updateMultiplier(value)
                                 }
+                                onToggleHover={(arcane: string) => {
+                                  this.toggleHover(arcane);
+                                }}
                               />
                             )}
                           </div>

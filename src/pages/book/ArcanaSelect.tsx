@@ -25,6 +25,7 @@ interface ArcanaSelectProps {
   isMission?: boolean;
   updateBookMultiplier: (value: number) => void;
   missionArcana?: { [key: string]: number | string };
+  onToggleHover: (hoverArcane: string) => void;
 }
 interface ArcanaSelectState {
   hoverArcane: string;
@@ -162,10 +163,6 @@ export default class ArcanaSelect extends React.Component<
     return unlockedArcana;
   };
 
-  toggleHover = (arcane: string) => {
-    this.setState({ hoverArcane: arcane });
-  };
-
   handleMultiplierChange = (value: number) => {
     this.setState({
       multiplier: this.state.multiplier + value,
@@ -231,8 +228,8 @@ export default class ArcanaSelect extends React.Component<
                   if (isDisabled) return;
                   this.handleArcanaClick(key, value);
                 }}
-                onMouseEnter={() => this.toggleHover(`${key}`)}
-                onMouseLeave={() => this.toggleHover('')}
+                onMouseEnter={() => this.props.onToggleHover(`${key}`)}
+                onMouseLeave={() => this.props.onToggleHover('')}
               />
             );
           })}
@@ -247,6 +244,8 @@ export default class ArcanaSelect extends React.Component<
                   opacity: 0.5,
                   cursor: 'not-allowed',
                 }}
+                onMouseEnter={() => this.props.onToggleHover(`${key}`)}
+                onMouseLeave={() => this.props.onToggleHover('')}
               />
             );
           })}

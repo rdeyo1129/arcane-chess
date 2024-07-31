@@ -199,7 +199,7 @@
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "When notating what happen in a game, we use [first piece letter][to square]. If it's a Pawn, you'll usually see just the name of the square that it's moving to. Here's two more squares that are highlighted. Can you name them?",
+        "panelText": "When notating what happen in a game, we use [piece letter][to square]. If it's a Pawn, you'll usually see just the name of the square that it's moving to. Here's two more squares that are highlighted. Can you name them?",
         "arrowsCircles": [
           {
             "orig": "e7",

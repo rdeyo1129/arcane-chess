@@ -963,7 +963,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               </div>
             </div>
             <div className="time-board-time">
-              <div className="board-view blue-board">
+              <div className="board-view jail-board">
                 <Chessground
                   // theme={this.state.theme}
                   forwardedRef={this.chessgroundRef}

@@ -73,6 +73,16 @@ interface Node {
   time: number[][];
   nodeText: string;
   reward: (number | string)[];
+  diagWinLose: {
+    win1: string;
+    win2: string;
+    win3: string;
+    victory: string;
+    lose1: string;
+    lose2: string;
+    lose3: string;
+    defeat: string;
+  };
   prereq: string;
   opponent: string;
   boss: boolean;

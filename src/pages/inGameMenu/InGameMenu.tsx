@@ -168,6 +168,16 @@ interface Node {
   time: number[][]; // seconds
   nodeText: string;
   reward: (number | string)[];
+  diagWinLose: {
+    win1: string;
+    win2: string;
+    win3: string;
+    victory: string;
+    lose1: string;
+    lose2: string;
+    lose3: string;
+    defeat: string;
+  };
   prereq: string;
   theme: string;
   opponent: string;
@@ -939,6 +949,16 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                               nodeText: '',
                               panelText: '',
                               reward: [500, 'a', 'b', 'c'],
+                              diagWinLose: {
+                                win1: '',
+                                win2: '',
+                                win3: '',
+                                victory: '',
+                                lose1: '',
+                                lose2: '',
+                                lose3: '',
+                                defeat: '',
+                              },
                               prereq: '',
                               opponent: '',
                               theme: 'red',
@@ -2277,6 +2297,16 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       ...this.state.bookObject[this.state.currNode],
                       panels: {},
                       reward: [],
+                      diagWinLose: {
+                        win1: '',
+                        win2: '',
+                        win3: '',
+                        lose1: '',
+                        lose2: '',
+                        lose3: '',
+                        victory: '',
+                        defeat: '',
+                      },
                       title: this.state.title,
                       nodeText: this.state.nodeText,
                       opponent: this.state.opponent,

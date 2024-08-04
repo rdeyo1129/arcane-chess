@@ -2,6 +2,16 @@
   "lesson-1": {
     "id": "lesson-1",
     "title": "Initiative",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -118,6 +128,16 @@
   "lesson-2": {
     "id": "lesson-2",
     "title": "Decisions",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -265,6 +285,16 @@
   "lesson-3": {
     "id": "lesson-3",
     "title": "Pawns II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -535,6 +565,16 @@
   "lesson-4": {
     "id": "lesson-4",
     "title": "Rooks",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -936,6 +976,16 @@
   "lesson-5": {
     "id": "lesson-5",
     "title": "Space",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -1082,6 +1132,16 @@
   "lesson-6": {
     "id": "lesson-6",
     "title": "Coordination",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -1331,6 +1391,16 @@
   "lesson-7": {
     "id": "lesson-7",
     "title": "Patterns",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -1589,6 +1659,16 @@
   "temple-1": {
     "id": "temple-1",
     "title": "Temple of Rooks I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]
@@ -4228,6 +4308,16 @@
   "temple-2": {
     "id": "temple-2",
     "title": "Temple of Rooks I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [120, 4],
       [60, 2]
@@ -6883,6 +6973,16 @@
   "temple-3": {
     "id": "temple-3",
     "title": "Aetherium Sanctuary I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]
@@ -9053,6 +9153,16 @@
   "temple-4": {
     "id": "temple-4",
     "title": "Aetherium Sanctuary II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [120, 4],
       [60, 2]
@@ -11244,6 +11354,16 @@
   "temple-5": {
     "id": "temple-5",
     "title": "Raven's Nest I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]
@@ -13309,6 +13429,16 @@
   "temple-6": {
     "id": "temple-6",
     "title": "Raven's Nest II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [120, 4],
       [60, 2]
@@ -15372,6 +15502,16 @@
   "mission-1": {
     "id": "mission-1",
     "title": "Skeletons",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [600, 30],
       [300, 15]
@@ -15415,6 +15555,16 @@
   "mission-2": {
     "id": "mission-2",
     "title": "Tip the Balance",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [600, 30],
       [300, 15]
@@ -15458,6 +15608,16 @@
   "mission-3": {
     "id": "mission-3",
     "title": "An Unfamiliar Foe",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [600, 30],
       [300, 15]
@@ -15501,6 +15661,16 @@
   "mission-4": {
     "id": "mission-4",
     "title": "Under Siege",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [600, 30],
       [300, 15]
@@ -15550,6 +15720,16 @@
   "mission-5": {
     "id": "mission-5",
     "title": "Power in Numbers",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [600, 30],
       [300, 15]
@@ -15595,6 +15775,16 @@
   "mission-6": {
     "id": "mission-6",
     "title": "Enchanted Derby",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [600, 30],
       [300, 15]
@@ -15640,6 +15830,16 @@
   "mission-7": {
     "id": "mission-7",
     "title": "Invasive Species",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [600, 30],
       [300, 15]
@@ -15685,6 +15885,16 @@
   "mission-8": {
     "id": "mission-8",
     "title": "The Butterfly Effect",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [600, 30],
       [300, 15]

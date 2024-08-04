@@ -2,6 +2,16 @@
   "lesson-1": {
     "id": "lesson-1",
     "title": "The Growth Mindset",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -123,6 +133,16 @@
   "lesson-2": {
     "id": "lesson-2",
     "title": "Reflection",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -218,6 +238,16 @@
   "lesson-3": {
     "id": "lesson-3",
     "title": "Heavy Hitters",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -432,6 +462,16 @@
   "lesson-4": {
     "id": "lesson-4",
     "title": "Overkills I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -822,6 +862,16 @@
   "lesson-5": {
     "id": "lesson-5",
     "title": "Overkills II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -1409,6 +1459,16 @@
   "lesson-6": {
     "id": "lesson-6",
     "title": "The Box",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -1819,6 +1879,16 @@
   "lesson-7": {
     "id": "lesson-7",
     "title": "Overkills III",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -2367,6 +2437,16 @@
   "lesson-8": {
     "id": "lesson-8",
     "title": "Opposition",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -3201,6 +3281,16 @@
   "mission-1": {
     "id": "mission-1",
     "title": "Temple of Opposition I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [400, 3],
       [200, 1]
@@ -3244,6 +3334,16 @@
   "mission-10": {
     "id": "mission-1",
     "title": "Temple of Opposition II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [160, 0],
       [80, 0]
@@ -3287,6 +3387,16 @@
   "temple-1": {
     "id": "temple-1",
     "title": "Temple of Overkills I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [300, 5],
       [200, 5]
@@ -3564,6 +3674,16 @@
   "temple-3": {
     "id": "temple-3",
     "title": "Temple of Overkills II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [120, 3],
       [80, 2]
@@ -3841,6 +3961,16 @@
   "temple-2": {
     "id": "temple-2",
     "title": "Temple of Binary Mates I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [200, 5],
       [100, 5]
@@ -5930,6 +6060,16 @@
   "temple-4": {
     "id": "temple-4",
     "title": "Temple of Binary Mates II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [120, 3],
       [80, 2]
@@ -8005,6 +8145,16 @@
   "mission-2": {
     "id": "mission-2",
     "title": "In the Stronghold",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [400, 0],
       [140, 0]
@@ -8043,6 +8193,16 @@
   "mission-3": {
     "id": "mission-3",
     "title": "Swindler's Plunder",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [270, 2],
       [70, 1]
@@ -8081,6 +8241,16 @@
   "mission-4": {
     "id": "mission-4",
     "title": "The Dark Priest",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [300, 4],
       [90, 2]
@@ -8124,6 +8294,16 @@
   "mission-5": {
     "id": "mission-5",
     "title": "Entrance of Demons",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [300, 4],
       [90, 2]
@@ -8167,6 +8347,16 @@
   "mission-6": {
     "id": "mission-6",
     "title": "A Power Realized",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [300, 4],
       [90, 2]
@@ -8216,6 +8406,16 @@
   "mission-7": {
     "id": "mission-7",
     "title": "A Ghost Materializes",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [300, 4],
       [90, 2]
@@ -8259,6 +8459,16 @@
   "mission-8": {
     "id": "mission-8",
     "title": "A Haunted Dream",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -8302,6 +8512,16 @@
   "mission-9": {
     "id": "mission-9",
     "title": "12 Midnight",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]

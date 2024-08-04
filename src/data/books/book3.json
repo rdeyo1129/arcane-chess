@@ -2,6 +2,16 @@
   "lesson-1": {
     "id": "lesson-1",
     "title": "Self-Discipline",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -123,6 +133,16 @@
   "lesson-2": {
     "id": "lesson-2",
     "title": "Productivity",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -244,6 +264,16 @@
   "lesson-3": {
     "id": "lesson-3",
     "title": "The Draw",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -623,6 +653,16 @@
   "lesson-4": {
     "id": "lesson-4",
     "title": "The Principles",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -873,6 +913,16 @@
   "lesson-5": {
     "id": "lesson-5",
     "title": "Minor Pieces I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -1158,6 +1208,16 @@
   "lesson-6": {
     "id": "lesson-6",
     "title": "Minor Pieces II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -1459,6 +1519,16 @@
   "lesson-7": {
     "id": "lesson-7",
     "title": "Tactics I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -1869,6 +1939,16 @@
   "temple-1": {
     "id": "temple-1",
     "title": "Temple of Skewers I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [200, 5],
       [100, 5]
@@ -3945,6 +4025,16 @@
   "temple-2": {
     "id": "temple-2",
     "title": "Temple of Skewers II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [120, 3],
       [80, 2]
@@ -5992,6 +6082,16 @@
   "temple-3": {
     "id": "temple-3",
     "title": "Temple of Forks I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [200, 5],
       [100, 5]
@@ -8099,6 +8199,16 @@
   "temple-4": {
     "id": "temple-4",
     "title": "Temple of Forks II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [120, 3],
       [80, 2]
@@ -10206,6 +10316,16 @@
   "temple-5": {
     "id": "temple-5",
     "title": "Temple of Pins I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [200, 5],
       [100, 5]
@@ -12325,6 +12445,16 @@
   "temple-6": {
     "id": "temple-6",
     "title": "Temple of Pins II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [120, 3],
       [80, 2]
@@ -14459,6 +14589,16 @@
   "mission-1": {
     "id": "mission-1",
     "title": "A Throne for the Taking",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [180, 15],
       [45, 0]
@@ -14499,6 +14639,16 @@
   "mission-2": {
     "id": "mission-2",
     "title": "Conversion Bias",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [180, 15],
       [45, 0]
@@ -14542,6 +14692,16 @@
   "mission-3": {
     "id": "mission-3",
     "title": "A Matter of Technique",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [180, 15],
       [45, 0]
@@ -14585,6 +14745,16 @@
   "mission-4": {
     "id": "mission-4",
     "title": "Team Jousting",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [180, 15],
       [45, 0]
@@ -14628,6 +14798,16 @@
   "mission-5": {
     "id": "mission-5",
     "title": "Two Way Haunt",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [500, 0],
       [60, 10]
@@ -14671,6 +14851,16 @@
   "mission-6": {
     "id": "mission-6",
     "title": "Flank Haunt",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [600, 10],
       [200, 2]
@@ -14714,6 +14904,16 @@
   "mission-7": {
     "id": "mission-7",
     "title": "Storm on the Safari",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [720, 2],
       [360, 4]
@@ -14759,6 +14959,16 @@
   "mission-8": {
     "id": "mission-8",
     "title": "All Hands on Deck",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [500, 10],
       [200, 10]

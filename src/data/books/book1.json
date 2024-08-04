@@ -2,6 +2,16 @@
   "lesson-1": {
     "id": "lesson-1",
     "title": "Into the Unknown",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -259,6 +269,16 @@
   "lesson-2": {
     "id": "lesson-2",
     "title": "Into the Stillness",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -354,6 +374,16 @@
   "lesson-3": {
     "id": "lesson-3",
     "title": "Into the Objective",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -686,6 +716,16 @@
   "lesson-4": {
     "id": "lesson-4",
     "title": "Sliders",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -884,6 +924,16 @@
   "lesson-5": {
     "id": "lesson-5",
     "title": "Pawns I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -1114,6 +1164,16 @@
   "lesson-6": {
     "id": "lesson-6",
     "title": "Into the Meta",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [0, 0],
       [0, 0]
@@ -1257,6 +1317,16 @@
   "temple-1": {
     "id": "temple-1",
     "title": "Temple of Singularities I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [120, 0],
       [100, 0]
@@ -1264,7 +1334,7 @@
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-5",
+    "prereq": "lesson-3",
     "opponent": "",
     "theme": "forest",
     "panels": {
@@ -1524,6 +1594,16 @@
   "temple-4": {
     "id": "temple-4",
     "title": "Temple of Singularities II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [80, 2],
       [50, 3]
@@ -1791,6 +1871,16 @@
   "temple-2": {
     "id": "temple-2",
     "title": "Temple of Binaries I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [100, 0],
       [60, 0]
@@ -1798,7 +1888,7 @@
     "nodeText": "Play through two-move puzzles to further test your knowledge of the pieces.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-6",
+    "prereq": "temple-1",
     "opponent": "",
     "theme": "forest",
     "panels": {
@@ -2063,6 +2153,16 @@
   "temple-5": {
     "id": "temple-5",
     "title": "Temple of Binaries II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [80, 2],
       [50, 3]
@@ -2070,7 +2170,7 @@
     "nodeText": "Play through two-move puzzles to further test your knowledge of the pieces.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-2",
+    "prereq": "temple-2",
     "opponent": "",
     "theme": "forest",
     "panels": {
@@ -2335,6 +2435,16 @@
   "temple-3": {
     "id": "temple-3",
     "title": "Temple of Singularity Mates I",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [300, 5],
       [200, 5]
@@ -5054,6 +5164,16 @@
   "temple-6": {
     "id": "temple-6",
     "title": "Temple of Singularity Mates II",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [120, 3],
       [80, 2]
@@ -7755,6 +7875,16 @@
   "mission-1": {
     "id": "mission-1",
     "title": "The Cutoff",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]
@@ -7798,6 +7928,16 @@
   "mission-2": {
     "id": "mission-2",
     "title": "A Pair and a Trickster",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]
@@ -7841,6 +7981,16 @@
   "mission-3": {
     "id": "mission-3",
     "title": "Fair is Fair",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]
@@ -7884,6 +8034,16 @@
   "mission-4": {
     "id": "mission-4",
     "title": "Up the Exchange",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]
@@ -7927,6 +8087,16 @@
   "mission-5": {
     "id": "mission-5",
     "title": "Mythic Safari",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]
@@ -7970,6 +8140,16 @@
   "mission-6": {
     "id": "mission-6",
     "title": "An Uncertain Imbalance",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]
@@ -8013,6 +8193,16 @@
   "mission-7": {
     "id": "mission-7",
     "title": "Accelerate",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]
@@ -8056,6 +8246,16 @@
   "mission-8": {
     "id": "mission-8",
     "title": "Hostile Reinforcements",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
     "time": [
       [360, 2],
       [180, 0]

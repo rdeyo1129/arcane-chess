@@ -60,6 +60,16 @@ interface Node {
   time: number[][]; // seconds
   nodeText: string;
   reward: (number | string)[];
+  diagWinLose: {
+    win1: string;
+    win2: string;
+    win3: string;
+    victory: string;
+    lose1: string;
+    lose2: string;
+    lose3: string;
+    defeat: string;
+  };
   prereq: string;
   opponent: string;
   theme: string;
@@ -450,7 +460,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         backgroundColorOverride={
                           _.includes(Object.keys(LS.nodeScores), node.id)
                             ? '#11111100'
-                            : '#11111188'
+                            : '#55555588'
                         }
                         onClick={() => {
                           const currLS = getLocalStorage(

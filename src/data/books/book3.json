@@ -1870,8 +1870,8 @@
     "id": "temple-1",
     "title": "Temple of Skewers I",
     "time": [
-      [120, 5],
-      [60, 5]
+      [200, 5],
+      [100, 5]
     ],
     "nodeText": "",
     "panelText": "",
@@ -3946,8 +3946,8 @@
     "id": "temple-2",
     "title": "Temple of Skewers II",
     "time": [
-      [100, 5],
-      [50, 5]
+      [120, 3],
+      [80, 2]
     ],
     "nodeText": "",
     "panelText": "",
@@ -5993,8 +5993,8 @@
     "id": "temple-3",
     "title": "Temple of Forks I",
     "time": [
-      [120, 5],
-      [60, 5]
+      [200, 5],
+      [100, 5]
     ],
     "nodeText": "",
     "panelText": "",
@@ -8100,8 +8100,8 @@
     "id": "temple-4",
     "title": "Temple of Forks II",
     "time": [
-      [100, 5],
-      [50, 5]
+      [120, 3],
+      [80, 2]
     ],
     "nodeText": "",
     "panelText": "",
@@ -10207,8 +10207,8 @@
     "id": "temple-5",
     "title": "Temple of Pins I",
     "time": [
-      [120, 5],
-      [60, 5]
+      [200, 5],
+      [100, 5]
     ],
     "nodeText": "",
     "panelText": "",
@@ -12326,8 +12326,8 @@
     "id": "temple-6",
     "title": "Temple of Pins II",
     "time": [
-      [100, 5],
-      [50, 5]
+      [120, 3],
+      [80, 2]
     ],
     "nodeText": "",
     "panelText": "",

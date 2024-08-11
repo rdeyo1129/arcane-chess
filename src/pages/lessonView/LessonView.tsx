@@ -553,7 +553,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/${this.state.theme}-room.webp)`,
+                  : `url(/assets/pages/${this.state.theme}.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -581,7 +581,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/${this.state.theme}-room.webp)`,
+                  : `url(/assets/pages/${this.state.theme}.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -606,7 +606,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/${this.state.theme}-room.webp)`,
+                  : `url(/assets/pages/${this.state.theme}.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -627,13 +627,20 @@ class UnwrappedLessonView extends React.Component<Props, State> {
             <div className="lesson-view">
               <div className="opponent-dialogue-arcana">
                 <div className="info-avatar">
-                  <div className="avatar"></div>
+                  <div className="avatar">
+                    {this.state.opponent !== '' ? (
+                      <img
+                        src={`/assets/avatars/${this.state.opponent}.webp`}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                        }}
+                      />
+                    ) : null}
+                  </div>
                   <div className="info">
-                    <h3 className="name">ENGINE</h3>
-                    <div className="opponent-time"></div>
-                    <div className="thinking">
-                      {/* {this.state.thinking ? <Dots /> : null} */}
-                    </div>
+                    <div className="name">{this.state.opponent}</div>
                   </div>
                 </div>
                 <div className="arcana">
@@ -790,6 +797,16 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     fontSize={36}
                     backgroundColorOverride="#11111188"
                   />
+                </div>
+                <div className="info-avatar">
+                  <div className="avatar">
+                    {this.state.hero !== '' ? (
+                      <img src={`/assets/avatars/${this.state.hero}.webp`} />
+                    ) : (
+                      <img src={`/assets/avatars/${LS.config.avatar}.webp`} />
+                    )}
+                  </div>
+                  <div className="info">{auth.user.username}</div>
                 </div>
               </div>
             </div>

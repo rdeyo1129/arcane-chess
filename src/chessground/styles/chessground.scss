@@ -32,7 +32,10 @@
 }
 .yellow-board {
 }
-.forest-board {
+.forest-board,
+.owls-board,
+.tree-board,
+.wizard-room-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusGreen.svg');
@@ -42,7 +45,8 @@
     center,
     left top;
 }
-.town-board {
+.town-board,
+.tavern-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusBlue.svg');

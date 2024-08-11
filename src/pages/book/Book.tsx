@@ -327,10 +327,10 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
-              background:
-                this.state.bookTheme === 'black'
-                  ? ''
-                  : `url(/assets/${this.state.bookTheme}.webp)`,
+              // background:
+              //   this.state.bookTheme === 'black'
+              //     ? ''
+              //     : `url(/assets/pages/${this.state.bookTheme}.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -354,9 +354,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                 // height: '100vh',
                 // width: '100vw',
                 // background:
-                //   this.state.theme === 'black'
+                //   this.state.bookTheme === 'black'
                 //     ? ''
-                //     : `url(/assets/${this.state.theme}.webp)`,
+                //     : `url(/assets/${this.state.bookTheme}.webp)`,
                 // backgroundSize: 'cover',
                 // backgroundPosition: 'center',
                 // backgroundRepeat: 'no-repeat',
@@ -473,6 +473,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                           this.setState(
                             {
                               selectedSwatch: node.id,
+                              bookTheme: node.bookTheme,
                               theme: node.theme,
                               config: currLS.config,
                             },
@@ -510,16 +511,16 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                 </div>
                 {this.state.selectedTab === 'story' ? (
                   <div
-                    key={this.state.theme}
+                    key={this.state.bookTheme}
                     className="description-inventory story-column"
                     style={{
                       display: 'flex',
                       width: '880px',
                       height: '480px',
                       background:
-                        this.state.theme === 'black'
+                        this.state.bookTheme === 'black'
                           ? ''
-                          : `url(/assets/${this.state.theme}.webp)`,
+                          : `url(/assets/pages/${this.state.bookTheme}.webp)`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       backgroundRepeat: 'no-repeat',
@@ -547,14 +548,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                               .map((p: string, i: number) => (
                                 <p className="description-paragraph" key={i}>
                                   {p}
-                                  {this.state.book[this.state.selectedSwatch]
-                                    .boss && (
-                                    <span style={{ color: 'red' }}>
-                                      This is a boss level. Completing this
-                                      mission will reset your progress in this
-                                      chapter.
-                                    </span>
-                                  )}
                                 </p>
                               ))}
                           </div>
@@ -564,15 +557,15 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   </div>
                 ) : this.state.selectedTab === 'chess' ? (
                   <div
-                    key={this.state.theme}
+                    key={this.state.bookTheme}
                     style={{
                       display: 'flex',
                       width: '880px',
                       height: '480px',
                       background:
-                        this.state.theme === 'black'
+                        this.state.bookTheme === 'black'
                           ? ''
-                          : `url(/assets/${this.state.theme}.webp)`,
+                          : `url(/assets/pages/${this.state.bookTheme}.webp)`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       backgroundRepeat: 'no-repeat',

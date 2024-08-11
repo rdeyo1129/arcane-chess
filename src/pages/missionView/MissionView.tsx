@@ -845,6 +845,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
+    const { auth } = this.props;
     return (
       <div className="tactorius-board fade">
         {LS.chapter === 0 ? (
@@ -859,7 +860,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/${this.state.theme}-room.webp)`,
+                  : `url(/assets/pages/${this.state.theme}.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -887,7 +888,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/${this.state.theme}-room.webp)`,
+                  : `url(/assets/pages/${this.state.theme}.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -911,7 +912,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               background:
                 this.state.theme === 'black'
                   ? ''
-                  : `url(/assets/${this.state.theme}-room.webp)`,
+                  : `url(/assets/pages/${this.state.theme}.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -942,13 +943,20 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             <div className="mission-view">
               <div className="opponent-dialogue-arcana">
                 <div className="info-avatar">
-                  <div className="avatar"></div>
+                  <div className="avatar">
+                    {this.state.opponent !== '' ? (
+                      <img
+                        src={`/assets/avatars/${this.state.opponent}.webp`}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                        }}
+                      />
+                    ) : null}
+                  </div>
                   <div className="info">
-                    <h3 className="name">ENGINE</h3>
-                    <div className="opponent-time"></div>
-                    <div className="thinking">
-                      {/* {this.state.thinking ? <Dots /> : null} */}
-                    </div>
+                    <div className="name">{this.state.opponent}</div>
                   </div>
                 </div>
                 <div className="dialogue">
@@ -1604,9 +1612,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   />
                 </div>
                 <div className="info-avatar">
-                  <div className="avatar"></div>
+                  <div className="avatar">
+                    {this.state.hero !== '' ? (
+                      <img src={`/assets/avatars/${this.state.hero}.webp`} />
+                    ) : (
+                      <img src={`/assets/avatars/${LS.config.avatar}.webp`} />
+                    )}
+                  </div>
                   <div className="info">
-                    <h3 className="name">PLAYER</h3>
+                    <div className="name">{auth.user.username}</div>
                     <div className="player-time">
                       <h3>
                         <ChessClock
@@ -1624,9 +1638,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           }}
                         />
                       </h3>
-                    </div>
-                    <div className="thinking">
-                      {/* {this.state.turn === this.state.playerColor ? <Dots /> : null} */}
                     </div>
                   </div>
                 </div>

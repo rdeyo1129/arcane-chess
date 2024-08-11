@@ -58,7 +58,7 @@ export class UnwrappedCampaign extends React.Component<
         className="campaign"
         style={{
           maxWidth: '100vw',
-          background: `url(assets/chapters.webp) no-repeat center center fixed`,
+          background: `url(assets/dashboard/chapters.webp) no-repeat center center fixed`,
           backgroundSize: 'cover',
         }}
       >

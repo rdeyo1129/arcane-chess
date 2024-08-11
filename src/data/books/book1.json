@@ -7916,7 +7916,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-3",
+    "prereq": "lesson-2",
     "opponent": "anon",
     "theme": "forest",
     "bookTheme": "forest",
@@ -8027,7 +8027,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-2",
-    "opponent": "archer",
+    "opponent": "hunter",
     "theme": "forest",
     "bookTheme": "forest",
     "panels": {
@@ -8082,7 +8082,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-3",
-    "opponent": "archer",
+    "opponent": "hunter",
     "theme": "forest",
     "bookTheme": "forest",
     "panels": {
@@ -8136,7 +8136,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "mission-4",
+    "prereq": "mission-2",
     "opponent": "anon",
     "theme": "forest",
     "bookTheme": "forest",
@@ -8247,9 +8247,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-6",
-    "opponent": "tree",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "opponent": "",
+    "theme": "tree",
+    "bookTheme": "tree",
     "panels": {
       "panel-1": {
         "fen": "2uqkz2/1ppppp2/8/8/8/8/1PPPPP2/2BQKR2 w - - 0 1",
@@ -8302,9 +8302,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-7",
-    "opponent": "tree",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "opponent": "",
+    "theme": "tree",
+    "bookTheme": "tree",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",

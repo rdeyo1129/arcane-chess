@@ -72,7 +72,9 @@ interface Node {
   };
   prereq: string;
   opponent: string;
+  hero: string;
   theme: string;
+  bookTheme: string;
   panels: {
     [key: string]: {
       fen: string;
@@ -164,6 +166,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       credits: 4000,
       creditsAnimation: 0,
       theme: this.booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.theme,
+      bookTheme:
+        this.booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.bookTheme,
       selectedTab: 'chess',
       hoverArcane: '',
     };
@@ -324,9 +328,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               width: '100vw',
               height: '100vh',
               background:
-                this.state.theme === 'black'
+                this.state.bookTheme === 'black'
                   ? ''
-                  : `url(/assets/${this.state.theme}.webp)`,
+                  : `url(/assets/${this.state.bookTheme}.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',

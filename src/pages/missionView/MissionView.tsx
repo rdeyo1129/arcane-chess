@@ -117,6 +117,7 @@ interface Node {
   };
   prereq: string;
   opponent: string;
+  hero: string;
   boss: boolean;
   theme: string;
   panels: {
@@ -212,6 +213,8 @@ interface State {
   hint: string;
   theme: string;
   hideCompletedPage: boolean;
+  opponent: string;
+  hero: string;
 }
 
 interface Props {
@@ -368,6 +371,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       hideCompletedPage:
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
         LS.nodeId?.split('-')[0] !== 'mission',
+      opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
+      hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
     };
     this.arcaneChess = () => {
       return arcaneChess();

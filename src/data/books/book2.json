@@ -21,7 +21,9 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -152,7 +154,9 @@
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -257,7 +261,9 @@
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/3Q4/8/8/8 w - - 0 1",
@@ -481,7 +487,9 @@
     "reward": [],
     "prereq": "lesson-3",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/1R4k1/2K5/8/R7 w - - 0 1",
@@ -881,7 +889,9 @@
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/5k2/3Q4/8/3K4 w - - 0 1",
@@ -1478,7 +1488,9 @@
     "reward": [],
     "prereq": "lesson-5",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "7k/8/8/3K4/7p/8/8/8 w - - 0 1",
@@ -1898,7 +1910,9 @@
     "reward": [],
     "prereq": "lesson-5",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/3k1K2/4R3/8/8/8 w - - 0 1",
@@ -2456,7 +2470,9 @@
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "8/8/3k4/8/3K4/8/8/8 w - - 0 1",
@@ -3300,7 +3316,9 @@
     "reward": [],
     "prereq": "lesson-8",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "3k4/8/8/8/8/8/3K4/3P4 w - - 0 1",
@@ -3353,7 +3371,9 @@
     "reward": [],
     "prereq": "mission-1",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "3k4/8/8/8/8/8/3K4/3P4 w - - 0 1",
@@ -3406,7 +3426,9 @@
     "reward": [],
     "prereq": "lesson-7",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "1k6/8/1K6/8/8/8/5R2/8 b - - 0 1",
@@ -3693,7 +3715,9 @@
     "reward": [],
     "prereq": "temple-1",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "1k6/8/1K6/8/8/8/5R2/8 b - - 0 1",
@@ -3980,7 +4004,9 @@
     "reward": [],
     "prereq": "temple-1",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "r5k1/1pQ2ppp/p7/4q3/8/8/PP3PPP/2R3K1 b - - 0 22",
@@ -6079,7 +6105,9 @@
     "reward": [],
     "prereq": "temple-2",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "4r2k/1p3p1p/pb1p1p2/4rb2/1P3N2/P2B2R1/2P3PP/3R3K w - - 4 26",
@@ -8164,7 +8192,9 @@
     "reward": [],
     "prereq": "lesson-6",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "2nbkr2/2pppp2/8/8/8/8/2PPPP2/2RRKR2 w - - 0 1",
@@ -8212,7 +8242,9 @@
     "reward": [],
     "prereq": "mission-2",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "1rrrkr2/1ppppp2/8/8/8/8/PPPPPPP1/NNBBKZZ1 w - - 0 1",
@@ -8260,7 +8292,9 @@
     "reward": [],
     "prereq": "mission-1",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "2nnknn1/2ppppp1/8/8/8/8/2PPPPP1/2BBKBB1 w - - 0 1",
@@ -8313,7 +8347,9 @@
     "reward": [],
     "prereq": "mission-4",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "4k3/2pppp2/8/8/8/8/2PPPP2/4K3 w - - 0 1",
@@ -8366,7 +8402,9 @@
     "reward": [],
     "prereq": "mission-5",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "4k3/4p3/8/8/8/8/4P3/4K3 w - - 0 1",
@@ -8425,7 +8463,9 @@
     "reward": [],
     "prereq": "mission-6",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "2rwkbb1/2ppppp1/8/8/8/8/2PPPPP1/2RWKNR1 w - - 0 1",
@@ -8478,7 +8518,9 @@
     "reward": [],
     "prereq": "mission-3",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "1wwwkbb1/1pppppp1/8/8/8/8/PPPPPPPP/UZBWKBZN w - - 0 1",
@@ -8531,7 +8573,9 @@
     "reward": [],
     "prereq": "mission-8",
     "opponent": "",
+    "hero": "",
     "theme": "town",
+    "bookTheme": "",
     "panels": {
       "panel-1": {
         "fen": "1wwwkww1/1pppppp1/8/8/8/8/1PPPPPP1/1QWRKWQ1 w - - 0 1",

@@ -32,6 +32,7 @@ import { MissionView } from '././pages/missionView/MissionView';
 import { QuickPlay } from '././pages/quickPlay/QuickPlay';
 import { League } from '././pages/league/League';
 import { Lexicon } from '././pages/lexicon/Lexicon';
+import { About } from '././pages/about/About';
 
 import ReactDOM from 'react-dom/client';
 import Modal from 'react-modal';
@@ -74,7 +75,16 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
-      {process.env.NODE_ENV !== 'production' && (
+      {process.env.NODE_ENV !== 'production' ? (
+        <Route
+          path="/about"
+          element={
+            <PrivateRoute>
+              <About />
+            </PrivateRoute>
+          }
+        />
+      ) : (
         <Route
           path="/create"
           element={

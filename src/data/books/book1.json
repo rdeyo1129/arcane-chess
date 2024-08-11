@@ -20,9 +20,11 @@
     "panelText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "reward": [],
     "prereq": "",
-    "opponent": "",
+    "opponent": "book",
+    "hero": "",
     "boss": false,
     "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "b2r3r/k4p1p/p2q1np1/NppP4/3p1Q2/P4PPB/1PP4P/1K1RR3 w - - 1 24",
@@ -51,7 +53,7 @@
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "The geometry of the board is broken down by grid into files (vertical lines named a-h), and into ranks (horizontal lines named 1-8)",
+        "panelText": "The geometry of the board is broken down as a grid into files (vertical lines named a-h), and into ranks (horizontal lines named 1-8)",
         "arrowsCircles": [
           {
             "orig": "a1",
@@ -113,7 +115,7 @@
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "The geometry of the board is broken down by grid into files (vertical lines named a-h), and into ranks (horizontal lines named 1-8)",
+        "panelText": "The geometry of the board is broken down as a grid into files (vertical lines named a-h), and into ranks (horizontal lines named 1-8)",
         "arrowsCircles": [
           {
             "orig": "a8",
@@ -287,8 +289,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-1",
-    "opponent": "",
-    "theme": "town",
+    "opponent": "book",
+    "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -369,6 +372,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "lesson-3": {
@@ -392,8 +396,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-2",
-    "opponent": "",
+    "opponent": "wizard",
     "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "8/8/5b2/3r4/8/5K2/8/8 w - - 0 1",
@@ -711,6 +716,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "lesson-4": {
@@ -734,8 +740,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-3",
-    "opponent": "",
-    "theme": "forest",
+    "opponent": "wizard",
+    "theme": "wizard-room",
+    "bookTheme": "wizard-house",
     "panels": {
       "panel-1": {
         "fen": "8/8/1u6/8/1R3X2/1P6/8/8 w - - 0 1",
@@ -919,6 +926,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "lesson-5": {
@@ -942,8 +950,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-4",
-    "opponent": "",
-    "theme": "forest",
+    "opponent": "wizard",
+    "theme": "wizard-room",
+    "bookTheme": "wizard-house",
     "panels": {
       "panel-1": {
         "fen": "8/1pp1kpp1/p2p3p/3P4/2P5/1P2K1P1/P4P1P/8 w - - 0 1",
@@ -1159,6 +1168,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "lesson-6": {
@@ -1182,8 +1192,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-5",
-    "opponent": "",
-    "theme": "forest",
+    "opponent": "wizard",
+    "theme": "wizard-room",
+    "bookTheme": "wizard-house",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -1312,6 +1323,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "temple-1": {
@@ -1336,7 +1348,8 @@
     "reward": [],
     "prereq": "lesson-3",
     "opponent": "",
-    "theme": "forest",
+    "theme": "owls",
+    "bookTheme": "owls",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/1r6/5N2/8/8/8 w - - 0 1",
@@ -1589,6 +1602,7 @@
         "orientation": "black"
       }
     },
+    "hero": "",
     "boss": false
   },
   "temple-4": {
@@ -1613,7 +1627,8 @@
     "reward": [],
     "prereq": "temple-1",
     "opponent": "",
-    "theme": "forest",
+    "theme": "owls",
+    "bookTheme": "owls",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/1r6/5N2/8/8/8 w - - 0 1",
@@ -1866,6 +1881,7 @@
         "orientation": "black"
       }
     },
+    "hero": "",
     "boss": false
   },
   "temple-2": {
@@ -1890,7 +1906,8 @@
     "reward": [],
     "prereq": "temple-1",
     "opponent": "",
-    "theme": "forest",
+    "theme": "owls",
+    "bookTheme": "owls",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/7T/4N3/8/6u1/8 w - - 0 1",
@@ -2148,6 +2165,7 @@
         "orientation": "black"
       }
     },
+    "hero": "",
     "boss": false
   },
   "temple-5": {
@@ -2172,7 +2190,8 @@
     "reward": [],
     "prereq": "temple-2",
     "opponent": "",
-    "theme": "forest",
+    "theme": "owls",
+    "bookTheme": "owls",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/7T/4N3/8/6u1/8 w - - 0 1",
@@ -2430,6 +2449,7 @@
         "orientation": "black"
       }
     },
+    "hero": "",
     "boss": false
   },
   "temple-3": {
@@ -2454,7 +2474,8 @@
     "reward": [],
     "prereq": "temple-2",
     "opponent": "",
-    "theme": "",
+    "theme": "owls",
+    "bookTheme": "owls",
     "panels": {
       "panel-1": {
         "fen": "4r1k1/p4pb1/1pq3pp/2p1P3/6QB/2P5/PP3P1P/R3R1Kb w - - 0 24",
@@ -5159,6 +5180,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "temple-6": {
@@ -5183,7 +5205,8 @@
     "reward": [],
     "prereq": "temple-3",
     "opponent": "",
-    "theme": "forest",
+    "theme": "owls",
+    "bookTheme": "owls",
     "panels": {
       "panel-1": {
         "fen": "8/7R/1P6/3P1p2/7b/3k4/4pr2/4K3 w - - 2 73",
@@ -7870,6 +7893,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "mission-1": {
@@ -7893,8 +7917,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-3",
-    "opponent": "",
+    "opponent": "anon",
     "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "4k3/3pp3/8/8/8/8/8/3RK3 w - - 0 1",
@@ -7923,6 +7948,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "mission-2": {
@@ -7946,8 +7972,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-1",
-    "opponent": "",
-    "theme": "forest",
+    "opponent": "anon",
+    "theme": "tavern",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "3nk3/3pp3/8/8/8/8/2PPP3/2BBK3 w - - 0 1",
@@ -7976,6 +8003,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "mission-3": {
@@ -7999,8 +8027,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-2",
-    "opponent": "",
+    "opponent": "archer",
     "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "2nkn3/2ppp3/8/8/8/8/2PPP3/2NKN3 w - - 0 1",
@@ -8029,6 +8058,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "mission-4": {
@@ -8052,8 +8082,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-3",
-    "opponent": "",
+    "opponent": "archer",
     "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "2kbb3/2ppp3/8/8/8/8/2PPP3/2RKR3 w - - 0 1",
@@ -8082,6 +8113,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "mission-5": {
@@ -8105,8 +8137,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-4",
-    "opponent": "",
+    "opponent": "anon",
     "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "2ukn3/2ppp3/8/8/8/8/2PPP3/2NKZ3 w - - 0 1",
@@ -8135,6 +8168,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "mission-6": {
@@ -8158,8 +8192,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-5",
-    "opponent": "",
+    "opponent": "anon",
     "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "2rkr3/2pppp2/8/8/8/8/1PPPPP2/1ZNKBU2 w - - 0 1",
@@ -8188,6 +8223,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "mission-7": {
@@ -8211,8 +8247,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-6",
-    "opponent": "",
+    "opponent": "tree",
     "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "2uqkz2/1ppppp2/8/8/8/8/1PPPPP2/2BQKR2 w - - 0 1",
@@ -8241,6 +8278,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": false
   },
   "mission-8": {
@@ -8264,8 +8302,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-7",
-    "opponent": "",
+    "opponent": "tree",
     "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
@@ -8296,6 +8335,7 @@
         "orientation": "white"
       }
     },
+    "hero": "",
     "boss": true
   }
 }

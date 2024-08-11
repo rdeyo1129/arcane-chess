@@ -85,6 +85,7 @@ interface Node {
   };
   prereq: string;
   opponent: string;
+  hero: string;
   boss: boolean;
   theme: string;
   panels: {
@@ -168,6 +169,8 @@ interface State {
   hideCompletedPage: boolean;
   viewOnly: boolean;
   theme: string;
+  opponent: string;
+  hero: string;
 }
 
 interface Props {
@@ -253,6 +256,8 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
           .viewOnly,
       theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
+      opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
+      hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -621,6 +626,16 @@ class UnwrappedLessonView extends React.Component<Props, State> {
             />
             <div className="lesson-view">
               <div className="opponent-dialogue-arcana">
+                <div className="info-avatar">
+                  <div className="avatar"></div>
+                  <div className="info">
+                    <h3 className="name">ENGINE</h3>
+                    <div className="opponent-time"></div>
+                    <div className="thinking">
+                      {/* {this.state.thinking ? <Dots /> : null} */}
+                    </div>
+                  </div>
+                </div>
                 <div className="arcana">
                   <div className="arcana-side-buttons">
                     <Button

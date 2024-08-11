@@ -801,9 +801,23 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                 <div className="info-avatar">
                   <div className="avatar">
                     {this.state.hero !== '' ? (
-                      <img src={`/assets/avatars/${this.state.hero}.webp`} />
+                      <img
+                        src={`/assets/avatars/${this.state.hero}.webp`}
+                        style={{
+                          height: '80px',
+                          width: '80px',
+                          objectFit: 'contain',
+                        }}
+                      />
                     ) : (
-                      <img src={`/assets/avatars/${LS.config.avatar}.webp`} />
+                      <img
+                        src={`/assets/avatars/${LS.hero}.webp`}
+                        style={{
+                          height: '80px',
+                          width: '80px',
+                          objectFit: 'contain',
+                        }}
+                      />
                     )}
                   </div>
                   <div className="info">{auth.user.username}</div>

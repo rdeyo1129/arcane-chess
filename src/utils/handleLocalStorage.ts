@@ -16,6 +16,7 @@ export const setLocalStorage = ({
   inventory = {},
   nodeId = '',
   chapterEnd = false,
+  hero = 'malehero',
 } = {}) => {
   const username = auth.user.username;
 
@@ -40,6 +41,7 @@ export const setLocalStorage = ({
       inventory: {},
       nodeId: '',
       chapterEnd: false,
+      hero: hero,
     };
   }
 
@@ -67,6 +69,7 @@ export const setLocalStorage = ({
       inventory: { ...existingData[username].inventory, ...inventory },
       nodeId: nodeId,
       chapterEnd: chapterEnd,
+      hero: hero,
     },
   };
 

@@ -1616,7 +1616,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     {this.state.hero !== '' ? (
                       <img src={`/assets/avatars/${this.state.hero}.webp`} />
                     ) : (
-                      <img src={`/assets/avatars/${LS.config.avatar}.webp`} />
+                      <img src={`/assets/avatars/${LS.hero}.webp`} />
                     )}
                   </div>
                   <div className="info">

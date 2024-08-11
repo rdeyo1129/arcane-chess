@@ -252,6 +252,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       inventory: LS.inventory,
       nodeId: LS.nodeId,
       chapterEnd: LS.chapterEnd,
+      hero: LS.hero,
     });
     this.setState({
       multiplier: newMultiplier,
@@ -501,6 +502,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                 inventory: currLS.inventory,
                                 nodeId: node.id,
                                 chapterEnd: currLS.chapterEnd,
+                                hero: currLS.hero,
                               });
                             }
                           );

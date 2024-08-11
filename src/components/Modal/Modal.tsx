@@ -39,6 +39,7 @@ interface ModalState {
   hoverArcane: string;
   whiteArcana: { [key: string]: boolean | number | string | null };
   blackArcana: { [key: string]: boolean | number | string | null };
+  hero: string;
   playerColor: string;
   animatedValue: number;
   targetValue: number;
@@ -102,6 +103,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         hints: false,
         autopromotion: 'Select',
       },
+      hero: 'malehero',
       hoverArcane: '',
       whiteArcana: {},
       blackArcana: {},
@@ -153,6 +155,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       inventory: {},
       nodeId: 'lesson-1',
       chapterEnd: false,
+      hero: this.state.hero,
     });
     this.props.navigate('/chapter');
   };
@@ -217,6 +220,56 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               <span className="multiplier">
                 x{this.state.config.multiplier} points
               </span>
+              <div className="heroes">
+                <img
+                  className="male-hero"
+                  src="/assets/avatars/malehero.webp"
+                  alt="hero1"
+                  style={{
+                    height: '120px',
+                    width: '120px',
+                    objectFit: 'contain',
+                    padding: '8px',
+                    outline:
+                      this.state.hero === 'malehero'
+                        ? '2px solid grey'
+                        : '2px solid transparent',
+                    borderRadius: '20%',
+                    boxSizing: 'border-box',
+                  }}
+                  onClick={() => {
+                    setLocalStorage({
+                      ...getLocalStorage(this.props.auth.user.username),
+                      hero: 'malehero',
+                    });
+                    this.setState({ hero: 'malehero' });
+                  }}
+                />
+                <img
+                  className="female-hero"
+                  src="/assets/avatars/femalehero.webp"
+                  alt="hero2"
+                  style={{
+                    height: '120px',
+                    width: '120px',
+                    objectFit: 'contain',
+                    padding: '8px',
+                    outline:
+                      this.state.hero === 'femalehero'
+                        ? '2px solid grey'
+                        : '2px solid transparent',
+                    borderRadius: '20%',
+                    boxSizing: 'border-box',
+                  }}
+                  onClick={() => {
+                    setLocalStorage({
+                      ...getLocalStorage(this.props.auth.user.username),
+                      hero: 'femalehero',
+                    });
+                    this.setState({ hero: 'femalehero' });
+                  }}
+                />
+              </div>
               <div className="settings">
                 <div className="settings-block">
                   <Select

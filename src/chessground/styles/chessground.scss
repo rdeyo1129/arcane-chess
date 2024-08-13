@@ -20,7 +20,11 @@
 
 .cg-wrap .red-board {
 }
-.brown-board {
+.brown-board,
+.saloon-board,
+.tornados-board,
+.sunset-board,
+.cliff-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusBrown.svg');
@@ -56,7 +60,7 @@
     center,
     left top;
 }
-.church-board {
+.church-room-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusPurple.svg');
@@ -66,7 +70,10 @@
     center,
     left top;
 }
-.jail-board {
+.jail-board,
+.ravensden-room-board,
+.library-board,
+.clocktower1-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusGray.svg');

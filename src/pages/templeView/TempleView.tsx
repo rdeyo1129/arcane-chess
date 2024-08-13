@@ -677,6 +677,11 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     {this.state.opponent !== '' ? (
                       <img
                         src={`/assets/avatars/${this.state.opponent}.webp`}
+                        style={{
+                          height: '80px',
+                          width: '80px',
+                          objectFit: 'contain',
+                        }}
                       />
                     ) : null}
                   </div>
@@ -887,9 +892,23 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                 <div className="info-avatar">
                   <div className="avatar">
                     {this.state.hero !== '' ? (
-                      <img src={`/assets/avatars/${this.state.hero}.webp`} />
+                      <img
+                        src={`/assets/avatars/${this.state.hero}.webp`}
+                        style={{
+                          height: '80px',
+                          width: '80px',
+                          objectFit: 'contain',
+                        }}
+                      />
                     ) : (
-                      <img src={`/assets/avatars/${LS.hero}.webp`} />
+                      <img
+                        src={`/assets/avatars/${LS.hero}.webp`}
+                        style={{
+                          height: '80px',
+                          width: '80px',
+                          objectFit: 'contain',
+                        }}
+                      />
                     )}
                   </div>
                   <div className="info">{auth.user.username}</div>

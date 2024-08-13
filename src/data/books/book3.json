@@ -20,10 +20,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "",
-    "opponent": "",
+    "opponent": "wizard",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "wizard-room",
+    "bookTheme": "wizard-house",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -152,11 +152,11 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-1",
-    "opponent": "",
+    "prereq": "mission-1",
+    "opponent": "book",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "library",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -286,10 +286,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-2",
-    "opponent": "",
+    "opponent": "book",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "library",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "3k4/3P4/3K4/8/8/8/8/8 w - - 0 1",
@@ -677,10 +677,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-3",
-    "opponent": "",
+    "opponent": "book",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "library",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1",
@@ -938,11 +938,11 @@
     "nodeText": "Learn about the Bishop and Equus pieces. They aren't the strongest, but they are important.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-3",
-    "opponent": "",
+    "prereq": "lesson-4",
+    "opponent": "book",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "library",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/3Bn3/8/8/8 w - - 0 1",
@@ -1235,11 +1235,11 @@
     "nodeText": "Attain more details about the Bishop and Equus pieces.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-5",
-    "opponent": "",
+    "prereq": "mission-6",
+    "opponent": "wizard",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "wizard-room",
+    "bookTheme": "wizard-house",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/3N4/8/8/7N w - - 0 1",
@@ -1548,11 +1548,11 @@
     "nodeText": "Learn about novice-level tactics and how to spot them.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-4",
-    "opponent": "",
+    "prereq": "mission-3",
+    "opponent": "book",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "library",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -1971,10 +1971,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-7",
-    "opponent": "",
+    "opponent": "raven",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ravensden-room",
+    "bookTheme": "ravensden",
     "panels": {
       "panel-1": {
         "fen": "2r2k2/5p2/1pP1p3/4P3/p3qp2/4bB1R/1P5P/5Q1K b - - 11 50",
@@ -4059,10 +4059,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "temple-1",
-    "opponent": "",
+    "opponent": "raven",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ravensden-room",
+    "bookTheme": "ravensden",
     "panels": {
       "panel-1": {
         "fen": "5rk1/2p2ppp/3b4/Q7/4P3/5PqP/PP4P1/2R2RK1 w - - 1 21",
@@ -6118,10 +6118,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "temple-1",
-    "opponent": "",
+    "opponent": "raven",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ravensden-room",
+    "bookTheme": "ravensden",
     "panels": {
       "panel-1": {
         "fen": "8/3k3p/3p1p2/Nbn5/4PbPP/5P2/2R2K2/5N2 w - - 8 48",
@@ -8237,10 +8237,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "temple-3",
-    "opponent": "",
+    "opponent": "raven",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ravensden-room",
+    "bookTheme": "ravensden",
     "panels": {
       "panel-1": {
         "fen": "r4k2/p5pp/1p2bq2/2p1Nr2/P1B5/1P2Q3/5PPP/4R1K1 b - - 0 24",
@@ -10356,10 +10356,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "temple-3",
-    "opponent": "",
+    "opponent": "raven",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ravensden-room",
+    "bookTheme": "ravensden",
     "panels": {
       "panel-1": {
         "fen": "r1b1kb1r/pp3ppp/2n1pq1n/3p4/3PP3/1PN1BPP1/P3BK1P/R2Q2NR w kq - 1 12",
@@ -12487,10 +12487,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "temple-5",
-    "opponent": "",
+    "opponent": "raven",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ravensden-room",
+    "bookTheme": "ravensden",
     "panels": {
       "panel-1": {
         "fen": "8/5rk1/1Pp1p1p1/3p2pp/1P6/4P2P/5PP1/R5K1 b - - 0 31",
@@ -14632,11 +14632,11 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-3",
-    "opponent": "",
+    "prereq": "lesson-1",
+    "opponent": "book",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
@@ -14684,11 +14684,11 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "mission-1",
-    "opponent": "",
+    "prereq": "lesson-2",
+    "opponent": "anon",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "clocktower1",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "4k3/3ppp2/8/8/8/8/2PPPP2/4K3 w - - 0 1",
@@ -14739,11 +14739,11 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-3",
-    "opponent": "",
+    "prereq": "lesson-4",
+    "opponent": "anon",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "tavern",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "4k3/3ppp2/8/8/8/8/8/3RK3 w - - 0 1",
@@ -14794,11 +14794,11 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "mission-2",
-    "opponent": "",
+    "prereq": "lesson-5",
+    "opponent": "anon",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "tavern",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "3mkn2/3ppp2/8/8/8/8/2PPPP2/2BMKB2 w - - 0 1",
@@ -14850,10 +14850,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-4",
-    "opponent": "",
+    "opponent": "anon",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "tavern",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "3wk3/3pp3/8/8/8/8/3PP3/3SK3 w - - 0 1",
@@ -14904,11 +14904,11 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "mission-5",
-    "opponent": "",
+    "prereq": "lesson-5",
+    "opponent": "book",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "1bbqkbb1/1pppppp1/8/8/8/8/1PPPPPP1/1RWSKWR1 w - - 0 1",
@@ -14960,10 +14960,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-6",
-    "opponent": "",
+    "opponent": "priest",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "church-room",
+    "bookTheme": "church",
     "panels": {
       "panel-1": {
         "fen": "4k3/1ppppppp/1ppppppp/8/8/8/1PPPPPPP/2ZZKZZ1 w - - 0 1",
@@ -15017,10 +15017,10 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-7",
-    "opponent": "",
+    "opponent": "priest",
     "hero": "",
-    "theme": "jail",
-    "bookTheme": "",
+    "theme": "church-room",
+    "bookTheme": "church",
     "panels": {
       "panel-1": {
         "fen": "mmmmkbbb/pppppppp/8/8/8/8/PPPPPPPP/MMMMKZNU w KQkq - 0 1",

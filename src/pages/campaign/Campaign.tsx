@@ -36,8 +36,8 @@ export class UnwrappedCampaign extends React.Component<
         // TODO: To be read from db
         'NONARRIVAL',
         'ANAMNESIS',
-        'TRUTH',
         'PENTAGRAMS',
+        'WEST',
         '?',
         '?',
         '?',

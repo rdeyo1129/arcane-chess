@@ -236,6 +236,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         : '2px solid transparent',
                     borderRadius: '20%',
                     boxSizing: 'border-box',
+                    cursor:
+                      "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                   }}
                   onClick={() => {
                     setLocalStorage({
@@ -260,6 +262,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         : '2px solid transparent',
                     borderRadius: '20%',
                     boxSizing: 'border-box',
+                    cursor:
+                      "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                   }}
                   onClick={() => {
                     setLocalStorage({

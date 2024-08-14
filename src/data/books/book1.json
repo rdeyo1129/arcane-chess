@@ -1347,7 +1347,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-3",
-    "opponent": "",
+    "opponent": "owl",
     "theme": "owls",
     "bookTheme": "owls",
     "panels": {
@@ -1626,7 +1626,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "temple-1",
-    "opponent": "",
+    "opponent": "owl",
     "theme": "owls",
     "bookTheme": "owls",
     "panels": {
@@ -1905,7 +1905,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "temple-1",
-    "opponent": "",
+    "opponent": "pwl",
     "theme": "owls",
     "bookTheme": "owls",
     "panels": {
@@ -2189,7 +2189,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "temple-2",
-    "opponent": "",
+    "opponent": "owl",
     "theme": "owls",
     "bookTheme": "owls",
     "panels": {
@@ -2473,7 +2473,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "temple-2",
-    "opponent": "",
+    "opponent": "owl",
     "theme": "owls",
     "bookTheme": "owls",
     "panels": {
@@ -5204,7 +5204,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "temple-3",
-    "opponent": "",
+    "opponent": "owl",
     "theme": "owls",
     "bookTheme": "owls",
     "panels": {

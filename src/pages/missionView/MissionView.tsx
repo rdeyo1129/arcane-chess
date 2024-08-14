@@ -956,7 +956,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     ) : null}
                   </div>
                   <div className="info">
-                    <div className="name">{this.state.opponent}</div>
+                    {/* <div className="name">{this.state.opponent}</div> */}
                   </div>
                 </div>
                 <div className="dialogue">

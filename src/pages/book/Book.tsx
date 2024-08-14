@@ -267,7 +267,9 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
 
   componentDidUpdate(_prevProps: BookProps, prevState: BookState) {
     if (this.state.allNodesUnlocked && !prevState.allNodesUnlocked) {
-      this.setState({ allNodesUnlocked: !prevState.allNodesUnlocked });
+      if (process.env.NODE_ENV === 'development') {
+        this.setState({ allNodesUnlocked: !prevState.allNodesUnlocked });
+      }
     }
   }
 

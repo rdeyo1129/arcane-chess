@@ -783,7 +783,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     text="<"
                     width={190}
                     fontSize={36}
-                    backgroundColorOverride="#11111188"
+                    backgroundColorOverride="#3f48cc88"
                   />
                   <Button
                     className="tertiary"
@@ -795,7 +795,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     text=">"
                     width={190}
                     fontSize={36}
-                    backgroundColorOverride="#11111188"
+                    backgroundColorOverride="#3f48cc88"
                   />
                 </div>
                 <div className="info-avatar">

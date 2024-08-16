@@ -384,44 +384,44 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       text="BACK"
                       className="tertiary"
                       color="B"
-                      width={160}
-                      height={60}
+                      width={200}
                       disabled={false}
                       backgroundColorOverride="#33333388"
                     />
                   </Link>
                 </div>
-                <div className="center">
-                  multiplier per challenge = x{this.state.multiplier}
-                  <div className="points">
-                    <span className="digit-box">{digits}</span>
-                  </div>
-                </div>
+                <div className="center"></div>
                 <div className="right">
-                  <div className="toggle-tab">
-                    <Button
-                      text={
-                        this.state.selectedTab === 'chess' ? 'STORY' : 'CHESS'
-                      }
-                      className="tertiary"
-                      color="B"
-                      width={160}
-                      height={60}
-                      backgroundColorOverride={'#33333388'}
-                      onClick={this.toggleTab}
-                    />
+                  <div className="buttons">
+                    <div className="toggle-tab">
+                      <Button
+                        text={
+                          this.state.selectedTab === 'chess' ? 'STORY' : 'CHESS'
+                        }
+                        className="tertiary"
+                        color="B"
+                        width={200}
+                        backgroundColorOverride={'#33333388'}
+                        onClick={this.toggleTab}
+                      />
+                    </div>
+                    <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
+                      <Button
+                        text="START"
+                        className="tertiary"
+                        color="B"
+                        width={200}
+                        disabled={this.state.selectedSwatch === ''}
+                        backgroundColorOverride="#33333388"
+                      />
+                    </Link>
                   </div>
-                  <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
-                    <Button
-                      text="START"
-                      className="tertiary"
-                      color="B"
-                      width={240}
-                      height={60}
-                      disabled={this.state.selectedSwatch === ''}
-                      backgroundColorOverride="#33333388"
-                    />
-                  </Link>
+                  <div className="score">
+                    <span className="multiplier">x{this.state.multiplier}</span>
+                    <div className="points">
+                      <span className="digit-box">{digits}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="content">

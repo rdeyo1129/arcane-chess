@@ -676,7 +676,7 @@
     "nodeText": "If you want to hold your own through a full game, keep in mind these conventions when deciding on your moves.",
     "panelText": "",
     "reward": [],
-    "prereq": "mission-3",
+    "prereq": "lesson-3",
     "opponent": "book",
     "hero": "",
     "theme": "library",
@@ -1586,7 +1586,7 @@
           "5rk1/pp3ppp/1zp5/4p3/1P1nP3/P2P4/1B3PPP/3B1RK1 w - - 0 1"
         ],
         "history": [],
-        "panelText": "Not strictly a tactic, but a motif to look out for is pieces that are undefended or poorly defended. A hanging piece (undefended) is free material, a decisive advantage. The tactic to assert when a piece is poorly defended (1 maybe 2 defenders) is called removing the defender. (next) Here we see white is ‘undermining’ black’s center. If black takes, it’s removes the defender of the black Knight and winning white a material advantage.",
+        "panelText": "Not strictly a tactic, but a motif to look out for is pieces that are undefended or poorly defended. A hanging piece (undefended) is free material, a decisive advantage. The tactic to assert when a piece is poorly defended (more attackers than defenders) is called removing the defender. (next) Here we see white is ‘undermining’ black’s center. If black takes, it removes the defender of the black Knight and winning white a material advantage.",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
@@ -1801,7 +1801,7 @@
         "fen": "1k6/8/8/4r3/8/6B1/8/8 w - - 0 1",
         "fenHistory": ["1k6/8/8/4r3/8/6B1/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "Here are two examples. The first example is known as an ‘absolute’ pin. Black cannot move the Rook, it is illegal because it puts the Black King in check. The second example is a relative pin. Here black need to move the Knight because it is undefended, but once it does, well capture the Rook and win material.",
+        "panelText": "Here are two examples. The first example is known as an ‘absolute’ pin. Black cannot move the Rook, it is illegal because it puts the Black King in check. The second example is a relative pin. Here black needs to move the Knight because it is undefended, but once it does, we will capture the Rook and win material.",
         "arrowsCircles": [
           { "orig": "g3", "dest": "b8", "brush": "green" },
           { "orig": "e5", "brush": "red" },
@@ -1888,7 +1888,7 @@
           "rn2kb1r/pppq2pp/8/4np2/8/6N1/PPQ2PPP/RNB1R1K1 w - - 0 1"
         ],
         "history": [],
-        "panelText": "They say “pin it to win it”. When you have an opponents piece in a pin you should put pressure on it when you can. Attacking with a Pawn can be decisive but if it’s only pieces, try to add pressure then convert from dynamic to static advantage.",
+        "panelText": "They say “pin it to win it”. When you have an opponent's piece in a pin you should put pressure on it when you can. Attacking with a Pawn can be decisive but if it’s only pieces, try to add pressure then convert from dynamic to static advantage.",
         "arrowsCircles": [
           { "orig": "c2", "dest": "c3", "brush": "green" },
           { "orig": "c1", "dest": "f4", "brush": "green" },

@@ -1346,7 +1346,7 @@
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-3",
+    "prereq": "mission-4",
     "opponent": "owl",
     "theme": "owls",
     "bookTheme": "owls",
@@ -7917,9 +7917,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-2",
-    "opponent": "anon",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "opponent": "ephilate",
+    "theme": "tavern",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "4k3/3pp3/8/8/8/8/8/3RK3 w - - 0 1",
@@ -7972,7 +7972,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-1",
-    "opponent": "anon",
+    "opponent": "ephilate",
     "theme": "tavern",
     "bookTheme": "town",
     "panels": {
@@ -8137,7 +8137,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-2",
-    "opponent": "anon",
+    "opponent": "ephilate",
     "theme": "forest",
     "bookTheme": "forest",
     "panels": {
@@ -8192,7 +8192,7 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-5",
-    "opponent": "anon",
+    "opponent": "ephilate",
     "theme": "forest",
     "bookTheme": "forest",
     "panels": {
@@ -8246,7 +8246,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "mission-6",
+    "prereq": "temple-5",
     "opponent": "",
     "theme": "tree",
     "bookTheme": "tree",

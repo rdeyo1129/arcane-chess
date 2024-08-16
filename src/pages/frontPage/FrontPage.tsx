@@ -18,11 +18,11 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
     super(props);
     this.slogans = [
       'Principle. Preparation. Process.',
-      'You wanted the Knook and we heard you.',
+      // 'You wanted the Knook and we heard you.',
       'Initiative. Formulation. Execution.',
       'As in war, so in life.',
       'Is this theory?',
-      "This time it's personal.",
+      // "This time it's personal.",
       "Let's see a more advanced setup.",
       "Not your grandfather's chess set.",
       'Let your chess do the talking.',

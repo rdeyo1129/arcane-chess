@@ -371,7 +371,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           bArcana: panelData.blackArcane,
           royalties: panelData.royalties,
           visitedPanels: newVisitedPanels,
-          orientation: panelData.orientation,
+          orientation: panelData.fen.split(' ')[1] === 'w' ? 'black' : 'white',
         };
       },
       () => {

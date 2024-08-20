@@ -17,7 +17,7 @@
       [0, 0]
     ],
     "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
-    "panelText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "panelText": "An figure woke up in a small poorly-lit glade deep within a forest. They had no memory of how they got there or who they are. They stood up and looked around, surrounded by the thick tree that were hundreds of feet tall. The faintest hint of a path lead away from the glade. Against their chest, they felt a metal tag with a bar code and a word attached to it - Sidian.\n\n They suspected it must be their name. Sidian, inspecting the scene more they notice a book lying on the ground. They opened it. Mainly written in English but also with paragraphs of a scriptured language with symbols they didn't recognize.\n\n Accompanying the text and scripture were diagrams of a grid with symbols on them... representing some sort of game.",
     "reward": [],
     "prereq": "",
     "opponent": "book",
@@ -286,7 +286,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "Inspecting the book more they learn more about the game over a grid... the game of Chess. The book contains stories about the past as well. It was about armies of wizards and warriors that used to battle one another over politics, religion, and land. The game of Chess was a way to settle disputes without bloodshed.\n\n Eager to learn more, Sidian turned the page and continues reading:",
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "book",
@@ -393,7 +393,7 @@
       [0, 0]
     ],
     "nodeText": "What are you fighting for? Learn about why Chess is a zero-sum game.",
-    "panelText": "",
+    "panelText": "Sidian turned the page. Blank. No writing. They pawed through the next dozen to find only blank pages. What was the point of the book? Where are the other pages? \n\n Sidian closed the book and looked up. Someone was watching them from the shadows of the trees. A wizard. The wizard beckoned them to follow. Sidian hesitated but curiosity got the better of them. They followed the wizard into the forest...",
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "wizard",
@@ -737,7 +737,7 @@
       [0, 0]
     ],
     "nodeText": "Learn about the bread and butter of pieces.",
-    "panelText": "",
+    "panelText": "Sidian trailed behind the wizard by about a dozen paces, apprehensive to approach him. In their travel through the forest, Sidian took further observations of the forest. Some of the tree were carved with more of the scripture they saw in the book. Without any knowledge of how to read it, Sidian continued on. \n\n After awhile, the wizard lead them to a clearing. A small brick house stood neatly in the center. The wizard stepped inside and left the door open for Sidian to follow. Inside was a room with a table and two chairs. Both of them sat down. A physical board with pieces neatly aligned like in the book sat between them. The wizard began to speak:",
     "reward": [],
     "prereq": "lesson-3",
     "opponent": "wizard",

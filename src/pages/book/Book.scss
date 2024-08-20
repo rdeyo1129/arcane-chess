@@ -110,18 +110,16 @@
       .description-inventory.story-column {
         .story-text {
           display: flex;
-          // flex-direction: column;
-          // justify-content: center;
-          // align-items: center;
           width: 400px;
-          height: 480px;
-          // background: #11111188;
+          overflow-y: scroll;
           .node {
             margin: 10px;
             .node-title {
               text-align: center;
             }
             .node-description {
+              width: 100%;
+              padding-bottom: 20px;
               p {
                 margin: 10px;
               }

@@ -19,11 +19,11 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "",
-    "opponent": "wizard",
+    "prereq": "mission-1",
+    "opponent": "book",
     "hero": "",
-    "theme": "wizard-room",
-    "bookTheme": "wizard-house",
+    "theme": "library",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -677,9 +677,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-3",
-    "opponent": "book",
+    "opponent": "ephilate",
     "hero": "",
-    "theme": "library",
+    "theme": "clocktower",
     "bookTheme": "town",
     "panels": {
       "panel-1": {
@@ -939,9 +939,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "lesson-4",
-    "opponent": "book",
+    "opponent": "ephilate",
     "hero": "",
-    "theme": "library",
+    "theme": "clocktower",
     "bookTheme": "town",
     "panels": {
       "panel-1": {
@@ -1549,9 +1549,9 @@
     "panelText": "",
     "reward": [],
     "prereq": "mission-3",
-    "opponent": "book",
+    "opponent": "ephilate",
     "hero": "",
-    "theme": "library",
+    "theme": "tavern",
     "bookTheme": "town",
     "panels": {
       "panel-1": {
@@ -14629,14 +14629,14 @@
       [180, 15],
       [45, 0]
     ],
-    "nodeText": "",
+    "nodeText": "Get your King to the center to win or defeat your opponent normally.",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-1",
-    "opponent": "book",
+    "prereq": "",
+    "opponent": "",
     "hero": "",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "theme": "jail",
+    "bookTheme": "jail",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
@@ -14687,8 +14687,8 @@
     "prereq": "lesson-2",
     "opponent": "ephilate",
     "hero": "",
-    "theme": "clocktower1",
-    "bookTheme": "town",
+    "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "4k3/3ppp2/8/8/8/8/2PPPP2/4K3 w - - 0 1",
@@ -14794,7 +14794,7 @@
     "nodeText": "",
     "panelText": "",
     "reward": [],
-    "prereq": "lesson-5",
+    "prereq": "mission-3",
     "opponent": "ephilate",
     "hero": "",
     "theme": "tavern",

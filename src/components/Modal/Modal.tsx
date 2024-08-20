@@ -103,7 +103,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         hints: false,
         autopromotion: 'Select',
       },
-      hero: 'malehero',
+      hero: 'hero1',
       hoverArcane: '',
       whiteArcana: {},
       blackArcana: {},
@@ -222,8 +222,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </span>
               <div className="heroes">
                 <img
-                  className="male-hero"
-                  src="/assets/avatars/malehero.webp"
+                  className="hero-1"
+                  src="/assets/avatars/hero1.webp"
                   alt="hero1"
                   style={{
                     height: '120px',
@@ -231,7 +231,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     objectFit: 'contain',
                     padding: '8px',
                     outline:
-                      this.state.hero === 'malehero'
+                      this.state.hero === 'hero1'
                         ? '2px solid grey'
                         : '2px solid transparent',
                     borderRadius: '20%',
@@ -242,14 +242,14 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   onClick={() => {
                     setLocalStorage({
                       ...getLocalStorage(this.props.auth.user.username),
-                      hero: 'malehero',
+                      hero: 'hero1',
                     });
-                    this.setState({ hero: 'malehero' });
+                    this.setState({ hero: 'hero1' });
                   }}
                 />
                 <img
-                  className="female-hero"
-                  src="/assets/avatars/femalehero.webp"
+                  className="hero-2"
+                  src="/assets/avatars/hero2.webp"
                   alt="hero2"
                   style={{
                     height: '120px',
@@ -257,7 +257,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     objectFit: 'contain',
                     padding: '8px',
                     outline:
-                      this.state.hero === 'femalehero'
+                      this.state.hero === 'hero2'
                         ? '2px solid grey'
                         : '2px solid transparent',
                     borderRadius: '20%',
@@ -268,9 +268,61 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   onClick={() => {
                     setLocalStorage({
                       ...getLocalStorage(this.props.auth.user.username),
-                      hero: 'femalehero',
+                      hero: 'hero2',
                     });
-                    this.setState({ hero: 'femalehero' });
+                    this.setState({ hero: 'hero2' });
+                  }}
+                />
+                <img
+                  className="hero-3"
+                  src="/assets/avatars/hero3.webp"
+                  alt="hero3"
+                  style={{
+                    height: '120px',
+                    width: '120px',
+                    objectFit: 'contain',
+                    padding: '8px',
+                    outline:
+                      this.state.hero === 'hero3'
+                        ? '2px solid grey'
+                        : '2px solid transparent',
+                    borderRadius: '20%',
+                    boxSizing: 'border-box',
+                    cursor:
+                      "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
+                  }}
+                  onClick={() => {
+                    setLocalStorage({
+                      ...getLocalStorage(this.props.auth.user.username),
+                      hero: 'hero3',
+                    });
+                    this.setState({ hero: 'hero3' });
+                  }}
+                />
+                <img
+                  className="hero-4"
+                  src="/assets/avatars/hero4.webp"
+                  alt="hero4"
+                  style={{
+                    height: '120px',
+                    width: '120px',
+                    objectFit: 'contain',
+                    padding: '8px',
+                    outline:
+                      this.state.hero === 'hero4'
+                        ? '2px solid grey'
+                        : '2px solid transparent',
+                    borderRadius: '20%',
+                    boxSizing: 'border-box',
+                    cursor:
+                      "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
+                  }}
+                  onClick={() => {
+                    setLocalStorage({
+                      ...getLocalStorage(this.props.auth.user.username),
+                      hero: 'hero4',
+                    });
+                    this.setState({ hero: 'hero4' });
                   }}
                 />
               </div>
@@ -582,21 +634,17 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: '100%',
-                maxHeight: '456px',
+                maxHeight: '100%',
                 background:
                   'url(/assets/chapterend.webp) no-repeat center center',
-                backgroundSize: 'contain',
+                backgroundSize: 'cover',
               }}
             >
-              <div className="chapter-end-text">
-                <div
-                  className="chapter-end-text-top"
-                  style={{ marginTop: '20px' }}
-                >
+              <div className="chapter-end-text" style={{ padding: '20px' }}>
+                <div className="chapter-end-text-top">
                   <h1>CHAPTER END</h1>
                   <div className="chapter-end-points">
                     <h1 className="digit-box">{digits}</h1>
-                    <h1 className="digit-kudos">kudos</h1>
                   </div>
                 </div>
                 <div className="chapter-end-buttons">
@@ -1205,6 +1253,7 @@ const chapterEndModal = {
     background: '#111111',
     borderRadius: '10px',
     border: '2px solid #3f48cc',
+    padding: '0',
   },
   overlay: {
     zIndex: 30,

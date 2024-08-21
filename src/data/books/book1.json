@@ -947,7 +947,7 @@
       [0, 0]
     ],
     "nodeText": "Learn about the backbone of every army... the Pawn.",
-    "panelText": "",
+    "panelText": "Sidian asked who he was and where they were. The wizard didn't bother to introduce himself. He began to talk about the curse of the forest. He explained that he been trapped in the forest for years, maybe decades. He couldn't seem to remember. In his travels he would sometimes come upon a town, but when he left and tried to come back, things would be different. He couldn't find it and when he did it would be different. The town and the people. The only thing that was the same was the forest. \n\n Sidian asked if he could leave. The wizard said that he could, but he would have to beat him in a game of Chess. Sidian agreed and the game began. The wizard moved his pieces with a practiced hand. Sidian was lost in the game.",
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "wizard",
@@ -1189,7 +1189,7 @@
       [0, 0]
     ],
     "nodeText": "Learn about curiosity, the framework behind your thinking during a game.",
-    "panelText": "",
+    "panelText": "The wizard takes a sip from his mug. He tells Sidian about the importance of curiosity. He explains that the game of Chess is a game of information. The more you know about your opponent, the better you can predict their moves. The more you know about the game, the better you can predict the outcome. The more you know about yourself, the better you can predict your own moves. \n\n Sidian got up to leave but the wizard stops him one last time. This time a legend about talismens. They can be found in the forest, but they are rare. They may be outside the forest too if anything exists beyond it. The wizard hands him a talismen that he's been keeping safe. He talks Sidian into another game of chess, this time showing a demonstration of the talismen's power.",
     "reward": [],
     "prereq": "lesson-5",
     "opponent": "wizard",

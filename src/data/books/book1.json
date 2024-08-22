@@ -7914,7 +7914,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "Sidian walks out of the wizard's house. The trail head has shifted to a new configuration. Sidian steps forward, eager to see what the next challenge will be.\n\n Not long after a few twists and turns, Sidian finds his way to the town. The town is bustling with activity. Sidian sees a tavern and decides to enter. The tavern is filled with many cloaked figures. A table in the corner catches Sidian's eye. A single figure sat at a chess board. Sidian asks the bartender about them. \n\n \"That's one of the ephilates, stuck wandering the forest for eternity. They say their life force was stolen from them long ago by playing against a mystical being.\" \n\n Sidian, against his better judgement, decides to challenge the ephilate to a game of chess.",
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "ephilate",
@@ -7969,7 +7969,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "The ephilate nods and asks for another challenge. Sidian, ready to leave, declines. But the ephilate insists. Sidian, not wanting to be rude, agrees to another game. This time darkness fell upon the room. All of the people in the tavern froze. The ephilate's eyes glowed with a sinister light. Sidian felt a chill run down his spine. The pieces on the board moved back to the starting position by themselves. A voice spoke in Sidian's mind. \n\n \"You have been tricked, Sidian. You will play me again, but this time, if you win I will leave you with a great gift. If you lose however, I will take your life force that I may not wander this forest forever.\" \n\n Sidian, now trapped in the tavern, must play the ephilate again.",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "ephilate",
@@ -8024,7 +8024,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "Sidian left the tavern. He arrived upon a peddler. Sidian purchases some goods. As a token of his gratitude, the peddler reaches into his pocket and pulls out another talismen. They didn't know what it does and didn't want any involvement in magic. They also gave Sidian a hint to the forest: \n\n The peddler has heard stories about the criminals and beasts that wander the forest. One was about a tree that controls the whole forest. It was said that a grandmaster went to break the curse of the tree upon the forest but never returned. People rumor that he lost in an epic game and was forced to merge with the tree. \n\n Sidian, now with a new talismen, decides to venture deeper into the forest. He finds a clearing with a chess board in the center with the pieces setup in a particular fashion. Sidian approaches to study the position. But suddenly, a trap! A rope jumps from a bush and wraps around Sidian's legs. A hunter emerges from the bush. The hunter challenges Sidian to a game of chess to determine who walks away with the other's inventory.",
     "reward": [],
     "prereq": "mission-2",
     "opponent": "hunter",
@@ -8079,7 +8079,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "With Sidian having revealed the use of a talismen, the hunter's eyes widened. The hunter, now intrigued, asks for a game with the talismen on the line. With their legs still tied, Sidian didn't seem to have a choice. The hunter with a grin on his face pulls out a talismen of his own. With a swift motion of his hand, the pieces rearrange themselves. The hunter says Sidian may have the advantage this time, but with no reward. If the hunter wins with the disadvantage, they collect the reward. The hunter this time with the power of the talismen, controlled his pieces from a distance with his mind.",
     "reward": [],
     "prereq": "mission-3",
     "opponent": "hunter",
@@ -8134,7 +8134,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "Sidian left the town without talking to anyone. They ventured deep into the forest. No openings, more obfuscated and winding paths that took Sidian back to a beginning. The town was for sure lost at this point. \n\n After what seemed like hours, Sidian moved further into a deep and dark path occupied by a ghostly figure, another ephilate like the one in the tavern. The ephilate, with a sinister grin, challenges Sidian to a game of chess. Sidian, now with a new talismen, accepts the challenge. \n\n Darkness fell further around them. This time a magical visualization of a chess board appeared. The ephilate again bargains for Sidian's life force. Sidian, now with a new talismen, must play the ephilate again.",
     "reward": [],
     "prereq": "mission-2",
     "opponent": "ephilate",

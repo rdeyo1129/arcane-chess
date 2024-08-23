@@ -1344,7 +1344,7 @@
       [100, 0]
     ],
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
-    "panelText": "",
+    "panelText": "Sidian enters an overgrown temple, greeted by the faint sound of rustling leaves, as if the trees themselves are whispering secrets. The spectral owls watch from the shadows, their eyes glowing with an eerie light. One of the owls swoops down and lands on a stone pedestal. It's beak remains closed but Sidian can hear it's voice in his mind:\n\n \"The tree's roots run deep, but which path will make it weep?\" \n\n A magical chess board appears before them. Sidian connects to it with his mind and finds the first answer right away. The pieces shift and morph into a new position.",
     "reward": [],
     "prereq": "mission-4",
     "opponent": "owl",
@@ -1623,7 +1623,7 @@
       [50, 3]
     ],
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
-    "panelText": "",
+    "panelText": "\"We have only just begun.\"\n\n Sidian nods as darkness falls this time. Demons dance around the edge of the clearing, mocking and jeering to break Sidian's concentration. The voice speaks:\n\n\"In the tree's shade, shadows dance, but which piece leads the trance?\"",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "owl",
@@ -1902,7 +1902,7 @@
       [60, 0]
     ],
     "nodeText": "Play through two-move puzzles to further test your knowledge of the pieces.",
-    "panelText": "",
+    "panelText": "Sidian pieces on the board vanish. Sidian has completed this puzzle. They glance upward and observe the canopy of the trees above. The voice speaks again:\n\n\"The tree's branches reach high, but which path will make it sigh? In the dance of binaries, where the twin shadows play, the path forward lies where the light splits the day. Seek the singular mate, where one becomes two, and the answer will guide you true.\"",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "owl",
@@ -2186,7 +2186,7 @@
       [50, 3]
     ],
     "nodeText": "Play through two-move puzzles to further test your knowledge of the pieces.",
-    "panelText": "",
+    "panelText": "The guardian owl observes Sidian with friendly praise. The voice echos in their mind again: \n\n\"In the dance of binaries, where truth and lies entwine, two paths diverge, yet only one reveals the sign. Seek the mate where shadow and light converge, for when reflection turns real, the tree shall emerge.\"",
     "reward": [],
     "prereq": "temple-2",
     "opponent": "owl",
@@ -2470,7 +2470,7 @@
       [200, 5]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "The owl beckons Sidian forward towards what he assumed was the tree, he wandered a short path to happen again upon the owls temple. The owl chuckles and motions to the board again.\n\n\"In the depths where binaries fade, a singular mate remains unmade. Choose the path where time stands still, but know this choice is not the tree's will.\"\n\n Sidian engages with the board again as the shadows between the trees tease him.",
     "reward": [],
     "prereq": "temple-2",
     "opponent": "owl",
@@ -5201,7 +5201,7 @@
       [80, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "The shadows begin to throw branches and rocks in your direction as the board gleams with Sidian's victory. The owl speaks: \n\n\"Pay them no mind. They are tormented souls from a realm of endless frustration. Their burdens are not for you to bear. We each walk our own path, and sometimes we are alone on that path. That does not make it incorrect. Solve this last puzzle and the correct path will open before you.\"",
     "reward": [],
     "prereq": "temple-3",
     "opponent": "owl",
@@ -7914,7 +7914,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "Sidian walks out of the wizard's house. The trail head has shifted to a new configuration. Sidian steps forward, eager to see what the next challenge will be.\n\n Not long after a few twists and turns, Sidian finds his way to the town. The town is bustling with activity. Sidian sees a tavern and decides to enter. The tavern is filled with many cloaked figures. A table in the corner catches Sidian's eye. A single figure sat at a chess board. Sidian asks the bartender about them. \n\n \"That's one of the ephilates, stuck wandering the forest for eternity. They say their life force was stolen from them long ago by playing against a mystical being.\" \n\n Sidian, against his better judgement, decides to challenge the ephilate to a game of chess.",
+    "panelText": "Sidian walks out of the wizard's house. The trail head has shifted to a new configuration. Sidian steps forward, eager to see what the next challenge will be.\n\n Not long after a few twists and turns, Sidian finds their way to the town. The town is bustling with activity. Sidian sees a tavern and decides to enter. The tavern is filled with many cloaked figures. A table in the corner catches Sidian's eye. A single figure sat at a chess board. Sidian asks the bartender about them. \n\n \"That's one of the ephilates, stuck wandering the forest for eternity. They say their life force was stolen from them long ago by playing against a mystical being.\" \n\n Sidian, against their better judgement, decides to challenge the ephilate to a game of chess.",
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "ephilate",
@@ -7969,7 +7969,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "The ephilate nods and asks for another challenge. Sidian, ready to leave, declines. But the ephilate insists. Sidian, not wanting to be rude, agrees to another game. This time darkness fell upon the room. All of the people in the tavern froze. The ephilate's eyes glowed with a sinister light. Sidian felt a chill run down his spine. The pieces on the board moved back to the starting position by themselves. A voice spoke in Sidian's mind. \n\n \"You have been tricked, Sidian. You will play me again, but this time, if you win I will leave you with a great gift. If you lose however, I will take your life force that I may not wander this forest forever.\" \n\n Sidian, now trapped in the tavern, must play the ephilate again.",
+    "panelText": "The ephilate nods and asks for another challenge. Sidian, ready to leave, declines. But the ephilate insists. Sidian, not wanting to be rude, agrees to another game. This time darkness fell upon the room. All of the people in the tavern froze. The ephilate's eyes glowed with a sinister light. Sidian felt a chill run down their spine. The pieces on the board moved back to the starting position by themselves. A voice spoke in Sidian's mind. \n\n \"You have been tricked, Sidian. You will play me again, but this time, if you win I will leave you with a great gift. If you lose however, I will take your life force that I may not wander this forest forever.\" \n\n Sidian, now trapped in the tavern, must play the ephilate again.",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "ephilate",
@@ -8134,7 +8134,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "Sidian left the town without talking to anyone. They ventured deep into the forest. No openings, more obfuscated and winding paths that took Sidian back to a beginning. The town was for sure lost at this point. \n\n After what seemed like hours, Sidian moved further into a deep and dark path occupied by a ghostly figure, another ephilate like the one in the tavern. The ephilate, with a sinister grin, challenges Sidian to a game of chess. Sidian, now with a new talismen, accepts the challenge. \n\n Darkness fell further around them. This time a magical visualization of a chess board appeared. The ephilate again bargains for Sidian's life force. Sidian, now with a new talismen, must play the ephilate again.",
+    "panelText": "Sidian left the town without talking to anyone. They ventured deep into the forest. No openings, more obfuscated and winding paths that took Sidian back to a beginning. The town was for sure lost at this point. \n\n After what seemed like hours, Sidian moved further into a deep and dark path occupied by a ghostly figure, another ephilate like the one in the tavern. The ephilate, with a sinister grin, challenges Sidian to a game of chess. Sidian, now with a new talismen, accepts the challenge. \n\n Darkness fell further around them. This time a magical visualization of a chess board appeared. The ephilate again bargains for Sidian's life force. With no hope from escaping the darkness but to win, Sidian makes the first move.",
     "reward": [],
     "prereq": "mission-2",
     "opponent": "ephilate",
@@ -8181,7 +8181,7 @@
       "lose1": "",
       "lose2": "",
       "lose3": "",
-      "victory": "",
+      "victory": "The ephilate falls to the ground and evaporates into the darkness. Sidian continues through the forest in hopes of find the tree and rescuing the inhabitants of the forest.",
       "defeat": ""
     },
     "time": [
@@ -8189,7 +8189,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "The ephilate, frustrated with it's loss concentrates to keep the darkness from lifting. He begins a summoning spell. Two talismens appear in his hand. Sidian accesses their own talismen's power and forces their will upon the darkness to lift, but with no success. With no hope of escape, Sidian must play the ephilate again.",
     "reward": [],
     "prereq": "mission-5",
     "opponent": "ephilate",
@@ -8237,14 +8237,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "Roots erupt from the ground and wrap around Sidian's limbs. They try to break free but your body is shocked with fear. The tree laughs as they are brought to your knees. The roots dragging Sidian below the ground is the last thing that they remember. Suddenly, they are awake again, lost in the forest."
     },
     "time": [
       [360, 2],
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "The owl congratulates Sidian for solving the final riddle of the maze and grants them passage from the temple. The forest shifts and a new path opens. \n\n Sidian walks through a short series of more wandering paths with a mystical feeling. In a wide clearing Sidian notices a huge silhouette. That of the tree. It had a giant arm grow from the trunk. \n\n \"It's been awhile since I've had any victims wander into my domain. I'm looking forward to more energy to add to my forest. Especially after that annoying wizard gave me a hard time. I made easy work of him with my disillusionment charm and now he'll wander forever as will you.\"",
     "reward": [],
     "prereq": "temple-5",
     "opponent": "",
@@ -8291,15 +8291,15 @@
       "lose1": "",
       "lose2": "",
       "lose3": "",
-      "victory": "",
-      "defeat": ""
+      "victory": "The tree gasps in shock as the roots around it shrink and wither. It's arm reaches out to Sidian but fails.\n\n\"You shall join me in peril\"\n\n It begins to conjure a dark spell to connect with Sidian's life force. Sidian in turn connects with their talismen and blocks the spell. The tree topples over and the forest begins to return to normal.",
+      "defeat": "Roots erupt from the ground and wrap around Sidian's limbs. They try to break free but your body is shocked with fear. The tree laughs as they are brought to your knees. The roots dragging Sidian below the ground is the last thing that they remember. Suddenly, they are awake again, lost in the forest."
     },
     "time": [
       [360, 2],
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "The tree recovers as roots begin to wither around it's base. It tries to bargain with Sidian. \n\n \"If you stop now I will spare you and grant you the power of the forest. You need to walk away. You'll never have to see me again and the ephilates won't bother you. You may come and go as you please.\" \n\n Sidian thinks of the wizard being stuck for the rest of his days and the town and the town folk stuck in the forest. Sidian knows they must defeat the tree to save the forest. He grasps the talismen, focuses their energy and stands ground. The board appears again in a new configuration. The roots around Sidian stir.\n\n \"Very well, you will regret that decision. I shall make you one with the forest \"",
     "reward": [],
     "prereq": "mission-7",
     "opponent": "",

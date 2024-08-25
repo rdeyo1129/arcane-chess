@@ -17,13 +17,14 @@
       [0, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "Sidian returns to the wizard’s house to report on their recent victory against the tree and breaking the curse it had on the forest. The wizard congratulates him but warns that he’s noticed more ephilates wandering the forest than usual. He explains that these ones are more aggressive than before as well. Something else is disturbing the balance of the forest. \n\n Sidian explained that the with the tree gone the wizard may leave freely. The wizard pauses to think. \n\n \"I should stay. Whatever it is that’s going on here, the people of the town need help. I’m going to stay and research. I suggest you visit the library in the town and do the same if you want to help. Be careful of who you talk to and who sees you.\" \n\n The wizard sits at the board. \n\n \"Before you go, let’s have a lesson.\"",
     "reward": [],
     "prereq": "",
-    "opponent": "book",
+    "opponent": "wizard",
     "hero": "",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "storyTitle": "",
+    "theme": "wizard-room",
+    "bookTheme": "wizard-house",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -107,7 +108,7 @@
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "This framework lays out an important foundation for your learning. Turn your story from “I can’t” to “I can” to “I am” to “I did”.",
+        "panelText": "This framework lays out an important foundation for your learning. Turn your story from \"I can’t\" to \"I can\" to \"I am\" to \"I did.\"",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
@@ -150,11 +151,12 @@
       [0, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "panelText": "The wizard with content smile gets up and walks to his desk. He waves a hand over Sidian’s book and it emits a light blue beam that touches the ceiling. Once the glow dies down, Sidian opens the book. More pages have been filled with text, scripture, and diagrams. The wizard spoke: \n\n \"I once knew how to read that language but the forest has taken it’s toll on my memory. Head to the town, you may find answers there. You know how to find me now.\" \n\n With the power of the tree acquired, the forest was no longer a maze. They had a sixth sense of navigation. \n\n Sidian arrived at the town and right away noticed the attitude of the town folk had altered. They  received dirty looks and shoulder brushes by many passerby. The wizard was correct. Sidian headed straight to the library. Distracted by the wealth of information, they wandered by the section on the lore of the forest and town in favor of looking for answers to the scripture in his book.",
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "book",
     "hero": "",
+    "storyTitle": "",
     "theme": "library",
     "bookTheme": "town",
     "panels": {
@@ -262,6 +264,7 @@
     "prereq": "mission-2",
     "opponent": "book",
     "hero": "",
+    "storyTitle": "",
     "theme": "library",
     "bookTheme": "town",
     "panels": {
@@ -488,6 +491,7 @@
     "prereq": "mission-2",
     "opponent": "automata2",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -890,6 +894,7 @@
     "prereq": "lesson-4",
     "opponent": "automata2",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -1489,6 +1494,7 @@
     "prereq": "lesson-5",
     "opponent": "automata2",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -1911,6 +1917,7 @@
     "prereq": "lesson-6",
     "opponent": "automata2",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -2471,6 +2478,7 @@
     "prereq": "lesson-7",
     "opponent": "automata2",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -3317,6 +3325,7 @@
     "prereq": "lesson-8",
     "opponent": "peacock",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-garden",
     "bookTheme": "robotcity-garden",
     "panels": {
@@ -3372,6 +3381,7 @@
     "prereq": "mission-1",
     "opponent": "peacock",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-garden",
     "bookTheme": "robotcity-garden",
     "panels": {
@@ -3427,6 +3437,7 @@
     "prereq": "mission-1",
     "opponent": "peacock",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-garden",
     "bookTheme": "robotcity-garden",
     "panels": {
@@ -3716,6 +3727,7 @@
     "prereq": "temple-1",
     "opponent": "peacock",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-garden",
     "bookTheme": "robotcity-garden",
     "panels": {
@@ -4005,6 +4017,7 @@
     "prereq": "temple-1",
     "opponent": "peacock",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-garden",
     "bookTheme": "robotcity-garden",
     "panels": {
@@ -6106,6 +6119,7 @@
     "prereq": "temple-2",
     "opponent": "peacock",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-garden",
     "bookTheme": "robotcity-garden",
     "panels": {
@@ -8193,6 +8207,7 @@
     "prereq": "lesson-2",
     "opponent": "",
     "hero": "",
+    "storyTitle": "",
     "theme": "jail",
     "bookTheme": "jail",
     "panels": {
@@ -8243,6 +8258,7 @@
     "prereq": "lesson-4",
     "opponent": "voltairegrunt",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -8293,6 +8309,7 @@
     "prereq": "lesson-4",
     "opponent": "automata2",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -8348,6 +8365,7 @@
     "prereq": "mission-3",
     "opponent": "voltairegrunt",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -8403,6 +8421,7 @@
     "prereq": "mission-5",
     "opponent": "voltairegrunt",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -8464,6 +8483,7 @@
     "prereq": "mission-6",
     "opponent": "voltairegrunt",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -8519,6 +8539,7 @@
     "prereq": "mission-7",
     "opponent": "voltaire",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {
@@ -8574,6 +8595,7 @@
     "prereq": "mission-8",
     "opponent": "automata2",
     "hero": "",
+    "storyTitle": "",
     "theme": "robotcity-room",
     "bookTheme": "robotcity",
     "panels": {

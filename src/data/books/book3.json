@@ -22,6 +22,7 @@
     "prereq": "mission-1",
     "opponent": "book",
     "hero": "",
+    "storyTitle": "",
     "theme": "library",
     "bookTheme": "town",
     "panels": {
@@ -155,6 +156,7 @@
     "prereq": "mission-1",
     "opponent": "book",
     "hero": "",
+    "storyTitle": "",
     "theme": "library",
     "bookTheme": "town",
     "panels": {
@@ -288,6 +290,7 @@
     "prereq": "lesson-2",
     "opponent": "book",
     "hero": "",
+    "storyTitle": "",
     "theme": "library",
     "bookTheme": "town",
     "panels": {
@@ -679,6 +682,7 @@
     "prereq": "lesson-3",
     "opponent": "ephilate",
     "hero": "",
+    "storyTitle": "",
     "theme": "clocktower",
     "bookTheme": "town",
     "panels": {
@@ -941,6 +945,7 @@
     "prereq": "lesson-4",
     "opponent": "ephilate",
     "hero": "",
+    "storyTitle": "",
     "theme": "clocktower",
     "bookTheme": "town",
     "panels": {
@@ -1238,6 +1243,7 @@
     "prereq": "mission-6",
     "opponent": "wizard",
     "hero": "",
+    "storyTitle": "",
     "theme": "wizard-room",
     "bookTheme": "wizard-house",
     "panels": {
@@ -1551,6 +1557,7 @@
     "prereq": "mission-3",
     "opponent": "ephilate",
     "hero": "",
+    "storyTitle": "",
     "theme": "tavern",
     "bookTheme": "town",
     "panels": {
@@ -1973,6 +1980,7 @@
     "prereq": "lesson-7",
     "opponent": "raven",
     "hero": "",
+    "storyTitle": "",
     "theme": "ravensden-room",
     "bookTheme": "ravensden",
     "panels": {
@@ -4061,6 +4069,7 @@
     "prereq": "temple-1",
     "opponent": "raven",
     "hero": "",
+    "storyTitle": "",
     "theme": "ravensden-room",
     "bookTheme": "ravensden",
     "panels": {
@@ -6120,6 +6129,7 @@
     "prereq": "temple-1",
     "opponent": "raven",
     "hero": "",
+    "storyTitle": "",
     "theme": "ravensden-room",
     "bookTheme": "ravensden",
     "panels": {
@@ -8239,6 +8249,7 @@
     "prereq": "temple-3",
     "opponent": "raven",
     "hero": "",
+    "storyTitle": "",
     "theme": "ravensden-room",
     "bookTheme": "ravensden",
     "panels": {
@@ -10358,6 +10369,7 @@
     "prereq": "temple-3",
     "opponent": "raven",
     "hero": "",
+    "storyTitle": "",
     "theme": "ravensden-room",
     "bookTheme": "ravensden",
     "panels": {
@@ -12489,6 +12501,7 @@
     "prereq": "temple-5",
     "opponent": "raven",
     "hero": "",
+    "storyTitle": "",
     "theme": "ravensden-room",
     "bookTheme": "ravensden",
     "panels": {
@@ -14635,6 +14648,7 @@
     "prereq": "",
     "opponent": "",
     "hero": "",
+    "storyTitle": "",
     "theme": "jail",
     "bookTheme": "jail",
     "panels": {
@@ -14687,6 +14701,7 @@
     "prereq": "lesson-2",
     "opponent": "ephilate",
     "hero": "",
+    "storyTitle": "",
     "theme": "forest",
     "bookTheme": "forest",
     "panels": {
@@ -14742,6 +14757,7 @@
     "prereq": "lesson-4",
     "opponent": "ephilate",
     "hero": "",
+    "storyTitle": "",
     "theme": "tavern",
     "bookTheme": "town",
     "panels": {
@@ -14797,6 +14813,7 @@
     "prereq": "mission-3",
     "opponent": "ephilate",
     "hero": "",
+    "storyTitle": "",
     "theme": "tavern",
     "bookTheme": "town",
     "panels": {
@@ -14852,6 +14869,7 @@
     "prereq": "mission-4",
     "opponent": "ephilate",
     "hero": "",
+    "storyTitle": "",
     "theme": "tavern",
     "bookTheme": "town",
     "panels": {
@@ -14907,6 +14925,7 @@
     "prereq": "lesson-5",
     "opponent": "ephilate",
     "hero": "",
+    "storyTitle": "",
     "theme": "forest",
     "bookTheme": "forest",
     "panels": {
@@ -14962,6 +14981,7 @@
     "prereq": "mission-6",
     "opponent": "priest",
     "hero": "",
+    "storyTitle": "",
     "theme": "church-room",
     "bookTheme": "church",
     "panels": {
@@ -15019,6 +15039,7 @@
     "prereq": "mission-7",
     "opponent": "priest",
     "hero": "",
+    "storyTitle": "",
     "theme": "church-room",
     "bookTheme": "church",
     "panels": {

@@ -22,6 +22,7 @@
     "prereq": "",
     "opponent": "book",
     "hero": "",
+    "storyTitle": "",
     "boss": false,
     "theme": "forest",
     "bookTheme": "forest",
@@ -373,6 +374,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "lesson-3": {
@@ -717,6 +719,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "lesson-4": {
@@ -927,6 +930,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "lesson-5": {
@@ -1169,6 +1173,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "lesson-6": {
@@ -1324,6 +1329,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "temple-1": {
@@ -1603,6 +1609,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "temple-4": {
@@ -1882,6 +1889,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "temple-2": {
@@ -2166,6 +2174,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "temple-5": {
@@ -2450,6 +2459,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "temple-3": {
@@ -5181,6 +5191,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "temple-6": {
@@ -7894,6 +7905,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "mission-1": {
@@ -7949,6 +7961,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "mission-2": {
@@ -8004,6 +8017,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "mission-3": {
@@ -8059,6 +8073,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "mission-4": {
@@ -8114,6 +8129,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "mission-5": {
@@ -8169,6 +8185,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "mission-6": {
@@ -8224,6 +8241,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "mission-7": {
@@ -8279,6 +8297,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": false
   },
   "mission-8": {
@@ -8336,6 +8355,7 @@
       }
     },
     "hero": "",
+    "storyTitle": "",
     "boss": true
   }
 }

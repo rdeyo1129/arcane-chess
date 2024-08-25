@@ -22,6 +22,7 @@
     "prereq": "",
     "opponent": "oldman",
     "hero": "",
+    "storyTitle": "",
     "theme": "sunset",
     "bookTheme": "sunset",
     "panels": {
@@ -150,6 +151,7 @@
     "prereq": "lesson-1",
     "opponent": "oldman",
     "hero": "",
+    "storyTitle": "",
     "theme": "sunset",
     "bookTheme": "sunset",
     "panels": {
@@ -309,6 +311,7 @@
     "prereq": "lesson-2",
     "opponent": "oldman",
     "hero": "",
+    "storyTitle": "",
     "theme": "saloon",
     "bookTheme": "wildwest",
     "panels": {
@@ -591,6 +594,7 @@
     "prereq": "lesson-3",
     "opponent": "oldman",
     "hero": "",
+    "storyTitle": "",
     "theme": "saloon",
     "bookTheme": "wildwest",
     "panels": {
@@ -1004,6 +1008,7 @@
     "prereq": "lesson-2",
     "opponent": "oldman",
     "hero": "",
+    "storyTitle": "",
     "theme": "sunset",
     "bookTheme": "sunset",
     "panels": {
@@ -1162,6 +1167,7 @@
     "prereq": "lesson-5",
     "opponent": "oldman",
     "hero": "",
+    "storyTitle": "",
     "theme": "sunset",
     "bookTheme": "sunset",
     "panels": {
@@ -1423,6 +1429,7 @@
     "prereq": "lesson-6",
     "opponent": "oldman",
     "hero": "",
+    "storyTitle": "",
     "theme": "saloon",
     "bookTheme": "wildwest",
     "panels": {
@@ -1693,6 +1700,7 @@
     "prereq": "lesson-4",
     "opponent": "vulture",
     "hero": "",
+    "storyTitle": "",
     "theme": "cliff",
     "bookTheme": "cliff",
     "panels": {
@@ -4344,6 +4352,7 @@
     "prereq": "temple-1",
     "opponent": "vulture",
     "hero": "",
+    "storyTitle": "",
     "theme": "cliff",
     "bookTheme": "cliff",
     "panels": {
@@ -7011,6 +7020,7 @@
     "prereq": "temple-1",
     "opponent": "vulture",
     "hero": "",
+    "storyTitle": "",
     "theme": "cliff",
     "bookTheme": "cliff",
     "panels": {
@@ -9193,6 +9203,7 @@
     "prereq": "temple-3",
     "opponent": "vulture",
     "hero": "",
+    "storyTitle": "",
     "theme": "cliff",
     "bookTheme": "cliff",
     "panels": {
@@ -11396,6 +11407,7 @@
     "prereq": "temple-3",
     "opponent": "vulture",
     "hero": "",
+    "storyTitle": "",
     "theme": "cliff",
     "bookTheme": "cliff",
     "panels": {
@@ -13473,6 +13485,7 @@
     "prereq": "temple-5",
     "opponent": "vulture",
     "hero": "",
+    "storyTitle": "",
     "theme": "cliff",
     "bookTheme": "cliff",
     "panels": {
@@ -15548,6 +15561,7 @@
     "prereq": "lesson-2",
     "opponent": "cowboy",
     "hero": "",
+    "storyTitle": "",
     "theme": "saloon",
     "bookTheme": "wildwest",
     "panels": {
@@ -15603,6 +15617,7 @@
     "prereq": "mission-1",
     "opponent": "cowboy",
     "hero": "",
+    "storyTitle": "",
     "theme": "saloon",
     "bookTheme": "wildwest",
     "panels": {
@@ -15658,6 +15673,7 @@
     "prereq": "mission-1",
     "opponent": "cowboy",
     "hero": "",
+    "storyTitle": "",
     "theme": "saloon",
     "bookTheme": "wildwest",
     "panels": {
@@ -15713,6 +15729,7 @@
     "prereq": "mission-2",
     "opponent": "cowboy",
     "hero": "",
+    "storyTitle": "",
     "theme": "saloon",
     "bookTheme": "wildwest",
     "panels": {
@@ -15774,6 +15791,7 @@
     "prereq": "mission-4",
     "opponent": "sheriff",
     "hero": "",
+    "storyTitle": "",
     "theme": "tornados",
     "bookTheme": "tornados",
     "panels": {
@@ -15831,6 +15849,7 @@
     "prereq": "mission-5",
     "opponent": "sheriff",
     "hero": "",
+    "storyTitle": "",
     "theme": "tornados",
     "bookTheme": "tornados",
     "panels": {
@@ -15888,6 +15907,7 @@
     "prereq": "mission-6",
     "opponent": "voltairegrunt",
     "hero": "",
+    "storyTitle": "",
     "theme": "desert-voltaire",
     "bookTheme": "desert-voltaire",
     "panels": {
@@ -15945,6 +15965,7 @@
     "prereq": "mission-7",
     "opponent": "voltaire",
     "hero": "",
+    "storyTitle": "",
     "theme": "desert-voltaire",
     "bookTheme": "desert-voltaire",
     "panels": {

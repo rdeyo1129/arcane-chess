@@ -98,7 +98,9 @@ export const loginUser =
                   username: existingGuestUser.data.auth.user.username, // Use existing guest username
                   campaign: {
                     ...existingGuestUser.data.auth.user.campaign,
-                    topScores: [...res.data.campaign.topScores] as number[],
+                    topScores: [
+                      ...existingGuestUser.data.auth.user.campaign.topScores,
+                    ] as number[],
                   },
                 },
               },

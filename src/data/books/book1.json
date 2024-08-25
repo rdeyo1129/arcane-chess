@@ -1910,7 +1910,7 @@
       [60, 0]
     ],
     "nodeText": "Play through two-move puzzles to further test your knowledge of the pieces.",
-    "panelText": "Sidian pieces on the board vanish. Sidian has completed this puzzle. They glance upward and observe the canopy of the trees above. The voice speaks again:\n\n\"The tree's branches reach high, but which path will make it sigh? In the dance of binaries, where the twin shadows play, the path forward lies where the light splits the day. Seek the singular mate, where one becomes two, and the answer will guide you true.\"",
+    "panelText": "The pieces on the board vanish. Sidian has completed this puzzle. They glance upward and observe the canopy of the trees above. The voice speaks again:\n\n\"The tree's branches reach high, but which path will make it sigh? In the dance of binaries, where the twin shadows play, the path forward lies where the light splits the day. Seek the singular mate, where one becomes two, and the answer will guide you true.\"",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "owl",

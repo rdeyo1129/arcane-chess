@@ -2308,6 +2308,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         defeat: '',
                       },
                       title: this.state.title,
+                      storyTitle: '',
                       nodeText: this.state.nodeText,
                       opponent: this.state.opponent,
                       hero: '',

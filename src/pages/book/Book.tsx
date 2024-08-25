@@ -57,6 +57,7 @@ interface BookState {
 interface Node {
   id: string; // 'lesson-1';
   title: string;
+  storyTitle: string;
   time: number[][]; // seconds
   nodeText: string;
   reward: (number | string)[];
@@ -542,7 +543,10 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       {this.state.selectedSwatch !== '' ? (
                         <div className="node">
                           <b className="node-title">
-                            {this.state.book[this.state.selectedSwatch].title}
+                            {
+                              this.state.book[this.state.selectedSwatch]
+                                .storyTitle
+                            }
                           </b>
                           <div className="node-description">
                             {this.state.book[

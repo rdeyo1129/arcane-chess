@@ -86,11 +86,13 @@ export default function arcaneChess() {
   // fen = '8/4r3/8/8/8/8/PPPP4/4K3 w - - 0 1'
 
   // handicaps parameter
-  InitFilesRanksBrd();
-  InitHashKeys();
-  InitSq120To64();
-  InitBoardVars();
-  InitMvvLva();
+  const init = () => {
+    InitFilesRanksBrd();
+    InitHashKeys();
+    InitSq120To64();
+    InitBoardVars();
+    InitMvvLva();
+  };
 
   // todo arcane for the three hint tiers
   const getScoreAndLine = (fen) => {
@@ -156,6 +158,7 @@ export default function arcaneChess() {
 
   const generatePlayableOptions = () => {
     // todo herring, forced ep, and find all working instances and replace with this
+    // resets board and hisply among other things, be careful with future sight
     ParseFen(outputFenOfCurrentPosition());
     generatePowers();
     GenerateMoves(true, false, 'COMP', 'COMP');
@@ -164,6 +167,7 @@ export default function arcaneChess() {
   return {
     // filesRanksBoard: () => InitFilesRanksBrd(),
     // activateDyad: (type) => activateDyad(type),
+    init: () => init(),
     startGame: (fen, whiteConfig, blackConfig, royalties, preset) =>
       startGame(fen, whiteConfig, blackConfig, royalties, preset),
     randomize: (whiteConfig, blackConfig) =>
@@ -211,15 +215,16 @@ export default function arcaneChess() {
       }
       return await engineSuggestion(thinkingTime);
     },
-    takeBackMove: (halfPly, side) => {
+    takeBackMove: (ply, side) => {
       if (side === 'white') {
         whiteArcaneConfig.modsFUT -= 1;
       }
       if (side === 'black') {
         blackArcaneConfig.modsFUT -= 1;
       }
-      _.times(halfPly, () => {
+      _.times(4, () => {
         TakeMove();
+        GameBoard.ply = 0;
       });
     },
     generatePlayableOptions: () => {

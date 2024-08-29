@@ -36,7 +36,6 @@ import {
   PceChar,
 } from './defs';
 import { ARCANEFLAG, SideText } from './board.mjs';
-import { PrMove } from './io';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
 export function ClearPiece(sq, summon = false) {
@@ -236,7 +235,7 @@ export function MakeMove(move) {
   if (GameBoard.dyad > 0) {
     GameBoard.history[GameBoard.hisPly].move = move;
     GameBoard.history[GameBoard.hisPly].prettyHistory = [];
-    GameBoard.history[GameBoard.hisPly].prettyHistory.push(PrMove(move));
+    // GameBoard.history[GameBoard.hisPly].prettyHistory.push(PrMove(move));
   } else {
     // to have mutiple moves in one turn like invisibility and and swap
     GameBoard.history[GameBoard.hisPly].move = move;

@@ -215,6 +215,7 @@ interface State {
   hideCompletedPage: boolean;
   opponent: string;
   hero: string;
+  futureSightAvailable: boolean;
 }
 
 interface Props {
@@ -373,6 +374,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         LS.nodeId?.split('-')[0] !== 'mission',
       opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
       hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
+      futureSightAvailable: true,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -402,9 +404,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     this.setState({
       thinking: true,
     });
-
-    generatePowers();
-    GenerateMoves();
 
     new Promise((resolve) => {
       arcaneChess()
@@ -485,10 +484,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             }
           }
         );
-      })
-      .then(() => {
-        generatePowers();
-        GenerateMoves();
       })
       .catch((error) => {
         console.error('An error occurred:', error);
@@ -813,6 +808,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     window.addEventListener('keydown', this.handleKeyDown);
     if (!this.hasMounted && LS.chapter !== 0) {
       this.hasMounted = true;
+      this.arcaneChess().init();
       this.arcaneChess().startGame(
         this.getFen(),
         this.state.whiteArcana,
@@ -820,7 +816,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         this.state.royalties,
         this.state.preset
       );
-
       this.setState(
         {
           turn: GameBoard.side === 0 ? 'white' : 'black',
@@ -1002,8 +997,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         ? whiteArcaneConfig
                         : blackArcaneConfig,
                       (value: number, key: string) => {
-                        const noFutureSight =
-                          this.state.history.length < 4 && key === 'modsFUT';
+                        const futureSightAvailable =
+                          this.state.history.length >= 4 &&
+                          this.state.futureSightAvailable;
                         if (value === null || value <= 0) return;
                         return (
                           <img
@@ -1017,14 +1013,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 this.state.playerColor !== gameBoardTurn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
-                                noFutureSight
+                                !futureSightAvailable
                                   ? 0.5
                                   : 1,
                               cursor:
                                 this.state.playerColor !== gameBoardTurn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
-                                noFutureSight
+                                !futureSightAvailable
                                   ? 'not-allowed'
                                   : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
                             }}
@@ -1101,7 +1097,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   this.getHintAndScore(3);
                                 }
                                 if (key === 'modsFUT') {
-                                  if (this.state.history.length >= 4) {
+                                  if (futureSightAvailable) {
                                     this.arcaneChess().takeBackMove(
                                       4,
                                       this.state.playerColor
@@ -1120,6 +1116,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                         royalties: {
                                           ...this.arcaneChess().getRoyalties(),
                                         },
+                                        futureSightAvailable: false,
                                       }),
                                       () => {
                                         this.arcaneChess().generatePlayableOptions();
@@ -1249,6 +1246,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               placingPiece: 0,
                               placingRoyalty: 0,
                               swapType: '',
+                              futureSightAvailable: true,
                             }),
                             () => {
                               if (CheckAndSet()) {
@@ -1373,6 +1371,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           }
                           this.normalMoveStateAndEngineGo(parsed, orig, dest);
                         }
+                        this.setState({
+                          futureSightAvailable: true,
+                        });
                       },
                       select: (key: string) => {
                         const char =
@@ -1485,6 +1486,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   placingPiece: 0,
                                   placingRoyalty: 0,
                                   swapType: '',
+                                  futureSightAvailable: true,
                                 }),
                                 () => {
                                   if (CheckAndSet()) {

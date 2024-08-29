@@ -129,6 +129,7 @@ interface State {
   hint: string;
   theme: string;
   quickPlayModalOpen: boolean;
+  futureSightAvailable: boolean;
 }
 
 interface Props {
@@ -236,6 +237,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       hint: '',
       theme: '',
       quickPlayModalOpen: true,
+      futureSightAvailable: true,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -266,8 +268,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       thinking: true,
     });
 
-    generatePowers();
-    GenerateMoves();
+    // generatePowers();
+    // GenerateMoves();
 
     new Promise((resolve) => {
       arcaneChess()
@@ -700,6 +702,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             isOpen={this.state.quickPlayModalOpen}
             handleClose={() => {
               this.setState({ quickPlayModalOpen: false }, () => {
+                this.arcaneChess().init();
                 this.arcaneChess().startGame(
                   this.state.fen,
                   this.state.wArcana,
@@ -707,7 +710,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   this.state.royalties,
                   this.state.preset
                 );
-
                 this.setState(
                   {
                     turn: GameBoard.side === 0 ? 'white' : 'black',
@@ -830,8 +832,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                       ? whiteArcaneConfig
                       : blackArcaneConfig,
                     (value: number, key: string) => {
-                      const noFutureSight =
-                        this.state.history.length < 4 && key === 'modsFUT';
+                      const futureSightAvailable =
+                        this.state.history.length >= 4 &&
+                        this.state.futureSightAvailable;
                       if (value === null || value <= 0) return;
                       return (
                         <img
@@ -845,14 +848,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               this.state.playerColor !== gameBoardTurn ||
                               this.state.selectedSide ===
                                 this.state.engineColor ||
-                              noFutureSight
+                              !futureSightAvailable
                                 ? 0.5
                                 : 1,
                             cursor:
                               this.state.playerColor !== gameBoardTurn ||
                               this.state.selectedSide ===
                                 this.state.engineColor ||
-                              noFutureSight
+                              !futureSightAvailable
                                 ? 'not-allowed'
                                 : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
                           }}
@@ -925,7 +928,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                 this.getHintAndScore(3);
                               }
                               if (key === 'modsFUT') {
-                                if (this.state.history.length >= 4) {
+                                if (futureSightAvailable) {
                                   this.arcaneChess().takeBackMove(
                                     4,
                                     this.state.playerColor
@@ -944,9 +947,10 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                       royalties: {
                                         ...this.arcaneChess().getRoyalties(),
                                       },
+                                      futureSightAvailable: false,
                                     }),
                                     () => {
-                                      this.arcaneChess().generatePlayableOptions();
+                                      // this.arcaneChess().generatePlayableOptions();
                                     }
                                   );
                                 }
@@ -1002,22 +1006,36 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     free: false,
                     rookCastle: false,
                     color: this.state.playerColor,
-                    dests:
-                      this.state.placingPiece === 0
-                        ? this.state.placingRoyalty === 0
-                          ? this.state.swapType === ''
-                            ? // ? gameBoardTurn === this.state.playerColor
-                              this.arcaneChess().getGroundMoves()
-                            : // : null
-                              this.arcaneChess().getSwapMoves(
-                                this.state.swapType
-                              )
-                          : this.arcaneChess().getSummonMoves(
-                              `R${RtyChar.split('')[this.state.placingRoyalty]}`
-                            )
-                        : this.arcaneChess().getSummonMoves(
-                            this.state.placingPiece
-                          ),
+                    dests: (() => {
+                      let dests;
+                      if (this.state.placingPiece === 0) {
+                        if (this.state.placingRoyalty === 0) {
+                          if (this.state.swapType === '') {
+                            if (
+                              GameBoard.hisPly === 0 &&
+                              GameBoard?.history[3]?.move > 0
+                            ) {
+                              console.log(GameBoard.hisPly);
+                              debugger; // eslint-disable-line
+                            }
+                            dests = this.arcaneChess().getGroundMoves();
+                          } else {
+                            dests = this.arcaneChess().getSwapMoves(
+                              this.state.swapType
+                            );
+                          }
+                        } else {
+                          dests = this.arcaneChess().getSummonMoves(
+                            `R${RtyChar.split('')[this.state.placingRoyalty]}`
+                          );
+                        }
+                      } else {
+                        dests = this.arcaneChess().getSummonMoves(
+                          this.state.placingPiece
+                        );
+                      }
+                      return dests;
+                    })(),
                     events: {},
                   }}
                   selectable={{
@@ -1070,6 +1088,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             placingPiece: 0,
                             placingRoyalty: 0,
                             swapType: '',
+                            futureSightAvailable: true,
                           }),
                           () => {
                             if (CheckAndSet()) {
@@ -1188,6 +1207,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                         }
                         this.normalMoveStateAndEngineGo(parsed, orig, dest);
                       }
+                      this.setState({
+                        futureSightAvailable: true,
+                      });
                     },
                     select: (key: string) => {
                       const char = RtyChar.split('')[this.state.placingRoyalty];
@@ -1289,6 +1311,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                 placingPiece: 0,
                                 placingRoyalty: 0,
                                 swapType: '',
+                                futureSightAvailable: true,
                               }),
                               () => {
                                 if (CheckAndSet()) {

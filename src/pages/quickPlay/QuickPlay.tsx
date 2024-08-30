@@ -21,7 +21,6 @@ import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 //   arcane as arcaneChess,
 //   arcaneChessWorker,
 // } from '../../arcaneChess/arcaneChessInstance.js';
-import { generatePowers, GenerateMoves } from '../../arcaneChess/movegen.mjs';
 import { GameBoard, InCheck, TOSQ, FROMSQ } from '../../arcaneChess/board.mjs';
 import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import {

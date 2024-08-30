@@ -339,6 +339,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       },
       () => {
         if (!this.state.viewOnly) {
+          this.arcaneChess().init();
           this.arcaneChess().startGame(
             this.state.fen,
             booksMap[

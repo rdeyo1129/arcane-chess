@@ -62,7 +62,6 @@ import book9 from 'src/data/books/book9.json';
 import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
-import { GenerateMoves, generatePowers } from 'src/arcaneChess/movegen.mjs';
 
 const booksMap: { [key: string]: { [key: string]: Node } } = {
   book1,
@@ -1119,7 +1118,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                         futureSightAvailable: false,
                                       }),
                                       () => {
-                                        this.arcaneChess().generatePlayableOptions();
+                                        // this.arcaneChess().generatePlayableOptions();
                                       }
                                     );
                                   }

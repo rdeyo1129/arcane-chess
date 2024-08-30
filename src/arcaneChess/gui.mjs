@@ -71,10 +71,11 @@ export function validMoves(
     ++index
   ) {
     moveFound = GameBoard.moveList[index];
-    if (MakeMove(moveFound) === BOOL.TRUE) {
-      TakeMove();
-      moves.push(moveFound);
+    if (MakeMove(moveFound) === BOOL.FALSE) {
+      continue;
     }
+    TakeMove();
+    moves.push(moveFound);
   }
   return moves;
 }
@@ -155,7 +156,7 @@ export function ThreeFoldRep() {
     r = 0;
 
   for (i = 0; i < GameBoard.hisPly; ++i) {
-    if (GameBoard.history[i].posKey === GameBoard.posKey) {
+    if (GameBoard.history[i].posKey == GameBoard.posKey) {
       r++;
     }
   }

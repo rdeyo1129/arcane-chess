@@ -306,7 +306,12 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
         LS.nodeId?.split('-')[0] !== 'temple',
       visitedPanels: [initialPanelKey],
-      orientation: initialPanelData.orientation,
+      orientation:
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
+          `panel-${parseInt(initialPanelKey.split('-')[1])}`
+        ].fen.split(' ')[1] === 'w'
+          ? 'black'
+          : 'white',
       theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
       opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
       hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
@@ -375,6 +380,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         };
       },
       () => {
+        this.arcaneChess().init();
         this.arcaneChess().startGame(
           this.state.fen,
           this.state.wArcana,
@@ -568,6 +574,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     }
     if (!this.hasMounted && LS.chapter !== 0) {
       this.hasMounted = true;
+      this.arcaneChess().init();
       this.arcaneChess().startGame(
         this.state.fen,
         this.state.wArcana,

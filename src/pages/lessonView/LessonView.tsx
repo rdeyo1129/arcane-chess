@@ -171,6 +171,8 @@ interface State {
   theme: string;
   opponent: string;
   hero: string;
+  victoryMessage: string;
+  defeatMessage: string;
 }
 
 interface Props {
@@ -258,6 +260,10 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
       opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
       hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
+      victoryMessage:
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.victory,
+      defeatMessage:
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.defeat,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -621,6 +627,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                   gameOver: false,
                 }))
               }
+              message={this.state.victoryMessage}
               disableSecondary={false}
               lessonBackButton={true}
               type="victory"

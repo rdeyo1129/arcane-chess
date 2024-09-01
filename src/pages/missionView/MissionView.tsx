@@ -215,6 +215,8 @@ interface State {
   opponent: string;
   hero: string;
   futureSightAvailable: boolean;
+  victoryMessage: string;
+  defeatMessage: string;
 }
 
 interface Props {
@@ -374,6 +376,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
       hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
       futureSightAvailable: true,
+      victoryMessage:
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.victory,
+      defeatMessage:
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.defeat,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -840,6 +846,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
     const { auth } = this.props;
+    const playerWins =
+      this.state.gameOverType.split(' ')[1] === 'mates' &&
+      getLocalStorage(this.props.auth.user.username).config.color ===
+        this.state.gameOverType.split(' ')[0];
     return (
       <div className="tactorius-board fade">
         {LS.chapter === 0 ? (
@@ -916,15 +926,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               isOpen={this.state.gameOver}
               // handleClose={() => this.handleModalClose()}
               // modalType={this.state.endScenario}
-              message={this.state.gameOverType} // interpolate
-              score={LS.nodeScores[this.state.nodeId]}
-              type={
-                this.state.gameOverType.split(' ')[1] === 'mates' &&
-                getLocalStorage(this.props.auth.user.username).config.color ===
-                  this.state.gameOverType.split(' ')[0]
-                  ? 'victory'
-                  : 'defeat'
+              message={
+                (this.state.gameOverType,
+                playerWins
+                  ? this.state.victoryMessage
+                  : this.state.defeatMessage)
               }
+              score={LS.nodeScores[this.state.nodeId]}
+              type={playerWins ? 'victory' : 'defeat'}
             />
             <PromotionModal
               isOpen={this.state.promotionModalOpen}

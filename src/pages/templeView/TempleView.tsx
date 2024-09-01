@@ -201,6 +201,8 @@ interface State {
   theme: string;
   opponent: string;
   hero: string;
+  victoryMessage: string;
+  defeatMessage: string;
 }
 
 interface Props {
@@ -315,6 +317,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
       opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
       hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
+      victoryMessage:
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.victory,
+      defeatMessage:
+        booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.defeat,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -591,6 +597,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(auth.user.username);
+    const playerWins =
+      this.state.gameOverType.split(' ')[1] === 'mates' &&
+      getLocalStorage(this.props.auth.user.username).config.color ===
+        this.state.gameOverType.split(' ')[0];
     return (
       <div className="tactorius-board fade">
         {LS.chapter === 0 ? (
@@ -669,13 +679,14 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               // handleClose={() => this.handleModalClose()}
               // modalType={this.state.endScenario}
               // message={} // interpolate
-              message={this.state.gameOverType} // interpolate
-              score={LS.nodeScores[this.state.nodeId]}
-              type={
-                this.state.gameOverType === 'puzzle victory'
-                  ? 'victory'
-                  : 'defeat'
+              message={
+                (this.state.gameOverType,
+                playerWins
+                  ? this.state.victoryMessage
+                  : this.state.defeatMessage)
               }
+              score={LS.nodeScores[this.state.nodeId]}
+              type={playerWins ? 'victory' : 'defeat'}
             />
             <div className="temple-view">
               <div className="opponent-dialogue-arcana">

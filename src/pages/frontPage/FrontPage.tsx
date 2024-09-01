@@ -126,14 +126,17 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
                 </h3>
                 <h3>Embark on a Campaign:</h3>
                 <p>
-                  Immerse yourself in a captivating campaign that blends chess
-                  with insightful personal development and innovative
-                  storytelling. Navigate through a cautionary sci-fi and fantasy
-                  tale set in a richly crafted universe, where every move on the
-                  board unveils deeper narratives. Challenge yourself with
-                  advanced chess concepts, solve engaging puzzle sets, and
-                  engage in custom army battles. Earn points as you progress and
-                  climb the leaderboard by conquering each unique challenge.
+                  Embark on an epic journey through a story teeming with
+                  villains, mythical beasts, alternate histories, and the fusion
+                  of spells with technology. Experience a campaign that
+                  seamlessly blends the strategic depth of chess with profound
+                  personal growth and innovative storytelling. Traverse a
+                  cautionary sci-fi and fantasy universe, where every move on
+                  the board reveals deeper narratives. Test your skills with
+                  advanced chess concepts, solve increasingly challenging
+                  puzzles, and engage in custom army battles. Earn points as you
+                  progress, and see your name rise on the leaderboard with each
+                  challenge you conquer.
                 </p>
                 <h3>Unleash New Rules:</h3>
                 <p>

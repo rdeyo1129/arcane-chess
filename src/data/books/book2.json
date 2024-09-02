@@ -8541,8 +8541,8 @@
     "opponent": "voltaire",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
-    "bookTheme": "robotcity",
+    "theme": "city-voltaire",
+    "bookTheme": "robotcity-room",
     "panels": {
       "panel-1": {
         "fen": "1wwwkbb1/1pppppp1/8/8/8/8/PPPPPPPP/UZBWKBZN w - - 0 1",
@@ -8597,8 +8597,8 @@
     "opponent": "automata2",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
-    "bookTheme": "robotcity",
+    "theme": "city-voltaire",
+    "bookTheme": "robotcity-room",
     "panels": {
       "panel-1": {
         "fen": "1wwwkww1/1pppppp1/8/8/8/8/1PPPPPP1/1QWRKWQ1 w - - 0 1",

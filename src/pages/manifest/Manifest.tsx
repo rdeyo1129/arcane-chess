@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class About extends React.Component {
+export class Manifest extends React.Component {
   render() {
     return <div>about contact info notes</div>;
   }

@@ -93,7 +93,7 @@ export default class Hero extends React.Component {
       <div className="hero">
         <div className="hero-curtain"></div>
         <div className="hero-grid">
-          {[...Array(36).keys()].map((x) => {
+          {[...Array(50).keys()].map((x) => {
             return [...Array(50).keys()].map((y) => {
               return x % 2 === 0 ? (
                 y % 2 === 0 ? (

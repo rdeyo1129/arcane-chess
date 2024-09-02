@@ -49,7 +49,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
@@ -67,7 +67,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               // strong={true}
@@ -85,7 +85,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
@@ -103,7 +103,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
@@ -121,69 +121,85 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
               // strong={true}
             />
           </Link>
-          {process.env.NODE_ENV !== 'production' ? (
-            <Link
-              className="home-button"
-              to="/about"
-              onMouseEnter={() => this.setState({ hoverNav: 'create' })}
-            >
-              <Button
-                text="ABOUT"
-                onClick={() => null}
-                className="tertiary"
-                color="B"
-                height={50}
-                width={200}
-                // disabled={this.state.fen === ''}
-                disabled={false}
-                backgroundColorOverride="#11111188"
-                // strong={true}
-              />
-            </Link>
-          ) : (
-            <Link
-              className="home-button"
-              to="/create"
-              onMouseEnter={() => this.setState({ hoverNav: 'create' })}
-            >
-              <Button
-                text="CREATE"
-                onClick={() => null}
-                className="tertiary"
-                color="B"
-                height={50}
-                width={200}
-                // disabled={this.state.fen === ''}
-                disabled={false}
-                backgroundColorOverride="#11111188"
-                // strong={true}
-              />
-            </Link>
-          )}
-
-          <Button
-            text="LOGOUT"
-            // onClick={() => this.calculateFen()}
-            className="tertiary"
-            color="B"
-            height={50}
-            width={200}
-            // disabled={this.state.fen === ''}
-            disabled={false}
-            onClick={() => {
-              this.props.logoutUser();
-              this.props.navigate('/login');
-            }}
-            backgroundColorOverride="#11111188"
-            // strong={true}
-          />
+          {/* <Link
+               className="home-button"
+               to="/create"
+               onMouseEnter={() => this.setState({ hoverNav: 'create' })}
+             >
+               <Button
+                 text="CREATE"
+                 onClick={() => null}
+                 className="tertiary"
+                 color="B"
+                 height={50}
+                 width={160}
+                 // disabled={this.state.fen === ''}
+                 disabled={false}
+                 backgroundColorOverride="#11111188"
+                 // strong={true}
+               />
+             </Link> */}
+          <Link
+            className="home-button"
+            to="/changelog"
+            onMouseEnter={() => this.setState({ hoverNav: 'create' })}
+          >
+            <Button
+              text="CHANGELOG"
+              onClick={() => null}
+              className="tertiary"
+              color="B"
+              height={50}
+              width={160}
+              // disabled={this.state.fen === ''}
+              disabled={false}
+              backgroundColorOverride="#11111188"
+              // strong={true}
+            />
+          </Link>
+          <Link
+            className="home-button"
+            to="/manifest"
+            onMouseEnter={() => this.setState({ hoverNav: 'manifest' })}
+          >
+            <Button
+              text="MANIFEST"
+              onClick={() => null}
+              className="tertiary"
+              color="B"
+              height={50}
+              width={160}
+              // disabled={this.state.fen === ''}
+              disabled={false}
+              backgroundColorOverride="#11111188"
+              // strong={true}
+            />
+          </Link>
+          <div onMouseEnter={() => this.setState({ hoverNav: 'logout' })}>
+            <Button
+              text="LOGOUT"
+              // onClick={() => this.calculateFen()}
+              className="tertiary"
+              color="B"
+              height={50}
+              width={160}
+              // disabled={this.state.fen === ''}
+              disabled={false}
+              onClick={() => {
+                this.props.logoutUser();
+                this.props.navigate('/login');
+              }}
+              backgroundColorOverride="#11111188"
+              // strong={true}
+            />
+          </div>
         </div>
         <div className="hover-image">
           <img

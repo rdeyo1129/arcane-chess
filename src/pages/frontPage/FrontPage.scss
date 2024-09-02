@@ -1,11 +1,10 @@
 @import '../../styles/variables.scss';
 
-.front-page {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
+.front-page-container {
+  width: 100vw;
+  height: 100%;
   flex-direction: column;
+  overflow-x: hidden;
   .header {
     display: flex;
     height: 100px;
@@ -47,42 +46,54 @@
       color: $Y_MENU;
     }
   }
-
-  .divider {
-    width: 100%;
-    background: linear-gradient(to right, $Y_MENU 0%, #333333 100%);
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    border: none;
-  }
-
-  .row-a {
+  .front-page {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.6);
     width: 100%;
-    height: 100%;
-    .intro-box {
-      width: 680px;
-      border: 4px solid $Y_MENU;
-      border-top-left-radius: 40px;
-      border-bottom-right-radius: 40px;
-      img.image {
-        display: flex;
-        width: 672px;
-        border-top-left-radius: 40px;
-      }
-      .intro {
-        display: flex;
-        flex-direction: column;
-        padding: 40px;
-        background: rgba(0, 0, 0, 0.6);
+    overflow-y: hidden;
+    .divider {
+      width: 100%;
+      background: linear-gradient(to right, $Y_MENU 0%, #333333 100%);
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+    .row-a {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      padding: 20px 0;
+      background: transparent;
+      overflow-y: hidden;
+      .intro-box {
+        width: 680px;
+        border: 4px solid $Y_MENU;
         border-top-left-radius: 40px;
         border-bottom-right-radius: 40px;
+        margin: 20px 0 20px 0;
+        img.image {
+          display: flex;
+          width: 672px;
+          border-top-left-radius: 40px;
+        }
+        .intro {
+          display: flex;
+          flex-direction: column;
+          padding: 30px 40px 30px 40px;
+          background: rgba(0, 0, 0, 0.6);
+          border-top-left-radius: 40px;
+          border-bottom-right-radius: 40px;
+          > * {
+            margin: 10px 0 10px 0;
+          }
+        }
       }
     }
   }

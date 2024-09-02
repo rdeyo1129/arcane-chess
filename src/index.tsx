@@ -20,7 +20,7 @@ import '@fontsource/exo/400-italic.css';
 import '@fontsource/exo/700-italic.css';
 
 import { FrontPage } from '././pages/frontPage/FrontPage';
-import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
+// import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
 import { Campaign } from '././pages/campaign/Campaign';
 import { Dashboard } from '././pages/dashboard/Dashboard';
 import { Book } from '././pages/book/Book';
@@ -32,7 +32,8 @@ import { MissionView } from '././pages/missionView/MissionView';
 import { QuickPlay } from '././pages/quickPlay/QuickPlay';
 import { League } from '././pages/league/League';
 import { Lexicon } from '././pages/lexicon/Lexicon';
-import { About } from '././pages/about/About';
+import { ChangeLog } from './pages/changeLog/ChangeLog';
+import { Manifest } from './pages/manifest/Manifest';
 
 import ReactDOM from 'react-dom/client';
 import Modal from 'react-modal';
@@ -75,25 +76,30 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
-      {process.env.NODE_ENV !== 'production' ? (
-        <Route
-          path="/about"
-          element={
-            <PrivateRoute>
-              <About />
-            </PrivateRoute>
-          }
-        />
-      ) : (
-        <Route
+      <Route
+        path="/changelog"
+        element={
+          <PrivateRoute>
+            <ChangeLog />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/manifest"
+        element={
+          <PrivateRoute>
+            <Manifest />
+          </PrivateRoute>
+        }
+      />
+      {/* <Route
           path="/create"
           element={
             <PrivateRoute>
               <InGameMenu />
             </PrivateRoute>
           }
-        />
-      )}
+        /> */}
       <Route
         path="/quickplay"
         element={

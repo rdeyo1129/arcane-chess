@@ -32,8 +32,7 @@ import { MissionView } from '././pages/missionView/MissionView';
 import { QuickPlay } from '././pages/quickPlay/QuickPlay';
 import { League } from '././pages/league/League';
 import { Lexicon } from '././pages/lexicon/Lexicon';
-import { ChangeLog } from './pages/changeLog/ChangeLog';
-import { Manifest } from './pages/manifest/Manifest';
+import { Manifest } from '././pages/manifest/Manifest';
 
 import ReactDOM from 'react-dom/client';
 import Modal from 'react-modal';
@@ -73,14 +72,6 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <Dashboard />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/changelog"
-        element={
-          <PrivateRoute>
-            <ChangeLog />
           </PrivateRoute>
         }
       />

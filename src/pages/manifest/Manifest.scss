@@ -1,0 +1,40 @@
+.manifest {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  .manifest-curtain {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #000000aa;
+  }
+  .manifest-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    height: 100vh;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    .content {
+      width: 880px;
+      height: 100%;
+    }
+  }
+}

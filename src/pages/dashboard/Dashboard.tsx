@@ -49,7 +49,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
@@ -67,7 +67,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               // strong={true}
@@ -85,7 +85,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
@@ -103,7 +103,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
@@ -121,7 +121,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
@@ -139,7 +139,7 @@ export class UnwrappedDashboard extends React.Component<
                  className="tertiary"
                  color="B"
                  height={50}
-                 width={200}
+                 width={160}
                  // disabled={this.state.fen === ''}
                  disabled={false}
                  backgroundColorOverride="#11111188"
@@ -157,7 +157,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
@@ -175,7 +175,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
@@ -189,7 +189,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={200}
+              width={160}
               // disabled={this.state.fen === ''}
               disabled={false}
               onClick={() => {

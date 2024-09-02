@@ -18,7 +18,16 @@
     left top;
 }
 
-.cg-wrap .red-board {
+.cg-wrap .red-board,
+.city-voltaire-board {
+  background-image: 
+  // url('/assets/images/white-texture.png'),
+    url('/assets/images/board/tactoriusRed.svg');
+  // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
+  background-repeat: repeat, no-repeat;
+  background-position:
+    center,
+    left top;
 }
 .brown-board,
 .saloon-board,

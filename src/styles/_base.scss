@@ -3,7 +3,9 @@ body {
   color: white;
   background: #111111;
   margin: 0;
-  cursor: url('/assets/images/cursors/default.svg'), default;
+  cursor:
+    url('/assets/images/cursors/default.svg') 1 0,
+    default;
 }
 
 ::-webkit-scrollbar {

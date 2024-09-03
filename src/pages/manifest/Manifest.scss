@@ -10,7 +10,7 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background: #000000aa;
+    background: #000000cc;
   }
   .manifest-image {
     position: fixed;
@@ -20,21 +20,44 @@
     z-index: -1;
     height: 100vh;
   }
+  .nav {
+    position: fixed;
+    display: flex;
+    z-index: 2;
+    top: 0;
+    justify-content: center;
+  }
   .container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     z-index: 1;
-    padding: 20px;
     box-sizing: border-box;
     .content {
-      width: 880px;
-      height: 100%;
+      width: 600px;
+      padding: 80px 0 60px 0;
+      > * {
+        margin: 0 0 40px 0;
+      }
+      li {
+        margin: 10px;
+      }
+      p {
+        margin: 10px;
+      }
+      .links {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(3, 200px);
+        grid-template-rows: repeat(2, 50px);
+        grid-gap: 10px;
+      }
     }
   }
 }

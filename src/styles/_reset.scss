@@ -5,7 +5,6 @@ h3,
 h4,
 h5,
 h6,
-a,
 p,
 span,
 i,
@@ -41,7 +40,10 @@ ol {
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: #3f48cc;
+  cursor:
+    url('/assets/images/cursors/pointer.svg') 12 4,
+    pointer;
 }
 
 button,

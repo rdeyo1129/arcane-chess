@@ -141,10 +141,9 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
                 <h3>Unleash New Rules:</h3>
                 <p>
                   Step into a world where traditional chess boundaries are
-                  redefined. Master powerful arcana—spells that bend the
-                  rules—encounter new and formidable pieces, and enjoy a variety
-                  of entertaining game variants that add a fresh twist to the
-                  classic game.
+                  redefined. Utilize powerful arcana—spells that bend the
+                  rules—encounter new and formidable pieces. Uncover limitless
+                  possibilities for fresh tactics and a new dynamic metagame.
                 </p>
                 <h5>
                   <strong>

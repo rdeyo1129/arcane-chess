@@ -30,10 +30,9 @@ import { LessonView } from '././pages/lessonView/LessonView';
 import { TempleView } from '././pages/templeView/TempleView';
 import { MissionView } from '././pages/missionView/MissionView';
 import { QuickPlay } from '././pages/quickPlay/QuickPlay';
-import { League } from '././pages/league/League';
+import { LeaderBoard } from '././pages/leaderboard/LeaderBoard';
 import { Lexicon } from '././pages/lexicon/Lexicon';
-import { ChangeLog } from './pages/changeLog/ChangeLog';
-import { Manifest } from './pages/manifest/Manifest';
+import { Manifest } from '././pages/manifest/Manifest';
 
 import ReactDOM from 'react-dom/client';
 import Modal from 'react-modal';
@@ -73,14 +72,6 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <Dashboard />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/changelog"
-        element={
-          <PrivateRoute>
-            <ChangeLog />
           </PrivateRoute>
         }
       />
@@ -149,10 +140,10 @@ const router = createBrowserRouter(
         }
       />
       <Route
-        path="/league"
+        path="/leaderboard"
         element={
           <PrivateRoute>
-            <League />
+            <LeaderBoard />
           </PrivateRoute>
         }
       />

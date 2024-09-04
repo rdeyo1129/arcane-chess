@@ -4,8 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // grid-template-columns: 1fr 1fr 1fr;
-  // grid-template-rows: 72px 1fr 1fr;
   .news-bar {
     display: flex;
     align-items: center;
@@ -42,11 +40,8 @@
     justify-content: center;
   }
   .hover-image {
-    // width: 100%;
     height: 100%;
     overflow: hidden;
-    // max-height: 400px;
-    // object-fit: cover;
   }
   .logout {
     display: flex;

@@ -138,7 +138,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
                   progress, and see your name rise on the leaderboard with each
                   challenge you conquer.
                 </p>
-                <h3>Unleash New Rules:</h3>
+                <h3>Enter Arcane Chess:</h3>
                 <p>
                   Step into a world where traditional Chess boundaries are
                   redefined. Utilize powerful arcana—spells that bend the

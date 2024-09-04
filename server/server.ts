@@ -30,11 +30,15 @@ const __dirname = dirname(__filename);
 
 mongoose.set('strictQuery', false);
 
-const dbURI = process.env.MONGO_URI;
+const mongoURI = process.env.MONGODB_URI;
+
+if (!mongoURI) {
+  throw new Error('MongoDB URI is not defined in environment variables');
+}
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI || (dbURI as string))
+  .connect(mongoURI)
   .then(() => console.log('MongoDB successfully connected'))
   .catch((err) => console.log(err, 'mongo uri:', process.env.MONGO_URI));
 

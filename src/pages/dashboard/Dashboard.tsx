@@ -58,11 +58,11 @@ export class UnwrappedDashboard extends React.Component<
           </Link>
           <Link
             className="home-button"
-            to="/league"
-            onMouseEnter={() => this.setState({ hoverNav: 'league' })}
+            to="/leaderboard"
+            onMouseEnter={() => this.setState({ hoverNav: 'leaderboard' })}
           >
             <Button
-              text="LEAGUE"
+              text="LEADERBOARD"
               // onClick={() => this.calculateFen()}
               className="tertiary"
               color="B"
@@ -110,24 +110,7 @@ export class UnwrappedDashboard extends React.Component<
               // strong={true}
             />
           </Link>
-          <Link
-            className="home-button"
-            to="https://discord.gg/JYV3SWnc"
-            onMouseEnter={() => this.setState({ hoverNav: 'underground' })}
-          >
-            <Button
-              text="UNDERGROUND"
-              // onClick={() => this.calculateFen()}
-              className="tertiary"
-              color="B"
-              height={50}
-              width={160}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              backgroundColorOverride="#11111188"
-              // strong={true}
-            />
-          </Link>
+
           {/* <Link
                className="home-button"
                to="/create"
@@ -146,24 +129,6 @@ export class UnwrappedDashboard extends React.Component<
                  // strong={true}
                />
              </Link> */}
-          <Link
-            className="home-button"
-            to="/changelog"
-            onMouseEnter={() => this.setState({ hoverNav: 'create' })}
-          >
-            <Button
-              text="CHANGELOG"
-              onClick={() => null}
-              className="tertiary"
-              color="B"
-              height={50}
-              width={160}
-              // disabled={this.state.fen === ''}
-              disabled={false}
-              backgroundColorOverride="#11111188"
-              // strong={true}
-            />
-          </Link>
           <Link
             className="home-button"
             to="/manifest"

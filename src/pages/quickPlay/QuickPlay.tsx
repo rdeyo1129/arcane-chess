@@ -847,14 +847,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               this.state.playerColor !== gameBoardTurn ||
                               this.state.selectedSide ===
                                 this.state.engineColor ||
-                              !futureSightAvailable
+                              (!futureSightAvailable && key === 'modsFUT')
                                 ? 0.5
                                 : 1,
                             cursor:
                               this.state.playerColor !== gameBoardTurn ||
                               this.state.selectedSide ===
                                 this.state.engineColor ||
-                              !futureSightAvailable
+                              (!futureSightAvailable && key === 'modsFUT')
                                 ? 'not-allowed'
                                 : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
                           }}

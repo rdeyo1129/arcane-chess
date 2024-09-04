@@ -1006,6 +1006,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         : blackArcaneConfig,
                       (value: number, key: string) => {
                         const futureSightAvailable =
+                          key === 'modsFUT' &&
                           this.state.history.length >= 4 &&
                           this.state.futureSightAvailable;
                         if (value === null || value <= 0) return;
@@ -1021,14 +1022,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 this.state.playerColor !== gameBoardTurn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
-                                !futureSightAvailable
+                                (!futureSightAvailable && key === 'modsFUT')
                                   ? 0.5
                                   : 1,
                               cursor:
                                 this.state.playerColor !== gameBoardTurn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
-                                !futureSightAvailable
+                                (!futureSightAvailable && key === 'modsFUT')
                                   ? 'not-allowed'
                                   : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
                             }}

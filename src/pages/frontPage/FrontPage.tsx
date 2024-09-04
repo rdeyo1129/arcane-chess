@@ -24,8 +24,8 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
       'Is this theory?',
       "This time it's personal.",
       "Let's see a more advanced setup.",
-      "Not your grandfather's chess set.",
-      'Let your chess do the talking.',
+      "Not your grandfather's Chess set.",
+      'Let your Chess do the talking.',
       'Read. Recognize. React.',
       'Metagame just got a new name.',
       "User used plan. It's super effective.",
@@ -121,7 +121,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
               <div className="intro">
                 <h3>
                   Welcome to <em>Tactorius</em>, where the timeless game of
-                  chess transforms into an epic journey of strategy,
+                  Chess transforms into an epic journey of strategy,
                   imagination, and personal growth.
                 </h3>
                 <h3>Embark on a Campaign:</h3>
@@ -129,18 +129,18 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
                   Embark on an epic journey through a story teeming with
                   villains, mythical beasts, alternate histories, and the fusion
                   of spells with technology. Experience a campaign that
-                  seamlessly blends the strategic depth of chess with profound
+                  seamlessly blends the strategic depth of Chess with profound
                   personal growth and innovative storytelling. Traverse a
                   cautionary sci-fi and fantasy universe, where every move on
                   the board reveals deeper narratives. Test your skills with
-                  advanced chess concepts, solve increasingly challenging
+                  advanced Chess concepts, solve increasingly challenging
                   puzzles, and engage in custom army battles. Earn points as you
                   progress, and see your name rise on the leaderboard with each
                   challenge you conquer.
                 </p>
                 <h3>Unleash New Rules:</h3>
                 <p>
-                  Step into a world where traditional chess boundaries are
+                  Step into a world where traditional Chess boundaries are
                   redefined. Utilize powerful arcana—spells that bend the
                   rules—encounter new and formidable pieces. Uncover limitless
                   possibilities for fresh tactics and a new dynamic metagame.

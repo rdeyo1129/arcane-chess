@@ -58,11 +58,11 @@ export class UnwrappedDashboard extends React.Component<
           </Link>
           <Link
             className="home-button"
-            to="/league"
-            onMouseEnter={() => this.setState({ hoverNav: 'league' })}
+            to="/leaderboard"
+            onMouseEnter={() => this.setState({ hoverNav: 'leaderboard' })}
           >
             <Button
-              text="LEAGUE"
+              text="LEADERBOARD"
               // onClick={() => this.calculateFen()}
               className="tertiary"
               color="B"

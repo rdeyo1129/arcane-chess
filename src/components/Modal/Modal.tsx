@@ -1044,7 +1044,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       width={160}
                       height={40}
                       onClick={() => {
-                        this.props.navigate('/dashboard');
+                        this.props.navigate('/');
                       }}
                     />
                     <Button
@@ -1094,7 +1094,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       width={160}
                       height={40}
                       onClick={() => {
-                        this.props.navigate('/dashboard');
+                        this.props.navigate('/');
                       }}
                     />
                     <Button

@@ -136,7 +136,7 @@ export const loginUser =
             },
           });
         }
-        navigate('/dashboard');
+        navigate('/');
       })
       .catch((err) => {
         console.error('Login Error: ', err); // Log the error for debugging

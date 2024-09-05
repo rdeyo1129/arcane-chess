@@ -19,7 +19,7 @@ class UnwrappedManifest extends React.Component<object, State> {
       <div className="manifest">
         <div className="container">
           <div className="nav">
-            <Link to="/dashboard">
+            <Link to="/">
               <Button
                 text="BACK"
                 className="tertiary"

@@ -59,7 +59,7 @@ export class UnwrappedLeaderBoard extends React.Component<
     return (
       <div className="outer-leaderboard">
         <div className="nav">
-          <Link to="/dashboard">
+          <Link to="/">
             <Button
               text="BACK"
               className="tertiary"

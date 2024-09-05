@@ -66,9 +66,9 @@ if (localStorage.jwtToken) {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route index element={<FrontPage />} />
+      <Route path="/intro" element={<FrontPage />} />
       <Route
-        path="/dashboard"
+        index
         element={
           <PrivateRoute>
             <Dashboard />

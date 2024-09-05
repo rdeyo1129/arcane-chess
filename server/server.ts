@@ -15,6 +15,8 @@ import path from 'path';
 import { createServer } from 'http';
 import favicon from 'serve-favicon';
 import helmet from 'helmet'; // For setting security headers
+import rateLimit from 'express-rate-limit'; // For rate limiting
+import xss from 'xss'; // For XSS protection
 
 // Load environment variables
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -28,12 +30,20 @@ mongoose.set('strictQuery', false);
 
 const dbURI = process.env.MONGO_URI;
 
+if (!dbURI) {
+  console.error(
+    'MongoDB URI is missing. Please check your environment variables.'
+  );
+  process.exit(1);
+}
+
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI || (dbURI as string))
+  .connect(process.env.MONGODB_URI || dbURI)
   .then(() => console.log('MongoDB successfully connected'))
-  .catch((err) => console.log(err, 'mongo uri:', process.env.MONGO_URI));
+  .catch((err) => console.log('Error connecting to MongoDB:', err));
 
+// Express app setup
 const app = express();
 const server = createServer(app);
 
@@ -43,10 +53,39 @@ app.use(
     directives: {
       defaultSrc: ["'self'"],
       scriptSrc: ["'self'", "'nonce-random-value'", "'unsafe-inline'"],
-      // Add additional sources as necessary
     },
   })
 );
+
+// Rate limiting middleware: limit the number of requests to prevent abuse
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later',
+});
+app.use(limiter);
+
+// Helper function to sanitize input (using XSS library)
+const sanitizeInput = (req: Request, _res: Response, next: NextFunction) => {
+  const sanitizeObject = (obj: Record<string, any>) => {
+    for (const key in obj) {
+      if (typeof obj[key] === 'string') {
+        obj[key] = xss(obj[key]); // Sanitize strings
+      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+        sanitizeObject(obj[key]); // Recursively sanitize objects
+      }
+    }
+  };
+
+  if (req.body) sanitizeObject(req.body);
+  if (req.query) sanitizeObject(req.query);
+  if (req.headers) sanitizeObject(req.headers);
+
+  next();
+};
+
+// Apply the XSS protection middleware globally
+app.use(sanitizeInput);
 
 // Use body parser with a request body size limit to prevent large payload attacks
 app.use(bodyParser.urlencoded({ extended: true, limit: '10kb' }));

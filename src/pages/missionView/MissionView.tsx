@@ -447,7 +447,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               thinking: false,
               turn: prevState.turn === 'white' ? 'black' : 'white',
               lastMove: [PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))],
-              hint: '',
+              // hint: '',
               royalties: {
                 ...prevState.royalties,
                 royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
@@ -966,13 +966,13 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   </div>
                 </div>
                 <div className="dialogue">
-                  {this.state.hint !== '' ? (
-                    this.state.hint
-                  ) : this.state.hoverArcane !== '' ? (
+                  {this.state.hoverArcane !== '' ? (
                     <div className="arcana-detail">
                       <h3>{arcana[this.state.hoverArcane].name}</h3>
                       <p>{arcana[this.state.hoverArcane].description}</p>
                     </div>
+                  ) : this.state.hint !== '' ? (
+                    this.state.hint
                   ) : (
                     <div></div>
                     // hints, taunts, eval + or - dialogue

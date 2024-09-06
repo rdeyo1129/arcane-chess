@@ -489,10 +489,16 @@ class UnwrappedTempleView extends React.Component<Props, State> {
   };
 
   compTempleMove = () => {
+    const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     if (this.state.engineColor === this.state.turn) {
       const parsed = this.arcaneChess().makeUserMove(
         this.state.correctMoves[this.state.moveNumber].slice(0, 2),
-        this.state.correctMoves[this.state.moveNumber].slice(2, 4)
+        this.state.correctMoves[this.state.moveNumber].slice(2, 4),
+        PIECES[
+          `${gameBoardTurn === 'white' ? 'w' : 'b'}${(
+            this.state.correctMoves[this.state.moveNumber][4] || ''
+          ).toUpperCase()}` as keyof typeof PIECES
+        ]
       );
       if (!PrMove(parsed)) {
         // console.log('invalid move');
@@ -597,10 +603,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
     const { auth } = this.props;
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(auth.user.username);
-    const playerWins =
-      this.state.gameOverType.split(' ')[1] === 'mates' &&
-      getLocalStorage(this.props.auth.user.username).config.color ===
-        this.state.gameOverType.split(' ')[0];
     return (
       <div className="tactorius-board fade">
         {LS.chapter === 0 ? (
@@ -806,19 +808,10 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     viewOnly={false}
                     events={{
                       move: (orig: string, dest: string) => {
-                        console.log(
-                          `ID: 312-458639-06235`,
-                          // `State: ${JSON.stringify(this.state, null, 2)}`,
-                          `Correct Move: ${(
-                            this.state.correctMoves[this.state.moveNumber][4] ||
-                            ''
-                          ).toLowerCase()}`
-                        );
                         const correctPromotion = (
                           this.state.correctMoves[this.state.moveNumber][4] ||
                           ''
                         ).toLowerCase();
-
                         const parsed = this.arcaneChess().makeUserMove(
                           orig,
                           dest,

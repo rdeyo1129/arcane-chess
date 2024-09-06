@@ -636,6 +636,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         localStorageData.auth.user.campaign.topScores[chapterIndex] =
           chapterPoints;
 
+        // set arcana at base of local storage user to be empty object
+        localStorageData.arcana = {};
+
         // Save the updated data back to local storage
         setLocalStorage(localStorageData);
 

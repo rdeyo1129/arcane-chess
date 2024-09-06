@@ -19,7 +19,8 @@
 }
 
 .cg-wrap .red-board,
-.city-voltaire-board {
+.city-voltaire-board,
+.desert-voltaire-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusRed.svg');
@@ -32,8 +33,6 @@
 .brown-board,
 .saloon-board,
 .tornados-board,
-.sunset-board,
-.desert-voltaire-board,
 .mirror-temple-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
@@ -44,7 +43,16 @@
     center,
     left top;
 }
-.yellow-board {
+.yellow-board,
+.tavern-board {
+  background-image: 
+  // url('/assets/images/white-texture.png'),
+    url('/assets/images/board/tactoriusYellow.svg');
+  // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
+  background-repeat: repeat, no-repeat;
+  background-position:
+    center,
+    left top;
 }
 .forest-board,
 .owls-board,
@@ -61,8 +69,8 @@
     left top;
 }
 .town-board,
-.tavern-board,
-.robotcity-room-board {
+.robotcity-room-board,
+.sunset-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusBlue.svg');
@@ -86,7 +94,7 @@
 .jail-board,
 .ravensden-room-board,
 .library-board,
-.clocktower1-board {
+.clocktower-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusGray.svg');

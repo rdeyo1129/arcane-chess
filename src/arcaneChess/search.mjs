@@ -408,7 +408,7 @@ export function SearchPosition() {
         '%';
     }
     temporalPincer += ' ';
-    console.log(line);
+    // console.log(line);
   }
 
   GameBoard.cleanPV = [bestScore, line];

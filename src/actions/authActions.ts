@@ -79,7 +79,6 @@ export const loginUser =
         dispatch(setCurrentUser(decoded));
 
         const existingGuestUser = getGuestUserFromLocalStorage();
-        console.log('Existing Guest User: ', existingGuestUser); // Log for debugging
 
         if (userData.guest || getLocalStorage(userData.username) === null) {
           if (
@@ -137,7 +136,7 @@ export const loginUser =
             },
           });
         }
-        navigate('/dashboard');
+        navigate('/');
       })
       .catch((err) => {
         console.error('Login Error: ', err); // Log the error for debugging

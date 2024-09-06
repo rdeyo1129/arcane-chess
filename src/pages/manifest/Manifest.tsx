@@ -137,7 +137,10 @@ class UnwrappedManifest extends React.Component<object, State> {
                     To cultivate a vibrant community of chess enthusiasts, where
                     collaboration, creativity, and shared mastery are at the
                     heart of a continuously evolving and dynamic chess
-                    experience.
+                    experience. Above all, the platform emphasizes the
+                    importance of having fun with the game, encouraging players
+                    to enjoy each match—win or lose—as a valuable and rewarding
+                    journey.
                   </li>
                 </ol>
               </div>

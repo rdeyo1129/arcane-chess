@@ -680,13 +680,16 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               // modalType={this.state.endScenario}
               // message={} // interpolate
               message={
-                (this.state.gameOverType,
-                playerWins
+                this.state.gameOverType === 'puzzle victory'
                   ? this.state.victoryMessage
-                  : this.state.defeatMessage)
+                  : this.state.defeatMessage
               }
               score={LS.nodeScores[this.state.nodeId]}
-              type={playerWins ? 'victory' : 'defeat'}
+              type={
+                this.state.gameOverType === 'puzzle victory'
+                  ? 'victory'
+                  : 'defeat'
+              }
             />
             <div className="temple-view">
               <div className="opponent-dialogue-arcana">

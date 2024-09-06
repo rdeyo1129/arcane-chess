@@ -43,8 +43,7 @@
     center,
     left top;
 }
-.yellow-board,
-.tavern-board {
+.yellow-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusYellow.svg');
@@ -70,7 +69,8 @@
 }
 .town-board,
 .robotcity-room-board,
-.sunset-board {
+.sunset-board,
+.tavern-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusBlue.svg');

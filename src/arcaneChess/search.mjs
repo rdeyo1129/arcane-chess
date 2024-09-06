@@ -368,6 +368,7 @@ export function SearchPosition() {
   let PvNum;
   let c;
   let temporalPincer = '';
+  let deepestDepthReached = 0;
 
   ClearForSearch();
 
@@ -396,9 +397,13 @@ export function SearchPosition() {
 
     PvNum = GetPvLine(currentDepth);
     line += ' Pv:';
-    temporalPincer += `Depth ${currentDepth}` + ' ';
+
+    deepestDepthReached = currentDepth;
+
+    // Store the temporal pincer info for the deepest depth
+    temporalPincer = `Depth ${deepestDepthReached}` + ' ';
+
     for (c = 0; c < PvNum; c++) {
-      line += ' ' + PrMove(GameBoard.PvArray[c]);
       temporalPincer += PrMove(GameBoard.PvArray[c]) + ' ';
     }
     if (currentDepth !== 1) {
@@ -407,12 +412,9 @@ export function SearchPosition() {
         ((SearchController.fhf / SearchController.fh) * 100).toFixed(2) +
         '%';
     }
-    temporalPincer += ' ';
-    // console.log(line);
   }
 
   GameBoard.cleanPV = [bestScore, line];
-
   SearchController.best = bestMove;
   SearchController.thinking = BOOL.FALSE;
 

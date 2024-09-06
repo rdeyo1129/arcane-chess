@@ -22,7 +22,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
       'Initiative. Formulation. Execution.',
       'As in war, so in life.',
       'Is this theory?',
-      "This time it's personal.",
+      // "This time it's personal.",
       "Let's see a more advanced setup.",
       'Let your Chess do the talking.',
       'Read. Recognize. React.',
@@ -33,7 +33,7 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
       'Built for GMs, instructive for all.',
       'Patience. Planning. Persistence.',
       'The war continues... so does your learning.',
-      'TikTok? This is TakTic.',
+      // 'TikTok? This is TakTic.',
     ];
     this.state = { currentSlogan: '', currentIndex: 0 };
   }

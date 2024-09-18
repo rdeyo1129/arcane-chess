@@ -148,6 +148,11 @@ export function DrawMaterial() {
     return BOOL.FALSE;
   }
 
+  // spectre and wraith combos depending on what square complex they are on can mate
+  // 2 wraiths on different
+  // 2 spectres on different
+  // 1 of each on same
+
   return BOOL.TRUE;
 }
 

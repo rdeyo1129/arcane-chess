@@ -8,12 +8,12 @@ import {
 
 import { Provider } from 'react-redux';
 import { store } from 'src/store/configureStore';
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
+// import jwt_decode from 'jwt-decode';
+// import setAuthToken from './utils/setAuthToken';
 
 import { PrivateRoute } from 'src/components/PrivateRoute/PrivateRoute';
 
-import { setCurrentUser, logoutUser } from './actions/authActions';
+// import { setCurrentUser, logoutUser } from './actions/authActions';
 
 import '@fontsource/exo';
 import '@fontsource/exo/400-italic.css';
@@ -24,8 +24,8 @@ import { FrontPage } from '././pages/frontPage/FrontPage';
 import { Campaign } from '././pages/campaign/Campaign';
 import { Dashboard } from '././pages/dashboard/Dashboard';
 import { Book } from '././pages/book/Book';
-import { Login } from '././pages/loginRegister/Login';
-import { Register } from '././pages/loginRegister/Register';
+// import { Login } from '././pages/loginRegister/Login';
+// import { Register } from '././pages/loginRegister/Register';
 import { LessonView } from '././pages/lessonView/LessonView';
 import { TempleView } from '././pages/templeView/TempleView';
 import { MissionView } from '././pages/missionView/MissionView';
@@ -40,28 +40,28 @@ import Modal from 'react-modal';
 // import App from './App';
 
 // Check for token to keep user logged in
-if (localStorage.jwtToken) {
-  // Set auth token header auth
-  const token = localStorage.jwtToken;
-  setAuthToken(token);
+// if (localStorage.jwtToken) {
+//   // Set auth token header auth
+//   const token = localStorage.jwtToken;
+//   setAuthToken(token);
 
-  // Decode token and get user info and exp
-  const decoded: { exp: number } = jwt_decode(token);
+//   // Decode token and get user info and exp
+//   const decoded: { exp: number } = jwt_decode(token);
 
-  // Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
+//   // Set user and isAuthenticated
+//   store.dispatch(setCurrentUser(decoded));
 
-  // Check for expired token
-  const currentTime = Date.now() / 1000; // to get in milliseconds
+//   // Check for expired token
+//   const currentTime = Date.now() / 1000; // to get in milliseconds
 
-  if (decoded.exp < currentTime) {
-    // Logout user
-    store.dispatch(logoutUser());
+//   if (decoded.exp < currentTime) {
+//     // Logout user
+//     store.dispatch(logoutUser());
 
-    // Redirect to login
-    window.location.href = './';
-  }
-}
+//     // Redirect to login
+//     window.location.href = './';
+//   }
+// }
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -155,8 +155,8 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
-      <Route path="login" element={<Login />} />
-      <Route path="register" element={<Register />} />
+      {/* <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} /> */}
     </Route>
   )
 );

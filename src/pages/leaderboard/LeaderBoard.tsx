@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import axios from 'axios';
+// uncomment when ready for users
+// import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import Select from 'src/components/Select/Select';
@@ -27,23 +28,23 @@ export class UnwrappedLeaderBoard extends React.Component<
     };
   }
 
-  getLeaderboard = async (chapter: string) => {
-    try {
-      const response = await axios.get('/api/campaign/scores', {
-        params: {
-          chapter: chapter,
-        },
-      });
-      this.setState({
-        currentChapterTopScores: response.data,
-      });
-    } catch (error) {
-      console.error('Error fetching leaderboard:', error);
-    }
-  };
+  // getLeaderboard = async (chapter: string) => {
+  //   try {
+  //     const response = await axios.get('/api/campaign/scores', {
+  //       params: {
+  //         chapter: chapter,
+  //       },
+  //     });
+  //     this.setState({
+  //       currentChapterTopScores: response.data,
+  //     });
+  //   } catch (error) {
+  //     console.error('Error fetching leaderboard:', error);
+  //   }
+  // };
 
   componentDidMount() {
-    this.getLeaderboard('1');
+    // this.getLeaderboard('1');
   }
 
   render() {
@@ -86,7 +87,8 @@ export class UnwrappedLeaderBoard extends React.Component<
                 '11',
                 '12',
               ]}
-              onChange={(val) => this.getLeaderboard(val)}
+              // onChange={(val) => this.getLeaderboard(val)}
+              onChange={() => null}
             />
           </div>
         </div>

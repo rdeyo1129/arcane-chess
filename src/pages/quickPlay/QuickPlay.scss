@@ -15,12 +15,10 @@
     align-items: center;
     .opponent-dialogue-arcana {
       display: flex;
-      // flex: 80px 1 1;
       gap: 10px;
       flex-direction: column;
       width: 400px;
       height: 480px;
-      // background: #222222;
       padding: 0 10px 0 10px;
       .info-avatar {
         display: flex;
@@ -36,6 +34,8 @@
           flex-direction: column;
           justify-content: space-around;
           align-items: center;
+          background: rgba(34, 34, 34, 0.7);
+          margin-right: 10px;
           .name {
             text-align: right;
           }
@@ -62,10 +62,8 @@
         .arcana-select {
           display: grid;
           grid-template-columns: 60px 60px 60px 60px 60px;
-          // grid-template-rows: 60px 60px 60px 60px 60px;
           grid-gap: 11px;
           height: 100%;
-
           width: 100%;
           overflow-y: scroll;
           padding: 13px 13px 0 13px;

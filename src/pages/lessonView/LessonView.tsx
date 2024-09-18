@@ -791,7 +791,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     text="<"
                     width={190}
                     fontSize={36}
-                    backgroundColorOverride="#3f48cc88"
+                    // backgroundColorOverride="#3f48cc88"
                   />
                   <Button
                     className="tertiary"
@@ -803,7 +803,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     text=">"
                     width={190}
                     fontSize={36}
-                    backgroundColorOverride="#3f48cc88"
+                    // backgroundColorOverride="#3f48cc88"
                   />
                 </div>
                 <div className="info-avatar">
@@ -828,7 +828,8 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                       />
                     )}
                   </div>
-                  <div className="info">{auth.user.username}</div>
+                  {/* or lesson hero name? though sometimes it says things like oldwoman */}
+                  <div className="info"></div>
                 </div>
               </div>
             </div>

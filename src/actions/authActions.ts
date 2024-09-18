@@ -66,6 +66,7 @@ export const getGuestUserFromLocalStorage = () => {
 };
 
 // Login - get user token
+// disabling for now unless we want server in the future
 export const loginUser =
   (userData: any, navigate: any) => (dispatch: AppDispatch) => {
     axios
@@ -149,6 +150,38 @@ export const loginUser =
         });
       });
   };
+
+// Guest Login - the static webpage solution - deprecate when ready for more users
+export const loginGuest = (guestData: any, navigate: any) => {
+  const existingGuestUser = getGuestUserFromLocalStorage();
+  if (guestData.guest || getLocalStorage(guestData.username) === null) {
+    if (
+      existingGuestUser &&
+      existingGuestUser.data.auth &&
+      existingGuestUser.data.auth.user
+    ) {
+      const updatedGuestData = {
+        ...existingGuestUser.data,
+        auth: {
+          ...existingGuestUser.data.auth,
+          user: {
+            ...existingGuestUser.data.auth.user,
+            id: '0',
+            username: existingGuestUser.data.auth.user.username, // Use existing guest username
+            campaign: {
+              ...existingGuestUser.data.auth.user.campaign,
+              topScores: [
+                ...existingGuestUser.data.auth.user.campaign.topScores,
+              ] as number[],
+            },
+          },
+        },
+      };
+      setLocalStorage(updatedGuestData);
+      navigate('/');
+    }
+  }
+};
 
 // Set logged in user
 export const setCurrentUser = (decoded: object) => {

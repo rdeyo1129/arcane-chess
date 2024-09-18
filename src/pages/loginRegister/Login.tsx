@@ -12,7 +12,8 @@ import Input from 'src/components/Input/Input';
 import Hero from 'src/components/hero2/Hero';
 
 import {
-  loginUser,
+  // loginUser,
+  loginGuest,
   getGuestUserFromLocalStorage,
 } from '../../actions/authActions';
 
@@ -73,11 +74,11 @@ const UnwrappedLogin: React.FC = () => {
   ) => {
     e.preventDefault();
 
-    const userData: UserData = {
-      username,
-      password,
-      guest,
-    };
+    // const userData: UserData = {
+    //   username,
+    //   password,
+    //   guest,
+    // };
 
     let guestUserData: UserData | null = null;
 
@@ -98,7 +99,9 @@ const UnwrappedLogin: React.FC = () => {
       }
     }
 
-    dispatch(loginUser(guest ? guestUserData : userData, navigate));
+    // uncomment when ready for users
+    // dispatch(loginUser(guest ? guestUserData : userData, navigate));
+    dispatch(loginGuest(guestUserData, navigate));
   };
 
   return (

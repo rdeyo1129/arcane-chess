@@ -781,7 +781,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               <div className="info-avatar">
                 <div className="avatar"></div>
                 <div className="info">
-                  <h3 className="name">ENGINE</h3>
+                  <h3 className="name"></h3>
                   <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
                   <div className="thinking">
                     {/* {this.state.thinking ? <Dots /> : null} */}
@@ -1439,7 +1439,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               <div className="info-avatar">
                 <div className="avatar"></div>
                 <div className="info">
-                  <h3 className="name">PLAYER</h3>
+                  <h3 className="name"></h3>
                   <div className="player-time">
                     <h3>
                       {/* <ChessClock

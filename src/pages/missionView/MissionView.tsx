@@ -848,7 +848,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
-    const { auth } = this.props;
+    // const { auth } = this.props;
     const playerWins =
       this.state.gameOverType.split(' ')[1] === 'mates' &&
       getLocalStorage(this.props.auth.user.username).config.color ===
@@ -1648,7 +1648,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     )}
                   </div>
                   <div className="info">
-                    <div className="name">{auth.user.username}</div>
+                    {/* or lesson hero name? though sometimes it says things like oldwoman */}
+                    <div className="name"></div>
                     <div className="player-time">
                       <h3>
                         <ChessClock

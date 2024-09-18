@@ -925,7 +925,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                       />
                     )}
                   </div>
-                  <div className="info">{auth.user.username}</div>
+                  {/* or lesson hero name? though sometimes it says things like oldwoman */}
+                  <div className="info"></div>
                 </div>
               </div>
             </div>

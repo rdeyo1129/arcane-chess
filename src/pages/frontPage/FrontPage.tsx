@@ -18,22 +18,18 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
     super(props);
     this.slogans = [
       'Principle. Preparation. Process.',
-      'You wanted the Knook and we heard you.',
-      'Initiative. Formulation. Execution.',
       'As in war, so in life.',
       'Is this theory?',
-      // "This time it's personal.",
-      "Let's see a more advanced setup.",
-      // 'Let your Chess do the talking.',
       'Read. Recognize. React.',
+      "Let's see a more advanced setup.",
       'Metagame just got a new name.',
       "User used plan. It's super effective.",
+      'Patience. Planning. Persistence.',
       'Difficult to learn, impossible to master.',
       'Your mind is the armory.',
+      'Initiative. Formulation. Execution.',
       'Built for GMs, instructive for all.',
-      'Patience. Planning. Persistence.',
       'The war continues... so does your learning.',
-      // 'TikTok? This is TakTic.',
     ];
     this.state = { currentSlogan: '', currentIndex: 0 };
   }
@@ -76,7 +72,8 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
             </div>
           </div>
           <div className="header-buttons">
-            <Link to={'/login'}>
+            {/* revert to login page when ready for users */}
+            <Link to={'/'}>
               <Button
                 text="ENTER"
                 // onClick={() => this.calculateFen()}

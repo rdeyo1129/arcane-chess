@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { logoutUser } from '../../actions/authActions';
+// import { logoutUser } from '../../actions/authActions';
 import { withRouter } from 'src/components/withRouter/withRouter';
 
 import Button from 'src/components/Button/Button';
@@ -158,8 +158,8 @@ export class UnwrappedDashboard extends React.Component<
               // disabled={this.state.fen === ''}
               disabled={false}
               onClick={() => {
-                this.props.logoutUser();
-                this.props.navigate('/login');
+                // this.props.logoutUser();
+                this.props.navigate('/intro');
               }}
               backgroundColorOverride="#11111188"
               // strong={true}
@@ -184,6 +184,6 @@ function mapStateToProps({ auth }: { auth: object }) {
   };
 }
 
-export const Dashboard = connect(mapStateToProps, { logoutUser })(
-  withRouter(UnwrappedDashboard)
-);
+export const Dashboard = connect(mapStateToProps, {
+  /* logoutUser */
+})(withRouter(UnwrappedDashboard));

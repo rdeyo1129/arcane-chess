@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
 
 import Button from 'src/components/Button/Button';
+import Updates from 'src/pages/dashboard/ReleaseNotes';
 
 import './Dashboard.scss';
 
@@ -172,6 +173,7 @@ export class UnwrappedDashboard extends React.Component<
             src={`/assets/dashboard/${this.state.hoverNav}.webp`}
             alt={this.state.hoverNav}
           />
+          <Updates />
         </div>
       </div>
     );

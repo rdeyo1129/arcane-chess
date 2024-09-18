@@ -161,7 +161,10 @@ class UnwrappedManifest extends React.Component<object, State> {
                     JavaScript and the GPL
                   </a>
                   ), ensuring that the project remains free for all to use,
-                  modify, and contribute to. Key dependencies include{' '}
+                  modify, and contribute to.
+                </p>
+                <p>
+                  Key dependencies include{' '}
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
@@ -195,7 +198,25 @@ class UnwrappedManifest extends React.Component<object, State> {
                   >
                     BlueFever Programming
                   </a>
-                  , is integral to the platform{"'"}s performance.
+                  , is integral to the platform{"'"}s performance. Lastly,
+                  special thanks to the{' '}
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.chessvariants.com/graphics.dir/svg/alfaerie/"
+                  >
+                    Chess Variants website resource
+                  </a>{' '}
+                  for providing a consistent set of fairy chess piece images,
+                  and{' '}
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://game-icons.net/"
+                  >
+                    Game Icons
+                  </a>{' '}
+                  for additional graphical elements used in the project.
                 </p>
                 <p>
                   While the platform is free to use, we welcome donations to

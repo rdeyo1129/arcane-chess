@@ -14,6 +14,7 @@ import 'src/chessground/styles/normal.scss';
 import Button from '../Button/Button';
 import Select from '../Select/Select';
 import Toggle from '../Toggle/Toggle';
+import { unlockableArcana } from 'src/pages/book/ArcanaSelect';
 
 import './Modal.scss';
 
@@ -44,6 +45,7 @@ interface ModalState {
   animatedValue: number;
   targetValue: number;
   reducedScore: number;
+  chapterNum: number;
 }
 
 interface ArcanaDetail {
@@ -117,6 +119,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         },
         0
       ),
+      chapterNum: getLocalStorage(this.props.auth.user.username).chapter + 1,
     };
   }
 
@@ -648,6 +651,30 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   </div>
                 </div>
                 <div className="chapter-end-buttons">
+                  <div className="unlocked-arcana">
+                    ARCANA UNLOCKED:
+                    <div>
+                      {_.map(
+                        unlockableArcana[this.state.chapterNum],
+                        (_name: string, key: number) => {
+                          return (
+                            <img
+                              key={key}
+                              className="arcane"
+                              src={`${arcana[key].imagePath}${
+                                this.state.hoverArcane === `${key}`
+                                  ? '-hover'
+                                  : ''
+                              }.svg`}
+                              onMouseEnter={() => this.toggleHover(`${key}`)}
+                              onMouseLeave={() => this.toggleHover('')}
+                            />
+                          );
+                        }
+                      )}
+                    </div>
+                    {arcana[this.state.hoverArcane.split('-')[0]]?.description}
+                  </div>
                   <Button
                     text="CONTINUE"
                     className="primary"

@@ -106,13 +106,13 @@ export const unlockableArcana = [
   {
     dyadW: 8,
     dyadS: 8,
-    modsTEM: 6,
+    // dyadA: 8,
   },
   // 11
   {
     sumnW: 9,
-    // sumnS: 9
-    // dyadA: 8,
+    sumnS: 9,
+    modsTEM: 6,
   },
   // 12
   {

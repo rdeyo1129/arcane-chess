@@ -40,12 +40,12 @@ interface ModalState {
   hoverArcane: string;
   whiteArcana: { [key: string]: boolean | number | string | null };
   blackArcana: { [key: string]: boolean | number | string | null };
-  hero: string;
   playerColor: string;
   animatedValue: number;
   targetValue: number;
   reducedScore: number;
   chapterNum: number;
+  difficulty: string;
 }
 
 interface ArcanaDetail {
@@ -92,20 +92,20 @@ const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
   constructor(props: ModalProps) {
     super(props);
+    const LS = getLocalStorage(this.props.auth.user.username);
     this.state = {
       config: {
-        multiplier: 80,
-        color: 'white',
-        thinkingTime: 1,
-        depth: 1,
-        clock: true,
+        multiplier: LS.config.multiplier,
+        color: LS.config.color,
+        thinkingTime: LS.config.thinkingTime,
+        depth: LS.config.depth,
+        clock: LS.config.clock,
         blunderVision: false,
         threatVision: false,
         checkVision: false,
         hints: false,
         autopromotion: 'Select',
       },
-      hero: 'hero1',
       hoverArcane: '',
       whiteArcana: {},
       blackArcana: {},
@@ -113,13 +113,14 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       animatedValue: 0,
       targetValue: 0,
       reducedScore: _.reduce(
-        getLocalStorage(this.props.auth.user.username).nodeScores,
+        LS.nodeScores,
         (accumulator, value) => {
           return accumulator + value;
         },
         0
       ),
-      chapterNum: getLocalStorage(this.props.auth.user.username).chapter + 1,
+      chapterNum: LS.chapter + 1,
+      difficulty: LS.difficulty,
     };
   }
 
@@ -158,7 +159,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       inventory: {},
       nodeId: 'lesson-1',
       chapterEnd: false,
-      hero: this.state.hero,
     });
     this.props.navigate('/chapter');
   };
@@ -223,109 +223,137 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               <span className="multiplier">
                 x{this.state.config.multiplier} points
               </span>
-              <div className="heroes">
+              <div className="difficulties">
                 <img
-                  className="hero-1"
-                  src="/assets/avatars/hero1.webp"
-                  alt="hero1"
+                  className="level-1"
+                  src="/assets/levels/novice.webp"
+                  alt="novice"
                   style={{
-                    height: '120px',
-                    width: '120px',
-                    objectFit: 'contain',
-                    padding: '8px',
+                    height: '200px',
+                    width: '180px',
+                    overflow: 'hidden',
+                    objectFit: 'cover',
                     outline:
-                      this.state.hero === 'hero1'
-                        ? '2px solid grey'
+                      this.state.difficulty === 'novice'
+                        ? '2px solid #3f48cc'
                         : '2px solid transparent',
-                    borderRadius: '20%',
-                    boxSizing: 'border-box',
+                    borderRadius: '5px',
                     cursor:
                       "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                   }}
                   onClick={() => {
                     setLocalStorage({
                       ...getLocalStorage(this.props.auth.user.username),
-                      hero: 'hero1',
+                      difficulty: 'novice',
+                      config: {
+                        ...getLocalStorage(this.props.auth.user.username)
+                          .config,
+                        multiplier: 80,
+                      },
                     });
-                    this.setState({ hero: 'hero1' });
+                    this.setState({
+                      difficulty: 'novice',
+                      config: { ...this.state.config, multiplier: 80 },
+                    });
                   }}
                 />
                 <img
-                  className="hero-2"
-                  src="/assets/avatars/hero2.webp"
-                  alt="hero2"
+                  className="level-2"
+                  src="/assets/levels/intermediate.webp"
+                  alt="intermediate"
                   style={{
-                    height: '120px',
-                    width: '120px',
-                    objectFit: 'contain',
-                    padding: '8px',
+                    height: '200px',
+                    width: '180px',
+                    overflow: 'hidden',
+                    objectFit: 'cover',
                     outline:
-                      this.state.hero === 'hero2'
-                        ? '2px solid grey'
+                      this.state.difficulty === 'intermediate'
+                        ? '2px solid #34aa48'
                         : '2px solid transparent',
-                    borderRadius: '20%',
-                    boxSizing: 'border-box',
+                    borderRadius: '5px',
                     cursor:
                       "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                   }}
                   onClick={() => {
                     setLocalStorage({
                       ...getLocalStorage(this.props.auth.user.username),
-                      hero: 'hero2',
+                      difficulty: 'intermediate',
+                      config: {
+                        ...getLocalStorage(this.props.auth.user.username)
+                          .config,
+                        multiplier: 95,
+                      },
                     });
-                    this.setState({ hero: 'hero2' });
+                    this.setState({
+                      difficulty: 'intermediate',
+                      config: { ...this.state.config, multiplier: 95 },
+                    });
                   }}
                 />
                 <img
-                  className="hero-3"
-                  src="/assets/avatars/hero3.webp"
-                  alt="hero3"
+                  className="level-3"
+                  src="/assets/levels/advanced.webp"
+                  alt="advanced"
                   style={{
-                    height: '120px',
-                    width: '120px',
-                    objectFit: 'contain',
-                    padding: '8px',
+                    height: '200px',
+                    width: '180px',
+                    overflow: 'hidden',
+                    objectFit: 'cover',
                     outline:
-                      this.state.hero === 'hero3'
-                        ? '2px solid grey'
+                      this.state.difficulty === 'advanced'
+                        ? '2px solid #d9b800'
                         : '2px solid transparent',
-                    borderRadius: '20%',
-                    boxSizing: 'border-box',
+                    borderRadius: '5px',
                     cursor:
                       "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                   }}
                   onClick={() => {
                     setLocalStorage({
                       ...getLocalStorage(this.props.auth.user.username),
-                      hero: 'hero3',
+                      difficulty: 'advanced',
+                      config: {
+                        ...getLocalStorage(this.props.auth.user.username)
+                          .config,
+                        multiplier: 110,
+                      },
                     });
-                    this.setState({ hero: 'hero3' });
+                    this.setState({
+                      difficulty: 'advanced',
+                      config: { ...this.state.config, multiplier: 110 },
+                    });
                   }}
                 />
                 <img
-                  className="hero-4"
-                  src="/assets/avatars/hero4.webp"
-                  alt="hero4"
+                  className="expert-4"
+                  src="/assets/levels/expert.webp"
+                  alt="expert"
                   style={{
-                    height: '120px',
-                    width: '120px',
-                    objectFit: 'contain',
-                    padding: '8px',
+                    height: '200px',
+                    width: '180px',
+                    overflow: 'hidden',
+                    objectFit: 'cover',
                     outline:
-                      this.state.hero === 'hero4'
-                        ? '2px solid grey'
+                      this.state.difficulty === 'expert'
+                        ? '2px solid #c53939'
                         : '2px solid transparent',
-                    borderRadius: '20%',
-                    boxSizing: 'border-box',
+                    borderRadius: '5px',
                     cursor:
                       "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                   }}
                   onClick={() => {
                     setLocalStorage({
                       ...getLocalStorage(this.props.auth.user.username),
-                      hero: 'hero4',
+                      difficulty: 'expert',
+                      config: {
+                        ...getLocalStorage(this.props.auth.user.username)
+                          .config,
+                        multiplier: 125,
+                      },
                     });
-                    this.setState({ hero: 'hero4' });
+                    this.setState({
+                      difficulty: 'expert',
+                      config: { ...this.state.config, multiplier: 125 },
+                    });
                   }}
                 />
               </div>
@@ -673,6 +701,11 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         }
                       )}
                     </div>
+                    <span>
+                      <b>
+                        {arcana[this.state.hoverArcane.split('-')[0]]?.name}
+                      </b>
+                    </span>
                     {arcana[this.state.hoverArcane.split('-')[0]]?.description}
                   </div>
                   <Button

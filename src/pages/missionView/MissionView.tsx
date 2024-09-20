@@ -213,7 +213,6 @@ interface State {
   theme: string;
   hideCompletedPage: boolean;
   opponent: string;
-  hero: string;
   futureSightAvailable: boolean;
   victoryMessage: string;
   defeatMessage: string;
@@ -374,7 +373,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
         LS.nodeId?.split('-')[0] !== 'mission',
       opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
-      hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
       futureSightAvailable: true,
       victoryMessage:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.victory,
@@ -1627,25 +1625,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 </div>
                 <div className="info-avatar">
                   <div className="avatar">
-                    {this.state.hero !== '' ? (
-                      <img
-                        src={`/assets/avatars/${this.state.hero}.webp`}
-                        style={{
-                          height: '80px',
-                          width: '80px',
-                          objectFit: 'contain',
-                        }}
-                      />
-                    ) : (
-                      <img
-                        src={`/assets/avatars/${LS.hero}.webp`}
-                        style={{
-                          height: '80px',
-                          width: '80px',
-                          objectFit: 'contain',
-                        }}
-                      />
-                    )}
+                    <img
+                      src="/assets/avatars/hero.webp"
+                      style={{
+                        height: '80px',
+                        width: '80px',
+                        objectFit: 'contain',
+                      }}
+                    />
                   </div>
                   <div className="info">
                     {/* or lesson hero name? though sometimes it says things like oldwoman */}

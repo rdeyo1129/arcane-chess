@@ -200,7 +200,6 @@ interface State {
   visitedPanels: string[];
   theme: string;
   opponent: string;
-  hero: string;
   victoryMessage: string;
   defeatMessage: string;
 }
@@ -316,7 +315,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           : 'white',
       theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
       opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
-      hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
       victoryMessage:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.victory,
       defeatMessage:
@@ -905,25 +903,14 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                 </div>
                 <div className="info-avatar">
                   <div className="avatar">
-                    {this.state.hero !== '' ? (
-                      <img
-                        src={`/assets/avatars/${this.state.hero}.webp`}
-                        style={{
-                          height: '80px',
-                          width: '80px',
-                          objectFit: 'contain',
-                        }}
-                      />
-                    ) : (
-                      <img
-                        src={`/assets/avatars/${LS.hero}.webp`}
-                        style={{
-                          height: '80px',
-                          width: '80px',
-                          objectFit: 'contain',
-                        }}
-                      />
-                    )}
+                    <img
+                      src="/assets/avatars/hero.webp"
+                      style={{
+                        height: '80px',
+                        width: '80px',
+                        objectFit: 'contain',
+                      }}
+                    />
                   </div>
                   {/* or lesson hero name? though sometimes it says things like oldwoman */}
                   <div className="info"></div>

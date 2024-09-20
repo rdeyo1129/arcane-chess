@@ -1,18 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { connect } from 'react-redux';
-// import { logoutUser } from '../../actions/authActions';
 import { withRouter } from 'src/components/withRouter/withRouter';
-
 import Button from 'src/components/Button/Button';
-
 import './Dashboard.scss';
 
 // Define the structure for props if any are expected
 interface DashboardProps {
-  // Example:
-  // someProp: string;
   logoutUser: () => void;
   auth: { user: { username: string } };
   navigate: (path: string) => void;
@@ -21,6 +15,14 @@ interface DashboardProps {
 // Define the structure for the state
 interface DashboardState {
   hoverNav: string;
+  menuItemDescriptions: {
+    campaign: string;
+    leaderboard: string;
+    quickplay: string;
+    lexicon: string;
+    manifest: string;
+    logout: string;
+  };
 }
 
 export class UnwrappedDashboard extends React.Component<
@@ -31,6 +33,17 @@ export class UnwrappedDashboard extends React.Component<
     super(props);
     this.state = {
       hoverNav: 'campaign',
+      menuItemDescriptions: {
+        campaign: 'Play the story mode and earn your spot on the leaderboard.',
+        leaderboard:
+          'See the global rankings and scores for each chapter in the campaign.',
+        quickplay:
+          'Test the arcana and face off against the engine with custom battle options.',
+        lexicon:
+          'Look back on the lessons you have learned throughout the campaign.',
+        manifest: 'More information: mission, about, links, notes.',
+        logout: 'Take a break.',
+      },
     };
   }
 
@@ -45,15 +58,12 @@ export class UnwrappedDashboard extends React.Component<
           >
             <Button
               text="CAMPAIGN"
-              // onClick={() => this.calculateFen()}
               className="tertiary"
               color="B"
               height={50}
               width={160}
-              // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
-              // strong={true}
             />
           </Link>
           <Link
@@ -63,14 +73,11 @@ export class UnwrappedDashboard extends React.Component<
           >
             <Button
               text="LEADERBOARD"
-              // onClick={() => this.calculateFen()}
               className="tertiary"
               color="B"
               height={50}
               width={160}
-              // disabled={this.state.fen === ''}
               disabled={false}
-              // strong={true}
               backgroundColorOverride="#11111188"
             />
           </Link>
@@ -81,15 +88,12 @@ export class UnwrappedDashboard extends React.Component<
           >
             <Button
               text="QUICKPLAY"
-              // onClick={() => this.calculateFen()}
               className="tertiary"
               color="B"
               height={50}
               width={160}
-              // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
-              // strong={true}
             />
           </Link>
           <Link
@@ -99,36 +103,14 @@ export class UnwrappedDashboard extends React.Component<
           >
             <Button
               text="LEXICON"
-              // onClick={() => this.calculateFen()}
               className="tertiary"
               color="B"
               height={50}
               width={160}
-              // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
-              // strong={true}
             />
           </Link>
-
-          {/* <Link
-               className="home-button"
-               to="/create"
-               onMouseEnter={() => this.setState({ hoverNav: 'create' })}
-             >
-               <Button
-                 text="CREATE"
-                 onClick={() => null}
-                 className="tertiary"
-                 color="B"
-                 height={50}
-                 width={160}
-                 // disabled={this.state.fen === ''}
-                 disabled={false}
-                 backgroundColorOverride="#11111188"
-                 // strong={true}
-               />
-             </Link> */}
           <Link
             className="home-button"
             to="/manifest"
@@ -136,35 +118,36 @@ export class UnwrappedDashboard extends React.Component<
           >
             <Button
               text="MANIFEST"
-              onClick={() => null}
               className="tertiary"
               color="B"
               height={50}
               width={160}
-              // disabled={this.state.fen === ''}
               disabled={false}
               backgroundColorOverride="#11111188"
-              // strong={true}
             />
           </Link>
           <div onMouseEnter={() => this.setState({ hoverNav: 'logout' })}>
             <Button
               text="LOGOUT"
-              // onClick={() => this.calculateFen()}
               className="tertiary"
               color="B"
               height={50}
               width={160}
-              // disabled={this.state.fen === ''}
               disabled={false}
               onClick={() => {
-                // this.props.logoutUser();
                 this.props.navigate('/intro');
               }}
               backgroundColorOverride="#11111188"
-              // strong={true}
             />
           </div>
+        </div>
+        <div className="menu-item-description">
+          {
+            this.state.menuItemDescriptions[
+              this.state
+                .hoverNav as keyof DashboardState['menuItemDescriptions']
+            ]
+          }
         </div>
         <div className="hover-image">
           <img

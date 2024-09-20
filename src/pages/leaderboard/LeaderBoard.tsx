@@ -48,15 +48,15 @@ export class UnwrappedLeaderBoard extends React.Component<
   }
 
   render() {
-    const digits = (score: number | string) => {
-      const formattedNumber = Number(score).toLocaleString();
+    // const digits = (score: number | string) => {
+    //   const formattedNumber = Number(score).toLocaleString();
 
-      return formattedNumber.split('').map((char, index) => (
-        <span key={index} className="digit-box">
-          {char}
-        </span>
-      ));
-    };
+    //   return formattedNumber.split('').map((char, index) => (
+    //     <span key={index} className="digit-box">
+    //       {char}
+    //     </span>
+    //   ));
+    // };
     return (
       <div className="outer-leaderboard">
         <div className="nav">
@@ -93,7 +93,7 @@ export class UnwrappedLeaderBoard extends React.Component<
           </div>
         </div>
         <div className="leaderboard">
-          {_.map(this.state.currentChapterTopScores, (score, index) => {
+          {/* {_.map(this.state.currentChapterTopScores, (score, index) => {
             if (!score.score) return;
             return (
               <div key={index} className="user-score">
@@ -103,7 +103,9 @@ export class UnwrappedLeaderBoard extends React.Component<
                 </div>
               </div>
             );
-          })}
+          })} */}
+          Here you will find global rankings as players complete chapters in the
+          campaign... But not yet. Come Back Soon!
         </div>
         <div className="leaderboard-curtain"></div>
         <div className="leaderboard-image">

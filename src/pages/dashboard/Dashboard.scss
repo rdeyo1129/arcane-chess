@@ -39,6 +39,16 @@
     top: 0;
     justify-content: center;
   }
+  .menu-item-description {
+    width: 960px;
+    height: 50px;
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    align-items: center;
+    padding: 0 0 0 40px;
+    background: #11111188;
+  }
   .hover-image {
     height: 100%;
     overflow: hidden;

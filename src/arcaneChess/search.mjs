@@ -405,6 +405,7 @@ export function SearchPosition() {
 
     for (c = 0; c < PvNum; c++) {
       temporalPincer += PrMove(GameBoard.PvArray[c]) + ' ';
+      line += ' ' + PrMove(GameBoard.PvArray[c]);
     }
     if (currentDepth !== 1) {
       line +=
@@ -412,6 +413,7 @@ export function SearchPosition() {
         ((SearchController.fhf / SearchController.fh) * 100).toFixed(2) +
         '%';
     }
+    console.log(line);
   }
 
   GameBoard.cleanPV = [bestScore, line];

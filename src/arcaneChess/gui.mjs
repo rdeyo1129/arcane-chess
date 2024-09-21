@@ -317,12 +317,12 @@ export function CheckAndSet() {
 }
 
 export async function PreSearch(thinkingTime, depth) {
-  if (GameController.GameOver === BOOL.FALSE) {
-    SearchController.thinking = BOOL.TRUE;
-    await new Promise((resolve) => setTimeout(resolve, 200));
-    const bestMove = startSearch(thinkingTime, depth);
-    return bestMove;
-  }
+  // if (GameController.GameOver === BOOL.FALSE) {
+  SearchController.thinking = BOOL.TRUE;
+  await new Promise((resolve) => setTimeout(resolve, 200));
+  const bestMove = startSearch(thinkingTime, depth);
+  return bestMove;
+  // }
 }
 
 export function engineSuggestion(thinkingTime) {

@@ -13,7 +13,7 @@ import 'src/chessground/styles/normal.scss';
 
 import Button from '../Button/Button';
 import Select from '../Select/Select';
-import Toggle from '../Toggle/Toggle';
+// import Toggle from '../Toggle/Toggle';
 import { unlockableArcana } from 'src/pages/book/ArcanaSelect';
 
 import './Modal.scss';
@@ -46,6 +46,8 @@ interface ModalState {
   reducedScore: number;
   chapterNum: number;
   difficulty: string;
+  difficultyDescriptions: { [key: string]: string };
+  hoverDifficulty: string;
 }
 
 interface ArcanaDetail {
@@ -121,6 +123,16 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       ),
       chapterNum: LS.chapter + 1,
       difficulty: LS.difficulty,
+      difficultyDescriptions: {
+        novice:
+          'NOVICE: For players looking to experiement and take their time with the new rules.',
+        intermediate:
+          'INTERMEDIATE: The clock is enabled, with slightly stronger moves from the engine.',
+        advanced:
+          'ADVANCED: Players should expect to be more patient and will not have the first move.',
+        expert: 'EXPERT: Full-strength challenge for veteran players.',
+      },
+      hoverDifficulty: LS.difficulty,
     };
   }
 
@@ -217,21 +229,42 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="multiplier-settings-buttons">
-              <span className="multiplier">SELECT A DIFFICULTY</span>
+              <div className="difficulty-text">
+                <div className="multiplier">SELECT A DIFFICULTY</div>
+                <div>
+                  {
+                    this.state.difficultyDescriptions[
+                      this.state.hoverDifficulty
+                    ]
+                  }
+                </div>
+              </div>
               <div className="difficulties">
                 <img
                   className="level-1"
                   src="/assets/levels/novice.webp"
                   alt="novice"
+                  onMouseEnter={() =>
+                    this.setState({
+                      hoverDifficulty: 'novice',
+                    })
+                  }
+                  onMouseLeave={() =>
+                    this.setState({
+                      hoverDifficulty: this.state.difficulty,
+                    })
+                  }
                   style={{
-                    height: '200px',
-                    width: '180px',
+                    height: '240px',
+                    width: '200px',
                     overflow: 'hidden',
                     objectFit: 'cover',
                     outline:
-                      this.state.difficulty === 'novice'
+                      this.state.hoverDifficulty === 'novice'
+                        ? '2px solid #dddddd'
+                        : this.state.difficulty === 'novice'
                         ? '2px solid #3f48cc'
-                        : '2px solid transparent',
+                        : 'none',
                     borderRadius: '5px',
                     cursor:
                       "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
@@ -244,11 +277,22 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         ...getLocalStorage(this.props.auth.user.username)
                           .config,
                         multiplier: 80,
+                        clock: false,
+                        color: 'white',
+                        depth: 1,
+                        thinkingTime: 2,
                       },
                     });
                     this.setState({
                       difficulty: 'novice',
-                      config: { ...this.state.config, multiplier: 80 },
+                      config: {
+                        ...this.state.config,
+                        multiplier: 80,
+                        clock: false,
+                        color: 'white',
+                        depth: 1,
+                        thinkingTime: 2,
+                      },
                     });
                   }}
                 />
@@ -256,15 +300,27 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   className="level-2"
                   src="/assets/levels/intermediate.webp"
                   alt="intermediate"
+                  onMouseEnter={() =>
+                    this.setState({
+                      hoverDifficulty: 'intermediate',
+                    })
+                  }
+                  onMouseLeave={() =>
+                    this.setState({
+                      hoverDifficulty: this.state.difficulty,
+                    })
+                  }
                   style={{
-                    height: '200px',
-                    width: '180px',
+                    height: '240px',
+                    width: '200px',
                     overflow: 'hidden',
                     objectFit: 'cover',
                     outline:
-                      this.state.difficulty === 'intermediate'
+                      this.state.hoverDifficulty === 'intermediate'
+                        ? '2px solid #dddddd'
+                        : this.state.difficulty === 'intermediate'
                         ? '2px solid #34aa48'
-                        : '2px solid transparent',
+                        : 'none',
                     borderRadius: '5px',
                     cursor:
                       "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
@@ -277,11 +333,22 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         ...getLocalStorage(this.props.auth.user.username)
                           .config,
                         multiplier: 95,
+                        clock: true,
+                        color: 'white',
+                        depth: 3,
+                        thinkingTime: 4,
                       },
                     });
                     this.setState({
                       difficulty: 'intermediate',
-                      config: { ...this.state.config, multiplier: 95 },
+                      config: {
+                        ...this.state.config,
+                        multiplier: 95,
+                        clock: true,
+                        color: 'white',
+                        depth: 3,
+                        thinkingTime: 4,
+                      },
                     });
                   }}
                 />
@@ -289,15 +356,27 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   className="level-3"
                   src="/assets/levels/advanced.webp"
                   alt="advanced"
+                  onMouseEnter={() =>
+                    this.setState({
+                      hoverDifficulty: 'advanced',
+                    })
+                  }
+                  onMouseLeave={() =>
+                    this.setState({
+                      hoverDifficulty: this.state.difficulty,
+                    })
+                  }
                   style={{
-                    height: '200px',
-                    width: '180px',
+                    height: '240px',
+                    width: '200px',
                     overflow: 'hidden',
                     objectFit: 'cover',
                     outline:
-                      this.state.difficulty === 'advanced'
+                      this.state.hoverDifficulty === 'advanced'
+                        ? '2px solid #dddddd'
+                        : this.state.difficulty === 'advanced'
                         ? '2px solid #d9b800'
-                        : '2px solid transparent',
+                        : 'none',
                     borderRadius: '5px',
                     cursor:
                       "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
@@ -310,11 +389,22 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         ...getLocalStorage(this.props.auth.user.username)
                           .config,
                         multiplier: 110,
+                        clock: true,
+                        color: 'black',
+                        depth: 5,
+                        thinkingTime: 6,
                       },
                     });
                     this.setState({
                       difficulty: 'advanced',
-                      config: { ...this.state.config, multiplier: 110 },
+                      config: {
+                        ...this.state.config,
+                        multiplier: 110,
+                        clock: true,
+                        color: 'black',
+                        depth: 5,
+                        thinkingTime: 6,
+                      },
                     });
                   }}
                 />
@@ -322,15 +412,27 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   className="expert-4"
                   src="/assets/levels/expert.webp"
                   alt="expert"
+                  onMouseEnter={() =>
+                    this.setState({
+                      hoverDifficulty: 'expert',
+                    })
+                  }
+                  onMouseLeave={() =>
+                    this.setState({
+                      hoverDifficulty: this.state.difficulty,
+                    })
+                  }
                   style={{
-                    height: '200px',
-                    width: '180px',
+                    height: '240px',
+                    width: '200px',
                     overflow: 'hidden',
                     objectFit: 'cover',
                     outline:
-                      this.state.difficulty === 'expert'
+                      this.state.hoverDifficulty === 'expert'
+                        ? '2px solid #dddddd'
+                        : this.state.difficulty === 'expert'
                         ? '2px solid #c53939'
-                        : '2px solid transparent',
+                        : 'none',
                     borderRadius: '5px',
                     cursor:
                       "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
@@ -343,132 +445,94 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         ...getLocalStorage(this.props.auth.user.username)
                           .config,
                         multiplier: 125,
+                        clock: true,
+                        color: 'black',
+                        depth: 7,
+                        thinkingTime: 8,
                       },
                     });
                     this.setState({
                       difficulty: 'expert',
-                      config: { ...this.state.config, multiplier: 125 },
+                      config: {
+                        ...this.state.config,
+                        multiplier: 125,
+                        clock: true,
+                        color: 'black',
+                        depth: 7,
+                        thinkingTime: 8,
+                      },
                     });
                   }}
                 />
               </div>
-              <div className="settings">
-                <div className="settings-block">
-                  <Select
-                    options={['white', 'black']}
-                    title="Color"
-                    type="string"
-                    onChange={(val) =>
-                      this.updateConfig(val, 'color', val === 'white' ? -6 : 6)
-                    }
-                  />
+              <div className="settings-buttons">
+                <div className="settings">
+                  <div className="multiplier">
+                    <div className="setting">CHALLENGE MULTIPLIER:</div>x
+                    {this.state.config.multiplier}
+                  </div>
+                  <div className="setting-descriptions">
+                    <div className="setting">
+                      <div>ENGINE DEPTH:</div>
+                      <div>{this.state.config.depth} moves</div>
+                    </div>
+                    <div className="setting">
+                      <div>PLAYER CLOCK:</div>
+                      <div>{this.state.config.clock ? 'ON' : 'OFF'}</div>
+                    </div>
+                    <div className="setting">
+                      <div>ENGINE TIME:</div>
+                      <div>{this.state.config.thinkingTime} seconds</div>
+                    </div>
+                    <div className="setting">
+                      <div>PLAYER COLOR:</div>
+                      <div>{this.state.config.color}</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="settings-block">
-                  <Select
-                    title="Thinking Time"
-                    type="number"
-                    options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} // or to depth x?
-                    onChange={(val) =>
-                      this.updateConfig(
-                        Number(val),
-                        'thinkingTime',
-                        (-this.state.config.thinkingTime +
-                          Number(val)) as number
-                      )
-                    }
-                  />
+                <div className="buttons">
+                  {/* <div className="handicaps">
+                    <div className="settings-block">
+                      <Toggle
+                        title="Blunder Vision"
+                        callback={(val) =>
+                          this.updateConfig(
+                            val,
+                            'blunderVision',
+                            val ? -30 : 30
+                          )
+                        }
+                      />
+                    </div>
+                    <div className="settings-block">
+                      <Toggle
+                        title="Check Vision"
+                        callback={(val) =>
+                          this.updateConfig(val, 'threatVision', val ? -30 : 30)
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div className="handicap-descriptions"></div> */}
+                  <div className="action-buttons">
+                    <Button
+                      text="CANCEL"
+                      className="secondary"
+                      color="B"
+                      height={60}
+                      width={160}
+                      onClick={() => this.props.toggleModal()}
+                    />
+                    <Button
+                      text="START"
+                      className="primary"
+                      color="B"
+                      height={60}
+                      width={160}
+                      onClick={() => this.saveSettingsStartBook()}
+                    />
+                  </div>
                 </div>
-                <div className="settings-block">
-                  <Toggle
-                    title="Clock"
-                    initialState={true}
-                    callback={(val: boolean) =>
-                      this.updateConfig(val, 'clock', val ? 3 : -3)
-                    }
-                  />
-                </div>
-                <div className="settings-block">
-                  <Select
-                    title="Autopromotion"
-                    type="string"
-                    options={[
-                      'Select',
-                      // 'N',
-                      // 'Z',
-                      // 'U',
-                      // 'B',
-                      // 'R',
-                      // 'Q',
-                      // 'T',
-                      // 'M',
-                      // 'W',
-                      // 'S',
-                    ]}
-                    onChange={(val) =>
-                      this.updateConfig(val, 'autopromotion', 0)
-                    }
-                  />
-                </div>
-                <div className="settings-block">
-                  <Select
-                    title="Depth"
-                    type="number"
-                    options={[1, 2, 3, 4, 5, 6, 7, 8]}
-                    onChange={(val) =>
-                      this.updateConfig(
-                        Number(val),
-                        'depth',
-                        (-this.state.config.depth + Number(val)) as number
-                      )
-                    }
-                  />
-                </div>
-                {/* <div className="settings-block">
-                  <Toggle
-                    title="Blunder Vision"
-                    callback={(val: boolean) =>
-                      this.updateConfig(val, 'blunderVision', val ? -200 : 200)
-                    }
-                  />
-                </div>
-                <div className="settings-block">
-                  <Toggle
-                    title="Threat Vision"
-                    callback={(val) =>
-                      this.updateConfig(val, 'threatVision', val ? -100 : 100)
-                    }
-                  />
-                </div>
-                <div className="settings-block">
-                  <Toggle
-                    title="Check Vision"
-                    callback={(val) =>
-                      this.updateConfig(val, 'checkVision', val ? -100 : 100)
-                    }
-                  />
-                </div>
-                <div className="settings-block">
-                  <Toggle
-                    title="Hints"
-                    callback={(val) =>
-                      this.updateConfig(val, 'hints', val ? -100 : 100)
-                    }
-                  />
-                </div> */}
-              </div>
-              <div className="buttons">
-                <Button
-                  text="CANCEL"
-                  className="secondary"
-                  color="B"
-                  onClick={() => this.props.toggleModal()}
-                />
-                <Button
-                  text="START"
-                  className="primary"
-                  color="B"
-                  onClick={() => this.saveSettingsStartBook()}
-                />
               </div>
             </div>
           </Modal>

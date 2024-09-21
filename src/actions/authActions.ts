@@ -6,7 +6,12 @@ import { AppDispatch } from 'src/index';
 
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types';
+import {
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  SET_CURRENT_GUEST,
+  USER_LOADING,
+} from './types';
 
 // interface AuthState {
 //   isAuthenticated: boolean;
@@ -87,7 +92,6 @@ export const loginUser =
             existingGuestUser.data.auth &&
             existingGuestUser.data.auth.user
           ) {
-            // Update existing guest data
             const updatedGuestData = {
               ...existingGuestUser.data,
               auth: {
@@ -95,7 +99,7 @@ export const loginUser =
                 user: {
                   ...existingGuestUser.data.auth.user,
                   id: res.data.id || '0',
-                  username: existingGuestUser.data.auth.user.username, // Use existing guest username
+                  username: existingGuestUser.data.auth.user.username,
                   campaign: {
                     ...existingGuestUser.data.auth.user.campaign,
                     topScores: [
@@ -152,7 +156,7 @@ export const loginUser =
   };
 
 // Guest Login - the static webpage solution - deprecate when ready for more users
-export const loginGuest = (guestData: any, navigate: any) => {
+export const loginGuest = (guestData: any) => {
   const existingGuestUser = getGuestUserFromLocalStorage();
   if (guestData.guest || getLocalStorage(guestData.username) === null) {
     if (
@@ -167,7 +171,7 @@ export const loginGuest = (guestData: any, navigate: any) => {
           user: {
             ...existingGuestUser.data.auth.user,
             id: '0',
-            username: existingGuestUser.data.auth.user.username, // Use existing guest username
+            username: existingGuestUser.data.auth.user.username,
             campaign: {
               ...existingGuestUser.data.auth.user.campaign,
               topScores: [
@@ -178,9 +182,27 @@ export const loginGuest = (guestData: any, navigate: any) => {
         },
       };
       setLocalStorage(updatedGuestData);
-      navigate('/');
+    } else {
+      // Set new localStorage data if no existing guest is found
+      setLocalStorage({
+        auth: {
+          user: {
+            id: '0',
+            username: guestData.username,
+            campaign: {
+              topScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] as number[],
+            },
+          },
+        },
+      });
     }
   }
+  return {
+    type: SET_CURRENT_GUEST,
+    payload: {
+      authorized: true,
+    },
+  };
 };
 
 // Set logged in user

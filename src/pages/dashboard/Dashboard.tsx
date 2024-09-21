@@ -135,7 +135,7 @@ export class UnwrappedDashboard extends React.Component<
               width={160}
               disabled={false}
               onClick={() => {
-                this.props.navigate('/intro');
+                this.props.navigate('/');
               }}
               backgroundColorOverride="#11111188"
             />

@@ -440,7 +440,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
                 textAlign: 'center',
               }}
             >{`Here you will find lessons that you have completed... But not yet. Come back soon!`}</span>
-            <Link to="/">
+            <Link to="/dashboard">
               <Button
                 text="BACK TO DASHBOARD"
                 className="primary"

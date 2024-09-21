@@ -12,11 +12,9 @@ import Input from 'src/components/Input/Input';
 import Hero from 'src/components/hero2/Hero';
 
 import {
-  // loginUser,
-  loginGuest,
+  loginUser,
   getGuestUserFromLocalStorage,
 } from '../../actions/authActions';
-
 interface UserData {
   username: string;
   password: string;
@@ -74,11 +72,11 @@ const UnwrappedLogin: React.FC = () => {
   ) => {
     e.preventDefault();
 
-    // const userData: UserData = {
-    //   username,
-    //   password,
-    //   guest,
-    // };
+    const userData: UserData = {
+      username,
+      password,
+      guest,
+    };
 
     let guestUserData: UserData | null = null;
 
@@ -99,9 +97,7 @@ const UnwrappedLogin: React.FC = () => {
       }
     }
 
-    // uncomment when ready for users
-    // dispatch(loginUser(guest ? guestUserData : userData, navigate));
-    dispatch(loginGuest(guestUserData, navigate));
+    dispatch(loginUser(guest ? guestUserData : userData, navigate));
   };
 
   return (
@@ -170,7 +166,7 @@ const UnwrappedLogin: React.FC = () => {
                 backgroundColorOverride="#111111"
               />
             </Link>
-            {/* <Link to={'/'}>
+            {/* <Link to="/">
               <Button
                 className="tertiary"
                 text={'FORGOT'}
@@ -181,7 +177,7 @@ const UnwrappedLogin: React.FC = () => {
                 backgroundColorOverride="#111111"
               />
             </Link> */}
-            <Link to={'/'}>
+            <Link to="/">
               <Button
                 className="tertiary"
                 text={'HOME'}

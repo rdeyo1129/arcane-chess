@@ -66,9 +66,9 @@ import Modal from 'react-modal';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route path="/intro" element={<FrontPage />} />
+      <Route index element={<FrontPage />} />
       <Route
-        index
+        path="/dashboard"
         element={
           <PrivateRoute>
             <Dashboard />

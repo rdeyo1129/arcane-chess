@@ -696,7 +696,17 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     const sortedHistory = _.chunk(this.state.history, 2);
     return (
       <div className="tactorius-board fade">
-        <>
+        <div
+          style={{
+            position: 'absolute',
+            height: '100vh',
+            width: '100vw',
+            background: 'url(/assets/pages/tactorius.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
           <TactoriusModal
             isOpen={this.state.quickPlayModalOpen}
             handleClose={() => {
@@ -966,7 +976,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               </div>
             </div>
             <div className="time-board-time">
-              <div className="board-view jail-board">
+              <div className="board-view tactorius-default-board">
                 <Chessground
                   // theme={this.state.theme}
                   forwardedRef={this.chessgroundRef}
@@ -1465,7 +1475,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               </div>
             </div>
           </div>
-        </>
+        </div>
       </div>
     );
   }

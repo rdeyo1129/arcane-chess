@@ -216,13 +216,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             isOpen={this.props.isOpen}
             ariaHideApp={false}
           >
-            <div className="image-text">
-              {/* <img className="image" src={this.props.imgPath} /> */}
-            </div>
             <div className="multiplier-settings-buttons">
-              <span className="multiplier">
-                x{this.state.config.multiplier} points
-              </span>
+              <span className="multiplier">SELECT A DIFFICULTY</span>
               <div className="difficulties">
                 <img
                   className="level-1"
@@ -1104,7 +1099,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       width={160}
                       height={40}
                       onClick={() => {
-                        this.props.navigate('/');
+                        this.props.navigate('/dashboard');
                       }}
                     />
                     <Button
@@ -1154,7 +1149,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       width={160}
                       height={40}
                       onClick={() => {
-                        this.props.navigate('/');
+                        this.props.navigate('dashboard');
                       }}
                     />
                     <Button

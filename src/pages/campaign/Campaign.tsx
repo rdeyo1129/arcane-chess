@@ -63,7 +63,7 @@ export class UnwrappedCampaign extends React.Component<
         }}
       >
         <div className="back">
-          <Link to="/">
+          <Link to="/dashboard">
             <Button
               text="BACK"
               className="tertiary"

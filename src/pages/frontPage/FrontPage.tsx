@@ -1,20 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { withRouter } from 'src/components/withRouter/withRouter';
+import { connect } from 'react-redux';
 
 import './FrontPage.scss';
 import Hero from 'src/components/hero2/Hero';
 
 import Button from '../../components/Button/Button';
 
+import {
+  loginGuest,
+  getGuestUserFromLocalStorage,
+} from '../../actions/authActions';
+
+interface UserData {
+  username: string;
+  password: string;
+  guest: boolean;
+}
+
+type FrontPageProps = {
+  loginGuest: (userData: any) => void;
+  registerGuest: () => void;
+  navigate: (path: string) => void;
+};
+
 type RandomSloganState = {
   currentSlogan: string;
   currentIndex: number;
 };
 
-class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
+class UnwrappedFrontPage extends React.Component<
+  FrontPageProps,
+  RandomSloganState
+> {
   private slogans: string[];
   private intervalId: NodeJS.Timeout | undefined = undefined;
-  constructor(props: object) {
+  constructor(props: FrontPageProps) {
     super(props);
     this.slogans = [
       'Principle. Preparation. Process.',
@@ -40,6 +62,35 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
       currentSlogan: this.slogans[nextIndex],
       currentIndex: nextIndex,
     });
+  };
+
+  onSubmitLogin = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+
+    let guestUserData: UserData | null = null;
+
+    const existingGuestUser = getGuestUserFromLocalStorage();
+
+    if (existingGuestUser) {
+      guestUserData = {
+        username: existingGuestUser.key,
+        password: '123456',
+        guest: true,
+      };
+    } else {
+      guestUserData = {
+        username: `guest_${Math.random().toString(36).substring(2)}`,
+        password: '123456',
+        guest: true,
+      };
+    }
+
+    if (guestUserData) {
+      this.props.loginGuest(guestUserData);
+      this.props.navigate('/dashboard');
+    } else {
+      return false;
+    }
   };
 
   componentDidMount() {
@@ -73,7 +124,12 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
           </div>
           <div className="header-buttons">
             {/* revert to login page when ready for users */}
-            <Link to={'/'}>
+            <Link
+              to="/dashboard"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
+                this.onSubmitLogin(e)
+              }
+            >
               <Button
                 text="ENTER"
                 // onClick={() => this.calculateFen()}
@@ -157,4 +213,16 @@ class UnwrappedFrontPage extends React.Component<object, RandomSloganState> {
   }
 }
 
-export const FrontPage = UnwrappedFrontPage;
+const mapDispatchToProps = (dispatch: any) => ({
+  loginGuest: (guestUserData: UserData) => dispatch(loginGuest(guestUserData)),
+});
+
+const FrontPageNoNavigation = connect(
+  null,
+  mapDispatchToProps
+)(withRouter(UnwrappedFrontPage));
+
+export const FrontPage = ({ ...mapDispatchToProps }) => {
+  const navigate = useNavigate();
+  return <FrontPageNoNavigation {...mapDispatchToProps} navigate={navigate} />;
+};

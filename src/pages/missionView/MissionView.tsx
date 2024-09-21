@@ -251,14 +251,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.username);
     this.state = {
-      turn:
-        booksMap[
-          `book${getLocalStorage(this.props.auth.user.username).chapter}`
-        ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
-          'panel-1'
-        ].fen.split(' ')[1] === 'w'
-          ? 'white'
-          : 'black',
+      turn: 'white',
       playerInc:
         getLocalStorage(this.props.auth.user.username).config.color === 'white'
           ? booksMap[
@@ -404,10 +397,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     );
 
   engineGo = () => {
+    if (this.state.gameOver) return;
     this.setState({
       thinking: true,
     });
-
     new Promise((resolve) => {
       arcaneChess()
         .engineReply(this.state.thinkingTime, this.state.engineDepth)
@@ -699,6 +692,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         fen: outputFenOfCurrentPosition(),
         fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
         lastMove: [orig, dest],
+        turn: prevState.turn === 'white' ? 'black' : 'white',
         placingPiece: 0,
         placingRoyalty: 0,
         placingPromotion: 0,
@@ -822,28 +816,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         this.state.royalties,
         this.state.preset
       );
-      this.setState(
-        {
-          turn: GameBoard.side === 0 ? 'white' : 'black',
-          // wArcana: {
-          //   ...whiteArcaneConfig,
-          // },
-          // bArcana: {
-          //   ...blackArcaneConfig,
-          // },
-        },
-        () => {
-          if (this.state.engineColor === this.state.turn) {
-            this.engineGo();
-          }
-        }
-      );
+      if (this.state.engineColor === this.state.turn) {
+        this.engineGo();
+      }
     }
   }
 
   render() {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
-    const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
     // const { auth } = this.props;
@@ -1020,14 +1000,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             }.svg`}
                             style={{
                               opacity:
-                                this.state.playerColor !== gameBoardTurn ||
+                                this.state.playerColor !== this.state.turn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
                                 (!futureSightAvailable && key === 'modsFUT')
                                   ? 0.5
                                   : 1,
                               cursor:
-                                this.state.playerColor !== gameBoardTurn ||
+                                this.state.playerColor !== this.state.turn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
                                 (!futureSightAvailable && key === 'modsFUT')
@@ -1036,7 +1016,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             }}
                             onClick={() => {
                               if (
-                                this.state.playerColor !== gameBoardTurn ||
+                                this.state.playerColor !== this.state.turn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor
                               )
@@ -1122,7 +1102,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                           -4
                                         ),
                                         lastMove: [],
-                                        turn: gameBoardTurn,
+                                        turn:
+                                          prevState.turn === 'white'
+                                            ? 'black'
+                                            : 'white',
                                         royalties: {
                                           ...this.arcaneChess().getRoyalties(),
                                         },
@@ -1181,7 +1164,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     lastMove={this.state.lastMove}
                     orientation={this.state.orientation}
                     disableContextMenu={false}
-                    turnColor={gameBoardTurn}
+                    turnColor={this.state.turn}
                     movable={{
                       free: false,
                       rookCastle: false,
@@ -1256,6 +1239,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               placingPiece: 0,
                               placingRoyalty: 0,
                               swapType: '',
+                              turn:
+                                prevState.turn === 'white' ? 'black' : 'white',
                               futureSightAvailable: true,
                             }),
                             () => {
@@ -1493,6 +1478,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                     },
                                   },
                                   lastMove: [key, key],
+                                  turn:
+                                    prevState.turn === 'white'
+                                      ? 'black'
+                                      : 'white',
                                   placingPiece: 0,
                                   placingRoyalty: 0,
                                   swapType: '',
@@ -1642,8 +1631,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         <ChessClock
                           ref={this.chessclockRef}
                           type="inc"
-                          playerTurn={gameBoardTurn === this.state.playerColor}
-                          turn={gameBoardTurn}
+                          playerTurn={
+                            this.state.turn === this.state.playerColor
+                          }
+                          turn={this.state.turn}
                           time={this.state.playerClock}
                           timePrime={this.state.playerInc}
                           playerTimeout={() => {

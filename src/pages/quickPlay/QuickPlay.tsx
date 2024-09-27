@@ -789,7 +789,16 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
           >
             <div className="opponent-dialogue-arcana">
               <div className="info-avatar">
-                <div className="avatar"></div>
+                <div className="avatar">
+                  <img
+                    src="/assets/avatars/anon.webp"
+                    style={{
+                      height: '80px',
+                      width: '80px',
+                      objectFit: 'contain',
+                    }}
+                  />
+                </div>
                 <div className="info">
                   <h3 className="name"></h3>
                   <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
@@ -1447,7 +1456,16 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                 />
               </div>
               <div className="info-avatar">
-                <div className="avatar"></div>
+                <div className="avatar">
+                  <img
+                    src="/assets/avatars/hero.webp"
+                    style={{
+                      height: '80px',
+                      width: '80px',
+                      objectFit: 'contain',
+                    }}
+                  />
+                </div>
                 <div className="info">
                   <h3 className="name"></h3>
                   <div className="player-time">

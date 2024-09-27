@@ -317,6 +317,7 @@ export function CheckAndSet() {
 }
 
 export async function PreSearch(thinkingTime, depth) {
+  // not sure if needed but fixed problem with white not moving first
   // if (GameController.GameOver === BOOL.FALSE) {
   SearchController.thinking = BOOL.TRUE;
   await new Promise((resolve) => setTimeout(resolve, 200));

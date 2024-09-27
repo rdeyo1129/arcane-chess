@@ -251,7 +251,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }
                   onMouseLeave={() =>
                     this.setState({
-                      hoverDifficulty: this.state.difficulty,
+                      hoverDifficulty: '',
                     })
                   }
                   style={{
@@ -307,7 +307,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }
                   onMouseLeave={() =>
                     this.setState({
-                      hoverDifficulty: this.state.difficulty,
+                      hoverDifficulty: '',
                     })
                   }
                   style={{
@@ -363,7 +363,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }
                   onMouseLeave={() =>
                     this.setState({
-                      hoverDifficulty: this.state.difficulty,
+                      hoverDifficulty: '',
                     })
                   }
                   style={{
@@ -419,7 +419,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }
                   onMouseLeave={() =>
                     this.setState({
-                      hoverDifficulty: this.state.difficulty,
+                      hoverDifficulty: '',
                     })
                   }
                   style={{

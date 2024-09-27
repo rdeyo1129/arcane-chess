@@ -49,6 +49,7 @@ class UnwrappedFrontPage extends React.Component<
       'Patience. Planning. Persistence.',
       'Difficult to learn, impossible to master.',
       'Your mind is the armory.',
+      'Less doom scroll, more square control.',
       'Initiative. Formulation. Execution.',
       'Built for GMs, instructive for all.',
       'The war continues... so does your learning.',

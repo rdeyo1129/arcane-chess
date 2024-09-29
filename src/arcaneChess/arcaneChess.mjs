@@ -61,6 +61,7 @@ import {
   blackArcaneConfig,
   setWhiteArcana,
   setBlackArcana,
+  POWERBIT,
 } from './arcaneDefs.mjs';
 import { COLOURS, PIECES, prettyToSquare } from './defs.mjs';
 import { TakeMove } from './makemove.mjs';
@@ -116,7 +117,7 @@ export default function arcaneChess() {
     royalties,
     preset = 'CLEAR'
   ) => {
-    setWhiteArcana(whiteConfig);
+    setWhiteArcana({ ...whiteConfig, dyadP: 1, dyadN: 1, dyadA: 1 });
     setBlackArcana(blackConfig);
 
     _.forEach(royalties, (value, key) => {
@@ -164,9 +165,21 @@ export default function arcaneChess() {
     GenerateMoves(true, false, 'COMP', 'COMP');
   };
 
+  const activateDyad = (type) => {
+    GameBoard.dyadName = type;
+    GameBoard.dyad = POWERBIT[type];
+    GameBoard.dyadClock = 0;
+    whiteArcaneConfig[type] -= 1;
+  };
+
+  const deactivateDyad = () => {
+    GameBoard.dyadName = '';
+    GameBoard.dyad = 0;
+    GameBoard.dyadClock = 0;
+  };
+
   return {
     // filesRanksBoard: () => InitFilesRanksBrd(),
-    // activateDyad: (type) => activateDyad(type),
     init: () => init(),
     startGame: (fen, whiteConfig, blackConfig, royalties, preset) =>
       startGame(fen, whiteConfig, blackConfig, royalties, preset),
@@ -180,6 +193,8 @@ export default function arcaneChess() {
       //   line: GameBoard.searchKillers[GameBoard.ply],
       // };
     },
+    activateDyad: (type) => activateDyad(type),
+    deactivateDyad: () => deactivateDyad(),
     getGroundMoves: () => {
       return validGroundMoves();
     },

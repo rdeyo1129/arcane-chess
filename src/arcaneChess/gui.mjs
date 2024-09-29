@@ -113,7 +113,7 @@ export function MakeUserMove(
     return { parsed, isInitPromotion: BOOL.TRUE };
   }
 
-  MakeMove(parsed);
+  MakeMove(parsed, 'userMove');
 
   CheckAndSet();
 

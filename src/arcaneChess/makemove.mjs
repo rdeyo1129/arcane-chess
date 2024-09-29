@@ -95,12 +95,13 @@ export function MovePiece(from, to) {
   }
 }
 
-export function MakeMove(move) {
+export function MakeMove(move, moveType = '') {
   let from = FROMSQ(move);
   let to = TOSQ(move);
   let side = GameBoard.side;
 
   GameBoard.history[GameBoard.hisPly].posKey = GameBoard.posKey;
+  GameBoard.history[GameBoard.hisPly].dyad = GameBoard.dyad;
 
   // const getWhiteKingPos = _.indexOf(GameBoard.pieces, 6, 22);
   const getWhiteKingRookPos = _.lastIndexOf(GameBoard.pieces, 4);
@@ -167,19 +168,6 @@ export function MakeMove(move) {
   if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
   HASH_CA();
 
-  // here to include arcane flags and a move array to account for dayd messaging
-  // use GameBoard.dyadClock to access move array
-  // history to also include messages about arcanes being used, property somehow?
-
-  // take move
-  // todo put a loop for dyad takebacks
-  // todo pretty history for all other moves and events
-  // todo io check checkmate draw
-  // todo variant endings
-  // todo arcane brain
-  // todo testing
-  // todo start ui
-
   GameBoard.invisibility[0] -= 1;
   GameBoard.invisibility[1] -= 1;
   // if > 0 ?
@@ -226,22 +214,15 @@ export function MakeMove(move) {
 
     HASH_CA();
     GameBoard.pass = false;
+
     GameBoard.side ^= 1;
     HASH_SIDE();
 
     return BOOL.TRUE;
   }
 
-  if (GameBoard.dyad > 0) {
-    GameBoard.history[GameBoard.hisPly].move = move;
-    GameBoard.history[GameBoard.hisPly].prettyHistory = [];
-    // GameBoard.history[GameBoard.hisPly].prettyHistory.push(PrMove(move));
-  } else {
-    // to have mutiple moves in one turn like invisibility and and swap
-    GameBoard.history[GameBoard.hisPly].move = move;
-    GameBoard.history[GameBoard.hisPly].prettyHistory = [];
-    // GameBoard.history[GameBoard.hisPly].prettyHistory.push(PrMove(move));
-  }
+  GameBoard.history[GameBoard.hisPly].move = move;
+  GameBoard.history[GameBoard.hisPly].prettyHistory = [];
   GameBoard.history[GameBoard.hisPly].fiftyMove = GameBoard.fiftyMove;
   GameBoard.history[GameBoard.hisPly].enPas = GameBoard.enPas;
   GameBoard.history[GameBoard.hisPly].castlePerm = GameBoard.castlePerm;
@@ -396,27 +377,30 @@ export function MakeMove(move) {
   ) {
     GameBoard.checksGiven[GameBoard.side]++;
   }
-  if (GameBoard.dyad > 0) {
-    GameBoard.dyadClock += 1;
+
+  GameBoard.hisPly++;
+  GameBoard.ply++;
+
+  if (moveType === 'userMove' && GameBoard.dyad > 0) {
+    GameBoard.dyadClock++;
+    if (GameBoard.dyadClock >= 2) {
+      GameBoard.dyad = 0;
+      GameBoard.dyadClock = 0;
+      GameBoard.dyadName = '';
+
+      GameBoard.side ^= 1;
+      HASH_SIDE();
+    }
   } else {
     GameBoard.side ^= 1;
     HASH_SIDE();
   }
 
-  if (
-    GameBoard.dyad === 0 ||
-    GameBoard.dyadClock === GameBoard.dyadMax[GameBoard.side]
-  ) {
-    GameBoard.hisPly++;
-    GameBoard.ply++;
-  }
-
   if (!move) {
     console.log('make move error', move);
-    // debugger; // eslint-disable-line
   }
 
-  if (SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], GameBoard.side)) {
+  if (SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], side ^ 1)) {
     TakeMove();
     return BOOL.FALSE;
   }
@@ -435,10 +419,25 @@ export function MakeMove(move) {
 }
 
 // take move
-export function TakeMove() {
-  if (GameBoard.dyad === 0) {
-    GameBoard.hisPly--;
-    GameBoard.ply--;
+export function TakeMove(moveType = '') {
+  if (GameBoard.hisPly > 0) GameBoard.hisPly--;
+  if (GameBoard.ply > 0) GameBoard.ply--;
+
+  let wasDyadMove = GameBoard.history[GameBoard.hisPly].dyad > 0;
+
+  if (wasDyadMove && moveType === 'userMove') {
+    if (GameBoard.dyadClock > 0) {
+      GameBoard.dyadClock--;
+      if (GameBoard.dyadClock === 0) {
+        GameBoard.dyad = 0;
+        GameBoard.dyadName = '';
+        GameBoard.side ^= 1;
+        HASH_SIDE();
+      }
+    }
+  } else {
+    GameBoard.side ^= 1;
+    HASH_SIDE();
   }
 
   if (
@@ -484,11 +483,6 @@ export function TakeMove() {
   _.forEach(GameBoard.royaltyE, (value, key) => {
     GameBoard.royaltyE[key] += 1;
   });
-
-  if (GameBoard.dyad === 0) {
-    GameBoard.side ^= 1;
-    HASH_SIDE();
-  }
 
   let captured = CAPTURED(move);
   let pieceEpsilon = PROMOTED(move);

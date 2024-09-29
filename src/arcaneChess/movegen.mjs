@@ -2188,8 +2188,8 @@ export function GenerateMoves(
                   capturesOnly
                 );
               }
-              t_sq += dir;
             }
+            t_sq += dir;
           }
 
           // note ROOK SHIFT

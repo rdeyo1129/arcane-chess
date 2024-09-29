@@ -22,7 +22,7 @@ import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 //   arcaneChessWorker,
 // } from '../../arcaneChess/arcaneChessInstance.js';
 import { GameBoard, InCheck, TOSQ, FROMSQ } from '../../arcaneChess/board.mjs';
-import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
+import { PrintMoveList, PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import {
   prettyToSquare,
   PIECES,
@@ -85,7 +85,6 @@ interface State {
   pvLine?: string[];
   hasMounted: boolean;
   nodeId: string;
-  engineLastMove: string[];
   whiteFaction: string;
   blackFaction: string;
   selected: string;
@@ -115,12 +114,14 @@ interface State {
   placingPiece: number;
   swapType: string;
   placingRoyalty: number;
+  isDyadMove: boolean;
+  normalMovesOnly: boolean;
   selectedSide: string;
   hoverArcane: string;
   royalties: {
     [key: string]: { [key: string]: number | undefined };
   };
-  lastMove: string[];
+  lastMove: string[][];
   orientation: string;
   preset: string;
   promotionModalOpen: boolean;
@@ -206,7 +207,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       historyPly: 0,
       history: [],
       thinking: SearchController.thinking,
-      engineLastMove: [],
       thinkingTime: this.props.config.thinkingTime,
       engineDepth: this.props.config.engineDepth,
       whiteFaction: 'normal',
@@ -225,6 +225,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       placingPiece: 0,
       swapType: '',
       placingRoyalty: 0,
+      isDyadMove: false,
+      normalMovesOnly: false,
       selectedSide: this.props.config.playerColor,
       hoverArcane: '',
       royalties: {},
@@ -306,7 +308,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               ],
               thinking: false,
               turn: prevState.turn === 'white' ? 'black' : 'white',
-              lastMove: [PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))],
+              lastMove: [[PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))]],
               // hint: '',
               royalties: {
                 ...prevState.royalties,
@@ -541,11 +543,12 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
         history: [...prevState.history, PrMove(parsed)],
         fen: outputFenOfCurrentPosition(),
         fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-        lastMove: [orig, dest],
+        lastMove: [[orig, dest]],
         placingPiece: 0,
         placingRoyalty: 0,
         placingPromotion: 0,
         promotionModalOpen: false,
+        normalMovesOnly: false,
         swapType: '',
         royalties: {
           ...prevState.royalties,
@@ -701,7 +704,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             position: 'absolute',
             height: '100vh',
             width: '100vw',
-            background: 'url(/assets/pages/tactorius.webp)',
+            // background: 'url(/assets/pages/tactorius.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -791,7 +794,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               <div className="info-avatar">
                 <div className="avatar">
                   <img
-                    src="/assets/avatars/anon.webp"
+                    src="/assets/avatars/voltairegrunt.webp"
                     style={{
                       height: '80px',
                       width: '80px',
@@ -866,21 +869,26 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               this.state.playerColor !== gameBoardTurn ||
                               this.state.selectedSide ===
                                 this.state.engineColor ||
-                              (!futureSightAvailable && key === 'modsFUT')
+                              (!futureSightAvailable && key === 'modsFUT') ||
+                              this.state.normalMovesOnly
                                 ? 0.5
                                 : 1,
                             cursor:
                               this.state.playerColor !== gameBoardTurn ||
                               this.state.selectedSide ===
                                 this.state.engineColor ||
-                              (!futureSightAvailable && key === 'modsFUT')
+                              (!futureSightAvailable && key === 'modsFUT') ||
+                              this.state.normalMovesOnly
                                 ? 'not-allowed'
                                 : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
                           }}
                           onClick={() => {
                             if (
                               this.state.playerColor !== gameBoardTurn ||
-                              this.state.selectedSide === this.state.engineColor
+                              this.state.selectedSide ===
+                                this.state.engineColor ||
+                              (!futureSightAvailable && key === 'modsFUT') ||
+                              this.state.normalMovesOnly
                             )
                               return;
                             if (
@@ -935,6 +943,13 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               if (key.includes('modsSUS')) {
                                 if (GameBoard.suspend > 0) return;
                                 GameBoard.suspend = 6;
+                              }
+                              if (key.includes('dyad')) {
+                                this.arcaneChess().activateDyad(key);
+                                this.setState({
+                                  isDyadMove: true,
+                                  normalMovesOnly: true,
+                                });
                               }
                               if (key === 'modsIMP') {
                                 this.getHintAndScore(1);
@@ -1016,7 +1031,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     check: true,
                     royalties: true,
                   }}
-                  lastMove={this.state.lastMove}
+                  lastMove={this.state.lastMove[0]}
                   orientation={this.state.playerColor}
                   disableContextMenu={false}
                   turnColor={gameBoardTurn}
@@ -1029,13 +1044,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                       if (this.state.placingPiece === 0) {
                         if (this.state.placingRoyalty === 0) {
                           if (this.state.swapType === '') {
-                            if (
-                              GameBoard.hisPly === 0 &&
-                              GameBoard?.history[3]?.move > 0
-                            ) {
-                              console.log(GameBoard.hisPly);
-                              debugger; // eslint-disable-line
-                            }
                             dests = this.arcaneChess().getGroundMoves();
                           } else {
                             dests = this.arcaneChess().getSwapMoves(
@@ -1102,7 +1110,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               ...prevState.fenHistory,
                               outputFenOfCurrentPosition(),
                             ],
-                            lastMove: [key, key],
+                            lastMove: [[key, key]],
                             placingPiece: 0,
                             placingRoyalty: 0,
                             swapType: '',
@@ -1205,6 +1213,22 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           this.state.swapType,
                           this.state.placingRoyalty
                         );
+                      if (this.state.isDyadMove) {
+                        console.log(
+                          outputFenOfCurrentPosition(),
+                          this.state.turn
+                        );
+                        this.setState((prevState) => ({
+                          historyPly: prevState.historyPly + 1,
+                          history: [...prevState.history, PrMove(parsed)],
+                          fen: outputFenOfCurrentPosition(),
+                          fenHistory: [
+                            ...prevState.fenHistory,
+                            outputFenOfCurrentPosition(),
+                          ],
+                          lastMove: [[orig, dest]],
+                        }));
+                      }
                       if (isInitPromotion) {
                         this.promotionSelectAsync(() => {
                           const { parsed } = this.arcaneChess().makeUserMove(
@@ -1217,13 +1241,29 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           if (!PrMove(parsed)) {
                             console.log('invalid move');
                           }
-                          this.normalMoveStateAndEngineGo(parsed, orig, dest);
+                          if (this.state.isDyadMove) {
+                            this.setState({
+                              isDyadMove: false,
+                              normalMovesOnly: true,
+                            });
+                          } else {
+                            // this.arcaneChess().deactivateDyad();
+                            this.normalMoveStateAndEngineGo(parsed, orig, dest);
+                          }
                         });
                       } else {
                         if (!PrMove(parsed)) {
                           console.log('invalid move');
                         }
-                        this.normalMoveStateAndEngineGo(parsed, orig, dest);
+                        if (this.state.isDyadMove) {
+                          this.setState({
+                            isDyadMove: false,
+                            normalMovesOnly: true,
+                          });
+                        } else {
+                          // this.arcaneChess().deactivateDyad();
+                          this.normalMoveStateAndEngineGo(parsed, orig, dest);
+                        }
                       }
                       this.setState({
                         futureSightAvailable: true,
@@ -1325,7 +1365,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                     [key]: 8,
                                   },
                                 },
-                                lastMove: [key, key],
+                                lastMove: [[key, key]],
                                 placingPiece: 0,
                                 placingRoyalty: 0,
                                 swapType: '',

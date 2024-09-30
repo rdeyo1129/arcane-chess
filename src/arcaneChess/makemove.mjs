@@ -419,18 +419,16 @@ export function MakeMove(move, moveType = '') {
 }
 
 // take move
-export function TakeMove(moveType = '') {
+export function TakeMove(wasDyadMove = false) {
   if (GameBoard.hisPly > 0) GameBoard.hisPly--;
   if (GameBoard.ply > 0) GameBoard.ply--;
-
-  let wasDyadMove = GameBoard.history[GameBoard.hisPly].dyad > 0;
-
-  if (wasDyadMove && moveType === 'userMove') {
+  if (wasDyadMove) {
     if (GameBoard.dyadClock > 0) {
-      GameBoard.dyadClock--;
-      if (GameBoard.dyadClock === 0) {
+      GameBoard.dyadClock++;
+      if (GameBoard.dyadClock === 2) {
         GameBoard.dyad = 0;
         GameBoard.dyadName = '';
+        GameBoard.dyadClock = 0;
         GameBoard.side ^= 1;
         HASH_SIDE();
       }

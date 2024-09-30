@@ -77,7 +77,7 @@ interface State {
   thinkingTime: number;
   engineDepth: number;
   historyPly: number;
-  history: string[];
+  history: (string | string[])[];
   whiteSetup: string;
   blackSetup: string;
   fen: string;
@@ -538,41 +538,50 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
   normalMoveStateAndEngineGo = (parsed: number, orig: string, dest: string) => {
     const char = RtyChar.split('')[this.state.placingRoyalty];
     this.setState(
-      (prevState) => ({
-        historyPly: prevState.historyPly + 1,
-        history: [...prevState.history, PrMove(parsed)],
-        fen: outputFenOfCurrentPosition(),
-        fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-        lastMove: [[orig, dest]],
-        placingPiece: 0,
-        placingRoyalty: 0,
-        placingPromotion: 0,
-        promotionModalOpen: false,
-        normalMovesOnly: false,
-        swapType: '',
-        royalties: {
-          ...prevState.royalties,
-          royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
-            return typeof value === 'undefined' ? value : (value -= 1);
-          }),
-          royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
-            return typeof value === 'undefined' ? value : (value -= 1);
-          }),
-          royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
-            return typeof value === 'undefined' ? value : (value -= 1);
-          }),
-          royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
-            return typeof value === 'undefined' ? value : (value -= 1);
-          }),
-          royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
-            return typeof value === 'undefined' ? value : (value -= 1);
-          }),
-          [`royalty${char}`]: {
-            ...prevState.royalties[`royalty${char}`],
-            [dest]: 8,
+      (prevState) => {
+        const newHistory = [...prevState.history];
+        const lastIndex = newHistory.length - 1;
+        if (Array.isArray(newHistory[lastIndex])) {
+          newHistory[lastIndex] = [...newHistory[lastIndex], PrMove(parsed)];
+        } else {
+          newHistory.push(PrMove(parsed));
+        }
+        return {
+          historyPly: prevState.historyPly + 1,
+          history: newHistory,
+          fen: outputFenOfCurrentPosition(),
+          fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
+          lastMove: [[orig, dest]],
+          placingPiece: 0,
+          placingRoyalty: 0,
+          placingPromotion: 0,
+          promotionModalOpen: false,
+          normalMovesOnly: false,
+          swapType: '',
+          royalties: {
+            ...prevState.royalties,
+            royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            [`royalty${char}`]: {
+              ...prevState.royalties[`royalty${char}`],
+              [dest]: 8,
+            },
           },
-        },
-      }),
+        };
+      },
       () => {
         if (CheckAndSet()) {
           this.setState(
@@ -964,7 +973,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                 if (futureSightAvailable) {
                                   this.arcaneChess().takeBackMove(
                                     4,
-                                    this.state.playerColor
+                                    this.state.playerColor,
+                                    this.state.history
                                   );
                                   this.setState(
                                     (prevState) => ({
@@ -1214,13 +1224,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           this.state.placingRoyalty
                         );
                       if (this.state.isDyadMove) {
-                        console.log(
-                          outputFenOfCurrentPosition(),
-                          this.state.turn
-                        );
                         this.setState((prevState) => ({
                           historyPly: prevState.historyPly + 1,
-                          history: [...prevState.history, PrMove(parsed)],
+                          history: [...prevState.history, [PrMove(parsed)]],
                           fen: outputFenOfCurrentPosition(),
                           fenHistory: [
                             ...prevState.fenHistory,
@@ -1247,7 +1253,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               normalMovesOnly: true,
                             });
                           } else {
-                            // this.arcaneChess().deactivateDyad();
                             this.normalMoveStateAndEngineGo(parsed, orig, dest);
                           }
                         });
@@ -1261,7 +1266,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             normalMovesOnly: true,
                           });
                         } else {
-                          // this.arcaneChess().deactivateDyad();
                           this.normalMoveStateAndEngineGo(parsed, orig, dest);
                         }
                       }

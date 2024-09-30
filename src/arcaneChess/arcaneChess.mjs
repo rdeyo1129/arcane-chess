@@ -118,7 +118,7 @@ export default function arcaneChess() {
     preset = 'CLEAR'
   ) => {
     setWhiteArcana({ ...whiteConfig, dyadP: 1, dyadN: 1, dyadA: 1 });
-    setBlackArcana(blackConfig);
+    setBlackArcana({ ...blackConfig, dyadP: 1, dyadN: 1, dyadA: 1 });
 
     _.forEach(royalties, (value, key) => {
       GameBoard[key] = {};
@@ -230,7 +230,7 @@ export default function arcaneChess() {
       }
       return await engineSuggestion(thinkingTime);
     },
-    takeBackMove: (ply, side) => {
+    takeBackMove: (ply, side, history) => {
       if (side === 'white') {
         whiteArcaneConfig.modsFUT -= 1;
       }
@@ -238,7 +238,16 @@ export default function arcaneChess() {
         blackArcaneConfig.modsFUT -= 1;
       }
       _.times(4, () => {
-        TakeMove();
+        if (history.length > 0) {
+          const lastMove = history.pop();
+          if (Array.isArray(lastMove)) {
+            // wasDyadMove true:
+            TakeMove(true);
+            TakeMove();
+          } else {
+            TakeMove();
+          }
+        }
         GameBoard.ply = 0;
       });
     },

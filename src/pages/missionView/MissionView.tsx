@@ -163,7 +163,7 @@ interface State {
   thinkingTime: number;
   engineDepth: number;
   historyPly: number;
-  history: string[];
+  history: (string | string[])[];
   fenHistory: string[];
   pvLine?: string[];
   hasMounted: boolean;
@@ -199,12 +199,14 @@ interface State {
   placingPiece: number;
   swapType: string;
   placingRoyalty: number;
+  isDyadMove: boolean;
+  normalMovesOnly: boolean;
   selectedSide: string;
   hoverArcane: string;
   royalties: {
     [key: string]: { [key: string]: number | undefined };
   };
-  lastMove: string[];
+  lastMove: string[][];
   orientation: string;
   preset: string;
   promotionModalOpen: boolean;
@@ -331,6 +333,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       placingPiece: 0,
       swapType: '',
       placingRoyalty: 0,
+      isDyadMove: false,
+      normalMovesOnly: false,
       selectedSide: getLocalStorage(this.props.auth.user.username).config.color,
       hoverArcane: '',
       royalties:
@@ -686,41 +690,51 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   normalMoveStateAndEngineGo = (parsed: number, orig: string, dest: string) => {
     const char = RtyChar.split('')[this.state.placingRoyalty];
     this.setState(
-      (prevState) => ({
-        historyPly: prevState.historyPly + 1,
-        history: [...prevState.history, PrMove(parsed)],
-        fen: outputFenOfCurrentPosition(),
-        fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-        lastMove: [orig, dest],
-        turn: prevState.turn === 'white' ? 'black' : 'white',
-        placingPiece: 0,
-        placingRoyalty: 0,
-        placingPromotion: 0,
-        promotionModalOpen: false,
-        swapType: '',
-        royalties: {
-          ...prevState.royalties,
-          royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
-            return typeof value === 'undefined' ? value : (value -= 1);
-          }),
-          royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
-            return typeof value === 'undefined' ? value : (value -= 1);
-          }),
-          royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
-            return typeof value === 'undefined' ? value : (value -= 1);
-          }),
-          royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
-            return typeof value === 'undefined' ? value : (value -= 1);
-          }),
-          royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
-            return typeof value === 'undefined' ? value : (value -= 1);
-          }),
-          [`royalty${char}`]: {
-            ...prevState.royalties[`royalty${char}`],
-            [dest]: 8,
+      (prevState) => {
+        const newHistory = [...prevState.history];
+        const lastIndex = newHistory.length - 1;
+        if (Array.isArray(newHistory[lastIndex])) {
+          newHistory[lastIndex] = [...newHistory[lastIndex], PrMove(parsed)];
+        } else {
+          newHistory.push(PrMove(parsed));
+        }
+        return {
+          historyPly: prevState.historyPly + 1,
+          history: newHistory,
+          fen: outputFenOfCurrentPosition(),
+          fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
+          lastMove: [[orig, dest]],
+          turn: prevState.turn === 'white' ? 'black' : 'white',
+          placingPiece: 0,
+          placingRoyalty: 0,
+          placingPromotion: 0,
+          promotionModalOpen: false,
+          normalMovesOnly: false,
+          swapType: '',
+          royalties: {
+            ...prevState.royalties,
+            royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            [`royalty${char}`]: {
+              ...prevState.royalties[`royalty${char}`],
+              [dest]: 8,
+            },
           },
-        },
-      }),
+        };
+      },
       () => {
         if (CheckAndSet()) {
           this.setState(
@@ -824,6 +838,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
 
   render() {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
+    const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
     // const { auth } = this.props;
@@ -1000,25 +1015,29 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             }.svg`}
                             style={{
                               opacity:
-                                this.state.playerColor !== this.state.turn ||
+                                this.state.playerColor !== gameBoardTurn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
-                                (!futureSightAvailable && key === 'modsFUT')
+                                (!futureSightAvailable && key === 'modsFUT') ||
+                                this.state.normalMovesOnly
                                   ? 0.5
                                   : 1,
                               cursor:
-                                this.state.playerColor !== this.state.turn ||
+                                this.state.playerColor !== gameBoardTurn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
-                                (!futureSightAvailable && key === 'modsFUT')
+                                (!futureSightAvailable && key === 'modsFUT') ||
+                                this.state.normalMovesOnly
                                   ? 'not-allowed'
                                   : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
                             }}
                             onClick={() => {
                               if (
-                                this.state.playerColor !== this.state.turn ||
+                                this.state.playerColor !== gameBoardTurn ||
                                 this.state.selectedSide ===
-                                  this.state.engineColor
+                                  this.state.engineColor ||
+                                (!futureSightAvailable && key === 'modsFUT') ||
+                                this.state.normalMovesOnly
                               )
                                 return;
                               if (
@@ -1077,6 +1096,13 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   if (GameBoard.suspend > 0) return;
                                   GameBoard.suspend = 6;
                                 }
+                                if (key.includes('dyad')) {
+                                  this.arcaneChess().activateDyad(key);
+                                  this.setState({
+                                    isDyadMove: true,
+                                    normalMovesOnly: true,
+                                  });
+                                }
                                 if (key === 'modsIMP') {
                                   this.getHintAndScore(1);
                                 }
@@ -1090,7 +1116,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   if (futureSightAvailable) {
                                     this.arcaneChess().takeBackMove(
                                       4,
-                                      this.state.playerColor
+                                      this.state.playerColor,
+                                      this.state.history
                                     );
                                     this.setState(
                                       (prevState) => ({
@@ -1102,10 +1129,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                           -4
                                         ),
                                         lastMove: [],
-                                        turn:
-                                          prevState.turn === 'white'
-                                            ? 'black'
-                                            : 'white',
+                                        turn: gameBoardTurn,
                                         royalties: {
                                           ...this.arcaneChess().getRoyalties(),
                                         },
@@ -1161,10 +1185,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       check: true,
                       royalties: true,
                     }}
-                    lastMove={this.state.lastMove}
+                    lastMove={this.state.lastMove[0]}
                     orientation={this.state.orientation}
                     disableContextMenu={false}
-                    turnColor={this.state.turn}
+                    turnColor={gameBoardTurn}
                     movable={{
                       free: false,
                       rookCastle: false,
@@ -1235,7 +1259,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 ...prevState.fenHistory,
                                 outputFenOfCurrentPosition(),
                               ],
-                              lastMove: [key, key],
+                              lastMove: [[key, key]],
                               placingPiece: 0,
                               placingRoyalty: 0,
                               swapType: '',
@@ -1342,9 +1366,21 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             this.state.swapType,
                             this.state.placingRoyalty
                           );
+                        if (this.state.isDyadMove) {
+                          this.setState((prevState) => ({
+                            historyPly: prevState.historyPly + 1,
+                            history: [...prevState.history, [PrMove(parsed)]],
+                            fen: outputFenOfCurrentPosition(),
+                            fenHistory: [
+                              ...prevState.fenHistory,
+                              outputFenOfCurrentPosition(),
+                            ],
+                            lastMove: [[orig, dest]],
+                          }));
+                        }
                         if (isInitPromotion) {
                           this.promotionSelectAsync(() => {
-                            const parsedMove = this.arcaneChess().makeUserMove(
+                            const { parsed } = this.arcaneChess().makeUserMove(
                               orig,
                               dest,
                               this.state.placingPromotion,
@@ -1354,17 +1390,31 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             if (!PrMove(parsed)) {
                               console.log('invalid move');
                             }
-                            this.normalMoveStateAndEngineGo(
-                              parsedMove.parsed,
-                              orig,
-                              dest
-                            );
+                            if (this.state.isDyadMove) {
+                              this.setState({
+                                isDyadMove: false,
+                                normalMovesOnly: true,
+                              });
+                            } else {
+                              this.normalMoveStateAndEngineGo(
+                                parsed,
+                                orig,
+                                dest
+                              );
+                            }
                           });
                         } else {
                           if (!PrMove(parsed)) {
                             console.log('invalid move');
                           }
-                          this.normalMoveStateAndEngineGo(parsed, orig, dest);
+                          if (this.state.isDyadMove) {
+                            this.setState({
+                              isDyadMove: false,
+                              normalMovesOnly: true,
+                            });
+                          } else {
+                            this.normalMoveStateAndEngineGo(parsed, orig, dest);
+                          }
                         }
                         this.setState({
                           futureSightAvailable: true,
@@ -1477,7 +1527,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                       [key]: 8,
                                     },
                                   },
-                                  lastMove: [key, key],
+                                  lastMove: [[key, key]],
                                   turn:
                                     prevState.turn === 'white'
                                       ? 'black'
@@ -1634,7 +1684,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           playerTurn={
                             this.state.turn === this.state.playerColor
                           }
-                          turn={this.state.turn}
+                          turn={gameBoardTurn}
                           time={this.state.playerClock}
                           timePrime={this.state.playerInc}
                           playerTimeout={() => {

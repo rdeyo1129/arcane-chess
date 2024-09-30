@@ -47,7 +47,6 @@ import {
   MAXDEPTH,
   BRD_SQ_NUM,
   ARCANE_BIT_VALUES,
-  royaltyDyad,
   royaltySliders,
   royaltyHoppers,
   royaltySliderMap,
@@ -104,6 +103,7 @@ export function MOVE(from, to, captured, promoted, flag) {
 }
 
 export function AddCaptureMove(move, consume = false, capturesOnly = false) {
+  if (GameBoard.dyad > 0) return;
   if ((capturesOnly && !consume) || !capturesOnly) {
     if (move & MFLAGSWAP) {
       GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
@@ -1706,7 +1706,7 @@ export function GenerateMoves(
         if (
           (GameBoard.dyad === 0 ||
             GameBoard.dyad === 1 ||
-            GameBoard.dyad === royaltyDyad[piece]) &&
+            GameBoard.dyad === dyad) &&
           !herrings.length &&
           GameBoard.pieces[t_sq] === PIECES.EMPTY
         ) {
@@ -1760,7 +1760,8 @@ export function GenerateMoves(
         t_sq = sq + dir;
 
         while (SQOFFBOARD(t_sq) === BOOL.FALSE) {
-          if (GameBoard.dyad === 0 && GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
+          // Check if we encountered a piece
+          if (GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
             // note ROYALTY SLIDERS CAPTURES
             if (
               PieceCol[GameBoard.pieces[t_sq]] !== GameBoard.side &&
@@ -1795,15 +1796,18 @@ export function GenerateMoves(
                 }
               }
             }
+
             // note ROYALTY SLIDERS CONSUME
-            if (
+            else if (
               PieceCol[GameBoard.pieces[t_sq]] === GameBoard.side &&
               !PieceKing[GameBoard.pieces[t_sq]] &&
               !herrings.length
             ) {
               if (
-                GameBoard.side === COLOURS.WHITE &&
-                GameBoard.whiteArcane[4] & 1
+                (GameBoard.side === COLOURS.WHITE &&
+                  GameBoard.whiteArcane[4] & 1) ||
+                (GameBoard.side === COLOURS.BLACK &&
+                  GameBoard.blackArcane[4] & 1)
               ) {
                 if (GameBoard.pieces[sq] === PIECES.wP) {
                   AddWhitePawnCaptureMove(
@@ -1813,25 +1817,7 @@ export function GenerateMoves(
                     true,
                     capturesOnly
                   );
-                } else {
-                  AddCaptureMove(
-                    MOVE(
-                      sq,
-                      t_sq,
-                      GameBoard.pieces[t_sq],
-                      PIECES.EMPTY,
-                      MFLAGCNSM
-                    ),
-                    true,
-                    capturesOnly
-                  );
-                }
-              }
-              if (
-                GameBoard.side === COLOURS.BLACK &&
-                GameBoard.blackArcane[4] & 1
-              ) {
-                if (GameBoard.pieces[sq] === PIECES.bP) {
+                } else if (GameBoard.pieces[sq] === PIECES.bP) {
                   AddBlackPawnCaptureMove(
                     sq,
                     t_sq,
@@ -1861,7 +1847,7 @@ export function GenerateMoves(
           if (
             (GameBoard.dyad === 0 ||
               GameBoard.dyad === 1 ||
-              GameBoard.dyad === royaltyDyad[piece]) &&
+              GameBoard.dyad === dyad) &&
             GameBoard.pieces[t_sq] === PIECES.EMPTY
           ) {
             if (
@@ -1879,8 +1865,8 @@ export function GenerateMoves(
                 );
               }
             }
-            t_sq += dir;
           }
+          t_sq += dir;
         }
       }
     });
@@ -2110,11 +2096,8 @@ export function GenerateMoves(
           }
 
           while (SQOFFBOARD(t_sq) === BOOL.FALSE) {
-            if (
-              GameBoard.dyad === 0 &&
-              GameBoard.pieces[t_sq] !== PIECES.EMPTY
-            ) {
-              // note SLIDERS CAPTURES
+            // note SLIDERS CAPTURES
+            if (GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
               if (
                 PieceCol[GameBoard.pieces[t_sq]] !== GameBoard.side &&
                 PieceCol[GameBoard.pieces[t_sq]] !== COLOURS.BOTH
@@ -2130,31 +2113,18 @@ export function GenerateMoves(
                   );
                 }
               }
+
               // note SLIDERS CONSUME
-              if (
+              else if (
                 PieceCol[GameBoard.pieces[t_sq]] === GameBoard.side &&
                 !PieceKing[GameBoard.pieces[t_sq]] &&
                 !herrings.length
               ) {
                 if (
-                  GameBoard.side === COLOURS.WHITE &&
-                  GameBoard.whiteArcane[4] & 1
-                ) {
-                  AddCaptureMove(
-                    MOVE(
-                      sq,
-                      t_sq,
-                      GameBoard.pieces[t_sq],
-                      PIECES.EMPTY,
-                      MFLAGCNSM
-                    ),
-                    true,
-                    capturesOnly
-                  );
-                }
-                if (
-                  GameBoard.side === COLOURS.BLACK &&
-                  GameBoard.blackArcane[4] & 1
+                  (GameBoard.side === COLOURS.WHITE &&
+                    GameBoard.whiteArcane[4] & 1) ||
+                  (GameBoard.side === COLOURS.BLACK &&
+                    GameBoard.blackArcane[4] & 1)
                 ) {
                   AddCaptureMove(
                     MOVE(

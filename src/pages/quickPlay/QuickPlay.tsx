@@ -22,7 +22,7 @@ import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 //   arcaneChessWorker,
 // } from '../../arcaneChess/arcaneChessInstance.js';
 import { GameBoard, InCheck, TOSQ, FROMSQ } from '../../arcaneChess/board.mjs';
-import { PrintMoveList, PrMove, PrSq } from 'src/arcaneChess/io.mjs';
+import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import {
   prettyToSquare,
   PIECES,
@@ -199,7 +199,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       gameOverType: '',
       whiteSetup: this.props.config.whiteSetup,
       blackSetup: this.props.config.blackSetup,
-      fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
+      // fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
+      fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/RBNQKB1R w KQkq - 0 1`,
       fenHistory: [
         `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
       ],
@@ -955,10 +956,20 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               }
                               if (key.includes('dyad')) {
                                 this.arcaneChess().activateDyad(key);
-                                this.setState({
-                                  isDyadMove: true,
-                                  normalMovesOnly: true,
-                                });
+                                this.arcaneChess().generatePlayableOptions();
+                                const dests = arcaneChess().getGroundMoves();
+                                if (dests.size === 0) {
+                                  this.arcaneChess().deactivateDyad();
+                                  this.setState({
+                                    isDyadMove: false,
+                                    normalMovesOnly: false,
+                                  });
+                                } else {
+                                  this.setState({
+                                    isDyadMove: true,
+                                    normalMovesOnly: true,
+                                  });
+                                }
                               }
                               if (key === 'modsIMP') {
                                 this.getHintAndScore(1);
@@ -1224,7 +1235,20 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           this.state.placingRoyalty
                         );
                       if (this.state.isDyadMove) {
+                        this.arcaneChess().generatePlayableOptions();
+                        const dests = this.arcaneChess().getGroundMoves();
+                        if (dests.size === 0) {
+                          this.arcaneChess().takeBackHalfDyad();
+                          this.arcaneChess().deactivateDyad();
+                          this.setState((prevState) => ({
+                            ...prevState,
+                            isDyadMove: false,
+                            normalMovesOnly: false,
+                          }));
+                          return;
+                        }
                         this.setState((prevState) => ({
+                          ...prevState,
                           historyPly: prevState.historyPly + 1,
                           history: [...prevState.history, [PrMove(parsed)]],
                           fen: outputFenOfCurrentPosition(),

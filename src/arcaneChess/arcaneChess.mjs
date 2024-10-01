@@ -1,39 +1,4 @@
 import _ from 'lodash';
-
-// summons
-// edge case: must be at least 1 empty spot within board / restriction
-
-// todo edge cases
-
-// if check, no specific dyad or any dyad? Zugzwang?
-// if no piece of dyad type, no using that dyad
-
-// so:
-// dyads can ONLY be used on quiet moves (shifts, castling and attacks ok, no captures, no promotions, no abilities) an no checks..?
-// does this take care of all the edge cases?
-// not really, what about zugzwang or when a piece type (dyad type) like pawn runs out of moves, or when a piece is pinned or entangled?
-// when a pawn runs out of moves and there's only that pawn left, what are some rules to prevent stalemate?
-
-// SEE HERE
-// MOST OF THESE EDGE CASES FOR DYAD AND HERRING ARE SOLVED BY EXISTING MOVE EXISTS AND MOVE FILTER FUNCTIONS
-// can I get these edge cases out of the way when I push the button, make a first move,
-// then it gathers secondary moves, if there are none, then cancel out the dyad and don't update
-
-// EDGE CASE HOW TO HANDLE WHEN A BUTTON CLICK IS NEEDED TO GET OUT OF CHECK IF ITS THE ONLY WAY OUT?
-// JUST INCLUDE THIS WHEN CHECKING FOR CHECKS, IF FUT SIGHT EXISTS TOO
-
-// dyad and summon (futsight, not checkmate) adj swap can be used to get out of check and checkmate
-
-// dyad and promotion edge cases?
-
-// disable all but summons, swaps dyads when in check?
-
-// when hitting a power button, disable all other buttons
-
-// cancel button when no other click has been made?
-
-// cancel on the second dyad move handler click? or on the first? Would need to undo locally before pushing to state / action
-
 import {
   InitFilesRanksBrd,
   InitHashKeys,
@@ -65,28 +30,9 @@ import {
 } from './arcaneDefs.mjs';
 import { COLOURS, PIECES, prettyToSquare } from './defs.mjs';
 import { TakeMove } from './makemove.mjs';
+import { HASH_SIDE } from './board.mjs';
 
 export default function arcaneChess() {
-  // whiteConfig = {},
-  // blackConfig = {},
-  // fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-  // auth = {},
-  // preset = {}
-  // fen = 'n1n5/PPPk4/8/8/8/8/4Kppp/5N1N b - - 0 1'
-  // 4k3/8/8/K2P3r/8/8/8/8 w - - 0 1
-  // normal starting position
-  // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  // rnbqkbnr/pppppppp/8/B6h/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  // rnbqkbnr/pppppppp/8/7h/5N2/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  // rnbqkbnr/pppppppp/8/2nRn2h/3P4/ph6/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  // fen = 'n1n5/PPPk4/8/8/8/7N/4Kppp/5N1N w - - 0 1'
-  // fen = '3k4/8/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-  // '8/8/8/r2R3K/3h5/8/8/8 w - - 0 1'
-  // 8/8/8/r2R3K/3p5/8/8/8 w - - 0 1
-  // generate random fen with white king in check
-  // fen = '8/4r3/8/8/8/8/PPPP4/4K3 w - - 0 1'
-
-  // handicaps parameter
   const init = () => {
     InitFilesRanksBrd();
     InitHashKeys();
@@ -95,7 +41,6 @@ export default function arcaneChess() {
     InitMvvLva();
   };
 
-  // todo arcane for the three hint tiers
   const getScoreAndLine = (fen) => {
     // arcane param needed?
     ParseFen(fen);
@@ -160,7 +105,8 @@ export default function arcaneChess() {
   const generatePlayableOptions = () => {
     // todo herring, forced ep, and find all working instances and replace with this
     // resets board and hisply among other things, be careful with future sight
-    ParseFen(outputFenOfCurrentPosition());
+    // false: reset board
+    ParseFen(outputFenOfCurrentPosition(), false);
     generatePowers();
     GenerateMoves(true, false, 'COMP', 'COMP');
   };
@@ -173,6 +119,7 @@ export default function arcaneChess() {
   };
 
   const deactivateDyad = () => {
+    whiteArcaneConfig[GameBoard.dyadName] += 1;
     GameBoard.dyadName = '';
     GameBoard.dyad = 0;
     GameBoard.dyadClock = 0;
@@ -230,6 +177,11 @@ export default function arcaneChess() {
       }
       return await engineSuggestion(thinkingTime);
     },
+    takeBackHalfDyad: () => {
+      TakeMove();
+      GameBoard.side ^= 1;
+      HASH_SIDE;
+    },
     takeBackMove: (ply, side, history) => {
       if (side === 'white') {
         whiteArcaneConfig.modsFUT -= 1;
@@ -237,7 +189,7 @@ export default function arcaneChess() {
       if (side === 'black') {
         blackArcaneConfig.modsFUT -= 1;
       }
-      _.times(4, () => {
+      _.times(ply, () => {
         if (history.length > 0) {
           const lastMove = history.pop();
           if (Array.isArray(lastMove)) {

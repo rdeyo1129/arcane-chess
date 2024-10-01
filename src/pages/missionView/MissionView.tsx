@@ -833,6 +833,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       if (this.state.engineColor === this.state.turn) {
         this.engineGo();
       }
+      // for updating arcana available on turn 1
+      this.setState({});
     }
   }
 

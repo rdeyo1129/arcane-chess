@@ -498,8 +498,8 @@ export function randomize(
   }
 }
 
-export function ParseFen(fen) {
-  ResetBoard();
+export function ParseFen(fen, resetBoard = true) {
+  if (resetBoard) ResetBoard();
 
   // todo repopulate the board with arcanes?
 

@@ -102,6 +102,7 @@ export function MakeMove(move, moveType = '') {
 
   GameBoard.history[GameBoard.hisPly].posKey = GameBoard.posKey;
   GameBoard.history[GameBoard.hisPly].dyad = GameBoard.dyad;
+  GameBoard.history[GameBoard.hisPly].dyadClock = GameBoard.dyadClock;
 
   // const getWhiteKingPos = _.indexOf(GameBoard.pieces, 6, 22);
   const getWhiteKingRookPos = _.lastIndexOf(GameBoard.pieces, 4);
@@ -422,15 +423,16 @@ export function MakeMove(move, moveType = '') {
 export function TakeMove(wasDyadMove = false) {
   if (GameBoard.hisPly > 0) GameBoard.hisPly--;
   if (GameBoard.ply > 0) GameBoard.ply--;
+
+  GameBoard.dyad = GameBoard.history[GameBoard.hisPly].dyad;
+  GameBoard.dyadClock = GameBoard.history[GameBoard.hisPly].dyadClock;
+
   if (wasDyadMove) {
     if (GameBoard.dyadClock > 0) {
-      GameBoard.dyadClock++;
-      if (GameBoard.dyadClock === 2) {
+      GameBoard.dyadClock--;
+      if (GameBoard.dyadClock === 0) {
         GameBoard.dyad = 0;
         GameBoard.dyadName = '';
-        GameBoard.dyadClock = 0;
-        GameBoard.side ^= 1;
-        HASH_SIDE();
       }
     }
   } else {

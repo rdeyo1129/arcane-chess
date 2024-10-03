@@ -48,10 +48,10 @@ import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-const pieces: PieceRoyaltyTypse = PIECES;
-const royalties: PieceRoyaltyTypse = ARCANE_BIT_VALUES;
+const pieces: PieceRoyaltyTypes = PIECES;
+const royalties: PieceRoyaltyTypes = ARCANE_BIT_VALUES;
 
-interface PieceRoyaltyTypse {
+interface PieceRoyaltyTypes {
   [key: string]: number;
 }
 
@@ -281,22 +281,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       .then((reply) => {
         this.setState(
           (prevState) => {
-            const setEngineRoyalty = !_.includes(PrMove(reply), '@')
-              ? {}
-              : PrMove(reply).split('@')[0]?.length > 1
-              ? {
-                  [`royalty${PrMove(reply).split('')[1]}`]: {
-                    ...prevState.royalties[
-                      `royalty${PrMove(reply).split('')[1]}`
-                    ],
-                    [PrSq(TOSQ(reply))]: 8,
-                  },
-                }
-              : {
-                  ...prevState.royalties[
-                    `royalty${PrMove(reply)?.split('')[1]}`
-                  ],
-                };
             return {
               ...prevState,
               pvLine: GameBoard.cleanPV,
@@ -313,32 +297,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               // hint: '',
               royalties: {
                 ...prevState.royalties,
-                royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
-                  return typeof value === 'undefined' || value <= 0
-                    ? value
-                    : value - 1;
-                }),
-                royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
-                  return typeof value === 'undefined' || value <= 0
-                    ? value
-                    : value - 1;
-                }),
-                royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
-                  return typeof value === 'undefined' || value <= 0
-                    ? value
-                    : value - 1;
-                }),
-                royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
-                  return typeof value === 'undefined' || value <= 0
-                    ? value
-                    : value - 1;
-                }),
-                royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
-                  return typeof value === 'undefined' || value <= 0
-                    ? value
-                    : value - 1;
-                }),
-                ...setEngineRoyalty,
+                ...this.arcaneChess().getPrettyRoyalties(),
               },
             };
           },
@@ -989,6 +948,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                   );
                                   this.setState(
                                     (prevState) => ({
+                                      ...prevState,
                                       historyPly: prevState.historyPly - 4,
                                       history: prevState.history.slice(0, -4),
                                       fen: outputFenOfCurrentPosition(),
@@ -999,7 +959,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                       lastMove: [],
                                       turn: gameBoardTurn,
                                       royalties: {
-                                        ...this.arcaneChess().getRoyalties(),
+                                        ...this.arcaneChess().getPrettyRoyalties(),
                                       },
                                       futureSightAvailable: false,
                                     }),
@@ -1113,7 +1073,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                         GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
                       ) {
                         const { parsed } = this.arcaneChess().makeUserMove(
-                          0,
+                          null,
                           key,
                           this.state.placingPiece,
                           '',
@@ -1169,56 +1129,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           ...prevState,
                           royalties: {
                             ...prevState.royalties,
-                            royaltyQ: _.mapValues(
-                              prevState.royalties.royaltyQ,
-                              (value) => {
-                                return typeof value === 'undefined'
-                                  ? value
-                                  : (value -= 1);
-                              }
-                            ),
-                            royaltyT: _.mapValues(
-                              prevState.royalties.royaltyT,
-                              (value) => {
-                                return typeof value === 'undefined'
-                                  ? value
-                                  : (value -= 1);
-                              }
-                            ),
-                            royaltyM: _.mapValues(
-                              prevState.royalties.royaltyM,
-                              (value) => {
-                                return typeof value === 'undefined'
-                                  ? value
-                                  : (value -= 1);
-                              }
-                            ),
-                            royaltyV: _.mapValues(
-                              prevState.royalties.royaltyV,
-                              (value) => {
-                                return typeof value === 'undefined'
-                                  ? value
-                                  : (value -= 1);
-                              }
-                            ),
-                            royaltyE: _.mapValues(
-                              prevState.royalties.royaltyE,
-                              (value) => {
-                                return typeof value === 'undefined'
-                                  ? value
-                                  : (value -= 1);
-                              }
-                            ),
-                            [`royalty${
-                              RtyChar.split('')[this.state.placingRoyalty]
-                            }`]: {
-                              ...prevState.royalties[
-                                `royalty${
-                                  RtyChar.split('')[this.state.placingRoyalty]
-                                }`
-                              ],
-                              [key]: 8,
-                            },
+                            ...this.arcaneChess().getPrettyRoyalties(),
                           },
                           placingRoyalty: 0,
                         }));
@@ -1298,11 +1209,15 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                       });
                     },
                     select: (key: string) => {
-                      const char = RtyChar.split('')[this.state.placingRoyalty];
+                      let char = RtyChar.split('')[this.state.placingRoyalty];
                       const whiteLimit =
                         100 - 10 * (8 - GameBoard.summonRankLimits[0]);
                       const blackLimit =
                         20 + 10 * (8 - GameBoard.summonRankLimits[1]);
+
+                      if (char === 'Y' || char === 'Z') {
+                        char = 'E';
+                      }
 
                       if (this.state.placingRoyalty > 0) {
                         this.chessgroundRef.current?.setAutoShapes([]);
@@ -1348,50 +1263,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                 ],
                                 royalties: {
                                   ...prevState.royalties,
-                                  royaltyQ: _.mapValues(
-                                    prevState.royalties.royaltyQ,
-                                    (value) => {
-                                      return typeof value === 'undefined'
-                                        ? value
-                                        : (value -= 1);
-                                    }
-                                  ),
-                                  royaltyT: _.mapValues(
-                                    prevState.royalties.royaltyT,
-                                    (value) => {
-                                      return typeof value === 'undefined'
-                                        ? value
-                                        : (value -= 1);
-                                    }
-                                  ),
-                                  royaltyM: _.mapValues(
-                                    prevState.royalties.royaltyM,
-                                    (value) => {
-                                      return typeof value === 'undefined'
-                                        ? value
-                                        : (value -= 1);
-                                    }
-                                  ),
-                                  royaltyV: _.mapValues(
-                                    prevState.royalties.royaltyV,
-                                    (value) => {
-                                      return typeof value === 'undefined'
-                                        ? value
-                                        : (value -= 1);
-                                    }
-                                  ),
-                                  royaltyE: _.mapValues(
-                                    prevState.royalties.royaltyE,
-                                    (value) => {
-                                      return typeof value === 'undefined'
-                                        ? value
-                                        : (value -= 1);
-                                    }
-                                  ),
-                                  [`royalty${char}`]: {
-                                    ...prevState.royalties[`royalty${char}`],
-                                    [key]: 8,
-                                  },
+                                  ...this.arcaneChess().getPrettyRoyalties(),
                                 },
                                 lastMove: [[key, key]],
                                 placingPiece: 0,

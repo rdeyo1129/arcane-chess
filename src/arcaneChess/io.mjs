@@ -299,8 +299,12 @@ export function ParseMove(
   swapType = '',
   royaltyEpsilon = PIECES.EMPTY
 ) {
+  const royaltyMap = ['.', 'RQ', 'RT', 'RM', 'RV', 'RE', 'RY', 'RZ'];
+  const parseSummonOnly = royaltyEpsilon > 0 ? 'PLAYER' : 'COMP';
+  const userSummonType =
+    pieceEpsilon > 0 ? pieceEpsilon : royaltyMap[royaltyEpsilon];
   generatePowers();
-  GenerateMoves(true, false, 'COMP', swapType, pieceEpsilon);
+  GenerateMoves(true, false, parseSummonOnly, swapType, userSummonType);
 
   let Move = NOMOVE;
   let found = BOOL.FALSE;

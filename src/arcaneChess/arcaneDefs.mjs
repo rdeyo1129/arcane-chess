@@ -76,6 +76,7 @@ export const activateDyad = () => {
   // GameBoard.dyad = type;
 };
 
+// needs update 10/1/24
 // 0000 0000 0000 0000 0000 0000 0000 0000 0000 1111 1111 1111 dyad
 // 0000 0000 0000 0000 0000 0000 0000 0000 1111 0000 0000 0000 shft
 // 0000 0000 0000 0000 0000 0000 0000 0111 0000 0000 0000 0000 swap
@@ -119,6 +120,8 @@ export const POWERBIT = {
   sumnRM: 65536,
   sumnRV: 131072,
   sumnRE: 262144,
+  sumnRY: 524288,
+  sumnRZ: 1048576,
   // 4 passive blue
   shftP: 1,
   shftN: 2,
@@ -156,8 +159,8 @@ export const POWERS = (config) => {
   return (
     config.dyad |
     (config.sumn << 12) |
-    (config.shft << 28) |
-    (config.swap << 32) |
-    (config.mods << 35)
+    (config.shft << 30) |
+    (config.swap << 34) |
+    (config.mods << 37)
   );
 };

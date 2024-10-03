@@ -80,10 +80,10 @@ const booksMap: { [key: string]: { [key: string]: Node } } = {
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-const pieces: PieceRoyaltyTypse = PIECES;
-const royalties: PieceRoyaltyTypse = ARCANE_BIT_VALUES;
+const pieces: PieceRoyaltyTypes = PIECES;
+const royalties: PieceRoyaltyTypes = ARCANE_BIT_VALUES;
 
-interface PieceRoyaltyTypse {
+interface PieceRoyaltyTypes {
   [key: string]: number;
 }
 
@@ -413,22 +413,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       .then((reply) => {
         this.setState(
           (prevState) => {
-            const setEngineRoyalty = !_.includes(PrMove(reply), '@')
-              ? {}
-              : PrMove(reply).split('@')[0]?.length > 1
-              ? {
-                  [`royalty${PrMove(reply).split('')[1]}`]: {
-                    ...prevState.royalties[
-                      `royalty${PrMove(reply).split('')[1]}`
-                    ],
-                    [PrSq(TOSQ(reply))]: 8,
-                  },
-                }
-              : {
-                  ...prevState.royalties[
-                    `royalty${PrMove(reply)?.split('')[1]}`
-                  ],
-                };
             return {
               ...prevState,
               pvLine: GameBoard.cleanPV,
@@ -445,32 +429,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               // hint: '',
               royalties: {
                 ...prevState.royalties,
-                royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
-                  return typeof value === 'undefined' || value <= 0
-                    ? value
-                    : value - 1;
-                }),
-                royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
-                  return typeof value === 'undefined' || value <= 0
-                    ? value
-                    : value - 1;
-                }),
-                royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
-                  return typeof value === 'undefined' || value <= 0
-                    ? value
-                    : value - 1;
-                }),
-                royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
-                  return typeof value === 'undefined' || value <= 0
-                    ? value
-                    : value - 1;
-                }),
-                royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
-                  return typeof value === 'undefined' || value <= 0
-                    ? value
-                    : value - 1;
-                }),
-                ...setEngineRoyalty,
+                ...this.arcaneChess().getPrettyRoyalties(),
               },
             };
           },
@@ -688,7 +647,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   };
 
   normalMoveStateAndEngineGo = (parsed: number, orig: string, dest: string) => {
-    const char = RtyChar.split('')[this.state.placingRoyalty];
     this.setState(
       (prevState) => {
         const newHistory = [...prevState.history];
@@ -713,25 +671,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           swapType: '',
           royalties: {
             ...prevState.royalties,
-            royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
-              return typeof value === 'undefined' ? value : (value -= 1);
-            }),
-            royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
-              return typeof value === 'undefined' ? value : (value -= 1);
-            }),
-            royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
-              return typeof value === 'undefined' ? value : (value -= 1);
-            }),
-            royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
-              return typeof value === 'undefined' ? value : (value -= 1);
-            }),
-            royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
-              return typeof value === 'undefined' ? value : (value -= 1);
-            }),
-            [`royalty${char}`]: {
-              ...prevState.royalties[`royalty${char}`],
-              [dest]: 8,
-            },
+            ...this.arcaneChess().getPrettyRoyalties(),
           },
         };
       },
@@ -1133,7 +1073,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                         lastMove: [],
                                         turn: gameBoardTurn,
                                         royalties: {
-                                          ...this.arcaneChess().getRoyalties(),
+                                          ...prevState.royalties,
+                                          ...this.arcaneChess().getPrettyRoyalties(),
                                         },
                                         futureSightAvailable: false,
                                       }),
@@ -1303,56 +1244,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             ...prevState,
                             royalties: {
                               ...prevState.royalties,
-                              royaltyQ: _.mapValues(
-                                prevState.royalties.royaltyQ,
-                                (value) => {
-                                  return typeof value === 'undefined'
-                                    ? value
-                                    : (value -= 1);
-                                }
-                              ),
-                              royaltyT: _.mapValues(
-                                prevState.royalties.royaltyT,
-                                (value) => {
-                                  return typeof value === 'undefined'
-                                    ? value
-                                    : (value -= 1);
-                                }
-                              ),
-                              royaltyM: _.mapValues(
-                                prevState.royalties.royaltyM,
-                                (value) => {
-                                  return typeof value === 'undefined'
-                                    ? value
-                                    : (value -= 1);
-                                }
-                              ),
-                              royaltyV: _.mapValues(
-                                prevState.royalties.royaltyV,
-                                (value) => {
-                                  return typeof value === 'undefined'
-                                    ? value
-                                    : (value -= 1);
-                                }
-                              ),
-                              royaltyE: _.mapValues(
-                                prevState.royalties.royaltyE,
-                                (value) => {
-                                  return typeof value === 'undefined'
-                                    ? value
-                                    : (value -= 1);
-                                }
-                              ),
-                              [`royalty${
-                                RtyChar.split('')[this.state.placingRoyalty]
-                              }`]: {
-                                ...prevState.royalties[
-                                  `royalty${
-                                    RtyChar.split('')[this.state.placingRoyalty]
-                                  }`
-                                ],
-                                [key]: 8,
-                              },
+                              ...this.arcaneChess().getPrettyRoyalties(),
                             },
                             placingRoyalty: 0,
                           }));
@@ -1423,8 +1315,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         });
                       },
                       select: (key: string) => {
-                        const char =
-                          RtyChar.split('')[this.state.placingRoyalty];
                         const whiteLimit =
                           100 - 10 * (8 - GameBoard.summonRankLimits[0]);
                         const blackLimit =
@@ -1484,50 +1374,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   ],
                                   royalties: {
                                     ...prevState.royalties,
-                                    royaltyQ: _.mapValues(
-                                      prevState.royalties.royaltyQ,
-                                      (value) => {
-                                        return typeof value === 'undefined'
-                                          ? value
-                                          : (value -= 1);
-                                      }
-                                    ),
-                                    royaltyT: _.mapValues(
-                                      prevState.royalties.royaltyT,
-                                      (value) => {
-                                        return typeof value === 'undefined'
-                                          ? value
-                                          : (value -= 1);
-                                      }
-                                    ),
-                                    royaltyM: _.mapValues(
-                                      prevState.royalties.royaltyM,
-                                      (value) => {
-                                        return typeof value === 'undefined'
-                                          ? value
-                                          : (value -= 1);
-                                      }
-                                    ),
-                                    royaltyV: _.mapValues(
-                                      prevState.royalties.royaltyV,
-                                      (value) => {
-                                        return typeof value === 'undefined'
-                                          ? value
-                                          : (value -= 1);
-                                      }
-                                    ),
-                                    royaltyE: _.mapValues(
-                                      prevState.royalties.royaltyE,
-                                      (value) => {
-                                        return typeof value === 'undefined'
-                                          ? value
-                                          : (value -= 1);
-                                      }
-                                    ),
-                                    [`royalty${char}`]: {
-                                      ...prevState.royalties[`royalty${char}`],
-                                      [key]: 8,
-                                    },
+                                    ...this.arcaneChess().getPrettyRoyalties(),
                                   },
                                   lastMove: [[key, key]],
                                   turn:

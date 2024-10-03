@@ -104,6 +104,7 @@ export function MOVE(from, to, captured, promoted, flag) {
 
 export function AddCaptureMove(move, consume = false, capturesOnly = false) {
   if (GameBoard.dyad > 0) return;
+  if (GameBoard.royaltyE[TOSQ(move)] > 0) return;
   if ((capturesOnly && !consume) || !capturesOnly) {
     if (move & MFLAGSWAP) {
       GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
@@ -790,9 +791,16 @@ export function GenerateMoves(
   const whiteLimit = 100 - 10 * (8 - GameBoard.summonRankLimits[0]);
   const blackLimit = 20 + 10 * (8 - GameBoard.summonRankLimits[1]);
 
-  if (generateSummons !== '' && !herrings.length) {
-    const royaltyIndexes = [15, 16, 17, 18, 19, 34, 35, 36, 37, 38];
-    if (userSummonPceRty !== '' || generateSummons !== 'PLAYER') {
+  if (!herrings.length) {
+    // todo remove parent conditional with herring check because sumnE can block from a piece attacking herring
+    const royaltyIndexes = [
+      15, 16, 17, 18, 19, 20, 21, 34, 35, 36, 37, 38, 39, 40,
+    ];
+    if (
+      userSummonPceRty > 0 ||
+      userSummonPceRty !== '' ||
+      generateSummons !== 'PLAYER'
+    ) {
       while (summonPce !== 0) {
         for (let sq = 21; sq <= 98; sq++) {
           if (SQOFFBOARD(sq) === BOOL.TRUE || herrings.length || capturesOnly) {

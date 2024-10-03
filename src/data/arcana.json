@@ -299,17 +299,17 @@
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/vanUpgrade"
   },
-  "modsFILB": {
+  "sumnRY": {
     "name": "File Bind",
     "description": "Select a square, all squares along that file have exile or entanglement for 3 turns.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/chain"
   },
-  "modsRANB": {
+  "sumnRZ": {
     "name": "Rank Bind",
     "description": "Select a square, all squares along that rank have exile or entanglement for 3 turns.",
     "type": "active",
-    "imagePath": "/assets/arcanaImages/chain"
+    "imagePath": "/assets/arcanaImages/chainPurple"
   },
   "modsFUG": {
     "name": "Sovereign Fugitive",

@@ -31,6 +31,7 @@ import {
 import { COLOURS, PIECES, prettyToSquare } from './defs.mjs';
 import { TakeMove } from './makemove.mjs';
 import { HASH_SIDE } from './board.mjs';
+import { PrSq } from './io';
 
 export default function arcaneChess() {
   const init = () => {
@@ -62,7 +63,16 @@ export default function arcaneChess() {
     royalties,
     preset = 'CLEAR'
   ) => {
-    setWhiteArcana({ ...whiteConfig, dyadP: 1, dyadN: 1, dyadA: 1 });
+    setWhiteArcana({
+      ...whiteConfig,
+      dyadP: 1,
+      dyadN: 1,
+      dyadA: 1,
+      // sumnP: 1,
+      // sumnX: 1,
+      sumnRY: 1,
+      sumnRZ: 1,
+    });
     setBlackArcana({ ...blackConfig, dyadP: 1, dyadN: 1, dyadA: 1 });
 
     _.forEach(royalties, (value, key) => {
@@ -208,6 +218,21 @@ export default function arcaneChess() {
     },
     addRoyalty: (type, sq, turns) => {
       GameBoard[type] = { [prettyToSquare(sq)]: turns };
+    },
+    getPrettyRoyalties: () => {
+      const royalties = {
+        royaltyQ: GameBoard.royaltyQ,
+        royaltyT: GameBoard.royaltyT,
+        royaltyM: GameBoard.royaltyM,
+        royaltyV: GameBoard.royaltyV,
+        royaltyE: GameBoard.royaltyE,
+      };
+      const transformedRoyalties = _.mapValues(royalties, (value) => {
+        return _.mapKeys(value, (subValue, key) => {
+          return PrSq(parseInt(key, 10));
+        });
+      });
+      return transformedRoyalties;
     },
     getRoyalties: () => {
       return {

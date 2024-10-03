@@ -174,29 +174,35 @@ export function MakeMove(move, moveType = '') {
   // if > 0 ?
   GameBoard.suspend -= 1;
 
+  GameBoard.history[GameBoard.hisPly].royaltyQ = { ...GameBoard.royaltyQ };
+  GameBoard.history[GameBoard.hisPly].royaltyT = { ...GameBoard.royaltyT };
+  GameBoard.history[GameBoard.hisPly].royaltyM = { ...GameBoard.royaltyM };
+  GameBoard.history[GameBoard.hisPly].royaltyV = { ...GameBoard.royaltyV };
+  GameBoard.history[GameBoard.hisPly].royaltyE = { ...GameBoard.royaltyE };
+
   _.forEach(GameBoard.royaltyQ, (value, key) => {
     value === undefined
-      ? (GameBoard.royaltyQ[key] = -1)
+      ? (GameBoard.royaltyQ[key] = 0)
       : (GameBoard.royaltyQ[key] -= 1);
   });
   _.forEach(GameBoard.royaltyT, (value, key) => {
     value === undefined
-      ? (GameBoard.royaltyT[key] = -1)
+      ? (GameBoard.royaltyT[key] = 0)
       : (GameBoard.royaltyT[key] -= 1);
   });
   _.forEach(GameBoard.royaltyM, (value, key) => {
     value === undefined
-      ? (GameBoard.royaltyM[key] = -1)
+      ? (GameBoard.royaltyM[key] = 0)
       : (GameBoard.royaltyM[key] -= 1);
   });
   _.forEach(GameBoard.royaltyV, (value, key) => {
     value === undefined
-      ? (GameBoard.royaltyV[key] = -1)
+      ? (GameBoard.royaltyV[key] = 0)
       : (GameBoard.royaltyV[key] -= 1);
   });
   _.forEach(GameBoard.royaltyE, (value, key) => {
     value === undefined
-      ? (GameBoard.royaltyE[key] = -1)
+      ? (GameBoard.royaltyE[key] = 0)
       : (GameBoard.royaltyE[key] -= 1);
   });
 
@@ -313,7 +319,32 @@ export function MakeMove(move, moveType = '') {
     AddPiece(to, pieceEpsilon);
   } else if (move & MFLAGSUMN) {
     if (captured > 0) {
-      if (
+      if (captured === 6) {
+        // file bind
+        let onesDigit = to % 10;
+        _.times(8, (i) => {
+          const rank = (i + 2) * 10;
+          const square = rank + onesDigit;
+          if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
+          if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
+          if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
+          if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+          GameBoard.royaltyE[square] = 8;
+        });
+      } else if (captured === 7) {
+        // rank bind
+        const tensDigit = Math.floor(to / 10) * 10;
+        _.times(8, (i) => {
+          // i aligns with a file ones spot each time
+          const onesDigit = i + 1;
+          const square = tensDigit + onesDigit;
+          if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
+          if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
+          if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
+          if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+          GameBoard.royaltyE[square] = 8;
+        });
+      } else if (
         GameBoard[`royalty${RtyChar.split('')[captured]}`][to] === undefined ||
         GameBoard[`royalty${RtyChar.split('')[captured]}`][to] <= 0
       ) {
@@ -468,21 +499,11 @@ export function TakeMove(wasDyadMove = false) {
   GameBoard.invisibility[1] += 1;
   GameBoard.suspend += 1;
 
-  _.forEach(GameBoard.royaltyQ, (value, key) => {
-    GameBoard.royaltyQ[key] += 1;
-  });
-  _.forEach(GameBoard.royaltyT, (value, key) => {
-    GameBoard.royaltyT[key] += 1;
-  });
-  _.forEach(GameBoard.royaltyM, (value, key) => {
-    GameBoard.royaltyM[key] += 1;
-  });
-  _.forEach(GameBoard.royaltyV, (value, key) => {
-    GameBoard.royaltyV[key] += 1;
-  });
-  _.forEach(GameBoard.royaltyE, (value, key) => {
-    GameBoard.royaltyE[key] += 1;
-  });
+  GameBoard.royaltyQ = { ...GameBoard.history[GameBoard.hisPly].royaltyQ };
+  GameBoard.royaltyT = { ...GameBoard.history[GameBoard.hisPly].royaltyT };
+  GameBoard.royaltyM = { ...GameBoard.history[GameBoard.hisPly].royaltyM };
+  GameBoard.royaltyV = { ...GameBoard.history[GameBoard.hisPly].royaltyV };
+  GameBoard.royaltyE = { ...GameBoard.history[GameBoard.hisPly].royaltyE };
 
   let captured = CAPTURED(move);
   let pieceEpsilon = PROMOTED(move);
@@ -572,11 +593,7 @@ export function TakeMove(wasDyadMove = false) {
       PieceCol[pieceEpsilon] === COLOURS.WHITE ? PIECES.wP : PIECES.bP
     );
   } else if (move & MFLAGSUMN) {
-    if (captured > 0) {
-      if (GameBoard[`royalty${RtyChar.split('')[captured]}`][to] === 9) {
-        GameBoard[`royalty${RtyChar.split('')[captured]}`][to] = -10;
-      }
-    } else if (pieceEpsilon > 0) {
+    if (pieceEpsilon > 0) {
       ClearPiece(to, true);
     }
     if (GameBoard.side === COLOURS.WHITE) {

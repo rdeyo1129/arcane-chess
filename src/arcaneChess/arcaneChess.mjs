@@ -65,15 +65,15 @@ export default function arcaneChess() {
   ) => {
     setWhiteArcana({
       ...whiteConfig,
-      dyadP: 1,
-      dyadN: 1,
-      dyadA: 1,
+      // dyadP: 1,
+      // dyadN: 1,
+      // dyadA: 1,
       // sumnP: 1,
       // sumnX: 1,
-      sumnRY: 1,
-      sumnRZ: 1,
+      // sumnRY: 1,
+      // sumnRZ: 1,
     });
-    setBlackArcana({ ...blackConfig, dyadP: 1, dyadN: 1, dyadA: 1 });
+    setBlackArcana({ ...blackConfig });
 
     _.forEach(royalties, (value, key) => {
       GameBoard[key] = {};

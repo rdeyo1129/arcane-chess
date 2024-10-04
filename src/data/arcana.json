@@ -251,7 +251,7 @@
     "type": "active",
     "imagePath": "/assets/arcanaImages/daggerBlue"
   },
-  "modsOFFEB": {
+  "modsOFFP": {
     "name": "Pentagram Tribute Minor",
     "description": "Sacrifice three friendly Pawns to summon a minor piece.",
     "type": "active",
@@ -370,5 +370,23 @@
     "description": "Get engine's best calculate line of moves after 3 seconds of thinking time.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsTEM"
+  },
+  "sacanyplussumn": {
+    "name": "",
+    "description": "",
+    "type": "",
+    "imagePath": "/assets/arcanaImages/"
+  },
+  "freezeblock": {
+    "name": "",
+    "description": "",
+    "type": "",
+    "imagePath": "/assets/arcanaImages/"
+  },
+  "GLITCH": {
+    "name": "",
+    "description": "",
+    "type": "",
+    "imagePath": "/assets/arcanaImages/"
   }
 }

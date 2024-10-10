@@ -114,6 +114,7 @@ interface State {
   placingPiece: number;
   swapType: string;
   placingRoyalty: number;
+  offeringType: string;
   isDyadMove: boolean;
   normalMovesOnly: boolean;
   selectedSide: string;
@@ -225,6 +226,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       placingPiece: 0,
       swapType: '',
       placingRoyalty: 0,
+      offeringType: '',
       isDyadMove: false,
       normalMovesOnly: false,
       selectedSide: this.props.config.playerColor,
@@ -517,6 +519,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
           promotionModalOpen: false,
           normalMovesOnly: false,
           swapType: '',
+          offeringType: '',
           royalties: {
             ...prevState.royalties,
             royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
@@ -672,7 +675,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             position: 'absolute',
             height: '100vh',
             width: '100vw',
-            // background: 'url(/assets/pages/tactorius.webp)',
+            background: 'url(/assets/pages/tactorius.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -862,11 +865,13 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             if (
                               this.state.placingPiece > 0 ||
                               this.state.swapType !== '' ||
-                              this.state.placingRoyalty !== 0
+                              this.state.placingRoyalty !== 0 ||
+                              this.state.offeringType !== ''
                             ) {
                               this.setState({
                                 placingPiece: 0,
                                 swapType: '',
+                                offeringType: '',
                                 placingRoyalty: 0,
                               });
                             } else {
@@ -882,6 +887,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                 } else {
                                   this.setState({
                                     placingRoyalty: 0,
+                                    swapType: '',
+                                    offeringType: '',
                                     placingPiece:
                                       pieces[
                                         key.split('sumn')[1].toUpperCase() ===
@@ -905,6 +912,17 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                 } else {
                                   this.setState({
                                     swapType: '',
+                                  });
+                                }
+                              }
+                              if (key.includes('offr')) {
+                                if (this.state.offeringType === '') {
+                                  this.setState({
+                                    offeringType: key.split('offr')[1],
+                                  });
+                                } else {
+                                  this.setState({
+                                    offeringType: '',
                                   });
                                 }
                               }
@@ -1024,7 +1042,13 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                       if (this.state.placingPiece === 0) {
                         if (this.state.placingRoyalty === 0) {
                           if (this.state.swapType === '') {
-                            dests = this.arcaneChess().getGroundMoves();
+                            if (this.state.offeringType === '') {
+                              dests = this.arcaneChess().getGroundMoves();
+                            } else {
+                              dests = this.arcaneChess().getOfferingMoves(
+                                this.state.offeringType
+                              );
+                            }
                           } else {
                             dests = this.arcaneChess().getSwapMoves(
                               this.state.swapType
@@ -1032,7 +1056,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           }
                         } else {
                           dests = this.arcaneChess().getSummonMoves(
-                            `R${RtyChar.split('')[this.state.placingRoyalty]}`
+                            this.state.placingRoyalty
                           );
                         }
                       } else {
@@ -1059,6 +1083,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             role: `r${RtyChar.split('')[
                               this.state.placingRoyalty
                             ].toLowerCase()}-piece`,
+                            color: this.state.playerColor,
+                          }
+                        : this.state.offeringType !== ''
+                        ? {
+                            role: `o${this.state.offeringType.toLowerCase()}-piece`,
                             color: this.state.playerColor,
                           }
                         : null,
@@ -1094,6 +1123,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             placingPiece: 0,
                             placingRoyalty: 0,
                             swapType: '',
+                            offeringType: '',
                             futureSightAvailable: true,
                           }),
                           () => {
@@ -1217,7 +1247,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                       if (char === 'Y' || char === 'Z') {
                         char = 'E';
                       }
-
                       if (this.state.placingRoyalty > 0) {
                         this.chessgroundRef.current?.setAutoShapes([]);
                         if (
@@ -1268,6 +1297,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                 placingPiece: 0,
                                 placingRoyalty: 0,
                                 swapType: '',
+                                offeringType: '',
                                 futureSightAvailable: true,
                               }),
                               () => {
@@ -1304,11 +1334,91 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             placingRoyalty: this.state.placingRoyalty,
                           });
                         }
+                      } else if (this.state.offeringType !== '') {
+                        const dests = this.arcaneChess().getOfferingMoves(
+                          this.state.offeringType
+                        );
+                        if (
+                          dests.has(`o${this.state.offeringType}@`) &&
+                          dests
+                            .get(`o${this.state.offeringType}@`)
+                            .includes(key)
+                        ) {
+                          this.chessgroundRef.current?.setAutoShapes([]);
+                          const { parsed } = this.arcaneChess().makeUserMove(
+                            key,
+                            null,
+                            this.state.placingPiece,
+                            '',
+                            this.state.offeringType
+                          );
+                          if (parsed === 0) {
+                            console.log('parsed === 0');
+                            return;
+                          }
+                          this.setState(
+                            (prevState) => ({
+                              ...prevState,
+                              historyPly: prevState.historyPly + 1,
+                              history: [...prevState.history, PrMove(parsed)],
+                              fen: outputFenOfCurrentPosition(),
+                              fenHistory: [
+                                ...prevState.fenHistory,
+                                outputFenOfCurrentPosition(),
+                              ],
+                              royalties: {
+                                ...prevState.royalties,
+                                ...this.arcaneChess().getPrettyRoyalties(),
+                              },
+                              lastMove: [[key, key]],
+                              placingPiece: 0,
+                              placingRoyalty: 0,
+                              swapType: '',
+                              offeringType: '',
+                              futureSightAvailable: true,
+                            }),
+                            () => {
+                              if (CheckAndSet()) {
+                                this.setState(
+                                  {
+                                    gameOver: true,
+                                    gameOverType: CheckResult().gameResult,
+                                  },
+                                  () => {
+                                    if (
+                                      _.includes(
+                                        this.state.gameOverType,
+                                        `${this.state.playerColor} mates`
+                                      )
+                                    ) {
+                                      this.handleVictory(
+                                        this.stopAndReturnTime() as
+                                          | number
+                                          | null
+                                      );
+                                    }
+                                  }
+                                );
+                                return;
+                              } else {
+                                this.engineGo();
+                              }
+                            }
+                          );
+                        } else {
+                          this.setState({
+                            offeringType: this.state.offeringType,
+                          });
+                        }
                       }
                     },
                   }}
                   draggable={{
-                    enabled: this.state.placingRoyalty === 0 ? true : false,
+                    enabled:
+                      this.state.placingRoyalty === 0 ||
+                      this.state.offeringType === ''
+                        ? true
+                        : false,
                   }}
                 />
               </div>

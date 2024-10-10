@@ -135,8 +135,8 @@ GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
 GameBoard.pceNum = new Array(30); // indexed by Pce
 GameBoard.pList = new Array(30 * 36);
 
-GameBoard.whiteArcane = [0, 0, 0, 0, 0];
-GameBoard.blackArcane = [0, 0, 0, 0, 0];
+GameBoard.whiteArcane = [0, 0, 0, 0, 0, 0];
+GameBoard.blackArcane = [0, 0, 0, 0, 0, 0];
 
 GameBoard.summonRankLimits = [6, 6];
 GameBoard.crazyHouse = [false, false];

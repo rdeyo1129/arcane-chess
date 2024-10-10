@@ -175,33 +175,99 @@
   },
   "sumnRQ": {
     "name": "Royalty Queen",
-    "description": "Summon a Queen Royalty condition to an empty square for a certain number of turns. Pieces on this square move like a Queen.",
+    "description": "Summon a Queen Royalty condition to a square for 4 turns. Pieces on this square move like a Queen.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRY"
   },
   "sumnRT": {
     "name": "Royalty Templar",
-    "description": "Summon a Templar Royalty condition to an empty square for a certain number of turns. Pieces on this square move like a Templar.",
+    "description": "Summon a Templar Royalty condition to a square for 4 turns. Pieces on this square move like a Templar.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRB"
   },
   "sumnRM": {
     "name": "Royalty Mystic",
-    "description": "Summon a Mystic Royalty condition to an empty square for a certain number of turns. Pieces on this square move like a Mystic.",
+    "description": "Summon a Mystic Royalty condition to a square for 4 turns. Pieces on this square move like a Mystic.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRG"
   },
   "sumnRV": {
     "name": "Royalty Vanguard",
-    "description": "Summon a Vanguard Royalty condition to an empty square for a certain number of turns. Pieces on this square move like a Vanguard.",
+    "description": "Summon a Vanguard Royalty condition to a square for 4 turns. Pieces on this square move like a Vanguard.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRP"
   },
   "sumnRE": {
     "name": "Entanglement",
-    "description": "Summon an Entanglement condition to an empty squarefor a certain number of turns. Pieces on this square cannot move.",
+    "description": "Summon an Entanglement condition to a square for 4 turns. Pieces on this square cannot move.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRE"
+  },
+  "sumnRY": {
+    "name": "Hexweaver's Bind",
+    "description": "Select a square, all squares along that file have entanglement for 4 turns.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/mageRed"
+  },
+  "sumnRZ": {
+    "name": "Hexweaver's Chain",
+    "description": "Select a square, all squares along that rank have entanglement for 4 turns.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/mageYellow"
+  },
+  "sumnRA": {
+    "name": "Hexweaver's Tomb",
+    "description": "Place a 3x3 block to fill each with entanglement and empty squares with exile for 4 turns.",
+    "type": "",
+    "imagePath": "/assets/arcanaImages/mageOrange"
+  },
+  "offrT": {
+    "name": "Hourglass Retrieval",
+    "description": "Offer a friendly Pawn to add one minute to your time.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/money"
+  },
+  "offrH": {
+    "name": "Masquerade Ritual",
+    "description": "Offer a friendly Pawn to gain a Herring summon arcana.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/daggerBlue"
+  },
+  "offrS": {
+    "name": "Sliding into Action",
+    "description": "Offer a friendly Mystic to gain a Rook and Bishop summon arcana.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/daggerYellow"
+  },
+  "offrM": {
+    "name": "Equus Family Unites",
+    "description": "Offer a friendly Templar or Queen to gain arcana summons of the Equus Family.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/daggerRed"
+  },
+  "offrE": {
+    "name": "THE RUUUUUK",
+    "description": "Offer a friendly Rook to gain a minor summon arcana.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/sacExchange"
+  },
+  "offrR": {
+    "name": "Royal Offering Exchange",
+    "description": "Offer a friendly Queen or Templar to gain a Mystic summon arcana",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/sacExchangeR"
+  },
+  "offrC": {
+    "name": "Chameleon's Traversal",
+    "description": "Offer a friendly minor piece to gain a minor piece summon arcana.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/chameleon"
+  },
+  "offrA": {
+    "name": "Grave Offering",
+    "description": "Offer any friendly piece (not King) to summon it's spirit back into play.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/zombie"
   },
   "shftP": {
     "name": "Pawn Strafe",
@@ -227,6 +293,12 @@
     "type": "passive",
     "imagePath": "/assets/arcanaImages/shftR"
   },
+  "shftT": {
+    "name": "Teleportation",
+    "description": "Move a friendly piece expcept to any empty square within your first three ranks.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/modsTEL"
+  },
   "swapDEP": {
     "name": "Ally Translocate",
     "description": "Swap the positions of a friendly minor or major piece (no P, H, V, K).",
@@ -245,71 +317,17 @@
     "type": "passive",
     "imagePath": "/assets/arcanaImages/consume"
   },
-  "modsOFFT": {
-    "name": "Pentagram Tribute Time",
-    "description": "Sacrifice a friendly Pawn to add one minute to your time.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/daggerBlue"
-  },
-  "modsOFFP": {
-    "name": "Pentagram Tribute Minor",
-    "description": "Sacrifice three friendly Pawns to summon a minor piece.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/daggerGreen"
-  },
-  "modsOFFM": {
-    "name": "Pentagram Tribute Mystic",
-    "description": "Sacrifice a friendly Rook and a minor piece to summon a Mystic.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/daggerYellow"
-  },
-  "modsOFFQT": {
-    "name": "Royal Pentagram Tribute",
-    "description": "Sacrifice three friendly minor pieces to summon a Queen or Templar.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/daggerRed"
-  },
-  "modsSAC": {
-    "name": "Sacrificial Exchange",
-    "description": "Select a friendly Rook to turn into a minor piece.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/sacExchange"
-  },
-  "modsSACR": {
-    "name": "Royal Sacrificial Exchange",
-    "description": "Select a friendly Queen or Templar to turn into a Mystic",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/sacExchangeR"
-  },
-  "modsCHA": {
-    "name": "Chameleon",
-    "description": "Select a minor piece to turn into another minor piece.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/chameleon"
-  },
-  "modsTEL": {
-    "name": "Teleportation",
-    "description": "Move a friendly piece to any empty square within your first three ranks, no Kings.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/modsTEL"
-  },
-  "modsEXT": {
+  "modsREA": {
     "name": "Iron Reach",
-    "description": "Friendly Vanguard has usual moveset with hopping plus the Queen move pattern with no hopping.",
+    "description": "Friendly Vanguard has usual moveset with hopping plus the Queen move pattern with no hopping. Royalties take precedent.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/vanUpgrade"
   },
-  "sumnRY": {
-    "name": "File Bind",
-    "description": "Select a square, all squares along that file have exile or entanglement for 3 turns.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/chain"
-  },
-  "sumnRZ": {
-    "name": "Rank Bind",
-    "description": "Select a square, all squares along that rank have exile or entanglement for 3 turns.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/chainPurple"
+  "modsEXT": {
+    "name": "Omni Gaze",
+    "description": "You may summon amongst the whole board.",
+    "type": "inherent",
+    "imagePath": "/assets/arcanaImages/horus"
   },
   "modsFUG": {
     "name": "Sovereign Fugitive",
@@ -371,22 +389,10 @@
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsTEM"
   },
-  "sacanyplussumn": {
-    "name": "",
-    "description": "",
-    "type": "",
-    "imagePath": "/assets/arcanaImages/"
-  },
-  "freezeblock": {
-    "name": "",
-    "description": "",
-    "type": "",
-    "imagePath": "/assets/arcanaImages/"
-  },
-  "GLITCH": {
-    "name": "",
-    "description": "",
-    "type": "",
-    "imagePath": "/assets/arcanaImages/"
+  "modsGLI": {
+    "name": "Neural Scrambler",
+    "description": "The next engine move is randomized.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/glitch"
   }
 }

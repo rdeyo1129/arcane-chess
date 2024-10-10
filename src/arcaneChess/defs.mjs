@@ -32,13 +32,13 @@ export const PIECES = {
 };
 
 export const ARCANE_BIT_VALUES = {
-  RQ: 1,
-  RT: 2,
-  RM: 3,
-  RV: 4,
-  RE: 5,
-  RY: 6,
-  RZ: 7,
+  RQ: 30,
+  RT: 31,
+  RM: 32,
+  RV: 33,
+  RE: 34,
+  RY: 35,
+  RZ: 36,
   ATK: 8,
   DEP: 9,
   ADJ: 10,
@@ -123,7 +123,7 @@ export function updateStartFen(newFen) {
 }
 
 export let PceChar = '.PNBRQKpnbrqkXSHTMVshtmvZUzuWw';
-export let RtyChar = '.QTMVEYZ';
+export let RtyChar = '.'.repeat(30) + 'QTMVEYZ';
 export let SideChar = 'wb-';
 export let RankChar = '12345678';
 export let FileChar = 'abcdefgh';
@@ -784,10 +784,10 @@ export const LoopSlideDyad = [
 // export const LoopSlideIndex = [0, 4];
 export const LoopSlideIndex = [0, 6];
 
+// no king
 export const LoopPcePrime = [
   PIECES.wP,
   PIECES.wN,
-  PIECES.wK,
   PIECES.wS,
   PIECES.wH,
   PIECES.wT,
@@ -802,7 +802,6 @@ export const LoopPcePrime = [
   0,
   PIECES.bP,
   PIECES.bN,
-  PIECES.bK,
   PIECES.bS,
   PIECES.bH,
   PIECES.bT,
@@ -816,6 +815,38 @@ export const LoopPcePrime = [
   PIECES.bW,
   0,
 ];
+export const LoopPcePrimeSymbols = [
+  'P',
+  'N',
+  'S',
+  'H',
+  'T',
+  'M',
+  'V',
+  'B',
+  'R',
+  'Q',
+  'Z',
+  'U',
+  'W',
+  '',
+  'P',
+  'N',
+  'S',
+  'H',
+  'T',
+  'M',
+  'V',
+  'B',
+  'R',
+  'Q',
+  'Z',
+  'U',
+  'W',
+  '',
+];
+export const LoopPcePrimeIndex = [0, 14];
+
 export const LoopDyadPrime = [
   2, 16, 256, 4, 8, 512, 1024, 2048, 32, 64, 128, 4096, 8192, 16384, 0, 2, 16,
   256, 4, 8, 512, 1024, 2048, 32, 64, 128, 4096, 8192, 16384, 0,

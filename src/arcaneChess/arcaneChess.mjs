@@ -15,6 +15,7 @@ import {
 import {
   validGroundMoves,
   validSummonMoves,
+  validOfferingMoves,
   MakeUserMove,
   PreSearch,
   engineSuggestion,
@@ -72,8 +73,38 @@ export default function arcaneChess() {
       // sumnX: 1,
       // sumnRY: 1,
       // sumnRZ: 1,
+      // offrT: 1,
+      offrH: 1,
+      offrS: 1,
+      offrM: 1,
+      offrE: 1,
+      offrR: 1,
+      offrA: 1,
+      offrC: 1,
+      // modsEXT: 1,
+      // modsREA: 1,
+      // sumnRY: 1,
+      // sumnRZ: 1,
+      // sumnRA: 1,
+      // sumnS: 1,
+      // sumnH: 1,
+      // sumnRT: 1,
+      // shftT: 1,
+      // modsSKI: 1,
+      // modsGLI: 1,
+      // modsPHA: 1,
+      // modsTRO: 1,
+      // sumnR: 1,
     });
-    setBlackArcana({ ...blackConfig });
+    setBlackArcana({
+      ...blackConfig,
+      // offrT: 1,
+      // offrH: 1,
+      // offrE: 1,
+      // offrR: 1,
+      // offrA: 1,
+      // offrC: 1,
+    });
 
     _.forEach(royalties, (value, key) => {
       GameBoard[key] = {};
@@ -158,6 +189,9 @@ export default function arcaneChess() {
     getSummonMoves: (piece) => {
       return validSummonMoves(piece);
     },
+    getOfferingMoves: (type) => {
+      return validOfferingMoves(type);
+    },
     getSwapMoves: (swapType) => {
       return validGroundMoves('', swapType);
     },
@@ -166,7 +200,7 @@ export default function arcaneChess() {
       dest,
       pieceEpsilon = PIECES.EMPTY,
       swapType = '',
-      royaltyEpsilon = 0
+      royaltyEpsilon
     ) => {
       return MakeUserMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
     },

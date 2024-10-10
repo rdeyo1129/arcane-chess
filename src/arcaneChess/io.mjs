@@ -34,6 +34,18 @@ export function PrSq(sq) {
   return FileChar[FilesBrd[sq]] + RankChar[RanksBrd[sq]];
 }
 
+const royaltyMap = [
+  // ...new Array(30).fill('.'),
+  '.',
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+];
 // todo update to allow swapping your pawns into promotion, but not your opponents
 
 const isInitPromotion = (move) => {
@@ -79,7 +91,12 @@ export function PrMove(move, returnType) {
   let pchar;
 
   // normal quiet
-  if (CAPTURED(move) === 0 && pieceEpsilon === 0 && ARCANEFLAG(move) === 0) {
+  if (
+    TOSQ(move) !== 0 &&
+    CAPTURED(move) === 0 &&
+    pieceEpsilon === 0 &&
+    ARCANEFLAG(move) === 0
+  ) {
     MvStr =
       getPceChar(GameBoard.pieces[TOSQ(move)]) +
       FileChar[ff] +
@@ -89,6 +106,7 @@ export function PrMove(move, returnType) {
   }
   // normal capture
   if (
+    TOSQ(move) !== 0 &&
     CAPTURED(move) > 0 &&
     pieceEpsilon === 0 &&
     !(move & MFLAGSWAP)
@@ -105,7 +123,7 @@ export function PrMove(move, returnType) {
       RankChar[rt];
   }
   // consume capture
-  if (move & MFLAGCNSM && pieceEpsilon !== 0) {
+  if (TOSQ(move) !== 0 && move & MFLAGCNSM && pieceEpsilon !== 0) {
     MvStr =
       getPceChar(GameBoard.pieces[TOSQ(move)]) +
       FileChar[ff] +
@@ -116,7 +134,7 @@ export function PrMove(move, returnType) {
       RankChar[rt];
   }
   // swap
-  if (move & MFLAGSWAP) {
+  if (TOSQ(move) !== 0 && move & MFLAGSWAP) {
     MvStr =
       getPceChar(GameBoard.pieces[FROMSQ(move)]) +
       PrSq(FROMSQ(move)) +
@@ -125,25 +143,33 @@ export function PrMove(move, returnType) {
       PrSq(TOSQ(move));
   }
   // summon
-  if (move & MFLAGSUMN) {
+  if (TOSQ(move) !== 0 && move & MFLAGSUMN) {
     if (
-      CAPTURED(move) === ARCANE_BIT_VALUES.RQ ||
-      CAPTURED(move) === ARCANE_BIT_VALUES.RT ||
-      CAPTURED(move) === ARCANE_BIT_VALUES.RM ||
-      CAPTURED(move) === ARCANE_BIT_VALUES.RV ||
-      CAPTURED(move) === ARCANE_BIT_VALUES.RE
+      royaltyMap[CAPTURED(move)] === ARCANE_BIT_VALUES.RQ ||
+      royaltyMap[CAPTURED(move)] === ARCANE_BIT_VALUES.RT ||
+      royaltyMap[CAPTURED(move)] === ARCANE_BIT_VALUES.RM ||
+      royaltyMap[CAPTURED(move)] === ARCANE_BIT_VALUES.RV ||
+      royaltyMap[CAPTURED(move)] === ARCANE_BIT_VALUES.RE ||
+      royaltyMap[CAPTURED(move)] === ARCANE_BIT_VALUES.RY ||
+      royaltyMap[CAPTURED(move)] === ARCANE_BIT_VALUES.RZ ||
+      royaltyMap[CAPTURED(move)] === ARCANE_BIT_VALUES.RA
     ) {
-      MvStr = 'R' + RtyChar.split('')[CAPTURED(move)] + '@' + PrSq(TOSQ(move));
+      MvStr =
+        'R' +
+        RtyChar.split('')[royaltyMap[CAPTURED(move)]] +
+        '@' +
+        PrSq(TOSQ(move));
     } else {
       MvStr = PceChar.split('')[PROMOTED(move)] + '@' + PrSq(TOSQ(move));
     }
   }
-  // offer
-  // if (move & MFLAGOFFR) {
-  //   MvStr = getPceChar(CAPTURED(move)) + '%' + PrSq(FROMSQ(move));
-  // }
+  // offering
+  if (TOSQ(move) === 0 && CAPTURED(move) > 0 && PROMOTED(move) > 0) {
+    MvStr =
+      'o' + '.HSMEEEERA'.split('')[PROMOTED(move)] + '@' + PrSq(FROMSQ(move));
+  }
   // shift
-  if (move & MFLAGSHFT) {
+  if (TOSQ(move) !== 0 && move & MFLAGSHFT) {
     MvStr =
       getPceChar(GameBoard.pieces[FROMSQ(move)]) +
       PrSq(FROMSQ(move)) +
@@ -151,7 +177,12 @@ export function PrMove(move, returnType) {
       PrSq(TOSQ(move));
   }
   // promotion
-  if (pieceEpsilon !== 0 && !(move & MFLAGSUMN) && !(move & MFLAGSWAP)) {
+  if (
+    TOSQ(move) !== 0 &&
+    pieceEpsilon !== 0 &&
+    !(move & MFLAGSUMN) &&
+    !(move & MFLAGSWAP)
+  ) {
     MvStr =
       `${GameBoard.side === COLOURS.WHITE ? 'P' : 'p'}` +
       FileChar[ff] +
@@ -299,12 +330,16 @@ export function ParseMove(
   swapType = '',
   royaltyEpsilon = PIECES.EMPTY
 ) {
-  const royaltyMap = ['.', 'RQ', 'RT', 'RM', 'RV', 'RE', 'RY', 'RZ'];
-  const parseSummonOnly = royaltyEpsilon > 0 ? 'PLAYER' : 'COMP';
-  const userSummonType =
-    pieceEpsilon > 0 ? pieceEpsilon : royaltyMap[royaltyEpsilon];
+  const arcaneType =
+    royaltyEpsilon > 0 || 'HSMERCA'.includes(royaltyEpsilon) || pieceEpsilon > 0
+      ? to === null
+        ? 'OFFERING'
+        : 'SUMMON'
+      : 'COMP';
+  const royaltyOrPieceSummon =
+    royaltyEpsilon !== 0 ? royaltyEpsilon : pieceEpsilon;
   generatePowers();
-  GenerateMoves(true, false, parseSummonOnly, swapType, userSummonType);
+  GenerateMoves(true, false, arcaneType, swapType, royaltyOrPieceSummon);
 
   let Move = NOMOVE;
   let found = BOOL.FALSE;
@@ -317,16 +352,17 @@ export function ParseMove(
     Move = GameBoard.moveList[index];
     if (
       (from === 0 && TOSQ(Move) === prettyToSquare(to)) ||
-      (from !== 0 &&
-        FROMSQ(Move) === prettyToSquare(from) &&
+      (FROMSQ(Move) === prettyToSquare(from) &&
         TOSQ(Move) === prettyToSquare(to))
     ) {
-      if (isInitPromotion(Move) && PROMOTED(Move) === PIECES.EMPTY) {
+      if (TOSQ(Move === 0) && CAPTURED(Move) > 0) {
         found = BOOL.TRUE;
         break;
-      }
-      if (Move & MFLAGSWAP && swapType !== '') {
-        if (CAPTURED(Move)) {
+      } else if (isInitPromotion(Move) && PROMOTED(Move) === PIECES.EMPTY) {
+        found = BOOL.TRUE;
+        break;
+      } else if (Move & MFLAGSWAP && swapType !== '') {
+        if (CAPTURED(Move) > 0 && PROMOTED(Move > 0)) {
           found = BOOL.TRUE;
           break;
         }
@@ -335,10 +371,7 @@ export function ParseMove(
         if (pieceEpsilon !== PIECES.EMPTY) {
           found = BOOL.TRUE;
           break;
-        } else if (
-          CAPTURED(Move) === royaltyEpsilon &&
-          royaltyEpsilon !== PIECES.EMPTY
-        ) {
+        } else if (royaltyEpsilon !== PIECES.EMPTY) {
           found = BOOL.TRUE;
           break;
         }

@@ -1,4 +1,4 @@
-import { GameBoard } from './board';
+import { GameBoard, FROMSQ } from './board';
 import { GenerateMoves, generatePowers } from './movegen';
 import { SearchController, SearchPosition } from './search';
 import {
@@ -18,8 +18,9 @@ import {
   PIECES,
   Kings,
   PceChar,
+  RtyChar,
 } from './defs';
-import { PrMove, ParseMove } from './io';
+import { PrMove, ParseMove, PrSq } from './io';
 import { SqAttacked } from './board.mjs';
 
 export function validGroundMoves(summon = '', swap = '') {
@@ -39,15 +40,29 @@ export function validGroundMoves(summon = '', swap = '') {
 
 export const validSummonMoves = (piece) => {
   const moveMap = new Map();
-  const validMovesReturn = validMoves('PLAYER', '', piece);
+  const validMovesReturn = validMoves('SUMMON', '', piece);
 
   for (let move of validMovesReturn) {
     const from =
-      typeof piece === 'number'
-        ? `${PceChar.split('')[piece].toUpperCase()}@`
-        : `${piece}@`;
+      piece >= 30
+        ? `R${RtyChar.split('')[piece]}@`
+        : `${PceChar.split('')[piece]}@`;
     const to = PrMove(move, 'array')[1];
 
+    if (!moveMap.has(from)) {
+      moveMap.set(from, []);
+    }
+    moveMap.get(from).push(to);
+  }
+  return moveMap;
+};
+
+export const validOfferingMoves = (userSummonPceRty) => {
+  const moveMap = new Map();
+  const validMovesReturn = validMoves('OFFERING', '', userSummonPceRty);
+  for (let move of validMovesReturn) {
+    const from = `o${userSummonPceRty}@`;
+    const to = PrSq(FROMSQ(move));
     if (!moveMap.has(from)) {
       moveMap.set(from, []);
     }

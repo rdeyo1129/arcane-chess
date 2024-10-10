@@ -84,7 +84,7 @@ export const activateDyad = () => {
 // 0011 1111 1111 0000 0000 0000 0000 0000 0000 0000 0000 0000 mods
 
 export const POWERBIT = {
-  // 15 active orange
+  // 15 active
   dyadA: 1,
   dyadP: 2,
   dyadS: 4,
@@ -100,7 +100,7 @@ export const POWERBIT = {
   dyadZ: 4096,
   dyadU: 8192,
   dyadW: 16384,
-  // 19 active purple
+  // 22 active
   sumnP: 1,
   sumnS: 2,
   sumnH: 4,
@@ -122,33 +122,37 @@ export const POWERBIT = {
   sumnRE: 262144,
   sumnRY: 524288,
   sumnRZ: 1048576,
-  // 4 passive blue
+  sumnRA: 2097152,
+  // 7 active
+  offrH: 1,
+  offrS: 2,
+  offrM: 4,
+  offrE: 8,
+  offrR: 16,
+  offrC: 32,
+  offrA: 64,
+  // 5 passive
   shftP: 1,
   shftN: 2,
   shftB: 4,
   shftR: 8,
-  // 3 active green
-  swapATK: 1, // sunset
-  swapDEP: 2,
-  swapADJ: 4,
-  // offerings
-  offrQ: 1, // ?
-  offrMLT: 2, // ?
-  // 11 yellow
+  shftT: 16, // active
+  // 2 active
+  swapDEP: 1,
+  swapADJ: 2,
+  // 12
   modsCON: 1, // passive
-  modsTEL: 2, // passive
+  modsTEL: 2, // moved //
   modsFUG: 4, // inherent
-  modsRAN: 8, // sunset
+  modsRAN: 8, // deprecated //
   modsINH: 16, // inherent
   modsSUS: 32, // active
   modsPHA: 64, // active
   modsFUT: 128, // active
-  modsIMP: 256, // active
-  modsORA: 512, // active
-  modsTEM: 1024, // active
-  //
-  modsPRE: 2048, // inherent
-  // modsOFF: 512, add time, glitch (rand comp move), add random arcana / mana
+  modsREA: 2048, // inherent
+  modsEXT: 4096, // inherent
+  modsSKI: 16384, // active
+  modsTRO: 32768, // inherent
 };
 
 export const varVars = {
@@ -158,9 +162,10 @@ export const varVars = {
 export const POWERS = (config) => {
   return (
     config.dyad |
-    (config.sumn << 12) |
-    (config.shft << 30) |
-    (config.swap << 34) |
-    (config.mods << 37)
+    (config.sumn << 15) |
+    (config.shft << 37) |
+    (config.swap << 42) |
+    (config.mods << 44) |
+    (config.offr << 56)
   );
 };

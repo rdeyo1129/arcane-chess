@@ -69,11 +69,11 @@ export default function arcaneChess() {
       // dyadP: 1,
       // dyadN: 1,
       // dyadA: 1,
-      // sumnP: 1,
-      // sumnX: 1,
+      sumnP: 1,
+      sumnX: 1,
+      sumnRM: 1,
       // sumnRY: 1,
       // sumnRZ: 1,
-      // offrT: 1,
       offrH: 1,
       offrS: 1,
       offrM: 1,
@@ -98,11 +98,10 @@ export default function arcaneChess() {
     });
     setBlackArcana({
       ...blackConfig,
-      // offrT: 1,
-      // offrH: 1,
-      // offrE: 1,
-      // offrR: 1,
-      // offrA: 1,
+      offrH: 1,
+      offrE: 1,
+      offrR: 1,
+      offrA: 1,
       // offrC: 1,
     });
 

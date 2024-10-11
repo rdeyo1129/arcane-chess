@@ -199,6 +199,7 @@ interface State {
   placingPiece: number;
   swapType: string;
   placingRoyalty: number;
+  offeringType: string;
   isDyadMove: boolean;
   normalMovesOnly: boolean;
   selectedSide: string;
@@ -333,6 +334,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       placingPiece: 0,
       swapType: '',
       placingRoyalty: 0,
+      offeringType: '',
       isDyadMove: false,
       normalMovesOnly: false,
       selectedSide: getLocalStorage(this.props.auth.user.username).config.color,
@@ -401,7 +403,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     );
 
   engineGo = () => {
-    if (this.state.gameOver) return;
+    // if (this.state.gameOver) return;
     this.setState({
       thinking: true,
     });
@@ -647,6 +649,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   };
 
   normalMoveStateAndEngineGo = (parsed: number, orig: string, dest: string) => {
+    const char = RtyChar.split('')[this.state.placingRoyalty];
     this.setState(
       (prevState) => {
         const newHistory = [...prevState.history];
@@ -662,16 +665,34 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           fen: outputFenOfCurrentPosition(),
           fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
           lastMove: [[orig, dest]],
-          turn: prevState.turn === 'white' ? 'black' : 'white',
           placingPiece: 0,
           placingRoyalty: 0,
           placingPromotion: 0,
           promotionModalOpen: false,
           normalMovesOnly: false,
           swapType: '',
+          offeringType: '',
           royalties: {
             ...prevState.royalties,
-            ...this.arcaneChess().getPrettyRoyalties(),
+            royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
+            [`royalty${char}`]: {
+              ...prevState.royalties[`royalty${char}`],
+              [dest]: 8,
+            },
           },
         };
       },
@@ -770,16 +791,29 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         this.state.royalties,
         this.state.preset
       );
-      if (this.state.engineColor === this.state.turn) {
-        this.engineGo();
-      }
-      // for updating arcana available on turn 1
-      this.setState({});
+      this.setState(
+        {
+          turn: GameBoard.side === 0 ? 'white' : 'black',
+          whiteArcana: {
+            ...whiteArcaneConfig,
+          },
+          blackArcana: {
+            ...blackArcaneConfig,
+          },
+        },
+        () => {
+          if (this.state.engineColor === this.state.turn) {
+            this.engineGo();
+          }
+        }
+      );
     }
   }
 
   render() {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
+
+    console.log(this.state.whiteArcana, this.arcaneChess().getGroundMoves());
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
@@ -985,11 +1019,13 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               if (
                                 this.state.placingPiece > 0 ||
                                 this.state.swapType !== '' ||
-                                this.state.placingRoyalty !== 0
+                                this.state.placingRoyalty !== 0 ||
+                                this.state.offeringType !== ''
                               ) {
                                 this.setState({
                                   placingPiece: 0,
                                   swapType: '',
+                                  offeringType: '',
                                   placingRoyalty: 0,
                                 });
                               } else {
@@ -1008,6 +1044,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   } else {
                                     this.setState({
                                       placingRoyalty: 0,
+                                      swapType: '',
+                                      offeringType: '',
                                       placingPiece:
                                         pieces[
                                           key.split('sumn')[1].toUpperCase() ===
@@ -1034,16 +1072,33 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                     }));
                                   }
                                 }
-                                if (key.includes('modsSUS')) {
-                                  if (GameBoard.suspend > 0) return;
-                                  GameBoard.suspend = 6;
+                                if (key.includes('offr')) {
+                                  if (this.state.offeringType === '') {
+                                    this.setState({
+                                      offeringType: key.split('offr')[1],
+                                    });
+                                  } else {
+                                    this.setState({
+                                      offeringType: '',
+                                    });
+                                  }
                                 }
                                 if (key.includes('dyad')) {
                                   this.arcaneChess().activateDyad(key);
-                                  this.setState({
-                                    isDyadMove: true,
-                                    normalMovesOnly: true,
-                                  });
+                                  this.arcaneChess().generatePlayableOptions();
+                                  const dests = arcaneChess().getGroundMoves();
+                                  if (dests.size === 0) {
+                                    this.arcaneChess().deactivateDyad();
+                                    this.setState({
+                                      isDyadMove: false,
+                                      normalMovesOnly: false,
+                                    });
+                                  } else {
+                                    this.setState({
+                                      isDyadMove: true,
+                                      normalMovesOnly: true,
+                                    });
+                                  }
                                 }
                                 if (key === 'modsIMP') {
                                   this.getHintAndScore(1);
@@ -1063,6 +1118,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                     );
                                     this.setState(
                                       (prevState) => ({
+                                        ...prevState,
                                         historyPly: prevState.historyPly - 4,
                                         history: prevState.history.slice(0, -4),
                                         fen: outputFenOfCurrentPosition(),
@@ -1073,7 +1129,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                         lastMove: [],
                                         turn: gameBoardTurn,
                                         royalties: {
-                                          ...prevState.royalties,
                                           ...this.arcaneChess().getPrettyRoyalties(),
                                         },
                                         futureSightAvailable: false,
@@ -1136,24 +1191,35 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       free: false,
                       rookCastle: false,
                       color: this.state.playerColor,
-                      dests:
-                        this.state.placingPiece === 0
-                          ? this.state.placingRoyalty === 0
-                            ? this.state.swapType === ''
-                              ? // ? gameBoardTurn === this.state.playerColor
-                                this.arcaneChess().getGroundMoves()
-                              : // : null
-                                this.arcaneChess().getSwapMoves(
-                                  this.state.swapType
-                                )
-                            : this.arcaneChess().getSummonMoves(
-                                `R${
-                                  RtyChar.split('')[this.state.placingRoyalty]
-                                }`
-                              )
-                          : this.arcaneChess().getSummonMoves(
-                              this.state.placingPiece
-                            ),
+                      dests: (() => {
+                        let dests;
+                        if (this.state.placingPiece === 0) {
+                          if (this.state.placingRoyalty === 0) {
+                            if (this.state.swapType === '') {
+                              if (this.state.offeringType === '') {
+                                dests = this.arcaneChess().getGroundMoves();
+                              } else {
+                                dests = this.arcaneChess().getOfferingMoves(
+                                  this.state.offeringType
+                                );
+                              }
+                            } else {
+                              dests = this.arcaneChess().getSwapMoves(
+                                this.state.swapType
+                              );
+                            }
+                          } else {
+                            dests = this.arcaneChess().getSummonMoves(
+                              this.state.placingRoyalty
+                            );
+                          }
+                        } else {
+                          dests = this.arcaneChess().getSummonMoves(
+                            this.state.placingPiece
+                          );
+                        }
+                        return dests;
+                      })(),
                       events: {},
                     }}
                     selectable={{
@@ -1173,6 +1239,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               ].toLowerCase()}-piece`,
                               color: this.state.playerColor,
                             }
+                          : this.state.offeringType !== ''
+                          ? {
+                              role: `o${this.state.offeringType.toLowerCase()}-piece`,
+                              color: this.state.playerColor,
+                            }
                           : null,
                       fromPocket: false,
                     }}
@@ -1184,7 +1255,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
                         ) {
                           const { parsed } = this.arcaneChess().makeUserMove(
-                            0,
+                            null,
                             key,
                             this.state.placingPiece,
                             '',
@@ -1206,8 +1277,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               placingPiece: 0,
                               placingRoyalty: 0,
                               swapType: '',
-                              turn:
-                                prevState.turn === 'white' ? 'black' : 'white',
+                              offeringType: '',
+                              // turn:
+                              //   prevState.turn === 'white' ? 'black' : 'white',
                               futureSightAvailable: true,
                             }),
                             () => {
@@ -1261,7 +1333,20 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             this.state.placingRoyalty
                           );
                         if (this.state.isDyadMove) {
+                          this.arcaneChess().generatePlayableOptions();
+                          const dests = this.arcaneChess().getGroundMoves();
+                          if (dests.size === 0) {
+                            this.arcaneChess().takeBackHalfDyad();
+                            this.arcaneChess().deactivateDyad();
+                            this.setState((prevState) => ({
+                              ...prevState,
+                              isDyadMove: false,
+                              normalMovesOnly: false,
+                            }));
+                            return;
+                          }
                           this.setState((prevState) => ({
+                            ...prevState,
                             historyPly: prevState.historyPly + 1,
                             history: [...prevState.history, [PrMove(parsed)]],
                             fen: outputFenOfCurrentPosition(),
@@ -1315,10 +1400,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         });
                       },
                       select: (key: string) => {
+                        let char = RtyChar.split('')[this.state.placingRoyalty];
                         const whiteLimit =
                           100 - 10 * (8 - GameBoard.summonRankLimits[0]);
                         const blackLimit =
                           20 + 10 * (8 - GameBoard.summonRankLimits[1]);
+
+                        if (char === 'Y' || char === 'Z') {
+                          char = 'E';
+                        }
 
                         if (this.state.placingRoyalty > 0) {
                           this.chessgroundRef.current?.setAutoShapes([]);
@@ -1377,13 +1467,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                     ...this.arcaneChess().getPrettyRoyalties(),
                                   },
                                   lastMove: [[key, key]],
-                                  turn:
-                                    prevState.turn === 'white'
-                                      ? 'black'
-                                      : 'white',
                                   placingPiece: 0,
                                   placingRoyalty: 0,
                                   swapType: '',
+                                  offeringType: '',
                                   futureSightAvailable: true,
                                 }),
                                 () => {
@@ -1420,11 +1507,91 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               placingRoyalty: this.state.placingRoyalty,
                             });
                           }
+                        } else if (this.state.offeringType !== '') {
+                          const dests = this.arcaneChess().getOfferingMoves(
+                            this.state.offeringType
+                          );
+                          if (
+                            dests.has(`o${this.state.offeringType}@`) &&
+                            dests
+                              .get(`o${this.state.offeringType}@`)
+                              .includes(key)
+                          ) {
+                            this.chessgroundRef.current?.setAutoShapes([]);
+                            const { parsed } = this.arcaneChess().makeUserMove(
+                              key,
+                              null,
+                              this.state.placingPiece,
+                              '',
+                              this.state.offeringType
+                            );
+                            if (parsed === 0) {
+                              console.log('parsed === 0');
+                              return;
+                            }
+                            this.setState(
+                              (prevState) => ({
+                                ...prevState,
+                                historyPly: prevState.historyPly + 1,
+                                history: [...prevState.history, PrMove(parsed)],
+                                fen: outputFenOfCurrentPosition(),
+                                fenHistory: [
+                                  ...prevState.fenHistory,
+                                  outputFenOfCurrentPosition(),
+                                ],
+                                royalties: {
+                                  ...prevState.royalties,
+                                  ...this.arcaneChess().getPrettyRoyalties(),
+                                },
+                                lastMove: [[key, key]],
+                                placingPiece: 0,
+                                placingRoyalty: 0,
+                                swapType: '',
+                                offeringType: '',
+                                futureSightAvailable: true,
+                              }),
+                              () => {
+                                if (CheckAndSet()) {
+                                  this.setState(
+                                    {
+                                      gameOver: true,
+                                      gameOverType: CheckResult().gameResult,
+                                    },
+                                    () => {
+                                      if (
+                                        _.includes(
+                                          this.state.gameOverType,
+                                          `${this.state.playerColor} mates`
+                                        )
+                                      ) {
+                                        this.handleVictory(
+                                          this.stopAndReturnTime() as
+                                            | number
+                                            | null
+                                        );
+                                      }
+                                    }
+                                  );
+                                  return;
+                                } else {
+                                  this.engineGo();
+                                }
+                              }
+                            );
+                          } else {
+                            this.setState({
+                              offeringType: this.state.offeringType,
+                            });
+                          }
                         }
                       },
                     }}
                     draggable={{
-                      enabled: this.state.placingRoyalty === 0 ? true : false,
+                      enabled:
+                        this.state.placingRoyalty === 0 ||
+                        this.state.offeringType === ''
+                          ? true
+                          : false,
                     }}
                   />
                 </div>

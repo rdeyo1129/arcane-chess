@@ -435,7 +435,7 @@ export function MakeMove(move, moveType = '') {
       9: [captured],
     };
 
-    const offerString = '.HSMEEEERA';
+    const offerString = '.HSMCCCCRA';
     const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
     const arcaneConfig =
       side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
@@ -447,7 +447,12 @@ export function MakeMove(move, moveType = '') {
     ClearPiece(from);
 
     if (offeringNumbers && offeringNumbers.length > 0) {
-      const offrKey = `offr${offerString.split('')[promoted]}`;
+      const offerSymbol =
+        (captured === PIECES.wR || captured === PIECES.bR) &&
+        (promoted === 4 || promoted === 5 || promoted === 6 || promoted === 7)
+          ? 'E'
+          : offerString.split('')[promoted];
+      const offrKey = `offr${offerSymbol}`;
       for (const offeringNumber of offeringNumbers) {
         const sumnKey = `sumn${PceChar.split('')[offeringNumber]}`;
         if (!arcaneConfig[sumnKey]) {
@@ -702,7 +707,7 @@ export function TakeMove(wasDyadMove = false) {
 
   // should only ever be offering moves
   else if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
-    const promoted = PROMOTED(move);
+    let promoted = PROMOTED(move);
     const whitePieceToOfferings = {
       1: [PIECES.wH],
       2: [PIECES.wR, PIECES.wB],
@@ -726,7 +731,7 @@ export function TakeMove(wasDyadMove = false) {
       9: [captured],
     };
 
-    const offerString = '.HSMEEEERA';
+    const offerString = '.HSMCCCCRA';
     const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
     const arcaneConfig =
       side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
@@ -738,7 +743,12 @@ export function TakeMove(wasDyadMove = false) {
     AddPiece(from, captured);
 
     if (offeringNumbers && offeringNumbers.length > 0) {
-      const offrKey = `offr${offerString.split('')[promoted]}`;
+      const offerSymbol =
+        (captured === PIECES.wR || captured === PIECES.bR) &&
+        (promoted === 4 || promoted === 5 || promoted === 6 || promoted === 7)
+          ? 'E'
+          : offerString.split('')[promoted];
+      const offrKey = `offr${offerSymbol}`;
       for (const offeringNumber of offeringNumbers) {
         const sumnKey = `sumn${PceChar.split('')[offeringNumber]}`;
         arcaneConfig[sumnKey] -= 1;

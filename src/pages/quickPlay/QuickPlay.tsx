@@ -200,7 +200,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       gameOverType: '',
       whiteSetup: this.props.config.whiteSetup,
       blackSetup: this.props.config.blackSetup,
-      fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
+      fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/8/6RK w KQkq - 0 1`,
       fenHistory: [
         `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
       ],
@@ -1247,6 +1247,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                       if (char === 'Y' || char === 'Z') {
                         char = 'E';
                       }
+
                       if (this.state.placingRoyalty > 0) {
                         this.chessgroundRef.current?.setAutoShapes([]);
                         if (

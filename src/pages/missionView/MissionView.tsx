@@ -165,6 +165,7 @@ interface State {
   historyPly: number;
   history: (string | string[])[];
   fenHistory: string[];
+  lastMoveHistory: string[][];
   pvLine?: string[];
   hasMounted: boolean;
   nodeId: string;
@@ -207,7 +208,6 @@ interface State {
   royalties: {
     [key: string]: { [key: string]: number | undefined };
   };
-  lastMove: string[][];
   orientation: string;
   preset: string;
   promotionModalOpen: boolean;
@@ -296,6 +296,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       historyPly: 0,
       history: [],
       fenHistory: [this.getFen()],
+      lastMoveHistory: [],
       thinking: SearchController.thinking,
       engineLastMove: [],
       thinkingTime: getLocalStorage(this.props.auth.user.username).config
@@ -345,7 +346,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
           'panel-1'
         ].royalties,
-      lastMove: [],
       orientation: getLocalStorage(this.props.auth.user.username).config.color,
       preset:
         booksMap[
@@ -403,7 +403,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     );
 
   engineGo = () => {
-    // if (this.state.gameOver) return;
+    if (this.state.gameOver) return;
     this.setState({
       thinking: true,
     });
@@ -425,10 +425,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 ...prevState.fenHistory,
                 outputFenOfCurrentPosition(),
               ],
+              lastMoveHistory: [
+                ...prevState.lastMoveHistory,
+                [PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))],
+              ],
               thinking: false,
-              turn: prevState.turn === 'white' ? 'black' : 'white',
-              lastMove: [PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))],
-              // hint: '',
+              // turn: prevState.turn === 'white' ? 'black' : 'white',
               royalties: {
                 ...prevState.royalties,
                 ...this.arcaneChess().getPrettyRoyalties(),
@@ -664,7 +666,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           history: newHistory,
           fen: outputFenOfCurrentPosition(),
           fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-          lastMove: [[orig, dest]],
+          lastMoveHistory:
+            prevState.historyPly < prevState.lastMoveHistory.length
+              ? prevState.lastMoveHistory.map((moves, index) =>
+                  index === prevState.historyPly
+                    ? [...moves, orig, dest]
+                    : moves
+                )
+              : [...prevState.lastMoveHistory, [orig, dest]],
           placingPiece: 0,
           placingRoyalty: 0,
           placingPromotion: 0,
@@ -812,8 +821,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
 
   render() {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
-
-    console.log(this.state.whiteArcana, this.arcaneChess().getGroundMoves());
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
@@ -1126,7 +1133,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                           0,
                                           -4
                                         ),
-                                        lastMove: [],
                                         turn: gameBoardTurn,
                                         royalties: {
                                           ...this.arcaneChess().getPrettyRoyalties(),
@@ -1183,7 +1189,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       check: true,
                       royalties: true,
                     }}
-                    lastMove={this.state.lastMove[0]}
+                    lastMove={
+                      this.state.lastMoveHistory[this.state.historyPly - 1]
+                    }
                     orientation={this.state.orientation}
                     disableContextMenu={false}
                     turnColor={gameBoardTurn}
@@ -1273,13 +1281,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 ...prevState.fenHistory,
                                 outputFenOfCurrentPosition(),
                               ],
-                              lastMove: [[key, key]],
+                              lastMoveHistory: [
+                                ...prevState.lastMoveHistory,
+                                ['a0', key],
+                              ],
                               placingPiece: 0,
                               placingRoyalty: 0,
                               swapType: '',
                               offeringType: '',
-                              // turn:
-                              //   prevState.turn === 'white' ? 'black' : 'white',
                               futureSightAvailable: true,
                             }),
                             () => {
@@ -1347,14 +1356,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           }
                           this.setState((prevState) => ({
                             ...prevState,
-                            historyPly: prevState.historyPly + 1,
                             history: [...prevState.history, [PrMove(parsed)]],
                             fen: outputFenOfCurrentPosition(),
                             fenHistory: [
                               ...prevState.fenHistory,
                               outputFenOfCurrentPosition(),
                             ],
-                            lastMove: [[orig, dest]],
+                            lastMoveHistory: [
+                              ...prevState.lastMoveHistory,
+                              [orig, dest],
+                            ],
                           }));
                         }
                         if (isInitPromotion) {
@@ -1462,11 +1473,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                     ...prevState.fenHistory,
                                     outputFenOfCurrentPosition(),
                                   ],
+                                  lastMoveHistory: [
+                                    ...prevState.lastMoveHistory,
+                                    ['a0', key],
+                                  ],
                                   royalties: {
                                     ...prevState.royalties,
                                     ...this.arcaneChess().getPrettyRoyalties(),
                                   },
-                                  lastMove: [[key, key]],
                                   placingPiece: 0,
                                   placingRoyalty: 0,
                                   swapType: '',
@@ -1539,11 +1553,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   ...prevState.fenHistory,
                                   outputFenOfCurrentPosition(),
                                 ],
+                                lastMoveHistory: [
+                                  ...prevState.lastMoveHistory,
+                                  ['a0', key],
+                                ],
                                 royalties: {
                                   ...prevState.royalties,
                                   ...this.arcaneChess().getPrettyRoyalties(),
                                 },
-                                lastMove: [[key, key]],
                                 placingPiece: 0,
                                 placingRoyalty: 0,
                                 swapType: '',

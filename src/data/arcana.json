@@ -109,7 +109,7 @@
   },
   "sumnH": {
     "name": "Summon Herring",
-    "description": "Summon a Herring to an empty square.",
+    "description": "Summon a Herring to an empty square. A Herring must be captured if the move is legal.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnBlue"
   },
@@ -221,15 +221,9 @@
     "type": "",
     "imagePath": "/assets/arcanaImages/mageOrange"
   },
-  "offrT": {
-    "name": "Hourglass Retrieval",
-    "description": "Offer a friendly Pawn to add one minute to your time.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/money"
-  },
   "offrH": {
     "name": "Masquerade Ritual",
-    "description": "Offer a friendly Pawn to gain a Herring summon arcana.",
+    "description": "Offer a friendly Pawn to gain a Herring summon arcana.  A Herring must be captured if the move is legal.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/daggerBlue"
   },

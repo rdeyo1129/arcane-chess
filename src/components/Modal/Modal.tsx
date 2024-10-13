@@ -60,33 +60,6 @@ interface ArcanaMap {
   [key: string]: ArcanaDetail;
 }
 
-const quickPlayArcana = [
-  'sumnN',
-  'sumnB',
-  'sumnR',
-  'sumnW',
-  'sumnS',
-  'sumnX',
-  'sumnRQ',
-  'sumnRT',
-  'sumnRM',
-  'sumnRE',
-  'swapDEP',
-  'swapADJ',
-  'shftP',
-  'shftN',
-  'shftB',
-  'shftR',
-  'modsSUS',
-  'modsIMP',
-  'modsORA',
-  'modsTEM',
-  'modsFUT',
-  'modsCON',
-  'modsFUG',
-  'modsINH',
-];
-
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 // Modal.setAppElement('#root');
@@ -859,13 +832,13 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   />
                 </div>
                 <div className="arcana">
-                  {_.map(quickPlayArcana, (name: string, key: number) => {
+                  {_.map(arcana, (_arcaneObject: ArcanaDetail, key: string) => {
                     return (
                       <img
                         key={key}
                         className="arcane"
-                        src={`${arcana[name].imagePath}${
-                          this.state.hoverArcane === `${name}-white`
+                        src={`${arcana[key].imagePath}${
+                          this.state.hoverArcane === `${key}-white`
                             ? '-hover'
                             : ''
                         }.svg`}
@@ -873,26 +846,26 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           opacity:
                             _.includes(
                               Object.keys(this.state.whiteArcana),
-                              name
-                            ) && this.state.whiteArcana[name]
+                              key
+                            ) && this.state.whiteArcana[key]
                               ? 1
                               : 0.5,
                           cursor:
                             "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                         }}
                         onClick={() => {
-                          const currentArcaneType = arcana[name].type;
+                          const currentArcaneType = arcana[key].type;
                           const isEnabledOrNonNull =
                             _.includes(
                               Object.keys(this.state.whiteArcana),
-                              name
-                            ) && this.state.whiteArcana[name];
+                              key
+                            ) && this.state.whiteArcana[key];
                           if (isEnabledOrNonNull) {
                             this.setState(
                               (prevState) => ({
                                 whiteArcana: {
                                   ...prevState.whiteArcana,
-                                  [name]: null,
+                                  [key]: null,
                                 },
                               }),
                               () => {
@@ -908,7 +881,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                               (prevState) => ({
                                 whiteArcana: {
                                   ...prevState.whiteArcana,
-                                  [name]:
+                                  [key]:
                                     currentArcaneType === 'active' ||
                                     currentArcaneType === 'passive'
                                       ? 2
@@ -925,7 +898,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                             );
                           }
                         }}
-                        onMouseEnter={() => this.toggleHover(`${name}-white`)}
+                        onMouseEnter={() => this.toggleHover(`${key}-white`)}
                         onMouseLeave={() => this.toggleHover('')}
                       />
                     );
@@ -994,13 +967,13 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   />
                 </div>
                 <div className="arcana">
-                  {_.map(quickPlayArcana, (name: string, key: number) => {
+                  {_.map(arcana, (arcaneObect: ArcanaDetail, key: string) => {
                     return (
                       <img
                         key={key}
                         className="arcane"
-                        src={`${arcana[name].imagePath}${
-                          this.state.hoverArcane === `${name}-black`
+                        src={`${arcana[key].imagePath}${
+                          this.state.hoverArcane === `${key}-black`
                             ? '-hover'
                             : ''
                         }.svg`}
@@ -1008,26 +981,26 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           opacity:
                             _.includes(
                               Object.keys(this.state.blackArcana),
-                              name
-                            ) && this.state.blackArcana[name]
+                              key
+                            ) && this.state.blackArcana[key]
                               ? 1
                               : 0.5,
                           cursor:
                             "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                         }}
                         onClick={() => {
-                          const currentArcaneType = arcana[name].type;
+                          const currentArcaneType = arcana[key].type;
                           const isEnabledOrNonNull =
                             _.includes(
                               Object.keys(this.state.blackArcana),
-                              name
-                            ) && this.state.blackArcana[name];
+                              key
+                            ) && this.state.blackArcana[key];
                           if (isEnabledOrNonNull) {
                             this.setState(
                               (prevState) => ({
                                 blackArcana: {
                                   ...prevState.blackArcana,
-                                  [name]: null,
+                                  [key]: null,
                                 },
                               }),
                               () => {
@@ -1043,7 +1016,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                               (prevState) => ({
                                 blackArcana: {
                                   ...prevState.blackArcana,
-                                  [name]:
+                                  [key]:
                                     currentArcaneType === 'active' ||
                                     currentArcaneType === 'passive'
                                       ? 2
@@ -1060,7 +1033,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                             );
                           }
                         }}
-                        onMouseEnter={() => this.toggleHover(`${name}-black`)}
+                        onMouseEnter={() => this.toggleHover(`${key}-black`)}
                         onMouseLeave={() => this.toggleHover('')}
                       />
                     );

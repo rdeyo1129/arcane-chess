@@ -967,7 +967,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   />
                 </div>
                 <div className="arcana">
-                  {_.map(arcana, (arcaneObect: ArcanaDetail, key: string) => {
+                  {_.map(arcana, (_arcaneObect: ArcanaDetail, key: string) => {
                     return (
                       <img
                         key={key}

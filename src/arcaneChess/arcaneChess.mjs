@@ -98,11 +98,22 @@ export default function arcaneChess() {
     });
     setBlackArcana({
       ...blackConfig,
-      // offrH: 1,
-      // offrE: 1,
+      // dyadP: 1,
+      // dyadN: 1,
+      // dyadA: 1,
+      // sumnP: 1,
+      // sumnX: 1,
+      // sumnRM: 1,
+      // sumnRY: 1,
+      // sumnRZ: 1,
+      // // offrH: 1,
+      // // offrS: 1,
+      // offrM: 1,
+      // // offrE: 1,
       // offrR: 1,
-      // offrA: 1,
-      // offrC: 1,
+      // sumnS: 1,
+      // // sumnH: 1,
+      // sumnRT: 1,
     });
 
     _.forEach(royalties, (value, key) => {

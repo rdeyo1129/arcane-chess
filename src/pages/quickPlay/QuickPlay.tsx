@@ -82,6 +82,7 @@ interface State {
   blackSetup: string;
   fen: string;
   fenHistory: string[];
+  lastMoveHistory: string[][];
   pvLine?: string[];
   hasMounted: boolean;
   nodeId: string;
@@ -122,7 +123,6 @@ interface State {
   royalties: {
     [key: string]: { [key: string]: number | undefined };
   };
-  lastMove: string[][];
   orientation: string;
   preset: string;
   promotionModalOpen: boolean;
@@ -204,6 +204,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       fenHistory: [
         `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
       ],
+      lastMoveHistory: [],
       pvLine: [],
       historyPly: 0,
       history: [],
@@ -232,7 +233,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       selectedSide: this.props.config.playerColor,
       hoverArcane: '',
       royalties: {},
-      lastMove: [],
       orientation: this.props.config.playerColor,
       preset: '',
       promotionModalOpen: false,
@@ -270,10 +270,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     this.setState({
       thinking: true,
     });
-
-    // generatePowers();
-    // GenerateMoves();
-
     new Promise((resolve) => {
       arcaneChess()
         .engineReply(this.state.thinkingTime, this.state.engineDepth)
@@ -292,10 +288,12 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                 ...prevState.fenHistory,
                 outputFenOfCurrentPosition(),
               ],
+              lastMoveHistory: [
+                ...prevState.lastMoveHistory,
+                [PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))],
+              ],
               thinking: false,
               turn: prevState.turn === 'white' ? 'black' : 'white',
-              lastMove: [[PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))]],
-              // hint: '',
               royalties: {
                 ...prevState.royalties,
                 ...this.arcaneChess().getPrettyRoyalties(),
@@ -512,7 +510,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
           history: newHistory,
           fen: outputFenOfCurrentPosition(),
           fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-          lastMove: [[orig, dest]],
+          lastMoveHistory:
+            prevState.historyPly < prevState.lastMoveHistory.length
+              ? prevState.lastMoveHistory.map((moves, index) =>
+                  index === prevState.historyPly
+                    ? [...moves, orig, dest]
+                    : moves
+                )
+              : [...prevState.lastMoveHistory, [orig, dest]],
           placingPiece: 0,
           placingRoyalty: 0,
           placingPromotion: 0,
@@ -973,7 +978,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                         0,
                                         -4
                                       ),
-                                      lastMove: [],
                                       turn: gameBoardTurn,
                                       royalties: {
                                         ...this.arcaneChess().getPrettyRoyalties(),
@@ -1029,7 +1033,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     check: true,
                     royalties: true,
                   }}
-                  lastMove={this.state.lastMove[0]}
+                  lastMove={
+                    this.state.lastMoveHistory[this.state.historyPly - 1]
+                  }
                   orientation={this.state.playerColor}
                   disableContextMenu={false}
                   turnColor={gameBoardTurn}
@@ -1119,7 +1125,10 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               ...prevState.fenHistory,
                               outputFenOfCurrentPosition(),
                             ],
-                            lastMove: [[key, key]],
+                            lastMoveHistory: [
+                              ...prevState.lastMoveHistory,
+                              ['a0', key],
+                            ],
                             placingPiece: 0,
                             placingRoyalty: 0,
                             swapType: '',
@@ -1189,14 +1198,16 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                         }
                         this.setState((prevState) => ({
                           ...prevState,
-                          historyPly: prevState.historyPly + 1,
                           history: [...prevState.history, [PrMove(parsed)]],
                           fen: outputFenOfCurrentPosition(),
                           fenHistory: [
                             ...prevState.fenHistory,
                             outputFenOfCurrentPosition(),
                           ],
-                          lastMove: [[orig, dest]],
+                          lastMoveHistory: [
+                            ...prevState.lastMoveHistory,
+                            [orig, dest],
+                          ],
                         }));
                       }
                       if (isInitPromotion) {
@@ -1225,10 +1236,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           console.log('invalid move');
                         }
                         if (this.state.isDyadMove) {
-                          this.setState({
+                          this.setState((prevState) => ({
+                            ...prevState,
                             isDyadMove: false,
                             normalMovesOnly: true,
-                          });
+                          }));
                         } else {
                           this.normalMoveStateAndEngineGo(parsed, orig, dest);
                         }
@@ -1290,11 +1302,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                   ...prevState.fenHistory,
                                   outputFenOfCurrentPosition(),
                                 ],
+                                lastMoveHistory: [
+                                  ...prevState.lastMoveHistory,
+                                  ['a0', key],
+                                ],
                                 royalties: {
                                   ...prevState.royalties,
                                   ...this.arcaneChess().getPrettyRoyalties(),
                                 },
-                                lastMove: [[key, key]],
                                 placingPiece: 0,
                                 placingRoyalty: 0,
                                 swapType: '',
@@ -1367,11 +1382,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                 ...prevState.fenHistory,
                                 outputFenOfCurrentPosition(),
                               ],
+                              lastMoveHistory: [
+                                ...prevState.lastMoveHistory,
+                                [key, 'a0'],
+                              ],
                               royalties: {
                                 ...prevState.royalties,
                                 ...this.arcaneChess().getPrettyRoyalties(),
                               },
-                              lastMove: [[key, key]],
                               placingPiece: 0,
                               placingRoyalty: 0,
                               swapType: '',

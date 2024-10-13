@@ -331,9 +331,11 @@ export function ParseMove(
   royaltyEpsilon = PIECES.EMPTY
 ) {
   const arcaneType =
-    royaltyEpsilon > 0 || 'HSMERCA'.includes(royaltyEpsilon) || pieceEpsilon > 0
+    royaltyEpsilon > 0 || 'HSMERCA'.includes(royaltyEpsilon)
       ? to === null
         ? 'OFFERING'
+        : pieceEpsilon > 0
+        ? 'PLAYER'
         : 'SUMMON'
       : 'COMP';
   const royaltyOrPieceSummon =
@@ -355,7 +357,7 @@ export function ParseMove(
       (FROMSQ(Move) === prettyToSquare(from) &&
         TOSQ(Move) === prettyToSquare(to))
     ) {
-      if (TOSQ(Move === 0) && CAPTURED(Move) > 0) {
+      if (TOSQ(Move) === 0 && CAPTURED(Move) > 0) {
         found = BOOL.TRUE;
         break;
       } else if (isInitPromotion(Move) && PROMOTED(Move) === PIECES.EMPTY) {

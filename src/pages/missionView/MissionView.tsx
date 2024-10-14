@@ -1001,16 +1001,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 this.state.playerColor !== gameBoardTurn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
-                                (!futureSightAvailable && key === 'modsFUT') ||
-                                this.state.normalMovesOnly
+                                (!futureSightAvailable && key === 'modsFUT')
                                   ? 0.5
                                   : 1,
                               cursor:
                                 this.state.playerColor !== gameBoardTurn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
-                                (!futureSightAvailable && key === 'modsFUT') ||
-                                this.state.normalMovesOnly
+                                (!futureSightAvailable && key === 'modsFUT')
                                   ? 'not-allowed'
                                   : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
                             }}
@@ -1019,8 +1017,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 this.state.playerColor !== gameBoardTurn ||
                                 this.state.selectedSide ===
                                   this.state.engineColor ||
-                                (!futureSightAvailable && key === 'modsFUT') ||
-                                this.state.normalMovesOnly
+                                (!futureSightAvailable && key === 'modsFUT')
                               )
                                 return;
                               if (
@@ -1091,21 +1088,62 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   }
                                 }
                                 if (key.includes('dyad')) {
-                                  this.arcaneChess().activateDyad(key);
-                                  this.arcaneChess().generatePlayableOptions();
-                                  const dests = arcaneChess().getGroundMoves();
-                                  if (dests.size === 0) {
-                                    this.arcaneChess().deactivateDyad();
-                                    this.setState({
-                                      isDyadMove: false,
-                                      normalMovesOnly: false,
-                                    });
-                                  } else {
-                                    this.setState({
-                                      isDyadMove: true,
-                                      normalMovesOnly: true,
-                                    });
-                                  }
+                                  this.setState((prevState) => {
+                                    const dyadClock =
+                                      this.arcaneChess().getDyadClock();
+                                    if (
+                                      prevState.isDyadMove &&
+                                      dyadClock === 0
+                                    ) {
+                                      // If it's already a dyad move but no first move was made (dyadClock is 0), cancel it
+                                      this.arcaneChess().deactivateDyad();
+                                      return {
+                                        ...prevState,
+                                        isDyadMove: false,
+                                        normalMovesOnly: false,
+                                      };
+                                    } else if (dyadClock === 1) {
+                                      // If first move of dyad is already made (dyadClock is 1), deactivate the dyad and revert the move
+                                      this.arcaneChess().takeBackHalfDyad();
+                                      this.arcaneChess().deactivateDyad();
+                                      return {
+                                        ...prevState,
+                                        isDyadMove: false,
+                                        normalMovesOnly: false,
+                                        history: prevState.history.slice(0, -1),
+                                        fen: outputFenOfCurrentPosition(),
+                                        fenHistory: prevState.fenHistory.slice(
+                                          0,
+                                          -1
+                                        ),
+                                        lastMoveHistory:
+                                          prevState.lastMoveHistory.slice(
+                                            0,
+                                            -1
+                                          ),
+                                      };
+                                    } else {
+                                      // Activate the dyad move
+                                      this.arcaneChess().activateDyad(key);
+                                      this.arcaneChess().generatePlayableOptions();
+                                      const dests =
+                                        this.arcaneChess().getGroundMoves();
+                                      if (dests.size === 0) {
+                                        this.arcaneChess().deactivateDyad();
+                                        return {
+                                          ...prevState,
+                                          isDyadMove: false,
+                                          normalMovesOnly: false,
+                                        };
+                                      } else {
+                                        return {
+                                          ...prevState,
+                                          isDyadMove: true,
+                                          normalMovesOnly: true,
+                                        };
+                                      }
+                                    }
+                                  });
                                 }
                                 if (key === 'modsIMP') {
                                   this.getHintAndScore(1);

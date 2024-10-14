@@ -166,14 +166,12 @@ export default function arcaneChess() {
     GameBoard.dyadName = type;
     GameBoard.dyad = POWERBIT[type];
     GameBoard.dyadClock = 0;
-    whiteArcaneConfig[type] -= 1;
   };
 
   const deactivateDyad = () => {
-    whiteArcaneConfig[GameBoard.dyadName] += 1;
-    GameBoard.dyadName = '';
     GameBoard.dyad = 0;
     GameBoard.dyadClock = 0;
+    GameBoard.dyadName = '';
   };
 
   return {
@@ -230,6 +228,9 @@ export default function arcaneChess() {
         playerArcana.modsTEM -= 1;
       }
       return await engineSuggestion(thinkingTime);
+    },
+    getDyadClock: () => {
+      return GameBoard.dyadClock;
     },
     takeBackHalfDyad: () => {
       TakeMove();

@@ -252,7 +252,7 @@
     "imagePath": "/assets/arcanaImages/sacExchangeR"
   },
   "offrC": {
-    "name": "Chameleon's Traversal",
+    "name": "Chameleon's Resurrection",
     "description": "Offer a friendly minor piece to gain a minor piece summon arcana.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/chameleon"

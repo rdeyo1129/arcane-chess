@@ -479,6 +479,7 @@ export function MakeMove(move, moveType = '') {
   if (moveType === 'userMove' && GameBoard.dyad > 0) {
     GameBoard.dyadClock++;
     if (GameBoard.dyadClock >= 2) {
+      whiteArcaneConfig[GameBoard.dyadName] -= 1;
       GameBoard.dyad = 0;
       GameBoard.dyadClock = 0;
       GameBoard.dyadName = '';
@@ -525,6 +526,7 @@ export function TakeMove(wasDyadMove = false) {
     if (GameBoard.dyadClock > 0) {
       GameBoard.dyadClock--;
       if (GameBoard.dyadClock === 0) {
+        whiteArcaneConfig[GameBoard.dyadName] -= 1;
         GameBoard.dyad = 0;
         GameBoard.dyadName = '';
       }

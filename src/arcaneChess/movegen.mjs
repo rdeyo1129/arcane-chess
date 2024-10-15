@@ -919,6 +919,7 @@ export function GenerateMoves(
       34: 5,
       35: 6,
       36: 7,
+      37: 8,
     };
     if (userSummonPceRty > 0 || userSummonPceRty !== '' || type !== 'SUMMON') {
       while (summonPce !== 0) {

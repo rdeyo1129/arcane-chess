@@ -31,7 +31,6 @@ import {
 } from './arcaneDefs.mjs';
 import { COLOURS, PIECES, prettyToSquare } from './defs.mjs';
 import { TakeMove } from './makemove.mjs';
-import { HASH_SIDE } from './board.mjs';
 import { PrSq } from './io';
 
 export default function arcaneChess() {
@@ -233,9 +232,7 @@ export default function arcaneChess() {
       return GameBoard.dyadClock;
     },
     takeBackHalfDyad: () => {
-      TakeMove();
-      GameBoard.side ^= 1;
-      HASH_SIDE;
+      TakeMove(true);
     },
     takeBackMove: (ply, side, history) => {
       if (side === 'white') {

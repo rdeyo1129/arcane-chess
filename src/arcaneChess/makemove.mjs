@@ -38,7 +38,7 @@ import {
 import { ARCANEFLAG, SideText } from './board.mjs';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
-const royaltyIndexMapRestructure = [0, 30, 31, 32, 33, 34, 35, 36];
+const royaltyIndexMapRestructure = [0, 30, 31, 32, 33, 34, 35, 36, 37];
 
 export function ClearPiece(sq, summon = false) {
   let pce = GameBoard.pieces[sq];
@@ -181,6 +181,7 @@ export function MakeMove(move, moveType = '') {
   GameBoard.history[GameBoard.hisPly].royaltyM = { ...GameBoard.royaltyM };
   GameBoard.history[GameBoard.hisPly].royaltyV = { ...GameBoard.royaltyV };
   GameBoard.history[GameBoard.hisPly].royaltyE = { ...GameBoard.royaltyE };
+  GameBoard.history[GameBoard.hisPly].royaltyX = { ...GameBoard.royaltyX };
 
   _.forEach(GameBoard.royaltyQ, (value, key) => {
     value === undefined
@@ -206,6 +207,17 @@ export function MakeMove(move, moveType = '') {
     value === undefined
       ? (GameBoard.royaltyE[key] = 0)
       : (GameBoard.royaltyE[key] -= 1);
+  });
+  _.forEach(GameBoard.royaltyX, (value, key) => {
+    if (value !== undefined && value > 0) {
+      GameBoard.royaltyX[key] -= 1;
+      if (
+        GameBoard.royaltyX[key] <= 0 &&
+        GameBoard.pieces[key] === PIECES.EXILE
+      ) {
+        ClearPiece(key);
+      }
+    }
   });
 
   if (GameBoard.pass) {
@@ -351,6 +363,22 @@ export function MakeMove(move, moveType = '') {
           if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
           if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
           GameBoard.royaltyE[square] = 8;
+        });
+      } else if (captured === 8) {
+        const tombSquare = [-11, -10, -9, -1, 0, 1, 9, 10, 11];
+        _.forEach(tombSquare, (offset) => {
+          const sq = TOSQ(move) + offset;
+          if (GameBoard.royaltyQ[sq] > 0) GameBoard.royaltyQ[sq] = 0;
+          if (GameBoard.royaltyT[sq] > 0) GameBoard.royaltyT[sq] = 0;
+          if (GameBoard.royaltyM[sq] > 0) GameBoard.royaltyM[sq] = 0;
+          if (GameBoard.royaltyV[sq] > 0) GameBoard.royaltyV[sq] = 0;
+          if (GameBoard.pieces[sq] === PIECES.EXILE) return;
+          if (GameBoard.pieces[sq] === PIECES.EMPTY) {
+            AddPiece(sq, PIECES.EXILE);
+            GameBoard.royaltyX[sq] = 8;
+          } else {
+            GameBoard.royaltyE[sq] = 8;
+          }
         });
       } else if (
         GameBoard[
@@ -524,11 +552,18 @@ export function TakeMove(wasDyadMove = false) {
 
   if (wasDyadMove) {
     if (GameBoard.dyadClock > 0) {
-      GameBoard.dyadClock--;
-      if (GameBoard.dyadClock === 0) {
-        whiteArcaneConfig[GameBoard.dyadName] -= 1;
+      if (GameBoard.dyadClock === 1) {
         GameBoard.dyad = 0;
+        GameBoard.dyadClock = 0;
         GameBoard.dyadName = '';
+      } else {
+        GameBoard.dyadClock++;
+        if (GameBoard.dyadClock === 2) {
+          whiteArcaneConfig[GameBoard.dyadName] += 1;
+          GameBoard.dyad = 0;
+          GameBoard.dyadClock = 0;
+          GameBoard.dyadName = '';
+        }
       }
     }
   } else {
@@ -569,6 +604,19 @@ export function TakeMove(wasDyadMove = false) {
   GameBoard.royaltyM = { ...GameBoard.history[GameBoard.hisPly].royaltyM };
   GameBoard.royaltyV = { ...GameBoard.history[GameBoard.hisPly].royaltyV };
   GameBoard.royaltyE = { ...GameBoard.history[GameBoard.hisPly].royaltyE };
+  GameBoard.royaltyX = { ...GameBoard.history[GameBoard.hisPly].royaltyX };
+
+  _.forEach(GameBoard.royaltyX, (value, key) => {
+    if (value !== undefined && value > 0) {
+      if (GameBoard.pieces[key] !== PIECES.EXILE) {
+        AddPiece(key, PIECES.EXILE);
+      }
+    } else {
+      if (GameBoard.pieces[key] === PIECES.EXILE) {
+        ClearPiece(key);
+      }
+    }
+  });
 
   let captured = CAPTURED(move);
   let pieceEpsilon = PROMOTED(move);
@@ -663,6 +711,18 @@ export function TakeMove(wasDyadMove = false) {
   } else if (TOSQ(move) > 0 && move & MFLAGSUMN) {
     if (pieceEpsilon > 0) {
       ClearPiece(to, true);
+    }
+    if (captured === 8) {
+      const tombSquare = [-11, -10, -9, -1, 0, 1, 9, 10, 11];
+      _.forEach(tombSquare, (offset) => {
+        const sq = TOSQ(move) + offset;
+        if (
+          (GameBoard.royaltyX[sq] <= 0 || !GameBoard.royaltyX[sq]) &&
+          GameBoard.pieces[sq] === PIECES.EXILE
+        ) {
+          ClearPiece(sq);
+        }
+      });
     }
     if (GameBoard.side === COLOURS.WHITE) {
       if (pieceEpsilon > 0 || captured > 0) {

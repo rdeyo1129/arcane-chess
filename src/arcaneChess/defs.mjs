@@ -39,6 +39,7 @@ export const ARCANE_BIT_VALUES = {
   RE: 34,
   RY: 35,
   RZ: 36,
+  RA: 37,
   ATK: 8,
   DEP: 9,
   ADJ: 10,
@@ -123,7 +124,7 @@ export function updateStartFen(newFen) {
 }
 
 export let PceChar = '.PNBRQKpnbrqkXSHTMVshtmvZUzuWw';
-export let RtyChar = '.'.repeat(30) + 'QTMVEYZ';
+export let RtyChar = '.'.repeat(30) + 'QTMVEYZA';
 export let SideChar = 'wb-';
 export let RankChar = '12345678';
 export let FileChar = 'abcdefgh';
@@ -853,11 +854,6 @@ export const LoopDyadPrime = [
 ];
 export const LoopIndexPrime = [0, 15];
 
-// 10/12/23 edits todo... unsure if this is correct
-export const royaltyDyad = [
-  0, 2, 16, 32, 64, 128, 256, 2, 16, 32, 64, 128, 256, 0, 4, 8, 512, 1024, 2048,
-  4, 8, 512, 1024, 2048, 4096, 8192, 4096, 8192, 16384, 16384,
-];
 export const royaltySliderMap = ['royaltyM', 'royaltyT', 'royaltyQ'];
 export const royaltyHopperMap = ['royaltyM', 'royaltyT', 'royaltyV'];
 export const royaltySliders = [PIECES.wB, PIECES.wR, PIECES.wQ];
@@ -885,6 +881,7 @@ export const loopSummon = [
   ARCANE_BIT_VALUES.RE,
   ARCANE_BIT_VALUES.RY,
   ARCANE_BIT_VALUES.RZ,
+  ARCANE_BIT_VALUES.RA,
   0,
   PIECES.bP,
   PIECES.bS,
@@ -907,15 +904,16 @@ export const loopSummon = [
   ARCANE_BIT_VALUES.RE,
   ARCANE_BIT_VALUES.RY,
   ARCANE_BIT_VALUES.RZ,
+  ARCANE_BIT_VALUES.RA,
   0,
 ];
 export const loopSummonFlag = [
   1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768,
-  65536, 131072, 262144, 524288, 1048576, 0, 1, 2, 4, 8, 16, 32, 64, 128, 256,
-  512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288,
-  1048576, 0,
+  65536, 131072, 262144, 524288, 1048576, 2097152, 0, 1, 2, 4, 8, 16, 32, 64,
+  128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144,
+  524288, 1048576, 2097152, 0,
 ];
-export const loopSummonIndex = [0, 22];
+export const loopSummonIndex = [0, 23];
 
 export const Mirror64 = [
   56, 57, 58, 59, 60, 61, 62, 63, 48, 49, 50, 51, 52, 53, 54, 55, 40, 41, 42,

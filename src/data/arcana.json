@@ -218,7 +218,7 @@
   "sumnRA": {
     "name": "Hexweaver's Tomb",
     "description": "Place a 3x3 block to fill each with entanglement and empty squares with exile for 4 turns.",
-    "type": "",
+    "type": "active",
     "imagePath": "/assets/arcanaImages/mageOrange"
   },
   "offrH": {

@@ -988,7 +988,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           key === 'modsFUT' &&
                           this.state.history.length >= 4 &&
                           this.state.futureSightAvailable;
-                        if (value === null || value <= 0) return;
+                        if (value === null || value <= 0 || !key) return;
                         return (
                           <img
                             key={key}
@@ -1105,11 +1105,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                     } else if (dyadClock === 1) {
                                       // If first move of dyad is already made (dyadClock is 1), deactivate the dyad and revert the move
                                       this.arcaneChess().takeBackHalfDyad();
-                                      this.arcaneChess().deactivateDyad();
                                       return {
                                         ...prevState,
-                                        isDyadMove: false,
-                                        normalMovesOnly: false,
+                                        isDyadMove: true,
+                                        normalMovesOnly: true,
                                         history: prevState.history.slice(0, -1),
                                         fen: outputFenOfCurrentPosition(),
                                         fenHistory: prevState.fenHistory.slice(
@@ -1161,26 +1160,29 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                       this.state.playerColor,
                                       this.state.history
                                     );
-                                    this.setState(
-                                      (prevState) => ({
+                                    this.setState((prevState) => {
+                                      return {
                                         ...prevState,
                                         historyPly: prevState.historyPly - 4,
-                                        history: prevState.history.slice(0, -4),
                                         fen: outputFenOfCurrentPosition(),
                                         fenHistory: prevState.fenHistory.slice(
                                           0,
                                           -4
                                         ),
+                                        lastMoveHistory:
+                                          prevState.lastMoveHistory.slice(
+                                            0,
+                                            -4
+                                          ),
                                         turn: gameBoardTurn,
                                         royalties: {
                                           ...this.arcaneChess().getPrettyRoyalties(),
                                         },
                                         futureSightAvailable: false,
-                                      }),
-                                      () => {
-                                        // this.arcaneChess().generatePlayableOptions();
-                                      }
-                                    );
+                                        isDyadMove: false,
+                                        normalMovesOnly: false,
+                                      };
+                                    });
                                   }
                                 }
                               }

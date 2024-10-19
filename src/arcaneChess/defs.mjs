@@ -771,19 +771,21 @@ export const LoopSlidePce = [
   PIECES.wQ,
   PIECES.wT,
   PIECES.wM,
+  PIECES.wV,
   0,
   PIECES.bB,
   PIECES.bR,
   PIECES.bQ,
   PIECES.bT,
   PIECES.bM,
+  PIECES.bV,
   0,
 ];
 export const LoopSlideDyad = [
-  32, 64, 128, 512, 1024, 0, 32, 64, 128, 512, 1024, 0,
+  32, 64, 128, 512, 1024, 2048, 0, 32, 64, 128, 512, 1024, 2048, 0,
 ];
 // export const LoopSlideIndex = [0, 4];
-export const LoopSlideIndex = [0, 6];
+export const LoopSlideIndex = [0, 7];
 
 // no king
 export const LoopPcePrime = [

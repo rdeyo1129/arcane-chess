@@ -825,8 +825,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     height={'30px'}
                     width={'240px'}
                     options={[
-                      'RNBVKBNR',
                       'RNBQKBNR',
+                      'RNBVKBNR',
                       'RNBTKBNR',
                       'RBNMKBNR',
                       'RZBTKBUR',
@@ -975,6 +975,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     width={'240px'}
                     options={[
                       'rnbqkbnr',
+                      'rnbvkbnr',
                       'rnbtkbnr',
                       'rbnmkbnr',
                       'rzbtkbur',

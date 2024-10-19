@@ -119,11 +119,11 @@
   justify-content: center;
   align-items: center;
   .setup-arcana {
-    margin: 15px;
+    // margin: 15px;
     .arcana {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       .arcane {
         height: 40px;
         width: 40px;

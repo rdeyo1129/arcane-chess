@@ -171,7 +171,7 @@ export function PrMove(move, returnType) {
   // shift
   if (TOSQ(move) !== 0 && move & MFLAGSHFT) {
     MvStr =
-      getPceChar(GameBoard.pieces[FROMSQ(move)]) +
+      getPceChar(GameBoard.pieces[TOSQ(move)]) +
       PrSq(FROMSQ(move)) +
       '^' +
       PrSq(TOSQ(move));
@@ -180,6 +180,7 @@ export function PrMove(move, returnType) {
   if (
     TOSQ(move) !== 0 &&
     pieceEpsilon !== 0 &&
+    (move & MFLAGSHFT) === 0 &&
     !(move & MFLAGSUMN) &&
     !(move & MFLAGSWAP)
   ) {
@@ -327,6 +328,7 @@ export function ParseMove(
   from,
   to,
   pieceEpsilon = PIECES.EMPTY,
+  // swap type used for 'TELEPORT' due to running out of validation
   swapType = '',
   royaltyEpsilon = PIECES.EMPTY
 ) {

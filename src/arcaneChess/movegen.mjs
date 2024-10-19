@@ -582,11 +582,21 @@ export const getHerrings = (color) => {
   return herringsArr;
 };
 
+export const whiteTeleports = [
+  21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38, 41, 42, 43,
+  44, 45, 46, 47, 48,
+];
+
+export const blackTeleports = [
+  71, 72, 73, 74, 75, 76, 77, 78, 81, 82, 83, 84, 85, 86, 87, 88, 91, 92, 93,
+  94, 95, 96, 97, 98,
+];
+
 export function GenerateMoves(
   withHerrings = true,
   capturesOnly = false,
   type = '',
-  generateSwaps = '',
+  type2 = '',
   userSummonPceRty = 0
 ) {
   GameBoard.moveListStart[GameBoard.ply + 1] =
@@ -639,7 +649,7 @@ export function GenerateMoves(
     if (herrings.length) {
       break;
     }
-    if (generateSwaps === 'ADJ' || generateSwaps === 'COMP') {
+    if (type2 === 'ADJ' || type2 === 'COMP') {
       for (let i = 0; i < 4; i++) {
         dir = RkDir[i];
         t_sq = sq + dir;
@@ -754,10 +764,7 @@ export function GenerateMoves(
   }
 
   // SWAP DEP 2
-  if (
-    !herrings.length &&
-    (generateSwaps === 'DEP' || generateSwaps === 'COMP')
-  ) {
+  if (!herrings.length && (type2 === 'DEP' || type2 === 'COMP')) {
     for (let i = 0; i < NZUBRMTQSWSQS[GameBoard.side].length; i++) {
       for (let j = 0; j < NZUBRMTQSWSQS[GameBoard.side].length; j++) {
         if (
@@ -805,8 +812,38 @@ export function GenerateMoves(
     }
   }
 
-  if (!herrings.length && (generateSwaps === 'ADJ' || generateSwaps === 'DEP'))
-    return;
+  if (type2 === 'ADJ' || type2 === 'DEP') return;
+
+  if (!herrings.length && (type2 === 'TELEPORT' || type2 === 'COMP')) {
+    if (
+      (GameBoard.side === COLOURS.WHITE && GameBoard.whiteArcane[1] & 16) ||
+      (GameBoard.side === COLOURS.BLACK && GameBoard.blackArcane[1] & 16)
+    ) {
+      const teleportSquares =
+        GameBoard.side === COLOURS.WHITE ? whiteTeleports : blackTeleports;
+
+      for (let pce = PIECES.wP; pce <= PIECES.bK; pce++) {
+        if (PieceCol[pce] !== GameBoard.side) continue;
+
+        for (let pceNum = 0; pceNum < GameBoard.pceNum[pce]; pceNum++) {
+          const sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+          teleportSquares.forEach((toSq) => {
+            if (GameBoard.pieces[toSq] === PIECES.EMPTY) {
+              const promotionPiece =
+                GameBoard.side === COLOURS.WHITE ? PIECES.wT : PIECES.bT;
+              AddQuietMove(
+                MOVE(sq, toSq, PIECES.EMPTY, promotionPiece, MFLAGSHFT),
+                capturesOnly
+              );
+            }
+          });
+        }
+      }
+      return;
+    }
+  }
+
+  if (type2 === 'TELEPORT') return;
 
   // OFFERINGS
   let offeringIndex = LoopPcePrimeIndex[GameBoard.side];
@@ -909,6 +946,7 @@ export function GenerateMoves(
   GameBoard.summonRankLimits[0] = whiteLimit;
   GameBoard.summonRankLimits[1] = blackLimit;
 
+  // todo remove to allow blocking with pieces or royalty or not?
   if (!herrings.length) {
     // todo remove parent conditional with herring check because sumnE can block from a piece attacking herring
     const royaltyIndexes = {
@@ -921,7 +959,10 @@ export function GenerateMoves(
       36: 7,
       37: 8,
     };
-    if (userSummonPceRty > 0 || userSummonPceRty !== '' || type !== 'SUMMON') {
+    if (
+      (userSummonPceRty > 0 || userSummonPceRty !== '' || type !== 'SUMMON') &&
+      type2 !== 'TELEPORT'
+    ) {
       while (summonPce !== 0) {
         for (let sq = 21; sq <= 98; sq++) {
           if (SQOFFBOARD(sq) === BOOL.TRUE || herrings.length || capturesOnly) {
@@ -1041,7 +1082,8 @@ export function GenerateMoves(
   if (type === 'SUMMON') return;
 
   // NOTE WHITE PAWN AND SPECIAL MOVES
-  if (GameBoard.side === COLOURS.WHITE) {
+  if (GameBoard.side === COLOURS.WHITE && type2 !== 'TELEPORT') {
+    if (type2 === 'TELEPORT') return;
     pceType = PIECES.wP;
 
     for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; pceNum++) {
@@ -1330,7 +1372,7 @@ export function GenerateMoves(
         }
       }
     }
-  } else {
+  } else if (type2 !== 'TELEPORT') {
     // note BLACK PAWN AND SPECIAL MOVES
     pceType = PIECES.bP;
 
@@ -1515,38 +1557,7 @@ export function GenerateMoves(
     // WARNING, this will only work in a vanilla setup, no extra rooks
     if (GameBoard.castlePerm & CASTLEBIT.BKCA && !herrings.length) {
       if (GameBoard.whiteArcane[4] & 8) {
-        // const getKingPos = _.indexOf(GameBoard.pieces, 12, 92);
-        // const getRookPos = _.lastIndexOf(GameBoard.pieces, 10);
-        // for (let sq = GameBoard.pieces.indexOf(12); sq <= 97; sq++) {
-        //   const getPiece = _.get(GameBoard.pieces, sq);
-        //   if (sq === 97 && getPiece === PIECES.bK) {
-        //     AddQuietMove(
-        //       MOVE(SQUARES.G8, SQUARES.H8, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
-        //       capturesOnly
-        //     );
-        //     break;
-        //   }
-        //   if (
-        //     GameBoard.pieces[sq] !== PIECES.EMPTY &&
-        //     GameBoard.pieces[sq] !== PIECES.bK &&
-        //     GameBoard.pieces[sq] !== PIECES.bR
-        //   ) {
-        //     break;
-        //   }
-        //   if (
-        //     SqAttacked(sq, COLOURS.WHITE) &&
-        //     sq !== 97 &&
-        //     !(GameBoard.blackArcane[4] & 4)
-        //   ) {
-        //     break;
-        //   }
-        //   if (sq === 97) {
-        //     AddQuietMove(
-        //       MOVE(getKingPos, getRookPos, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
-        //       capturesOnly
-        //     );
-        //   }
-        // }
+        // removed randomize arcane
       } else {
         if (
           GameBoard.pieces[SQUARES.F8] === PIECES.EMPTY &&
@@ -1568,70 +1579,7 @@ export function GenerateMoves(
 
     if (GameBoard.castlePerm & CASTLEBIT.BQCA && !herrings.length) {
       if (GameBoard.whiteArcane[4] & 8) {
-        // const getKingPos = _.indexOf(GameBoard.pieces, 12, 92);
-        // const getRookPos = _.indexOf(GameBoard.pieces, 10, 91);
-        // if (getKingPos === 92) {
-        //   if (
-        //     GameBoard.pieces[SQUARES.D8] === PIECES.EMPTY &&
-        //     GameBoard.pieces[SQUARES.C8] === PIECES.EMPTY
-        //   ) {
-        //     if (SqAttacked(SQUARES.B8, COLOURS.WHITE) === BOOL.FALSE) {
-        //       AddQuietMove(
-        //         MOVE(
-        //           SQUARES.B8,
-        //           SQUARES.A8,
-        //           PIECES.EMPTY,
-        //           PIECES.EMPTY,
-        //           MFLAGCA
-        //         ),
-        //         capturesOnly
-        //       );
-        //     }
-        //   }
-        // } else {
-        //   for (let sq = GameBoard.pieces.indexOf(12); sq >= 93; sq--) {
-        //     const getPiece = _.get(GameBoard.pieces, sq);
-        //     if (sq === 93 && getPiece === PIECES.bK) {
-        //       AddQuietMove(
-        //         MOVE(
-        //           SQUARES.C8,
-        //           getRookPos,
-        //           PIECES.EMPTY,
-        //           PIECES.EMPTY,
-        //           MFLAGCA
-        //         ),
-        //         capturesOnly
-        //       );
-        //       break;
-        //     }
-        //     if (
-        //       GameBoard.pieces[sq] !== PIECES.EMPTY &&
-        //       GameBoard.pieces[sq] !== PIECES.bK &&
-        //       GameBoard.pieces[sq] !== PIECES.bR
-        //     ) {
-        //       break;
-        //     }
-        //     if (
-        //       SqAttacked(sq, COLOURS.WHITE) &&
-        //       sq !== 93 &&
-        //       !(GameBoard.blackArcane[4] & 4)
-        //     ) {
-        //       break;
-        //     }
-        //     if (sq === 93) {
-        //       AddQuietMove(
-        //         MOVE(
-        //           getKingPos,
-        //           getRookPos,
-        //           PIECES.EMPTY,
-        //           PIECES.EMPTY,
-        //           MFLAGCA
-        //         ),
-        //         capturesOnly
-        //       );
-        //     }
-        //   }
-        // }
+        // removed randomize arcane
       } else {
         if (
           GameBoard.pieces[SQUARES.D8] === PIECES.EMPTY &&
@@ -1655,6 +1603,7 @@ export function GenerateMoves(
 
   // HOPPERS ROYALTY
   for (let i = 0; i < royaltyHoppers.length; i++) {
+    if (type2 === 'TELEPORT') break;
     const currentRoyalty = GameBoard[royaltyHopperMap[i]];
     _.forEach(currentRoyalty, (value, sqA) => {
       const sq = Number(sqA);
@@ -1814,6 +1763,7 @@ export function GenerateMoves(
 
   // SLIDERS ROYALTY
   for (let i = 0; i < royaltySliders.length; i++) {
+    if (type2 === 'TELEPORT') break;
     const currentRoyalty = GameBoard[royaltySliderMap[i]];
     _.forEach(currentRoyalty, (value, sqA) => {
       const sq = Number(sqA);
@@ -2009,18 +1959,9 @@ export function GenerateMoves(
 
           if (t_sq < 0 || t_sq > 119) continue;
 
-          // Determine if the piece can capture on this move
-          let canCapture = true;
-          if (canShift && (pce === PIECES.wN || pce === PIECES.bN)) {
-            // When knight is moving like a king, it cannot capture
-            canCapture = false;
-          }
-
-          // Handle captures
           if (
-            canCapture &&
-            (!herrings.length ||
-              (herrings.length && _.includes(herrings, t_sq)))
+            !herrings.length ||
+            (herrings.length && _.includes(herrings, t_sq))
           ) {
             if (
               GameBoard.dyad === 0 &&

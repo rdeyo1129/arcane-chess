@@ -289,7 +289,7 @@
   },
   "shftT": {
     "name": "Teleportation",
-    "description": "Move a friendly piece expcept to any empty square within your first three ranks.",
+    "description": "Move a friendly piece to any empty square within your first three ranks.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsTEL"
   },

@@ -318,21 +318,22 @@ export function MakeMove(move, moveType = '') {
       blackArcaneConfig.modsCON -= 1;
     }
   }
-  if (TOSQ(move) > 0 && move & MFLAGSHFT) {
+  if (TOSQ(move) > 0 && ARCANEFLAG(move) && move & MFLAGSHFT) {
+    const shiftType =
+      pieceEpsilon > 0
+        ? 'T'
+        : PceChar.split('')[GameBoard.pieces[to]].toUpperCase();
     if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig[
-        `shft${PceChar.split('')[GameBoard.pieces[to]].toUpperCase()}`
-      ] -= 1;
+      whiteArcaneConfig[`shft${shiftType}`] -= 1;
     } else {
-      blackArcaneConfig[
-        `shft${PceChar.split('')[GameBoard.pieces[to]].toUpperCase()}`
-      ] -= 1;
+      blackArcaneConfig[`shft${shiftType}`] -= 1;
     }
   }
 
   if (
     TOSQ(move) > 0 &&
     pieceEpsilon !== PIECES.EMPTY &&
+    (move & MFLAGSHFT) === 0 &&
     (ARCANEFLAG(move) === 0 || move & MFLAGCNSM)
   ) {
     ClearPiece(to);
@@ -629,14 +630,14 @@ export function TakeMove(wasDyadMove = false) {
     }
   }
   if (TOSQ(move) > 0 && ARCANEFLAG(move) && move & MFLAGSHFT) {
+    const shiftType =
+      pieceEpsilon > 0
+        ? 'T'
+        : PceChar.split('')[GameBoard.pieces[to]].toUpperCase();
     if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig[
-        `shft${PceChar.split('')[GameBoard.pieces[to]].toUpperCase()}`
-      ] += 1;
+      whiteArcaneConfig[`shft${shiftType}`] += 1;
     } else {
-      blackArcaneConfig[
-        `shft${PceChar.split('')[GameBoard.pieces[to]].toUpperCase()}`
-      ] += 1;
+      blackArcaneConfig[`shft${shiftType}`] += 1;
     }
   }
 
@@ -700,6 +701,7 @@ export function TakeMove(wasDyadMove = false) {
   if (
     TOSQ(move) > 0 &&
     pieceEpsilon !== PIECES.EMPTY &&
+    (move & MFLAGSHFT) === 0 &&
     (move & MFLAGSUMN) === 0 &&
     (move & MFLAGSWAP) === 0
   ) {

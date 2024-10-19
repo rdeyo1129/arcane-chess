@@ -190,8 +190,8 @@ export default function arcaneChess() {
     },
     activateDyad: (type) => activateDyad(type),
     deactivateDyad: () => deactivateDyad(),
-    getGroundMoves: () => {
-      return validGroundMoves();
+    getGroundMoves: (type2 = '') => {
+      return validGroundMoves('', type2);
     },
     getSummonMoves: (piece) => {
       return validSummonMoves(piece);

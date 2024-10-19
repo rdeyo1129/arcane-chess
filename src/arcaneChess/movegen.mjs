@@ -959,10 +959,7 @@ export function GenerateMoves(
       36: 7,
       37: 8,
     };
-    if (
-      (userSummonPceRty > 0 || userSummonPceRty !== '' || type !== 'SUMMON') &&
-      type2 !== 'TELEPORT'
-    ) {
+    if (userSummonPceRty > 0 || userSummonPceRty !== '' || type !== 'SUMMON') {
       while (summonPce !== 0) {
         for (let sq = 21; sq <= 98; sq++) {
           if (SQOFFBOARD(sq) === BOOL.TRUE || herrings.length || capturesOnly) {
@@ -1082,7 +1079,7 @@ export function GenerateMoves(
   if (type === 'SUMMON') return;
 
   // NOTE WHITE PAWN AND SPECIAL MOVES
-  if (GameBoard.side === COLOURS.WHITE && type2 !== 'TELEPORT') {
+  if (GameBoard.side === COLOURS.WHITE) {
     if (type2 === 'TELEPORT') return;
     pceType = PIECES.wP;
 
@@ -1372,7 +1369,7 @@ export function GenerateMoves(
         }
       }
     }
-  } else if (type2 !== 'TELEPORT') {
+  } else {
     // note BLACK PAWN AND SPECIAL MOVES
     pceType = PIECES.bP;
 
@@ -1603,7 +1600,6 @@ export function GenerateMoves(
 
   // HOPPERS ROYALTY
   for (let i = 0; i < royaltyHoppers.length; i++) {
-    if (type2 === 'TELEPORT') break;
     const currentRoyalty = GameBoard[royaltyHopperMap[i]];
     _.forEach(currentRoyalty, (value, sqA) => {
       const sq = Number(sqA);

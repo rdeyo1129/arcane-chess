@@ -366,7 +366,7 @@ export function ParseMove(
         found = BOOL.TRUE;
         break;
       } else if (Move & MFLAGSWAP && swapType !== '') {
-        if (CAPTURED(Move) > 0 && PROMOTED(Move > 0)) {
+        if (CAPTURED(Move) > 0 && PROMOTED(Move) > 0) {
           found = BOOL.TRUE;
           break;
         }

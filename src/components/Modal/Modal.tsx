@@ -771,47 +771,61 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
           >
             <div className="quickplay">
               <div className="setup-arcana">
-                <Button
-                  text={
-                    this.state.playerColor === 'white' ? 'PLAYER' : 'ENGINE'
-                  }
-                  className="tertiary"
-                  color="B"
-                  backgroundColorOverride="#AAAAAA"
-                  width={240}
-                  height={30}
-                  onClick={() =>
-                    this.setState(
-                      (prevState) => ({
-                        playerColor:
-                          prevState.playerColor === 'white' ? 'black' : 'white',
-                      }),
-                      () => {
-                        if (this.props.updateConfig) {
-                          this.props.updateConfig(
-                            'playerColor',
-                            this.state.playerColor === 'white'
-                              ? 'white'
-                              : 'black'
-                          );
-                          this.props.updateConfig(
-                            'engineColor',
-                            this.state.playerColor === 'white'
+                <div
+                  onMouseEnter={() => this.toggleHover('Click to swap sides.')}
+                  onMouseLeave={() => this.toggleHover('')}
+                >
+                  <Button
+                    text={
+                      this.state.playerColor === 'white' ? 'PLAYER' : 'ENGINE'
+                    }
+                    className="tertiary"
+                    color="B"
+                    backgroundColorOverride="#AAAAAA"
+                    width={240}
+                    height={30}
+                    onClick={() =>
+                      this.setState(
+                        (prevState) => ({
+                          playerColor:
+                            prevState.playerColor === 'white'
                               ? 'black'
-                              : 'white'
-                          );
+                              : 'white',
+                        }),
+                        () => {
+                          if (this.props.updateConfig) {
+                            this.props.updateConfig(
+                              'playerColor',
+                              this.state.playerColor === 'white'
+                                ? 'white'
+                                : 'black'
+                            );
+                            this.props.updateConfig(
+                              'engineColor',
+                              this.state.playerColor === 'white'
+                                ? 'black'
+                                : 'white'
+                            );
+                          }
                         }
-                      }
-                    )
+                      )
+                    }
+                  />
+                </div>
+                <div
+                  className="setup"
+                  onMouseEnter={() =>
+                    this.toggleHover('Click to select a custom army setup.')
                   }
-                />
-                <div className="setup">
+                  onMouseLeave={() => this.toggleHover('')}
+                >
                   <Select
                     // title="whiteSetup"
                     type="string"
                     height={'30px'}
                     width={'240px'}
                     options={[
+                      'RNBVKBNR',
                       'RNBQKBNR',
                       'RNBTKBNR',
                       'RBNMKBNR',
@@ -906,41 +920,54 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 </div>
               </div>
               <div className="setup-arcana">
-                <Button
-                  text={
-                    this.state.playerColor === 'black' ? 'PLAYER' : 'ENGINE'
-                  }
-                  className="tertiary"
-                  color="B"
-                  backgroundColorOverride="#333333"
-                  width={240}
-                  height={30}
-                  onClick={() =>
-                    this.setState(
-                      (prevState) => ({
-                        playerColor:
-                          prevState.playerColor === 'white' ? 'black' : 'white',
-                      }),
-                      () => {
-                        if (this.props.updateConfig) {
-                          this.props.updateConfig(
-                            'playerColor',
-                            this.state.playerColor === 'white'
-                              ? 'white'
-                              : 'black'
-                          );
-                          this.props.updateConfig(
-                            'engineColor',
-                            this.state.playerColor === 'white'
+                <div
+                  onMouseEnter={() => this.toggleHover('Click to swap sides.')}
+                  onMouseLeave={() => this.toggleHover('')}
+                >
+                  <Button
+                    text={
+                      this.state.playerColor === 'black' ? 'PLAYER' : 'ENGINE'
+                    }
+                    className="tertiary"
+                    color="B"
+                    backgroundColorOverride="#333333"
+                    width={240}
+                    height={30}
+                    onClick={() =>
+                      this.setState(
+                        (prevState) => ({
+                          playerColor:
+                            prevState.playerColor === 'white'
                               ? 'black'
-                              : 'white'
-                          );
+                              : 'white',
+                        }),
+                        () => {
+                          if (this.props.updateConfig) {
+                            this.props.updateConfig(
+                              'playerColor',
+                              this.state.playerColor === 'white'
+                                ? 'white'
+                                : 'black'
+                            );
+                            this.props.updateConfig(
+                              'engineColor',
+                              this.state.playerColor === 'white'
+                                ? 'black'
+                                : 'white'
+                            );
+                          }
                         }
-                      }
-                    )
+                      )
+                    }
+                  />
+                </div>
+                <div
+                  className="setup-select"
+                  onMouseEnter={() =>
+                    this.toggleHover('Click to select a custom army setup.')
                   }
-                />
-                <div className="setup-select">
+                  onMouseLeave={() => this.toggleHover('')}
+                >
                   <Select
                     // title="blackSetup"
                     type="string"
@@ -1044,10 +1071,21 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <div className="arcana-detail">
                   <p>{arcana[this.state.hoverArcane.split('-')[0]]?.name}</p>
                   <p>
-                    {arcana[this.state.hoverArcane.split('-')[0]]?.description}
+                    {arcana[this.state.hoverArcane.split('-')[0]]
+                      ?.description ||
+                      this.state.hoverArcane ||
+                      'Hover and click on spells to see more information or add to your bag. Hover over other settings for more information.'}
                   </p>
                 </div>
-                <div className="quickplay-select">
+                <div
+                  className="quickplay-select"
+                  onMouseEnter={() =>
+                    this.toggleHover(
+                      'Difficulty setting, long should the engine think for?'
+                    )
+                  }
+                  onMouseLeave={() => this.toggleHover('')}
+                >
                   <Select
                     title="Thinking Time"
                     type="number"
@@ -1060,7 +1098,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     }}
                   />
                 </div>
-                <div className="quickplay-select">
+                <div
+                  className="quickplay-select"
+                  onMouseEnter={() =>
+                    this.toggleHover(
+                      'Difficulty setting, how many half moves should the engine look ahead?'
+                    )
+                  }
+                  onMouseLeave={() => this.toggleHover('')}
+                >
                   <Select
                     title="Depth"
                     type="number"
@@ -1073,7 +1119,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     }}
                   />
                 </div>
-                <div className="quickplay-select">
+                <div
+                  className="quickplay-select"
+                  onMouseEnter={() =>
+                    this.toggleHover(
+                      'Choose Select to pick your promotion each time or choose an autopromotion.'
+                    )
+                  }
+                  onMouseLeave={() => this.toggleHover('')}
+                >
                   <Select
                     title="Promotion"
                     type="string"

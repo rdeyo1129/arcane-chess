@@ -199,6 +199,7 @@ interface State {
   };
   placingPiece: number;
   swapType: string;
+  isTeleport: boolean;
   placingRoyalty: number;
   offeringType: string;
   isDyadMove: boolean;
@@ -334,6 +335,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               .blackArcane,
       placingPiece: 0,
       swapType: '',
+      isTeleport: false,
       placingRoyalty: 0,
       offeringType: '',
       isDyadMove: false,
@@ -680,6 +682,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           promotionModalOpen: false,
           normalMovesOnly: false,
           swapType: '',
+          isTeleport: false,
           offeringType: '',
           royalties: {
             ...prevState.royalties,
@@ -1030,6 +1033,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   placingPiece: 0,
                                   swapType: '',
                                   offeringType: '',
+                                  isTeleport: false,
                                   placingRoyalty: 0,
                                 });
                               } else {
@@ -1044,11 +1048,13 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                       placingRoyalty:
                                         royalties[`${key.split('sumn')[1]}`],
                                       swapType: '',
+                                      isTeleport: false,
                                     });
                                   } else {
                                     this.setState({
                                       placingRoyalty: 0,
                                       swapType: '',
+                                      isTeleport: false,
                                       offeringType: '',
                                       placingPiece:
                                         pieces[
@@ -1185,6 +1191,17 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                     });
                                   }
                                 }
+                                if (key === 'shftT') {
+                                  if (this.state.isTeleport) {
+                                    this.setState({
+                                      isTeleport: false,
+                                    });
+                                  } else {
+                                    this.setState({
+                                      isTeleport: true,
+                                    });
+                                  }
+                                }
                               }
                             }}
                             onMouseEnter={() => this.toggleHover(key)}
@@ -1245,7 +1262,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           if (this.state.placingRoyalty === 0) {
                             if (this.state.swapType === '') {
                               if (this.state.offeringType === '') {
-                                dests = this.arcaneChess().getGroundMoves();
+                                if (this.state.isTeleport) {
+                                  dests =
+                                    this.arcaneChess().getGroundMoves(
+                                      'TELEPORT'
+                                    );
+                                } else {
+                                  dests = this.arcaneChess().getGroundMoves();
+                                }
                               } else {
                                 dests = this.arcaneChess().getOfferingMoves(
                                   this.state.offeringType
@@ -1328,6 +1352,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               placingPiece: 0,
                               placingRoyalty: 0,
                               swapType: '',
+                              isTeleport: false,
                               offeringType: '',
                               futureSightAvailable: true,
                             }),
@@ -1372,13 +1397,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         }
                       },
                       move: (orig: string, dest: string) => {
+                        const swapOrTeleport = this.state.isTeleport
+                          ? 'TELEPORT'
+                          : this.state.swapType;
                         this.chessgroundRef.current?.setAutoShapes([]);
                         const { parsed, isInitPromotion = false } =
                           this.arcaneChess().makeUserMove(
                             orig,
                             dest,
                             this.state.placingPromotion,
-                            this.state.swapType,
+                            swapOrTeleport,
                             this.state.placingRoyalty
                           );
                         if (this.state.isDyadMove) {
@@ -1414,7 +1442,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               orig,
                               dest,
                               this.state.placingPromotion,
-                              this.state.swapType,
+                              swapOrTeleport,
                               this.state.placingRoyalty
                             );
                             if (!PrMove(parsed)) {
@@ -1524,6 +1552,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   placingPiece: 0,
                                   placingRoyalty: 0,
                                   swapType: '',
+                                  isTeleport: false,
                                   offeringType: '',
                                   futureSightAvailable: true,
                                 }),
@@ -1604,6 +1633,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                 placingPiece: 0,
                                 placingRoyalty: 0,
                                 swapType: '',
+                                isTeleport: false,
                                 offeringType: '',
                                 futureSightAvailable: true,
                               }),

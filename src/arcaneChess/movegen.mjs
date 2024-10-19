@@ -1929,7 +1929,6 @@ export function GenerateMoves(
         let dirVariants = DirNum[pce];
         let dirArray = PceDir[pce];
 
-        // Special cases for certain pieces
         if (
           pce === PIECES.wT ||
           pce === PIECES.bT ||
@@ -1940,7 +1939,6 @@ export function GenerateMoves(
           dirArray = KnDir;
         }
 
-        // Determine if the piece can shift (move like a king)
         let canShift = false;
         if (pce === PIECES.wN) {
           canShift = GameBoard.whiteArcane[1] & 2;
@@ -1948,7 +1946,6 @@ export function GenerateMoves(
           canShift = GameBoard.blackArcane[1] & 2;
         }
 
-        // Loop over possible directions
         for (let index = 0; index < dirVariants; index++) {
           let dir = dirArray[index];
           t_sq = sq + dir;
@@ -1982,7 +1979,6 @@ export function GenerateMoves(
             }
           }
 
-          // Handle "consume" moves
           if (SQOFFBOARD(t_sq) === BOOL.FALSE && !herrings.length) {
             if (
               PieceCol[GameBoard.pieces[t_sq]] === GameBoard.side &&
@@ -2020,7 +2016,6 @@ export function GenerateMoves(
             }
           }
 
-          // Handle quiet moves
           if (
             (GameBoard.dyad === 0 ||
               GameBoard.dyad === 1 ||
@@ -2036,7 +2031,6 @@ export function GenerateMoves(
           }
         }
 
-        // Handle knight's shift moves (moving like a king)
         if (canShift && (pce === PIECES.wN || pce === PIECES.bN)) {
           for (let kIndex = 0; kIndex < 8; kIndex++) {
             let kDir = KiDir[kIndex];
@@ -2048,7 +2042,6 @@ export function GenerateMoves(
 
             if (shft_t_N_sq < 0 || shft_t_N_sq > 119) continue;
 
-            // Knight's shift moves cannot capture or consume
             if (GameBoard.pieces[shft_t_N_sq] === PIECES.EMPTY) {
               if (
                 (GameBoard.dyad === 0 ||
@@ -2087,6 +2080,21 @@ export function GenerateMoves(
         GameBoard.royaltyE[sq] > 0;
 
       if (!isOverrided) {
+        if (pce === PIECES.wV) {
+          if (GameBoard.whiteArcane[4] & 2048) {
+            pce = PIECES.wQ;
+          } else {
+            return;
+          }
+        }
+        if (pce === PIECES.bV) {
+          if (GameBoard.blackArcane[4] & 2048) {
+            pce = PIECES.bQ;
+          } else {
+            return;
+          }
+        }
+
         for (index = 0; index < DirNum[pce]; index++) {
           let rDir, bDir, shft_t_R_sq, shft_t_B_sq;
 

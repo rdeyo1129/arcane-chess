@@ -1041,14 +1041,13 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                 }
                               }
                               if (key === 'modsSKI') {
-                                const { parsed } =
-                                  this.arcaneChess().makeUserMove(
-                                    0,
-                                    0,
-                                    31,
-                                    '',
-                                    0
-                                  );
+                                this.arcaneChess().makeUserMove(
+                                  0,
+                                  0,
+                                  31,
+                                  '',
+                                  0
+                                );
                                 this.setState(
                                   (prevState) => ({
                                     ...prevState,

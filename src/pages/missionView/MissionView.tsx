@@ -1202,6 +1202,34 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                     });
                                   }
                                 }
+                                if (key === 'modsSKI') {
+                                  this.arcaneChess().makeUserMove(
+                                    0,
+                                    0,
+                                    31,
+                                    '',
+                                    0
+                                  );
+                                  this.setState(
+                                    (prevState) => ({
+                                      ...prevState,
+                                      historyPly: prevState.historyPly + 1,
+                                      history: [...prevState.history, 'pass'],
+                                      fen: outputFenOfCurrentPosition(),
+                                      fenHistory: [
+                                        ...prevState.fenHistory,
+                                        outputFenOfCurrentPosition(),
+                                      ],
+                                      lastMoveHistory: [
+                                        ...prevState.lastMoveHistory,
+                                        [],
+                                      ],
+                                    }),
+                                    () => {
+                                      this.engineGo();
+                                    }
+                                  );
+                                }
                               }
                             }}
                             onMouseEnter={() => this.toggleHover(key)}

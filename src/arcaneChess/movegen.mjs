@@ -1078,6 +1078,14 @@ export function GenerateMoves(
 
   if (type === 'SUMMON') return;
 
+  // if force ep or force herring?
+  if (GameBoard.side === COLOURS.WHITE && GameBoard.whiteArcane[4] && 16384) {
+    AddQuietMove(MOVE(0, 0, PIECES.EMPTY, 31, 0), capturesOnly);
+  }
+  if (GameBoard.side === COLOURS.BLACK && GameBoard.blackArcane[4] && 16384) {
+    AddQuietMove(MOVE(0, 0, PIECES.EMPTY, 31, 0), capturesOnly);
+  }
+
   // NOTE WHITE PAWN AND SPECIAL MOVES
   if (GameBoard.side === COLOURS.WHITE) {
     if (type2 === 'TELEPORT') return;

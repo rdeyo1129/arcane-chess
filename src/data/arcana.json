@@ -289,19 +289,19 @@
   },
   "shftT": {
     "name": "Teleportation",
-    "description": "Move a friendly piece to any empty square within your first three ranks.",
+    "description": "Move a friendly piece to any empty square within your first three ranks. Use at your own risk.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsTEL"
   },
   "swapDEP": {
     "name": "Ally Translocate",
-    "description": "Swap the positions of a friendly minor or major piece (no P, H, V, K).",
+    "description": "Swap the positions of a friendly minor or major piece (no P, H, V, K). Use at your own risk.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/swapDEP"
   },
   "swapADJ": {
     "name": "Proximity Translocate",
-    "description": "Swap the positions of any orthogonally adjacent pieces, no Pawn promotions or swaping just your opponent's pieces.",
+    "description": "Swap the positions of any orthogonally adjacent pieces, no Pawn promotions or swaping just your opponent's pieces. Use at your own risk.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/swapADJ"
   },

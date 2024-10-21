@@ -90,6 +90,10 @@ export function PrMove(move, returnType) {
   let pieceEpsilon = PROMOTED(move);
   let pchar;
 
+  // pass
+  if (pieceEpsilon === 31) {
+    MvStr = 'pass';
+  }
   // normal quiet
   if (
     TOSQ(move) !== 0 &&
@@ -354,7 +358,13 @@ export function ParseMove(
     ++index
   ) {
     Move = GameBoard.moveList[index];
-    if (
+    if (from === 0 && to === 0) {
+      if (PROMOTED(Move) === pieceEpsilon) {
+        found = BOOL.TRUE;
+        break;
+      }
+      continue;
+    } else if (
       (from === 0 && TOSQ(Move) === prettyToSquare(to)) ||
       (FROMSQ(Move) === prettyToSquare(from) &&
         TOSQ(Move) === prettyToSquare(to))
@@ -380,7 +390,7 @@ export function ParseMove(
           break;
         }
         continue;
-      } else if (pieceEpsilon !== PIECES.EMPTY) {
+      } else if (pieceEpsilon !== PIECES.EMPTY && from !== 0) {
         if (PROMOTED(Move) === pieceEpsilon) {
           found = BOOL.TRUE;
           break;

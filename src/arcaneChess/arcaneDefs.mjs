@@ -123,6 +123,7 @@ export const POWERBIT = {
   sumnRY: 524288,
   sumnRZ: 1048576,
   sumnRA: 2097152,
+  // sumnRB hexweavers cross to converge on both diagonals?
   // 7 active
   offrH: 1,
   offrS: 2,
@@ -144,7 +145,7 @@ export const POWERBIT = {
   modsCON: 1, // passive
   modsTEL: 2, // moved //
   modsFUG: 4, // inherent
-  modsRAN: 8, // deprecated //
+  modsRAN: 8, // deprecated // /////// room for another validated spell here
   modsINH: 16, // inherent
   modsSUS: 32, // active
   modsPHA: 64, // active

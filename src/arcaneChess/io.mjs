@@ -337,13 +337,12 @@ export function ParseMove(
   royaltyEpsilon = PIECES.EMPTY
 ) {
   const arcaneType =
-    royaltyEpsilon > 0 || 'HSMERCA'.includes(royaltyEpsilon)
-      ? to === null
-        ? 'OFFERING'
-        : pieceEpsilon > 0
-        ? 'PLAYER'
-        : 'SUMMON'
+    to === null
+      ? 'OFFERING'
+      : (pieceEpsilon > 0 && from === null) || royaltyEpsilon > 0
+      ? 'SUMMON'
       : 'COMP';
+
   const royaltyOrPieceSummon =
     royaltyEpsilon !== 0 ? royaltyEpsilon : pieceEpsilon;
   generatePowers();
@@ -390,7 +389,7 @@ export function ParseMove(
           break;
         }
         continue;
-      } else if (pieceEpsilon !== PIECES.EMPTY && from !== 0) {
+      } else if (pieceEpsilon !== PIECES.EMPTY) {
         if (PROMOTED(Move) === pieceEpsilon) {
           found = BOOL.TRUE;
           break;

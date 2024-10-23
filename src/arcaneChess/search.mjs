@@ -88,7 +88,8 @@ export function IsRepetition() {
     index < GameBoard.hisPly - 1;
     index++
   ) {
-    if (GameBoard.posKey === GameBoard.history[index].posKey) {
+    // may be dangerous for that optional chaining below but fixed a bug where there was no repetition
+    if (GameBoard.posKey === GameBoard.history[index]?.posKey) {
       return BOOL.TRUE;
     }
   }

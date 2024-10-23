@@ -201,8 +201,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       gameOverType: '',
       whiteSetup: this.props.config.whiteSetup,
       blackSetup: this.props.config.blackSetup,
-      // fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
-      fen: '8/k7/8/8/3p4/8/2P5/K5B1 w - - 0 1',
+      fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
       fenHistory: [
         `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
       ],

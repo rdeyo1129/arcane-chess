@@ -21,7 +21,7 @@ import {
   BRD_SQ_NUM,
 } from './defs';
 import { EvalPosition } from './evaluate';
-import { GenerateMoves, generatePowers } from './movegen';
+import { generatePlayableOptions } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { PrMove } from './io';
 import { StorePvMove, ProbePvTable, GetPvLine } from './pvtable.mjs';
@@ -121,8 +121,7 @@ export function Quiescence(alpha, beta) {
     alpha = Score;
   }
 
-  generatePowers();
-  GenerateMoves(true, true, 'COMP', 'COMP');
+  generatePlayableOptions(true, true, 'COMP', 'COMP');
 
   let MoveNum = 0;
   let Legal = 0;
@@ -220,19 +219,7 @@ export function AlphaBeta(alpha, beta, depth) {
 
   let Score = -INFINITE;
 
-  generatePowers();
-  // todo make function that generates moves summons and swaps
-  GenerateMoves(true, false, 'COMP', 'COMP');
-  // todo regenerate if herring edge case hit
-
-  // should take care of herrings but what about stalemate?
-  // forced ep
-  // todo assign generate moves with herrings to a variable and check here
-  // if (validMoves().length === 0 && !InCheck()) {
-  //   console.log('valid moves false');
-  //   GenerateMoves(false);
-  //   console.log(validGroundMoves());
-  // }
+  generatePlayableOptions(true, false, 'COMP', 'COMP');
 
   let MoveNum = 0;
   let Legal = 0;
@@ -437,8 +424,8 @@ export function gameSim(thinkingTime) {
     SearchController.depth = MAXDEPTH;
     SearchController.time = thinkingTime;
 
-    generatePowers();
-    GenerateMoves(true, false, 'COMP', 'COMP');
+    // generatePowers();
+    // GenerateMoves(true, false, 'COMP', 'COMP');
 
     const { bestMove } = SearchPosition();
 

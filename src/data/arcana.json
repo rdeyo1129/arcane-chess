@@ -336,7 +336,7 @@
     "imagePath": "/assets/arcanaImages/skip"
   },
   "modsTRO": {
-    "name": "Torjan Gambit",
+    "name": "Trojan Gambit",
     "description": "If your opponent can legally capture you via en passant, they must.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/trojanEp"

@@ -26,9 +26,9 @@ import {
   RtyChar,
   RANKS,
 } from './defs';
-import { GenerateMoves, generatePowers } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { ARCANE_BIT_VALUES, prettyToSquare } from './defs.mjs';
+import { generatePlayableOptions } from './movegen.mjs';
 
 export function PrSq(sq) {
   return FileChar[FilesBrd[sq]] + RankChar[RanksBrd[sq]];
@@ -345,8 +345,13 @@ export function ParseMove(
 
   const royaltyOrPieceSummon =
     royaltyEpsilon !== 0 ? royaltyEpsilon : pieceEpsilon;
-  generatePowers();
-  GenerateMoves(true, false, arcaneType, swapType, royaltyOrPieceSummon);
+  generatePlayableOptions(
+    true,
+    false,
+    arcaneType,
+    swapType,
+    royaltyOrPieceSummon
+  );
 
   let Move = NOMOVE;
   let found = BOOL.FALSE;

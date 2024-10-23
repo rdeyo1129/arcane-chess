@@ -991,7 +991,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           key === 'modsFUT' &&
                           this.state.history.length >= 4 &&
                           this.state.futureSightAvailable;
-                        if (value === null || value <= 0 || !key) return;
+                        if (!value || value <= 0 || !key) return;
                         return (
                           <img
                             key={key}
@@ -1130,6 +1130,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                     } else {
                                       // Activate the dyad move
                                       this.arcaneChess().activateDyad(key);
+                                      this.arcaneChess().parseCurrentFen();
                                       this.arcaneChess().generatePlayableOptions();
                                       const dests =
                                         this.arcaneChess().getGroundMoves();
@@ -1438,6 +1439,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             this.state.placingRoyalty
                           );
                         if (this.state.isDyadMove) {
+                          this.arcaneChess().parseCurrentFen();
                           this.arcaneChess().generatePlayableOptions();
                           const dests = this.arcaneChess().getGroundMoves();
                           if (dests.size === 0) {

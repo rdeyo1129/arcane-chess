@@ -201,7 +201,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       gameOverType: '',
       whiteSetup: this.props.config.whiteSetup,
       blackSetup: this.props.config.blackSetup,
-      fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
+      // fen: `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
+      fen: '8/k7/8/8/3p4/8/2P5/K5B1 w - - 0 1',
       fenHistory: [
         `${this.props.config.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.props.config.whiteSetup} w KQkq - 0 1`,
       ],
@@ -312,10 +313,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             }
           }
         );
-      })
-      .then(() => {
-        // generatePowers();
-        // GenerateMoves();
       })
       .catch((error) => {
         console.error('An error occurred:', error);
@@ -835,7 +832,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                       const futureSightAvailable =
                         this.state.history.length >= 4 &&
                         this.state.futureSightAvailable;
-                      if (value === null || value <= 0 || !key) return;
+                      if (!value || value <= 0 || !key) return;
                       return (
                         <img
                           key={key}
@@ -971,6 +968,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                                   } else {
                                     // Activate the dyad move
                                     this.arcaneChess().activateDyad(key);
+                                    this.arcaneChess().parseCurrentFen();
                                     this.arcaneChess().generatePlayableOptions();
                                     const dests =
                                       this.arcaneChess().getGroundMoves();
@@ -1272,6 +1270,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                         );
                       if (this.state.isDyadMove) {
                         this.arcaneChess().generatePlayableOptions();
+                        this.arcaneChess().parseCurrentFen();
                         const dests = this.arcaneChess().getGroundMoves();
                         if (dests.size === 0) {
                           this.arcaneChess().takeBackHalfDyad();

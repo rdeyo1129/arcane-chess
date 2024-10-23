@@ -25,7 +25,7 @@ import {
 } from '../../arcaneChess/board.mjs';
 import { AddPiece, ClearPiece } from '../../arcaneChess/makemove.mjs';
 import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
-import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
+import { generatePlayableOptions } from '../../arcaneChess/movegen.mjs';
 import {
   prettyToSquare,
   BOOL,
@@ -438,8 +438,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
       // fenHistory: GameBoard.fenHistory,
     });
 
-    generatePowers();
-    GenerateMoves(true, false, 'COMP', 'COMP');
+    generatePlayableOptions(true, false, 'COMP', 'COMP');
 
     SearchController.thinking = BOOL.TRUE;
 
@@ -483,8 +482,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
         }));
       })
       .then(() => {
-        generatePowers();
-        GenerateMoves(true, false, 'COMP', 'COMP');
+        generatePlayableOptions(true, false, 'COMP', 'COMP');
       })
       .catch((error) => {
         console.error('An error occurred:', error);
@@ -509,28 +507,13 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
 
     ParseFen(this.state.fen);
 
-    // ParseFen('rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-
-    generatePowers();
-
-    GenerateMoves(true, false, 'COMP', 'COMP');
-
-    // PrintMoveList();
-
-    // this.perftTest(
-    //   'rnbqkbnr/pppppppp/8/4ZU2/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-    // );
+    generatePlayableOptions(true, false, 'COMP', 'COMP');
 
     this.setState({
       pvLine: [],
       history: [],
       fenHistory: [this.state.fen],
     });
-    // this.setState({
-    //   thinking: false,
-    // });
-    // search controller
-    // your own gui lines of code here here
   };
 
   onChangeUses = (e: React.ChangeEvent<HTMLSelectElement>, arcane: string) => {

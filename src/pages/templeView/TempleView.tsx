@@ -49,7 +49,7 @@ import {
   PrintPieceLists,
 } from '../../arcaneChess/board.mjs';
 import { PrMove } from 'src/arcaneChess/io.mjs';
-import { GenerateMoves, generatePowers } from '../../arcaneChess/movegen.mjs';
+import { generatePlayableOptions } from '../../arcaneChess/movegen.mjs';
 import { BOOL, PIECES } from '../../arcaneChess/defs.mjs';
 import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
@@ -411,8 +411,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       thinking: true,
     });
 
-    generatePowers();
-    GenerateMoves();
+    generatePlayableOptions();
 
     new Promise((resolve) => {
       setTimeout(() => {
@@ -442,10 +441,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
             }
           }
         );
-      })
-      .then(() => {
-        generatePowers();
-        GenerateMoves();
       })
       .catch((error) => {
         console.error('An error occurred:', error);

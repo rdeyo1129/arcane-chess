@@ -1,6 +1,6 @@
 import { GameBoard } from './board';
 import { PrMove } from './io';
-import { GenerateMoves, generatePowers } from './movegen';
+import { generatePlayableOptions } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { BOOL } from './defs';
 
@@ -12,16 +12,7 @@ export function Perft(depth) {
     return;
   }
 
-  generatePowers();
-
-  GenerateMoves(true, false, 'COMP', 'COMP');
-
-  // should take care of herrings but what about stalemate?
-  // todo assign generate moves with herrings to a variable and check here
-  // if (validMoves().length === 0 && !InCheck() && herrings.length) {
-  //   GenerateMoves(false);
-  //   console.log(validGroundMoves());
-  // }
+  generatePlayableOptions(true, false, 'COMP', 'COMP');
 
   let index;
   let move;

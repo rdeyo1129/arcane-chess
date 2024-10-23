@@ -1,5 +1,11 @@
 import { GameBoard, FROMSQ } from './board';
-import { GenerateMoves, generatePowers } from './movegen';
+import {
+  generatePlayableOptions,
+  GenerateMoves,
+  generatePowers,
+  forcedEpAvailable,
+  herrings,
+} from './movegen';
 import { SearchController, SearchPosition } from './search';
 import {
   MakeMove,
@@ -74,12 +80,15 @@ export const validOfferingMoves = (userSummonPceRty) => {
 export function validMoves(
   summon = 'COMP',
   swap = 'COMP',
-  userSummonPieceRoyalty = 0
+  userSummonPieceRoyalty = 0,
+  capturesOnly = false
 ) {
   const moves = [];
   let moveFound = NOMOVE;
+
   generatePowers();
-  GenerateMoves(true, false, summon, swap, userSummonPieceRoyalty);
+  GenerateMoves(true, capturesOnly, summon, swap, userSummonPieceRoyalty);
+
   for (
     let index = GameBoard.moveListStart[GameBoard.ply];
     index < GameBoard.moveListStart[GameBoard.ply + 1];
@@ -92,6 +101,29 @@ export function validMoves(
     TakeMove();
     moves.push(moveFound);
   }
+
+  // console.log(moves.length, forcedEpAvailable, herrings, moves);
+  // PrintMoveList();
+
+  if (moves.length === 0 && (forcedEpAvailable || herrings.length)) {
+    generatePowers();
+    GenerateMoves(false, false, summon, swap, userSummonPieceRoyalty);
+    for (
+      let index = GameBoard.moveListStart[GameBoard.ply];
+      index < GameBoard.moveListStart[GameBoard.ply + 1];
+      ++index
+    ) {
+      moveFound = GameBoard.moveList[index];
+      if (MakeMove(moveFound) === BOOL.FALSE) {
+        continue;
+      }
+      TakeMove();
+      moves.push(moveFound);
+    }
+    // console.log(moves);
+    return moves;
+  }
+  // console.log(moves);
   return moves;
 }
 
@@ -274,9 +306,7 @@ export function CheckResult(preset = GameBoard.preset) {
     }
   }
 
-  // todo herring and forced ep
-  generatePowers();
-  GenerateMoves(true, false, 'COMP', 'COMP');
+  generatePlayableOptions(true, false, 'COMP', 'COMP');
 
   var MoveNum = 0;
   var found = 0;

@@ -5,7 +5,12 @@ import {
   InitSq120To64,
   InitBoardVars,
 } from './main';
-import { InitMvvLva, GenerateMoves, generatePowers } from './movegen';
+import {
+  InitMvvLva,
+  generatePlayableOptions,
+  herrings,
+  forcedEpAvailable,
+} from './movegen';
 import {
   GameBoard,
   randomize,
@@ -43,13 +48,8 @@ export default function arcaneChess() {
   };
 
   const getScoreAndLine = (fen) => {
-    // arcane param needed?
     ParseFen(fen);
-
-    generatePowers();
-
-    GenerateMoves();
-
+    generatePlayableOptions();
     SearchPosition(fen);
 
     // how to update real time
@@ -138,27 +138,7 @@ export default function arcaneChess() {
 
     ParseFen(startFen);
 
-    generatePowers();
-
-    GenerateMoves(true, false, 'COMP', '');
-
-    // // should take care of herrings but what about stalemate?
-    // // todo assign generate moves with herrings to a variable and check here
-    // if (validMoves().length === 0 && !InCheck()) {
-    //   GenerateMoves(false);
-    //   console.log(validGroundMoves());
-    // }
-
-    // SearchPosition(fen);
-  };
-
-  const generatePlayableOptions = () => {
-    // todo herring, forced ep, and find all working instances and replace with this
-    // resets board and hisply among other things, be careful with future sight
-    // false: reset board
-    ParseFen(outputFenOfCurrentPosition(), false);
-    generatePowers();
-    GenerateMoves(true, false, 'COMP', 'COMP');
+    generatePlayableOptions(true, false, 'COMP', '');
   };
 
   const activateDyad = (type) => {
@@ -187,6 +167,9 @@ export default function arcaneChess() {
       //   score: GameBoard.searchHistory[GameBoard.ply],
       //   line: GameBoard.searchKillers[GameBoard.ply],
       // };
+    },
+    parseCurrentFen: () => {
+      ParseFen(outputFenOfCurrentPosition(), false);
     },
     activateDyad: (type) => activateDyad(type),
     deactivateDyad: () => deactivateDyad(),
@@ -255,8 +238,23 @@ export default function arcaneChess() {
         GameBoard.ply = 0;
       });
     },
-    generatePlayableOptions: () => {
-      return generatePlayableOptions();
+    generatePlayableOptions: (
+      forcedMoves = true,
+      capturesOnly = false,
+      type = '',
+      type2 = '',
+      userSummonPceRty = 0
+    ) => {
+      return generatePlayableOptions(
+        forcedMoves,
+        capturesOnly,
+        type,
+        type2,
+        userSummonPceRty
+      );
+    },
+    getForcingOptions: () => {
+      herrings, forcedEpAvailable;
     },
     addRoyalty: (type, sq, turns) => {
       GameBoard[type] = { [prettyToSquare(sq)]: turns };

@@ -58,6 +58,7 @@ import {
   LoopPcePrimeIndex,
 } from './defs';
 import { MakeMove, TakeMove } from './makemove';
+import { validMoves } from './gui.mjs';
 
 const MvvLvaValue = [
   0, 100, 500, 600, 700, 1200, 1400, 100, 500, 600, 700, 1200, 1400, 0, 900,
@@ -78,10 +79,7 @@ export function InitMvvLva() {
 }
 
 export function MoveExists(move) {
-  generatePowers();
-  GenerateMoves(true, false, 'COMP', 'COMP');
-
-  // todo regenerate for herring edge cases
+  generatePlayableOptions(true, false, 'COMP', 'COMP');
 
   let index;
   let moveFound = NOMOVE;
@@ -498,6 +496,16 @@ export function AddBlackPawnQuietMove(from, to, flag, capturesOnly) {
   }
 }
 
+export const generatePlayableOptions = (
+  forcedMoves,
+  capturesOnly = false,
+  type = '',
+  type2 = '',
+  userSummonPceRty = 0
+) => {
+  validMoves(type, type2, userSummonPceRty, capturesOnly);
+};
+
 // get binary representation of powers that are non-zero for the current player
 export const generatePowers = () => {
   if (GameBoard.side === COLOURS.WHITE) {
@@ -562,6 +570,7 @@ export const generatePowers = () => {
 };
 
 export let herrings = [];
+export let forcedEpAvailable;
 
 export const getHerrings = (color) => {
   const herringsArr = [];
@@ -593,7 +602,7 @@ export const blackTeleports = [
 ];
 
 export function GenerateMoves(
-  withHerrings = true,
+  forcedMoves = true,
   capturesOnly = false,
   type = '',
   type2 = '',
@@ -615,7 +624,7 @@ export function GenerateMoves(
 
   const herringArray = getHerrings(GameBoard.side);
 
-  if (withHerrings) {
+  if (forcedMoves) {
     const herringsAttacked = () => {
       const tempHerrings = [];
       _.forEach(herringArray, (herringSq) => {
@@ -631,464 +640,504 @@ export function GenerateMoves(
     herrings = [];
   }
 
+  const activeWhiteForcedEpCapture =
+    forcedMoves &&
+    GameBoard.side === COLOURS.WHITE &&
+    GameBoard.blackArcane[4] & 32768 &&
+    (GameBoard.pieces[GameBoard.enPas - 9] === PIECES.wP ||
+      GameBoard.pieces[GameBoard.enPas - 11] === PIECES.wP);
+  const activeBlackForcedEpCapture =
+    forcedMoves &&
+    GameBoard.side === COLOURS.BLACK &&
+    GameBoard.whiteArcane[4] & 32768 &&
+    (GameBoard.pieces[GameBoard.enPas + 9] === PIECES.bP ||
+      GameBoard.pieces[GameBoard.enPas + 11] === PIECES.bP);
+
+  forcedEpAvailable = activeWhiteForcedEpCapture || activeBlackForcedEpCapture;
+
   const NZUBRMTQSWSQS = [[], []];
 
   // todo note does swap override entangle and suspend? I think so maybe no entangle though
 
-  // SWAP ADJACENT 4
-  for (let sq = 21; sq <= 98; sq++) {
-    if (GameBoard.pieces[sq] === PIECES.EMPTY) {
-      continue;
-    }
-    if (SQOFFBOARD(sq) === BOOL.TRUE) {
-      continue;
-    }
-    if (PieceKing[GameBoard.pieces[sq]] === BOOL.TRUE) {
-      continue;
-    }
-    if (herrings.length) {
-      break;
-    }
-    if (type2 === 'ADJ' || type2 === 'COMP') {
-      for (let i = 0; i < 4; i++) {
-        dir = RkDir[i];
-        t_sq = sq + dir;
-        pce = GameBoard.pieces[t_sq];
-
-        if (PieceKing[GameBoard.pieces[t_sq]] === BOOL.TRUE) {
-          continue;
-        }
-
-        // no swapping into promotion
-        if (
-          (GameBoard.pieces[sq] === PIECES.wP &&
-            GameBoard.whiteArcane[4] & 16 &&
-            RanksBrd[t_sq] === RANKS.RANK_7) ||
-          (pce === PIECES.wP &&
-            GameBoard.whiteArcane[4] & 16 &&
-            RanksBrd[sq] === RANKS.RANK_7) ||
-          (GameBoard.pieces[sq] === PIECES.wP &&
-            RanksBrd[t_sq] === RANKS.RANK_8) ||
-          (pce === PIECES.wP && RanksBrd[sq] === RANKS.RANK_8)
-        ) {
-          continue;
-        }
-        if (
-          (GameBoard.pieces[sq] === PIECES.bP &&
-            GameBoard.blackArcane[4] & 16 &&
-            RanksBrd[t_sq] === RANKS.RANK_2) ||
-          (pce === PIECES.bP &&
-            GameBoard.blackArcane[4] & 16 &&
-            RanksBrd[sq] === RANKS.RANK_2) ||
-          (GameBoard.pieces[sq] === PIECES.bP &&
-            RanksBrd[t_sq] === RANKS.RANK_1) ||
-          (pce === PIECES.bP && RanksBrd[sq] === RANKS.RANK_1)
-        ) {
-          continue;
-        }
-
-        if (GameBoard.pieces[sq] === GameBoard.pieces[t_sq]) {
-          continue;
-        }
-
-        if (
-          SQOFFBOARD(t_sq) === BOOL.FALSE &&
-          pce !== PIECES.EMPTY &&
-          GameBoard.pieces[sq] !== PIECES.EMPTY &&
-          GameBoard.side === COLOURS.WHITE &&
-          GameBoard.whiteArcane[2] & 2
-        ) {
-          AddCaptureMove(
-            MOVE(
-              sq,
-              t_sq,
-              GameBoard.pieces[t_sq],
-              ARCANE_BIT_VALUES.ADJ,
-              MFLAGSWAP
-            ),
-            false,
-            capturesOnly
-          );
-        }
-        if (
-          SQOFFBOARD(t_sq) === BOOL.FALSE &&
-          pce !== PIECES.EMPTY &&
-          GameBoard.pieces[sq] !== PIECES.EMPTY &&
-          GameBoard.side === COLOURS.BLACK &&
-          GameBoard.blackArcane[2] & 2
-        ) {
-          AddCaptureMove(
-            MOVE(
-              sq,
-              t_sq,
-              GameBoard.pieces[t_sq],
-              ARCANE_BIT_VALUES.ADJ,
-              MFLAGSWAP
-            ),
-            false,
-            capturesOnly
-          );
-        }
+  if (!activeWhiteForcedEpCapture || !activeBlackForcedEpCapture) {
+    // SWAP ADJACENT 4
+    for (let sq = 21; sq <= 98; sq++) {
+      if (GameBoard.pieces[sq] === PIECES.EMPTY) {
+        continue;
       }
-    }
-    if (
-      PieceCol[GameBoard.pieces[sq]] === COLOURS.WHITE &&
-      (GameBoard.pieces[sq] === PIECES.wN ||
-        GameBoard.pieces[sq] === PIECES.wZ ||
-        GameBoard.pieces[sq] === PIECES.wU ||
-        GameBoard.pieces[sq] === PIECES.wB ||
-        GameBoard.pieces[sq] === PIECES.wR ||
-        GameBoard.pieces[sq] === PIECES.wM ||
-        GameBoard.pieces[sq] === PIECES.wT ||
-        GameBoard.pieces[sq] === PIECES.wQ ||
-        GameBoard.pieces[sq] === PIECES.wS ||
-        GameBoard.pieces[sq] === PIECES.wW)
-    ) {
-      NZUBRMTQSWSQS[COLOURS.WHITE].push(sq);
-    }
-    if (
-      PieceCol[GameBoard.pieces[sq]] === COLOURS.BLACK &&
-      (GameBoard.pieces[sq] === PIECES.bN ||
-        GameBoard.pieces[sq] === PIECES.bZ ||
-        GameBoard.pieces[sq] === PIECES.bU ||
-        GameBoard.pieces[sq] === PIECES.bB ||
-        GameBoard.pieces[sq] === PIECES.bR ||
-        GameBoard.pieces[sq] === PIECES.bM ||
-        GameBoard.pieces[sq] === PIECES.bT ||
-        GameBoard.pieces[sq] === PIECES.bQ ||
-        GameBoard.pieces[sq] === PIECES.bS ||
-        GameBoard.pieces[sq] === PIECES.bW)
-    ) {
-      NZUBRMTQSWSQS[COLOURS.BLACK].push(sq);
-    }
-  }
-
-  // SWAP DEP 2
-  if (!herrings.length && (type2 === 'DEP' || type2 === 'COMP')) {
-    for (let i = 0; i < NZUBRMTQSWSQS[GameBoard.side].length; i++) {
-      for (let j = 0; j < NZUBRMTQSWSQS[GameBoard.side].length; j++) {
-        if (
-          i === j ||
-          GameBoard.pieces[NZUBRMTQSWSQS[GameBoard.side][i]] ===
-            GameBoard.pieces[NZUBRMTQSWSQS[GameBoard.side][j]]
-        ) {
-          continue;
-        }
-        if (
-          GameBoard.side === COLOURS.WHITE &&
-          GameBoard.whiteArcane[2] & 1 &&
-          !herrings.length
-        ) {
-          AddCaptureMove(
-            MOVE(
-              NZUBRMTQSWSQS[COLOURS.WHITE][i],
-              NZUBRMTQSWSQS[COLOURS.WHITE][j],
-              GameBoard.pieces[NZUBRMTQSWSQS[COLOURS.WHITE][j]],
-              ARCANE_BIT_VALUES.DEP,
-              MFLAGSWAP
-            ),
-            false,
-            capturesOnly
-          );
-        }
-        if (
-          GameBoard.side === COLOURS.BLACK &&
-          GameBoard.blackArcane[2] & 1 &&
-          !herrings.length
-        ) {
-          AddCaptureMove(
-            MOVE(
-              NZUBRMTQSWSQS[COLOURS.BLACK][i],
-              NZUBRMTQSWSQS[COLOURS.BLACK][j],
-              GameBoard.pieces[NZUBRMTQSWSQS[COLOURS.BLACK][j]],
-              ARCANE_BIT_VALUES.DEP,
-              MFLAGSWAP
-            ),
-            false,
-            capturesOnly
-          );
-        }
+      if (SQOFFBOARD(sq) === BOOL.TRUE) {
+        continue;
       }
-    }
-  }
-
-  if (type2 === 'ADJ' || type2 === 'DEP') return;
-
-  if (!herrings.length && (type2 === 'TELEPORT' || type2 === 'COMP')) {
-    if (
-      (GameBoard.side === COLOURS.WHITE && GameBoard.whiteArcane[1] & 16) ||
-      (GameBoard.side === COLOURS.BLACK && GameBoard.blackArcane[1] & 16)
-    ) {
-      const teleportSquares =
-        GameBoard.side === COLOURS.WHITE ? whiteTeleports : blackTeleports;
-
-      for (let pce = PIECES.wP; pce <= PIECES.bK; pce++) {
-        if (PieceCol[pce] !== GameBoard.side) continue;
-
-        for (let pceNum = 0; pceNum < GameBoard.pceNum[pce]; pceNum++) {
-          const sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
-          teleportSquares.forEach((toSq) => {
-            if (GameBoard.pieces[toSq] === PIECES.EMPTY) {
-              const promotionPiece =
-                GameBoard.side === COLOURS.WHITE ? PIECES.wT : PIECES.bT;
-              AddQuietMove(
-                MOVE(sq, toSq, PIECES.EMPTY, promotionPiece, MFLAGSHFT),
-                capturesOnly
-              );
-            }
-          });
-        }
+      if (PieceKing[GameBoard.pieces[sq]] === BOOL.TRUE) {
+        continue;
       }
-      return;
-    }
-  }
-
-  if (type2 === 'TELEPORT') return;
-
-  // OFFERINGS
-  let offeringIndex = LoopPcePrimeIndex[GameBoard.side];
-  let offeringPce = LoopPcePrime[offeringIndex];
-  let offeringSymbol = LoopPcePrimeSymbols[offeringIndex++];
-
-  if (!herrings.length && (type === 'OFFERING' || type === 'COMP')) {
-    while (offeringPce !== 0) {
-      let offeringArcanaSide =
-        GameBoard.side === COLOURS.WHITE
-          ? GameBoard.whiteArcane[5]
-          : GameBoard.blackArcane[5];
-
-      let pceType = offeringPce;
-
-      for (let pceNum = 0; pceNum < GameBoard.pceNum[offeringPce]; pceNum++) {
-        let sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
-        if (PieceCol[offeringPce] === GameBoard.side) {
-          if (
-            offeringArcanaSide & 1 &&
-            ('H' === userSummonPceRty || type !== 'OFFERING')
-          ) {
-            if (offeringSymbol === 'P') {
-              addOfferingMove(MOVE(sq, 0, offeringPce, 1, 0));
-            }
-          }
-          if (
-            offeringArcanaSide & 2 &&
-            (('S' === userSummonPceRty && type === 'OFFERING') ||
-              type !== 'OFFERING')
-          ) {
-            if (offeringSymbol === 'M') {
-              addOfferingMove(MOVE(sq, 0, offeringPce, 2, 0));
-            }
-          }
-          if (
-            offeringArcanaSide & 4 &&
-            (('M' === userSummonPceRty && type === 'OFFERING') ||
-              type !== 'OFFERING')
-          ) {
-            if (offeringSymbol === 'Q' || offeringSymbol === 'T') {
-              addOfferingMove(MOVE(sq, 0, offeringPce, 3, 0));
-            }
-          }
-          if (
-            offeringArcanaSide & 8 &&
-            (('E' === userSummonPceRty && type === 'OFFERING') ||
-              type !== 'OFFERING')
-          ) {
-            if (offeringSymbol === 'R') {
-              [4, 5, 6, 7].forEach((number) => {
-                addOfferingMove(MOVE(sq, 0, offeringPce, number, 0));
-              });
-            }
-          }
-          if (
-            offeringArcanaSide & 16 &&
-            (('R' === userSummonPceRty && type === 'OFFERING') ||
-              type !== 'OFFERING')
-          ) {
-            if (offeringSymbol === 'Q' || offeringSymbol === 'T') {
-              addOfferingMove(MOVE(sq, 0, offeringPce, 8, 0));
-            }
-          }
-          if (
-            offeringArcanaSide & 32 &&
-            (('C' === userSummonPceRty && type === 'OFFERING') ||
-              type !== 'OFFERING')
-          ) {
-            if (['B', 'N', 'Z', 'U'].includes(offeringSymbol)) {
-              [4, 5, 6, 7].forEach((number) => {
-                addOfferingMove(MOVE(sq, 0, offeringPce, number, 0));
-              });
-            }
-          }
-          if (
-            offeringArcanaSide & 64 &&
-            (('A' === userSummonPceRty && type === 'OFFERING') ||
-              type !== 'OFFERING')
-          ) {
-            addOfferingMove(MOVE(sq, 0, offeringPce, 9, 0));
-          }
-        }
+      if (herrings.length) {
+        break;
       }
-      offeringPce = LoopPcePrime[offeringIndex];
-      offeringSymbol = LoopPcePrimeSymbols[offeringIndex++];
-    }
-  }
+      if (type2 === 'ADJ' || type2 === 'COMP') {
+        for (let i = 0; i < 4; i++) {
+          dir = RkDir[i];
+          t_sq = sq + dir;
+          pce = GameBoard.pieces[t_sq];
 
-  if (type === 'OFFERING') return;
-
-  // SUMMONS
-  let summonIndex = loopSummonIndex[GameBoard.side];
-  let summonPce = loopSummon[summonIndex];
-  let summonFlag = loopSummonFlag[summonIndex++];
-
-  const whiteLimit = 100 - 10 * (8 - (GameBoard.whiteArcane[4] & 4096 ? 8 : 6));
-  const blackLimit = 20 + 10 * (8 - (GameBoard.blackArcane[4] & 4096 ? 8 : 6));
-
-  GameBoard.summonRankLimits[0] = whiteLimit;
-  GameBoard.summonRankLimits[1] = blackLimit;
-
-  // todo remove to allow blocking with pieces or royalty or not?
-  if (!herrings.length) {
-    // todo remove parent conditional with herring check because sumnE can block from a piece attacking herring
-    const royaltyIndexes = {
-      30: 1,
-      31: 2,
-      32: 3,
-      33: 4,
-      34: 5,
-      35: 6,
-      36: 7,
-      37: 8,
-    };
-    if (userSummonPceRty > 0 || userSummonPceRty !== '' || type !== 'SUMMON') {
-      while (summonPce !== 0) {
-        for (let sq = 21; sq <= 98; sq++) {
-          if (SQOFFBOARD(sq) === BOOL.TRUE || herrings.length || capturesOnly) {
+          if (PieceKing[GameBoard.pieces[t_sq]] === BOOL.TRUE) {
             continue;
           }
-          if (summonPce === PIECES.wP && summonFlag < 16384) {
-            if (
+
+          // no swapping into promotion
+          if (
+            (GameBoard.pieces[sq] === PIECES.wP &&
               GameBoard.whiteArcane[4] & 16 &&
-              RanksBrd[sq] === RANKS.RANK_7
-            ) {
-              continue;
-            }
-            if (RanksBrd[sq] === RANKS.RANK_8) {
-              continue;
-            }
+              RanksBrd[t_sq] === RANKS.RANK_7) ||
+            (pce === PIECES.wP &&
+              GameBoard.whiteArcane[4] & 16 &&
+              RanksBrd[sq] === RANKS.RANK_7) ||
+            (GameBoard.pieces[sq] === PIECES.wP &&
+              RanksBrd[t_sq] === RANKS.RANK_8) ||
+            (pce === PIECES.wP && RanksBrd[sq] === RANKS.RANK_8)
+          ) {
+            continue;
           }
-          if (summonPce === PIECES.bP && summonFlag < 16384) {
-            if (
+          if (
+            (GameBoard.pieces[sq] === PIECES.bP &&
               GameBoard.blackArcane[4] & 16 &&
-              RanksBrd[sq] === RANKS.RANK_2
-            ) {
-              continue;
-            }
-            if (RanksBrd[sq] === RANKS.RANK_1) {
-              continue;
-            }
+              RanksBrd[t_sq] === RANKS.RANK_2) ||
+            (pce === PIECES.bP &&
+              GameBoard.blackArcane[4] & 16 &&
+              RanksBrd[sq] === RANKS.RANK_2) ||
+            (GameBoard.pieces[sq] === PIECES.bP &&
+              RanksBrd[t_sq] === RANKS.RANK_1) ||
+            (pce === PIECES.bP && RanksBrd[sq] === RANKS.RANK_1)
+          ) {
+            continue;
           }
-          if (GameBoard.side === COLOURS.WHITE) {
-            if (sq < whiteLimit) {
-              if (
-                summonFlag < 16384 &&
-                ((summonPce === userSummonPceRty && type === 'SUMMON') ||
-                  type !== 'SUMMON') &&
-                GameBoard.pieces[sq] === PIECES.EMPTY &&
-                GameBoard.whiteArcane[3] & summonFlag
-              ) {
-                addSummonMove(MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN));
-              } else if (
-                ((summonPce === userSummonPceRty && type === 'SUMMON') ||
-                  type !== 'SUMMON') &&
-                summonFlag >= 16384 &&
-                summonFlag ===
-                  POWERBIT[`sumnR${RtyChar.split('')[summonPce]}`] &&
-                summonFlag & GameBoard.whiteArcane[3]
-              ) {
-                if (
-                  GameBoard.royaltyQ[sq] > 0 ||
-                  GameBoard.royaltyT[sq] > 0 ||
-                  GameBoard.royaltyM[sq] > 0 ||
-                  GameBoard.royaltyV[sq] > 0 ||
-                  GameBoard.royaltyE[sq] > 0
-                ) {
-                  continue;
-                }
-                addSummonMove(
-                  MOVE(
-                    0,
-                    sq,
-                    royaltyIndexes[summonPce],
-                    PIECES.EMPTY,
-                    MFLAGSUMN
-                  )
+
+          if (GameBoard.pieces[sq] === GameBoard.pieces[t_sq]) {
+            continue;
+          }
+
+          if (
+            SQOFFBOARD(t_sq) === BOOL.FALSE &&
+            pce !== PIECES.EMPTY &&
+            GameBoard.pieces[sq] !== PIECES.EMPTY &&
+            GameBoard.side === COLOURS.WHITE &&
+            GameBoard.whiteArcane[2] & 2
+          ) {
+            AddCaptureMove(
+              MOVE(
+                sq,
+                t_sq,
+                GameBoard.pieces[t_sq],
+                ARCANE_BIT_VALUES.ADJ,
+                MFLAGSWAP
+              ),
+              false,
+              capturesOnly
+            );
+          }
+          if (
+            SQOFFBOARD(t_sq) === BOOL.FALSE &&
+            pce !== PIECES.EMPTY &&
+            GameBoard.pieces[sq] !== PIECES.EMPTY &&
+            GameBoard.side === COLOURS.BLACK &&
+            GameBoard.blackArcane[2] & 2
+          ) {
+            AddCaptureMove(
+              MOVE(
+                sq,
+                t_sq,
+                GameBoard.pieces[t_sq],
+                ARCANE_BIT_VALUES.ADJ,
+                MFLAGSWAP
+              ),
+              false,
+              capturesOnly
+            );
+          }
+        }
+      }
+      if (
+        PieceCol[GameBoard.pieces[sq]] === COLOURS.WHITE &&
+        (GameBoard.pieces[sq] === PIECES.wN ||
+          GameBoard.pieces[sq] === PIECES.wZ ||
+          GameBoard.pieces[sq] === PIECES.wU ||
+          GameBoard.pieces[sq] === PIECES.wB ||
+          GameBoard.pieces[sq] === PIECES.wR ||
+          GameBoard.pieces[sq] === PIECES.wM ||
+          GameBoard.pieces[sq] === PIECES.wT ||
+          GameBoard.pieces[sq] === PIECES.wQ ||
+          GameBoard.pieces[sq] === PIECES.wS ||
+          GameBoard.pieces[sq] === PIECES.wW)
+      ) {
+        NZUBRMTQSWSQS[COLOURS.WHITE].push(sq);
+      }
+      if (
+        PieceCol[GameBoard.pieces[sq]] === COLOURS.BLACK &&
+        (GameBoard.pieces[sq] === PIECES.bN ||
+          GameBoard.pieces[sq] === PIECES.bZ ||
+          GameBoard.pieces[sq] === PIECES.bU ||
+          GameBoard.pieces[sq] === PIECES.bB ||
+          GameBoard.pieces[sq] === PIECES.bR ||
+          GameBoard.pieces[sq] === PIECES.bM ||
+          GameBoard.pieces[sq] === PIECES.bT ||
+          GameBoard.pieces[sq] === PIECES.bQ ||
+          GameBoard.pieces[sq] === PIECES.bS ||
+          GameBoard.pieces[sq] === PIECES.bW)
+      ) {
+        NZUBRMTQSWSQS[COLOURS.BLACK].push(sq);
+      }
+    }
+
+    // SWAP DEP 2
+    if (!herrings.length && (type2 === 'DEP' || type2 === 'COMP')) {
+      for (let i = 0; i < NZUBRMTQSWSQS[GameBoard.side].length; i++) {
+        for (let j = 0; j < NZUBRMTQSWSQS[GameBoard.side].length; j++) {
+          if (
+            i === j ||
+            GameBoard.pieces[NZUBRMTQSWSQS[GameBoard.side][i]] ===
+              GameBoard.pieces[NZUBRMTQSWSQS[GameBoard.side][j]]
+          ) {
+            continue;
+          }
+          if (
+            GameBoard.side === COLOURS.WHITE &&
+            GameBoard.whiteArcane[2] & 1 &&
+            !herrings.length
+          ) {
+            AddCaptureMove(
+              MOVE(
+                NZUBRMTQSWSQS[COLOURS.WHITE][i],
+                NZUBRMTQSWSQS[COLOURS.WHITE][j],
+                GameBoard.pieces[NZUBRMTQSWSQS[COLOURS.WHITE][j]],
+                ARCANE_BIT_VALUES.DEP,
+                MFLAGSWAP
+              ),
+              false,
+              capturesOnly
+            );
+          }
+          if (
+            GameBoard.side === COLOURS.BLACK &&
+            GameBoard.blackArcane[2] & 1 &&
+            !herrings.length
+          ) {
+            AddCaptureMove(
+              MOVE(
+                NZUBRMTQSWSQS[COLOURS.BLACK][i],
+                NZUBRMTQSWSQS[COLOURS.BLACK][j],
+                GameBoard.pieces[NZUBRMTQSWSQS[COLOURS.BLACK][j]],
+                ARCANE_BIT_VALUES.DEP,
+                MFLAGSWAP
+              ),
+              false,
+              capturesOnly
+            );
+          }
+        }
+      }
+    }
+
+    if (type2 === 'ADJ' || type2 === 'DEP') return;
+
+    if (!herrings.length && (type2 === 'TELEPORT' || type2 === 'COMP')) {
+      if (
+        (GameBoard.side === COLOURS.WHITE && GameBoard.whiteArcane[1] & 16) ||
+        (GameBoard.side === COLOURS.BLACK && GameBoard.blackArcane[1] & 16)
+      ) {
+        const teleportSquares =
+          GameBoard.side === COLOURS.WHITE ? whiteTeleports : blackTeleports;
+
+        for (let pce = PIECES.wP; pce <= PIECES.bK; pce++) {
+          if (PieceCol[pce] !== GameBoard.side) continue;
+
+          for (let pceNum = 0; pceNum < GameBoard.pceNum[pce]; pceNum++) {
+            const sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+            teleportSquares.forEach((toSq) => {
+              if (GameBoard.pieces[toSq] === PIECES.EMPTY) {
+                const promotionPiece =
+                  GameBoard.side === COLOURS.WHITE ? PIECES.wT : PIECES.bT;
+                AddQuietMove(
+                  MOVE(sq, toSq, PIECES.EMPTY, promotionPiece, MFLAGSHFT),
+                  capturesOnly
                 );
-              } else {
-                continue;
+              }
+            });
+          }
+        }
+        return;
+      }
+    }
+
+    if (type2 === 'TELEPORT') return;
+
+    // OFFERINGS
+    let offeringIndex = LoopPcePrimeIndex[GameBoard.side];
+    let offeringPce = LoopPcePrime[offeringIndex];
+    let offeringSymbol = LoopPcePrimeSymbols[offeringIndex++];
+
+    if (!herrings.length && (type === 'OFFERING' || type === 'COMP')) {
+      while (offeringPce !== 0) {
+        let offeringArcanaSide =
+          GameBoard.side === COLOURS.WHITE
+            ? GameBoard.whiteArcane[5]
+            : GameBoard.blackArcane[5];
+
+        let pceType = offeringPce;
+
+        for (let pceNum = 0; pceNum < GameBoard.pceNum[offeringPce]; pceNum++) {
+          let sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
+          if (PieceCol[offeringPce] === GameBoard.side) {
+            if (
+              offeringArcanaSide & 1 &&
+              ('H' === userSummonPceRty || type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'P') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 1, 0));
               }
             }
-          } else if (GameBoard.side === COLOURS.BLACK) {
-            if (sq > blackLimit) {
-              if (
-                summonFlag < 16384 &&
-                ((summonPce === userSummonPceRty && type === 'SUMMON') ||
-                  type !== 'SUMMON') &&
-                GameBoard.pieces[sq] === PIECES.EMPTY &&
-                GameBoard.blackArcane[3] & summonFlag
-              ) {
-                addSummonMove(MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN));
-              } else if (
-                ((summonPce === ARCANE_BIT_VALUES[userSummonPceRty] &&
-                  type === 'SUMMON') ||
-                  type !== 'SUMMON') &&
-                summonFlag >= 16384 &&
-                summonFlag ===
-                  POWERBIT[`sumnR${RtyChar.split('')[summonPce]}`] &&
-                summonFlag & GameBoard.blackArcane[3]
-              ) {
-                if (
-                  GameBoard.royaltyQ[sq] > 0 ||
-                  GameBoard.royaltyT[sq] > 0 ||
-                  GameBoard.royaltyM[sq] > 0 ||
-                  GameBoard.royaltyV[sq] > 0 ||
-                  GameBoard.royaltyE[sq] > 0
-                ) {
-                  continue;
-                }
-                addSummonMove(
-                  MOVE(
-                    0,
-                    sq,
-                    royaltyIndexes[summonPce],
-                    PIECES.EMPTY,
-                    MFLAGSUMN
-                  )
-                );
-              } else {
-                continue;
+            if (
+              offeringArcanaSide & 2 &&
+              (('S' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'M') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 2, 0));
               }
+            }
+            if (
+              offeringArcanaSide & 4 &&
+              (('M' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'Q' || offeringSymbol === 'T') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 3, 0));
+              }
+            }
+            if (
+              offeringArcanaSide & 8 &&
+              (('E' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'R') {
+                [4, 5, 6, 7].forEach((number) => {
+                  addOfferingMove(MOVE(sq, 0, offeringPce, number, 0));
+                });
+              }
+            }
+            if (
+              offeringArcanaSide & 16 &&
+              (('R' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'Q' || offeringSymbol === 'T') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 8, 0));
+              }
+            }
+            if (
+              offeringArcanaSide & 32 &&
+              (('C' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (['B', 'N', 'Z', 'U'].includes(offeringSymbol)) {
+                [4, 5, 6, 7].forEach((number) => {
+                  addOfferingMove(MOVE(sq, 0, offeringPce, number, 0));
+                });
+              }
+            }
+            if (
+              offeringArcanaSide & 64 &&
+              (('A' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              addOfferingMove(MOVE(sq, 0, offeringPce, 9, 0));
             }
           }
         }
-        summonPce = loopSummon[summonIndex];
-        summonFlag = loopSummonFlag[summonIndex++];
+        offeringPce = LoopPcePrime[offeringIndex];
+        offeringSymbol = LoopPcePrimeSymbols[offeringIndex++];
       }
     }
-  }
 
-  if (type === 'SUMMON') return;
+    if (type === 'OFFERING') return;
 
-  // if force ep or force herring?
-  if (GameBoard.side === COLOURS.WHITE && GameBoard.whiteArcane[4] && 16384) {
-    AddQuietMove(MOVE(0, 0, PIECES.EMPTY, 31, 0), capturesOnly);
-  }
-  if (GameBoard.side === COLOURS.BLACK && GameBoard.blackArcane[4] && 16384) {
-    AddQuietMove(MOVE(0, 0, PIECES.EMPTY, 31, 0), capturesOnly);
+    // SUMMONS
+    let summonIndex = loopSummonIndex[GameBoard.side];
+    let summonPce = loopSummon[summonIndex];
+    let summonFlag = loopSummonFlag[summonIndex++];
+
+    const whiteLimit =
+      100 - 10 * (8 - (GameBoard.whiteArcane[4] & 4096 ? 8 : 6));
+    const blackLimit =
+      20 + 10 * (8 - (GameBoard.blackArcane[4] & 4096 ? 8 : 6));
+
+    GameBoard.summonRankLimits[0] = whiteLimit;
+    GameBoard.summonRankLimits[1] = blackLimit;
+
+    // todo remove to allow blocking with pieces or royalty or not?
+    if (!herrings.length) {
+      // todo remove parent conditional with herring check because sumnE can block from a piece attacking herring
+      const royaltyIndexes = {
+        30: 1,
+        31: 2,
+        32: 3,
+        33: 4,
+        34: 5,
+        35: 6,
+        36: 7,
+        37: 8,
+      };
+      if (
+        userSummonPceRty > 0 ||
+        userSummonPceRty !== '' ||
+        type !== 'SUMMON'
+      ) {
+        while (summonPce !== 0) {
+          for (let sq = 21; sq <= 98; sq++) {
+            if (
+              SQOFFBOARD(sq) === BOOL.TRUE ||
+              herrings.length ||
+              capturesOnly
+            ) {
+              continue;
+            }
+            if (summonPce === PIECES.wP && summonFlag < 16384) {
+              if (
+                GameBoard.whiteArcane[4] & 16 &&
+                RanksBrd[sq] === RANKS.RANK_7
+              ) {
+                continue;
+              }
+              if (RanksBrd[sq] === RANKS.RANK_8) {
+                continue;
+              }
+            }
+            if (summonPce === PIECES.bP && summonFlag < 16384) {
+              if (
+                GameBoard.blackArcane[4] & 16 &&
+                RanksBrd[sq] === RANKS.RANK_2
+              ) {
+                continue;
+              }
+              if (RanksBrd[sq] === RANKS.RANK_1) {
+                continue;
+              }
+            }
+            if (GameBoard.side === COLOURS.WHITE) {
+              if (sq < whiteLimit) {
+                if (
+                  summonFlag < 16384 &&
+                  ((summonPce === userSummonPceRty && type === 'SUMMON') ||
+                    type !== 'SUMMON') &&
+                  GameBoard.pieces[sq] === PIECES.EMPTY &&
+                  GameBoard.whiteArcane[3] & summonFlag
+                ) {
+                  addSummonMove(
+                    MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN)
+                  );
+                } else if (
+                  ((summonPce === userSummonPceRty && type === 'SUMMON') ||
+                    type !== 'SUMMON') &&
+                  summonFlag >= 16384 &&
+                  summonFlag ===
+                    POWERBIT[`sumnR${RtyChar.split('')[summonPce]}`] &&
+                  summonFlag & GameBoard.whiteArcane[3]
+                ) {
+                  if (
+                    GameBoard.royaltyQ[sq] > 0 ||
+                    GameBoard.royaltyT[sq] > 0 ||
+                    GameBoard.royaltyM[sq] > 0 ||
+                    GameBoard.royaltyV[sq] > 0 ||
+                    GameBoard.royaltyE[sq] > 0
+                  ) {
+                    continue;
+                  }
+                  addSummonMove(
+                    MOVE(
+                      0,
+                      sq,
+                      royaltyIndexes[summonPce],
+                      PIECES.EMPTY,
+                      MFLAGSUMN
+                    )
+                  );
+                } else {
+                  continue;
+                }
+              }
+            } else if (GameBoard.side === COLOURS.BLACK) {
+              if (sq > blackLimit) {
+                if (
+                  summonFlag < 16384 &&
+                  ((summonPce === userSummonPceRty && type === 'SUMMON') ||
+                    type !== 'SUMMON') &&
+                  GameBoard.pieces[sq] === PIECES.EMPTY &&
+                  GameBoard.blackArcane[3] & summonFlag
+                ) {
+                  addSummonMove(
+                    MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN)
+                  );
+                } else if (
+                  ((summonPce === ARCANE_BIT_VALUES[userSummonPceRty] &&
+                    type === 'SUMMON') ||
+                    type !== 'SUMMON') &&
+                  summonFlag >= 16384 &&
+                  summonFlag ===
+                    POWERBIT[`sumnR${RtyChar.split('')[summonPce]}`] &&
+                  summonFlag & GameBoard.blackArcane[3]
+                ) {
+                  if (
+                    GameBoard.royaltyQ[sq] > 0 ||
+                    GameBoard.royaltyT[sq] > 0 ||
+                    GameBoard.royaltyM[sq] > 0 ||
+                    GameBoard.royaltyV[sq] > 0 ||
+                    GameBoard.royaltyE[sq] > 0
+                  ) {
+                    continue;
+                  }
+                  addSummonMove(
+                    MOVE(
+                      0,
+                      sq,
+                      royaltyIndexes[summonPce],
+                      PIECES.EMPTY,
+                      MFLAGSUMN
+                    )
+                  );
+                } else {
+                  continue;
+                }
+              }
+            }
+          }
+          summonPce = loopSummon[summonIndex];
+          summonFlag = loopSummonFlag[summonIndex++];
+        }
+      }
+    }
+
+    if (type === 'SUMMON') return;
+
+    // if force ep or force herring?
+    if (!herrings.length) {
+      if (
+        GameBoard.side === COLOURS.WHITE &&
+        GameBoard.whiteArcane[4] &&
+        16384
+      ) {
+        AddQuietMove(MOVE(0, 0, PIECES.EMPTY, 31, 0), capturesOnly);
+      }
+      if (
+        GameBoard.side === COLOURS.BLACK &&
+        GameBoard.blackArcane[4] &&
+        16384
+      ) {
+        AddQuietMove(MOVE(0, 0, PIECES.EMPTY, 31, 0), capturesOnly);
+      }
+    }
   }
 
   // NOTE WHITE PAWN AND SPECIAL MOVES
   if (GameBoard.side === COLOURS.WHITE) {
-    if (type2 === 'TELEPORT') return;
     pceType = PIECES.wP;
 
     for (pceNum = 0; pceNum < GameBoard.pceNum[pceType]; pceNum++) {
@@ -1106,6 +1155,7 @@ export function GenerateMoves(
 
       // note WHITE PAWN QUIET MOVES
       if (
+        !activeWhiteForcedEpCapture &&
         (GameBoard.dyad === 0 ||
           GameBoard.dyad === 1 ||
           GameBoard.dyad === 2) &&
@@ -1144,10 +1194,11 @@ export function GenerateMoves(
       // note WHITE PAWN CAPTURES AND CONSUME
       if (GameBoard.dyad === 0) {
         if (
-          (SQOFFBOARD(sq + 9) === BOOL.FALSE && !herrings.length) ||
-          (SQOFFBOARD(sq + 9) === BOOL.FALSE &&
-            herrings.length &&
-            _.includes(herrings, sq + 9))
+          !activeWhiteForcedEpCapture &&
+          ((SQOFFBOARD(sq + 9) === BOOL.FALSE && !herrings.length) ||
+            (SQOFFBOARD(sq + 9) === BOOL.FALSE &&
+              herrings.length &&
+              _.includes(herrings, sq + 9)))
         ) {
           if (PieceCol[GameBoard.pieces[sq + 9]] === COLOURS.BLACK) {
             AddWhitePawnCaptureMove(
@@ -1175,7 +1226,9 @@ export function GenerateMoves(
         }
 
         if (
-          (SQOFFBOARD(sq + 11) === BOOL.FALSE && !herrings.length) ||
+          (SQOFFBOARD(sq + 11) === BOOL.FALSE &&
+            !herrings.length &&
+            !activeWhiteForcedEpCapture) ||
           (SQOFFBOARD(sq + 11) === BOOL.FALSE &&
             herrings.length &&
             _.includes(herrings, sq + 11))
@@ -1206,7 +1259,10 @@ export function GenerateMoves(
         }
 
         // NOTE WHITE EP
-        if (GameBoard.enPas !== SQUARES.NO_SQ && !herrings.length) {
+        if (
+          (GameBoard.enPas !== SQUARES.NO_SQ && !herrings.length) ||
+          activeWhiteForcedEpCapture
+        ) {
           if (sq + 9 === GameBoard.enPas) {
             if (
               GameBoard.whiteArcane[4] & 16 &&
@@ -1230,6 +1286,18 @@ export function GenerateMoves(
               AddEnPassantMove(
                 MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wN, MFLAGEP)
               );
+              AddEnPassantMove(
+                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wZ, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wU, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wS, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wW, MFLAGEP)
+              );
             } else {
               AddEnPassantMove(
                 MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
@@ -1245,7 +1313,7 @@ export function GenerateMoves(
                 MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wQ, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.T, MFLAGEP)
+                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wT, MFLAGEP)
               );
               AddEnPassantMove(
                 MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wM, MFLAGEP)
@@ -1259,6 +1327,18 @@ export function GenerateMoves(
               AddEnPassantMove(
                 MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wN, MFLAGEP)
               );
+              AddEnPassantMove(
+                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wZ, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wU, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wS, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wW, MFLAGEP)
+              );
             } else {
               AddEnPassantMove(
                 MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
@@ -1270,109 +1350,60 @@ export function GenerateMoves(
     }
 
     // WARNING, this will only work in a vanilla setup, no extra rooks
-    if (GameBoard.castlePerm & CASTLEBIT.WKCA && !herrings.length) {
-      if (GameBoard.blackArcane[4] & 8) {
-        // todo remove
-      } else {
-        if (
-          GameBoard.pieces[SQUARES.F1] === PIECES.EMPTY &&
-          GameBoard.pieces[SQUARES.G1] === PIECES.EMPTY
-        ) {
+    if (!activeWhiteForcedEpCapture) {
+      if (GameBoard.castlePerm & CASTLEBIT.WKCA && !herrings.length) {
+        if (GameBoard.blackArcane[4] & 8) {
+          // todo remove
+        } else {
           if (
-            (SqAttacked(SQUARES.F1, COLOURS.BLACK) === BOOL.FALSE &&
-              SqAttacked(SQUARES.E1, COLOURS.BLACK) === BOOL.FALSE) ||
-            GameBoard.whiteArcane[4] & 4
+            GameBoard.pieces[SQUARES.F1] === PIECES.EMPTY &&
+            GameBoard.pieces[SQUARES.G1] === PIECES.EMPTY
           ) {
-            AddQuietMove(
-              MOVE(SQUARES.E1, SQUARES.G1, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
-              capturesOnly
-            );
+            if (
+              (SqAttacked(SQUARES.F1, COLOURS.BLACK) === BOOL.FALSE &&
+                SqAttacked(SQUARES.E1, COLOURS.BLACK) === BOOL.FALSE) ||
+              GameBoard.whiteArcane[4] & 4
+            ) {
+              AddQuietMove(
+                MOVE(
+                  SQUARES.E1,
+                  SQUARES.G1,
+                  PIECES.EMPTY,
+                  PIECES.EMPTY,
+                  MFLAGCA
+                ),
+                capturesOnly
+              );
+            }
           }
         }
       }
-    }
 
-    if (GameBoard.castlePerm & CASTLEBIT.WQCA && !herrings.length) {
-      if (GameBoard.blackArcane[4] & 8) {
-        // const getKingPos = _.indexOf(GameBoard.pieces, 6, 22);
-        // const getRookPos = _.indexOf(GameBoard.pieces, 4, 21);
-        // if (getKingPos === 22) {
-        //   if (
-        //     GameBoard.pieces[SQUARES.D1] === PIECES.EMPTY &&
-        //     GameBoard.pieces[SQUARES.C1] === PIECES.EMPTY
-        //   ) {
-        //     if (SqAttacked(SQUARES.B1, COLOURS.BLACK) === BOOL.FALSE) {
-        //       AddQuietMove(
-        //         MOVE(
-        //           SQUARES.B1,
-        //           SQUARES.A1,
-        //           PIECES.EMPTY,
-        //           PIECES.EMPTY,
-        //           MFLAGCA
-        //         ),
-        //         capturesOnly
-        //       );
-        //     }
-        //   }
-        // } else {
-        //   for (let sq = GameBoard.pieces.indexOf(6); sq >= 23; sq--) {
-        //     const getPiece = _.get(GameBoard.pieces, sq);
-        //     if (sq === 23 && getPiece === PIECES.wK) {
-        //       AddQuietMove(
-        //         MOVE(
-        //           SQUARES.C1,
-        //           getRookPos,
-        //           PIECES.EMPTY,
-        //           PIECES.EMPTY,
-        //           MFLAGCA
-        //         ),
-        //         capturesOnly
-        //       );
-        //       break;
-        //     }
-        //     if (
-        //       GameBoard.pieces[sq] !== PIECES.EMPTY &&
-        //       GameBoard.pieces[sq] !== PIECES.wK &&
-        //       GameBoard.pieces[sq] !== PIECES.wR
-        //     ) {
-        //       break;
-        //     }
-        //     if (
-        //       SqAttacked(sq, COLOURS.BLACK) &&
-        //       sq !== 23 &&
-        //       !(GameBoard.whiteArcane[4] & 4)
-        //     ) {
-        //       break;
-        //     }
-        //     if (sq === 23) {
-        //       AddQuietMove(
-        //         MOVE(
-        //           getKingPos,
-        //           getRookPos,
-        //           PIECES.EMPTY,
-        //           PIECES.EMPTY,
-        //           MFLAGCA
-        //         ),
-        //         capturesOnly
-        //       );
-        //     }
-        //   }
-        // }
-      } else {
-        if (
-          GameBoard.pieces[SQUARES.D1] === PIECES.EMPTY &&
-          GameBoard.pieces[SQUARES.C1] === PIECES.EMPTY &&
-          GameBoard.pieces[SQUARES.B1] === PIECES.EMPTY
-        ) {
+      if (GameBoard.castlePerm & CASTLEBIT.WQCA && !herrings.length) {
+        if (GameBoard.blackArcane[4] & 8) {
+          // randomize plus castle remove
+        } else {
           if (
-            (SqAttacked(SQUARES.D1, COLOURS.BLACK) === BOOL.FALSE &&
-              SqAttacked(SQUARES.E1, COLOURS.BLACK) === BOOL.FALSE) ||
-            GameBoard.whiteArcane[4] & 4
+            GameBoard.pieces[SQUARES.D1] === PIECES.EMPTY &&
+            GameBoard.pieces[SQUARES.C1] === PIECES.EMPTY &&
+            GameBoard.pieces[SQUARES.B1] === PIECES.EMPTY
           ) {
-            AddQuietMove(
-              MOVE(SQUARES.E1, SQUARES.C1, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
-              capturesOnly
-            );
+            if (
+              (SqAttacked(SQUARES.D1, COLOURS.BLACK) === BOOL.FALSE &&
+                SqAttacked(SQUARES.E1, COLOURS.BLACK) === BOOL.FALSE) ||
+              GameBoard.whiteArcane[4] & 4
+            ) {
+              AddQuietMove(
+                MOVE(
+                  SQUARES.E1,
+                  SQUARES.C1,
+                  PIECES.EMPTY,
+                  PIECES.EMPTY,
+                  MFLAGCA
+                ),
+                capturesOnly
+              );
+            }
           }
         }
       }
@@ -1396,6 +1427,7 @@ export function GenerateMoves(
 
       // note BLACK PAWN QUIET MOVES
       if (
+        !activeBlackForcedEpCapture &&
         (GameBoard.dyad === 0 ||
           GameBoard.dyad === 1 ||
           GameBoard.dyad === 2) &&
@@ -1433,7 +1465,9 @@ export function GenerateMoves(
       // note BLACK PAWN CAPTURES AND CONSUME
       if (GameBoard.dyad === 0) {
         if (
-          (SQOFFBOARD(sq - 9) === BOOL.FALSE && !herrings.length) ||
+          (SQOFFBOARD(sq - 9) === BOOL.FALSE &&
+            !herrings.length &&
+            !activeBlackForcedEpCapture) ||
           (SQOFFBOARD(sq - 9) === BOOL.FALSE &&
             herrings.length &&
             _.includes(herrings, sq - 9))
@@ -1464,10 +1498,11 @@ export function GenerateMoves(
         }
 
         if (
-          (SQOFFBOARD(sq - 11) === BOOL.FALSE && !herrings.length) ||
-          (SQOFFBOARD(sq - 11) === BOOL.FALSE &&
-            herrings.length &&
-            _.includes(herrings, sq - 11))
+          !activeBlackForcedEpCapture &&
+          ((SQOFFBOARD(sq - 11) === BOOL.FALSE && !herrings.length) ||
+            (SQOFFBOARD(sq - 11) === BOOL.FALSE &&
+              herrings.length &&
+              _.includes(herrings, sq - 11)))
         ) {
           if (PieceCol[GameBoard.pieces[sq - 11]] === COLOURS.WHITE) {
             AddBlackPawnCaptureMove(
@@ -1495,7 +1530,10 @@ export function GenerateMoves(
         }
 
         // note BLACK EP
-        if (GameBoard.enPas !== SQUARES.NO_SQ && !herrings.length) {
+        if (
+          (GameBoard.enPas !== SQUARES.NO_SQ && !herrings.length) ||
+          activeBlackForcedEpCapture
+        ) {
           if (sq - 9 === GameBoard.enPas) {
             if (
               GameBoard.blackArcane[4] & 16 &&
@@ -1518,6 +1556,18 @@ export function GenerateMoves(
               );
               AddEnPassantMove(
                 MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bN, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bZ, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bU, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bS, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bW, MFLAGEP)
               );
             } else {
               AddEnPassantMove(
@@ -1549,6 +1599,24 @@ export function GenerateMoves(
               AddEnPassantMove(
                 MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bN, MFLAGEP)
               );
+              AddEnPassantMove(
+                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bZ, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bU, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bZ, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bU, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bS, MFLAGEP)
+              );
+              AddEnPassantMove(
+                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bW, MFLAGEP)
+              );
             } else {
               AddEnPassantMove(
                 MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
@@ -1560,51 +1628,67 @@ export function GenerateMoves(
     }
 
     // WARNING, this will only work in a vanilla setup, no extra rooks
-    if (GameBoard.castlePerm & CASTLEBIT.BKCA && !herrings.length) {
-      if (GameBoard.whiteArcane[4] & 8) {
-        // removed randomize arcane
-      } else {
-        if (
-          GameBoard.pieces[SQUARES.F8] === PIECES.EMPTY &&
-          GameBoard.pieces[SQUARES.G8] === PIECES.EMPTY
-        ) {
+    if (!forcedEpAvailable) {
+      if (GameBoard.castlePerm & CASTLEBIT.BKCA && !herrings.length) {
+        if (GameBoard.whiteArcane[4] & 8) {
+          // removed randomize arcane
+        } else {
           if (
-            (SqAttacked(SQUARES.F8, COLOURS.WHITE) === BOOL.FALSE &&
-              SqAttacked(SQUARES.E8, COLOURS.WHITE) === BOOL.FALSE) ||
-            GameBoard.blackArcane[4] & 4
+            GameBoard.pieces[SQUARES.F8] === PIECES.EMPTY &&
+            GameBoard.pieces[SQUARES.G8] === PIECES.EMPTY
           ) {
-            AddQuietMove(
-              MOVE(SQUARES.E8, SQUARES.G8, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
-              capturesOnly
-            );
+            if (
+              (SqAttacked(SQUARES.F8, COLOURS.WHITE) === BOOL.FALSE &&
+                SqAttacked(SQUARES.E8, COLOURS.WHITE) === BOOL.FALSE) ||
+              GameBoard.blackArcane[4] & 4
+            ) {
+              AddQuietMove(
+                MOVE(
+                  SQUARES.E8,
+                  SQUARES.G8,
+                  PIECES.EMPTY,
+                  PIECES.EMPTY,
+                  MFLAGCA
+                ),
+                capturesOnly
+              );
+            }
           }
         }
       }
-    }
 
-    if (GameBoard.castlePerm & CASTLEBIT.BQCA && !herrings.length) {
-      if (GameBoard.whiteArcane[4] & 8) {
-        // removed randomize arcane
-      } else {
-        if (
-          GameBoard.pieces[SQUARES.D8] === PIECES.EMPTY &&
-          GameBoard.pieces[SQUARES.C8] === PIECES.EMPTY &&
-          GameBoard.pieces[SQUARES.B8] === PIECES.EMPTY
-        ) {
+      if (GameBoard.castlePerm & CASTLEBIT.BQCA && !herrings.length) {
+        if (GameBoard.whiteArcane[4] & 8) {
+          // removed randomize arcane
+        } else {
           if (
-            (SqAttacked(SQUARES.D8, COLOURS.WHITE) === BOOL.FALSE &&
-              SqAttacked(SQUARES.E8, COLOURS.WHITE) === BOOL.FALSE) ||
-            GameBoard.blackArcane[4] & 4
+            GameBoard.pieces[SQUARES.D8] === PIECES.EMPTY &&
+            GameBoard.pieces[SQUARES.C8] === PIECES.EMPTY &&
+            GameBoard.pieces[SQUARES.B8] === PIECES.EMPTY
           ) {
-            AddQuietMove(
-              MOVE(SQUARES.E8, SQUARES.C8, PIECES.EMPTY, PIECES.EMPTY, MFLAGCA),
-              capturesOnly
-            );
+            if (
+              (SqAttacked(SQUARES.D8, COLOURS.WHITE) === BOOL.FALSE &&
+                SqAttacked(SQUARES.E8, COLOURS.WHITE) === BOOL.FALSE) ||
+              GameBoard.blackArcane[4] & 4
+            ) {
+              AddQuietMove(
+                MOVE(
+                  SQUARES.E8,
+                  SQUARES.C8,
+                  PIECES.EMPTY,
+                  PIECES.EMPTY,
+                  MFLAGCA
+                ),
+                capturesOnly
+              );
+            }
           }
         }
       }
     }
   }
+
+  if (forcedEpAvailable && !herrings.length) return;
 
   // HOPPERS ROYALTY
   for (let i = 0; i < royaltyHoppers.length; i++) {

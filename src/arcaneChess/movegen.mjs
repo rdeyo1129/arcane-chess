@@ -887,6 +887,7 @@ export function GenerateMoves(
         for (let pceNum = 0; pceNum < GameBoard.pceNum[offeringPce]; pceNum++) {
           let sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
           if (PieceCol[offeringPce] === GameBoard.side) {
+            // pawn for herring
             if (
               offeringArcanaSide & 1 &&
               ('H' === userSummonPceRty || type !== 'OFFERING')
@@ -895,6 +896,7 @@ export function GenerateMoves(
                 addOfferingMove(MOVE(sq, 0, offeringPce, 1, 0));
               }
             }
+            // mystic for sliders
             if (
               offeringArcanaSide & 2 &&
               (('S' === userSummonPceRty && type === 'OFFERING') ||
@@ -904,6 +906,7 @@ export function GenerateMoves(
                 addOfferingMove(MOVE(sq, 0, offeringPce, 2, 0));
               }
             }
+            // templar queen for equus family
             if (
               offeringArcanaSide & 4 &&
               (('M' === userSummonPceRty && type === 'OFFERING') ||
@@ -913,17 +916,17 @@ export function GenerateMoves(
                 addOfferingMove(MOVE(sq, 0, offeringPce, 3, 0));
               }
             }
+            // rook for bishop
             if (
               offeringArcanaSide & 8 &&
               (('E' === userSummonPceRty && type === 'OFFERING') ||
                 type !== 'OFFERING')
             ) {
               if (offeringSymbol === 'R') {
-                [4, 5, 6, 7].forEach((number) => {
-                  addOfferingMove(MOVE(sq, 0, offeringPce, number, 0));
-                });
+                addOfferingMove(MOVE(sq, 0, offeringPce, 4, 0));
               }
             }
+            // quuen templar for mystic
             if (
               offeringArcanaSide & 16 &&
               (('R' === userSummonPceRty && type === 'OFFERING') ||
@@ -933,17 +936,24 @@ export function GenerateMoves(
                 addOfferingMove(MOVE(sq, 0, offeringPce, 8, 0));
               }
             }
+            // chameleon
             if (
               offeringArcanaSide & 32 &&
               (('C' === userSummonPceRty && type === 'OFFERING') ||
                 type !== 'OFFERING')
             ) {
-              if (['B', 'N', 'Z', 'U'].includes(offeringSymbol)) {
-                [4, 5, 6, 7].forEach((number) => {
-                  addOfferingMove(MOVE(sq, 0, offeringPce, number, 0));
-                });
+              if (
+                offeringSymbol === 'B' ||
+                offeringSymbol === 'N' ||
+                offeringSymbol === 'Z' ||
+                offeringSymbol === 'U'
+              ) {
+                addOfferingMove(
+                  MOVE(sq, 0, offeringPce, _.sample([4, 5, 6, 7]), 0)
+                );
               }
             }
+            // any
             if (
               offeringArcanaSide & 64 &&
               (('A' === userSummonPceRty && type === 'OFFERING') ||
@@ -966,9 +976,9 @@ export function GenerateMoves(
     let summonFlag = loopSummonFlag[summonIndex++];
 
     const whiteLimit =
-      100 - 10 * (8 - (GameBoard.whiteArcane[4] & 4096 ? 8 : 6));
+      100 - 10 * (8 - (GameBoard.whiteArcane[4] & 4096 ? 8 : 5));
     const blackLimit =
-      20 + 10 * (8 - (GameBoard.blackArcane[4] & 4096 ? 8 : 6));
+      20 + 10 * (8 - (GameBoard.blackArcane[4] & 4096 ? 8 : 5));
 
     GameBoard.summonRankLimits[0] = whiteLimit;
     GameBoard.summonRankLimits[1] = blackLimit;

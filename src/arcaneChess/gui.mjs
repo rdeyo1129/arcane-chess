@@ -52,7 +52,7 @@ export const validSummonMoves = (piece) => {
     const from =
       piece >= 30
         ? `R${RtyChar.split('')[piece]}@`
-        : `${PceChar.split('')[piece]}@`;
+        : `${PceChar.split('')[piece].toUpperCase()}@`;
     const to = PrMove(move, 'array')[1];
 
     if (!moveMap.has(from)) {
@@ -102,9 +102,6 @@ export function validMoves(
     moves.push(moveFound);
   }
 
-  // console.log(moves.length, forcedEpAvailable, herrings, moves);
-  // PrintMoveList();
-
   if (moves.length === 0 && (forcedEpAvailable || herrings.length)) {
     generatePowers();
     GenerateMoves(false, false, summon, swap, userSummonPieceRoyalty);
@@ -120,10 +117,8 @@ export function validMoves(
       TakeMove();
       moves.push(moveFound);
     }
-    // console.log(moves);
     return moves;
   }
-  // console.log(moves);
   return moves;
 }
 

@@ -1087,8 +1087,7 @@ export function GenerateMoves(
                     MOVE(0, sq, PIECES.EMPTY, summonPce, MFLAGSUMN)
                   );
                 } else if (
-                  ((summonPce === ARCANE_BIT_VALUES[userSummonPceRty] &&
-                    type === 'SUMMON') ||
+                  ((summonPce === userSummonPceRty && type === 'SUMMON') ||
                     type !== 'SUMMON') &&
                   summonFlag >= 16384 &&
                   summonFlag ===

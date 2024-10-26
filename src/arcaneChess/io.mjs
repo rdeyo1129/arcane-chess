@@ -164,7 +164,10 @@ export function PrMove(move, returnType) {
         '@' +
         PrSq(TOSQ(move));
     } else {
-      MvStr = PceChar.split('')[PROMOTED(move)] + '@' + PrSq(TOSQ(move));
+      MvStr =
+        PceChar.split('')[PROMOTED(move)].toUpperCase() +
+        '@' +
+        PrSq(TOSQ(move));
     }
   }
   // offering
@@ -405,6 +408,8 @@ export function ParseMove(
       break;
     }
   }
+
+  PrMove(Move);
 
   if (found !== BOOL.FALSE) {
     if (MakeMove(Move) === BOOL.FALSE) {

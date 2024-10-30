@@ -1,0 +1,27 @@
+.army-select {
+  .army {
+    position: relative;
+    width: 360px;
+    height: 45px;
+    display: grid;
+    grid-template-columns: repeat(8, 45px);
+    grid-template-rows: 45px;
+  }
+  .army-block {
+    position: absolute;
+    // top: 60px;
+    // left: 0;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 360px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    .army-item {
+      display: grid;
+      grid-template-columns: repeat(8, 45px);
+      grid-template-rows: 45px;
+    }
+  }
+}

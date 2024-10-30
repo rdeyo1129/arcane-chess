@@ -13,8 +13,11 @@ import 'src/chessground/styles/normal.scss';
 
 import Button from '../Button/Button';
 import Select from '../Select/Select';
-// import Toggle from '../Toggle/Toggle';
+import CharacterSelect from './CharacterSelect';
+import ArmySelect from './ArmySelect';
+
 import { unlockableArcana } from 'src/pages/book/ArcanaSelect';
+// import { characters, modes } from 'src/components/Modal/charactersModes';
 
 import './Modal.scss';
 
@@ -48,6 +51,7 @@ interface ModalState {
   difficulty: string;
   difficultyDescriptions: { [key: string]: string };
   hoverDifficulty: string;
+  showCharacterPicker: boolean;
 }
 
 interface ArcanaDetail {
@@ -106,6 +110,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         expert: 'EXPERT: Full-strength challenge for veteran players.',
       },
       hoverDifficulty: LS.difficulty,
+      showCharacterPicker: false,
     };
   }
 
@@ -763,7 +768,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
             </div>
           </Modal>
-        ) : this.props.type === 'quickPlay' ? (
+        ) : this.props.type === 'quickPlay2' ? (
           <Modal
             style={quickPlayModal}
             isOpen={this.props.isOpen}
@@ -1167,6 +1172,80 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
             </div>
           </Modal>
+        ) : this.props.type === 'quickPlay' ? (
+          <Modal
+            style={quickPlayModal}
+            isOpen={this.props.isOpen}
+            ariaHideApp={false}
+          >
+            <div className="quickplay">
+              <div className="top-buttons">
+                <Button className="tertiary" color="B" text="BACK" />
+              </div>
+              <div className="player-options-text">
+                <div className="sides">
+                  <div className="player">
+                    <div className="buttons-arcana">
+                      <div className="buttons">
+                        <div className="color">
+                          <img
+                            src={`/assets/images/blueuser.svg`}
+                            style={{
+                              width: '180px',
+                              height: '60px',
+                              background: '#4A90E2',
+                            }}
+                          />
+                        </div>
+                        <div className="character">
+                          <img
+                            src={`/assets/characters/viking-head.svg`}
+                            style={{
+                              width: '180px',
+                              height: '60px',
+                              background: '#4A90E2',
+                            }}
+                            onClick={() => {
+                              this.setState({
+                                showCharacterPicker: this.state
+                                  .showCharacterPicker
+                                  ? false
+                                  : true,
+                              });
+                            }}
+                          />
+                          {this.state.showCharacterPicker ? (
+                            <CharacterSelect />
+                          ) : null}
+                        </div>
+                      </div>
+                      <div className="arcana"></div>
+                    </div>
+                    <div className="army">
+                      <ArmySelect />
+                    </div>
+                  </div>
+                  <div className="engine">
+                    <div className="buttons-arcana">
+                      <div className="buttons">
+                        <div className="color"></div>
+                        <div className="character"></div>
+                      </div>
+                      <div className="arcana"></div>
+                    </div>
+                    <div className="army"></div>
+                  </div>
+                </div>
+                <div className="hover-text">{/* hover text */}</div>
+              </div>
+              <div className="settings-go">
+                {/* difficulty */}
+                {/* promotion */}
+                {/* randomize template */}
+                {/* randomize */}
+              </div>
+            </div>
+          </Modal>
         ) : this.props.type === 'victory-qp' ? (
           <Modal
             style={endgameModal}
@@ -1302,11 +1381,12 @@ const quickPlayModal = {
     marginRight: 'auto',
     transform: 'translate(-50%, -50%)',
     display: 'flex',
-    height: '500px',
-    width: '1000px',
+    height: '100%',
+    width: '100vw',
     background: '#000000',
-    borderRadius: '10px',
+    // borderRadius: '10px',
     border: 'none',
+    padding: '0px',
   },
   overlay: {
     zIndex: 10,

@@ -1,27 +1,47 @@
 .army-select {
   .army {
     position: relative;
-    width: 360px;
-    height: 45px;
     display: grid;
-    grid-template-columns: repeat(8, 45px);
-    grid-template-rows: 45px;
+    grid-template-columns: repeat(8, 1fr);
+    grid-auto-rows: 1fr;
+    aspect-ratio: 8 / 1;
+    width: 100%;
+    & > *:nth-child(even) {
+      background-color: #bbbbbb;
+    }
+    & > *:nth-child(odd) {
+      background-color: #555555;
+    }
+  }
+  .army.hover-army > * {
+    background-color: #3f48cc;
+    cursor: pointer;
   }
   .army-block {
-    position: absolute;
-    // top: 60px;
-    // left: 0;
+    position: relative;
     display: flex;
     flex-direction: column;
-    height: 300px;
-    width: 360px;
+    height: 40vh;
+    width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
-
+    scrollbar-gutter: stable;
     .army-item {
       display: grid;
-      grid-template-columns: repeat(8, 45px);
-      grid-template-rows: 45px;
+      grid-template-columns: repeat(8, 1fr);
+      grid-auto-rows: 1fr;
+      aspect-ratio: 8 / 1;
+      width: 100%;
+      & > *:nth-child(even) {
+        background-color: #bbbbbb;
+      }
+      & > *:nth-child(odd) {
+        background-color: #555555;
+      }
+    }
+    .army-item.hover-army > * {
+      background-color: #3f48cc;
+      cursor: pointer;
     }
   }
 }

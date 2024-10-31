@@ -13,6 +13,7 @@ import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import PromotionModal from 'src/components/PromotionModal/PromotionModal';
+import QuickplayModal from 'src/components/Modal/QuickplayModal';
 
 import arcanaJson from 'src/data/arcana.json';
 
@@ -662,6 +663,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             orientation: this.state.playerColor,
             selectedSide: this.state.playerColor,
           });
+          console.log(this.state.whiteSetup);
         }
       );
     }
@@ -685,7 +687,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <TactoriusModal
+          <QuickplayModal
             isOpen={this.state.quickPlayModalOpen}
             handleClose={() => {
               this.setState({ quickPlayModalOpen: false }, () => {

@@ -14,7 +14,6 @@ import 'src/chessground/styles/normal.scss';
 import Button from '../Button/Button';
 import Select from '../Select/Select';
 import CharacterSelect from './CharacterSelect';
-import ArmySelect from './ArmySelect';
 
 import { unlockableArcana } from 'src/pages/book/ArcanaSelect';
 // import { characters, modes } from 'src/components/Modal/charactersModes';
@@ -1221,9 +1220,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       </div>
                       <div className="arcana"></div>
                     </div>
-                    <div className="army">
-                      <ArmySelect />
-                    </div>
+                    <div className="army-section">{/* <ArmySelect /> */}</div>
                   </div>
                   <div className="engine">
                     <div className="buttons-arcana">

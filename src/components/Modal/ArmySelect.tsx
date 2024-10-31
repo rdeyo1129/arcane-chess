@@ -7,11 +7,13 @@ import 'src/chessground/styles/normal.scss';
 
 interface ArmySelectProps {
   // armies: string[];
-  // color: string;
+  color: string;
+  updateArmy: (army: string) => void;
 }
 interface ArmySelectState {
   armySelectOpen: boolean;
   hoverArmy: number;
+  army: string;
 }
 
 export default class ArmySelect extends React.Component<
@@ -23,6 +25,7 @@ export default class ArmySelect extends React.Component<
     this.state = {
       armySelectOpen: false,
       hoverArmy: 0,
+      army: 'RNWMKWNR',
     };
   }
 
@@ -52,20 +55,32 @@ export default class ArmySelect extends React.Component<
       'RSWVKWSR',
       'TMQVKQMT',
     ];
-    const army = 'RNBQKBNR';
-    const color = 'white';
     return (
       <div className="army-select">
-        <div className="army">
-          {army.split('').map((piece, index) => (
+        <div
+          className={`army ${this.state.hoverArmy === -1 ? 'hover-army' : ''}`}
+          onMouseEnter={() => {
+            this.setState({
+              hoverArmy: -1,
+            });
+          }}
+          onMouseLeave={() => {
+            this.setState({
+              hoverArmy: -2,
+            });
+          }}
+          onClick={() => {
+            this.setState({
+              armySelectOpen: this.state.armySelectOpen ? false : true,
+            });
+          }}
+        >
+          {this.state.army.split('').map((piece, index) => (
             <div
               key={index}
-              className={`${piece.toLowerCase()}-piece ${color} normal`}
-              onClick={() => {
-                this.setState({
-                  armySelectOpen: this.state.armySelectOpen ? false : true,
-                });
-              }}
+              className={`${piece.toLowerCase()}-piece ${
+                this.props.color
+              } normal`}
             ></div>
           ))}
         </div>
@@ -74,20 +89,37 @@ export default class ArmySelect extends React.Component<
             {armies.map((army, armyIndex) => (
               <div
                 key={armyIndex}
-                className="army-item"
+                className={`army-item ${
+                  this.state.hoverArmy === armyIndex ? 'hover-army' : ''
+                }`}
                 onMouseEnter={() => {
                   this.setState({
                     hoverArmy: armyIndex,
+                  });
+                }}
+                onMouseLeave={() => {
+                  this.setState({
+                    hoverArmy: -2,
                   });
                 }}
               >
                 {army.split('').map((piece, pieceIndex) => (
                   <div
                     key={pieceIndex}
-                    className={`${piece.toLowerCase()}-piece ${color} normal`}
+                    className={`${piece.toLowerCase()}-piece ${
+                      this.props.color
+                    } normal ${
+                      this.state.hoverArmy === armyIndex ? 'hover-army' : ''
+                    }`}
                     onClick={() => {
+                      this.props.updateArmy(
+                        this.props.color === 'white'
+                          ? armies[armyIndex]
+                          : armies[armyIndex].toLowerCase()
+                      );
                       this.setState({
                         armySelectOpen: false,
+                        army: armies[armyIndex],
                       });
                     }}
                   ></div>
@@ -100,21 +132,3 @@ export default class ArmySelect extends React.Component<
     );
   }
 }
-
-/*
-<div
-        className={`
-              ${piece} 
-              ${this.randomizeHelper(false)?.color}
-              ${this.randomizeHelper(false)?.faction}
-            `}
-        style={{
-          position: 'relative',
-          width: piece === 'x-piece' ? '100px' : '40px',
-          height: piece === 'x-piece' ? '100px' : '40px',
-          transform: piece === 'x-piece' ? 'scale(.5)' : 'scale(1.5)',
-          top: piece === 'x-piece' ? '-20px' : '9px',
-          left: piece === 'x-piece' ? '-20px' : '9px',
-        }}
-      />
-*/

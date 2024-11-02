@@ -1,389 +1,454 @@
 {
   "dyadA": {
+    "id": "dyadA",
     "name": "General Dyad",
     "description": "Make two moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadA"
   },
   "dyadP": {
+    "id": "dyadP",
     "name": "Pawn Dyad",
     "description": "Make two Pawn moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadBlue"
   },
   "dyadS": {
+    "id": "dyadS",
     "name": "Spectre Dyad",
     "description": "Make two Spectre moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadPurple"
   },
   "dyadW": {
+    "id": "dyadW",
     "name": "Wraith Dyad",
     "description": "Make two Wraith moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadPurple"
   },
   "dyadH": {
+    "id": "dyadH",
     "name": "Herring Dyad",
     "description": "Make two Herring moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadBlue"
   },
   "dyadN": {
+    "id": "dyadN",
     "name": "Knight Dyad",
     "description": "Make two Knight moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadGreen"
   },
   "dyadB": {
+    "id": "dyadB",
     "name": "Bishop Dyad",
     "description": "Make two Bishop moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadOrange"
   },
   "dyadR": {
+    "id": "dyadR",
     "name": "Rook Dyad",
     "description": "Make two Rook moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadOrange"
   },
   "dyadQ": {
+    "id": "dyadQ",
     "name": "Queen Dyad",
     "description": "Make two Queen moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadYellow"
   },
   "dyadK": {
+    "id": "dyadK",
     "name": "King Dyad",
     "description": "Make two King moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadYellow"
   },
   "dyadT": {
+    "id": "dyadT",
     "name": "Templar Dyad",
     "description": "Make two Templar moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadYellow"
   },
   "dyadM": {
+    "id": "dyadM",
     "name": "Mystic Dyad",
     "description": "Make two Mystic moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadYellow"
   },
   "dyadV": {
+    "id": "dyadV",
     "name": "Vanguard Dyad",
     "description": "Make two Vanguard moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadYellow"
   },
   "dyadZ": {
+    "id": "dyadZ",
     "name": "Zebra Dyad",
     "description": "Make two Zebra moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadGreen"
   },
   "dyadU": {
+    "id": "dyadU",
     "name": "Unicorn Dyad",
     "description": "Make two Unicorn moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadGreen"
   },
   "sumnP": {
+    "id": "sumnP",
     "name": "Summon Pawn",
     "description": "Summon a Pawn to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnBlue"
   },
   "sumnS": {
+    "id": "sumnS",
     "name": "Summon Spectre",
     "description": "Summon a Spectre to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnPurple"
   },
   "sumnW": {
+    "id": "sumnW",
     "name": "Summon Wraith",
     "description": "Summon a Wraith to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnPurple"
   },
   "sumnH": {
+    "id": "sumnH",
     "name": "Summon Herring",
     "description": "Summon a Herring to an empty square. A Herring must be captured if the move is legal.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnBlue"
   },
   "sumnN": {
+    "id": "sumnN",
     "name": "Summon Knight",
     "description": "Summon a Knight to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnGreen"
   },
   "sumnB": {
+    "id": "sumnB",
     "name": "Summon Bishop",
     "description": "Summon a Bishop to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnOrange"
   },
   "sumnR": {
+    "id": "sumnR",
     "name": "Summon Rook",
     "description": "Summon a Rook to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnOrange"
   },
   "sumnQ": {
+    "id": "sumnQ",
     "name": "Summon Queen",
     "description": "Summon a Queen to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnYellow"
   },
   "sumnT": {
+    "id": "sumnT",
     "name": "Summon Templar",
     "description": "Summon a Templar to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnYellow"
   },
   "sumnM": {
+    "id": "sumnM",
     "name": "Summon Mystic",
     "description": "Summon a Mystic to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnYellow"
   },
   "sumnV": {
+    "id": "sumnV",
     "name": "Summon Vanguard",
     "description": "Summon a Vanguard to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnYellow"
   },
   "sumnZ": {
+    "id": "sumnZ",
     "name": "Summon Zebra",
     "description": "Summon a Zebra to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnGreen"
   },
   "sumnU": {
+    "id": "sumnU",
     "name": "Summon Unicorn",
     "description": "Summon a Unicorn to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnGreen"
   },
   "sumnX": {
+    "id": "sumnX",
     "name": "Summon Exile",
     "description": "Summon an Exile to an empty square. An Exile is a neutral piece that cannot be moved or captured.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnExile"
   },
   "sumnRQ": {
+    "id": "sumnRQ",
     "name": "Royalty Queen",
     "description": "Summon a Queen Royalty condition to a square for 4 turns. Pieces on this square move like a Queen.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRY"
   },
   "sumnRT": {
+    "id": "sumnRT",
     "name": "Royalty Templar",
     "description": "Summon a Templar Royalty condition to a square for 4 turns. Pieces on this square move like a Templar.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRB"
   },
   "sumnRM": {
+    "id": "sumnRM",
     "name": "Royalty Mystic",
     "description": "Summon a Mystic Royalty condition to a square for 4 turns. Pieces on this square move like a Mystic.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRG"
   },
   "sumnRV": {
+    "id": "sumnRV",
     "name": "Royalty Vanguard",
     "description": "Summon a Vanguard Royalty condition to a square for 4 turns. Pieces on this square move like a Vanguard.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRP"
   },
   "sumnRE": {
+    "id": "sumnRE",
     "name": "Entanglement",
     "description": "Summon an Entanglement condition to a square for 4 turns. Pieces on this square cannot move.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRE"
   },
   "sumnRY": {
+    "id": "sumnRY",
     "name": "Hexweaver's Bind",
     "description": "Select a square, all squares along that file have entanglement for 4 turns.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/mageRed"
   },
   "sumnRZ": {
+    "id": "sumnRZ",
     "name": "Hexweaver's Chain",
     "description": "Select a square, all squares along that rank have entanglement for 4 turns.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/mageYellow"
   },
   "sumnRA": {
+    "id": "sumnRA",
     "name": "Hexweaver's Tomb",
     "description": "Place a 3x3 block to fill each with entanglement and empty squares with exile for 4 turns.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/mageOrange"
   },
   "offrH": {
+    "id": "offrH",
     "name": "Masquerade Ritual",
-    "description": "Offer a friendly Pawn to gain a Herring summon arcana.  A Herring must be captured if the move is legal.",
+    "description": "Offer a friendly Pawn to gain a Herring summon arcana. A Herring must be captured if the move is legal.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/daggerBlue"
   },
   "offrS": {
+    "id": "offrS",
     "name": "Sliding into Action",
     "description": "Offer a friendly Mystic to gain a Rook and Bishop summon arcana.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/daggerYellow"
   },
   "offrM": {
+    "id": "offrM",
     "name": "Equus Family Unites",
     "description": "Offer a friendly Templar or Queen to gain arcana summons of the Equus Family.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/daggerRed"
   },
   "offrE": {
+    "id": "offrE",
     "name": "THE RUUUUUK",
     "description": "Offer a friendly Rook to gain a minor summon arcana.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sacExchange"
   },
   "offrR": {
+    "id": "offrR",
     "name": "Royal Offering Exchange",
     "description": "Offer a friendly Queen or Templar to gain a Mystic summon arcana",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sacExchangeR"
   },
   "offrC": {
+    "id": "offrC",
     "name": "Chameleon's Resurrection",
     "description": "Offer a friendly minor piece to gain a minor piece summon arcana.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/chameleon"
   },
   "offrA": {
+    "id": "offrA",
     "name": "Grave Offering",
     "description": "Offer any friendly piece (not King) to summon it's spirit back into play.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/zombie"
   },
   "shftP": {
+    "id": "shftP",
     "name": "Pawn Strafe",
     "description": "Move a Pawn one square backwards, left or right, no capturing.",
     "type": "passive",
     "imagePath": "/assets/arcanaImages/shftP"
   },
   "shftN": {
+    "id": "shftN",
     "name": "Knight Transmutation",
     "description": "Move a Knight one square in any orthogonal or diagonal direction, no capturing.",
     "type": "passive",
     "imagePath": "/assets/arcanaImages/shftN"
   },
   "shftB": {
+    "id": "shftB",
     "name": "Bishop Conversion",
     "description": "Move a Bishop one square in any orthogonal direction, no capturing.",
     "type": "passive",
     "imagePath": "/assets/arcanaImages/shftB"
   },
   "shftR": {
+    "id": "shftR",
     "name": "Rook Modulation",
     "description": "Move a Rook one square in any diagonal direction, no capturing.",
     "type": "passive",
     "imagePath": "/assets/arcanaImages/shftR"
   },
   "shftT": {
+    "id": "shftT",
     "name": "Teleportation",
     "description": "Move a friendly piece to any empty square within your first three ranks. Use at your own risk.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsTEL"
   },
   "swapDEP": {
+    "id": "swapDEP",
     "name": "Ally Translocate",
     "description": "Swap the positions of a friendly minor or major piece (no P, H, V, K). Use at your own risk.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/swapDEP"
   },
   "swapADJ": {
+    "id": "swapADJ",
     "name": "Proximity Translocate",
     "description": "Swap the positions of any orthogonally adjacent pieces, no Pawn promotions or swaping just your opponent's pieces. Use at your own risk.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/swapADJ"
   },
   "modsCON": {
+    "id": "modsCON",
     "name": "Jaws of Betrayal",
     "description": "Capture any friendly piece.",
     "type": "passive",
     "imagePath": "/assets/arcanaImages/consume"
   },
   "modsREA": {
+    "id": "modsREA",
     "name": "Iron Reach",
     "description": "Friendly Vanguard has usual moveset with hopping plus the Queen move pattern with no hopping. Royalties take precedent.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/vanUpgrade"
   },
   "modsEXT": {
+    "id": "modsEXT",
     "name": "Omni Gaze",
     "description": "You may summon amongst the whole board.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/horus"
   },
   "modsFUG": {
+    "id": "modsFUG",
     "name": "Sovereign Fugitive",
     "description": "Castle while in or through check.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/modsFUG"
   },
   "modsSKI": {
+    "id": "modsSKI",
     "name": "Patience",
     "description": "Skip your turn.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/skip"
   },
   "modsTRO": {
+    "id": "modsTRO",
     "name": "Trojan Gambit",
     "description": "If your opponent can legally capture you via en passant, they must.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/trojanEp"
   },
   "modsINH": {
+    "id": "modsINH",
     "name": "Legacy Ascension",
     "description": "Friendly Pawns promote one rank early.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/modsINH"
   },
   "modsSUS": {
+    "id": "modsSUS",
     "name": "Veil of Inaction",
     "description": "Prevent any captures, checks or promotions for 3 turns.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsSUS"
   },
   "modsPHA": {
+    "id": "modsPHA",
     "name": "Phantom Mist",
     "description": "Your pieces become invisible to your opponent for 3 turns.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsPHA"
   },
   "modsFUT": {
+    "id": "modsFUT",
     "name": "Future Sight",
     "description": "Undo the last 2 moves.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsFUT"
   },
   "modsIMP": {
+    "id": "modsIMP",
     "name": "Tactical Vision",
     "description": "The engine gives you a hint for the best move, from sqaure only.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsIMP"
   },
   "modsORA": {
+    "id": "modsORA",
     "name": "Oracle Whisper",
     "description": "The engine gives you a hint for the best move, from and to square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsORA"
   },
   "modsTEM": {
+    "id": "modsTEM",
     "name": "Temporal Pincer",
     "description": "Get engine's best calculate line of moves after 3 seconds of thinking time.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsTEM"
   },
   "modsGLI": {
+    "id": "modsGLI",
     "name": "Neural Scrambler",
     "description": "The next engine move is randomized.",
     "type": "active",

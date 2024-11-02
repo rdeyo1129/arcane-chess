@@ -82,6 +82,7 @@ const booksMap: { [key: string]: { [key: string]: Node } } = {
 };
 
 interface ArcanaDetail {
+  id: string;
   name: string;
   description: string;
   type: string;

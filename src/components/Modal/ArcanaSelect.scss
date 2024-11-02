@@ -1,0 +1,73 @@
+.arcane-select {
+  .inventory {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 1fr;
+    aspect-ratio: 6 / 1;
+    width: 100%;
+    .arcane {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // height: 60px;
+      // width: 60px;
+      & > *:nth-child(even) {
+        background-color: #bbbbbb;
+      }
+      & > *:nth-child(odd) {
+        background-color: #555555;
+      }
+    }
+  }
+
+  .arcane-block {
+    position: absolute;
+    width: 320px;
+    height: 360px;
+    display: grid;
+    grid-template-columns: repeat(8, 40px);
+    grid-template-rows: repeat(9, 40px);
+    .arcane {
+      height: 40px;
+      width: 40px;
+    }
+    .arcane:hover {
+      cursor: pointer;
+    }
+  }
+
+  .hover-arcane > * {
+    background-color: #3f48cc;
+    cursor: pointer;
+  }
+
+  // .arcane-block {
+  //   position: relative;
+  //   display: flex;
+  //   flex-direction: column;
+  //   height: 40vh;
+  //   width: 100%;
+  //   overflow-y: scroll;
+  //   overflow-x: hidden;
+  //   scrollbar-gutter: stable;
+
+  //   .arcane-item {
+  //     display: grid;
+  //     grid-template-columns: repeat(8, 1fr);
+  //     gap: 4px;
+  //     width: 100%;
+
+  //     & > *:nth-child(even) {
+  //       background-color: #bbbbbb;
+  //     }
+  //     & > *:nth-child(odd) {
+  //       background-color: #555555;
+  //     }
+  //   }
+
+  //   .arcane-item.hover-arcane > * {
+  //     background-color: #3f48cc;
+  //     cursor: pointer;
+  //   }
+  // }
+}

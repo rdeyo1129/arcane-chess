@@ -34,6 +34,7 @@ import book12 from 'src/data/books/book12.json';
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 interface ArcanaDetail {
+  id: string;
   name: string;
   description: string;
   type: string;

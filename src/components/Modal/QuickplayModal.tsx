@@ -13,7 +13,9 @@ import 'src/chessground/styles/normal.scss';
 
 import Button from '../Button/Button';
 import Select from '../Select/Select';
+
 import CharacterSelect from './CharacterSelect';
+import ArcanaSelect from './ArcanaSelect';
 import ArmySelect from './ArmySelect';
 
 // import { characters, modes } from 'src/components/Modal/charactersModes';
@@ -54,6 +56,7 @@ interface ModalState {
 }
 
 interface ArcanaDetail {
+  id: string;
   name: string;
   description: string;
   type: string;
@@ -592,7 +595,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           ) : null}
                         </div>
                       </div>
-                      <div className="arcana"></div>
+                      <div className="arcana">
+                        <ArcanaSelect
+                          color={this.state.playerColor}
+                          updateInventory={(inventory) => {
+                            if (this.props.updateConfig)
+                              this.props.updateConfig('wArcana', inventory);
+                          }}
+                        />
+                      </div>
                     </div>
                     <div className="army-section">
                       <ArmySelect

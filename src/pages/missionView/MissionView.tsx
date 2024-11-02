@@ -88,6 +88,7 @@ interface PieceRoyaltyTypes {
 }
 
 interface ArcanaDetail {
+  id: string;
   name: string;
   description: string;
   type: string;

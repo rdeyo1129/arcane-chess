@@ -40,7 +40,7 @@ export default class ArmySelect extends React.Component<
       //
       'RNBQKBNR',
       'RNBTKBNR',
-      'RZBQKBNR',
+      'RZBQKBZR',
       'RZBTKBZR',
       'RUBQKBUR',
       'RUBTKBUR',

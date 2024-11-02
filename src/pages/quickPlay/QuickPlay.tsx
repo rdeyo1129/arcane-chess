@@ -57,6 +57,7 @@ interface PieceRoyaltyTypes {
 }
 
 interface ArcanaDetail {
+  id: string;
   name: string;
   description: string;
   type: string;
@@ -644,7 +645,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       this.setState((prevState) => ({
         ...prevState,
         [property]: {
-          ...(property === 'wArcana' ? prevState.wArcana : prevState.bArcana),
           ...value,
         },
       }));
@@ -663,7 +663,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             orientation: this.state.playerColor,
             selectedSide: this.state.playerColor,
           });
-          console.log(this.state.whiteSetup);
+          console.log(this.state.whiteSetup, this.state.wArcana);
         }
       );
     }
@@ -674,6 +674,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
+    console.log(this.state.wArcana, this.state.whiteSetup);
     return (
       <div className="tactorius-board fade">
         <div
@@ -721,6 +722,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               property: string,
               value: number | string | { [key: string]: number }
             ) => {
+              console.log(property, value);
               if (property === 'placingPromotion') {
                 if (value === 'select') {
                   value = 0;

@@ -6,12 +6,12 @@ import './ArmySelect.scss';
 import 'src/chessground/styles/normal.scss';
 
 interface ArmySelectProps {
-  // armies: string[];
+  isOpen: boolean;
   color: string;
   updateArmy: (army: string) => void;
+  handleToggle: () => void;
 }
 interface ArmySelectState {
-  armySelectOpen: boolean;
   hoverArmy: number;
   army: string;
 }
@@ -23,7 +23,6 @@ export default class ArmySelect extends React.Component<
   constructor(props: ArmySelectProps) {
     super(props);
     this.state = {
-      armySelectOpen: false,
       hoverArmy: 0,
       army: 'RNWMKWNR',
     };
@@ -70,9 +69,7 @@ export default class ArmySelect extends React.Component<
             });
           }}
           onClick={() => {
-            this.setState({
-              armySelectOpen: this.state.armySelectOpen ? false : true,
-            });
+            this.props.handleToggle();
           }}
         >
           {this.state.army.split('').map((piece, index) => (
@@ -84,7 +81,7 @@ export default class ArmySelect extends React.Component<
             ></div>
           ))}
         </div>
-        {this.state.armySelectOpen ? (
+        {this.props.isOpen ? (
           <div className="army-block">
             {armies.map((army, armyIndex) => (
               <div
@@ -118,7 +115,6 @@ export default class ArmySelect extends React.Component<
                           : armies[armyIndex].toLowerCase()
                       );
                       this.setState({
-                        armySelectOpen: false,
                         army: armies[armyIndex],
                       });
                     }}

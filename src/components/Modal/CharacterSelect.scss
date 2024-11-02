@@ -1,11 +1,12 @@
 .character-block {
+  z-index: 5;
   position: fixed;
   width: 360px;
   height: 180px;
   transform: translateX(-180px);
   display: grid;
   grid-template-columns: 60px 60px 60px 60px 60px 60px;
-  grid-template-rows: 60px 60px 60px;
+  grid-template-rows: 60px 60px;
   // .character {
   // }
 }

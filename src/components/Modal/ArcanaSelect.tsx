@@ -9,11 +9,13 @@ import arcanaJson from 'src/data/arcana.json';
 
 interface ArcanaSelectProps {
   color: string;
+  isOpen: boolean;
   updateInventory: (inventory: ArcanaDetail | Record<string, any>) => void;
+  updateHover: (arcane: ArcanaDetail) => void;
+  handleToggle: () => void;
 }
 interface ArcanaSelectState {
-  arcanaSelectOpen: boolean;
-  hoverArcane: string;
+  hoverId: string;
   army: string;
   currentInventorySlot: number;
   inventory: (ArcanaDetail | Record<string, any>)[];
@@ -39,11 +41,53 @@ export default class ArcanaSelect extends React.Component<
   constructor(props: ArcanaSelectProps) {
     super(props);
     this.state = {
-      arcanaSelectOpen: false,
-      hoverArcane: '',
+      hoverId: '',
       army: 'RNBQKBNR',
       currentInventorySlot: -1,
-      inventory: [{}, {}, {}, {}, {}, {}],
+      inventory: [
+        {
+          id: 'empty',
+          name: '',
+          description: 'No arcane selected here. Click to choose one!',
+          type: '',
+          imagePath: '/assets/arcanaImages/empty',
+        },
+        {
+          id: 'empty',
+          name: '',
+          description: 'No arcane selected here. Click to choose one!',
+          type: '',
+          imagePath: '/assets/arcanaImages/empty',
+        },
+        {
+          id: 'empty',
+          name: '',
+          description: 'No arcane selected here. Click to choose one!',
+          type: '',
+          imagePath: '/assets/arcanaImages/empty',
+        },
+        {
+          id: 'empty',
+          name: '',
+          description: 'No arcane selected here. Click to choose one!',
+          type: '',
+          imagePath: '/assets/arcanaImages/empty',
+        },
+        {
+          id: 'empty',
+          name: '',
+          description: 'No arcane selected here. Click to choose one!',
+          type: '',
+          imagePath: '/assets/arcanaImages/empty',
+        },
+        {
+          id: 'empty',
+          name: '',
+          description: 'No arcane selected here. Click to choose one!',
+          type: '',
+          imagePath: '/assets/arcanaImages/empty',
+        },
+      ],
     };
   }
 
@@ -64,17 +108,19 @@ export default class ArcanaSelect extends React.Component<
         return {
           inventory: updatedInventory,
           currentInventorySlot: -1,
-          arcanaSelectOpen: false,
+          hoverId: '',
         };
       },
       () => {
         this.props.updateInventory(objectToPassToConfig);
+        this.props.handleToggle();
       }
     );
   };
 
-  toggleHover = (arcane: string) => {
-    this.setState({ hoverArcane: arcane });
+  toggleHover = (arcaneObject: ArcanaDetail) => {
+    this.setState({ hoverId: arcaneObject.id });
+    this.props.updateHover(arcaneObject);
   };
 
   render() {
@@ -84,39 +130,80 @@ export default class ArcanaSelect extends React.Component<
           {this.state.inventory.map((value, key) => {
             const arcane = value as ArcanaDetail;
             return (
-              <img
+              <div
                 key={key}
-                className="arcane"
-                src={`${arcane.imagePath || '/assets/arcanaImages/empty'}${
-                  this.state.hoverArcane === `${key}` ? '-hover' : ''
-                }.svg`}
-                style={{
-                  cursor:
-                    "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
-                }}
-                onClick={() => {
-                  this.setState({
-                    currentInventorySlot: key,
-                    arcanaSelectOpen: this.state.arcanaSelectOpen
-                      ? false
-                      : true,
-                  });
-                }}
-                onMouseEnter={() => this.toggleHover(`${key}`)}
-                onMouseLeave={() => this.toggleHover('')}
-              />
+                className="arcane-wrapper"
+                style={
+                  key === this.state.currentInventorySlot
+                    ? {
+                        display: 'inline-block',
+                        borderRadius: '50%',
+                        border: '2px solid white',
+                        width: '60px',
+                        height: '60px',
+                        overflow: 'hidden',
+                      }
+                    : {}
+                }
+              >
+                <img
+                  key={key}
+                  className="arcane"
+                  src={`${arcana[arcane.id].imagePath}.svg`}
+                  style={{
+                    cursor:
+                      "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                  onClick={() => {
+                    this.setState(
+                      {
+                        currentInventorySlot: key,
+                      },
+                      () => {
+                        this.props.handleToggle();
+                      }
+                    );
+                  }}
+                  onMouseEnter={() =>
+                    this.setState(
+                      {
+                        hoverId: arcane.id,
+                        currentInventorySlot: key,
+                      },
+                      () => {
+                        this.toggleHover(arcane);
+                      }
+                    )
+                  }
+                  onMouseLeave={() => {
+                    if (!this.props.isOpen)
+                      this.setState(
+                        {
+                          hoverId: '',
+                          currentInventorySlot: -1,
+                        },
+                        () => {
+                          this.toggleHover({} as ArcanaDetail);
+                        }
+                      );
+                  }}
+                />
+              </div>
             );
           })}
         </div>
-        {this.state.arcanaSelectOpen ? (
-          <div className="arcane-block">
+        {this.props.isOpen ? (
+          <div className="arcana-block">
             {_.map(arcana, (arcaneObject: ArcanaDetail, key: string) => {
               return (
                 <img
                   key={key}
                   className="arcane"
                   src={`${arcana[key].imagePath}${
-                    this.state.hoverArcane === `${key}` ? '-hover' : ''
+                    this.state.hoverId === `${key}` ? '-hover' : ''
                   }.svg`}
                   style={{
                     cursor:
@@ -128,8 +215,8 @@ export default class ArcanaSelect extends React.Component<
                       arcaneObject
                     );
                   }}
-                  onMouseEnter={() => this.toggleHover(`${key}`)}
-                  onMouseLeave={() => this.toggleHover('')}
+                  onMouseEnter={() => this.toggleHover(arcaneObject)}
+                  onMouseLeave={() => this.toggleHover({} as ArcanaDetail)}
                 />
               );
             })}

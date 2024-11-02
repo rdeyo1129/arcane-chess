@@ -457,7 +457,7 @@
   "empty": {
     "id": "empty",
     "name": "",
-    "description": "No arcana selected.",
+    "description": "No arcane selected here. Click to choose one!",
     "type": "",
     "imagePath": "/assets/arcanaImages/empty"
   }

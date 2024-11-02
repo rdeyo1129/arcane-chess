@@ -54,6 +54,7 @@ interface ModalState {
 }
 
 interface ArcanaDetail {
+  id: string;
   name: string;
   description: string;
   type: string;

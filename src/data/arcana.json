@@ -453,5 +453,12 @@
     "description": "The next engine move is randomized.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/glitch"
+  },
+  "empty": {
+    "id": "empty",
+    "name": "",
+    "description": "No arcana selected.",
+    "type": "",
+    "imagePath": "/assets/arcanaImages/empty"
   }
 }

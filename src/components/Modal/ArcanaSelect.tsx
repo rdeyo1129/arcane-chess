@@ -58,7 +58,7 @@ export default class ArcanaSelect extends React.Component<
         updatedInventory[slotNum] = newValue;
 
         _.forEach(updatedInventory, (item) => {
-          if (item.id) objectToPassToConfig[item.id] = 2;
+          if (item.id && item.id !== 'empty') objectToPassToConfig[item.id] = 2;
         });
 
         return {

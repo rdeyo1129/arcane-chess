@@ -10,16 +10,19 @@ import { getLocalStorage } from 'src/utils/handleLocalStorage';
 import './QuickPlayModal.scss';
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
-// import { Chessground } from 'src/chessground/chessgroundMod';
 
 import Button from '../Button/Button';
-import Select from '../Select/Select';
+// import Select from '../Select/Select';
 
 import CharacterSelect from './CharacterSelect';
 import ArcanaSelect from './ArcanaSelect';
 import ArmySelect from './ArmySelect';
 
-// import { characters, modes } from 'src/components/Modal/charactersModes';
+// import {
+//   characters,
+//   modes,
+// } from 'src/components/Modal/charactersModes';
+import { startingInventory } from 'src/components/Modal/charactersModes';
 
 import './Modal.scss';
 
@@ -43,9 +46,12 @@ interface ModalProps {
 interface ModalState {
   config: { [key: string]: any };
   hoverId: string;
-  whiteArcana: { [key: string]: boolean | number | string | null };
-  blackArcana: { [key: string]: boolean | number | string | null };
+  whiteArcana: ArcanaDetail[];
+  blackArcana: ArcanaDetail[];
+  whiteSetup: string;
+  blackSetup: string;
   playerColor: string;
+  engineColor: string;
   animatedValue: number;
   targetValue: number;
   reducedScore: number;
@@ -71,8 +77,6 @@ interface ArcanaMap {
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-// Modal.setAppElement('#root');
-
 class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
   constructor(props: ModalProps) {
     super(props);
@@ -91,9 +95,12 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         autopromotion: 'Select',
       },
       hoverId: '',
-      whiteArcana: {},
-      blackArcana: {},
+      whiteArcana: [...startingInventory],
+      blackArcana: [...startingInventory],
+      whiteSetup: 'RNBQKBNR',
+      blackSetup: 'RNBQKBNR',
       playerColor: 'white',
+      engineColor: 'black',
       animatedValue: 0,
       targetValue: 0,
       reducedScore: _.reduce(
@@ -138,6 +145,18 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         multiplier: prevState.config.multiplier + multiplier,
       },
     }));
+  };
+
+  transformedInventory = (inventory: ArcanaDetail[]) => {
+    const object: { [key: string]: number } = {}; // Define the object type
+    _.forEach(inventory, (item) => {
+      if (item.id === 'empty') return;
+      if (item) {
+        // Check if item exists to avoid undefined entries
+        object[item.id] = 1;
+      }
+    });
+    return object; // Return the transformed object
   };
 
   toggleHover = (text: string) => {
@@ -186,6 +205,36 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                             cursor:
                               "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                           }}
+                          onClick={() =>
+                            this.setState(
+                              (prevState) => ({
+                                playerColor:
+                                  prevState.playerColor === 'white'
+                                    ? 'black'
+                                    : 'white',
+                                engineColor:
+                                  prevState.engineColor === 'white'
+                                    ? 'black'
+                                    : 'white',
+                              }),
+                              () => {
+                                if (this.props.updateConfig) {
+                                  this.props.updateConfig(
+                                    'playerColor',
+                                    this.state.playerColor === 'white'
+                                      ? 'white'
+                                      : 'black'
+                                  );
+                                  this.props.updateConfig(
+                                    'engineColor',
+                                    this.state.playerColor === 'white'
+                                      ? 'black'
+                                      : 'white'
+                                  );
+                                }
+                              }
+                            )
+                          }
                           onMouseEnter={() => {
                             this.setState({
                               hoverId: 'swapSides',
@@ -228,6 +277,11 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     </div>
                     <div className="arcana">
                       <ArcanaSelect
+                        inventory={
+                          this.state.playerColor === 'white'
+                            ? this.state.whiteArcana
+                            : this.state.blackArcana
+                        }
                         isOpen={
                           this.state.showArcanaSelect === this.state.playerColor
                         }
@@ -244,8 +298,25 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         }}
                         color={this.state.playerColor}
                         updateInventory={(inventory) => {
+                          const configArcana =
+                            this.transformedInventory(inventory);
                           if (this.props.updateConfig)
-                            this.props.updateConfig('wArcana', inventory);
+                            this.props.updateConfig(
+                              `${
+                                this.state.playerColor === 'white' ? 'w' : 'b'
+                              }Arcana`,
+                              configArcana
+                            );
+                          if (this.state.playerColor === 'white') {
+                            this.setState({
+                              whiteArcana: inventory,
+                            });
+                          }
+                          if (this.state.playerColor === 'black') {
+                            this.setState({
+                              blackArcana: inventory,
+                            });
+                          }
                         }}
                         updateHover={(arcaneObject) => {
                           this.setState({
@@ -257,6 +328,11 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   </div>
                   <div className="army-section">
                     <ArmySelect
+                      army={
+                        this.state.playerColor === 'white'
+                          ? this.state.whiteSetup
+                          : this.state.blackSetup
+                      }
                       isOpen={
                         this.state.showArmySelect === this.state.playerColor
                       }
@@ -272,11 +348,22 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       }}
                       color={this.state.playerColor}
                       updateArmy={(army) => {
-                        if (this.props.updateConfig)
+                        if (this.props.updateConfig) {
                           this.props.updateConfig(
                             `${this.state.playerColor}Setup`,
                             army
                           );
+                          if (this.state.playerColor === 'white') {
+                            this.setState({
+                              whiteSetup: army,
+                            });
+                          }
+                          if (this.state.playerColor === 'black') {
+                            this.setState({
+                              blackSetup: army,
+                            });
+                          }
+                        }
                       }}
                     />
                   </div>
@@ -284,12 +371,181 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <div className="engine">
                   <div className="buttons-arcana">
                     <div className="buttons">
-                      <div className="color"></div>
-                      <div className="character"></div>
+                      <div className="color">
+                        <img
+                          src={`/assets/images/engine.svg`}
+                          style={{
+                            width: '180px',
+                            height: '60px',
+                            background:
+                              this.state.engineColor === 'white'
+                                ? '#AAAAAA'
+                                : '#333333',
+                            cursor:
+                              "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
+                          }}
+                          onClick={() =>
+                            this.setState(
+                              (prevState) => ({
+                                playerColor:
+                                  prevState.playerColor === 'white'
+                                    ? 'black'
+                                    : 'white',
+                                engineColor:
+                                  prevState.engineColor === 'white'
+                                    ? 'black'
+                                    : 'white',
+                              }),
+                              () => {
+                                if (this.props.updateConfig) {
+                                  this.props.updateConfig(
+                                    'playerColor',
+                                    this.state.playerColor === 'white'
+                                      ? 'white'
+                                      : 'black'
+                                  );
+                                  this.props.updateConfig(
+                                    'engineColor',
+                                    this.state.playerColor === 'white'
+                                      ? 'black'
+                                      : 'white'
+                                  );
+                                }
+                              }
+                            )
+                          }
+                          onMouseEnter={() => {
+                            this.setState({
+                              hoverId: 'swapSides',
+                            });
+                          }}
+                          onMouseLeave={() => {
+                            this.setState({
+                              hoverId: '',
+                            });
+                          }}
+                        />
+                      </div>
+                      <div className="character">
+                        <img
+                          src={`/assets/characters/viking-head.svg`}
+                          style={{
+                            width: '180px',
+                            height: '60px',
+                            background: '#4A90E2',
+                          }}
+                          onClick={() => {
+                            this.setState({
+                              showCharacterSelect:
+                                this.state.engineColor ===
+                                this.state.showCharacterSelect
+                                  ? ''
+                                  : this.state.engineColor,
+                              showArcanaSelect: '',
+                              showArmySelect: '',
+                            });
+                          }}
+                        />
+                        {this.state.showCharacterSelect ? (
+                          <CharacterSelect
+                            color={this.state.engineColor}
+                            isOpen={this.state.showCharacterSelect}
+                          />
+                        ) : null}
+                      </div>
                     </div>
-                    <div className="arcana"></div>
+                    <div className="arcana">
+                      <ArcanaSelect
+                        inventory={
+                          this.state.engineColor === 'white'
+                            ? this.state.whiteArcana
+                            : this.state.blackArcana
+                        }
+                        isOpen={
+                          this.state.showArcanaSelect === this.state.engineColor
+                        }
+                        handleToggle={() => {
+                          this.setState({
+                            showArcanaSelect:
+                              this.state.engineColor ===
+                              this.state.showArcanaSelect
+                                ? ''
+                                : this.state.engineColor,
+                            showCharacterSelect: '',
+                            showArmySelect: '',
+                          });
+                        }}
+                        color={this.state.engineColor}
+                        updateInventory={(inventory) => {
+                          const configArcana =
+                            this.transformedInventory(inventory);
+                          if (this.props.updateConfig)
+                            this.props.updateConfig(
+                              `${
+                                this.state.engineColor === 'white' ? 'w' : 'b'
+                              }Arcana`,
+                              configArcana
+                            );
+                          if (this.state.engineColor === 'white') {
+                            this.setState({
+                              whiteArcana: inventory,
+                            });
+                          }
+                          if (this.state.engineColor === 'black') {
+                            this.setState({
+                              blackArcana: inventory,
+                            });
+                          }
+                        }}
+                        updateHover={(arcaneObject) => {
+                          this.setState({
+                            hoverId: arcaneObject.id,
+                          });
+                        }}
+                      />
+                    </div>
                   </div>
-                  <div className="army"></div>
+                  <div className="army-section">
+                    <ArmySelect
+                      army={
+                        this.state.engineColor === 'white'
+                          ? this.state.whiteSetup
+                          : this.state.blackSetup
+                      }
+                      isOpen={
+                        this.state.showArmySelect === this.state.engineColor
+                      }
+                      handleToggle={() => {
+                        this.setState({
+                          showArmySelect:
+                            this.state.engineColor === this.state.showArmySelect
+                              ? ''
+                              : this.state.engineColor,
+                          showCharacterSelect: '',
+                          showArcanaSelect: '',
+                        });
+                      }}
+                      color={this.state.engineColor}
+                      updateArmy={(army) => {
+                        if (this.props.updateConfig) {
+                          this.props.updateConfig(
+                            `${this.state.engineColor}Setup`,
+                            army
+                          );
+                          if (this.state.engineColor === 'white') {
+                            this.setState({
+                              whiteSetup: army,
+                            });
+                          }
+                          if (this.state.engineColor === 'black') {
+                            this.setState({
+                              blackSetup: army,
+                            });
+                          }
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -298,6 +554,18 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               {/* promotion */}
               {/* randomize template */}
               {/* randomize */}
+              {/* mode */}
+              <Button
+                text="START"
+                className="primary"
+                color="B"
+                width={240}
+                height={60}
+                styles={{ marginTop: '20px' }}
+                onClick={() => {
+                  this.props.handleClose();
+                }}
+              />
             </div>
           </div>
         </Modal>

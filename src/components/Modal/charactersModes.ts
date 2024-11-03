@@ -23,3 +23,13 @@ export const modes = {
     black: { modsINH: 1 },
   },
 };
+
+const emptyArcane = {
+  id: 'empty',
+  name: '',
+  description: 'No arcane selected here. Click to choose one!',
+  type: '',
+  imagePath: '/assets/arcanaImages/empty',
+};
+
+export const startingInventory = Array(6).fill(emptyArcane);

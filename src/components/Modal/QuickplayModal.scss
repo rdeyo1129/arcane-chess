@@ -18,8 +18,8 @@
             .character {
             }
           }
-          // .arcana {
-          // }
+          .arcana {
+          }
         }
         .army {
         }
@@ -27,6 +27,8 @@
       .engine {
         .buttons-arcana {
           .buttons {
+            display: flex;
+            height: 60px;
             .color {
             }
             .character {

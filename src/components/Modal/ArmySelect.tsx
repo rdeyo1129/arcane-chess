@@ -6,6 +6,7 @@ import './ArmySelect.scss';
 import 'src/chessground/styles/normal.scss';
 
 interface ArmySelectProps {
+  army: string;
   isOpen: boolean;
   color: string;
   updateArmy: (army: string) => void;
@@ -72,7 +73,7 @@ export default class ArmySelect extends React.Component<
             this.props.handleToggle();
           }}
         >
-          {this.state.army.split('').map((piece, index) => (
+          {this.props.army.split('').map((piece, index) => (
             <div
               key={index}
               className={`${piece.toLowerCase()}-piece ${
@@ -114,9 +115,14 @@ export default class ArmySelect extends React.Component<
                           ? armies[armyIndex]
                           : armies[armyIndex].toLowerCase()
                       );
-                      this.setState({
-                        army: armies[armyIndex],
-                      });
+                      this.setState(
+                        {
+                          army: armies[armyIndex],
+                        },
+                        () => {
+                          this.props.handleToggle();
+                        }
+                      );
                     }}
                   ></div>
                 ))}

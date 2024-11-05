@@ -61,7 +61,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={160}
+              width={'100%'}
               disabled={false}
               backgroundColorOverride="#11111188"
             />
@@ -76,7 +76,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={160}
+              width={'100%'}
               disabled={false}
               backgroundColorOverride="#11111188"
             />
@@ -91,7 +91,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={160}
+              width={'100%'}
               disabled={false}
               backgroundColorOverride="#11111188"
             />
@@ -106,7 +106,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={160}
+              width={'100%'}
               disabled={false}
               backgroundColorOverride="#11111188"
             />
@@ -121,7 +121,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={160}
+              width={'100%'}
               disabled={false}
               backgroundColorOverride="#11111188"
             />
@@ -132,7 +132,7 @@ export class UnwrappedDashboard extends React.Component<
               className="tertiary"
               color="B"
               height={50}
-              width={160}
+              width={'100%'}
               disabled={false}
               onClick={() => {
                 this.props.navigate('/');
@@ -141,20 +141,20 @@ export class UnwrappedDashboard extends React.Component<
             />
           </div>
         </div>
-        <div className="menu-item-description">
-          {
-            this.state.menuItemDescriptions[
-              this.state
-                .hoverNav as keyof DashboardState['menuItemDescriptions']
-            ]
-          }
-        </div>
-        <div className="hover-image">
+        <div className="image-description">
           <img
             className="hover-image"
             src={`/assets/dashboard/${this.state.hoverNav}.webp`}
             alt={this.state.hoverNav}
           />
+          <div className="menu-item-description">
+            {
+              this.state.menuItemDescriptions[
+                this.state
+                  .hoverNav as keyof DashboardState['menuItemDescriptions']
+              ]
+            }
+          </div>
         </div>
       </div>
     );

@@ -1,26 +1,64 @@
-export const characters = {
-  viking: {
-    sumnX: 1,
-    dyadA: 1,
-    sumnR: 1,
-  },
-};
+import arcanaJson from 'src/data/arcana.json';
+
+interface ArcanaDetail {
+  id: string;
+  name: string;
+  description: string;
+  type: string;
+  imagePath: string;
+}
+interface ArcanaMap {
+  [key: string]: ArcanaDetail;
+}
+
+const arcana: ArcanaMap = arcanaJson as ArcanaMap;
+
+export const characters = {};
 
 export const modes = {
   newClassic: {
     name: 'The New Classic',
-    white: { offrH: 1, sumnX: 1, sumnRQ: 1 },
-    black: { offrH: 1, sumnX: 1, sumnRQ: 1 },
+    white: {
+      arcana: [arcana.offrH, arcana.sumnX, arcana.sumnRQ],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.offrH, arcana.sumnX, arcana.sumnRQ],
+      setup: 'rnbqkbnr',
+    },
   },
   theoretical: {
-    name: 'The Theoretical Balance',
-    white: {},
-    black: { modsFUG: 1 },
+    name: 'A Theoretical Balance',
+    white: {
+      arcana: [],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.modsFUG],
+      setup: 'rnbqkbnr',
+    },
   },
   evenMoreTheoretical: {
-    name: 'The Even More Theoretical Balance',
-    white: { modsFUG: 1 },
-    black: { modsINH: 1 },
+    name: 'An Even More Theoretical Balance',
+    white: {
+      arcana: [arcana.modsFUG],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.modsINH],
+      setup: 'rnbqkbnr',
+    },
+  },
+  rockAndHardPlace: {
+    name: 'A Rock and a Hard Place',
+    white: {
+      arcana: [arcana.sumnR, arcana.modsREA],
+      setup: 'RNBVKBNR',
+    },
+    black: {
+      arcana: [arcana.sumnR, arcana.modsEXT],
+      setup: 'rnbvkbnr',
+    },
   },
 };
 

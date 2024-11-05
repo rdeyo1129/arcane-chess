@@ -49,12 +49,12 @@ export default class Hero extends React.Component {
       'z-piece',
       'v-piece',
       'w-piece',
-      'x-piece',
+      // 'x-piece',
     ];
     // const faction = ['chi', 'mu', 'nu', 'sigma', 'omega', 'lambda'];
 
     return {
-      piece: piece[this.getRandomNumber(0, 14)],
+      piece: piece[this.getRandomNumber(0, 13)],
       color: color[this.getRandomNumber(0, 1)],
       // faction: faction[this.getRandomNumber(0, 5)],
       faction: 'normal',

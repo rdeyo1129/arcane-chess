@@ -124,40 +124,6 @@ class UnwrappedFrontPage extends React.Component<
               </p>
             </div>
           </div>
-          <div className="header-buttons">
-            {/* revert to login page when ready for users */}
-            <Link
-              to="/dashboard"
-              onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
-                this.onSubmitLogin(e)
-              }
-            >
-              <Button
-                text="ENTER"
-                // onClick={() => this.calculateFen()}
-                className="primary"
-                color="Y"
-                height={60}
-                width={200}
-                // disabled={this.state.fen === ''}
-                disabled={false}
-                // strong={true}
-              />
-            </Link>
-            {/* <Link to={'/register'}>
-              <Button
-                text="REGISTER"
-                // onClick={() => this.calculateFen()}
-                className="secondary"
-                color="Y"
-                height={50}
-                width={140}
-                // disabled={this.state.fen === ''}
-                disabled={false}
-                // strong={true}
-              />
-            </Link> */}
-          </div>
         </div>
         <div className="front-page fade offset-hero">
           <div className="row-a">
@@ -170,6 +136,43 @@ class UnwrappedFrontPage extends React.Component<
                 {/* <hr /> */}
                 <h5>&emsp; - Emanuel Lasker, Second World Chess Champion</h5>
               </div>
+            </div>
+            <div className="enter-buttons">
+              {/* revert to login page when ready for users */}
+              <Link
+                to="/dashboard"
+                onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
+                  this.onSubmitLogin(e)
+                }
+              >
+                <Button
+                  text="ENTER THE SITE"
+                  className="primary"
+                  color="Y"
+                  height={80}
+                  width={400}
+                  disabled={false}
+                  styles={{
+                    color: 'black',
+                    fontStyle: 'italic',
+                  }}
+                  fontSize={24}
+                  strong={true}
+                />
+              </Link>
+              {/* <Link to={'/register'}>
+              <Button
+                text="REGISTER"
+                // onClick={() => this.calculateFen()}
+                className="secondary"
+                color="Y"
+                height={50}
+                width={140}
+                // disabled={this.state.fen === ''}
+                disabled={false}
+                // strong={true}
+              />
+            </Link> */}
             </div>
             <div className="intro-box">
               <div className="intro">
@@ -207,9 +210,48 @@ class UnwrappedFrontPage extends React.Component<
                 </h5>
               </div>
             </div>
+            <div className="enter-buttons">
+              {/* revert to login page when ready for users */}
+              <Link
+                to="/dashboard"
+                onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
+                  this.onSubmitLogin(e)
+                }
+              >
+                <Button
+                  text="ENTER THE SITE"
+                  className="primary"
+                  color="Y"
+                  height={80}
+                  width={400}
+                  disabled={false}
+                  styles={{
+                    color: 'black',
+                    marginBottom: '100px',
+                    fontStyle: 'italic',
+                  }}
+                  fontSize={24}
+                  strong={true}
+                />
+              </Link>
+              {/* <Link to={'/register'}>
+              <Button
+                text="REGISTER"
+                // onClick={() => this.calculateFen()}
+                className="secondary"
+                color="Y"
+                height={50}
+                width={140}
+                // disabled={this.state.fen === ''}
+                disabled={false}
+                // strong={true}
+              />
+            </Link> */}
+            </div>
           </div>
           <Hero />
         </div>
+        <div className="front-page-footer"></div>
       </div>
     );
   }

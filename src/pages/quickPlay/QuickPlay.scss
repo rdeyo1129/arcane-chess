@@ -12,59 +12,48 @@
     rgba(0, 162, 255, 0.7) 0%,
     rgba(17, 17, 17, 0.9) 100%
   );
-  // background: linear-gradient(
-  //   to bottom,
-  //   rgba(0, 162, 255, 0.4),
-  //   rgba(17, 17, 17, 1)
-  // );
   .quickplay-view {
-    // width: 100%;
     height: 100%;
     overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr 480px 1fr;
+    display: flex;
+    flex: 1;
     justify-content: center;
     align-items: center;
     .opponent-dialogue-arcana {
       display: flex;
       gap: 10px;
       flex-direction: column;
-      // width: 400px;
+      justify-content: flex-start;
+      align-items: stretch;
+      flex: 1;
       height: 480px;
-      padding: 0 10px 0 10px;
+      max-width: 400px;
+      padding: 0 10px;
+      overflow: hidden;
       .info-avatar {
         display: flex;
         flex-direction: row-reverse;
+        width: 100%;
         .avatar {
-          // min-width: 80px;
-          // height: 80px;
+          position: relative;
           background: rgba(34, 34, 34, 0.7);
+          width: 60px;
+          height: 60px;
         }
-        .info {
-          // width: 100%;
+        .arcana-select {
           display: flex;
-          flex-direction: column;
-          justify-content: space-around;
-          align-items: center;
+          gap: 11px;
+          height: 80px;
+          width: 100%;
+          overflow-x: auto;
+          overflow-y: hidden;
+          white-space: nowrap;
           background: rgba(34, 34, 34, 0.7);
-          margin-right: 10px;
-          .name {
-            text-align: right;
-          }
-          .arcana-select {
-            display: grid;
-            // grid-template-columns: 60px 60px 60px 60px 60px;
-            grid-gap: 11px;
-            height: 100%;
-            // width: 280px;
-            // width: 100%;
-            overflow-y: scroll;
-            padding: 13px 13px 0 13px;
-            .arcane {
-              height: 60px;
-              width: 60px;
-            }
-            .arcane:hover {
+          .arcane {
+            height: 45px;
+            width: 45px;
+            flex-shrink: 0;
+            &:hover {
               cursor: pointer;
             }
           }
@@ -72,7 +61,6 @@
       }
       .dialogue {
         height: 190px;
-        // width: 100%;
         padding: 20px;
         background: rgba(34, 34, 34, 0.7);
         overflow-y: scroll;
@@ -81,23 +69,16 @@
         display: flex;
         flex-direction: column;
         height: 190px;
-        // width: 100%;
         background: rgba(34, 34, 34, 0.7);
         .arcana-side-buttons {
-          // width: 100%;
           height: 40px;
           display: flex;
         }
       }
       .buttons {
         display: flex;
-        // flex-direction: row-reverse;
-        background-color: rgba(34, 34, 34, 0.7);
-        height: 40px;
-        // width: 100%;
       }
     }
-
     .time-board-time {
       height: calc(100% - 15%);
       max-height: 960px;
@@ -115,25 +96,24 @@
         align-items: center;
       }
     }
-
     .nav-history-buttons-player {
       display: flex;
       gap: 10px;
       flex-direction: column;
-      // width: 400px;
+      justify-content: flex-end;
+      flex: 1;
       height: 480px;
-      padding: 0 10px 0 10px;
+      max-width: 400px;
+      padding: 0 10px;
       overflow: hidden;
       .nav {
         display: flex;
-        // width: 100%;
       }
       .history {
         display: flex;
         flex-direction: column;
         background-color: rgba(34, 34, 34, 0.7);
-        height: 100%;
-        // width: 100%;
+        height: 200px;
         overflow-y: scroll;
         padding: 10px;
         .pgn-list {
@@ -160,38 +140,27 @@
       }
       .info-avatar {
         display: flex;
+        width: 100%;
         .avatar {
-          // min-width: 60px;
-          // height: 60px;
+          position: relative;
           background: rgba(34, 34, 34, 0.7);
+          width: 60px;
+          height: 60px;
         }
-        .info {
-          // width: 100%;
+        .arcana-select {
           display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          margin-left: 10px;
+          gap: 11px;
+          height: 80px;
+          width: 100%;
+          overflow-x: auto;
+          overflow-y: hidden;
+          white-space: nowrap;
           background: rgba(34, 34, 34, 0.7);
-          .name {
-            text-align: right;
-          }
-          .arcana-select {
-            display: grid;
-            // grid-template-columns: repeat(6, 40px);
-            justify-content: center;
-            align-items: center;
-            // grid-gap: 11px;
-            height: 100%;
-            // width: 280px;
-            // overflow-y: scroll;
-            // overflow-x: scroll;
-            // padding: 13px 13px 0 13px;
-            .arcane {
-              height: 60px;
-              width: 60px;
-            }
-            .arcane:hover {
+          .arcane {
+            height: 45px;
+            width: 45px;
+            flex-shrink: 0;
+            &:hover {
               cursor: pointer;
             }
           }
@@ -204,43 +173,40 @@
 @media (max-width: 1024px) {
   .tactorius-board {
     width: 100%;
-    height: 100vh; // Ensures the div stays within the viewport height
+    height: 100vh;
     display: flex;
-    justify-content: flex-start; // Prevents vertical centering on smaller screens
-    align-items: flex-start; // Ensures top-alignment
-    overflow: auto; // Allows scrolling if content exceeds screen height
-
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: auto;
     background: radial-gradient(
       circle,
       rgba(0, 162, 255, 0.7) 0%,
       rgba(17, 17, 17, 0.9) 100%
     );
-    // background: linear-gradient(
-    //   to bottom,
-    //   rgba(0, 162, 255, 0.4),
-    //   rgba(17, 17, 17, 1)
-    // );
     .quickplay-view {
       width: 100%;
       height: 100%;
-      overflow: auto; // Adjusted for better control on mobile devices
+      overflow: auto;
       display: flex;
-      flex-direction: column; // Stacks content vertically for smaller screens
-      justify-content: flex-start; // Prevents centering vertically
+      flex-direction: column;
+      justify-content: flex-start;
       align-items: center;
       .opponent-dialogue-arcana {
         display: flex;
         gap: 10px;
         flex-direction: column;
-        // width: 400px;
-        height: 60px;
+        align-items: center;
+        flex-shrink: 0;
+        min-height: 60px;
         padding: 0 10px 0 10px;
+        width: 100%;
         .info-avatar {
           display: flex;
           flex-direction: row-reverse;
+          justify-content: center;
+          height: 60px;
+          width: 400px;
           .avatar {
-            // min-width: 80px;
-            // height: 80px;
             background: rgba(34, 34, 34, 0.7);
           }
           .info {
@@ -259,7 +225,6 @@
               grid-template-columns: 60px 60px 60px 60px 60px;
               grid-gap: 11px;
               height: 100%;
-              // width: 100%;
               overflow-y: scroll;
               padding: 13px 13px 0 13px;
               .arcane {
@@ -279,10 +244,8 @@
           display: flex;
           flex-direction: column;
           height: 190px;
-          // width: 100%;
           background: rgba(34, 34, 34, 0.7);
           .arcana-side-buttons {
-            // width: 100%;
             height: 40px;
             display: flex;
           }
@@ -291,24 +254,19 @@
           display: none;
         }
       }
-
       .time-board-time {
-        // width: calc(100% - 15%);
-        max-width: 360px;
-        // width: 100%;
-        // height: calc(100% - 15%);
-        // max-height: 480px;
-        min-height: 360px;
-        max-height: 360px;
+        max-width: 400px;
+        min-height: 400px;
+        max-height: 400px;
         aspect-ratio: 1;
         position: relative;
         display: flex;
         justify-content: center;
         .board-view {
-          min-width: 360px;
-          max-width: 360px;
-          min-width: 360px;
-          max-height: 360px;
+          min-width: 400px;
+          max-width: 400px;
+          min-width: 400px;
+          max-height: 400px;
           position: absolute;
           top: 0;
           right: 0;
@@ -319,25 +277,19 @@
           align-items: center;
         }
       }
-
       .nav-history-buttons-player {
         display: flex;
         gap: 10px;
         flex-direction: column-reverse;
-        // width: 400px;
         min-height: 480px;
         padding: 0 10px 0 10px;
-        // overflow: hidden;
         .nav {
           display: flex;
-          // width: 100%;
         }
         .history {
           display: flex;
           flex-direction: column;
           background-color: rgba(34, 34, 34, 0.7);
-          // height: 100%;
-          // width: 100%;
           overflow-y: scroll;
           padding: 10px;
           .pgn-list {
@@ -369,12 +321,8 @@
         .info-avatar {
           position: relative;
           display: flex;
-          height: 60px;
-          .avatar {
-            // min-width: 60px;
-            height: 60px;
-            background: rgba(34, 34, 34, 0.7);
-          }
+          align-self: center;
+          width: 400px;
           .info {
             width: 100%;
             display: flex;
@@ -388,24 +336,62 @@
             }
             .arcana-select {
               display: grid;
-              grid-template-columns: repeat(6, 40px);
               justify-content: center;
               align-items: center;
-              // grid-gap: 11px;
               height: 100%;
-              // width: 280px;
-              // overflow-y: scroll;
-              // overflow-x: scroll;
-              // padding: 13px 13px 0 13px;
-              .arcane {
-                height: 60px;
-                width: 60px;
-              }
               .arcane:hover {
                 cursor: pointer;
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .tactorius-board {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: auto;
+    background: radial-gradient(
+      circle,
+      rgba(0, 162, 255, 0.7) 0%,
+      rgba(17, 17, 17, 0.9) 100%
+    );
+    .quickplay-view {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      .time-board-time {
+        max-width: 360px;
+        min-height: 360px;
+        max-height: 360px;
+        aspect-ratio: 1;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        .board-view {
+          min-width: 360px;
+          max-width: 360px;
+          min-width: 360px;
+          max-height: 360px;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }

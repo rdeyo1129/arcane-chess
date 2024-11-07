@@ -1002,15 +1002,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     }}
                   />
                 </div>
-                <div className="info">
-                  <h3 className="name"></h3>
-                  <div className="opponent-time">{/* <h3>10:00</h3> */}</div>
-                  <div className="thinking">
-                    {/* {this.state.thinking ? <Dots /> : null} */}
-                  </div>
-                  <div className="arcana-select">
-                    {this.arcanaSelect(this.state.engineColor)}
-                  </div>
+                <div className="arcana-select">
+                  {this.arcanaSelect(this.state.engineColor)}
                 </div>
               </div>
               <div className="dialogue">
@@ -1579,32 +1572,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     }}
                   />
                 </div>
-                <div className="info">
-                  <h3 className="name"></h3>
-                  <div className="player-time">
-                    <h3>
-                      {/* <ChessClock
-                        ref={this.chessclockRef}
-                        type="inc"
-                        playerTurn={gameBoardTurn === this.state.playerColor}
-                        turn={gameBoardTurn}
-                        time={this.state.playerClock}
-                        timePrime={this.state.playerInc}
-                        playerTimeout={() => {
-                          this.setState({
-                            gameOver: true,
-                            gameOverType: 'player timed out',
-                          });
-                        }}
-                      /> */}
-                    </h3>
-                  </div>
-                  <div className="thinking">
-                    {/* {this.state.turn === this.state.playerColor ? <Dots /> : null} */}
-                  </div>
-                  <div className="arcana-select">
-                    {this.arcanaSelect(this.state.playerColor)}
-                  </div>
+                <div className="arcana-select">
+                  {this.arcanaSelect(this.state.playerColor)}
                 </div>
               </div>
             </div>

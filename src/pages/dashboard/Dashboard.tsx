@@ -41,7 +41,7 @@ export class UnwrappedDashboard extends React.Component<
           'Test the arcana and face off against the engine with custom battle options.',
         lexicon:
           'Look back on the lessons you have learned throughout the campaign.',
-        manifest: 'More information: mission, about, links, notes.',
+        manifest: 'More information: mission statement, about, links, notes.',
         logout: 'Take a break.',
       },
     };

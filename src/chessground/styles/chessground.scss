@@ -108,9 +108,12 @@
 .tactorius-default-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
-    url('/assets/images/board/electricblue.svg');
-  // url('/assets/images/board/tactoriusDefault.svg');
+    // url('/assets/images/board/electricblue.svg');
+    url('/assets/images/board/tactoriusDefault.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
+  // background-color: #333; /* Dark background */
+  // box-shadow: 0 0 15px 5px rgba(0, 162, 255, 0.6); /* Blue glow */
+  border-radius: 8px; /* Optional, for rounded corners */
   background-repeat: repeat, no-repeat;
   background-position:
     center,

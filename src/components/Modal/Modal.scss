@@ -70,35 +70,28 @@
 
 .endgame {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   gap: 10px;
-  .endgame-left {
-    display: flex;
-    align-items: center;
-    width: 870px;
-    height: 100%;
-    .endgame-image {
-      opacity: 0.4;
-      max-width: 870px;
-    }
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .endgame-image {
+    opacity: 0.5;
+    max-width: 940px;
   }
-  .endgame-right {
+  .endgame-content {
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     width: 380px;
     height: 480px;
-    background: #111111;
-    // margin-left: 10px;
-    // margin-right: -10px;
-    padding: 40px;
     .buttons {
       display: flex;
       justify-content: center;
-      // width: 100%;
       height: 110px;
       .left-buttons {
         display: flex;

@@ -898,7 +898,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
     return (
-      <div className="tactorius-board fade">
+      <div className="quickplay-tactorius-board fade">
         <div
           style={{
             position: 'absolute',

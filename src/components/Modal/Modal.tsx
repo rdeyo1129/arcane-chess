@@ -616,14 +616,14 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="endgame-left">
-                <img className="endgame-image" src="/assets/victory.webp" />
-              </div>
-              <div className="endgame-right">
-                <p className="endgame-text">
-                  Victory... {this.props.message} {this.props.score ? '+' : ''}{' '}
-                  {this.props.score}
-                </p>
+              <img className="endgame-image" src="/assets/victory.webp" />
+              <div className="endgame-content">
+                <strong className="endgame-text">
+                  <i>
+                    Victory... {this.props.message}{' '}
+                    {this.props.score ? '+' : ''} {this.props.score}
+                  </i>
+                </strong>
                 <div className="buttons">
                   <Button
                     text="CONTINUE"
@@ -646,11 +646,11 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="endgame-left">
-                <img className="endgame-image" src="/assets/defeat.webp" />
-              </div>
-              <div className="endgame-right">
-                <p>Defeat... {this.props.message}</p>
+              <img className="endgame-image" src="/assets/defeat.webp" />
+              <div className="endgame-content">
+                <strong>
+                  <i>Defeat... {this.props.message}</i>
+                </strong>
                 <div className="buttons">
                   <div className="left-buttons">
                     <Button
@@ -1251,46 +1251,23 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="endgame-left">
-                <img className="endgame-image" src="/assets/victory.webp" />
-              </div>
-              <div className="endgame-right">
-                <p className="endgame-text">
-                  Victory... {this.props.message} {this.props.score ? '+' : ''}{' '}
-                  {this.props.score}
-                </p>
+              <img className="endgame-image" src="/assets/victory.webp" />
+              <div className="endgame-content">
+                <strong className="endgame-text">
+                  <i>
+                    Victory... {this.props.message}{' '}
+                    {this.props.score ? '+' : ''} {this.props.score}
+                  </i>
+                </strong>
                 <div className="buttons">
-                  <div className="left-buttons">
-                    <Button
-                      text="HOME"
-                      className="secondary"
-                      color="B"
-                      width={160}
-                      height={40}
-                      onClick={() => {
-                        this.props.navigate('/dashboard');
-                      }}
-                    />
-                    <Button
-                      text="ANALYZE"
-                      className="secondary"
-                      color="B"
-                      width={160}
-                      height={40}
-                      disabled
-                      // onClick={() => {
-                      //   this.props.navigate('/chapter');
-                      // }}
-                    />
-                  </div>
                   <Button
-                    text="REMATCH"
+                    text="CONTINUE"
                     className="primary"
                     width={180}
                     height={90}
                     color="B"
                     onClick={() => {
-                      location.reload();
+                      this.props.navigate('/chapter');
                     }}
                   />
                 </div>
@@ -1304,21 +1281,21 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <div className="endgame-left">
-                <img className="endgame-image" src="/assets/defeat.webp" />
-              </div>
-              <div className="endgame-right">
-                <p>Defeat... {this.props.message}</p>
+              <img className="endgame-image" src="/assets/defeat.webp" />
+              <div className="endgame-content">
+                <strong>
+                  <i>Defeat... {this.props.message}</i>
+                </strong>
                 <div className="buttons">
                   <div className="left-buttons">
                     <Button
-                      text="HOME"
+                      text="TO CHAPTER"
                       className="secondary"
                       color="B"
                       width={160}
                       height={40}
                       onClick={() => {
-                        this.props.navigate('/dashboard');
+                        this.props.navigate('/chapter');
                       }}
                     />
                     <Button
@@ -1443,7 +1420,7 @@ const endgameModal = {
     // marginRight: 'auto',
     transform: 'translate(-50%, -50%)',
     display: 'flex',
-    height: '480px',
+    // height: '480px',
     // maxHight: '574px',
     width: '100%',
     background: '#00000000',

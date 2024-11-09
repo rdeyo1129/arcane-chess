@@ -50,6 +50,7 @@ export default class ArcanaSelect extends React.Component<
     updatedInventory[this.state.currentInventorySlot] = newValue;
     this.props.updateInventory(updatedInventory);
     this.props.handleToggle();
+    this.props.updateHover(newValue);
     this.setState({
       currentInventorySlot: -1,
       hoverId: '',
@@ -79,17 +80,20 @@ export default class ArcanaSelect extends React.Component<
                     : {}
                 }
                 onMouseEnter={() => {
+                  this.props.updateHover(arcane);
                   this.setState({
                     hoverId: arcane.id,
                     currentInventorySlot: key,
                   });
                 }}
                 onMouseLeave={() => {
-                  if (!this.props.isOpen)
+                  this.props.updateHover({} as typeof arcane);
+                  if (!this.props.isOpen) {
                     this.setState({
                       hoverId: '',
                       currentInventorySlot: -1,
                     });
+                  }
                 }}
                 onClick={() => {
                   this.props.handleToggle();

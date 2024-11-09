@@ -10,10 +10,23 @@ interface ArcanaDetail {
 interface ArcanaMap {
   [key: string]: ArcanaDetail;
 }
+interface Character {
+  name: string;
+  inventory: ArcanaDetail[];
+  setup: string;
+  imagePath: string;
+}
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-export const characters = {};
+const unpaddedCharacters = [
+  {
+    name: 'The Politician',
+    inventory: [arcana.modsSKI, arcana.modsINH, arcana.offrC],
+    setup: 'RNBVKBNR',
+    imagePath: '/assets/characters/politician',
+  },
+];
 
 export const modes = {
   newClassic: {
@@ -71,3 +84,14 @@ const emptyArcane = {
 };
 
 export const startingInventory = Array(6).fill(emptyArcane);
+
+export const padInventory = (characters: Character[]) => {
+  return characters.map((character) => ({
+    ...character,
+    inventory: [
+      ...character.inventory,
+      ...Array(6 - character.inventory.length).fill(arcana.empty),
+    ],
+  }));
+};
+export const characters = padInventory(unpaddedCharacters);

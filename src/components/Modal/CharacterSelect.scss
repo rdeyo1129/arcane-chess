@@ -1,12 +1,18 @@
+.character-select-container {
+  position: relative;
+  display: inline-block;
+}
+
 .character-block {
   z-index: 5;
-  position: fixed;
+  position: absolute;
   width: 360px;
   height: 180px;
+  top: 100%;
   transform: translateX(-180px);
   display: grid;
-  grid-template-columns: 60px 60px 60px 60px 60px 60px;
-  grid-template-rows: 60px 60px;
-  // .character {
-  // }
+  grid-template-columns: repeat(6, 60px);
+  grid-template-rows: repeat(2, 60px);
+  gap: 0;
+  background-color: #111111;
 }

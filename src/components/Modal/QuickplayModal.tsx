@@ -148,15 +148,16 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
   };
 
   transformedInventory = (inventory: ArcanaDetail[]) => {
-    const object: { [key: string]: number } = {}; // Define the object type
+    const object: { [key: string]: number } = {};
     _.forEach(inventory, (item) => {
       if (item.id === 'empty') return;
-      if (item) {
-        // Check if item exists to avoid undefined entries
+      if (object[item.id] > 0) {
+        object[item.id] += 1;
+      } else {
         object[item.id] = 1;
       }
     });
-    return object; // Return the transformed object
+    return object;
   };
 
   toggleHover = (text: string) => {
@@ -247,30 +248,67 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           }}
                         />
                       </div>
-                      <div className="character">
-                        <img
-                          src={`/assets/characters/viking-head.svg`}
-                          style={{
-                            width: '180px',
-                            height: '60px',
-                            background: '#4A90E2',
-                          }}
-                          onClick={() => {
-                            this.setState({
-                              showCharacterSelect:
-                                this.state.playerColor ===
-                                this.state.showCharacterSelect
-                                  ? ''
-                                  : this.state.playerColor,
-                              showArcanaSelect: '',
-                              showArmySelect: '',
-                            });
-                          }}
-                        />
+                      <div className="character-select-container">
+                        <div className="character">
+                          <img
+                            src={`/assets/characters/viking-head.svg`}
+                            style={{
+                              width: '180px',
+                              height: '60px',
+                              background: '#4A90E2',
+                            }}
+                            onClick={() => {
+                              this.setState({
+                                showCharacterSelect:
+                                  this.state.playerColor ===
+                                  this.state.showCharacterSelect
+                                    ? ''
+                                    : this.state.playerColor,
+                                showArcanaSelect: '',
+                                showArmySelect: '',
+                              });
+                            }}
+                          />
+                        </div>
                         {this.state.showCharacterSelect ? (
                           <CharacterSelect
                             color={this.state.playerColor}
                             isOpen={this.state.showCharacterSelect}
+                            sendCharacterSelect={(character) => {
+                              const configArcana = this.transformedInventory(
+                                character.inventory
+                              );
+                              if (this.props.updateConfig)
+                                this.props.updateConfig(
+                                  `${
+                                    this.state.playerColor === 'white'
+                                      ? 'w'
+                                      : 'b'
+                                  }Arcana`,
+                                  configArcana
+                                );
+                              if (this.state.playerColor === 'white') {
+                                this.setState({
+                                  whiteArcana: character.inventory,
+                                });
+                              }
+                              if (this.state.playerColor === 'black') {
+                                this.setState({
+                                  blackArcana: character.inventory,
+                                });
+                              }
+                            }}
+                            handleToggle={() => {
+                              this.setState({
+                                showCharacterSelect:
+                                  this.state.playerColor ===
+                                  this.state.showCharacterSelect
+                                    ? ''
+                                    : this.state.playerColor,
+                                showArcanaSelect: '',
+                                showArmySelect: '',
+                              });
+                            }}
                           />
                         ) : null}
                       </div>
@@ -310,11 +348,13 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           if (this.state.playerColor === 'white') {
                             this.setState({
                               whiteArcana: inventory,
+                              showCharacterSelect: '',
                             });
                           }
                           if (this.state.playerColor === 'black') {
                             this.setState({
                               blackArcana: inventory,
+                              showCharacterSelect: '',
                             });
                           }
                         }}
@@ -426,7 +466,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           }}
                         />
                       </div>
-                      <div className="character">
+                      <div className="character-select-container">
                         <img
                           src={`/assets/characters/viking-head.svg`}
                           style={{
@@ -450,6 +490,41 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           <CharacterSelect
                             color={this.state.engineColor}
                             isOpen={this.state.showCharacterSelect}
+                            sendCharacterSelect={(character) => {
+                              const configArcana = this.transformedInventory(
+                                character.inventory
+                              );
+                              if (this.props.updateConfig)
+                                this.props.updateConfig(
+                                  `${
+                                    this.state.engineColor === 'white'
+                                      ? 'w'
+                                      : 'b'
+                                  }Arcana`,
+                                  configArcana
+                                );
+                              if (this.state.engineColor === 'white') {
+                                this.setState({
+                                  whiteArcana: character.inventory,
+                                });
+                              }
+                              if (this.state.engineColor === 'black') {
+                                this.setState({
+                                  blackArcana: character.inventory,
+                                });
+                              }
+                            }}
+                            handleToggle={() => {
+                              this.setState({
+                                showCharacterSelect:
+                                  this.state.engineColor ===
+                                  this.state.showCharacterSelect
+                                    ? ''
+                                    : this.state.engineColor,
+                                showArcanaSelect: '',
+                                showArmySelect: '',
+                              });
+                            }}
                           />
                         ) : null}
                       </div>

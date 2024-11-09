@@ -552,7 +552,7 @@ export const PieceExile = [
   BOOL.FALSE,
   BOOL.FALSE,
 ];
-export const PieceVanguard = [
+export const PieceValkyrie = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,

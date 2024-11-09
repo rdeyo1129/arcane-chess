@@ -33,7 +33,7 @@ import {
   HrDir,
   ZeDir,
   UnDir,
-  PieceVanguard,
+  PieceValkyrie,
   PieceHerring,
   PieceSpectre,
   PieceWraith,
@@ -776,7 +776,7 @@ export function SqAttacked(sq, side) {
     }
   }
 
-  // vanguard
+  // valkyrie
   for (index = 0; index < 24; index++) {
     pce = GameBoard.pieces[sq + VaDir[index]];
     if (
@@ -851,13 +851,13 @@ export function SqAttacked(sq, side) {
     }
   }
 
-  // vanguard
+  // valkyrie
   for (index = 0; index < 24; index++) {
     pce = GameBoard.pieces[sq + VaDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
-      PieceVanguard[pce] === BOOL.TRUE &&
+      PieceValkyrie[pce] === BOOL.TRUE &&
       !overridePresent(sq + VaDir[index]) &&
       !(GameBoard.royaltyE[sq + VaDir[index]] > 0)
     ) {

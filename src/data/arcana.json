@@ -85,8 +85,8 @@
   },
   "dyadV": {
     "id": "dyadV",
-    "name": "Vanguard Dyad",
-    "description": "Make two Vanguard moves, no capturing.",
+    "name": "Valkyrie Dyad",
+    "description": "Make two Valkyrie moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadYellow"
   },
@@ -176,8 +176,8 @@
   },
   "sumnV": {
     "id": "sumnV",
-    "name": "Summon Vanguard",
-    "description": "Summon a Vanguard to an empty square.",
+    "name": "Summon Valkyrie",
+    "description": "Summon a Valkyrie to an empty square.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnYellow"
   },
@@ -225,8 +225,8 @@
   },
   "sumnRV": {
     "id": "sumnRV",
-    "name": "Royalty Vanguard",
-    "description": "Summon a Vanguard Royalty condition to a square for 4 turns. Pieces on this square move like a Vanguard.",
+    "name": "Royalty Valkyrie",
+    "description": "Summon a Valkyrie Royalty condition to a square for 4 turns. Pieces on this square move like a Valkyrie.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sumnRP"
   },
@@ -366,7 +366,7 @@
   "modsREA": {
     "id": "modsREA",
     "name": "Iron Reach",
-    "description": "Friendly Vanguard has usual moveset with hopping plus the Queen move pattern with no hopping. Royalties take precedent.",
+    "description": "Friendly Valkyrie has usual moveset with hopping plus the Queen move pattern with no hopping. Royalties take precedent.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/vanUpgrade"
   },

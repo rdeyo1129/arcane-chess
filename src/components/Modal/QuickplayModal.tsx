@@ -62,6 +62,8 @@ interface ModalState {
   showCharacterSelect: string;
   showArmySelect: string;
   showArcanaSelect: string;
+  playerCharacterImgPath: string;
+  engineCharacterImgPath: string;
 }
 
 interface ArcanaDetail {
@@ -125,6 +127,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       showCharacterSelect: '',
       showArmySelect: '',
       showArcanaSelect: '',
+      playerCharacterImgPath: '',
+      engineCharacterImgPath: '',
     };
   }
 
@@ -183,8 +187,13 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               <p>
                 {arcana[this.state.hoverId]?.description
                   ? arcana[this.state.hoverId]?.description
-                  : this.state.hoverId === 'swapSides'
+                  : this.state.hoverId === 'playerSwapSides' ||
+                    this.state.hoverId === 'engineSwapSides'
                   ? 'Click to swap sides.'
+                  : this.state.hoverId === 'playerCharacter'
+                  ? 'Choose an inventory of spells for the human.'
+                  : this.state.hoverId === 'engineCharacter'
+                  ? 'Choose an inventory of spells for the engine.'
                   : 'Hover and click on spells to see more information or add to your bag. Hover over other settings for more information.'}
               </p>
             </div>
@@ -200,7 +209,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                             width: '180px',
                             height: '60px',
                             background:
-                              this.state.playerColor === 'white'
+                              this.state.hoverId === 'playerSwapSides'
+                                ? '#4A90E2'
+                                : this.state.playerColor === 'white'
                                 ? '#AAAAAA'
                                 : '#333333',
                             cursor:
@@ -217,6 +228,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                                   prevState.engineColor === 'white'
                                     ? 'black'
                                     : 'white',
+                                playerCharacterImgPath:
+                                  prevState.engineCharacterImgPath,
+                                engineCharacterImgPath:
+                                  prevState.playerCharacterImgPath,
                               }),
                               () => {
                                 if (this.props.updateConfig) {
@@ -238,7 +253,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           }
                           onMouseEnter={() => {
                             this.setState({
-                              hoverId: 'swapSides',
+                              hoverId: 'playerSwapSides',
                             });
                           }}
                           onMouseLeave={() => {
@@ -251,11 +266,16 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       <div className="character-select-container">
                         <div className="character">
                           <img
-                            src={`/assets/characters/viking-head.svg`}
+                            src={`${this.state.playerCharacterImgPath}.svg`}
                             style={{
                               width: '180px',
                               height: '60px',
-                              background: '#4A90E2',
+                              background:
+                                this.state.hoverId === 'playerCharacter'
+                                  ? '#4A90E2'
+                                  : '#808080',
+                              cursor:
+                                "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                             }}
                             onClick={() => {
                               this.setState({
@@ -266,6 +286,16 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                                     : this.state.playerColor,
                                 showArcanaSelect: '',
                                 showArmySelect: '',
+                              });
+                            }}
+                            onMouseEnter={() => {
+                              this.setState({
+                                hoverId: 'playerCharacter',
+                              });
+                            }}
+                            onMouseLeave={() => {
+                              this.setState({
+                                hoverId: '',
                               });
                             }}
                           />
@@ -290,11 +320,13 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                               if (this.state.playerColor === 'white') {
                                 this.setState({
                                   whiteArcana: character.inventory,
+                                  playerCharacterImgPath: character.imagePath,
                                 });
                               }
                               if (this.state.playerColor === 'black') {
                                 this.setState({
                                   blackArcana: character.inventory,
+                                  playerCharacterImgPath: character.imagePath,
                                 });
                               }
                             }}
@@ -418,7 +450,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                             width: '180px',
                             height: '60px',
                             background:
-                              this.state.engineColor === 'white'
+                              this.state.hoverId === 'engineSwapSides'
+                                ? '#4A90E2'
+                                : this.state.engineColor === 'white'
                                 ? '#AAAAAA'
                                 : '#333333',
                             cursor:
@@ -435,6 +469,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                                   prevState.engineColor === 'white'
                                     ? 'black'
                                     : 'white',
+                                playerCharacterImgPath:
+                                  prevState.engineCharacterImgPath,
+                                engineCharacterImgPath:
+                                  prevState.playerCharacterImgPath,
                               }),
                               () => {
                                 if (this.props.updateConfig) {
@@ -456,7 +494,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           }
                           onMouseEnter={() => {
                             this.setState({
-                              hoverId: 'swapSides',
+                              hoverId: 'engineSwapSides',
                             });
                           }}
                           onMouseLeave={() => {
@@ -468,11 +506,16 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       </div>
                       <div className="character-select-container">
                         <img
-                          src={`/assets/characters/viking-head.svg`}
+                          src={`${this.state.engineCharacterImgPath}.svg`}
                           style={{
                             width: '180px',
                             height: '60px',
-                            background: '#4A90E2',
+                            background:
+                              this.state.hoverId === 'engineCharacter'
+                                ? '#4A90E2'
+                                : '#808080',
+                            cursor:
+                              "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
                           }}
                           onClick={() => {
                             this.setState({
@@ -483,6 +526,16 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                                   : this.state.engineColor,
                               showArcanaSelect: '',
                               showArmySelect: '',
+                            });
+                          }}
+                          onMouseEnter={() => {
+                            this.setState({
+                              hoverId: 'engineCharacter',
+                            });
+                          }}
+                          onMouseLeave={() => {
+                            this.setState({
+                              hoverId: '',
                             });
                           }}
                         />
@@ -506,11 +559,13 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                               if (this.state.engineColor === 'white') {
                                 this.setState({
                                   whiteArcana: character.inventory,
+                                  engineCharacterImgPath: character.imagePath,
                                 });
                               }
                               if (this.state.engineColor === 'black') {
                                 this.setState({
                                   blackArcana: character.inventory,
+                                  engineCharacterImgPath: character.imagePath,
                                 });
                               }
                             }}

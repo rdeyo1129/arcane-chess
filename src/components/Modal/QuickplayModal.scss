@@ -1,17 +1,22 @@
 .quickplay-modal {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
-  .hover-text {
-    height: 80px;
-  }
-  .top-buttons {
-  }
   .player-options-text {
+    .top-buttons {
+    }
+    .hover-text {
+      height: 100px;
+      width: 360px;
+    }
     .sides {
       // display: flex;
       .player {
         .buttons-arcana {
+          display: flex;
           .buttons {
             display: flex;
             height: 60px;
@@ -28,6 +33,7 @@
       }
       .engine {
         .buttons-arcana {
+          display: flex;
           .buttons {
             display: flex;
             height: 60px;
@@ -43,9 +49,65 @@
         }
       }
     }
-    .hover-text {
-    }
   }
   .settings-go {
+  }
+}
+
+@media (max-width: 1024px) {
+  .quickplay-modal {
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    .hover-text {
+    }
+    .top-buttons {
+    }
+    .player-options-text {
+      .sides {
+        // display: flex;
+        .player {
+          .buttons-arcana {
+            display: block;
+            .buttons {
+              display: flex;
+              height: 60px;
+              .color {
+              }
+              .character {
+              }
+            }
+            .arcana {
+            }
+          }
+          .army {
+          }
+        }
+        .engine {
+          .buttons-arcana {
+            display: block;
+            .buttons {
+              display: flex;
+              height: 60px;
+              .color {
+              }
+              .character {
+              }
+            }
+            .arcana {
+            }
+          }
+          .army {
+          }
+        }
+      }
+      .hover-text {
+      }
+    }
+    .settings-go {
+    }
   }
 }

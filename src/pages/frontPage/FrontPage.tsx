@@ -109,7 +109,7 @@ class UnwrappedFrontPage extends React.Component<
       <div className="front-page-container">
         <div className="header">
           <div className="inner-header">
-            <img className="logo" src={'/assets/logogold.png'} alt="" />
+            <img className="logo" src={'/assets/logoblue.png'} alt="" />
             <div className="inner-header-a">
               <h1 className="tactorius" style={{ fontWeight: '800' }}>
                 <div className="tact">
@@ -148,7 +148,7 @@ class UnwrappedFrontPage extends React.Component<
                 <Button
                   text="ENTER THE SITE"
                   className="primary"
-                  color="Y"
+                  color="B"
                   height={80}
                   width={400}
                   disabled={false}
@@ -165,7 +165,7 @@ class UnwrappedFrontPage extends React.Component<
                 text="REGISTER"
                 // onClick={() => this.calculateFen()}
                 className="secondary"
-                color="Y"
+                color="B"
                 height={50}
                 width={140}
                 // disabled={this.state.fen === ''}
@@ -221,7 +221,7 @@ class UnwrappedFrontPage extends React.Component<
                 <Button
                   text="ENTER THE SITE"
                   className="primary"
-                  color="Y"
+                  color="B"
                   height={80}
                   width={400}
                   disabled={false}
@@ -239,7 +239,7 @@ class UnwrappedFrontPage extends React.Component<
                 text="REGISTER"
                 // onClick={() => this.calculateFen()}
                 className="secondary"
-                color="Y"
+                color="B"
                 height={50}
                 width={140}
                 // disabled={this.state.fen === ''}

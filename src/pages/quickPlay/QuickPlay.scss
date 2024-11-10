@@ -138,6 +138,9 @@
       .buttons {
         display: none;
       }
+      .dialogue {
+        display: none;
+      }
       .info-avatar {
         display: flex;
         width: 100%;
@@ -318,6 +321,13 @@
           height: 40px;
           width: 100%;
         }
+        .dialogue {
+          display: block;
+          height: 190px;
+          padding: 20px;
+          background: rgba(34, 34, 34, 0.7);
+          overflow-y: scroll;
+        }
         .info-avatar {
           position: relative;
           display: flex;
@@ -392,6 +402,15 @@
           display: flex;
           justify-content: center;
           align-items: center;
+        }
+      }
+      .nav-history-buttons-player {
+        .dialogue {
+          display: block;
+          height: 190px;
+          padding: 20px;
+          background: rgba(34, 34, 34, 0.7);
+          overflow-y: scroll;
         }
       }
     }

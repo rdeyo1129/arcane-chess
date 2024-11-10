@@ -1561,6 +1561,19 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   );
                 })}
               </div>
+              <div className="dialogue">
+                {this.state.hoverArcane !== '' ? (
+                  <div className="arcana-detail">
+                    <h3>{arcana[this.state.hoverArcane].name}</h3>
+                    <p>{arcana[this.state.hoverArcane].description}</p>
+                  </div>
+                ) : this.state.hint !== '' ? (
+                  this.state.hint
+                ) : (
+                  <div></div>
+                  // hints, taunts, eval + or - dialogue
+                )}
+              </div>
               <div className="info-avatar">
                 <div className="avatar">
                   <img

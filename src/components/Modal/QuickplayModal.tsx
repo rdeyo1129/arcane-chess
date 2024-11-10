@@ -183,23 +183,30 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
           <div className="quickplay-modal">
             <>
               <div className="player-options-text">
-                <div className="top-buttons">
-                  <Button className="tertiary" color="B" text="BACK" />
-                </div>
-                <div className="hover-text">
-                  <p>{arcana[this.state.hoverId]?.name || ''}</p>
-                  <p>
-                    {arcana[this.state.hoverId]?.description
-                      ? arcana[this.state.hoverId]?.description
-                      : this.state.hoverId === 'playerSwapSides' ||
-                        this.state.hoverId === 'engineSwapSides'
-                      ? 'Click to swap sides.'
-                      : this.state.hoverId === 'playerCharacter'
-                      ? 'Choose an inventory of spells for the human.'
-                      : this.state.hoverId === 'engineCharacter'
-                      ? 'Choose an inventory of spells for the engine.'
-                      : 'Hover and click on spells to see more information or add to your bag. Hover over other settings for more information.'}
-                  </p>
+                <div className="top">
+                  <Button
+                    className="tertiary"
+                    color="B"
+                    text="HOME"
+                    onClick={() => {
+                      this.props.navigate('/dashboard');
+                    }}
+                  />
+                  <div className="hover-text">
+                    <p>{arcana[this.state.hoverId]?.name || ''}</p>
+                    <p>
+                      {arcana[this.state.hoverId]?.description
+                        ? arcana[this.state.hoverId]?.description
+                        : this.state.hoverId === 'playerSwapSides' ||
+                          this.state.hoverId === 'engineSwapSides'
+                        ? 'Click to swap sides.'
+                        : this.state.hoverId === 'playerCharacter'
+                        ? 'Choose an inventory of spells for the human.'
+                        : this.state.hoverId === 'engineCharacter'
+                        ? 'Choose an inventory of spells for the engine.'
+                        : 'Hover and click on spells to see more information or add to your bag. Hover over other settings for more information.'}
+                    </p>
+                  </div>
                 </div>
                 <div className="sides">
                   <div className="player">
@@ -688,7 +695,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
             </>
             <div className="settings-go">
-              {/* difficulty */}
               <Select
                 title="Difficulty"
                 type="number"
@@ -702,6 +708,17 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               />
               <Select
                 title="Promotion Type"
+                type="number"
+                width={240}
+                height={40}
+                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+                onChange={(val) => {
+                  if (this.props.updateConfig)
+                    this.props.updateConfig('thinkingTime', Number(val));
+                }}
+              />
+              <Select
+                title="Game Mode"
                 type="number"
                 width={240}
                 height={40}
@@ -728,7 +745,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 color="B"
                 width={240}
                 height={60}
-                styles={{ marginTop: '20px' }}
+                // styles={{ marginTop: '20px' }}
                 onClick={() => {
                   // this.props.handleClose();
                 }}
@@ -739,20 +756,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 color="B"
                 width={240}
                 height={60}
-                styles={{ marginTop: '20px' }}
+                // styles={{ marginTop: '20px' }}
                 onClick={() => {
                   // this.props.handleClose();
-                }}
-              />
-              <Select
-                title="Game Mode"
-                type="number"
-                width={240}
-                height={40}
-                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                onChange={(val) => {
-                  if (this.props.updateConfig)
-                    this.props.updateConfig('thinkingTime', Number(val));
                 }}
               />
               <Button

@@ -2,19 +2,25 @@
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100%;
+  align-items: flex-start;
+  align-self: center;
+  height: 500px;
   width: 100%;
   .player-options-text {
-    .top-buttons {
-    }
-    .hover-text {
-      height: 100px;
-      width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .top {
+      display: flex;
+      .hover-text {
+        height: 60px;
+        width: 400px;
+      }
     }
     .sides {
       // display: flex;
       .player {
+        margin-top: 20px;
         .buttons-arcana {
           display: flex;
           .buttons {
@@ -32,6 +38,7 @@
         }
       }
       .engine {
+        margin-top: 20px;
         .buttons-arcana {
           display: flex;
           .buttons {
@@ -62,11 +69,20 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    .hover-text {
-    }
-    .top-buttons {
+    .top {
+      flex-direction: column;
+      height: 140px;
+      .hover-text {
+        width: 360px;
+        p {
+          width: 360px;
+        }
+      }
     }
     .player-options-text {
+      // align-self: flex-start;
+      display: block;
+      width: 360px;
       .sides {
         // display: flex;
         .player {

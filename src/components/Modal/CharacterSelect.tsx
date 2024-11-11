@@ -9,6 +9,7 @@ interface CharacterSelectProps {
   isOpen: string;
   sendCharacterSelect: (character: CharacterType) => void;
   handleToggle: () => void;
+  updateHover: (description: string) => void;
 }
 interface CharacterSelectState {
   hoverId: string;
@@ -72,11 +73,15 @@ export default class CharacterSelect extends React.Component<
                     this.setState({
                       hoverId: character.name,
                     });
+                    this.props.updateHover(
+                      `${character.name} - ${character.description}`
+                    );
                   }}
                   onMouseLeave={() => {
                     this.setState({
                       hoverId: '',
                     });
+                    this.props.updateHover('');
                   }}
                 />
               );

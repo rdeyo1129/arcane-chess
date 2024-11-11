@@ -66,6 +66,7 @@ interface ModalState {
   showArcanaSelect: string;
   playerCharacterImgPath: string;
   engineCharacterImgPath: string;
+  characterDescription: string;
 }
 
 interface ArcanaDetail {
@@ -131,6 +132,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       showArcanaSelect: '',
       playerCharacterImgPath: '',
       engineCharacterImgPath: '',
+      characterDescription: '',
     };
   }
 
@@ -209,6 +211,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     <p>
                       {arcana[this.state.hoverId]?.description
                         ? arcana[this.state.hoverId]?.description
+                        : this.state.characterDescription !== ''
+                        ? this.state.characterDescription
                         : this.descriptions()[this.state.hoverId]}
                     </p>
                   </div>
@@ -359,6 +363,11 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                                   showArmySelect: '',
                                 });
                               }}
+                              updateHover={(description: string) => {
+                                this.setState({
+                                  characterDescription: description,
+                                });
+                              }}
                             />
                           ) : null}
                         </div>
@@ -460,10 +469,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           }
                         }}
                         updateHover={(id) => {
-                          if (id !== '')
+                          if (id !== '') {
                             this.setState({
                               hoverId: 'engineArmy',
                             });
+                          } else {
+                            this.setState({
+                              hoverId: '',
+                            });
+                          }
                         }}
                       />
                     </div>
@@ -615,6 +629,11 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                                   showArmySelect: '',
                                 });
                               }}
+                              updateHover={(description: string) => {
+                                this.setState({
+                                  characterDescription: description,
+                                });
+                              }}
                             />
                           ) : null}
                         </div>
@@ -716,10 +735,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           }
                         }}
                         updateHover={(id: string) => {
-                          if (id !== '')
+                          if (id !== '') {
                             this.setState({
                               hoverId: 'playerArmy',
                             });
+                          } else {
+                            this.setState({
+                              hoverId: '',
+                            });
+                          }
                         }}
                       />
                     </div>

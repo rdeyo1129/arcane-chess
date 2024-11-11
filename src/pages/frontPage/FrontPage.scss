@@ -28,18 +28,18 @@
         p {
           font-size: 12px;
         }
+        .tactorius {
+          display: flex;
+          .tact {
+            color: #7f7f7f;
+            font-size: 40px;
+          }
+          .orius {
+            color: $B_MENU;
+            font-size: 40px;
+          }
+        }
       }
-    }
-    .tactorius {
-      display: flex;
-    }
-    .tact {
-      color: #7f7f7f;
-      font-size: 40px;
-    }
-    .orius {
-      color: $B_MENU;
-      font-size: 40px;
     }
   }
   .front-page {
@@ -83,7 +83,6 @@
           display: flex;
           flex-direction: column;
           padding: 30px 40px 30px 40px;
-
           border-top-left-radius: 40px;
           border-bottom-right-radius: 40px;
           > * {
@@ -122,29 +121,33 @@
       .inner-header {
         width: 680px;
         .inner-header-a {
+          display: flex;
           width: 400px;
           p {
             font-size: 16px;
+            margin: 0 0 10px 0;
+          }
+          .tactorius {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            .tact {
+              color: #7f7f7f;
+              font-size: 56px;
+            }
+            .orius {
+              // color: $Y_MENU;
+              color: $B_MENU;
+              font-size: 56px;
+            }
           }
         }
         .logo {
           width: 100px;
           height: 100px;
-          margin: 10px 0 10px 10px;
+          margin: 30px 0 30px 10px;
           padding: 10px;
         }
-      }
-      .tactorius {
-        display: flex;
-      }
-      .tact {
-        color: #7f7f7f;
-        font-size: 56px;
-      }
-      .orius {
-        // color: $Y_MENU;
-        color: $B_MENU;
-        font-size: 56px;
       }
     }
     .front-page {

@@ -21,14 +21,48 @@ interface Character {
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
+const R = '#c53939';
+const O = '#c77c35';
+const Y = '#d9b800';
+const G = '#34aa48';
+const B = '#3f48cc';
+const V = '#a043a2';
+
+const path = '/assets/characters/';
+
 const unpaddedCharacters = [
+  {
+    name: 'The Warlord',
+    inventory: [arcana.dyadK, arcana.dyadQ, arcana.dyadR],
+    setup: 'RNBQKBNR',
+    imagePath: `${path}warlord`,
+    color: Y,
+    description:
+      'Look for the double attacks, escape a threat against your King.',
+  },
+  {
+    name: 'The Banshee',
+    inventory: [arcana.dyadW, arcana.dyadW, arcana.sumnW, arcana.sumnW],
+    setup: 'RNWQKWNR',
+    imagePath: `${path}banshee`,
+    color: V,
+    description: '',
+  },
+  {
+    name: 'The Ghoul',
+    inventory: [arcana.sumnS, arcana.sumnS, arcana.dyadS, arcana.dyadS],
+    setup: 'RSBQKBSR',
+    imagePath: `${path}ghoul`,
+    color: V,
+    description: '',
+  },
   {
     name: 'The Politician',
     inventory: [arcana.modsSKI, arcana.modsINH, arcana.offrC],
     setup: 'RNBVKBNR',
-    imagePath: '/assets/characters/politician',
-    color: 'red',
-    description: '',
+    imagePath: `${path}politician`,
+    color: R,
+    description: 'Play for the endgame and use your resources.',
   },
 ];
 

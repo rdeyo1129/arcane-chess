@@ -50,112 +50,119 @@ export class UnwrappedDashboard extends React.Component<
   render() {
     return (
       <div className="dashboard">
-        <div className="nav-bar">
-          <Link
-            className="home-button"
-            to="/campaign"
-            onMouseEnter={() => this.setState({ hoverNav: 'campaign' })}
-          >
-            <Button
-              text="CAMPAIGN"
-              className="tertiary"
-              color="B"
-              height={50}
-              width={'100%'}
-              disabled={false}
-              backgroundColorOverride="#11111188"
+        <div className="dashboard-content">
+          <div className="nav-bar">
+            <Link
+              className="home-button"
+              to="/campaign"
+              onMouseEnter={() => this.setState({ hoverNav: 'campaign' })}
+            >
+              <Button
+                text="CAMPAIGN"
+                className="tertiary"
+                color="B"
+                height={50}
+                width={'100%'}
+                disabled={false}
+                backgroundColorOverride="#11111188"
+              />
+            </Link>
+            <Link
+              className="home-button"
+              to="/leaderboard"
+              onMouseEnter={() => this.setState({ hoverNav: 'leaderboard' })}
+            >
+              <Button
+                text="LEADERBOARD"
+                className="tertiary"
+                color="B"
+                height={50}
+                width={'100%'}
+                disabled={false}
+                backgroundColorOverride="#11111188"
+              />
+            </Link>
+            <Link
+              className="home-button"
+              to="/quickplay"
+              onMouseEnter={() => this.setState({ hoverNav: 'quickplay' })}
+            >
+              <Button
+                text="QUICKPLAY"
+                className="tertiary"
+                color="B"
+                height={50}
+                width={'100%'}
+                disabled={false}
+                backgroundColorOverride="#11111188"
+              />
+            </Link>
+            <Link
+              className="home-button"
+              to="/lexicon"
+              onMouseEnter={() => this.setState({ hoverNav: 'lexicon' })}
+            >
+              <Button
+                text="LEXICON"
+                className="tertiary"
+                color="B"
+                height={50}
+                width={'100%'}
+                disabled={false}
+                backgroundColorOverride="#11111188"
+              />
+            </Link>
+            <Link
+              className="home-button"
+              to="/manifest"
+              onMouseEnter={() => this.setState({ hoverNav: 'manifest' })}
+            >
+              <Button
+                text="MANIFEST"
+                className="tertiary"
+                color="B"
+                height={50}
+                width={'100%'}
+                disabled={false}
+                backgroundColorOverride="#11111188"
+              />
+            </Link>
+            <div onMouseEnter={() => this.setState({ hoverNav: 'logout' })}>
+              <Button
+                text="LOGOUT"
+                className="tertiary"
+                color="B"
+                height={50}
+                width={'100%'}
+                disabled={false}
+                onClick={() => {
+                  this.props.navigate('/');
+                }}
+                backgroundColorOverride="#11111188"
+              />
+            </div>
+          </div>
+          <div className="image-description">
+            <img
+              className="hover-image"
+              src={`/assets/dashboard/${this.state.hoverNav}.webp`}
+              alt={this.state.hoverNav}
             />
-          </Link>
-          <Link
-            className="home-button"
-            to="/leaderboard"
-            onMouseEnter={() => this.setState({ hoverNav: 'leaderboard' })}
-          >
-            <Button
-              text="LEADERBOARD"
-              className="tertiary"
-              color="B"
-              height={50}
-              width={'100%'}
-              disabled={false}
-              backgroundColorOverride="#11111188"
-            />
-          </Link>
-          <Link
-            className="home-button"
-            to="/quickplay"
-            onMouseEnter={() => this.setState({ hoverNav: 'quickplay' })}
-          >
-            <Button
-              text="QUICKPLAY"
-              className="tertiary"
-              color="B"
-              height={50}
-              width={'100%'}
-              disabled={false}
-              backgroundColorOverride="#11111188"
-            />
-          </Link>
-          <Link
-            className="home-button"
-            to="/lexicon"
-            onMouseEnter={() => this.setState({ hoverNav: 'lexicon' })}
-          >
-            <Button
-              text="LEXICON"
-              className="tertiary"
-              color="B"
-              height={50}
-              width={'100%'}
-              disabled={false}
-              backgroundColorOverride="#11111188"
-            />
-          </Link>
-          <Link
-            className="home-button"
-            to="/manifest"
-            onMouseEnter={() => this.setState({ hoverNav: 'manifest' })}
-          >
-            <Button
-              text="MANIFEST"
-              className="tertiary"
-              color="B"
-              height={50}
-              width={'100%'}
-              disabled={false}
-              backgroundColorOverride="#11111188"
-            />
-          </Link>
-          <div onMouseEnter={() => this.setState({ hoverNav: 'logout' })}>
-            <Button
-              text="LOGOUT"
-              className="tertiary"
-              color="B"
-              height={50}
-              width={'100%'}
-              disabled={false}
-              onClick={() => {
-                this.props.navigate('/');
-              }}
-              backgroundColorOverride="#11111188"
-            />
+            <div className="menu-item-description">
+              {
+                this.state.menuItemDescriptions[
+                  this.state
+                    .hoverNav as keyof DashboardState['menuItemDescriptions']
+                ]
+              }
+            </div>
           </div>
         </div>
-        <div className="image-description">
-          <img
-            className="hover-image"
-            src={`/assets/dashboard/${this.state.hoverNav}.webp`}
-            alt={this.state.hoverNav}
-          />
-          <div className="menu-item-description">
-            {
-              this.state.menuItemDescriptions[
-                this.state
-                  .hoverNav as keyof DashboardState['menuItemDescriptions']
-              ]
-            }
-          </div>
-        </div>
+        <img
+          className="hover-image-full"
+          src={`/assets/dashboard/${this.state.hoverNav}.webp`}
+          alt={this.state.hoverNav}
+        />
       </div>
     );
   }

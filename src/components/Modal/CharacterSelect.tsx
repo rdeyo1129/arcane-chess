@@ -10,13 +10,17 @@ interface CharacterSelectProps {
   sendCharacterSelect: (character: CharacterType) => void;
   handleToggle: () => void;
 }
-interface CharacterSelectState {}
+interface CharacterSelectState {
+  hoverId: string;
+}
 
 interface CharacterType {
   name: string;
   inventory: ArcanaDetail[];
   setup: string;
   imagePath: string;
+  color: string;
+  description: string;
 }
 
 interface ArcanaDetail {
@@ -33,9 +37,10 @@ export default class CharacterSelect extends React.Component<
 > {
   constructor(props: CharacterSelectProps) {
     super(props);
-    this.state = {};
+    this.state = {
+      hoverId: '',
+    };
   }
-
   render() {
     return (
       <>
@@ -53,10 +58,25 @@ export default class CharacterSelect extends React.Component<
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
+                    background:
+                      this.state.hoverId === character.name
+                        ? character.color
+                        : '#808080',
+                    borderRadius: '50%',
                   }}
                   onClick={() => {
                     this.props.sendCharacterSelect(character);
                     this.props.handleToggle();
+                  }}
+                  onMouseEnter={() => {
+                    this.setState({
+                      hoverId: character.name,
+                    });
+                  }}
+                  onMouseLeave={() => {
+                    this.setState({
+                      hoverId: '',
+                    });
                   }}
                 />
               );

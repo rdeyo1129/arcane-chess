@@ -11,6 +11,7 @@ interface ArmySelectProps {
   color: string;
   updateArmy: (army: string) => void;
   handleToggle: () => void;
+  updateHover: (id: string) => void;
 }
 interface ArmySelectState {
   hoverArmy: number;
@@ -63,11 +64,13 @@ export default class ArmySelect extends React.Component<
             this.setState({
               hoverArmy: -1,
             });
+            this.props.updateHover('army');
           }}
           onMouseLeave={() => {
             this.setState({
               hoverArmy: -2,
             });
+            this.props.updateHover('');
           }}
           onClick={() => {
             this.props.handleToggle();
@@ -94,11 +97,13 @@ export default class ArmySelect extends React.Component<
                   this.setState({
                     hoverArmy: armyIndex,
                   });
+                  this.props.updateHover('army');
                 }}
                 onMouseLeave={() => {
                   this.setState({
                     hoverArmy: -2,
                   });
+                  this.props.updateHover('');
                 }}
               >
                 {army.split('').map((piece, pieceIndex) => (

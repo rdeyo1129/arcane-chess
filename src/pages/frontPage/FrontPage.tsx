@@ -181,6 +181,13 @@ class UnwrappedFrontPage extends React.Component<
                   Chess transforms into an epic journey of strategy,
                   imagination, and personal growth.
                 </h3>
+                <h3>Enter Arcane Chess:</h3>
+                <p>
+                  Step into a world where traditional Chess boundaries are
+                  redefined. Utilize powerful arcana—spells that bend the
+                  rules—encounter new and formidable pieces. Uncover limitless
+                  possibilities for fresh tactics and a new dynamic metagame.
+                </p>
                 <h3>Embark on a Campaign:</h3>
                 <p>
                   Embark on an epic journey through a story teeming with
@@ -194,13 +201,6 @@ class UnwrappedFrontPage extends React.Component<
                   puzzles, and engage in custom army battles. Earn points as you
                   progress, and see your name rise on the leaderboard with each
                   challenge you conquer.
-                </p>
-                <h3>Enter Arcane Chess:</h3>
-                <p>
-                  Step into a world where traditional Chess boundaries are
-                  redefined. Utilize powerful arcana—spells that bend the
-                  rules—encounter new and formidable pieces. Uncover limitless
-                  possibilities for fresh tactics and a new dynamic metagame.
                 </p>
                 <h5>
                   <strong>

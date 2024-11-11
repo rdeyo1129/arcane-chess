@@ -15,6 +15,8 @@ interface Character {
   inventory: ArcanaDetail[];
   setup: string;
   imagePath: string;
+  color: string;
+  description: string;
 }
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
@@ -25,6 +27,8 @@ const unpaddedCharacters = [
     inventory: [arcana.modsSKI, arcana.modsINH, arcana.offrC],
     setup: 'RNBVKBNR',
     imagePath: '/assets/characters/politician',
+    color: 'red',
+    description: '',
   },
 ];
 

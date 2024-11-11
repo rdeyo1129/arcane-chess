@@ -366,7 +366,7 @@
   "modsREA": {
     "id": "modsREA",
     "name": "Iron Reach",
-    "description": "Friendly Valkyrie has usual moveset with hopping plus the Queen move pattern with no hopping. Royalties take precedent.",
+    "description": "Friendly Valkyrie gains the Queen's moveset.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/vanUpgrade"
   },
@@ -457,7 +457,7 @@
   "empty": {
     "id": "empty",
     "name": "",
-    "description": "No arcane selected here. Click to choose one!",
+    "description": "No arcane selected here. Click to choose one.",
     "type": "",
     "imagePath": "/assets/arcanaImages/empty"
   }

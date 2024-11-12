@@ -876,7 +876,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     const selectedMode = Object.values(modes).find(
                       (mode) => mode.name === val
                     );
-                    console.log(selectedMode);
                     if (selectedMode && this.props.updateConfig) {
                       const whiteConfigArcana = this.transformedInventory(
                         selectedMode.white.arcana
@@ -899,6 +898,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         whiteSetup: selectedMode.white.setup,
                         blackArcana: selectedMode.black.arcana,
                         blackSetup: selectedMode.black.setup,
+                        engineCharacterImgPath: '',
+                        playerCharacterImgPath: '',
                       });
                     }
                   }}

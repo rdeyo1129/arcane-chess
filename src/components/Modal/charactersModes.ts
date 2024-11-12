@@ -19,16 +19,38 @@ interface Character {
   description: string;
 }
 
+interface GameModeType {
+  name: string;
+  white: {
+    arcana: ArcanaDetail[];
+    setup: string;
+  };
+  black: {
+    arcana: ArcanaDetail[];
+    setup: string;
+  };
+}
+
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 const R = '#c53939';
-const O = '#c77c35';
+// const O = '#c77c35';
 const Y = '#d9b800';
-const G = '#34aa48';
-const B = '#3f48cc';
+// const G = '#34aa48';
+// const B = '#3f48cc';
 const V = '#a043a2';
 
 const path = '/assets/characters/';
+
+const emptyArcane = {
+  id: 'empty',
+  name: '',
+  description: 'No arcane selected here. Click to choose one!',
+  type: '',
+  imagePath: '/assets/arcanaImages/empty',
+};
+
+// CHARACTERS
 
 const unpaddedCharacters = [
   {
@@ -66,16 +88,60 @@ const unpaddedCharacters = [
   },
 ];
 
-export const modes = {
+export const startingInventory = Array(6).fill(emptyArcane);
+
+export const padInventory = (characters: Character[]) => {
+  return characters.map((character) => ({
+    ...character,
+    inventory: [
+      ...character.inventory,
+      ...Array(6 - character.inventory.length).fill(arcana.empty),
+    ],
+  }));
+};
+
+export const characters = padInventory(unpaddedCharacters);
+
+// MODES
+
+const padArcana = (arcana: ArcanaDetail[]) => {
+  const paddedArcana = [...arcana];
+  while (paddedArcana.length < 6) {
+    paddedArcana.push(emptyArcane);
+  }
+  return paddedArcana;
+};
+
+const padModes = (modes: Record<string, GameModeType>) => {
+  return Object.entries(modes).reduce(
+    (acc, [key, mode]) => {
+      acc[key] = {
+        ...mode,
+        white: {
+          ...mode.white,
+          arcana: padArcana(mode.white.arcana),
+        },
+        black: {
+          ...mode.black,
+          arcana: padArcana(mode.black.arcana),
+        },
+      };
+      return acc;
+    },
+    {} as Record<string, GameModeType>
+  );
+};
+
+export const modes: Record<string, GameModeType> = padModes({
   newClassic: {
     name: 'The New Classic',
     white: {
       arcana: [arcana.offrH, arcana.sumnX, arcana.sumnRQ],
-      setup: 'RNBQKBNR',
+      setup: 'RNBTKBNR',
     },
     black: {
       arcana: [arcana.offrH, arcana.sumnX, arcana.sumnRQ],
-      setup: 'rnbqkbnr',
+      setup: 'rnbtkbnr',
     },
   },
   theoretical: {
@@ -111,25 +177,4 @@ export const modes = {
       setup: 'rnbvkbnr',
     },
   },
-};
-
-const emptyArcane = {
-  id: 'empty',
-  name: '',
-  description: 'No arcane selected here. Click to choose one!',
-  type: '',
-  imagePath: '/assets/arcanaImages/empty',
-};
-
-export const startingInventory = Array(6).fill(emptyArcane);
-
-export const padInventory = (characters: Character[]) => {
-  return characters.map((character) => ({
-    ...character,
-    inventory: [
-      ...character.inventory,
-      ...Array(6 - character.inventory.length).fill(arcana.empty),
-    ],
-  }));
-};
-export const characters = padInventory(unpaddedCharacters);
+});

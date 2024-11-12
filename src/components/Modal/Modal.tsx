@@ -13,7 +13,6 @@ import 'src/chessground/styles/normal.scss';
 
 import Button from '../Button/Button';
 import Select from '../Select/Select';
-import CharacterSelect from './CharacterSelect';
 
 import { unlockableArcana } from 'src/pages/book/ArcanaSelect';
 // import { characters, modes } from 'src/components/Modal/charactersModes';
@@ -1214,9 +1213,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                               });
                             }}
                           />
-                          {this.state.showCharacterPicker ? (
+                          {/* {this.state.showCharacterPicker ? (
                             <CharacterSelect />
-                          ) : null}
+                          ) : null} */}
                         </div>
                       </div>
                       <div className="arcana"></div>
@@ -1267,7 +1266,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     height={90}
                     color="B"
                     onClick={() => {
-                      this.props.navigate('/chapter');
+                      this.props.navigate('/dashboard');
                     }}
                   />
                 </div>

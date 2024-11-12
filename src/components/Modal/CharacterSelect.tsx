@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import './CharacterSelect.scss';
 
-import { characters, modes } from './charactersModes';
+import { characters } from './charactersModes';
 
 interface CharacterSelectProps {
   color: string;

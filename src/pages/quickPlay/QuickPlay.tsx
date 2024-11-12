@@ -175,7 +175,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       whiteArcana: {},
       blackArcana: {},
       thinkingTime: 1,
-      engineDepth: 1,
+      engineDepth: 2,
       varVar: 'normal',
       promotion: 'Select',
     },

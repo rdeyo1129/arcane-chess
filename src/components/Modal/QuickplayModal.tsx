@@ -24,7 +24,7 @@ import ArmySelect from './ArmySelect';
 //   characters,
 //   modes,
 // } from 'src/components/Modal/charactersModes';
-import { startingInventory } from 'src/components/Modal/charactersModes';
+import { startingInventory, modes } from 'src/components/Modal/charactersModes';
 
 import './Modal.scss';
 
@@ -90,8 +90,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       config: {
         multiplier: LS.config.multiplier,
         color: LS.config.color,
-        thinkingTime: LS.config.thinkingTime,
-        depth: LS.config.depth,
+        thinkingTime: 1,
+        engineDepth: 2,
         clock: LS.config.clock,
         blunderVision: false,
         threatVision: false,
@@ -182,6 +182,11 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       engineCharacter: 'Click to choose an inventory of spells for the engine.',
       playerArmy: "The human's army, click to choose a different setup.",
       engineArmy: "The engine's army, click to choose a different setup.",
+      promotion:
+        'Choose what a Pawn promotes to or leave on Select to pick each time.',
+      difficulty: "Choose the engine's difficulty.",
+      gameMode:
+        'Choose a game mode, a custom scenario that puts a twist on the game.',
       '': 'Hover and click on spells to see more information or add to your bag. Hover over other settings for more information.',
     };
   };
@@ -752,39 +757,153 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
             </>
             <div className="settings-go">
-              <Select
-                title="Difficulty"
-                type="number"
-                width={240}
-                height={40}
-                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                onChange={(val) => {
-                  if (this.props.updateConfig)
-                    this.props.updateConfig('thinkingTime', Number(val));
-                }}
-              />
-              <Select
-                title="Promotion Type"
-                type="number"
-                width={240}
-                height={40}
-                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                onChange={(val) => {
-                  if (this.props.updateConfig)
-                    this.props.updateConfig('thinkingTime', Number(val));
-                }}
-              />
-              <Select
-                title="Game Mode"
-                type="number"
-                width={240}
-                height={40}
-                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                onChange={(val) => {
-                  if (this.props.updateConfig)
-                    this.props.updateConfig('thinkingTime', Number(val));
-                }}
-              />
+              <div
+                className="quickplay-select"
+                onMouseEnter={() => this.toggleHover('difficulty')}
+                onMouseLeave={() => this.toggleHover('')}
+              >
+                <Select
+                  title="Difficulty"
+                  type="number"
+                  width={240}
+                  height={40}
+                  options={['Novice', 'Intermediate', 'Advanced', 'Expert']}
+                  onChange={(val) => {
+                    if (!this.props.updateConfig) return;
+                    if (val === 'Novice') {
+                      this.props.updateConfig('thinkingTime', 1);
+                      this.props.updateConfig('engineDepth', 2);
+                      this.setState((prevState) => {
+                        return {
+                          config: {
+                            ...prevState.config,
+                            thinkingTime: 1,
+                            engineDepth: 2,
+                          },
+                        };
+                      });
+                    }
+                    if (val === 'Intermediate') {
+                      this.props.updateConfig('thinkingTime', 3);
+                      this.props.updateConfig('engineDepth', 4);
+                      this.setState((prevState) => {
+                        return {
+                          config: {
+                            ...prevState.config,
+                            thinkingTime: 3,
+                            engineDepth: 4,
+                          },
+                        };
+                      });
+                    }
+                    if (val === 'Advanced') {
+                      this.props.updateConfig('thinkingTime', 5);
+                      this.props.updateConfig('engineDepth', 6);
+                      this.setState((prevState) => {
+                        return {
+                          config: {
+                            ...prevState.config,
+                            thinkingTime: 5,
+                            engineDepth: 6,
+                          },
+                        };
+                      });
+                    }
+                    if (val === 'Expert') {
+                      this.props.updateConfig('thinkingTime', 7);
+                      this.props.updateConfig('engineDepth', 8);
+                      this.setState((prevState) => {
+                        return {
+                          config: {
+                            ...prevState.config,
+                            thinkingTime: 7,
+                            engineDepth: 8,
+                          },
+                        };
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div>
+                <p>ENGINE DEPTH: {this.state.config.engineDepth}</p>
+                <p>ENGINE TIME: {this.state.config.thinkingTime}</p>
+              </div>
+              <div
+                className="quickplay-select"
+                onMouseEnter={() => this.toggleHover('promotion')}
+                onMouseLeave={() => this.toggleHover('')}
+              >
+                <Select
+                  title="Promotion"
+                  type="string"
+                  width={240}
+                  height={40}
+                  options={[
+                    'Select',
+                    'N',
+                    'Z',
+                    'U',
+                    'B',
+                    'R',
+                    'Q',
+                    'T',
+                    'M',
+                    'W',
+                    'S',
+                  ]}
+                  onChange={(val) => {
+                    if (this.props.updateConfig)
+                      this.props.updateConfig('placingPromotion', val);
+                  }}
+                />
+              </div>
+              <div
+                className="quickplay-select"
+                onMouseEnter={() => this.toggleHover('gameMode')}
+                onMouseLeave={() => this.toggleHover('')}
+              >
+                <Select
+                  title="Game Mode"
+                  type="string"
+                  width={240}
+                  height={40}
+                  options={[
+                    'Game Mode',
+                    ...Object.values(modes).map((mode) => mode.name),
+                  ]}
+                  onChange={(val) => {
+                    const selectedMode = Object.values(modes).find(
+                      (mode) => mode.name === val
+                    );
+                    console.log(selectedMode);
+                    if (selectedMode && this.props.updateConfig) {
+                      const whiteConfigArcana = this.transformedInventory(
+                        selectedMode.white.arcana
+                      );
+                      const blackConfigArcana = this.transformedInventory(
+                        selectedMode.black.arcana
+                      );
+                      this.props.updateConfig(
+                        'whiteSetup',
+                        selectedMode.white.setup
+                      );
+                      this.props.updateConfig(
+                        'blackSetup',
+                        selectedMode.black.setup
+                      );
+                      this.props.updateConfig('wArcana', whiteConfigArcana);
+                      this.props.updateConfig('bArcana', blackConfigArcana);
+                      this.setState({
+                        whiteArcana: selectedMode.white.arcana,
+                        whiteSetup: selectedMode.white.setup,
+                        blackArcana: selectedMode.black.arcana,
+                        blackSetup: selectedMode.black.setup,
+                      });
+                    }
+                  }}
+                />
+              </div>
               <Button
                 text="Randomzie Same Template"
                 className="tertiary"

@@ -184,7 +184,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     const characterB = _.sample(characters) as Character;
 
     const configArcanaA = this.transformedInventory(characterA?.inventory);
-    const configArcanaB = this.transformedInventory(characterA?.inventory);
+    const configArcanaB = this.transformedInventory(characterB?.inventory);
 
     if (!this.props.updateConfig) return;
 
@@ -245,12 +245,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     const inventoryB = _.sampleSize(arcanaJson, 6) as ArcanaDetail[];
 
     const configArcanaA = this.transformedInventory(inventoryA);
-    const configArcanaB = this.transformedInventory(inventoryA);
+    const configArcanaB = this.transformedInventory(inventoryB);
 
     const characterASetup = _.sample(armies) as string;
     const characterBSetup = _.sample(armies)?.toLowerCase() as string;
 
     if (!this.props.updateConfig) return;
+
+    console.log('White Arcana:', inventoryA, configArcanaA);
+    console.log('Black Arcana:', inventoryB, configArcanaB);
 
     if (type === 'same') {
       this.props.updateConfig('wArcana', configArcanaA);
@@ -316,7 +319,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       start: 'Rock and Roll!',
       trueRandDiff:
         'This one is truly random and unbalanced... but great for experimenting! Click if you dare.',
-      '': 'Hover and click on spells to see more information or add to your bag. Hover over other settings for more information.',
+      '': 'Welcome to the settings screen where you customize a match against the engine. To start, try clicking one of the randomize buttons off to the right, then hovering over the spells it generates.',
     };
   };
 
@@ -882,6 +885,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       />
                     </div>
                   </div>
+                  <div className="engine-strength">
+                    <p>ENGINE DEPTH: {this.state.config.engineDepth}</p>
+                    <p>ENGINE TIME: {this.state.config.thinkingTime}</p>
+                  </div>
                 </div>
               </div>
             </>
@@ -894,7 +901,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Select
                   title="Difficulty"
                   type="number"
-                  width={240}
+                  width={260}
                   height={40}
                   options={['Novice', 'Intermediate', 'Advanced', 'Expert']}
                   onChange={(val) => {
@@ -954,10 +961,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }}
                 />
               </div>
-              <div>
-                <p>ENGINE DEPTH: {this.state.config.engineDepth}</p>
-                <p>ENGINE TIME: {this.state.config.thinkingTime}</p>
-              </div>
               <div
                 className="quickplay-select"
                 onMouseEnter={() => this.toggleHover('promotion')}
@@ -966,7 +969,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Select
                   title="Promotion"
                   type="string"
-                  width={240}
+                  width={260}
                   height={40}
                   options={[
                     'Select',
@@ -995,7 +998,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Select
                   title="Game Mode"
                   type="string"
-                  width={240}
+                  width={260}
                   height={40}
                   options={[
                     'Game Mode',
@@ -1043,7 +1046,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   text="Template Randomize Match"
                   className="tertiary"
                   color="B"
-                  width={240}
+                  width={260}
                   height={60}
                   styles={{ marginTop: '20px' }}
                   onClick={() => {
@@ -1060,7 +1063,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   text="Template Randomize Mismatch"
                   className="tertiary"
                   color="B"
-                  width={240}
+                  width={260}
                   height={60}
                   onClick={() => {
                     this.randomizeTemplates('different');
@@ -1076,7 +1079,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   text="True Randomize Match"
                   className="tertiary"
                   color="B"
-                  width={240}
+                  width={260}
                   height={60}
                   onClick={() => {
                     this.trueRandomize('same');
@@ -1092,7 +1095,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   text="True Randomize Mismatch"
                   className="tertiary"
                   color="B"
-                  width={240}
+                  width={260}
                   height={60}
                   onClick={() => {
                     this.trueRandomize('different');
@@ -1108,7 +1111,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   text="START"
                   className="primary"
                   color="B"
-                  width={240}
+                  width={260}
                   height={60}
                   styles={{ marginTop: '20px' }}
                   onClick={() => {

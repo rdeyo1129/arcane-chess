@@ -19,7 +19,6 @@ import {
   HASH_EP,
   HASH_SIDE,
   SqAttacked,
-  InCheck,
 } from './board';
 import { whiteArcaneConfig, blackArcaneConfig } from './arcaneDefs';
 import {
@@ -233,10 +232,6 @@ export function MakeMove(move, moveType = '') {
   GameBoard.fiftyMove++;
 
   if (isPassMove) {
-    if (InCheck()) {
-      return BOOL.FALSE;
-    }
-
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig.modsSKI -= 1;
     }

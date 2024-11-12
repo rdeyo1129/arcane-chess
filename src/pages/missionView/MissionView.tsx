@@ -1205,13 +1205,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   }
                                 }
                                 if (key === 'modsSKI') {
-                                  this.arcaneChess().makeUserMove(
-                                    0,
-                                    0,
-                                    31,
-                                    '',
-                                    0
-                                  );
+                                  const { parsed } =
+                                    this.arcaneChess().makeUserMove(
+                                      0,
+                                      0,
+                                      31,
+                                      '',
+                                      0
+                                    );
+                                  if (parsed === 0) return;
                                   this.setState(
                                     (prevState) => ({
                                       ...prevState,

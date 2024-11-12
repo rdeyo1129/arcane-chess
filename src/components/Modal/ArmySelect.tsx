@@ -18,6 +18,32 @@ interface ArmySelectState {
   army: string;
 }
 
+export const armies = [
+  'RNWMKWNR',
+  'RNSMKSNR',
+  'RZWMKWZR',
+  'RZSMKSZR',
+  'RUWMKWUR',
+  'RUSMKSUR',
+  //
+  'RNBQKBNR',
+  'RNBTKBNR',
+  'RZBQKBZR',
+  'RZBTKBZR',
+  'RUBQKBUR',
+  'RUBTKBUR',
+  //
+  'RSMVKQSR',
+  'RSMVKTSR',
+  'RWMVKQWR',
+  'RWMVKTWR',
+  //
+  'RNBVKBNR',
+  'ZNUVKUNZ',
+  'RSWVKWSR',
+  'TMQVKQMT',
+];
+
 export default class ArmySelect extends React.Component<
   ArmySelectProps,
   ArmySelectState
@@ -31,31 +57,6 @@ export default class ArmySelect extends React.Component<
   }
 
   render() {
-    const armies = [
-      'RNWMKWNR',
-      'RNSMKSNR',
-      'RZWMKWZR',
-      'RZSMKSZR',
-      'RUWMKWUR',
-      'RUSMKSUR',
-      //
-      'RNBQKBNR',
-      'RNBTKBNR',
-      'RZBQKBZR',
-      'RZBTKBZR',
-      'RUBQKBUR',
-      'RUBTKBUR',
-      //
-      'RSMVKQSR',
-      'RSMVKTSR',
-      'RWMVKQWR',
-      'RWMVKTWR',
-      //
-      'RNBVKBNR',
-      'ZNUVKUNZ',
-      'RSWVKWSR',
-      'TMQVKQMT',
-    ];
     return (
       <div className="army-select">
         <div

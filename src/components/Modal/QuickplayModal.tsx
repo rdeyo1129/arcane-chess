@@ -2,8 +2,6 @@ import React from 'react';
 import Modal from 'react-modal';
 import _ from 'lodash';
 
-import Select from '../Select/Select';
-
 import { withRouter } from '../withRouter/withRouter';
 import { connect } from 'react-redux';
 
@@ -14,17 +12,17 @@ import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 
 import Button from '../Button/Button';
-// import Select from '../Select/Select';
+import Select from '../Select/Select';
 
 import CharacterSelect from './CharacterSelect';
 import ArcanaSelect from './ArcanaSelect';
-import ArmySelect from './ArmySelect';
+import ArmySelect, { armies } from './ArmySelect';
 
-// import {
-//   characters,
-//   modes,
-// } from 'src/components/Modal/charactersModes';
-import { startingInventory, modes } from 'src/components/Modal/charactersModes';
+import {
+  startingInventory,
+  modes,
+  characters,
+} from 'src/components/Modal/charactersModes';
 
 import './Modal.scss';
 
@@ -80,6 +78,15 @@ interface ArcanaMap {
   [key: string]: ArcanaDetail;
 }
 
+interface Character {
+  name: string;
+  inventory: ArcanaDetail[];
+  setup: string;
+  imagePath: string;
+  color: string;
+  description: string;
+}
+
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
@@ -103,7 +110,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       whiteArcana: [...startingInventory],
       blackArcana: [...startingInventory],
       whiteSetup: 'RNBQKBNR',
-      blackSetup: 'RNBQKBNR',
+      blackSetup: 'rnbqkbnr',
       playerColor: 'white',
       engineColor: 'black',
       animatedValue: 0,
@@ -172,6 +179,119 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     this.setState({ hoverId: text });
   };
 
+  randomizeTemplates = (type: 'same' | 'different') => {
+    const characterA = _.sample(characters) as Character;
+    const characterB = _.sample(characters) as Character;
+
+    const configArcanaA = this.transformedInventory(characterA?.inventory);
+    const configArcanaB = this.transformedInventory(characterA?.inventory);
+
+    if (!this.props.updateConfig) return;
+
+    if (type === 'same') {
+      this.props.updateConfig('wArcana', configArcanaA);
+      this.props.updateConfig('bArcana', configArcanaA);
+      this.props.updateConfig('whiteSetup', characterA.setup);
+      this.props.updateConfig(
+        'blackSetup',
+        characterA.setup.toLocaleLowerCase()
+      );
+      this.setState({
+        whiteSetup: characterA.setup,
+        blackSetup: characterA.setup,
+        whiteArcana: characterA.inventory,
+        blackArcana: characterA.inventory,
+        showArmySelect: '',
+        showArcanaSelect: '',
+        showCharacterSelect: '',
+        playerCharacterImgPath: characterA.imagePath,
+        engineCharacterImgPath: characterA.imagePath,
+      });
+    }
+
+    const playerImagePath =
+      this.state.playerColor === 'white'
+        ? characterA.imagePath
+        : characterB.imagePath;
+    const engineImagePath =
+      this.state.engineColor === 'white'
+        ? characterA.imagePath
+        : characterB.imagePath;
+
+    if (type === 'different') {
+      this.props.updateConfig('wArcana', configArcanaA);
+      this.props.updateConfig('bArcana', configArcanaB);
+      this.props.updateConfig('whiteSetup', characterA.setup);
+      this.props.updateConfig(
+        'blackSetup',
+        characterB.setup.toLocaleLowerCase()
+      );
+      this.setState({
+        whiteSetup: characterA.setup,
+        blackSetup: characterB.setup,
+        whiteArcana: characterA.inventory,
+        blackArcana: characterB.inventory,
+        showArmySelect: '',
+        showArcanaSelect: '',
+        showCharacterSelect: '',
+        playerCharacterImgPath: playerImagePath,
+        engineCharacterImgPath: engineImagePath,
+      });
+    }
+  };
+
+  trueRandomize = (type: 'same' | 'different') => {
+    const inventoryA = _.sampleSize(arcanaJson, 6) as ArcanaDetail[];
+    const inventoryB = _.sampleSize(arcanaJson, 6) as ArcanaDetail[];
+
+    const configArcanaA = this.transformedInventory(inventoryA);
+    const configArcanaB = this.transformedInventory(inventoryA);
+
+    const characterASetup = _.sample(armies) as string;
+    const characterBSetup = _.sample(armies)?.toLowerCase() as string;
+
+    if (!this.props.updateConfig) return;
+
+    if (type === 'same') {
+      this.props.updateConfig('wArcana', configArcanaA);
+      this.props.updateConfig('bArcana', configArcanaA);
+      this.props.updateConfig('whiteSetup', characterASetup);
+      this.props.updateConfig(
+        'blackSetup',
+        characterASetup.toLocaleLowerCase()
+      );
+      this.setState({
+        whiteSetup: characterASetup,
+        blackSetup: characterASetup,
+        whiteArcana: inventoryA,
+        blackArcana: inventoryA,
+        showArmySelect: '',
+        showArcanaSelect: '',
+        showCharacterSelect: '',
+        playerCharacterImgPath: '',
+        engineCharacterImgPath: '',
+      });
+    }
+
+    if (type === 'different') {
+      this.props.updateConfig('wArcana', configArcanaA);
+      this.props.updateConfig('bArcana', configArcanaB);
+      this.props.updateConfig('whiteSetup', characterASetup);
+      this.props.updateConfig('blackSetup', characterBSetup);
+      this.setState({
+        whiteSetup: characterASetup,
+        blackSetup: characterBSetup,
+        whiteArcana: inventoryA,
+        blackArcana: inventoryB,
+        showArmySelect: '',
+        showArcanaSelect: '',
+        showCharacterSelect: '',
+        playerCharacterImgPath: '',
+        engineCharacterImgPath: '',
+      });
+    }
+  };
+
   componentDidMount() {}
 
   descriptions = (): Record<string, string> => {
@@ -187,6 +307,15 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       difficulty: "Choose the engine's difficulty.",
       gameMode:
         'Choose a game mode, a custom scenario that puts a twist on the game.',
+      tempRandSame:
+        'The human and engine get a random, matching army and inventory of spells from the existing template themes.',
+      tempRandDiff:
+        'The human and engine get a random, different army and inventory of spells from the existing template themes.',
+      trueRandSame:
+        'The human and engine get a truly random, matching army and inventory of spells from all options available.',
+      start: 'Rock and Roll!',
+      trueRandDiff:
+        'This one is truly random and unbalanced... but great for experimenting! Click if you dare.',
       '': 'Hover and click on spells to see more information or add to your bag. Hover over other settings for more information.',
     };
   };
@@ -905,50 +1034,88 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }}
                 />
               </div>
-              <Button
-                text="Randomzie Same Template"
-                className="tertiary"
-                color="B"
-                width={240}
-                height={60}
-                styles={{ marginTop: '20px' }}
-                onClick={() => {
-                  // this.props.handleClose();
-                }}
-              />
-              <Button
-                text="Randomize Different Template"
-                className="tertiary"
-                color="B"
-                width={240}
-                height={60}
-                // styles={{ marginTop: '20px' }}
-                onClick={() => {
-                  // this.props.handleClose();
-                }}
-              />
-              <Button
-                text="True Randomize"
-                className="tertiary"
-                color="B"
-                width={240}
-                height={60}
-                // styles={{ marginTop: '20px' }}
-                onClick={() => {
-                  // this.props.handleClose();
-                }}
-              />
-              <Button
-                text="START"
-                className="primary"
-                color="B"
-                width={240}
-                height={60}
-                styles={{ marginTop: '20px' }}
-                onClick={() => {
-                  this.props.handleClose();
-                }}
-              />
+              <div
+                className="quickplay-select"
+                onMouseEnter={() => this.toggleHover('tempRandSame')}
+                onMouseLeave={() => this.toggleHover('')}
+              >
+                <Button
+                  text="Template Randomize Match"
+                  className="tertiary"
+                  color="B"
+                  width={240}
+                  height={60}
+                  styles={{ marginTop: '20px' }}
+                  onClick={() => {
+                    this.randomizeTemplates('same');
+                  }}
+                />
+              </div>
+              <div
+                className="quickplay-select"
+                onMouseEnter={() => this.toggleHover('tempRandDiff')}
+                onMouseLeave={() => this.toggleHover('')}
+              >
+                <Button
+                  text="Template Randomize Mismatch"
+                  className="tertiary"
+                  color="B"
+                  width={240}
+                  height={60}
+                  onClick={() => {
+                    this.randomizeTemplates('different');
+                  }}
+                />
+              </div>
+              <div
+                className="quickplay-select"
+                onMouseEnter={() => this.toggleHover('trueRandSame')}
+                onMouseLeave={() => this.toggleHover('')}
+              >
+                <Button
+                  text="True Randomize Match"
+                  className="tertiary"
+                  color="B"
+                  width={240}
+                  height={60}
+                  onClick={() => {
+                    this.trueRandomize('same');
+                  }}
+                />
+              </div>
+              <div
+                className="quickplay-select"
+                onMouseEnter={() => this.toggleHover('trueRandDiff')}
+                onMouseLeave={() => this.toggleHover('')}
+              >
+                <Button
+                  text="True Randomize Mismatch"
+                  className="tertiary"
+                  color="B"
+                  width={240}
+                  height={60}
+                  onClick={() => {
+                    this.trueRandomize('different');
+                  }}
+                />
+              </div>
+              <div
+                className="quickplay-select"
+                onMouseEnter={() => this.toggleHover('start')}
+                onMouseLeave={() => this.toggleHover('')}
+              >
+                <Button
+                  text="START"
+                  className="primary"
+                  color="B"
+                  width={240}
+                  height={60}
+                  styles={{ marginTop: '20px' }}
+                  onClick={() => {
+                    this.props.handleClose();
+                  }}
+                />
+              </div>
             </div>
           </div>
         </Modal>

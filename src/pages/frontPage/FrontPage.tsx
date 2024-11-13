@@ -153,7 +153,7 @@ class UnwrappedFrontPage extends React.Component<
                   width={400}
                   disabled={false}
                   styles={{
-                    color: 'black',
+                    color: 'white',
                     fontStyle: 'italic',
                   }}
                   fontSize={24}
@@ -226,7 +226,7 @@ class UnwrappedFrontPage extends React.Component<
                   width={400}
                   disabled={false}
                   styles={{
-                    color: 'black',
+                    color: 'white',
                     marginBottom: '100px',
                     fontStyle: 'italic',
                   }}

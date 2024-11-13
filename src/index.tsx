@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
+  useLocation,
 } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -18,6 +19,8 @@ import { PrivateRoute } from 'src/components/PrivateRoute/PrivateRoute';
 import '@fontsource/exo';
 import '@fontsource/exo/400-italic.css';
 import '@fontsource/exo/700-italic.css';
+
+import AudioPlayer from '././utils/audioPlayer';
 
 import { FrontPage } from '././pages/frontPage/FrontPage';
 // import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
@@ -162,7 +165,12 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <>
+      <ConditionalAudioPlayer />
+      <RouterProvider router={router}></RouterProvider>
+    </>
+  );
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -178,6 +186,25 @@ document.addEventListener('DOMContentLoaded', () => {
     </React.StrictMode>
   );
 });
+
+const ConditionalAudioPlayer = () => {
+  const currentPath = window.location.pathname;
+  const audioRoutes = ['/dashboard', '/campaign'];
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayAudio = () => {
+    setIsPlaying(true);
+  };
+
+  return (
+    <div style={{ zIndex: 100 }}>
+      <button onClick={handlePlayAudio}>Start Audio</button>
+      {isPlaying && audioRoutes.includes(currentPath) && (
+        <AudioPlayer src="/assets/sounds/tactoriusmenu.wav" volume={0.2} loop />
+      )}
+    </div>
+  );
+};
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

@@ -620,7 +620,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <strong className="endgame-text">
                   <i>
                     Victory... {this.props.message}{' '}
-                    {this.props.score ? '+' : ''} {this.props.score}
+                    {this.props.score ? '+' : ''}{' '}
+                    {this.props.score?.toLocaleString()}
                   </i>
                 </strong>
                 <div className="buttons">
@@ -1255,18 +1256,19 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <strong className="endgame-text">
                   <i>
                     Victory... {this.props.message}{' '}
-                    {this.props.score ? '+' : ''} {this.props.score}
+                    {this.props.score ? '+' : ''}{' '}
+                    {this.props.score?.toLocaleString()}
                   </i>
                 </strong>
                 <div className="buttons">
                   <Button
-                    text="CONTINUE"
+                    text="RETRY"
                     className="primary"
                     width={180}
                     height={90}
                     color="B"
                     onClick={() => {
-                      this.props.navigate('/dashboard');
+                      location.reload();
                     }}
                   />
                 </div>

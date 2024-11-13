@@ -4,7 +4,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
-  useLocation,
 } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -198,7 +197,7 @@ const ConditionalAudioPlayer = () => {
 
   return (
     <div style={{ zIndex: 100 }}>
-      <button onClick={handlePlayAudio}>Start Audio</button>
+      {/* <button onClick={handlePlayAudio}>Start Audio</button> */}
       {isPlaying && audioRoutes.includes(currentPath) && (
         <AudioPlayer src="/assets/sounds/tactoriusmenu.wav" volume={0.2} loop />
       )}

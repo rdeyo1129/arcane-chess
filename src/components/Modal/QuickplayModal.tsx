@@ -907,8 +907,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   onChange={(val) => {
                     if (!this.props.updateConfig) return;
                     if (val === 'Novice') {
-                      this.props.updateConfig('thinkingTime', 1);
-                      this.props.updateConfig('engineDepth', 2);
+                      this.props.updateConfig('thinkingTime', 2);
+                      this.props.updateConfig('engineDepth', 1);
                       this.setState((prevState) => {
                         return {
                           config: {
@@ -920,8 +920,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       });
                     }
                     if (val === 'Intermediate') {
-                      this.props.updateConfig('thinkingTime', 3);
-                      this.props.updateConfig('engineDepth', 4);
+                      this.props.updateConfig('thinkingTime', 4);
+                      this.props.updateConfig('engineDepth', 3);
                       this.setState((prevState) => {
                         return {
                           config: {
@@ -933,8 +933,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       });
                     }
                     if (val === 'Advanced') {
-                      this.props.updateConfig('thinkingTime', 5);
-                      this.props.updateConfig('engineDepth', 6);
+                      this.props.updateConfig('thinkingTime', 6);
+                      this.props.updateConfig('engineDepth', 5);
                       this.setState((prevState) => {
                         return {
                           config: {
@@ -946,8 +946,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       });
                     }
                     if (val === 'Expert') {
-                      this.props.updateConfig('thinkingTime', 7);
-                      this.props.updateConfig('engineDepth', 8);
+                      this.props.updateConfig('thinkingTime', 8);
+                      this.props.updateConfig('engineDepth', 7);
                       this.setState((prevState) => {
                         return {
                           config: {

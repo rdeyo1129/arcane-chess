@@ -10,6 +10,7 @@ import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
+import { audioManager } from 'src/utils/audio/AudioManager';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import PromotionModal from 'src/components/PromotionModal/PromotionModal';
@@ -22,7 +23,14 @@ import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 //   arcane as arcaneChess,
 //   arcaneChessWorker,
 // } from '../../arcaneChess/arcaneChessInstance.js';
-import { GameBoard, InCheck, TOSQ, FROMSQ } from '../../arcaneChess/board.mjs';
+import {
+  GameBoard,
+  InCheck,
+  TOSQ,
+  FROMSQ,
+  ARCANEFLAG,
+  CAPTURED,
+} from '../../arcaneChess/board.mjs';
 import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import {
   prettyToSquare,
@@ -174,8 +182,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       blackInc: 0,
       whiteArcana: {},
       blackArcana: {},
-      thinkingTime: 1,
-      engineDepth: 2,
+      thinkingTime: 2,
+      engineDepth: 1,
       varVar: 'normal',
       promotion: 'Select',
     },
@@ -277,7 +285,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     new Promise((resolve) => {
       arcaneChess()
         .engineReply(this.state.thinkingTime, this.state.engineDepth)
-        .then(resolve);
+        .then((move) => {
+          if (CAPTURED(move) > 0 && ARCANEFLAG(move) === 0) {
+            audioManager.playSound('capture');
+          } else {
+            audioManager.playSound('move');
+          }
+          resolve(move);
+        });
     })
       .then((reply) => {
         this.setState(
@@ -306,10 +321,15 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
           },
           () => {
             if (CheckAndSet()) {
-              this.setState({
-                gameOver: true,
-                gameOverType: CheckResult().gameResult,
-              });
+              this.setState(
+                {
+                  gameOver: true,
+                  gameOverType: CheckResult().gameResult,
+                },
+                () => {
+                  audioManager.playSound('defeat');
+                }
+              );
               return;
             }
           }
@@ -395,6 +415,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
 
   handleVictory = (timeLeft: number | null) => {
     const LS = getLocalStorage(this.props.auth.user.username);
+    audioManager.playSound('victory');
     setLocalStorage({
       ...getLocalStorage(this.props.auth.user.username),
       nodeScores: {
@@ -1030,6 +1051,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                 <Button
                   className="tertiary"
                   onClick={() => {
+                    audioManager.playSound('defeat');
                     this.setState({
                       gameOver: true,
                       gameOverType: `${this.state.playerColor} resigns`,
@@ -1161,6 +1183,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           '',
                           this.state.placingRoyalty
                         );
+                        audioManager.playSound('move');
                         if (!PrMove(parsed)) {
                           console.log('invalid move', PrMove(parsed), piece);
                         }
@@ -1235,6 +1258,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           swapOrTeleport,
                           this.state.placingRoyalty
                         );
+                      if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
+                        audioManager.playSound('capture');
+                      } else {
+                        audioManager.playSound('move');
+                      }
                       if (this.state.isDyadMove) {
                         this.arcaneChess().generatePlayableOptions();
                         this.arcaneChess().parseCurrentFen();
@@ -1272,6 +1300,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             swapOrTeleport,
                             this.state.placingRoyalty
                           );
+                          audioManager.playSound('move');
                           if (!PrMove(parsed)) {
                             console.log('invalid move');
                           }
@@ -1341,6 +1370,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               '',
                               this.state.placingRoyalty
                             );
+                            audioManager.playSound('move');
                             if (parsed === 0) {
                               console.log('parsed === 0');
                               return;
@@ -1422,6 +1452,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             '',
                             this.state.offeringType
                           );
+                          audioManager.playSound('move');
                           if (parsed === 0) {
                             console.log('parsed === 0');
                             return;
@@ -1502,6 +1533,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                 <Button
                   className="tertiary"
                   onClick={() => {
+                    audioManager.playSound('defeat');
                     this.setState({
                       gameOver: true,
                       gameOverType: `${this.state.playerColor} resigns`,

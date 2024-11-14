@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
+  Outlet,
+  useLocation,
 } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -19,7 +21,8 @@ import '@fontsource/exo';
 import '@fontsource/exo/400-italic.css';
 import '@fontsource/exo/700-italic.css';
 
-import AudioPlayer from '././utils/audioPlayer';
+import ConditionalAudioPlayer from './utils/audio/ConditionalAudioPlayer';
+import GlobalVolumeControl from './utils/audio/GlobalVolumeControl';
 
 import { FrontPage } from '././pages/frontPage/FrontPage';
 // import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
@@ -65,9 +68,20 @@ import Modal from 'react-modal';
 //   }
 // }
 
+const MainLayout: React.FC = () => {
+  const location = useLocation();
+  return (
+    <>
+      <ConditionalAudioPlayer location={location} />
+      <GlobalVolumeControl />
+      <Outlet />
+    </>
+  );
+};
+
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/" element={<MainLayout />}>
       <Route index element={<FrontPage />} />
       <Route
         path="/dashboard"
@@ -166,7 +180,6 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
-      <ConditionalAudioPlayer />
       <RouterProvider router={router}></RouterProvider>
     </>
   );
@@ -185,25 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
     </React.StrictMode>
   );
 });
-
-const ConditionalAudioPlayer = () => {
-  const currentPath = window.location.pathname;
-  const audioRoutes = ['/dashboard', '/campaign'];
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const handlePlayAudio = () => {
-    setIsPlaying(true);
-  };
-
-  return (
-    <div style={{ zIndex: 100 }}>
-      {/* <button onClick={handlePlayAudio}>Start Audio</button> */}
-      {isPlaying && audioRoutes.includes(currentPath) && (
-        <AudioPlayer src="/assets/sounds/tactoriusmenu.wav" volume={0.2} loop />
-      )}
-    </div>
-  );
-};
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

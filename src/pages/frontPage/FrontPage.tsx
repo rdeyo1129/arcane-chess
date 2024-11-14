@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import { connect } from 'react-redux';
 
+import { audioManager } from 'src/utils/audio/AudioManager';
+
 import './FrontPage.scss';
 import Hero from 'src/components/hero2/Hero';
 
@@ -141,9 +143,12 @@ class UnwrappedFrontPage extends React.Component<
               {/* revert to login page when ready for users */}
               <Link
                 to="/dashboard"
-                onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
-                  this.onSubmitLogin(e)
-                }
+                onClick={(
+                  e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                ) => {
+                  audioManager.playSound('impact');
+                  this.onSubmitLogin(e);
+                }}
               >
                 <Button
                   text="ENTER THE SITE"
@@ -214,9 +219,12 @@ class UnwrappedFrontPage extends React.Component<
               {/* revert to login page when ready for users */}
               <Link
                 to="/dashboard"
-                onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
-                  this.onSubmitLogin(e)
-                }
+                onClick={(
+                  e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                ) => {
+                  audioManager.playSound('impact');
+                  this.onSubmitLogin(e);
+                }}
               >
                 <Button
                   text="ENTER THE SITE"

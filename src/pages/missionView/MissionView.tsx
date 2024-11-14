@@ -1213,7 +1213,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                       '',
                                       0
                                     );
-                                  if (parsed === 0) return;
+                                  if (parsed === 0) {
+                                    console.log('parsed === 0');
+                                    // return;
+                                  }
                                   this.setState(
                                     (prevState) => ({
                                       ...prevState,
@@ -1559,7 +1562,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               if (parsed === 0) {
                                 console.log('parsed === 0');
                                 // this.arcaneChess().takeUserMove();
-                                return;
+                                // return;
                               }
                               this.setState(
                                 (prevState) => ({
@@ -1643,7 +1646,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             );
                             if (parsed === 0) {
                               console.log('parsed === 0');
-                              return;
+                              // return;
                             }
                             this.setState(
                               (prevState) => ({

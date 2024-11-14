@@ -892,7 +892,10 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     '',
                     0
                   );
-                  if (parsed === 0) return;
+                  if (parsed === 0) {
+                    console.log('parsed === 0');
+                    // return;
+                  }
                   this.setState(
                     (prevState) => ({
                       ...prevState,
@@ -1373,7 +1376,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             audioManager.playSound('move');
                             if (parsed === 0) {
                               console.log('parsed === 0');
-                              return;
+                              // return;
                             }
                             this.setState(
                               (prevState) => ({
@@ -1455,7 +1458,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           audioManager.playSound('move');
                           if (parsed === 0) {
                             console.log('parsed === 0');
-                            return;
+                            // return;
                           }
                           this.setState(
                             (prevState) => ({

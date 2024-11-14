@@ -2,12 +2,38 @@ import { AudioPlayer } from './audioUtils';
 
 class AudioManager {
   private sounds: { [key: string]: AudioPlayer } = {};
+  private playlist: string[] = [];
+  private currentSongIndex: number = 0;
   private globalVolume: number;
 
   constructor() {
     const storedVolume = localStorage.getItem('globalVolume');
     this.globalVolume = storedVolume !== null ? parseFloat(storedVolume) : 0.2;
   }
+
+  setPlaylist(songs: string[]): void {
+    this.playlist = songs;
+    this.currentSongIndex = Math.floor(Math.random() * this.playlist.length);
+    if (this.playlist.length > 0) this.playCurrentSong();
+  }
+
+  private playCurrentSong(): void {
+    const currentSongKey = this.playlist[this.currentSongIndex];
+    const sound = this.sounds[currentSongKey];
+    if (sound) {
+      sound.play();
+      sound.on('ended', this.handleSongEnd);
+    }
+  }
+
+  private handleSongEnd = (): void => {
+    const currentSongKey = this.playlist[this.currentSongIndex];
+    const sound = this.sounds[currentSongKey];
+    if (sound) sound.off('ended', this.handleSongEnd);
+
+    this.currentSongIndex = (this.currentSongIndex + 1) % this.playlist.length;
+    this.playCurrentSong();
+  };
 
   registerSound(key: string, src: string, loop: boolean = false): void {
     const sound = new AudioPlayer(src, this.globalVolume, loop);

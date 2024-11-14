@@ -80,9 +80,10 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
 
     if (shouldPlayNexus) {
       audioManager.stopSound('menu');
-      audioManager.playSound('nexus');
+      audioManager.setPlaylist(['electron', 'nexus']);
     } else if (shouldPlayMenu) {
       audioManager.stopSound('nexus');
+      audioManager.stopSound('electron');
       audioManager.playSound('menu');
     } else {
       audioManager.stopSound('electron');

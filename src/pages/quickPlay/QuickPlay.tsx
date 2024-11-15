@@ -321,15 +321,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
           },
           () => {
             if (CheckAndSet()) {
-              this.setState(
-                {
-                  gameOver: true,
-                  gameOverType: CheckResult().gameResult,
-                },
-                () => {
-                  audioManager.playSound('defeat');
-                }
-              );
+              this.setState({
+                gameOver: true,
+                gameOverType: CheckResult().gameResult,
+              });
+              audioManager.playSound('defeat');
               return;
             }
           }
@@ -603,19 +599,27 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       switch (type) {
         case 'back':
           if (this.state.historyPly > 0) {
+            audioManager.playSound('move');
             newFenIndex -= 1;
           }
           break;
         case 'forward':
           if (newFenIndex < prevState.fenHistory.length - 1) {
+            audioManager.playSound('move');
             newFenIndex += 1;
           }
           break;
         case 'start':
-          newFenIndex = 0;
+          if (newFenIndex !== 0) {
+            audioManager.playSound('move');
+            newFenIndex = 0;
+          }
           break;
         case 'end':
-          newFenIndex = prevState.fenHistory.length - 1;
+          if (newFenIndex !== prevState.fenHistory.length - 1) {
+            audioManager.playSound('move');
+            newFenIndex = prevState.fenHistory.length - 1;
+          }
           break;
       }
       return {
@@ -895,6 +899,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   if (parsed === 0) {
                     console.log('parsed === 0');
                     // return;
+                  }
+                  if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
+                    audioManager.playSound('capture');
+                  } else {
+                    audioManager.playSound('move');
                   }
                   this.setState(
                     (prevState) => ({
@@ -1186,7 +1195,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           '',
                           this.state.placingRoyalty
                         );
-                        audioManager.playSound('move');
+                        if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
+                          audioManager.playSound('capture');
+                        } else {
+                          audioManager.playSound('move');
+                        }
                         if (!PrMove(parsed)) {
                           console.log('invalid move', PrMove(parsed), piece);
                         }
@@ -1303,7 +1316,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             swapOrTeleport,
                             this.state.placingRoyalty
                           );
-                          audioManager.playSound('move');
+                          if (
+                            CAPTURED(parsed) > 0 &&
+                            ARCANEFLAG(parsed) === 0
+                          ) {
+                            audioManager.playSound('capture');
+                          } else {
+                            audioManager.playSound('move');
+                          }
                           if (!PrMove(parsed)) {
                             console.log('invalid move');
                           }
@@ -1373,7 +1393,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               '',
                               this.state.placingRoyalty
                             );
-                            audioManager.playSound('move');
+                            if (
+                              CAPTURED(parsed) > 0 &&
+                              ARCANEFLAG(parsed) === 0
+                            ) {
+                              audioManager.playSound('capture');
+                            } else {
+                              audioManager.playSound('move');
+                            }
                             if (parsed === 0) {
                               console.log('parsed === 0');
                               // return;
@@ -1455,7 +1482,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             '',
                             this.state.offeringType
                           );
-                          audioManager.playSound('move');
+                          if (
+                            CAPTURED(parsed) > 0 &&
+                            ARCANEFLAG(parsed) === 0
+                          ) {
+                            audioManager.playSound('capture');
+                          } else {
+                            audioManager.playSound('move');
+                          }
                           if (parsed === 0) {
                             console.log('parsed === 0');
                             // return;

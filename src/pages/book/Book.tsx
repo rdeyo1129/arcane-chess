@@ -30,6 +30,7 @@ import book9 from 'src/data/books/book9.json';
 import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
+import { audioManager } from 'src/utils/audio/AudioManager';
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
@@ -391,7 +392,11 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     />
                   </Link>
                 </div>
-                <div className="center"></div>
+                <div className="center" style={{ padding: '0 10px 0 10px' }}>
+                  Select a chapter to the left, select what arcana to include in
+                  your inventory in the bottom right, and read the story or
+                  start the chapter in the top right.
+                </div>
                 <div className="right">
                   <div className="buttons">
                     <div className="toggle-tab">

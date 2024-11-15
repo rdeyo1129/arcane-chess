@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import { Link } from 'react-router-dom';
 
+import { audioManager } from 'src/utils/audio/AudioManager';
+
 import book1 from 'src/data/books/book1.json';
 import book2 from 'src/data/books/book2.json';
 import book3 from 'src/data/books/book3.json';
@@ -405,6 +407,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
       const lastKey = keys[keys.length - 1];
       return property === lastKey;
     }
+    audioManager.playSound('move');
     if (
       this.state.moveNumber === this.state.fenHistory.length - 1 &&
       isLastProperty(
@@ -423,6 +426,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
   };
 
   stepBackward = () => {
+    audioManager.playSound('move');
     if (this.state.gameOver) {
       this.setState({ gameOver: false });
     } else if (this.state.moveNumber === 0) {
@@ -454,6 +458,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
   };
 
   handleVictory = () => {
+    audioManager.playSound('victory');
     const LS = getLocalStorage(this.props.auth.user.username);
     setLocalStorage({
       ...getLocalStorage(this.props.auth.user.username),
@@ -751,6 +756,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     events={{
                       move: (orig: string, dest: string) => {
                         editMovePiece(orig, dest);
+                        audioManager.playSound('move');
                         this.setState({
                           fen: outputFenOfCurrentPosition(),
                           fenHistory: [outputFenOfCurrentPosition()],
@@ -787,7 +793,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     }
                     color="B"
                     strong={true}
-                    text="<"
+                    variant="<"
                     width={190}
                     fontSize={36}
                     // backgroundColorOverride="#3f48cc88"
@@ -799,7 +805,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     }}
                     color="B"
                     strong={true}
-                    text=">"
+                    variant=">"
                     width={190}
                     fontSize={36}
                     // backgroundColorOverride="#3f48cc88"

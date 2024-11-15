@@ -6,6 +6,10 @@ import _ from 'lodash';
 
 // import "../styles/front-page.css";
 
+import { ARCANEFLAG, CAPTURED } from '../../arcaneChess/board.mjs';
+
+import { audioManager } from 'src/utils/audio/AudioManager';
+
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import { Link } from 'react-router-dom';
@@ -512,6 +516,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
 
   handleVictory = (timeLeft: number | null) => {
     const LS = getLocalStorage(this.props.auth.user.username);
+    audioManager.playSound('victory');
     this.setState({
       gameOver: true,
       gameOverType: 'puzzle victory',
@@ -806,6 +811,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                           this.state.correctMoves[this.state.moveNumber][4] ||
                           ''
                         ).toLowerCase();
+                        audioManager.playSound('move');
                         const parsed = this.arcaneChess().makeUserMove(
                           orig,
                           dest,
@@ -817,6 +823,11 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                             ).toUpperCase()}` as keyof typeof PIECES
                           ]
                         );
+                        if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
+                          audioManager.playSound('capture');
+                        } else {
+                          audioManager.playSound('move');
+                        }
                         if (
                           `${orig}${dest}${correctPromotion}` ===
                           this.state.correctMoves[this.state.moveNumber]
@@ -862,6 +873,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     time={this.state.playerClock}
                     timePrime={this.state.playerDec}
                     playerTimeout={() => {
+                      audioManager.playSound('defeat');
                       this.setState({
                         gameOver: true,
                         gameOverType: 'player timed out',
@@ -888,6 +900,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                         gameOver: true,
                         gameOverType: `${this.state.playerColor} resigns`,
                       });
+                      audioManager.playSound('defeat');
                     }}
                     color="B"
                     // strong={true}

@@ -5,6 +5,8 @@ import _ from 'lodash';
 import { withRouter } from '../withRouter/withRouter';
 import { connect } from 'react-redux';
 
+import { audioManager } from 'src/utils/audio/AudioManager';
+
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import 'src/chessground/styles/chessground.scss';
@@ -710,7 +712,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             >
               <div className="chapter-end-text" style={{ padding: '20px' }}>
                 <div className="chapter-end-text-top">
-                  <h1>CHAPTER END</h1>
+                  <h1>BOOK END</h1>
                   <div className="chapter-end-points">
                     <h1 className="digit-box">{digits}</h1>
                   </div>

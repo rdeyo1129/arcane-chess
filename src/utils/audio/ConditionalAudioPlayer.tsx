@@ -59,17 +59,12 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
 
   // Trigger song play/stop based on the current route
   useEffect(() => {
-    const nexusRoutes = [
-      '/chapter',
-      '/lesson',
-      '/temple',
-      '/mission',
-      '/quickplay',
-    ];
+    const nexusRoutes = ['/lesson', '/temple', '/mission', '/quickplay'];
     const menuRoutes = [
       '/',
       '/dashboard',
       '/campaign',
+      '/chapter',
       '/profile',
       '/leaderboard',
       '/lexicon',

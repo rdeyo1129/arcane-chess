@@ -142,6 +142,7 @@ interface State {
   theme: string;
   quickPlayModalOpen: boolean;
   futureSightAvailable: boolean;
+  glitchActive: boolean;
 }
 
 interface Props {
@@ -253,6 +254,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       theme: '',
       quickPlayModalOpen: true,
       futureSightAvailable: true,
+      glitchActive: false,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -283,16 +285,26 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       thinking: true,
     });
     new Promise((resolve) => {
-      arcaneChess()
-        .engineReply(this.state.thinkingTime, this.state.engineDepth)
-        .then((move) => {
-          if (CAPTURED(move) > 0 && ARCANEFLAG(move) === 0) {
-            audioManager.playSound('capture');
-          } else {
-            audioManager.playSound('move');
-          }
-          resolve(move);
-        });
+      if (this.state.glitchActive) {
+        const glitchMove = arcaneChess().engineGlitch();
+        if (CAPTURED(glitchMove) > 0 && ARCANEFLAG(glitchMove) === 0) {
+          audioManager.playSound('capture');
+        } else {
+          audioManager.playSound('move');
+        }
+        resolve(glitchMove);
+      } else {
+        arcaneChess()
+          .engineReply(this.state.thinkingTime, this.state.engineDepth)
+          .then((move) => {
+            if (CAPTURED(move) > 0 && ARCANEFLAG(move) === 0) {
+              audioManager.playSound('capture');
+            } else {
+              audioManager.playSound('move');
+            }
+            resolve(move);
+          });
+      }
     })
       .then((reply) => {
         this.setState(
@@ -317,6 +329,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                 ...prevState.royalties,
                 ...this.arcaneChess().getPrettyRoyalties(),
               },
+              glitchActive: false,
             };
           },
           () => {
@@ -921,6 +934,15 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                       this.engineGo();
                     }
                   );
+                }
+                if (key === 'modsGLI') {
+                  arcaneChess().subtractArcanaUse(
+                    'modsGLI',
+                    this.state.playerColor
+                  );
+                  this.setState({
+                    glitchActive: true,
+                  });
                 }
               }
             }}

@@ -18,6 +18,7 @@ import {
   outputFenOfCurrentPosition,
 } from './board';
 import {
+  validMoves,
   validGroundMoves,
   validSummonMoves,
   validOfferingMoves,
@@ -35,7 +36,7 @@ import {
   POWERBIT,
 } from './arcaneDefs.mjs';
 import { COLOURS, PIECES, prettyToSquare } from './defs.mjs';
-import { TakeMove } from './makemove.mjs';
+import { MakeMove, TakeMove } from './makemove.mjs';
 import { PrSq } from './io';
 
 export default function arcaneChess() {
@@ -195,7 +196,22 @@ export default function arcaneChess() {
       return MakeUserMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
     },
     engineReply: async (thinkingTime, depth = 4) => {
+      // return random valid move earlier here
       return await PreSearch(thinkingTime, depth);
+    },
+    engineGlitch: () => {
+      const moves = validMoves();
+      const randomMove = moves[Math.floor(Math.random() * moves.length)];
+      MakeMove(randomMove);
+      return randomMove;
+    },
+    subtractArcanaUse: (type, color) => {
+      if (color === 'white') {
+        whiteArcaneConfig[type] -= 1;
+      }
+      if (color === 'black') {
+        blackArcaneConfig[type] -= 1;
+      }
     },
     engineSuggestion: async (thinkingTime, playerColor, level) => {
       const playerArcana =

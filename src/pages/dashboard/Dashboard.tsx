@@ -34,7 +34,8 @@ export class UnwrappedDashboard extends React.Component<
     this.state = {
       hoverNav: 'campaign',
       menuItemDescriptions: {
-        campaign: 'Play the story mode and earn your spot on the leaderboard.',
+        campaign:
+          'Play the story mode and earn your spot on the leaderboard. Not mobile supported yet.',
         leaderboard:
           'See the global rankings and scores for each chapter in the campaign.',
         quickplay:

@@ -1268,7 +1268,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     height={90}
                     color="B"
                     onClick={() => {
-                      this.props.navigate('/dashboard');
+                      location.reload();
                     }}
                   />
                 </div>

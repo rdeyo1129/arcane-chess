@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
 // uncomment when ready for users
 // import axios from 'axios';
 import { connect } from 'react-redux';
@@ -108,13 +107,11 @@ export class UnwrappedLeaderBoard extends React.Component<
           campaign... But not yet. Come Back Soon!
         </div>
         <div className="leaderboard-curtain"></div>
-        <div className="leaderboard-image">
-          <img
-            className="leaderboard-image"
-            src={`/assets/dashboard/leaderboard.webp`}
-            alt={`leaderboard`}
-          />
-        </div>
+        <img
+          className="leaderboard-image-full"
+          src={`/assets/dashboard/leaderboard.webp`}
+          alt={`leaderboard`}
+        />
       </div>
     );
   }

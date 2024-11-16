@@ -258,5 +258,12 @@
     "description": "See all of your opponent's premoves or bets.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/modsPRE"
+  },
+  "modsPHA": {
+    "id": "modsPHA",
+    "name": "Phantom Mist",
+    "description": "Your pieces become invisible to your opponent for 3 turns.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/modsPHA"
   }
 }

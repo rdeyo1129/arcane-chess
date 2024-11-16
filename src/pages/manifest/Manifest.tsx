@@ -86,6 +86,20 @@ class UnwrappedManifest extends React.Component<object, State> {
               disabled={false}
               backgroundColorOverride="#11111188"
             />
+            <Button
+              text="BUGS"
+              className="tertiary"
+              onClick={() => {
+                this.setState({
+                  currentTab: 'bugs',
+                });
+              }}
+              color="B"
+              width={160}
+              height={50}
+              disabled={false}
+              backgroundColorOverride="#11111188"
+            />
             {/* <Button
               text="TOS"
               className="tertiary"
@@ -316,6 +330,74 @@ class UnwrappedManifest extends React.Component<object, State> {
               </div>
             ) : this.state.currentTab === 'notes' ? (
               <div id="notes" className="notes">
+                <h3>v2.0.0 Release Notes</h3>
+                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                  <li>Music and sound effects included</li>
+                  <li>
+                    Quickplay:
+                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                      <li>Select custom back rank armies</li>
+                      <li>Custom your spell inventory with up to 6 arcana</li>
+                      <li>
+                        Choose a character... Custom templates that gives you a
+                        themed army and spell inventory
+                      </li>
+                      <li>
+                        Choose a game mode... Potential game-balancing templates
+                        or new ways to play the game
+                      </li>
+                      <li>Explore your options with randomizer buttons</li>
+                    </ul>
+                  </li>
+                  <li>
+                    ‘Patch’ notes:
+                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                      <li>
+                        Piece additions:
+                        <ul
+                          style={{ listStyleType: 'disc', paddingLeft: '20px' }}
+                        >
+                          <li>
+                            The Valkyrie: moves and captures anywhere in the 5x5
+                            grid
+                          </li>
+                          <li>
+                            The Herring: moves in a hex pattern and must be
+                            captured if the move is legal
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        Arcana
+                        <ul
+                          style={{ listStyleType: 'disc', paddingLeft: '20px' }}
+                        >
+                          <li>Dyad Variants: make two moves, no capturing</li>
+                          <li>
+                            Hexweaver variants: entangle on rank, file, or 3x3
+                            grid
+                          </li>
+                          <li>
+                            Offering variants: sacrifice a piece to gain one or
+                            multiple summons
+                          </li>
+                          <li>
+                            Teleportation: move a friendly piece to anywhere on
+                            your first three ranks
+                          </li>
+                          <li>Iron Reach: Valkyrie gains the Queen moveset</li>
+                          <li>Omni Gaze: summon anywhere</li>
+                          <li>Patience: skip your turn</li>
+                          <li>
+                            Trojan Gambit: if en passant is available for your
+                            opponent, they must take
+                          </li>
+                          <li>Glitch: randomize the next engine move</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
                 <h3>v1.0.0 Release Notes</h3>
                 <ul style={{ listStyleType: 'disc' }}>
                   <li>Initial site release</li>
@@ -328,6 +410,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                   <li>
                     Login:
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                      <li>Not currently active</li>
                       <li>No forgot password</li>
                       <li>
                         Guest login with all features except for campaign scores
@@ -358,6 +441,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                   <li>
                     Leaderboard:
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                      <li>Not currently active</li>
                       <li>
                         With an account only, attain a high score in the
                         campaign
@@ -466,7 +550,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                           <li>Swap most friendly major and minor pieces</li>
                           <li>
                             Alternate move patterns, no capturing: (P - right,
-                            left, back. B - Rook’s first move. N - King’s
+                            left, back. B - Rook’s first square. N - King’s
                             pattern. R - Bishop’s first square)
                           </li>
                           <li>
@@ -479,10 +563,9 @@ class UnwrappedManifest extends React.Component<object, State> {
                           </li>
                           <li>Future sight: Force takeback 2 moves</li>
                           <li>
-                            Consume / jaws of betrayal - Capture a friendly
-                            piece
+                            Consume / Jaws of Betrayal: Capture a friendly piece
                           </li>
-                          <li>Fugitive - Castle while in or through check</li>
+                          <li>Fugitive: Castle while in or through check</li>
                           <li>
                             Inheritance: Promote Pawns on the second to last
                             rank
@@ -491,18 +574,31 @@ class UnwrappedManifest extends React.Component<object, State> {
                       </li>
                     </ul>
                   </li>
-                  <li>
-                    Known bugs:
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                      <li>No last move highlights</li>
-                      <li>
-                        Computer will ‘pass turn’ in certain scenarios if both
-                        sides have swap arcana
-                      </li>
-                    </ul>
-                  </li>
                 </ul>
               </div>
+            ) : this.state.currentTab === 'bugs' ? (
+              <li>
+                Known bugs:
+                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                  <li>
+                    Computer will ‘pass turn’ in certain scenarios if both sides
+                    have swap arcana
+                  </li>
+                  <li>
+                    Teleport has many options, will confuse the engine. Plans to
+                    transition to major pieces only
+                  </li>
+                  <li>
+                    Hexweaver arcana can stop the game if king and a checking
+                    piece are both entangled once the timer ends
+                  </li>
+                  <li>
+                    Selecting a square for a royalty that will put you in check
+                    skips your turn
+                  </li>
+                </ul>
+                Feel free to share any additional found bugs in the discord
+              </li>
             ) : // this.state.currentTab === 'tos' ? (
             //   <div id="tos" className="tos">
             //     <h2>Terms of Service</h2>
@@ -613,13 +709,11 @@ class UnwrappedManifest extends React.Component<object, State> {
           </div>
         </div>
         <div className="manifest-curtain"></div>
-        <div className="manifest-image">
-          <img
-            className="manifest-image"
-            src={`/assets/dashboard/manifest.webp`}
-            alt={`manifest`}
-          />
-        </div>
+        <img
+          className="manifest-image-full"
+          src={`/assets/dashboard/manifest.webp`}
+          alt={`manifest`}
+        />
       </div>
     );
   }

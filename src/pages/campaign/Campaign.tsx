@@ -8,7 +8,7 @@ import './Campaign.scss';
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import Button from 'src/components/Button/Button';
-import TactoriusModal from 'src/components/Modal/Modal';
+import CampaignSettingsModal from 'src/components/Modal/CampaignSettingsModal';
 
 import { Link } from 'react-router-dom';
 
@@ -57,7 +57,6 @@ export class UnwrappedCampaign extends React.Component<
       <div
         className="campaign"
         style={{
-          maxWidth: '100vw',
           background: `url(assets/dashboard/chapters.webp) no-repeat center center fixed`,
           backgroundSize: 'cover',
         }}
@@ -135,7 +134,7 @@ export class UnwrappedCampaign extends React.Component<
             disabled={false}
           />
         </div>
-        <TactoriusModal
+        <CampaignSettingsModal
           toggleModal={() => {
             const currLS = getLocalStorage(this.props.auth.user.username);
             setLocalStorage({

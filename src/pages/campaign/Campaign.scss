@@ -7,7 +7,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   .back {
     width: 815px;
     display: flex;
@@ -52,6 +51,25 @@
     text-align: right;
     justify-content: end;
     margin-top: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .campaign {
+    min-width: 100vw;
+    object-fit: cover;
+    .book-grid {
+      .chapters {
+        grid-template-columns: repeat(2, 200px);
+        grid-template-rows: repeat(6, 80px);
+      }
+    }
+    .back {
+      width: 400px;
+    }
+    .reset {
+      width: 400px;
+    }
   }
   .background-image {
     position: absolute;

@@ -42,8 +42,10 @@
         }
         .arcana-select {
           display: flex;
+          justify-content: center;
+          align-items: center;
           gap: 11px;
-          height: 80px;
+          height: 60px;
           width: 100%;
           overflow-x: auto;
           overflow-y: hidden;
@@ -152,8 +154,10 @@
         }
         .arcana-select {
           display: flex;
+          justify-content: center;
+          align-items: center;
           gap: 11px;
-          height: 80px;
+          height: 60px;
           width: 100%;
           overflow-x: auto;
           overflow-y: hidden;

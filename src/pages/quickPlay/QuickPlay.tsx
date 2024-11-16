@@ -145,6 +145,7 @@ interface State {
   quickPlayModalOpen: boolean;
   futureSightAvailable: boolean;
   glitchActive: boolean;
+  engineAvatar: string;
 }
 
 interface Props {
@@ -193,11 +194,13 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
   };
   hasMounted = false;
   arcaneChess;
+  engineFaction;
   chessgroundRef = createRef<IChessgroundApi>();
   chessclockRef = createRef<ChessClock>();
   intervalId: NodeJS.Timeout | null = null;
   constructor(props: Props) {
     super(props);
+    this.engineFaction = this.getRandomFaction();
     this.state = {
       turn: 'white',
       playerInc: null,
@@ -257,6 +260,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       quickPlayModalOpen: true,
       futureSightAvailable: true,
       glitchActive: false,
+      engineAvatar: this.engineFaction,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -956,6 +960,12 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     );
   };
 
+  getRandomFaction = () => {
+    const factions = ['chi', 'omega', 'sigma', 'lambda', 'nu', 'mu'];
+    const randomIndex = Math.floor(Math.random() * factions.length);
+    return factions[randomIndex];
+  };
+
   render() {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
@@ -1058,7 +1068,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               <div className="info-avatar">
                 <div className="avatar">
                   <img
-                    src="/assets/avatars/factions/chi.webp"
+                    src={`/assets/avatars/factions/${this.state.engineAvatar}.webp`}
                     style={{
                       height: '60px',
                       width: '60px',

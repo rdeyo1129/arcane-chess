@@ -328,18 +328,12 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
           <div
             className="completed-node"
             style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100vw',
-              height: '100vh',
-              // background:
-              //   this.state.bookTheme === 'black'
-              //     ? ''
-              //     : `url(/assets/pages/${this.state.bookTheme}.webp)`,
+              backgroundImage:
+                this.state.bookTheme === 'black'
+                  ? ''
+                  : `url(/assets/pages/${this.state.bookTheme}.webp)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
             }}
           >
             <Link to="/campaign">
@@ -355,19 +349,14 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         ) : (
           <div
             className="outer-book"
-            style={
-              {
-                // height: '100vh',
-                // width: '100vw',
-                // background:
-                //   this.state.bookTheme === 'black'
-                //     ? ''
-                //     : `url(/assets/${this.state.bookTheme}.webp)`,
-                // backgroundSize: 'cover',
-                // backgroundPosition: 'center',
-                // backgroundRepeat: 'no-repeat',
-              }
-            }
+            style={{
+              backgroundImage:
+                this.state.bookTheme === 'black'
+                  ? ''
+                  : `url(/assets/pages/${this.state.bookTheme}.webp)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
           >
             <TactoriusModal
               isOpen={this.state.armoryOpen}
@@ -394,10 +383,14 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   </Link>
                   <GlobalVolumeControl />
                 </div>
-                <div className="center" style={{ padding: '0 10px 0 10px' }}>
-                  Select a chapter to the left, select what arcana to include in
-                  your inventory in the bottom right, and read the story or
-                  start the chapter in the top right.
+                <div
+                  className="center"
+                  style={{ padding: '0 10px 0 10px', fontSize: '12px' }}
+                >
+                  Click on a chapter to view its details below and click arcana
+                  if the chapter is a mission. Click the story button to toggle
+                  between the chess and story details. Click the start button to
+                  begin the chapter.
                 </div>
                 <div className="right">
                   <div className="buttons">
@@ -524,23 +517,25 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   <div
                     key={this.state.bookTheme}
                     className="description-inventory story-column"
-                    style={{
-                      display: 'flex',
-                      width: '880px',
-                      height: '480px',
-                      background:
-                        this.state.bookTheme === 'black'
-                          ? ''
-                          : `url(/assets/pages/${this.state.bookTheme}.webp)`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      backgroundRepeat: 'no-repeat',
-                    }}
+                    style={
+                      {
+                        //   display: 'flex',
+                        // width: '880px',
+                        //   height: '480px',
+                        //   background:
+                        //     this.state.bookTheme === 'black'
+                        //       ? ''
+                        //       : `url(/assets/pages/${this.state.bookTheme}.webp)`,
+                        //   backgroundSize: 'cover',
+                        //   backgroundPosition: 'center',
+                        //   backgroundRepeat: 'no-repeat',
+                      }
+                    }
                   >
                     <div
                       className="story-text"
                       style={{
-                        width: '880px',
+                        // width: '880px',
                         height: '480px',
                         background: '#11111188',
                         padding: '20px',
@@ -571,22 +566,23 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   </div>
                 ) : this.state.selectedTab === 'chess' ? (
                   <div
+                    className="chess-tab"
                     key={this.state.bookTheme}
-                    style={{
-                      display: 'flex',
-                      width: '880px',
-                      height: '480px',
-                      background:
-                        this.state.bookTheme === 'black'
-                          ? ''
-                          : `url(/assets/pages/${this.state.bookTheme}.webp)`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      backgroundRepeat: 'no-repeat',
-                    }}
+                    style={
+                      {
+                        // width: '880px',
+                        // background:
+                        //   this.state.bookTheme === 'black'
+                        //     ? ''
+                        //     : `url(/assets/pages/${this.state.bookTheme}.webp)`,
+                        // backgroundSize: 'cover',
+                        // backgroundPosition: 'center',
+                        // backgroundRepeat: 'no-repeat',
+                      }
+                    }
                   >
                     <div
-                      className={`cg-wrap tactorius-board ${this.state.theme}-board`}
+                      className={`cg-wrap board-view tactorius-board ${this.state.theme}-board`}
                     >
                       <Chessground
                         // fen={this.state.fenHistory[this.state.fenHistory.length - 1]}
@@ -608,8 +604,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         // bVisible={this.state.bVisCount === 0}
                         // width={520}
                         // height={520}
-                        width={480}
-                        height={480}
+                        width={'100%'}
+                        height={'100%'}
                         // inline styling for aspect ratio? OR interpolating in this case based on the page type, use a global state string?
                         // don't, just go by the page type
                         // width={360}
@@ -672,153 +668,146 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         }}
                       />
                     </div>
-                    <div
-                      className="description-inventory"
-                      // style={{ zIndex: 100 }}
-                    >
-                      <div className="description">
-                        {this.state.selectedSwatch !== '' ? (
-                          <div className="node">
-                            {this.state.hoverArcane !== '' ? (
-                              <>
-                                <b className="node-title">
-                                  {arcana[this.state.hoverArcane].name}
-                                </b>
-                                <div className="node-description">
-                                  <p className="description-paragraph">
-                                    {arcana[this.state.hoverArcane].description}
+                  </div>
+                ) : null}
+                <div
+                  className="description-inventory"
+                  // style={{ zIndex: 100 }}
+                >
+                  <div className="description">
+                    {this.state.selectedSwatch !== '' ? (
+                      <div className="node">
+                        {this.state.hoverArcane !== '' ? (
+                          <>
+                            <b className="node-title">
+                              {arcana[this.state.hoverArcane].name}
+                            </b>
+                            <div className="node-description">
+                              <p className="description-paragraph">
+                                {arcana[this.state.hoverArcane].description}
+                              </p>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <b className="node-title">
+                              {this.state.book[this.state.selectedSwatch].title}
+                            </b>
+                            <div className="node-description">
+                              {this.state.book[
+                                this.state.selectedSwatch
+                              ].nodeText
+                                .split('\n\n')
+                                .map((p: string, i: number) => (
+                                  <p className="description-paragraph" key={i}>
+                                    {p}
+                                    {this.state.book[this.state.selectedSwatch]
+                                      .boss && (
+                                      <span style={{ color: 'red' }}>
+                                        This is a boss level. Completing this
+                                        mission will reset your progress in this
+                                        chapter.
+                                      </span>
+                                    )}
                                   </p>
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <b className="node-title">
-                                  {
-                                    this.state.book[this.state.selectedSwatch]
-                                      .title
-                                  }
-                                </b>
-                                <div className="node-description">
-                                  {this.state.book[
-                                    this.state.selectedSwatch
-                                  ].nodeText
-                                    .split('\n\n')
-                                    .map((p: string, i: number) => (
-                                      <p
-                                        className="description-paragraph"
-                                        key={i}
-                                      >
-                                        {p}
-                                        {this.state.book[
-                                          this.state.selectedSwatch
-                                        ].boss && (
-                                          <span style={{ color: 'red' }}>
-                                            This is a boss level. Completing
-                                            this mission will reset your
-                                            progress in this chapter.
-                                          </span>
-                                        )}
-                                      </p>
-                                    ))}
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        ) : null}
+                                ))}
+                            </div>
+                          </>
+                        )}
                       </div>
-                      <div className="inventory">
-                        <div
-                          className="time-arcana"
-                          style={{ background: '#77777788' }}
-                        >
-                          <h2 className="time">{this.getTimeDisplay()}</h2>
-                          <div className="arcana">
-                            {this.state.selectedSwatch === '' ? null : this
-                                .state.playerColor === 'white' ? (
-                              <ArcanaSelect
-                                auth={this.props.auth}
-                                isPlayerArcana
-                                isMission={isMission}
-                                updateBookMultiplier={(value) =>
-                                  this.updateMultiplier(value)
-                                }
-                                missionArcana={{
-                                  ...this.booksMap[`book${LS.chapter}`]?.[
-                                    this.state.selectedSwatch
-                                  ]?.panels['panel-1'].whiteArcane,
-                                }}
-                                onToggleHover={(arcane: string) => {
-                                  this.toggleHover(arcane);
-                                }}
-                              />
-                            ) : (
-                              <ArcanaSelect
-                                auth={this.props.auth}
-                                isPlayerArcana={false}
-                                engineArcana={{
-                                  ...this.booksMap[`book${LS.chapter}`]?.[
-                                    this.state.selectedSwatch
-                                  ]?.panels['panel-1'].blackArcane,
-                                }}
-                                isMission={isMission}
-                                updateBookMultiplier={(value) =>
-                                  this.updateMultiplier(value)
-                                }
-                                onToggleHover={(arcane: string) => {
-                                  this.toggleHover(arcane);
-                                }}
-                              />
-                            )}
-                          </div>
-                        </div>
-                        <div
-                          className="time-arcana"
-                          style={{ background: '#33333388' }}
-                        >
-                          <h2 className="time">{this.getTimeDisplay()}</h2>
-                          <div className="arcana">
-                            {this.state.selectedSwatch === '' ? null : this
-                                .state.playerColor === 'black' ? (
-                              <ArcanaSelect
-                                auth={this.props.auth}
-                                isPlayerArcana
-                                isMission={isMission}
-                                updateBookMultiplier={(value) =>
-                                  this.updateMultiplier(value)
-                                }
-                                missionArcana={{
-                                  ...this.booksMap[`book${LS.chapter}`]?.[
-                                    this.state.selectedSwatch
-                                  ]?.panels['panel-1'].whiteArcane,
-                                }}
-                                onToggleHover={(arcane: string) => {
-                                  this.toggleHover(arcane);
-                                }}
-                              />
-                            ) : (
-                              <ArcanaSelect
-                                auth={this.props.auth}
-                                isPlayerArcana={false}
-                                engineArcana={{
-                                  ...this.booksMap[`book${LS.chapter}`]?.[
-                                    this.state.selectedSwatch
-                                  ]?.panels['panel-1'].blackArcane,
-                                }}
-                                isMission={isMission}
-                                updateBookMultiplier={(value) =>
-                                  this.updateMultiplier(value)
-                                }
-                                onToggleHover={(arcane: string) => {
-                                  this.toggleHover(arcane);
-                                }}
-                              />
-                            )}
-                          </div>
-                        </div>
+                    ) : null}
+                  </div>
+                  <div className="inventory">
+                    <div
+                      className="time-arcana"
+                      style={{ background: '#77777788' }}
+                    >
+                      <h2 className="time">{this.getTimeDisplay()}</h2>
+                      <div className="arcana">
+                        {this.state.selectedSwatch === '' ? null : this.state
+                            .playerColor === 'white' ? (
+                          <ArcanaSelect
+                            auth={this.props.auth}
+                            isPlayerArcana
+                            isMission={isMission}
+                            updateBookMultiplier={(value) =>
+                              this.updateMultiplier(value)
+                            }
+                            missionArcana={{
+                              ...this.booksMap[`book${LS.chapter}`]?.[
+                                this.state.selectedSwatch
+                              ]?.panels['panel-1'].whiteArcane,
+                            }}
+                            onToggleHover={(arcane: string) => {
+                              this.toggleHover(arcane);
+                            }}
+                          />
+                        ) : (
+                          <ArcanaSelect
+                            auth={this.props.auth}
+                            isPlayerArcana={false}
+                            engineArcana={{
+                              ...this.booksMap[`book${LS.chapter}`]?.[
+                                this.state.selectedSwatch
+                              ]?.panels['panel-1'].blackArcane,
+                            }}
+                            isMission={isMission}
+                            updateBookMultiplier={(value) =>
+                              this.updateMultiplier(value)
+                            }
+                            onToggleHover={(arcane: string) => {
+                              this.toggleHover(arcane);
+                            }}
+                          />
+                        )}
+                      </div>
+                    </div>
+                    <div
+                      className="time-arcana"
+                      style={{ background: '#33333388' }}
+                    >
+                      <h2 className="time">{this.getTimeDisplay()}</h2>
+                      <div className="arcana">
+                        {this.state.selectedSwatch === '' ? null : this.state
+                            .playerColor === 'black' ? (
+                          <ArcanaSelect
+                            auth={this.props.auth}
+                            isPlayerArcana
+                            isMission={isMission}
+                            updateBookMultiplier={(value) =>
+                              this.updateMultiplier(value)
+                            }
+                            missionArcana={{
+                              ...this.booksMap[`book${LS.chapter}`]?.[
+                                this.state.selectedSwatch
+                              ]?.panels['panel-1'].whiteArcane,
+                            }}
+                            onToggleHover={(arcane: string) => {
+                              this.toggleHover(arcane);
+                            }}
+                          />
+                        ) : (
+                          <ArcanaSelect
+                            auth={this.props.auth}
+                            isPlayerArcana={false}
+                            engineArcana={{
+                              ...this.booksMap[`book${LS.chapter}`]?.[
+                                this.state.selectedSwatch
+                              ]?.panels['panel-1'].blackArcane,
+                            }}
+                            isMission={isMission}
+                            updateBookMultiplier={(value) =>
+                              this.updateMultiplier(value)
+                            }
+                            onToggleHover={(arcane: string) => {
+                              this.toggleHover(arcane);
+                            }}
+                          />
+                        )}
                       </div>
                     </div>
                   </div>
-                ) : null}
+                </div>
               </div>
             </div>
           </div>

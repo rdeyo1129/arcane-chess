@@ -25,6 +25,8 @@
       .left {
         z-index: 30;
         width: 400px;
+        display: flex;
+        flex-direction: column;
         a {
           display: inline-block;
           width: auto;

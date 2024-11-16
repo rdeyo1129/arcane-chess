@@ -22,7 +22,6 @@ import '@fontsource/exo/400-italic.css';
 import '@fontsource/exo/700-italic.css';
 
 import ConditionalAudioPlayer from './utils/audio/ConditionalAudioPlayer';
-import GlobalVolumeControl from './utils/audio/GlobalVolumeControl';
 
 import { FrontPage } from '././pages/frontPage/FrontPage';
 // import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
@@ -73,7 +72,6 @@ const MainLayout: React.FC = () => {
   return (
     <>
       <ConditionalAudioPlayer location={location} />
-      <GlobalVolumeControl />
       <Outlet />
     </>
   );

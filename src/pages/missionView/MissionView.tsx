@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import { Link } from 'react-router-dom';
 
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+
 import { audioManager } from 'src/utils/audio/AudioManager';
 
 import 'src/pages/missionView/MissionView.scss';
@@ -1299,6 +1301,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     )}
                   </div>
                 </div>
+                <GlobalVolumeControl />
               </div>
               <div className="time-board-time">
                 <div className="board-frame"></div>

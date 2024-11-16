@@ -1,0 +1,51 @@
+@import '../../styles/variables.scss';
+
+.global-volume-control {
+  display: relative;
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-end;
+  z-index: 5;
+  .volume-bar {
+    display: flex;
+    .volume-level {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+    }
+    .volume-slider {
+      width: 120px;
+      appearance: none;
+      background: #444444;
+      border: none;
+      height: 20px;
+      margin: 0;
+      outline: none;
+      &::-webkit-slider-thumb {
+        appearance: none;
+        width: 30px;
+        height: 20px;
+        background-color: $B_MENU;
+        cursor: pointer;
+      }
+      &::-moz-range-thumb {
+        width: 30px;
+        height: 20px;
+        background-color: $B_MENU;
+        cursor: pointer;
+      }
+      &::-ms-thumb {
+        width: 30px;
+        height: 20px;
+        background-color: $B_MENU;
+        cursor: pointer;
+      }
+    }
+    .volume-level {
+      font-size: 14px;
+      height: 20px;
+      width: 40px;
+    }
+  }
+}

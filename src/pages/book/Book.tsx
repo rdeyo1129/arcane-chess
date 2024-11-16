@@ -9,6 +9,8 @@ import 'src/chessground/styles/normal.scss';
 
 import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
 
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+
 import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
 import ArcanaSelect from 'src/pages/book/ArcanaSelect';
@@ -30,7 +32,6 @@ import book9 from 'src/data/books/book9.json';
 import book10 from 'src/data/books/book10.json';
 import book11 from 'src/data/books/book11.json';
 import book12 from 'src/data/books/book12.json';
-import { audioManager } from 'src/utils/audio/AudioManager';
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
@@ -391,6 +392,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       backgroundColorOverride="#33333388"
                     />
                   </Link>
+                  <GlobalVolumeControl />
                 </div>
                 <div className="center" style={{ padding: '0 10px 0 10px' }}>
                   Select a chapter to the left, select what arcana to include in

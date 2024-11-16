@@ -5,6 +5,8 @@ import { withRouter } from 'src/components/withRouter/withRouter';
 import Button from 'src/components/Button/Button';
 import './Dashboard.scss';
 
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+
 // Define the structure for props if any are expected
 interface DashboardProps {
   logoutUser: () => void;
@@ -142,6 +144,7 @@ export class UnwrappedDashboard extends React.Component<
                 backgroundColorOverride="#11111188"
               />
             </div>
+            <GlobalVolumeControl />
           </div>
           <div className="image-description">
             <img

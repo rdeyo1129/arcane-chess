@@ -16,6 +16,8 @@ import TactoriusModal from 'src/components/Modal/Modal';
 import PromotionModal from 'src/components/PromotionModal/PromotionModal';
 import QuickplayModal from 'src/components/Modal/QuickplayModal';
 
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+
 import arcanaJson from 'src/data/arcana.json';
 
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
@@ -1099,6 +1101,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   backgroundColorOverride="#222222"
                 />
               </div>
+              <GlobalVolumeControl />
             </div>
             <div className="time-board-time">
               <div className="board-view tactorius-default-board">

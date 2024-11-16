@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { audioManager } from './AudioManager';
+import './GlobalVolumeControl.scss';
+
+import Button from 'src/components/Button/Button';
 
 const GlobalVolumeControl: React.FC = () => {
   const [volume, setVolume] = useState<number>(audioManager.getGlobalVolume());
@@ -13,19 +16,35 @@ const GlobalVolumeControl: React.FC = () => {
     setVolume(newVolume);
   };
 
+  const muteVolume = () => {
+    setVolume(0);
+  };
+
   return (
-    <div style={{ position: 'fixed', top: 10, right: 10, zIndex: 1000 }}>
-      <label htmlFor="global-volume">Volume: {Math.round(volume * 100)}%</label>
-      <input
-        id="global-volume"
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
-        value={volume}
-        onChange={handleVolumeChange}
-        style={{ marginLeft: 8 }}
+    <div className="global-volume-control">
+      <Button
+        className="tertiary"
+        onClick={muteVolume}
+        text="MUTE"
+        color="B"
+        width={160}
+        height={30}
       />
+      <div className="volume-bar">
+        <label className="volume-level" htmlFor="global-volume">
+          {Math.round(volume * 100)}%
+        </label>
+        <input
+          id="global-volume"
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+          className="volume-slider"
+        />
+      </div>
     </div>
   );
 };

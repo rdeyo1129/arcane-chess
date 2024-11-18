@@ -413,7 +413,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         color="B"
                         width={200}
                         disabled={this.state.selectedSwatch === ''}
-                        backgroundColorOverride="#33333388"
+                        backgroundColorOverride="#3f48cc"
+                        styles={{ color: 'white' }}
                       />
                     </Link>
                   </div>

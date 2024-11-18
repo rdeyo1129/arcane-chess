@@ -137,6 +137,9 @@
           text-align: left;
         }
       }
+      .global-volume-control {
+        display: none;
+      }
       .buttons {
         display: none;
       }
@@ -185,6 +188,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     overflow: auto;
+    overflow-x: hidden;
     background: radial-gradient(
       circle,
       rgba(0, 162, 255, 0.7) 0%,
@@ -212,7 +216,7 @@
           flex-direction: row-reverse;
           justify-content: center;
           height: 60px;
-          width: 400px;
+          width: 360px;
           .avatar {
             background: rgba(34, 34, 34, 0.7);
           }
@@ -260,6 +264,9 @@
         .buttons {
           display: none;
         }
+        .global-volume-control {
+          display: none;
+        }
       }
       .time-board-time {
         max-width: 400px;
@@ -286,12 +293,12 @@
       }
       .nav-history-buttons-player {
         display: flex;
-        gap: 10px;
         flex-direction: column-reverse;
-        min-height: 480px;
-        padding: 0 10px 0 10px;
+        min-height: 360px;
+        padding: 0;
         .nav {
           display: flex;
+          width: 360px;
         }
         .history {
           display: flex;
@@ -299,6 +306,7 @@
           background-color: rgba(34, 34, 34, 0.7);
           overflow-y: scroll;
           padding: 10px;
+          width: 360px;
           .pgn-list {
             height: 200px;
             width: 20px;
@@ -318,17 +326,19 @@
             text-align: left;
           }
         }
+        .global-volume-control {
+          display: flex;
+        }
         .buttons {
           display: flex;
           flex-direction: row-reverse;
-          background-color: rgba(34, 34, 34, 0.7);
           height: 40px;
-          width: 100%;
         }
         .dialogue {
           display: block;
           height: 190px;
           padding: 20px;
+          width: 360px;
           background: rgba(34, 34, 34, 0.7);
           overflow-y: scroll;
         }
@@ -336,7 +346,7 @@
           position: relative;
           display: flex;
           align-self: center;
-          width: 400px;
+          width: 360px;
           .info {
             width: 100%;
             display: flex;
@@ -371,7 +381,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    overflow: auto;
+    overflow-x: hidden;
     background: radial-gradient(
       circle,
       rgba(0, 162, 255, 0.7) 0%,
@@ -385,6 +395,7 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
+      overflow-x: hidden;
       .time-board-time {
         max-width: 360px;
         min-height: 360px;

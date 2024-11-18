@@ -1111,7 +1111,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   backgroundColorOverride="#222222"
                 />
               </div>
-              <GlobalVolumeControl />
+              <div className="global-volume-control">
+                <GlobalVolumeControl />
+              </div>
             </div>
             <div className="time-board-time">
               <div className="board-view tactorius-default-board">
@@ -1601,6 +1603,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               </div>
             </div>
             <div className="nav-history-buttons-player">
+              <div className="global-volume-control">
+                <GlobalVolumeControl />
+              </div>
               <div className="buttons">
                 <Button
                   className="tertiary"

@@ -29,6 +29,7 @@ const GlobalVolumeControl: React.FC = () => {
         color="B"
         width={160}
         height={30}
+        backgroundColorOverride="#222222"
       />
       <div className="volume-bar">
         <label className="volume-level" htmlFor="global-volume">
@@ -42,6 +43,9 @@ const GlobalVolumeControl: React.FC = () => {
           step="0.01"
           value={volume}
           onChange={handleVolumeChange}
+          style={{
+            cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
+          }}
           className="volume-slider"
         />
       </div>

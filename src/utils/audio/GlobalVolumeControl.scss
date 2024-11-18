@@ -17,7 +17,7 @@
     .volume-slider {
       width: 120px;
       appearance: none;
-      background: #444444;
+      background: #222222;
       border: none;
       height: 20px;
       margin: 0;
@@ -27,26 +27,33 @@
         width: 30px;
         height: 20px;
         background-color: $B_MENU;
-        cursor: pointer;
+        cursor:
+          url('/assets/images/cursors/pointer.svg') 12 4,
+          pointer;
       }
       &::-moz-range-thumb {
         width: 30px;
         height: 20px;
         background-color: $B_MENU;
-        cursor: pointer;
+        cursor:
+          url('/assets/images/cursors/pointer.svg') 12 4,
+          pointer;
       }
       &::-ms-thumb {
         width: 30px;
         height: 20px;
         background-color: $B_MENU;
-        cursor: pointer;
+        cursor:
+          url('/assets/images/cursors/pointer.svg') 12 4,
+          pointer;
       }
     }
     .volume-level {
       font-size: 14px;
       height: 20px;
       width: 40px;
-      background: #444444;
+      background: #222222;
+      cursor: url('/assets/images/cursors/default.svg'), default;
     }
   }
 }

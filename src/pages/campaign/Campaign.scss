@@ -2,11 +2,12 @@
 
 .campaign {
   width: 100%;
-  height: 100vh;
+  // height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
   .back {
     width: 815px;
     display: flex;
@@ -56,6 +57,8 @@
 
 @media (max-width: 1024px) {
   .campaign {
+    display: flex;
+    justify-content: flex-start;
     min-width: 100vw;
     object-fit: cover;
     .book-grid {

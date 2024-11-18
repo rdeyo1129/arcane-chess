@@ -6,6 +6,7 @@ import Button from 'src/components/Button/Button';
 import './Dashboard.scss';
 
 import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+import DashboardModal from './DashboardModal';
 
 // Define the structure for props if any are expected
 interface DashboardProps {
@@ -52,6 +53,7 @@ export class UnwrappedDashboard extends React.Component<
   render() {
     return (
       <div className="dashboard">
+        <DashboardModal />
         <div className="dashboard-content">
           <div className="nav-bar">
             <Link

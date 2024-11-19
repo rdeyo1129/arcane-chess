@@ -34,7 +34,7 @@ interface GameModeType {
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 const R = '#c53939';
-// const O = '#c77c35';
+const O = '#c77c35';
 const Y = '#d9b800';
 // const G = '#34aa48';
 // const B = '#3f48cc';
@@ -51,13 +51,12 @@ const emptyArcane = {
 };
 
 // CHARACTERS
-
 const unpaddedCharacters = [
   {
     name: 'The Warlord',
     inventory: [arcana.dyadK, arcana.dyadQ, arcana.dyadR],
     setup: 'RNBQKBNR',
-    imagePath: `${path}warlord`,
+    imagePath: 'warlord',
     color: Y,
     description:
       'Look for the double attacks, escape a threat against your King.',
@@ -66,7 +65,7 @@ const unpaddedCharacters = [
     name: 'The Banshee',
     inventory: [arcana.dyadW, arcana.dyadW, arcana.sumnW, arcana.sumnW],
     setup: 'RNWQKWNR',
-    imagePath: `${path}banshee`,
+    imagePath: 'banshee',
     color: V,
     description: '',
   },
@@ -74,7 +73,7 @@ const unpaddedCharacters = [
     name: 'The Ghoul',
     inventory: [arcana.sumnS, arcana.sumnS, arcana.dyadS, arcana.dyadS],
     setup: 'RSBQKBSR',
-    imagePath: `${path}ghoul`,
+    imagePath: 'ghoul',
     color: V,
     description: '',
   },
@@ -82,9 +81,17 @@ const unpaddedCharacters = [
     name: 'The Politician',
     inventory: [arcana.modsSKI, arcana.modsINH, arcana.offrC],
     setup: 'RNBVKBNR',
-    imagePath: `${path}politician`,
+    imagePath: 'politician',
     color: R,
     description: 'Play for the endgame and use your resources.',
+  },
+  {
+    name: 'The Phoenix',
+    inventory: [arcana.dyadA, arcana.modsTEM, arcana.sumnRA, arcana.sumnRQ],
+    setup: 'RNBQKBNR',
+    imagePath: 'phoenix',
+    color: O,
+    description: 'Dazzle your opponent with high-end spells.',
   },
 ];
 
@@ -93,6 +100,7 @@ export const startingInventory = Array(6).fill(emptyArcane);
 export const padInventory = (characters: Character[]) => {
   return characters.map((character) => ({
     ...character,
+    imagePath: `${path}${character.imagePath}`,
     inventory: [
       ...character.inventory,
       ...Array(6 - character.inventory.length).fill(arcana.empty),
@@ -103,7 +111,6 @@ export const padInventory = (characters: Character[]) => {
 export const characters = padInventory(unpaddedCharacters);
 
 // MODES
-
 const padArcana = (arcana: ArcanaDetail[]) => {
   const paddedArcana = [...arcana];
   while (paddedArcana.length < 6) {
@@ -175,6 +182,17 @@ export const modes: Record<string, GameModeType> = padModes({
     black: {
       arcana: [arcana.sumnR, arcana.modsEXT],
       setup: 'rnbvkbnr',
+    },
+  },
+  suddenDeath: {
+    name: 'Sudden Death',
+    white: {
+      arcana: [],
+      setup: 'TMQVKQMT',
+    },
+    black: {
+      arcana: [],
+      setup: 'tmqvkqmt',
     },
   },
 });

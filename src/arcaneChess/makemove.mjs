@@ -36,9 +36,8 @@ import {
 } from './defs';
 import { ARCANEFLAG } from './board.mjs';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
-import { PrintMoveList } from './io.mjs';
 
-const royaltyIndexMapRestructure = [30, 31, 32, 33, 34, 35, 36, 37];
+const royaltyIndexMapRestructure = [0, 30, 31, 32, 33, 34, 35, 36, 37];
 
 export function ClearPiece(sq, summon = false) {
   let pce = GameBoard.pieces[sq];
@@ -336,7 +335,7 @@ export function MakeMove(move, moveType = '') {
     AddPiece(to, pieceEpsilon);
   } else if (TOSQ(move) > 0 && move & MFLAGSUMN) {
     if (captured > 0) {
-      if (captured === 5) {
+      if (captured === 6) {
         // file bind
         let onesDigit = to % 10;
         _.times(8, (i) => {
@@ -348,7 +347,7 @@ export function MakeMove(move, moveType = '') {
           if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
           GameBoard.royaltyE[square] = 8;
         });
-      } else if (captured === 6) {
+      } else if (captured === 7) {
         // rank bind
         const tensDigit = Math.floor(to / 10) * 10;
         _.times(8, (i) => {
@@ -361,7 +360,7 @@ export function MakeMove(move, moveType = '') {
           if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
           GameBoard.royaltyE[square] = 8;
         });
-      } else if (captured === 7) {
+      } else if (captured === 8) {
         const tombSquare = [-11, -10, -9, -1, 0, 1, 9, 10, 11];
         _.forEach(tombSquare, (offset) => {
           const sq = TOSQ(move) + offset;

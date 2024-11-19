@@ -759,11 +759,15 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   offeringType: '',
                   placingRoyalty: 0,
                 });
+                return;
               } else {
                 if (key.includes('sumn')) {
+                  const dyadClock = this.arcaneChess().getDyadClock();
+                  if (dyadClock > 0 || this.state.isDyadMove) return;
                   if (key.includes('sumnR') && key !== 'sumnR') {
                     // if (key !== 'sumnRE' && InCheck()) return;
                     this.setState({
+                      isDyadMove: false,
                       placingPiece: 0,
                       placingRoyalty: royalties[`${key.split('sumn')[1]}`],
                       swapType: '',
@@ -772,6 +776,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     });
                   } else {
                     this.setState({
+                      isDyadMove: false,
                       placingRoyalty: 0,
                       swapType: '',
                       offeringType: '',
@@ -788,6 +793,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   }
                 }
                 if (key.includes('swap')) {
+                  const dyadClock = this.arcaneChess().getDyadClock();
+                  if (dyadClock > 0 || this.state.isDyadMove) return;
                   if (this.state.swapType === '') {
                     this.setState({
                       swapType: key.split('swap')[1],
@@ -799,6 +806,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   }
                 }
                 if (key.includes('offr')) {
+                  const dyadClock = this.arcaneChess().getDyadClock();
+                  if (dyadClock > 0 || this.state.isDyadMove) return;
                   if (this.state.offeringType === '') {
                     this.setState({
                       offeringType: key.split('offr')[1],
@@ -823,6 +832,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                         ...prevState,
                         isDyadMove: false,
                         normalMovesOnly: false,
+                        placingPiece: 0,
+                        placingRoyalty: 0,
+                        swapType: '',
+                        offeringType: '',
+                        isTeleport: false,
                       };
                     } else if (dyadClock === 1) {
                       // If first move of dyad is already made (dyadClock is 1), deactivate the dyad and revert the move
@@ -835,6 +849,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                         fen: outputFenOfCurrentPosition(),
                         fenHistory: prevState.fenHistory.slice(0, -1),
                         lastMoveHistory: prevState.lastMoveHistory.slice(0, -1),
+                        placingPiece: 0,
+                        placingRoyalty: 0,
+                        swapType: '',
+                        offeringType: '',
+                        isTeleport: false,
                       };
                     } else {
                       // Activate the dyad move
@@ -848,12 +867,22 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           ...prevState,
                           isDyadMove: false,
                           normalMovesOnly: false,
+                          placingPiece: 0,
+                          placingRoyalty: 0,
+                          swapType: '',
+                          offeringType: '',
+                          isTeleport: false,
                         };
                       } else {
                         return {
                           ...prevState,
                           isDyadMove: true,
                           normalMovesOnly: true,
+                          placingPiece: 0,
+                          placingRoyalty: 0,
+                          swapType: '',
+                          offeringType: '',
+                          isTeleport: false,
                         };
                       }
                     }

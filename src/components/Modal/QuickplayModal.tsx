@@ -319,7 +319,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       start: 'Rock and Roll!',
       trueRandDiff:
         'This one is truly random and unbalanced... but great for experimenting! Click if you dare.',
-      '': 'Customize a match against the engine. To start, try clicking one of the randomize buttons off to the right and click start. Hover over other things for more information.',
+      '': 'Customize a match against the engine. To start, try clicking one of the randomize buttons or choosing a game mode then click start. Hover over other things for more information.',
     };
   };
 
@@ -557,7 +557,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           }}
                           updateHover={(arcaneObject) => {
                             this.setState({
-                              hoverId: arcaneObject.id,
+                              hoverId: arcaneObject.id || '',
                             });
                           }}
                         />
@@ -823,7 +823,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           }}
                           updateHover={(arcaneObject) => {
                             this.setState({
-                              hoverId: arcaneObject.id,
+                              hoverId: arcaneObject.id || '',
                             });
                           }}
                         />

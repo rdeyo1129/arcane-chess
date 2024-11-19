@@ -29,3 +29,7 @@ node_modules
 server/config/keys.ts
 
 src/data/puzzles.csv
+
+src/utils/audio/files.ts
+
+public/assets/sounds/

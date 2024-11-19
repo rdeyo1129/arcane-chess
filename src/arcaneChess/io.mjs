@@ -34,18 +34,7 @@ export function PrSq(sq) {
   return FileChar[FilesBrd[sq]] + RankChar[RanksBrd[sq]];
 }
 
-const royaltyMap = [
-  // ...new Array(30).fill('.'),
-  '.',
-  30,
-  31,
-  32,
-  33,
-  34,
-  35,
-  36,
-  37,
-];
+const royaltyMap = [30, 31, 32, 33, 34, 35, 36, 37];
 // todo update to allow swapping your pawns into promotion, but not your opponents
 
 const isInitPromotion = (move) => {
@@ -165,7 +154,7 @@ export function PrMove(move, returnType) {
         PrSq(TOSQ(move));
     } else {
       MvStr =
-        PceChar.split('')[PROMOTED(move)].toUpperCase() +
+        PceChar.split('')[PROMOTED(move)]?.toUpperCase() +
         '@' +
         PrSq(TOSQ(move));
     }

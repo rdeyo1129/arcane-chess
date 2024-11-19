@@ -701,22 +701,19 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             }.svg`}
             style={{
               opacity:
-                this.state.playerColor !== gameBoardTurn ||
-                this.state.selectedSide === this.state.engineColor ||
+                this.state.playerColor !== color ||
                 (!futureSightAvailable && key === 'modsFUT')
                   ? 0.5
                   : 1,
               cursor:
-                this.state.playerColor !== gameBoardTurn ||
-                this.state.selectedSide === this.state.engineColor ||
+                this.state.playerColor !== color ||
                 (!futureSightAvailable && key === 'modsFUT')
                   ? 'not-allowed'
                   : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
             }}
             onClick={() => {
               if (
-                this.state.playerColor !== gameBoardTurn ||
-                this.state.selectedSide === this.state.engineColor ||
+                this.state.playerColor !== color ||
                 (!futureSightAvailable && key === 'modsFUT')
               )
                 return;

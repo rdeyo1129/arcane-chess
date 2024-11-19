@@ -729,22 +729,19 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             }.svg`}
             style={{
               opacity:
-                this.state.playerColor !== gameBoardTurn ||
-                this.state.selectedSide === this.state.engineColor ||
+                this.state.playerColor !== color ||
                 (!futureSightAvailable && key === 'modsFUT')
                   ? 0.5
                   : 1,
               cursor:
-                this.state.playerColor !== gameBoardTurn ||
-                this.state.selectedSide === this.state.engineColor ||
+                this.state.playerColor !== color ||
                 (!futureSightAvailable && key === 'modsFUT')
                   ? 'not-allowed'
                   : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
             }}
             onClick={() => {
               if (
-                this.state.playerColor !== gameBoardTurn ||
-                this.state.selectedSide === this.state.engineColor ||
+                this.state.playerColor !== color ||
                 (!futureSightAvailable && key === 'modsFUT')
               )
                 return;
@@ -915,14 +912,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     '',
                     0
                   );
-                  if (parsed === 0) {
-                    console.log('parsed === 0');
-                    // return;
-                  }
                   if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
                     audioManager.playSound('capture');
                   } else {
                     audioManager.playSound('move');
+                  }
+                  if (parsed === 0) {
+                    console.log('parsed === 0');
+                    return;
                   }
                   this.setState(
                     (prevState) => ({
@@ -1440,7 +1437,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             }
                             if (parsed === 0) {
                               console.log('parsed === 0');
-                              // return;
+                              return;
                             }
                             this.setState(
                               (prevState) => ({
@@ -1529,7 +1526,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           }
                           if (parsed === 0) {
                             console.log('parsed === 0');
-                            // return;
+                            return;
                           }
                           this.setState(
                             (prevState) => ({

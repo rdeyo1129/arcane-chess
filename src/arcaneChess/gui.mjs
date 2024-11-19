@@ -104,7 +104,7 @@ export function validMoves(
 
   if (moves.length === 0 && (forcedEpAvailable || herrings.length)) {
     generatePowers();
-    GenerateMoves(false, false, summon, swap, userSummonPieceRoyalty);
+    GenerateMoves(false, capturesOnly, summon, swap, userSummonPieceRoyalty);
     for (
       let index = GameBoard.moveListStart[GameBoard.ply];
       index < GameBoard.moveListStart[GameBoard.ply + 1];

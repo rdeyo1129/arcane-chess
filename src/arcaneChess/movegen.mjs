@@ -987,14 +987,14 @@ export function GenerateMoves(
     if (!herrings.length) {
       // todo remove parent conditional with herring check because sumnE can block from a piece attacking herring
       const royaltyIndexes = {
-        30: 1,
-        31: 2,
-        32: 3,
-        33: 4,
-        34: 5,
-        35: 6,
-        36: 7,
-        37: 8,
+        30: 0,
+        31: 1,
+        32: 2,
+        33: 3,
+        34: 4,
+        35: 5,
+        36: 6,
+        37: 7,
       };
       if (
         userSummonPceRty > 0 ||
@@ -1893,7 +1893,10 @@ export function GenerateMoves(
         dir = PceDir[royaltySliders[i]][index];
         t_sq = sq + dir;
 
-        while (SQOFFBOARD(t_sq) === BOOL.FALSE) {
+        while (
+          SQOFFBOARD(t_sq) === BOOL.FALSE &&
+          GameBoard.pieces[t_sq] !== undefined
+        ) {
           // Check if we encountered a piece
           if (GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
             // note ROYALTY SLIDERS CAPTURES
@@ -2211,7 +2214,10 @@ export function GenerateMoves(
             shft_t_R_sq = sq + bDir;
           }
 
-          while (SQOFFBOARD(t_sq) === BOOL.FALSE) {
+          while (
+            SQOFFBOARD(t_sq) === BOOL.FALSE &&
+            GameBoard.pieces[t_sq] !== undefined
+          ) {
             // note SLIDERS CAPTURES
             if (GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
               if (

@@ -913,8 +913,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         return {
                           config: {
                             ...prevState.config,
-                            thinkingTime: 1,
-                            engineDepth: 2,
+                            thinkingTime: 2,
+                            engineDepth: 1,
                           },
                         };
                       });
@@ -926,8 +926,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         return {
                           config: {
                             ...prevState.config,
-                            thinkingTime: 3,
-                            engineDepth: 4,
+                            thinkingTime: 4,
+                            engineDepth: 3,
                           },
                         };
                       });
@@ -939,8 +939,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         return {
                           config: {
                             ...prevState.config,
-                            thinkingTime: 5,
-                            engineDepth: 6,
+                            thinkingTime: 6,
+                            engineDepth: 5,
                           },
                         };
                       });
@@ -952,8 +952,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         return {
                           config: {
                             ...prevState.config,
-                            thinkingTime: 7,
-                            engineDepth: 8,
+                            thinkingTime: 8,
+                            engineDepth: 7,
                           },
                         };
                       });

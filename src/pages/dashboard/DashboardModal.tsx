@@ -50,7 +50,7 @@ export default class DashboardModal extends React.Component<
         >
           <p>
             {' '}
-            Hello, Meda here! Thank you for visiting the site. Version{' '}
+            Hello, meda here. Thank you for visiting the site. Version{' '}
             {this.version} has just been released, bringing a host of new arcana
             (spells) for you to discover and experiment with. If you are a
             first-time visitor, I recommend starting with{' '}
@@ -68,12 +68,12 @@ export default class DashboardModal extends React.Component<
           <br />{' '}
           <p>
             {' '}
-            This site is both an experiment and a showcase, offering lessons to
-            take away from the game. Most engines traditionally give the white
-            pieces a 0.4-point starting advantage over black. With the
-            introduction of conditional spells, we are aiming to not only
-            balance gameplay but also introduce a layer of strategic
-            unpredictability.{' '}
+            While this site is a showcase of the story, lessons, and variants,
+            it is also a thought experiment. Most engines traditionally give the
+            white pieces a 0.4-point starting advantage over black. With the
+            introduction of conditional spells, the aim is to seek out a
+            perfectly balanced start to the game but also introduce a layer of
+            strategic unpredictability.{' '}
           </p>{' '}
           <br />{' '}
           <p>

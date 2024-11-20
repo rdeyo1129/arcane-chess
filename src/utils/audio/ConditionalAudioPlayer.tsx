@@ -9,32 +9,30 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
     if (!audioManager.isSoundRegistered('move')) {
       audioManager.registerSound('move', audioLinks.moveSoundUrl);
     }
-    // if (!audioManager.isSoundRegistered('capture')) {
-    //   audioManager.registerSound('capture', audioLinks.captureSoundUrl);
-    // }
-    // if (!audioManager.isSoundRegistered('victory')) {
-    //   audioManager.registerSound('victory', audioLinks.victorySoundUrl);
-    // }
-    // if (!audioManager.isSoundRegistered('defeat')) {
-    //   audioManager.registerSound('defeat', audioLinks.defeatSoundUrl);
-    // }
-    // if (!audioManager.isSoundRegistered('impact')) {
-    //   audioManager.registerSound('impact', audioLinks.impactSoundUrl);
-    // }
+    if (!audioManager.isSoundRegistered('capture')) {
+      audioManager.registerSound('capture', audioLinks.captureSoundUrl);
+    }
+    if (!audioManager.isSoundRegistered('victory')) {
+      audioManager.registerSound('victory', audioLinks.victorySoundUrl);
+    }
+    if (!audioManager.isSoundRegistered('defeat')) {
+      audioManager.registerSound('defeat', audioLinks.defeatSoundUrl);
+    }
+    if (!audioManager.isSoundRegistered('impact')) {
+      audioManager.registerSound('impact', audioLinks.impactSoundUrl);
+    }
 
-    // // Register music tracks
-    // if (!audioManager.isSoundRegistered('nexus')) {
-    //   audioManager.registerSound('nexus', audioLinks.nexusSongUrl);
-    // }
-    // if (!audioManager.isSoundRegistered('electron')) {
-    //   audioManager.registerSound('electron', audioLinks.electronSongUrl);
-    // }
-    // if (!audioManager.isSoundRegistered('menu')) {
-    //   audioManager.registerSound('menu', audioLinks.menuSongUrl, true);
-    // }
+    // Register Songs
+    if (!audioManager.isSoundRegistered('nexus')) {
+      audioManager.registerSound('nexus', audioLinks.nexusSongUrl);
+    }
+    if (!audioManager.isSoundRegistered('electron')) {
+      audioManager.registerSound('electron', audioLinks.electronSongUrl);
+    }
+    if (!audioManager.isSoundRegistered('menu')) {
+      audioManager.registerSound('menu', audioLinks.menuSongUrl, true);
+    }
   }, []);
-
-  console.log(audioLinks);
 
   // Trigger song play/stop based on the current route
   useEffect(() => {

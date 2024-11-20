@@ -36,8 +36,8 @@ const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 const R = '#c53939';
 const O = '#c77c35';
 const Y = '#d9b800';
-// const G = '#34aa48';
-// const B = '#3f48cc';
+const G = '#34aa48';
+const B = '#3f48cc';
 const V = '#a043a2';
 
 const path = '/assets/characters/';
@@ -92,6 +92,69 @@ const unpaddedCharacters = [
     imagePath: 'phoenix',
     color: O,
     description: 'Dazzle your opponent with high-end spells.',
+  },
+  {
+    name: 'The Anarchist',
+    inventory: [arcana.modsTRO, arcana.offrE, arcana.sumnX],
+    setup: 'RNBTKBNR',
+    imagePath: 'anarchist',
+    color: R,
+    description: 'Seriously?',
+  },
+  {
+    name: 'The Solider',
+    inventory: [arcana.shftP, arcana.shftN, arcana.shftB, arcana.shftR],
+    setup: 'RNBQKBNR',
+    imagePath: 'soldier',
+    color: B,
+    description: 'Mobility is your friend.',
+  },
+  {
+    name: 'The Prophet',
+    inventory: [
+      arcana.modsIMP,
+      arcana.modsIMP,
+      arcana.modsORA,
+      arcana.modsORA,
+      arcana.modsTEM,
+      arcana.modsFUT,
+    ],
+    setup: 'RNBMKBNR',
+    imagePath: 'prophet',
+    color: G,
+    description: 'See like the engine does.',
+  },
+  {
+    name: 'The Barbarian',
+    inventory: [arcana.sumnX, arcana.sumnR, arcana.dyadA],
+    setup: 'RNBQKBNR',
+    imagePath: 'barbarian',
+    color: R,
+    description: 'Brute force strategy.',
+  },
+  {
+    name: 'The Transcendent',
+    inventory: [arcana.sumnRV, arcana.dyadV, arcana.modsTEM, arcana.modsEXT],
+    setup: 'RNMVKTNR',
+    imagePath: 'transcendent',
+    color: Y,
+    description: 'Power from a higher entity.',
+  },
+  {
+    name: 'The Demon',
+    inventory: [arcana.sumnX, arcana.modsCON, arcana.sumnRE, arcana.sumnRY],
+    setup: 'RSWTKWSR',
+    imagePath: 'demon',
+    color: R,
+    description: '',
+  },
+  {
+    name: 'The Hexweaver',
+    inventory: [arcana.sumnH, arcana.sumnRY, arcana.sumnRZ, arcana.sumnRA],
+    setup: 'RNBQKBNR',
+    imagePath: 'wizard',
+    color: V,
+    description: '',
   },
 ];
 
@@ -193,6 +256,17 @@ export const modes: Record<string, GameModeType> = padModes({
     black: {
       arcana: [],
       setup: 'tmqvkqmt',
+    },
+  },
+  stampede: {
+    name: 'Stampede!',
+    white: {
+      arcana: [],
+      setup: 'ZNUVKunz',
+    },
+    black: {
+      arcana: [],
+      setup: 'znuvkunz',
     },
   },
 });

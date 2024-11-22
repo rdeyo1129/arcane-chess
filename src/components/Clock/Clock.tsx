@@ -121,15 +121,16 @@ class ChessClock extends React.Component<ClockProps, ClockState> {
   }
 
   render() {
-    const { timeLeft, isActive } = this.state;
+    // isActive
+    const { timeLeft } = this.state;
     const { time } = this.props;
 
-    let timerWidth = 0;
-    let timerColor = 'green';
+    // let timerWidth = 0;
+    // let timerColor = 'green';
 
     if (timeLeft !== null && time !== null) {
-      timerWidth = (timeLeft / time) * 100;
-      timerColor = timerWidth < 10 ? 'red' : 'green';
+      // timerWidth = (timeLeft / time) * 100;
+      // timerColor = timerWidth < 10 ? 'red' : 'green';
     }
 
     return (

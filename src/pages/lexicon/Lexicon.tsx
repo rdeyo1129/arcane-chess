@@ -453,7 +453,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
             </Link>
           </div>
         ) : (
-          <div className="outer-lesson">
+          <div className="outer-leixicon">
             <TactoriusModal
               isOpen={this.state.gameOver}
               handleClose={() =>

@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
@@ -25,13 +25,13 @@ import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
-import arcanaJson from 'src/data/arcana.json';
+// import arcanaJson from 'src/data/arcana.json';
 
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 
-const arcana: ArcanaMap = arcanaJson as ArcanaMap;
+// const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 
@@ -42,6 +42,7 @@ import { editMovePiece } from '../../arcaneChess/gui.mjs';
 import Button from '../../components/Button/Button';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
 const booksMap: { [key: string]: { [key: string]: Node } } = {
   book1,
@@ -58,17 +59,17 @@ const booksMap: { [key: string]: { [key: string]: Node } } = {
   book12,
 };
 
-interface ArcanaDetail {
-  id: string;
-  name: string;
-  description: string;
-  type: string;
-  imagePath: string;
-}
+// interface ArcanaDetail {
+//   id: string;
+//   name: string;
+//   description: string;
+//   type: string;
+//   imagePath: string;
+// }
 
-interface ArcanaMap {
-  [key: string]: ArcanaDetail;
-}
+// interface ArcanaMap {
+//   [key: string]: ArcanaDetail;
+// }
 
 interface Node {
   id: string;
@@ -610,7 +611,6 @@ class UnwrappedLessonView extends React.Component<Props, State> {
           </div>
         ) : (
           <div
-            className="outer-lesson"
             style={{
               height: '100vh',
               width: '100vw',
@@ -637,90 +637,24 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               type="victory"
             />
             <div className="lesson-view">
-              <div className="opponent-dialogue-arcana">
+              <div className="opponent-arcana-volume">
                 <div className="info-avatar">
                   <div className="avatar">
                     {this.state.opponent !== '' ? (
                       <img
                         src={`/assets/avatars/${this.state.opponent}.webp`}
                         style={{
-                          width: '100%',
-                          height: '100%',
+                          width: '60px',
+                          height: '60px',
                           objectFit: 'contain',
                         }}
                       />
                     ) : null}
                   </div>
-                  <div className="info">
-                    {/* <div className="name">{this.state.opponent}</div> */}
-                  </div>
+                  <div className="arcana-select"></div>
                 </div>
-                <div className="arcana">
-                  <div className="arcana-side-buttons">
-                    <Button
-                      className="tertiary"
-                      onClick={() => {
-                        this.setState({ selected: 'white' });
-                      }}
-                      backgroundColorOverride="#11111188"
-                      color="B"
-                      text="WHITE"
-                      width={190}
-                    />
-                    <Button
-                      className="tertiary"
-                      onClick={() => {
-                        this.setState({ selected: 'black' });
-                      }}
-                      backgroundColorOverride="#11111188"
-                      color="B"
-                      text="BLACK"
-                      width={190}
-                      disabled={false}
-                    />
-                  </div>
-                  <div className="arcana-select">
-                    {this.state.selected === 'white'
-                      ? _.map(
-                          this.state.wArcana,
-                          (value: number, key: string) => {
-                            console.log('key', key, 'value', value);
-                            return (
-                              <img
-                                key={key}
-                                className="arcane"
-                                src={`${arcana[key].imagePath}${
-                                  this.state.arcaneHover === key ? '-hover' : ''
-                                }.svg`}
-                                style={{
-                                  cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
-                                }}
-                                onMouseEnter={() => this.toggleHover(key)}
-                                onMouseLeave={() => this.toggleHover('')}
-                              />
-                            );
-                          }
-                        )
-                      : _.map(
-                          this.state.bArcana,
-                          (_value: number, key: string) => {
-                            return (
-                              <img
-                                key={key}
-                                className="arcane"
-                                src={`${arcana[key].imagePath}${
-                                  this.state.arcaneHover === key ? '-hover' : ''
-                                }.svg`}
-                                style={{
-                                  cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
-                                }}
-                                onMouseEnter={() => this.toggleHover(key)}
-                                onMouseLeave={() => this.toggleHover('')}
-                              />
-                            );
-                          }
-                        )}
-                  </div>
+                <div className="global-volume-control">
+                  <GlobalVolumeControl />
                 </div>
               </div>
               <div className="time-board-time">
@@ -770,7 +704,10 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                   />
                 </div>
               </div>
-              <div className="temple-clock-buttons">
+              <div className="lesson-clock-buttons">
+                <div className="global-volume-control">
+                  <GlobalVolumeControl />
+                </div>
                 <div className="lesson-text">
                   {
                     booksMap[
@@ -780,7 +717,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     ].panelText
                   }
                 </div>
-                <div className="temple-buttons">
+                <div className="lesson-buttons">
                   <Button
                     className="tertiary"
                     onClick={() => {
@@ -816,14 +753,13 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     <img
                       src="/assets/avatars/hero.webp"
                       style={{
-                        height: '80px',
-                        width: '80px',
+                        height: '60px',
+                        width: '60px',
                         objectFit: 'contain',
                       }}
                     />
                   </div>
-                  {/* or lesson hero name? though sometimes it says things like oldwoman */}
-                  <div className="info"></div>
+                  <div className="arcana-select"></div>
                 </div>
               </div>
             </div>

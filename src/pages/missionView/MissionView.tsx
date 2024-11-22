@@ -1022,6 +1022,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   `${this.state.playerColor} mates`
                 )
               ) {
+                this.stopAndReturnTime();
                 this.handleVictory(this.stopAndReturnTime() as number | null);
               }
             }
@@ -1269,6 +1270,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   <Button
                     className="tertiary"
                     onClick={() => {
+                      this.stopAndReturnTime();
                       this.setState({
                         gameOver: true,
                         gameOverType: `${this.state.playerColor} resigns`,

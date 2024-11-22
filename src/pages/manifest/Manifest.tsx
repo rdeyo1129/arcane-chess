@@ -337,7 +337,9 @@ class UnwrappedManifest extends React.Component<object, State> {
                     Quickplay:
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
                       <li>Select custom back rank armies</li>
-                      <li>Custom your spell inventory with up to 6 arcana</li>
+                      <li>
+                        Customize your spell inventory with up to 6 arcana
+                      </li>
                       <li>
                         Choose a character... Custom templates that gives you a
                         themed army and spell inventory

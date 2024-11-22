@@ -262,7 +262,7 @@ export const modes: Record<string, GameModeType> = padModes({
     name: 'Stampede!',
     white: {
       arcana: [],
-      setup: 'ZNUVKunz',
+      setup: 'ZNUVKUNZ',
     },
     black: {
       arcana: [],

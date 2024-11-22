@@ -1,6 +1,19 @@
 @import 'src/styles/_components.scss';
 @import 'src/styles/_variables.scss';
 
+.quickplay-view::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('assets/pages/tactoriusb.webp') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(4px);
+  z-index: -1;
+}
+
 .quickplay-tactorius-board {
   width: 100%;
   height: 100%;
@@ -10,7 +23,7 @@
   background: radial-gradient(
     circle,
     rgba(0, 162, 255, 0.7) 0%,
-    rgba(17, 17, 17, 0.9) 100%
+    rgba(17, 17, 17, 0) 100%
   );
   .quickplay-view {
     height: 100%;
@@ -396,6 +409,9 @@
       justify-content: flex-start;
       align-items: center;
       overflow-x: hidden;
+      .opponent-dialogue-arcana {
+        max-height: 60px;
+      }
       .time-board-time {
         max-width: 360px;
         min-height: 360px;

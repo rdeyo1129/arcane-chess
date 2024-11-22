@@ -1151,7 +1151,7 @@ const quickPlayModal = {
     display: 'flex',
     height: '100%',
     width: '100vw',
-    background: '#000000',
+    background: '#00000000',
     // borderRadius: '10px',
     border: 'none',
     padding: '0px',
@@ -1162,6 +1162,6 @@ const quickPlayModal = {
   },
   overlay: {
     zIndex: 10,
-    backgroundColor: '#111111',
+    backgroundColor: '#111111CC',
   },
 };

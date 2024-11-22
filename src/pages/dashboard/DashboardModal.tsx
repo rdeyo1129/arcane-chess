@@ -42,10 +42,15 @@ export default class DashboardModal extends React.Component<
       >
         <div
           style={{
-            maxWidth: '700px',
-            color: 'white',
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'stretch',
             padding: '20px',
-            textAlign: 'left',
+            boxSizing: 'border-box',
+            overflow: 'auto',
           }}
         >
           <p>
@@ -63,7 +68,8 @@ export default class DashboardModal extends React.Component<
               {' '}
               Manifest{' '}
             </Link>{' '}
-            for a deeper dive.{' '}
+            for a deeper dive. A note that mobile development has basically been
+            met, but the site is best experienced from a desktop device.
           </p>{' '}
           <br />{' '}
           <p>
@@ -93,11 +99,11 @@ export default class DashboardModal extends React.Component<
           <div
             style={{
               width: '100%',
-              height: '100%',
+              height: '120px',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              marginTop: '40px',
+              margin: '40px 0 40px 0',
             }}
           >
             <Button
@@ -117,19 +123,20 @@ const dashboardModal = {
   content: {
     top: '50%',
     left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: 'auto',
     transform: 'translate(-50%, -50%)',
     display: 'flex',
-    height: '80vh',
+    flexDirection: 'column' as const,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    maxHeight: '90vh',
     width: '90vw',
+    maxWidth: '600px',
     background: '#000000',
     borderRadius: '10px',
     border: 'none',
-    padding: '0px',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // padding: '20px',
+    overflowY: 'auto' as const,
+    boxSizing: 'border-box' as const,
   },
   overlay: {
     zIndex: 10,

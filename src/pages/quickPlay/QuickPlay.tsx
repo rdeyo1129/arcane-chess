@@ -1083,12 +1083,12 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
           />
           <div
             className="quickplay-view"
-            style={{
-              background:
-                this.state.theme === 'black'
-                  ? ''
-                  : `url(assets/${this.state.theme}.webp) no-repeat center center fixed`,
-            }}
+            // style={{
+            //   background:
+            //     this.state.theme === 'black'
+            //       ? ''
+            //       : `url(assets/pages/tactoriusb.webp) no-repeat center center fixed`,
+            // }}
           >
             <div className="opponent-dialogue-arcana">
               <div className="info-avatar">

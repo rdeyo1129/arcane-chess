@@ -134,7 +134,6 @@ const dashboardModal = {
     background: '#000000',
     borderRadius: '10px',
     border: 'none',
-    // padding: '20px',
     overflowY: 'auto' as const,
     boxSizing: 'border-box' as const,
   },

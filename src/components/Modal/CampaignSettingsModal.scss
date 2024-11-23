@@ -13,7 +13,11 @@
   .difficulty-text {
     display: flex;
     padding: 0 40px;
+    height: 60px;
     justify-content: space-between;
+    .difficulty-description {
+      width: 400px;
+    }
   }
   .difficulties {
     display: flex;
@@ -74,15 +78,26 @@
 
 @media (max-width: 1024px) {
   .multiplier-settings-buttons {
-    justify-content: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding: 16px;
+    .difficulty-text {
+      flex-direction: column;
+      min-height: 120px;
+      padding: 0;
+      .difficulty-description {
+        width: 260px;
+      }
+    }
     .difficulties {
-      .level .level-1 {
+      .level {
         height: 148px;
         width: 120px;
       }
     }
     .settings-buttons {
       flex-direction: column;
+      gap: 12px;
       .settings {
         .setting-descriptions {
           width: 200px;
@@ -93,9 +108,11 @@
         }
       }
       .buttons {
-        width: 160px;
+        // width: 160px;
+        width: 240px;
         .action-buttons {
-          flex-direction: column;
+          // flex-direction: column;
+          gap: 8px;
         }
       }
     }

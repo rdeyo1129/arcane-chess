@@ -409,12 +409,11 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
                       <Button
                         text="START"
-                        className="tertiary"
+                        className="primary"
                         color="B"
                         width={200}
                         disabled={this.state.selectedSwatch === ''}
-                        backgroundColorOverride="#3f48cc"
-                        styles={{ color: 'white' }}
+                        styles={{ color: 'white', borderRadius: 0 }}
                       />
                     </Link>
                   </div>

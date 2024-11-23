@@ -81,7 +81,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
       difficulty: LS.difficulty,
       difficultyDescriptions: {
         novice:
-          'NOVICE: For players looking to experiement and take their time with the new rules.',
+          'NOVICE: For players looking to experience the story, experiement and take their time with the new rules.',
         intermediate:
           'INTERMEDIATE: The clock is enabled, with slightly stronger moves from the engine.',
         advanced:
@@ -177,7 +177,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
           <div className="multiplier-settings-buttons">
             <div className="difficulty-text">
               <div className="multiplier">SELECT A DIFFICULTY</div>
-              <div>
+              <div className="difficulty-description">
                 {this.state.difficultyDescriptions[this.state.hoverDifficulty]}
               </div>
             </div>
@@ -450,7 +450,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                     className="secondary"
                     color="B"
                     height={60}
-                    width={160}
+                    width={120}
                     onClick={() => this.props.toggleModal()}
                   />
                   <Button
@@ -458,7 +458,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                     className="primary"
                     color="B"
                     height={60}
-                    width={160}
+                    width={120}
                     onClick={() => this.saveSettingsStartBook()}
                   />
                 </div>
@@ -500,6 +500,7 @@ const bookSettingsModal = {
     background: '#000000',
     borderRadius: '10px',
     border: 'none',
+    overflow: 'scroll',
   },
   overlay: {
     zIndex: 10,

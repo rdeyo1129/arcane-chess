@@ -58,10 +58,6 @@
         flex-direction: column;
         height: 190px;
         background: rgba(34, 34, 34, 0.7);
-        .arcana-side-buttons {
-          height: 40px;
-          display: flex;
-        }
       }
     }
     .time-board-time {
@@ -100,7 +96,6 @@
         align-items: center;
         height: 400px;
         padding: 20px;
-        background-color: #11111188;
         .time-text {
           font-size: 72px;
         }
@@ -113,7 +108,6 @@
       .info-avatar {
         display: flex;
         width: 100%;
-        background-color: #11111188;
         .avatar {
           position: relative;
           background: rgba(34, 34, 34, 0.7);
@@ -336,9 +330,6 @@
           height: 390px;
           width: 380px;
           background: #11111188;
-          .arcana-side-buttons {
-            display: flex;
-          }
         }
       }
       .time-board-time {

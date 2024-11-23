@@ -32,13 +32,13 @@ import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
-import arcanaJson from 'src/data/arcana.json';
+// import arcanaJson from 'src/data/arcana.json';
 
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 
-const arcana: ArcanaMap = arcanaJson as ArcanaMap;
+// const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 // import Hero from "../components/Hero";
 
@@ -69,6 +69,7 @@ import Button from '../../components/Button/Button';
 import ChessClock from '../../components/Clock/Clock';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
 const booksMap: { [key: string]: { [key: string]: Node } } = {
   book1,
@@ -85,17 +86,17 @@ const booksMap: { [key: string]: { [key: string]: Node } } = {
   book12,
 };
 
-interface ArcanaDetail {
-  id: string;
-  name: string;
-  description: string;
-  type: string;
-  imagePath: string;
-}
+// interface ArcanaDetail {
+//   id: string;
+//   name: string;
+//   description: string;
+//   type: string;
+//   imagePath: string;
+// }
 
-interface ArcanaMap {
-  [key: string]: ArcanaDetail;
-}
+// interface ArcanaMap {
+//   [key: string]: ArcanaDetail;
+// }
 
 interface Node {
   id: string;
@@ -498,6 +499,11 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           ).toUpperCase()}` as keyof typeof PIECES
         ]
       );
+      if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
+        audioManager.playSound('capture');
+      } else {
+        audioManager.playSound('move');
+      }
       if (!PrMove(parsed)) {
         // console.log('invalid move');
       }
@@ -662,7 +668,6 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           </div>
         ) : (
           <div
-            className="outer-temple"
             style={{
               height: '100vh',
               width: '100vw',
@@ -693,66 +698,24 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               }
             />
             <div className="temple-view">
-              <div className="opponent-dialogue-arcana">
+              <div className="opponent-arcana-volume">
                 <div className="info-avatar">
                   <div className="avatar">
                     {this.state.opponent !== '' ? (
                       <img
                         src={`/assets/avatars/${this.state.opponent}.webp`}
                         style={{
-                          height: '80px',
-                          width: '80px',
+                          height: '60px',
+                          width: '60px',
                           objectFit: 'contain',
                         }}
                       />
                     ) : null}
                   </div>
-                  <div className="info">
-                    {/* <div className="name">{this.state.opponent}</div> */}
-                  </div>
+                  <div className="arcana-select"></div>
                 </div>
-                <div className="arcana">
-                  <div className="arcana-side-buttons">
-                    <Button
-                      className="tertiary"
-                      // onClick={() => {
-                      //   this.setState({ selected: 'a' });
-                      // }}
-                      backgroundColorOverride="#11111188"
-                      color="B"
-                      text="WHITE"
-                      width={190}
-                    />
-                    <Button
-                      className="tertiary"
-                      // onClick={() => {
-                      //   this.setState({ selected: 'a' });
-                      // }}
-                      backgroundColorOverride="#11111188"
-                      color="B"
-                      text="BLACK"
-                      width={190}
-                      disabled={false}
-                    />
-                  </div>
-                  <div className="arcana-select">
-                    {_.map(this.state.wArcana, (key: string) => {
-                      return (
-                        <img
-                          key={key}
-                          className="arcane"
-                          src={`${arcana[key].imagePath}${
-                            this.state.arcaneHover === key ? '-hover' : ''
-                          }.svg`}
-                          style={{
-                            cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
-                          }}
-                          onMouseEnter={() => this.toggleHover(key)}
-                          onMouseLeave={() => this.toggleHover('')}
-                        />
-                      );
-                    })}
-                  </div>
+                <div className="global-volume-control">
+                  <GlobalVolumeControl />
                 </div>
               </div>
               <div className="time-board-time">
@@ -811,7 +774,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                           this.state.correctMoves[this.state.moveNumber][4] ||
                           ''
                         ).toLowerCase();
-                        audioManager.playSound('move');
+                        // audioManager.playSound('move');
                         const parsed = this.arcaneChess().makeUserMove(
                           orig,
                           dest,
@@ -864,6 +827,9 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                 <div className="player-time"></div>
               </div>
               <div className="temple-clock-buttons">
+                <div className="global-volume-control">
+                  <GlobalVolumeControl />
+                </div>
                 <div className="temple-clock">
                   <ChessClock
                     ref={this.chessclockRef}
@@ -905,7 +871,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     color="B"
                     // strong={true}
                     text="RESIGN"
-                    width={190}
+                    width={100}
                     // fontSize={30}
                     backgroundColorOverride="#11111188"
                   />
@@ -915,14 +881,13 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     <img
                       src="/assets/avatars/hero.webp"
                       style={{
-                        height: '80px',
-                        width: '80px',
+                        height: '60px',
+                        width: '60px',
                         objectFit: 'contain',
                       }}
                     />
                   </div>
-                  {/* or lesson hero name? though sometimes it says things like oldwoman */}
-                  <div className="info"></div>
+                  <div className="arcana-select"></div>
                 </div>
               </div>
             </div>

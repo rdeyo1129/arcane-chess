@@ -67,7 +67,8 @@ const unpaddedCharacters = [
     setup: 'RNWQKWNR',
     imagePath: 'banshee',
     color: V,
-    description: '',
+    description:
+      'More predictable than The Ghoul, stronger control over choice color complexes.',
   },
   {
     name: 'The Ghoul',
@@ -75,16 +76,16 @@ const unpaddedCharacters = [
     setup: 'RSBQKBSR',
     imagePath: 'ghoul',
     color: V,
-    description: '',
+    description: 'Chaotic control over both color complexes.',
   },
-  {
-    name: 'The Politician',
-    inventory: [arcana.modsSKI, arcana.modsINH, arcana.offrC],
-    setup: 'RNBVKBNR',
-    imagePath: 'politician',
-    color: R,
-    description: 'Play for the endgame and use your resources.',
-  },
+  // {
+  //   name: 'The Politician',
+  //   inventory: [arcana.modsSKI, arcana.modsINH, arcana.offrC],
+  //   setup: 'RNBVKBNR',
+  //   imagePath: 'politician',
+  //   color: R,
+  //   description: 'Play for the endgame and use your resources.',
+  // },
   {
     name: 'The Phoenix',
     inventory: [arcana.dyadA, arcana.modsTEM, arcana.sumnRA, arcana.sumnRQ],
@@ -99,7 +100,7 @@ const unpaddedCharacters = [
     setup: 'RNBTKBNR',
     imagePath: 'anarchist',
     color: R,
-    description: 'Seriously?',
+    description: 'Rice anyone?',
   },
   {
     name: 'The Solider',
@@ -146,7 +147,7 @@ const unpaddedCharacters = [
     setup: 'RSWTKWSR',
     imagePath: 'demon',
     color: R,
-    description: '',
+    description: 'A dangerous and deadly spellcaster.',
   },
   {
     name: 'The Hexweaver',
@@ -154,7 +155,7 @@ const unpaddedCharacters = [
     setup: 'RNBQKBNR',
     imagePath: 'wizard',
     color: V,
-    description: '',
+    description: 'Freeze and deflect opposing pieces.',
   },
 ];
 

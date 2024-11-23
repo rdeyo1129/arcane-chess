@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { getLocalStorage } from 'src/utils/handleLocalStorage';
 
-import 'src/components/Modal/QuickPlayModal.scss';
+import 'src/components/Modal/QuickplayModal.scss';
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 

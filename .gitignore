@@ -29,5 +29,3 @@ node_modules
 server/config/keys.ts
 
 src/data/puzzles.csv
-
-src/utils/audio/audioLinks.json

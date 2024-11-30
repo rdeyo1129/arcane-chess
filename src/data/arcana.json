@@ -260,35 +260,35 @@
   },
   "offrH": {
     "id": "offrH",
-    "name": "Masquerade Ritual",
+    "name": "Masquerade",
     "description": "Offer a friendly Pawn to gain a Herring summon arcana. A Herring must be captured if the move is legal.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/daggerBlue"
   },
   "offrS": {
     "id": "offrS",
-    "name": "Sliding into Action",
+    "name": "Holy Feint",
     "description": "Offer a friendly Mystic to gain a Rook and Bishop summon arcana.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/daggerYellow"
   },
   "offrM": {
     "id": "offrM",
-    "name": "Equus Family Unites",
+    "name": "Rodeo",
     "description": "Offer a friendly Templar or Queen to gain arcana summons of the Equus Family.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/daggerRed"
   },
   "offrE": {
     "id": "offrE",
-    "name": "THE RUUUUUK",
+    "name": "Siege Gambit",
     "description": "Offer a friendly Rook to gain a minor summon arcana.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sacExchange"
   },
   "offrR": {
     "id": "offrR",
-    "name": "Royal Offering Exchange",
+    "name": "Mistify",
     "description": "Offer a friendly Queen or Templar to gain a Mystic summon arcana",
     "type": "active",
     "imagePath": "/assets/arcanaImages/sacExchangeR"
@@ -386,7 +386,7 @@
   },
   "modsSKI": {
     "id": "modsSKI",
-    "name": "Patience",
+    "name": "Meditate",
     "description": "Skip your turn.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/skip"
@@ -400,14 +400,14 @@
   },
   "modsINH": {
     "id": "modsINH",
-    "name": "Legacy Ascension",
+    "name": "Inheritance",
     "description": "Friendly Pawns promote one rank early.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/modsINH"
   },
   "modsSUS": {
     "id": "modsSUS",
-    "name": "Veil of Inaction",
+    "name": "Bulletproof",
     "description": "Prevent any captures, checks or promotions for 3 turns.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsSUS"

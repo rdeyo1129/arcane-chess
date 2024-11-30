@@ -132,7 +132,17 @@ class UnwrappedManifest extends React.Component<object, State> {
           <div className="content">
             {this.state.currentTab === 'mission' ? (
               <div id="mission" className="mission">
-                <h2>Misson Statement:</h2>
+                <p>
+                  This preamble explains the purpose of spell chess. Chess
+                  engines currently estimate that white starts the game with an
+                  advantage of about 0.4 points. The introduction of conditional
+                  spells and alternative game modes is an experiment, a search
+                  for potential rule changes that could create a more balanced
+                  yet equally playable version of the game. These ideas are
+                  suggestions alone, with their adoption ultimately left to the
+                  chess community.
+                </p>
+                <h2>Misson Statements:</h2>
                 <ol style={{ listStyleType: 'decimal' }}>
                   <li>
                     To create a free and open-source platform that empowers
@@ -389,7 +399,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                           </li>
                           <li>Iron Reach: Valkyrie gains the Queen moveset</li>
                           <li>Omni Gaze: summon anywhere</li>
-                          <li>Patience: skip your turn</li>
+                          <li>Meditate: skip your turn</li>
                           <li>
                             Trojan Gambit: if en passant is available for your
                             opponent, they must take
@@ -556,7 +566,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                             pattern. R - Bishop’s first square)
                           </li>
                           <li>
-                            Suspend: Prevent checks and captures for 3 turns
+                            Bulletproof: Prevent checks and captures for 3 turns
                           </li>
                           <li>
                             3 levels of engine move recommendations (piece only

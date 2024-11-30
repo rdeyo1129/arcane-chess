@@ -71,6 +71,15 @@ export class UnwrappedDashboard extends React.Component<
                 backgroundColorOverride="#11111188"
               />
             </Link>
+            {/* <Button
+              text="VERSUS"
+              className="tertiary"
+              color="B"
+              height={50}
+              width={'100%'}
+              disabled={false}
+              backgroundColorOverride="#11111188"
+            /> */}
             <Link
               className="home-button"
               to="/leaderboard"

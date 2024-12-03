@@ -17,7 +17,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "",
     "opponent": "wizard",
@@ -151,7 +151,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "book",
@@ -259,7 +259,7 @@
       [0, 0]
     ],
     "nodeText": "Learn about the strongest pieces in the game.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-2",
     "opponent": "book",
@@ -486,7 +486,7 @@
       [0, 0]
     ],
     "nodeText": "Learn about the KRR vs K endgame scenario.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-2",
     "opponent": "automata2",
@@ -889,7 +889,7 @@
       [0, 0]
     ],
     "nodeText": "Learn about the KQ vs K endgame scenario.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "automata2",
@@ -1489,7 +1489,7 @@
       [0, 0]
     ],
     "nodeText": "A quick rule to tell if a Pawn can be stopped from promotion.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-5",
     "opponent": "automata2",
@@ -1912,7 +1912,7 @@
       [0, 0]
     ],
     "nodeText": "Dive into this last overkill variant. You are up a full Rook and need to mate.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-6",
     "opponent": "automata2",
@@ -2473,7 +2473,7 @@
       [0, 0]
     ],
     "nodeText": "Outflank your opponents King in this endgame scenario.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-7",
     "opponent": "automata2",
@@ -3320,7 +3320,7 @@
       [200, 1]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-8",
     "opponent": "peacock",
@@ -3376,7 +3376,7 @@
       [80, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "peacock",
@@ -3432,7 +3432,7 @@
       [200, 5]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "peacock",
@@ -3722,7 +3722,7 @@
       [80, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "peacock",
@@ -4012,7 +4012,7 @@
       [100, 5]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "peacock",
@@ -6114,7 +6114,7 @@
       [80, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-2",
     "opponent": "peacock",
@@ -8202,7 +8202,7 @@
       [140, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "ephilate",
@@ -8253,7 +8253,7 @@
       [70, 1]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "automata1",
@@ -8304,7 +8304,7 @@
       [90, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "automata2",
@@ -8360,7 +8360,7 @@
       [90, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-4",
     "opponent": "voltairegrunt",
@@ -8416,7 +8416,7 @@
       [90, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-5",
     "opponent": "voltairegrunt",
@@ -8478,7 +8478,7 @@
       [90, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-6",
     "opponent": "voltairegrunt",
@@ -8534,7 +8534,7 @@
       [90, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-7",
     "opponent": "voltaire",
@@ -8590,7 +8590,7 @@
       [90, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-8",
     "opponent": "automata2",

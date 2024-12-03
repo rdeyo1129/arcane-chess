@@ -552,7 +552,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                           <div className="node-description">
                             {this.state.book[
                               this.state.selectedSwatch
-                            ].panelText
+                            ].storyText
                               .split('\n\n')
                               .map((p: string, i: number) => (
                                 <p className="description-paragraph" key={i}>

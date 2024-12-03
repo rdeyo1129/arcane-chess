@@ -2278,9 +2278,20 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   text="NODE"
                   onClick={() => {
                     const objectToCopy = {
-                      ...this.state.bookObject[this.state.currNode],
-                      panels: {},
+                      id: this.state.currNode,
+                      prereq: this.state.prereq,
+                      title: this.state.title,
+                      nodeText: this.state.nodeText,
+                      storyTitle: '',
+                      storyText: this.state.panelText,
+                      hero: '',
+                      opponent: this.state.opponent,
+                      theme: this.state.theme,
+                      bookTheme: '',
+                      time: this.state.time,
+                      boss: false,
                       reward: [],
+                      panels: {},
                       diagWinLose: {
                         win1: '',
                         win2: '',
@@ -2291,16 +2302,6 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                         victory: '',
                         defeat: '',
                       },
-                      title: this.state.title,
-                      storyTitle: '',
-                      nodeText: this.state.nodeText,
-                      opponent: this.state.opponent,
-                      hero: '',
-                      theme: this.state.theme,
-                      bookTheme: '',
-                      prereq: this.state.prereq,
-                      time: this.state.time,
-                      boss: false,
                     };
                     const keyAndNode = `"${
                       this.state.currNode

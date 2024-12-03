@@ -17,7 +17,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "",
     "opponent": "oldwoman",
@@ -146,7 +146,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "oldwoman",
@@ -306,7 +306,7 @@
       [0, 0]
     ],
     "nodeText": "Learn intermediate Pawn patterns.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "cowboy",
@@ -589,7 +589,7 @@
       [0, 0]
     ],
     "nodeText": "Open your lines and centralize as we cover intermediate ",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-3",
     "opponent": "cowboy",
@@ -1003,7 +1003,7 @@
       [0, 0]
     ],
     "nodeText": "Space is a physical realization of the chessboard where pieces can be mobile.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "oldwoman",
@@ -1162,7 +1162,7 @@
       [0, 0]
     ],
     "nodeText": "On the outside, chess is a singular-minded game. Warlords clashing it out against one another. On the inside it's a team sport. Let's find out why.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-5",
     "opponent": "oldwoman",
@@ -1424,7 +1424,7 @@
       [0, 0]
     ],
     "nodeText": "The fianchetto, open lines, and batteries.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "oldwoman",
@@ -1695,7 +1695,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-7",
     "opponent": "vulture",
@@ -4347,7 +4347,7 @@
       [60, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "vulture",
@@ -7015,7 +7015,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "vulture",
@@ -9198,7 +9198,7 @@
       [60, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-3",
     "opponent": "vulture",
@@ -11402,7 +11402,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-3",
     "opponent": "vulture",
@@ -13480,7 +13480,7 @@
       [60, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-5",
     "opponent": "vulture",
@@ -15556,7 +15556,7 @@
       [300, 15]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "cowboy",
@@ -15612,7 +15612,7 @@
       [300, 15]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "cowboy",
@@ -15668,7 +15668,7 @@
       [300, 15]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "cowboy",
@@ -15724,7 +15724,7 @@
       [300, 15]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-3",
     "opponent": "cowboy",
@@ -15786,7 +15786,7 @@
       [300, 15]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-2",
     "opponent": "sheriff",
@@ -15844,7 +15844,7 @@
       [300, 15]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-5",
     "opponent": "sheriff",
@@ -15902,7 +15902,7 @@
       [300, 15]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-6",
     "opponent": "voltaire",
@@ -15960,7 +15960,7 @@
       [300, 15]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-7",
     "opponent": "voltaire",

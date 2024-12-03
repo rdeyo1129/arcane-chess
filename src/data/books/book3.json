@@ -17,7 +17,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "",
     "opponent": "book",
@@ -151,7 +151,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "book",
@@ -285,7 +285,7 @@
       [0, 0]
     ],
     "nodeText": "The endgame scenario that may or may not be in your favor.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "book",
@@ -677,7 +677,7 @@
       [0, 0]
     ],
     "nodeText": "If you want to hold your own through a full game, keep in mind these conventions when deciding on your moves.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-3",
     "opponent": "ephilate",
@@ -940,7 +940,7 @@
       [0, 0]
     ],
     "nodeText": "Learn about the Bishop and Equus pieces. They aren't the strongest, but they are important.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "ephilate",
@@ -1238,7 +1238,7 @@
       [0, 0]
     ],
     "nodeText": "Attain more details about the Bishop and Equus pieces.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-6",
     "opponent": "wizard",
@@ -1552,7 +1552,7 @@
       [0, 0]
     ],
     "nodeText": "Learn about novice-level tactics and how to spot them.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-5",
     "opponent": "ephilate",
@@ -1975,7 +1975,7 @@
       [100, 5]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-7",
     "opponent": "raven",
@@ -4064,7 +4064,7 @@
       [80, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "raven",
@@ -6124,7 +6124,7 @@
       [100, 5]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "raven",
@@ -8244,7 +8244,7 @@
       [80, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-3",
     "opponent": "raven",
@@ -10364,7 +10364,7 @@
       [100, 5]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-3",
     "opponent": "raven",
@@ -12496,7 +12496,7 @@
       [80, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "temple-5",
     "opponent": "raven",
@@ -14643,7 +14643,7 @@
       [45, 0]
     ],
     "nodeText": "Get your King to the center to win or defeat your opponent normally.",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "ephilate",
@@ -14696,7 +14696,7 @@
       [45, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "oldwoman",
@@ -14752,7 +14752,7 @@
       [45, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "ephilate",
@@ -14808,7 +14808,7 @@
       [45, 0]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-3",
     "opponent": "ephilate",
@@ -14864,7 +14864,7 @@
       [60, 10]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-4",
     "opponent": "ephilate",
@@ -14920,7 +14920,7 @@
       [200, 2]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "lesson-5",
     "opponent": "ephilate",
@@ -14976,7 +14976,7 @@
       [360, 4]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-6",
     "opponent": "priest",
@@ -15034,7 +15034,7 @@
       [200, 10]
     ],
     "nodeText": "",
-    "panelText": "",
+    "storyText": "",
     "reward": [],
     "prereq": "mission-7",
     "opponent": "priest",

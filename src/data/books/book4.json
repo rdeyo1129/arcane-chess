@@ -1083,10 +1083,10 @@
         "orientation": "white"
       },
       "panel-3": {
-        "fen": "8/ppp1pppp/3p4/2PPPP2/8/8/PP4PP/8 w - - 0 1",
-        "fenHistory": ["8/ppp1pppp/3p4/2PPPP2/8/8/PP4PP/8 w - - 0 1"],
+        "fen": "8/pppppppp/8/2PPPP2/8/8/PP4PP/8 w - - 0 1",
+        "fenHistory": ["8/ppppppppp/8/2PP4/8/8/PP2PPPP/8 w - - 0 1"],
         "history": [],
-        "panelText": "A principle taught everywhere is control the center with Pawns. The leading side effect is having space to move your pieces. However, in some scenarios like this one the Pawns have advanced to far for their own good and have created weaknesses that they can no longer go back to defend upon. White has space, but their Pawns do not control the center.",
+        "panelText": "A popular concept taught is establish a Pawn duo in the center. The leading side effect is having space to move your pieces. However, in some scenarios like this one the Pawns have advanced to far for their own good and have created weaknesses that they can no longer go back to defend upon. White has space, but their Pawns do not control the center.",
         "arrowsCircles": [
           { "orig": "d5", "brush": "red" },
           { "orig": "e5", "brush": "red" },
@@ -1207,7 +1207,7 @@
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "Defense. As covered in tactics, this is essential to avoiding quick short-term blunders. Before a move, ask yourself: are my pieces defended adequately? How can I solidify the integrity of my position before justifying an attack? Should I trade off a piece that is poorly defended?",
+        "panelText": "Defense. As covered in tactics, this is essential to avoiding quick, short-term tactical blunders. Before a move, ask yourself: are my pieces defended adequately? How can I solidify the integrity of my position before justifying an attack? Should I trade off a piece that is poorly defended?",
         "arrowsCircles": [],
         "royalties": {
           "royaltyQ": {},
@@ -1408,7 +1408,7 @@
   },
   "lesson-7": {
     "id": "lesson-7",
-    "title": "Patterns",
+    "title": "Patterns I",
     "diagWinLose": {
       "win1": "",
       "win2": "",

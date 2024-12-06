@@ -2291,7 +2291,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       time: this.state.time,
                       boss: false,
                       reward: [],
-                      panels: {},
+                      panels: { ...this.state.nodeObject },
                       diagWinLose: {
                         win1: '',
                         win2: '',

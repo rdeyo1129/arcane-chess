@@ -1,1 +1,380 @@
-{}
+{
+  "lesson-1": {
+    "id": "lesson-1",
+    "prereq": "",
+    "title": "Reaction and Emotional Regulation",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-2": {
+    "id": "lesson-2",
+    "prereq": "lesson-1",
+    "title": "Failure and Resilience",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-3": {
+    "id": "lesson-3",
+    "prereq": "lesson-2",
+    "title": "Patterns VIII",
+    "nodeText": "Learn about the importance of critical positions.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-4": {
+    "id": "lesson-4",
+    "prereq": "lesson-3",
+    "title": "Patterns VIII",
+    "nodeText": "Learn about quiet moves.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-5": {
+    "id": "lesson-5",
+    "prereq": "lesson-4",
+    "title": "Tactics VII",
+    "nodeText": "Learn about interference and the x-ray.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-6": {
+    "id": "lesson-6",
+    "prereq": "lesson-5",
+    "title": "Tactics VIII",
+    "nodeText": "Learn about zugzwang and desperado.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "square control",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-7": {
+    "id": "lesson-7",
+    "prereq": "lesson-6",
+    "title": "Plan Sampling",
+    "nodeText": "Get an idea of some questions you can ask during a game.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  }
+}

@@ -53,8 +53,7 @@ class UnwrappedFrontPage extends React.Component<
       'Your mind is the armory.',
       'Less doom scroll, more square control.',
       'Initiative. Formulation. Execution.',
-      'Built for GMs, instructive for all.', // fun for the aliens
-      //
+      'Built for GMs, fun for aliens, instructive for all.',
       'The war continues... so does your learning.',
     ];
     this.state = { currentSlogan: '', currentIndex: 0 };

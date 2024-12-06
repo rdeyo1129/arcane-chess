@@ -2,7 +2,7 @@
   "lesson-1": {
     "id": "lesson-1",
     "prereq": "",
-    "title": "Creativity",
+    "title": "Preparation and Resources",
     "nodeText": "",
     "storyTitle": "",
     "storyText": "",
@@ -16,113 +16,7 @@
     ],
     "boss": false,
     "reward": [],
-    "panels": {
-      "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Chess challenges players to think creatively, pushing them to explore unique solutions and visualize moves beyond the obvious. It fosters a mindset where innovation and imagination combine to outwit opponents.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-2": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Innovation in chess comes from finding answers to problems within a structured set of rules. Players learn to think strategically, inventing new ideas to adapt to their opponent's unexpected moves.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-3": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Resource management is a critical skill in chess. Each piece has unique strengths and weaknesses, and success depends on using these resources wisely to achieve both immediate and long-term goals.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-4": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Chess teaches adaptability, showing players how to shift strategies when plans fail. Creativity flourishes in these moments of uncertainty, where flexibility leads to discovering new opportunities.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-5": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "At its core, chess is a lesson in balancing resources, innovation, and creativity. It reveals how to think critically, make the most of available tools, and adapt to ever-changing challenges.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      }
-    },
+    "panels": {},
     "diagWinLose": {
       "win1": "",
       "win2": "",
@@ -137,7 +31,7 @@
   "lesson-2": {
     "id": "lesson-2",
     "prereq": "lesson-1",
-    "title": "Preparation",
+    "title": "Creativity and Innovation",
     "nodeText": "",
     "storyTitle": "",
     "storyText": "",
@@ -151,13 +45,76 @@
     ],
     "boss": false,
     "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-3": {
+    "id": "lesson-3",
+    "prereq": "lesson-2",
+    "title": "Patterns II",
+    "nodeText": "Learn about batteries and rank penetration.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "everwanderers",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-4": {
+    "id": "lesson-4",
+    "prereq": "lesson-3",
+    "title": "Patterns",
+    "nodeText": "Learn about the key event of Pawn breaks.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "Preparation is the bedrock of success in life. The more effort we put into learning, practicing, and refining our skills, the better equipped we are to face challenges and seize opportunities. Whether it’s mastering a craft, pursuing a career, or building relationships, preparation gives us the tools to navigate uncertainty with confidence and poise.",
+        "panelText": "",
         "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -169,16 +126,49 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-2": {
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-5": {
+    "id": "lesson-5",
+    "prereq": "lesson-4",
+    "title": "Tactics III",
+    "nodeText": "Learn about the decoy and overloading pieces.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "Yet, no amount of preparation can predict every twist and turn. Life, like chess, is full of surprises. Unexpected events can either disrupt our plans or open new doors we hadn’t considered. However, these moments of 'luck' often reveal themselves only to those who are ready. Preparation creates the conditions for luck to thrive, making it less about chance and more about recognizing opportunities when they arise.",
+        "panelText": "",
         "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -190,16 +180,49 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-3": {
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-6": {
+    "id": "lesson-6",
+    "prereq": "lesson-5",
+    "title": "Tactics IV",
+    "nodeText": "Learn about double check and discoveries",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "Luck, in many ways, is proportional to preparation. When you’ve done the work, you increase the odds of being in the right place at the right time, equipped with the right mindset to take advantage of the moment. It’s not that luck randomly favors people—it’s that those who are prepared are better able to see and act on the opportunities that others might miss.",
+        "panelText": "",
         "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -211,16 +234,49 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-4": {
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-7": {
+    "id": "lesson-7",
+    "prereq": "lesson-6",
+    "title": "Aggression I",
+    "nodeText": "Learn about concepts behind attacking chess.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "Life teaches us that success is a blend of preparation and flexibility. We can’t control every factor, but we can control how ready we are to respond to the unexpected. By putting in the effort and staying open to possibilities, we reduce the role of pure chance and instead create our own 'luck' through persistence, resilience, and readiness.",
+        "panelText": "",
         "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -232,30 +288,7 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-5": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "Preparation and luck are intertwined. The more prepared we are, the less we rely on chance alone. Success often comes when preparation meets the right moment, and what seems like luck is often the product of readiness and effort.",
-        "arrowsCircles": [],
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
+        "correctMoves": []
       }
     },
     "diagWinLose": {

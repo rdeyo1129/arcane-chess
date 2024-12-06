@@ -135,7 +135,7 @@
   },
   "lesson-2": {
     "id": "lesson-2",
-    "title": "Reflection",
+    "title": "Adaptability",
     "diagWinLose": {
       "win1": "",
       "win2": "",
@@ -159,86 +159,7 @@
     "storyTitle": "",
     "theme": "library",
     "bookTheme": "town",
-    "panels": {
-      "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "In terms of chess, make this your top habit: after your game finishes, go back through the moves. Ask what you could have done differently. Where did the tides turn and why?",
-        "arrowsCircles": [],
-        "nodeText": "",
-        "reward": [],
-        "description": "",
-        "opponent": "",
-        "prereq": "",
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyM": {},
-          "royaltyT": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-2": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "In terms of life, look back upon your progress or events that happened and the emotions, thoughts and actions tied to it. If any outcome or experience was positive or negative, you can look back and ask how to recreate or avoid that thing respectively in the future.",
-        "arrowsCircles": [],
-        "nodeText": "",
-        "reward": [],
-        "description": "",
-        "opponent": "",
-        "prereq": "",
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyM": {},
-          "royaltyT": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      },
-      "panel-3": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
-        "history": [],
-        "panelText": "What happens when you reflect more? You will become more self-aware of your tendencies and more. You’ll be able to answer questions prompted by the growth mindset. As you look back and analyze, you’ll attain new perspectives and learn from experience.",
-        "arrowsCircles": [],
-        "nodeText": "",
-        "reward": [],
-        "description": "",
-        "opponent": "",
-        "prereq": "",
-        "royalties": {
-          "royaltyQ": {},
-          "royaltyT": {},
-          "royaltyM": {},
-          "royaltyV": {},
-          "royaltyE": {}
-        },
-        "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
-        "config": {},
-        "correctMoves": [""],
-        "viewOnly": true,
-        "orientation": "white"
-      }
-    },
+    "panels": {},
     "boss": false
   },
   "lesson-3": {

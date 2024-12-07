@@ -110,8 +110,8 @@
   "lesson-3": {
     "id": "lesson-3",
     "prereq": "lesson-2",
-    "title": "Patterns IV",
-    "nodeText": "Learn about targets and weak points.",
+    "title": "Patterns III",
+    "nodeText": "Learn about the key event of Pawn breaks.",
     "storyTitle": "",
     "storyText": "",
     "hero": "",
@@ -164,8 +164,8 @@
   "lesson-4": {
     "id": "lesson-4",
     "prereq": "lesson-3",
-    "title": "Patterns V",
-    "nodeText": "Learn about trades and simplification.",
+    "title": "Patterns IV",
+    "nodeText": "Learn about targets and weak points.",
     "storyTitle": "",
     "storyText": "",
     "hero": "",
@@ -218,8 +218,8 @@
   "lesson-5": {
     "id": "lesson-5",
     "prereq": "lesson-4",
-    "title": "Pawnns III",
-    "nodeText": "Learn about more Pawn concepts.",
+    "title": "Patterns V",
+    "nodeText": "Learn about trades and simplification.",
     "storyTitle": "",
     "storyText": "",
     "hero": "",
@@ -272,6 +272,60 @@
   "lesson-6": {
     "id": "lesson-6",
     "prereq": "lesson-5",
+    "title": "Tactics IV",
+    "nodeText": "Learn about clearance and attraction.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "mention square control",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "lesson-7": {
+    "id": "lesson-7",
+    "prereq": "lesson-6",
     "title": "Aggression II",
     "nodeText": "Learn more about attacking Chess.",
     "storyTitle": "",

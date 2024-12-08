@@ -967,7 +967,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             /> */}
               <Select
                 options={[
-                  '',
+                  'setup',
                   'CLEAR',
                   'CHESS',
                   'HORDE',
@@ -1906,7 +1906,9 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 // current
                 value={this.state.fen} // Changed to use the value prop
                 onChange={(value) => {
-                  this.setFen(value);
+                  this.setState({
+                    fen: value,
+                  });
                 }}
                 password={false}
                 // textArg={this.state.fenHistory[this.state.fenHistory.length - 1]}
@@ -1955,53 +1957,54 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 />
               ) : (
                 <Button
-                  text="PLAY"
+                  text="SET"
                   onClick={() => {
-                    console.log(
-                      this.state.config.W.arcana,
-                      this.state.config.BK.arcana
-                    );
-                    // const fischer = randomize(
+                    this.setFen(this.state.fen);
+                    // console.log(
                     //   this.state.config.W.arcana,
                     //   this.state.config.BK.arcana
                     // );
-                    this.arcaneChess().startGame(
-                      this.state.fen,
-                      this.state.config.W.arcana,
-                      this.state.config.BK.arcana,
-                      this.state.royalties,
-                      this.state.preset
-                    );
-                    if (this.state.fen.split(' ')[1] === 'b') {
-                      this.engineGo();
-                    }
+                    // // const fischer = randomize(
+                    // //   this.state.config.W.arcana,
+                    // //   this.state.config.BK.arcana
+                    // // );
+                    // this.arcaneChess().startGame(
+                    //   this.state.fen,
+                    //   this.state.config.W.arcana,
+                    //   this.state.config.BK.arcana,
+                    //   this.state.royalties,
+                    //   this.state.preset
+                    // );
+                    // if (this.state.fen.split(' ')[1] === 'b') {
+                    //   this.engineGo();
+                    // }
 
-                    this.setState((prevState) => ({
-                      ...prevState,
-                      playing: true,
-                      placingPiece: 0,
-                      placingRoyalty: 0,
-                      swapType: '',
-                      fen: this.state.fen,
-                      fenHistory: [this.state.fen],
-                      royalties: {
-                        royaltyQ: _.fromPairs(
-                          _.map(GameBoard.royaltyQ, (v, k) => [PrSq(k), v])
-                        ),
-                        royaltyT: _.fromPairs(
-                          _.map(GameBoard.royaltyT, (v, k) => [PrSq(k), v])
-                        ),
-                        royaltyM: _.fromPairs(
-                          _.map(GameBoard.royaltyM, (v, k) => [PrSq(k), v])
-                        ),
-                        royaltyV: _.fromPairs(
-                          _.map(GameBoard.royaltyV, (v, k) => [PrSq(k), v])
-                        ),
-                        royaltyE: _.fromPairs(
-                          _.map(GameBoard.royaltyE, (v, k) => [PrSq(k), v])
-                        ),
-                      },
-                    }));
+                    // this.setState((prevState) => ({
+                    //   ...prevState,
+                    //   playing: true,
+                    //   placingPiece: 0,
+                    //   placingRoyalty: 0,
+                    //   swapType: '',
+                    //   fen: this.state.fen,
+                    //   fenHistory: [this.state.fen],
+                    //   royalties: {
+                    //     royaltyQ: _.fromPairs(
+                    //       _.map(GameBoard.royaltyQ, (v, k) => [PrSq(k), v])
+                    //     ),
+                    //     royaltyT: _.fromPairs(
+                    //       _.map(GameBoard.royaltyT, (v, k) => [PrSq(k), v])
+                    //     ),
+                    //     royaltyM: _.fromPairs(
+                    //       _.map(GameBoard.royaltyM, (v, k) => [PrSq(k), v])
+                    //     ),
+                    //     royaltyV: _.fromPairs(
+                    //       _.map(GameBoard.royaltyV, (v, k) => [PrSq(k), v])
+                    //     ),
+                    //     royaltyE: _.fromPairs(
+                    //       _.map(GameBoard.royaltyE, (v, k) => [PrSq(k), v])
+                    //     ),
+                    //   },
+                    // }));
                   }}
                   className="primary"
                   color="B"
@@ -2061,7 +2064,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
             </div>
             <div></div>
             {/* <div></div> */}
-            {process.env.NODE_ENV === 'development' && (
+            {/* {process.env.NODE_ENV === 'development' && (
               <Button
                 text="SIM"
                 onClick={() => this.arcaneChess().gameSim(1000)}
@@ -2073,7 +2076,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 disabled={false}
                 // strong={true}
               />
-            )}
+            )} */}
             <div className="time-input">
               <Select
                 type="number"
@@ -2114,7 +2117,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                 {GameBoard.material[1] ? GameBoard.material[1] - 150000 : 0}
               </div>
             </div>
-            <Button
+            {/* <Button
               text="FACTIONIZE"
               onClick={() => this.calculateFen()}
               className="primary"
@@ -2124,7 +2127,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
               // disabled={this.state.fen === ''}
               disabled={false}
               // strong={true}
-            />
+            /> */}
           </div>
           <div className="bottom-right">
             <div className="create-buttons">

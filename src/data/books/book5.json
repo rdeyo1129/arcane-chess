@@ -336,7 +336,316 @@
     ],
     "boss": false,
     "reward": [],
-    "panels": {},
+    "panels": {
+      "panel-1": {
+        "fen": "3r1rk1/RR4pp/8/8/8/6P1/5P2/6K1 w - - 0 1",
+        "fenHistory": ["3r1rk1/RR4pp/8/8/8/6P1/5P2/6K1 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [
+          { "orig": "a7", "dest": "h7", "brush": "green" },
+          { "orig": "g7", "brush": "red" },
+          { "orig": "h7", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "3r1rk1/6RR/8/8/8/6P1/5P2/6K1 w - - 0 1",
+        "fenHistory": ["3r1rk1/6RR/8/8/8/6P1/5P2/6K1 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [{ "orig": "g8", "brush": "red" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "4rrk1/pp1R1pbp/6p1/8/8/7P/PPPR1PP1/5K2 w - - 0 1",
+        "fenHistory": ["4rrk1/pp1R1pbp/6p1/8/8/7P/PPPR1PP1/5K2 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [
+          { "orig": "d7", "dest": "a7", "brush": "green" },
+          { "orig": "d7", "dest": "h7", "brush": "green" },
+          { "orig": "a7", "brush": "red" },
+          { "orig": "b7", "brush": "red" },
+          { "orig": "f7", "brush": "red" },
+          { "orig": "h7", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "2rr2k1/p4ppq/1p5p/2p5/3pR3/4R3/PPPP1PPP/4Q3 w - - 0 1",
+        "fenHistory": ["2rr2k1/p4ppq/1p5p/2p5/3pR3/4R3/PPPP1PPP/4Q3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "e1", "brush": "green" },
+          { "orig": "e3", "brush": "green" },
+          { "orig": "e4", "brush": "green" },
+          { "orig": "f7", "brush": "red" },
+          { "orig": "g7", "brush": "red" },
+          { "orig": "h7", "brush": "red" },
+          { "orig": "e1", "dest": "e8", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "2rrR1k1/p4ppq/1p5p/2p5/3p4/4R3/PPPP1PPP/4Q3 w - - 0 1",
+        "fenHistory": ["2rrR1k1/p4ppq/1p5p/2p5/3p4/4R3/PPPP1PPP/4Q3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "2r1r1k1/p4ppq/1p5p/2p5/3p4/4R3/PPPP1PPP/4Q3 w - - 0 1",
+        "fenHistory": ["2r1r1k1/p4ppq/1p5p/2p5/3p4/4R3/PPPP1PPP/4Q3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "2r1R1k1/p4ppq/1p5p/2p5/3p4/8/PPPP1PPP/4Q3 w - - 0 1",
+        "fenHistory": ["2r1R1k1/p4ppq/1p5p/2p5/3p4/8/PPPP1PPP/4Q3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "4r1k1/p4ppq/1p5p/2p5/3p4/8/PPPP1PPP/4Q3 w - - 0 1",
+        "fenHistory": ["4r1k1/p4ppq/1p5p/2p5/3p4/8/PPPP1PPP/4Q3 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "4Q1k1/p4ppq/1p5p/2p5/3p4/8/PPPP1PPP/8 w - - 0 1",
+        "fenHistory": ["4Q1k1/p4ppq/1p5p/2p5/3p4/8/PPPP1PPP/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "g7", "brush": "red" },
+          { "orig": "f7", "brush": "red" },
+          { "orig": "h7", "brush": "red" },
+          { "orig": "e8", "dest": "h8", "brush": "red" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-10": {
+        "fen": "3rrbk1/pp1q1pp1/2p4p/3p4/2PP4/3B4/PPQ2PPP/R3R1K1 w - - 0 1",
+        "fenHistory": [
+          "3rrbk1/pp1q1pp1/2p4p/3p4/2PP4/3B4/PPQ2PPP/R3R1K1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "c2", "dest": "h7", "brush": "green" },
+          { "orig": "h8", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-11": {
+        "fen": "3rrbk1/pp1q1ppQ/2p4p/3p4/2PP4/8/PPB2PPP/R3R1K1 w - - 0 1",
+        "fenHistory": [
+          "3rrbk1/pp1q1ppQ/2p4p/3p4/2PP4/8/PPB2PPP/R3R1K1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "g8", "brush": "green" },
+          { "orig": "h8", "brush": "green" },
+          { "orig": "h7", "dest": "g8", "brush": "green" },
+          { "orig": "c2", "dest": "h7", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-12": {
+        "fen": "3rrbk1/pp1q1p2/2p2npp/3p4/2PP4/3Q4/PPB2PPP/R3R1K1 w - - 0 1",
+        "fenHistory": [
+          "3rrbk1/pp1q1p2/2p2npp/3p4/2PP4/3Q4/PPB2PPP/R3R1K1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "f6", "brush": "red" },
+          { "orig": "h6", "brush": "red" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
     "diagWinLose": {
       "win1": "",
       "win2": "",
@@ -367,28 +676,197 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "r1btkb1r/pppp1ppp/2n5/4p3/2PnP3/3P1N2/PP2BPPP/RNBTK2R w - - 0 1",
+        "fenHistory": [
+          "r1btkb1r/pppp1ppp/2n5/4p3/2PnP3/3P1N2/PP2BPPP/RNBTK2R w - - 0 1"
+        ],
         "history": [],
         "panelText": "",
-        "arrowsCircles": [],
-        "nodeText": "",
-        "reward": [],
-        "description": "",
-        "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
-          "royaltyT": {},
           "royaltyM": {},
+          "royaltyT": {},
           "royaltyV": {},
           "royaltyE": {}
         },
+        "arrowsCircles": [{ "orig": "d3", "brush": "red" }],
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": []
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "4rk2/pps2ppp/2p2zu1/3p4/3P4/2ZZP3/PPP3PP/2KR1W2 w - - 0 1",
+        "fenHistory": [
+          "4rk2/pps2ppp/2p2zu1/3p4/3P4/2ZZP3/PPP3PP/2KR1W2 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "e8", "dest": "e3", "brush": "red" },
+          { "orig": "e3", "brush": "red" },
+          { "orig": "d5", "dest": "e4", "brush": "red" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "1m3k2/1Pp1ppp1/2Pp1w1p/1N1P2w1/2N1P3/3N1PP1/6K1/8 w - - 0 1",
+        "fenHistory": [
+          "1m3k2/1Pp1ppp1/2Pp1w1p/1N1P2w1/2N1P3/3N1PP1/6K1/8 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "f3", "brush": "green" },
+          { "orig": "e4", "brush": "green" },
+          { "orig": "d5", "brush": "green" },
+          { "orig": "c6", "brush": "green" },
+          { "orig": "b7", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "8/1p2pp1p/p2p2p1/8/2P1P3/1P3P2/P5PP/8 b - - 0 1",
+        "fenHistory": ["8/1p2pp1p/p2p2p1/8/2P1P3/1P3P2/P5PP/8 b - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/pp3pp1/7p/3p4/8/P3P3/1P3PPP/8 w - - 0 22",
+        "fenHistory": ["8/pp3pp1/7p/3p4/8/P3P3/1P3PPP/8 w - - 0 22"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "8/pp2pppp/2p5/3p4/3PP3/2P5/PP3PPP/8 w - - 0 1",
+        "fenHistory": ["8/pp2pppp/2p5/3p4/3PP3/2P5/PP3PPP/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "8/8/8/8/8/4P2P/5PP1/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/4P2P/5PP1/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "e3", "dest": "f4", "brush": "green" },
+          { "orig": "g2", "dest": "f3", "brush": "green" },
+          { "orig": "f2", "dest": "g3", "brush": "green" },
+          { "orig": "h3", "dest": "g4", "brush": "green" },
+          { "orig": "g3", "brush": "green" },
+          { "orig": "f3", "brush": "green" },
+          { "orig": "f4", "brush": "green" },
+          { "orig": "g4", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "8/pp2pp1p/3p2p1/8/4P3/8/PPP2PPP/8 w - - 0 1",
+        "fenHistory": ["8/pp2pp1p/3p2p1/8/4P3/8/PPP2PPP/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       }
     },
     "diagWinLose": {
@@ -421,28 +899,254 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "3r4/p4p2/2p1pk1p/8/5NP1/4n3/PP5P/5RK1 b - - 0 1",
+        "fenHistory": ["3r4/p4p2/2p1pk1p/8/5NP1/4n3/PP5P/5RK1 b - - 0 1"],
         "history": [],
         "panelText": "",
-        "arrowsCircles": [],
-        "nodeText": "",
-        "reward": [],
-        "description": "",
-        "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
-          "royaltyT": {},
           "royaltyM": {},
+          "royaltyT": {},
           "royaltyV": {},
           "royaltyE": {}
         },
+        "arrowsCircles": [],
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": []
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "3r4/p4p2/2p1pk1p/3N4/6P1/4n3/PP5P/5RK1 b - - 0 1",
+        "fenHistory": ["3r4/p4p2/2p1pk1p/3N4/6P1/4n3/PP5P/5RK1 b - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "d5", "dest": "e3", "brush": "green" },
+          { "orig": "f1", "dest": "f6", "brush": "red" },
+          { "orig": "g4", "dest": "f5", "brush": "red" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "r4r2/1pq2pk1/p2bpnp1/4n1B1/5PP1/1PpB1Q2/P1P5/R3R1K1 b - - 0 1",
+        "fenHistory": [
+          "r4r2/1pq2pk1/p2bpnp1/4n1B1/5PP1/1PpB1Q2/P1P5/R3R1K1 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "d7", "dest": "e5", "brush": "red" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "r4r2/1pq2pk1/p2bpBp1/4n3/5PP1/1PpB1Q2/P1P5/R3R1K1 b - - 0 1",
+        "fenHistory": [
+          "r4r2/1pq2pk1/p2bpBp1/4n3/5PP1/1PpB1Q2/P1P5/R3R1K1 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "g5", "dest": "f6", "brush": "green" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "r4r2/1pq2p2/p2bpkp1/4n3/5PP1/1PpB1Q2/P1P5/R3R1K1 b - - 0 1",
+        "fenHistory": [
+          "r4r2/1pq2p2/p2bpkp1/4n3/5PP1/1PpB1Q2/P1P5/R3R1K1 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "g7", "dest": "f6", "brush": "red" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "r4r2/1pq2p2/p2bpkp1/4P3/6P1/1PpB1Q2/P1P5/R3R1K1 b - - 0 1",
+        "fenHistory": [
+          "r4r2/1pq2p2/p2bpkp1/4P3/6P1/1PpB1Q2/P1P5/R3R1K1 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "f4", "dest": "e5", "brush": "green" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "r2q2r1/ppp2p2/3p3k/3PpPRP/4n3/8/PPPQ4/2K4R b - - 0 1",
+        "fenHistory": ["r2q2r1/ppp2p2/3p3k/3PpPRP/4n3/8/PPPQ4/2K4R b - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "f6", "dest": "e4", "brush": "red" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "r2q2r1/ppp2p2/3p2Rk/3PpP1P/4n3/8/PPPQ4/2K4R b - - 0 1",
+        "fenHistory": ["r2q2r1/ppp2p2/3p2Rk/3PpP1P/4n3/8/PPPQ4/2K4R b - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "g5", "dest": "g6", "brush": "green" },
+          { "orig": "d2", "brush": "yellow" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "r2q2r1/ppp2p1k/3p2R1/3PpP1P/4n3/8/PPPQ4/2K4R b - - 0 1",
+        "fenHistory": [
+          "r2q2r1/ppp2p1k/3p2R1/3PpP1P/4n3/8/PPPQ4/2K4R b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-10": {
+        "fen": "r2q2r1/ppp2p1k/3p2RQ/3PpP1P/4n3/8/PPP5/2K4R b - - 0 1",
+        "fenHistory": ["r2q2r1/ppp2p1k/3p2RQ/3PpP1P/4n3/8/PPP5/2K4R b - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "d2", "dest": "h6", "brush": "green" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-11": {
+        "fen": "r5k1/p4pp1/3P2rp/P1P1P3/7R/5P1b/R3nP1P/2BQ2K1 w - - 0 1",
+        "fenHistory": [
+          "r5k1/p4pp1/3P2rp/P1P1P3/7R/5P1b/R3nP1P/2BQ2K1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "g3", "dest": "e2", "brush": "yellow" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       }
     },
     "diagWinLose": {

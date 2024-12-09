@@ -286,28 +286,164 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "3rb3/ppp2pp1/7p/4p3/3pP3/2PP4/PP3PPP/2RB4 w - - 0 1",
+        "fenHistory": ["3rb3/ppp2pp1/7p/4p3/3pP3/2PP4/PP3PPP/2RB4 w - - 0 1"],
         "history": [],
-        "panelText": "",
-        "arrowsCircles": [],
-        "nodeText": "",
-        "reward": [],
-        "description": "",
-        "opponent": "",
-        "prereq": "",
+        "panelText": "Pawn breaks are a cornerstone of strategic chess, representing pivotal moments where a pawn advance challenges the opponent's pawn structure, opens lines for pieces, or creates dynamic opportunities. Unlike piece maneuvers, which can often be adjusted without significant consequences, pawn moves are more committal. Once a pawn advances, it cannot retreat, and thus, the decision to initiate a pawn break carries long-term implications for the structure and flow of the game.",
         "royalties": {
           "royaltyQ": {},
-          "royaltyT": {},
           "royaltyM": {},
+          "royaltyT": {},
           "royaltyV": {},
           "royaltyE": {}
         },
+        "arrowsCircles": [
+          { "orig": "c1", "dest": "c7", "brush": "green" },
+          { "orig": "c3", "dest": "d4", "brush": "green" },
+          { "orig": "d1", "dest": "a4", "brush": "green" }
+        ],
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": []
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "8/ppp4p/3p2p1/4pp2/2PPP3/8/PP3PPP/8 w - - 0 1",
+        "fenHistory": ["8/ppp4p/3p2p1/4pp2/2PPP3/8/PP3PPP/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Pawn breaks also serve as strategic tools for gaining space or undermining the opponent's control. For instance, in many openings like the Caro-Kann or French Defense, the move c5 (for Black) aims to contest central control and pressure the opponent’s pawn center. Similarly, in a Ruy López or Queen's Gambit position, breaks such as d4 or ...d5 often mark critical turning points where the balance of power shifts dramatically. Without such breaks, a player risks passivity, allowing the opponent to consolidate and dictate the pace of the game.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "f7", "dest": "f5", "brush": "green" },
+          { "orig": "e4", "brush": "green" },
+          { "orig": "f5", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "rnbqkbnr/pp3ppp/4p3/2ppP3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 0 1",
+        "fenHistory": [
+          "rnbqkbnr/pp3ppp/4p3/2ppP3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Pawn breaks also serve as strategic tools for gaining space or undermining the opponent's control. For instance, in many openings like the Caro-Kann or French Defense, the move c5 (for Black) aims to contest central control and pressure the opponent’s pawn center. Similarly, in a Ruy López or Queen's Gambit position, breaks such as d4 or ...d5 often mark critical turning points where the balance of power shifts dramatically. Without such breaks, a player risks passivity, allowing the opponent to consolidate and dictate the pace of the game.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "c6", "dest": "c5", "brush": "green" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "8/5pp1/1p1p3p/1PpPp3/p1P1P3/P2B1P2/6PP/8 w - - 0 1",
+        "fenHistory": ["8/5pp1/1p1p3p/1PpPp3/p1P1P3/P2B1P2/6PP/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Timing is everything when it comes to pawn breaks. An ill-prepared break can leave pawns isolated or backward, creating weaknesses that the opponent can exploit. Conversely, a delayed or missed pawn break might result in a cramped position, with limited mobility for one's pieces. This delicate balance requires players to evaluate not just the immediate tactical consequences of a pawn break but also its strategic ripple effects across the board.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "d3", "brush": "red" },
+          { "orig": "e6", "dest": "e5", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/1p6/PPp5/2P5/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/1p6/PPp5/2P5/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "In summary, pawn breaks are a key strategic concept in chess, driving the game forward and providing opportunities for both attack and defense. Mastering the art of recognizing when and where to execute a pawn break can elevate a player's understanding and control of the game, making it an essential skill for players of all levels.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "a5", "dest": "a6", "brush": "green" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "8/1p6/PPp5/2P5/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/1p6/PPp5/2P5/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "In summary, pawn breaks are a key strategic concept in chess, driving the game forward and providing opportunities for both attack and defense. Mastering the art of recognizing when and where to execute a pawn break can elevate a player's understanding and control of the game, making it an essential skill for players of all levels.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "a6", "dest": "a8", "brush": "green" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "8/8/pPp5/2P5/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/pPp5/2P5/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "In summary, pawn breaks are a key strategic concept in chess, driving the game forward and providing opportunities for both attack and defense. Mastering the art of recognizing when and where to execute a pawn break can elevate a player's understanding and control of the game, making it an essential skill for players of all levels.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "b6", "dest": "b8", "brush": "green" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       }
     },
     "diagWinLose": {
@@ -343,11 +479,131 @@
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Targets in chess are elements of the opponent's position that can be attacked or pressured. These include pawns, pieces, squares, or even the king. While not always weak, targets provide focus for strategic or tactical play.",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
-        "description": "",
+        "description": "An introduction to the concept of targets in chess.",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      },
+      "panel-2": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Targets play a vital role in guiding strategic plans. By focusing on a target, players can coordinate their pieces, provoke weaknesses, or gain dynamic opportunities. Effective targeting can lead to both immediate and long-term advantages.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "Explains how targets shape strategic planning in chess.",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      },
+      "panel-3": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "In tactical play, identifying and exploiting targets is crucial. Targets often form the basis of combinations or sacrifices, enabling players to gain material, create weaknesses, or seize the initiative.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "Highlights the importance of targets in tactical operations.",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      },
+      "panel-4": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Weak points are long-term vulnerabilities in a position, often related to pawn structure or key squares. They are harder to repair than temporary targets and can dictate the flow of the game.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "Introduces the concept of weak points in chess.",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      },
+      "panel-5": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Weak points influence long-term strategic planning. By attacking weak points, players can force the opponent into passive defense, creating opportunities to gain material or positional dominance.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "Explains how weak points shape long-term strategy in chess.",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      },
+      "panel-6": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Weak points are especially decisive in endgames, where structural weaknesses like backward or isolated pawns can determine the outcome. Exploiting such weaknesses often leads to victory in simplified positions.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "Highlights the importance of weak points in endgame scenarios.",
         "opponent": "",
         "prereq": "",
         "royalties": {
@@ -397,11 +653,107 @@
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Trades in chess, or exchanges of pieces, significantly impact the position and flow of the game. Each trade should align with a player’s strategic objectives, as poorly considered exchanges can benefit the opponent. The decision to trade depends on the context, including material balance, activity of pieces, and pawn structure.",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
-        "description": "",
+        "description": "Introduction to the concept of trades in chess.",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      },
+      "panel-2": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Simplification, or the intentional trading of pieces to reduce complexity, is a common strategy when holding a material or positional advantage. By removing potential threats and entering an endgame with fewer pieces, the stronger side can focus on converting their advantage into a win. However, over-simplifying can backfire if it eliminates your attacking chances or leaves you in a weaker endgame.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "Simplification as a strategy when holding an advantage.",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      },
+      "panel-3": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "For players under pressure, trades can serve as a defensive tool. Exchanging key attacking pieces or simplifying a complex position can neutralize threats and restore balance. Careful evaluation of the resulting position is critical to ensure that the trade doesn’t inadvertently create new weaknesses.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "Using trades to alleviate pressure and neutralize threats.",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      },
+      "panel-4": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Trades can drastically alter pawn structures, which are the backbone of a position. Exchanging pieces may create weaknesses in the opponent’s pawns, such as isolated or doubled pawns, or it may resolve weaknesses in your own camp. Conversely, ill-advised trades can improve your opponent’s structure or open key lines for their pieces.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "The impact of trades on pawn structure.",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": []
+      },
+      "panel-5": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Trades can serve both tactical and strategic purposes. Tactically, they might involve sacrifices to achieve a winning position, such as a decisive promotion or a checkmating attack. Strategically, trades help shape the position to align with your goals, whether that’s simplifying into a favorable endgame or exchanging pieces to dominate key squares.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "Strategic and tactical uses of trades in chess.",
         "opponent": "",
         "prereq": "",
         "royalties": {
@@ -448,28 +800,222 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "5rk1/p1qpQppp/1pn5/3B4/8/P7/KP6/4R3 b - - 0 1",
+        "fenHistory": ["5rk1/p1qpQppp/1pn5/3B4/8/P7/KP6/4R3 b - - 0 1"],
         "history": [],
-        "panelText": "mention square control",
-        "arrowsCircles": [],
-        "nodeText": "",
-        "reward": [],
-        "description": "",
-        "opponent": "",
-        "prereq": "",
+        "panelText": "These pieces are in the way of a checkmate, what's the way forward?",
         "royalties": {
           "royaltyQ": {},
-          "royaltyT": {},
           "royaltyM": {},
+          "royaltyT": {},
           "royaltyV": {},
           "royaltyE": {}
         },
+        "arrowsCircles": [
+          { "orig": "f7", "brush": "red" },
+          { "orig": "f8", "brush": "red" }
+        ],
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": []
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "4R1k1/p1qp1rpp/1pn5/3B4/8/P7/KP6/8 b - - 0 1",
+        "fenHistory": ["4R1k1/p1qp1rpp/1pn5/3B4/8/P7/KP6/8 b - - 0 1"],
+        "history": [],
+        "panelText": "A Queen sacrifice! This clears the way for back-rank pin combo.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "f7", "brush": "red" },
+          { "orig": "f8", "brush": "red" },
+          { "orig": "d5", "dest": "g8", "brush": "green" },
+          { "orig": "e8", "dest": "h8", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "6q1/b1pk1p2/p1pp1prp/4pN2/1P2P3/P1PP1PrP/2Q1R1P1/5R1K w - - 0 1",
+        "fenHistory": [
+          "6q1/b1pk1p2/p1pp1prp/4pN2/1P2P3/P1PP1PrP/2Q1R1P1/5R1K w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Imagine the black Queen on this square, that would be checkmate! What can black do here?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "g1", "brush": "yellow" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "6q1/b1pk1p2/p1pp1prp/4pN2/1P2P3/P1PP1P1r/2Q1R1P1/5R1K w - - 0 1",
+        "fenHistory": [
+          "6q1/b1pk1p2/p1pp1prp/4pN2/1P2P3/P1PP1P1r/2Q1R1P1/5R1K w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Once the Pawn clears away, the Rook then Queen come down to deliver mate. Clearance in chess is a tactical motif where a piece vacates a square, rank, file, or diagonal to make way for another piece to occupy or utilize it. This maneuver often involves a sacrifice or a forced move to achieve the clearance, enabling a decisive tactical blow or unlocking latent potential in the position.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "g1", "brush": "green" },
+          { "orig": "g2", "dest": "h3", "brush": "red" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "5r1k/p5p1/7p/8/4P3/2NRPB1P/PPn2Kr1/8 w - - 0 1",
+        "fenHistory": ["5r1k/p5p1/7p/8/4P3/2NRPB1P/PPn2Kr1/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Why did black just play here? Is this giving up a Rook for nothing?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "g6", "dest": "g2", "brush": "green" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "5r1k/p5p1/7p/8/4P3/2NRPB1P/PPn3K1/8 w - - 0 1",
+        "fenHistory": ["5r1k/p5p1/7p/8/4P3/2NRPB1P/PPn3K1/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Not quite, the white King is now open to a fork. Black will be able to simplify and stay up the exchange.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "c2", "dest": "e1", "brush": "green" },
+          { "orig": "e1", "dest": "d3", "brush": "green" },
+          { "orig": "e1", "dest": "g2", "brush": "green" },
+          { "orig": "e1", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "6r1/pb1p4/3Bp3/1pQ3PP/1P1n4/3k4/5P2/6K1 w - - 0 1",
+        "fenHistory": ["6r1/pb1p4/3Bp3/1pQ3PP/1P1n4/3k4/5P2/6K1 w - - 0 1"],
+        "history": [],
+        "panelText": "Let's try another example. What's the best move here?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "8/pb1p4/3Bp3/1pQ3rP/1P1n4/3k4/5P2/6K1 w - - 0 1",
+        "fenHistory": ["8/pb1p4/3Bp3/1pQ3rP/1P1n4/3k4/5P2/6K1 w - - 0 1"],
+        "history": [],
+        "panelText": "The Rook lands a fork. But it's undefended?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "g8", "dest": "g5", "brush": "green" },
+          { "orig": "g5", "dest": "g1", "brush": "green" },
+          { "orig": "g5", "dest": "c5", "brush": "green" },
+          { "orig": "g5", "brush": "red" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "8/pb1p4/3Bp3/1p4QP/1P6/3k1n2/5P2/6K1 w - - 0 1",
+        "fenHistory": ["8/pb1p4/3Bp3/1p4QP/1P6/3k1n2/5P2/6K1 w - - 0 1"],
+        "history": [],
+        "panelText": "Another forking square! Attraction in chess is a tactical motif where a piece, usually the king or another valuable piece, is lured to a specific square to exploit its new position. The goal of attraction is often to set up a secondary tactic, such as a fork, pin, or mate. For example, a player might sacrifice a piece to \"attract\" the opponent's king to a square where it becomes vulnerable to a decisive attack. This tactic requires precise calculation, as the initial sacrifice must lead to a concrete advantage or decisive result. Attraction is a powerful tool in combinations, showcasing the interplay between tactical vision and strategic planning.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "d4", "dest": "f3", "brush": "green" },
+          { "orig": "f3", "dest": "g5", "brush": "green" },
+          { "orig": "f3", "dest": "g1", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       }
     },
     "diagWinLose": {

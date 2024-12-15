@@ -41,7 +41,7 @@ export const unlockableArcana = [
   // 1
   {
     sumnP: 2,
-    // dyadP: 1,
+    dyadP: 1,
     shftP: 1,
     modsFUT: 2,
   },
@@ -49,15 +49,15 @@ export const unlockableArcana = [
   {
     sumnN: 4,
     sumnU: 4,
-    // dyadN: 3,
-    // dyadU: 3,
+    dyadN: 3,
+    dyadU: 3,
   },
   // 3
   {
     sumnB: 4,
     sumnZ: 4,
-    // dyadB: 3,
-    // dyadZ: 3,
+    dyadB: 3,
+    dyadZ: 3,
     shftN: 3,
   },
   // 4
@@ -70,8 +70,8 @@ export const unlockableArcana = [
   // 5
   {
     sumnR: 6,
-    // dyadR: 5,
-    // dyadK: 7,
+    dyadR: 5,
+    dyadK: 7,
     shftR: 4,
     modsORA: 4,
   },
@@ -79,27 +79,27 @@ export const unlockableArcana = [
   {
     sumnM: 10,
     sumnRM: 6,
-    // dyadM: 8,
+    dyadM: 8,
     modsCON: 4,
   },
   // 7
   {
     sumnT: 11,
     sumnRT: 6,
-    // dyadT: 9,
+    dyadT: 9,
     shftB: 4,
   },
   // 8
   {
     sumnQ: 12,
     sumnRQ: 7,
-    // dyadQ: 11,
+    dyadQ: 11,
     // modsTEL: 5,
   },
   // 9
   {
     sumnH: 3,
-    // dyadH: 2,
+    dyadH: 2,
     modsSUS: 4,
     modsINH: 7,
   },
@@ -107,7 +107,7 @@ export const unlockableArcana = [
   {
     dyadW: 8,
     dyadS: 8,
-    // dyadA: 8,
+    dyadA: 8,
   },
   // 11
   {
@@ -119,7 +119,25 @@ export const unlockableArcana = [
   {
     sumnV: 15,
     sumnRV: 13,
-    // dyadV: 14,
+    dyadV: 14,
+  },
+  // todo
+  {
+    modsGLI: 0,
+    modsSKI: 0,
+    modsEXT: 0,
+    modsREA: 0,
+    modsTRO: 0,
+    sumnRY: 0,
+    sumnRZ: 0,
+    sumnRA: 0,
+    offrH: 0,
+    offrS: 0,
+    offrM: 0,
+    offrE: 0,
+    offrR: 0,
+    offrC: 0,
+    offrA: 0,
   },
 ];
 
@@ -180,7 +198,7 @@ export default class ArcanaSelect extends React.Component<
       newSelectedArcana = _.omit(selectedArcana, key);
       this.handleMultiplierChange(value);
     } else if (Object.keys(selectedArcana).length < allowedArcana) {
-      newSelectedArcana[key] = value;
+      newSelectedArcana[key] = 1;
       this.handleMultiplierChange(-value);
     }
 

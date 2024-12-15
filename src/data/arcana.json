@@ -412,6 +412,13 @@
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsSUS"
   },
+  "modsPHA": {
+    "id": "modsPHA",
+    "name": "Phantom Mist",
+    "description": "Your pieces become invisible to your opponent for 3 turns.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/modsPHA"
+  },
   "modsFUT": {
     "id": "modsFUT",
     "name": "Future Sight",

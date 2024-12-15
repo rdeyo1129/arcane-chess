@@ -307,7 +307,8 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": []
+        "correctMoves": [],
+        "orientation": "white"
       }
     },
     "diagWinLose": {
@@ -361,7 +362,8 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": []
+        "correctMoves": [],
+        "orientation": "white"
       }
     },
     "diagWinLose": {
@@ -415,7 +417,8 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": []
+        "correctMoves": [],
+        "orientation": "white"
       }
     },
     "diagWinLose": {
@@ -469,7 +472,8 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": []
+        "correctMoves": [],
+        "orientation": "white"
       }
     },
     "diagWinLose": {
@@ -523,7 +527,8 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": []
+        "correctMoves": [],
+        "orientation": "white"
       }
     },
     "diagWinLose": {

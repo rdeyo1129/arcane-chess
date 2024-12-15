@@ -276,7 +276,6 @@
         gap: 10px;
         flex-direction: column-reverse;
         min-height: 480px;
-        padding: 0 10px 0 10px;
         .nav {
           display: flex;
         }
@@ -315,35 +314,21 @@
           width: 100%;
         }
         .info-avatar {
-          position: relative;
           display: flex;
-          align-self: center;
-          width: 360px;
+          flex-direction: row-reverse;
+          justify-content: center;
+          height: 60px;
           .info {
-            width: 100%;
+            display: none;
+          }
+          .arcana-select {
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: rgba(34, 34, 34, 0.7);
-            .name {
-              text-align: right;
+            height: 100%;
+            .arcane:hover {
+              cursor: pointer;
             }
-            .arcana-select {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 100%;
-              .arcane:hover {
-                cursor: pointer;
-              }
-            }
-            // .player-time {
-            //   width: 140px;
-            //   .time-text {
-            //     width: 10
-            //   }
-            // }
           }
         }
       }

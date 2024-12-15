@@ -2226,24 +2226,34 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                   text="PANEL"
                   onClick={() => {
                     const elements = document.getElementsByTagName('g');
-                    const arrowsCircles = [];
+                    let arrowsCircles: any[] = [];
                     for (let i = 0; i < elements.length; i++) {
                       const children = elements[i].children;
                       for (let j = 0; j < children.length; j++) {
                         const items = children[j].getAttribute('cgHash');
                         const itemsArray = items?.split(',');
-                        if (itemsArray?.length === 4) {
-                          arrowsCircles.push({
-                            orig: itemsArray[2],
-                            brush: itemsArray[3],
-                          });
-                        }
-                        if (itemsArray?.length === 5) {
-                          arrowsCircles.push({
-                            orig: itemsArray[2],
-                            dest: itemsArray[3],
-                            brush: itemsArray[4],
-                          });
+                        if (itemsArray && itemsArray.length >= 4) {
+                          if (
+                            itemsArray.length === 5 ||
+                            itemsArray[5] === 'true'
+                          ) {
+                            arrowsCircles = [
+                              ...arrowsCircles,
+                              {
+                                orig: itemsArray[2],
+                                dest: itemsArray[3],
+                                brush: itemsArray[4],
+                              },
+                            ];
+                          } else {
+                            arrowsCircles = [
+                              ...arrowsCircles,
+                              {
+                                orig: itemsArray[2],
+                                brush: itemsArray[3],
+                              },
+                            ];
+                          }
                         }
                       }
                     }
@@ -2253,7 +2263,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                       fenHistory: [...this.state.fenHistory],
                       history: [...this.state.history],
                       panelText: this.state.panelText,
-                      arrowsCircles: [...arrowsCircles],
+                      arrowsCircles: [
+                        ...arrowsCircles,
+                        ...(this.state.arrowsCircles ?? []),
+                      ],
                       royalties: { ...this.state.royalties },
                       preset: this.state.preset,
                       config: {},

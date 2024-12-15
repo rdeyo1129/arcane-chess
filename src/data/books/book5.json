@@ -341,7 +341,7 @@
         "fen": "3r1rk1/RR4pp/8/8/8/6P1/5P2/6K1 w - - 0 1",
         "fenHistory": ["3r1rk1/RR4pp/8/8/8/6P1/5P2/6K1 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "The seventh or second rank in chess is an important concept. A piece infiltrating this deep rank can be consequential.",
         "arrowsCircles": [
           { "orig": "a7", "dest": "h7", "brush": "green" },
           { "orig": "g7", "brush": "red" },
@@ -371,7 +371,7 @@
         "fen": "3r1rk1/6RR/8/8/8/6P1/5P2/6K1 w - - 0 1",
         "fenHistory": ["3r1rk1/6RR/8/8/8/6P1/5P2/6K1 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "In scenarios like this, black can trap themselves in a checkmate thanks to white's dominant position.",
         "arrowsCircles": [{ "orig": "g8", "brush": "red" }],
         "nodeText": "",
         "reward": [],
@@ -397,7 +397,7 @@
         "fen": "4rrk1/pp1R1pbp/6p1/8/8/7P/PPPR1PP1/5K2 w - - 0 1",
         "fenHistory": ["4rrk1/pp1R1pbp/6p1/8/8/7P/PPPR1PP1/5K2 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Even if the position isn't quite looking for a checkmate, this \"pig\" on the 7th rank is hungry for Pawns.",
         "arrowsCircles": [
           { "orig": "d7", "dest": "a7", "brush": "green" },
           { "orig": "d7", "dest": "h7", "brush": "green" },
@@ -430,7 +430,7 @@
         "fen": "2rr2k1/p4ppq/1p5p/2p5/3pR3/4R3/PPPP1PPP/4Q3 w - - 0 1",
         "fenHistory": ["2rr2k1/p4ppq/1p5p/2p5/3pR3/4R3/PPPP1PPP/4Q3 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "This position is known as \"Alekhine's\" gun. When 2 or in this case 3 of the same slider type (RQ or BQ) are lined on a file, rank, or diagonal we call it a Battery. This scenario leads to checkmate.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -439,12 +439,12 @@
           "royaltyE": {}
         },
         "arrowsCircles": [
+          { "orig": "f7", "brush": "red" },
+          { "orig": "h7", "brush": "red" },
           { "orig": "e1", "brush": "green" },
           { "orig": "e3", "brush": "green" },
           { "orig": "e4", "brush": "green" },
-          { "orig": "f7", "brush": "red" },
           { "orig": "g7", "brush": "red" },
-          { "orig": "h7", "brush": "red" },
           { "orig": "e1", "dest": "e8", "brush": "green" }
         ],
         "preset": "CLEAR",
@@ -459,7 +459,7 @@
         "fen": "2rrR1k1/p4ppq/1p5p/2p5/3p4/4R3/PPPP1PPP/4Q3 w - - 0 1",
         "fenHistory": ["2rrR1k1/p4ppq/1p5p/2p5/3p4/4R3/PPPP1PPP/4Q3 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "We'll learn more about desperado in a future lesson.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -543,7 +543,7 @@
         "fen": "4Q1k1/p4ppq/1p5p/2p5/3p4/8/PPPP1PPP/8 w - - 0 1",
         "fenHistory": ["4Q1k1/p4ppq/1p5p/2p5/3p4/8/PPPP1PPP/8 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Both the 7th and 8th or 1st and 2nd rank can be vulnerable as that is where Kings and Pawns are stationed.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -571,7 +571,7 @@
           "3rrbk1/pp1q1pp1/2p4p/3p4/2PP4/3B4/PPQ2PPP/R3R1K1 w - - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "This is another example of a battery that can knife into your opponents position.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -597,7 +597,7 @@
           "3rrbk1/pp1q1ppQ/2p4p/3p4/2PP4/8/PPB2PPP/R3R1K1 w - - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "Notice if we lead with the Queen in this instance of a Battery, we can deliver checkmate.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -606,10 +606,10 @@
           "royaltyE": {}
         },
         "arrowsCircles": [
-          { "orig": "g8", "brush": "green" },
+          { "orig": "c2", "dest": "h7", "brush": "green" },
           { "orig": "h8", "brush": "green" },
-          { "orig": "h7", "dest": "g8", "brush": "green" },
-          { "orig": "c2", "dest": "h7", "brush": "green" }
+          { "orig": "g8", "brush": "green" },
+          { "orig": "h7", "dest": "g8", "brush": "green" }
         ],
         "preset": "CLEAR",
         "whiteArcane": {},
@@ -625,7 +625,7 @@
           "3rrbk1/pp1q1p2/2p2npp/3p4/2PP4/3Q4/PPB2PPP/R3R1K1 w - - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "Even if the battery can be blocked, weaknesses can be induced.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -635,7 +635,8 @@
         },
         "arrowsCircles": [
           { "orig": "f6", "brush": "red" },
-          { "orig": "h6", "brush": "red" }
+          { "orig": "h6", "brush": "red" },
+          { "orig": "g7", "dest": "g6", "brush": "green" }
         ],
         "preset": "CLEAR",
         "whiteArcane": {},
@@ -681,7 +682,7 @@
           "r1btkb1r/pppp1ppp/2n5/4p3/2PnP3/3P1N2/PP2BPPP/RNBTK2R w - - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "The backwards Pawn is still able to support it's neighbors but cannot get the same in return. It is a weakness and a potentially good target for attack.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -699,12 +700,12 @@
         "orientation": "white"
       },
       "panel-2": {
-        "fen": "4rk2/pps2ppp/2p2zu1/3p4/3P4/2ZZP3/PPP3PP/2KR1W2 w - - 0 1",
+        "fen": "4rk2/2s2ppp/2p2zu1/3p4/p2P4/P2ZP1NU/1P4PP/1K1R1W2 w - - 0 1",
         "fenHistory": [
-          "4rk2/pps2ppp/2p2zu1/3p4/3P4/2ZZP3/PPP3PP/2KR1W2 w - - 0 1"
+          "4rk2/2s2ppp/2p2zu1/3p4/p2P4/P2ZP1NU/1P4PP/1K1R1W2 w - - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "Another example of taking advantage of a backwards Pawn is the example at the edge of the board where one Pawn can contain two.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -715,7 +716,10 @@
         "arrowsCircles": [
           { "orig": "e8", "dest": "e3", "brush": "red" },
           { "orig": "e3", "brush": "red" },
-          { "orig": "d5", "dest": "e4", "brush": "red" }
+          { "orig": "d5", "dest": "e4", "brush": "red" },
+          { "orig": "a3", "brush": "red" },
+          { "orig": "b2", "brush": "red" },
+          { "orig": "a4", "brush": "green" }
         ],
         "preset": "CLEAR",
         "whiteArcane": {},
@@ -731,7 +735,7 @@
           "1m3k2/1Pp1ppp1/2Pp1w1p/1N1P2w1/2N1P3/3N1PP1/6K1/8 w - - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "The Pawn chain: a string of Pawns where each Pawn is protected by the next. This is dangerous if you notice the last Pawn at the tip is both protected and passed. Keep an eye on the base of that chain, it can be weak.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -744,7 +748,8 @@
           { "orig": "e4", "brush": "green" },
           { "orig": "d5", "brush": "green" },
           { "orig": "c6", "brush": "green" },
-          { "orig": "b7", "brush": "green" }
+          { "orig": "b7", "brush": "green" },
+          { "orig": "f3", "brush": "red" }
         ],
         "preset": "CLEAR",
         "whiteArcane": {},
@@ -758,7 +763,7 @@
         "fen": "8/1p2pp1p/p2p2p1/8/2P1P3/1P3P2/P5PP/8 b - - 0 1",
         "fenHistory": ["8/1p2pp1p/p2p2p1/8/2P1P3/1P3P2/P5PP/8 b - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Pawn structures come in many forms of the concepts we learned about in this series. They can either be a strength or weakness depending on how you handle you develop or exchange pieces. Don't be fooled because Pawns are worth a single point. They are the base of your army.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -779,7 +784,7 @@
         "fen": "8/pp3pp1/7p/3p4/8/P3P3/1P3PPP/8 w - - 0 22",
         "fenHistory": ["8/pp3pp1/7p/3p4/8/P3P3/1P3PPP/8 w - - 0 22"],
         "history": [],
-        "panelText": "",
+        "panelText": "Pawn structures come in many forms of the concepts we learned about in this series. They can either be a strength or weakness depending on how you handle you develop or exchange pieces. Don't be fooled because Pawns are worth a single point. They are the base of your army.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -800,7 +805,7 @@
         "fen": "8/pp2pppp/2p5/3p4/3PP3/2P5/PP3PPP/8 w - - 0 1",
         "fenHistory": ["8/pp2pppp/2p5/3p4/3PP3/2P5/PP3PPP/8 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Pawn structures come in many forms of the concepts we learned about in this series. They can either be a strength or weakness depending on how you handle you develop or exchange pieces. Don't be fooled because Pawns are worth a single point. They are the base of your army.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -821,7 +826,7 @@
         "fen": "8/8/8/8/8/4P2P/5PP1/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/4P2P/5PP1/8 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Pawn structures come in many forms of the concepts we learned about in this series. They can either be a strength or weakness depending on how you handle you develop or exchange pieces. Don't be fooled because Pawns are worth a single point. They are the base of your army.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -851,7 +856,7 @@
         "fen": "8/pp2pp1p/3p2p1/8/4P3/8/PPP2PPP/8 w - - 0 1",
         "fenHistory": ["8/pp2pp1p/3p2p1/8/4P3/8/PPP2PPP/8 w - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Pawn structures come in many forms of the concepts we learned about in this series. They can either be a strength or weakness depending on how you handle you develop or exchange pieces. Don't be fooled because Pawns are worth a single point. They are the base of your army.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -902,7 +907,7 @@
         "fen": "3r4/p4p2/2p1pk1p/8/5NP1/4n3/PP5P/5RK1 b - - 0 1",
         "fenHistory": ["3r4/p4p2/2p1pk1p/8/5NP1/4n3/PP5P/5RK1 b - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Can you spot the best move here?",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -923,7 +928,7 @@
         "fen": "3r4/p4p2/2p1pk1p/3N4/6P1/4n3/PP5P/5RK1 b - - 0 1",
         "fenHistory": ["3r4/p4p2/2p1pk1p/3N4/6P1/4n3/PP5P/5RK1 b - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Nd5! Notice that two pieces attack the King now, a double check. Black must move the King and we win a free Knight.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -933,8 +938,9 @@
         },
         "arrowsCircles": [
           { "orig": "d5", "dest": "e3", "brush": "green" },
-          { "orig": "f1", "dest": "f6", "brush": "red" },
-          { "orig": "g4", "dest": "f5", "brush": "red" }
+          { "orig": "d5", "dest": "f6", "brush": "green" },
+          { "orig": "f1", "dest": "f6", "brush": "green" },
+          { "orig": "d5", "dest": "e3", "brush": "green" }
         ],
         "preset": "CLEAR",
         "whiteArcane": {},
@@ -950,7 +956,7 @@
           "r4r2/1pq2pk1/p2bpnp1/4n1B1/5PP1/1PpB1Q2/P1P5/R3R1K1 b - - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "Can you find the double check here?",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -958,7 +964,10 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "arrowsCircles": [{ "orig": "d7", "dest": "e5", "brush": "red" }],
+        "arrowsCircles": [
+          { "orig": "d7", "dest": "e5", "brush": "red" },
+          { "orig": "d7", "dest": "e5", "brush": "red" }
+        ],
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
@@ -1019,7 +1028,7 @@
           "r4r2/1pq2p2/p2bpkp1/4P3/6P1/1PpB1Q2/P1P5/R3R1K1 b - - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "The Bishop will be won.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1027,7 +1036,11 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "arrowsCircles": [{ "orig": "f4", "dest": "e5", "brush": "green" }],
+        "arrowsCircles": [
+          { "orig": "e5", "dest": "f6", "brush": "green" },
+          { "orig": "f3", "dest": "f6", "brush": "green" },
+          { "orig": "d6", "brush": "yellow" }
+        ],
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
@@ -1040,7 +1053,7 @@
         "fen": "r2q2r1/ppp2p2/3p3k/3PpPRP/4n3/8/PPPQ4/2K4R b - - 0 1",
         "fenHistory": ["r2q2r1/ppp2p2/3p3k/3PpPRP/4n3/8/PPPQ4/2K4R b - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Uh oh. Black lands a royal fork! Is there anything we can do?",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1048,7 +1061,10 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "arrowsCircles": [{ "orig": "f6", "dest": "e4", "brush": "red" }],
+        "arrowsCircles": [
+          { "orig": "e4", "dest": "g5", "brush": "red" },
+          { "orig": "e4", "dest": "d2", "brush": "red" }
+        ],
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
@@ -1061,7 +1077,7 @@
         "fen": "r2q2r1/ppp2p2/3p2Rk/3PpP1P/4n3/8/PPPQ4/2K4R b - - 0 1",
         "fenHistory": ["r2q2r1/ppp2p2/3p2Rk/3PpP1P/4n3/8/PPPQ4/2K4R b - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "Luckily there's a double check. Black can't capture either of the attacking pieces unless it's undefended and the King can take.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1070,8 +1086,8 @@
           "royaltyE": {}
         },
         "arrowsCircles": [
-          { "orig": "g5", "dest": "g6", "brush": "green" },
-          { "orig": "d2", "brush": "yellow" }
+          { "orig": "d2", "dest": "h6", "brush": "green" },
+          { "orig": "g6", "dest": "h6", "brush": "green" }
         ],
         "preset": "CLEAR",
         "whiteArcane": {},
@@ -1108,7 +1124,7 @@
         "fen": "r2q2r1/ppp2p1k/3p2RQ/3PpP1P/4n3/8/PPP5/2K4R b - - 0 1",
         "fenHistory": ["r2q2r1/ppp2p1k/3p2RQ/3PpP1P/4n3/8/PPP5/2K4R b - - 0 1"],
         "history": [],
-        "panelText": "",
+        "panelText": "White lands the checkmate!",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1131,7 +1147,7 @@
           "r5k1/p4pp1/3P2rp/P1P1P3/7R/5P1b/R3nP1P/2BQ2K1 w - - 0 1"
         ],
         "history": [],
-        "panelText": "?",
+        "panelText": "The main tactic here is called the \"Discovery\". Setting up a sliding piece behind another piece can lead to this tactic. A discovery can be an attack on any other piece too. Often times if it's a discovered check the outcome may be checkmate or a crushing material advantage.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1139,7 +1155,10 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "arrowsCircles": [{ "orig": "g3", "dest": "e2", "brush": "yellow" }],
+        "arrowsCircles": [
+          { "orig": "e2", "dest": "g1", "brush": "yellow" },
+          { "orig": "g6", "dest": "g1", "brush": "yellow" }
+        ],
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
@@ -1184,7 +1203,7 @@
           "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "Take a close at the opening position. If you parse which pieces defend which Pawns to start, you'll notice only the King defends the F Pawn. This makes it a thematic target in any game.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1212,7 +1231,7 @@
           "rnbqk1nr/pppp1ppp/8/2b1p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "This is a classic example of attacking f7. White is trying for a scholar's mate.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1220,7 +1239,10 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "arrowsCircles": [],
+        "arrowsCircles": [
+          { "orig": "h5", "dest": "f7", "brush": "green" },
+          { "orig": "c4", "dest": "f7", "brush": "green" }
+        ],
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
@@ -1235,7 +1257,7 @@
           "rnbqkbnr/pppp1p1p/6p1/4Q3/4P3/8/PPPP1PPP/RNB1KBNR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "If black doesn't play their cards right they can lose material or a quick checkmate. What could black have done differently?",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1258,12 +1280,12 @@
         "orientation": "white"
       },
       "panel-4": {
-        "fen": "3r1r1k/6pp/5q2/p6P/Pp1P1p2/1P2U3/2P1Z1Q1/R4KR1 w - - 0 1",
+        "fen": "3r1rk1/4qp2/6p1/p6p/PpB4P/1P2U3/2P1Z1Q1/R4KR1 w - - 0 1",
         "fenHistory": [
-          "3r1r1k/6pp/5q2/p6P/Pp1P1p2/1P2U3/2P1Z1Q1/R4KR1 w - - 0 1"
+          "3r1rk1/4qp2/6p1/p6p/PpB4P/1P2U3/2P1Z1Q1/R4KR1 w - - 0 1"
         ],
         "history": [],
-        "panelText": "",
+        "panelText": "Notice f7 is pinned here, we learned about that earlier. When the King has castled, it is setup behind f7. This makes the correct-colored Bishop an asset, so you may want to think twice before trading that off in a scenario like this.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1271,11 +1293,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "arrowsCircles": [
-          { "orig": "f4", "dest": "e3", "brush": "green" },
-          { "orig": "f8", "dest": "f1", "brush": "green" },
-          { "orig": "f2", "brush": "red" }
-        ],
+        "arrowsCircles": [],
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},
@@ -1404,7 +1422,7 @@
           "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "The gambit: an opening sacrifice of a Pawn. While it loses material immediately, it can usually be made up for later be it with a capture of positionally.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1430,7 +1448,7 @@
           "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "The gambit: an opening sacrifice of a Pawn. While it loses material immediately, it can usually be made up for later be it with a capture of positionally.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1456,7 +1474,7 @@
           "rnbqkbnr/pppp1ppp/8/4p3/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "One of the main points of this is that it displaces the opponent's center Pawn and the player can make an early play for controlling the center.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1482,7 +1500,7 @@
           "rnbqkbnr/pppp1ppp/8/8/3pP3/2P5/PP3PPP/RNBQKBNR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "One of the main points of this is that it displaces the opponent's center Pawn and the player can make an early play for controlling the center.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1510,7 +1528,7 @@
           "rnbqkbnr/pppp1ppp/8/8/2B1P3/8/PB3PPP/RN1QK1NR w KQkq - 0 1"
         ],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "A lot of gambits usually have names, the one pictured here is the Danish gambit. Take note that white has sacrificed three Pawns for one. If you observe though, white has taken full advantage of the lost tempi with a staggering opportunity for an attack.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1537,7 +1555,7 @@
           "3r1rk1/ppq2ppp/4bb2/4p3/NP1n4/P2P2P1/3NPPBP/2RQ1RK1 w - - 0 1"
         ],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "The sacrifice: giving up material in the short term for a potential short-term tactic or long-term positional advantage. Here, black plans to sacrifice their Queen for the Rook. Can you see why?",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1560,7 +1578,7 @@
           "3r1rk1/pp3ppp/4bb2/4p3/NP1n4/P2P2P1/3NPPBP/2qQ1RK1 w - - 0 1"
         ],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "The sacrifice: giving up material in the short term for a potential short-term tactic or long-term positional advantage. Here, black plans to sacrifice their Queen for the Rook. Can you see why?",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1586,7 +1604,7 @@
           "3r1rk1/pp3ppp/4bb2/4p3/NP1n4/P2P2P1/3NPPBP/2Q2RK1 w - - 0 1"
         ],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "A setup for a royal fork! After the dust settles, black will be up the exchange.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1611,7 +1629,7 @@
         "fen": "2rr4/p3q2k/1p2pp1R/6n1/3B2Q1/4P3/PP6/1K1R4 b - - 0 1",
         "fenHistory": ["2rr4/p3q2k/1p2pp1R/6n1/3B2Q1/4P3/PP6/1K1R4 b - - 0 1"],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "White has just captured a Pawn that was guarding the King. But at the cost of a Rook will this be worth it?",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1632,7 +1650,7 @@
         "fen": "2rr4/p3q3/1p2pp1k/6n1/3B2Q1/4P3/PP6/1K1R4 b - - 0 1",
         "fenHistory": ["2rr4/p3q3/1p2pp1k/6n1/3B2Q1/4P3/PP6/1K1R4 b - - 0 1"],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1653,7 +1671,7 @@
         "fen": "2rr4/p3q3/1p2pp1k/6n1/3B2Q1/4P3/PP6/1K5R b - - 0 1",
         "fenHistory": ["2rr4/p3q3/1p2pp1k/6n1/3B2Q1/4P3/PP6/1K5R b - - 0 1"],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1674,7 +1692,7 @@
         "fen": "2rr4/p3q1k1/1p2pp2/6n1/3B2Q1/4P3/PP6/1K5R b - - 0 1",
         "fenHistory": ["2rr4/p3q1k1/1p2pp2/6n1/3B2Q1/4P3/PP6/1K5R b - - 0 1"],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1695,7 +1713,7 @@
         "fen": "2rr4/p3q1k1/1p2pp2/6Q1/3B4/4P3/PP6/1K5R b - - 0 1",
         "fenHistory": ["2rr4/p3q1k1/1p2pp2/6Q1/3B4/4P3/PP6/1K5R b - - 0 1"],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "White reclaims material with an unstoppable attack. Investing the Rook here proved worth it.",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1704,9 +1722,10 @@
           "royaltyE": {}
         },
         "arrowsCircles": [
-          { "orig": "d4", "dest": "g7", "brush": "green" },
           { "orig": "f6", "brush": "red" },
-          { "orig": "g4", "dest": "g5", "brush": "green" }
+          { "orig": "h1", "dest": "h8", "brush": "green" },
+          { "orig": "d4", "dest": "g7", "brush": "green" },
+          { "orig": "g5", "dest": "g8", "brush": "green" }
         ],
         "preset": "CLEAR",
         "whiteArcane": {},
@@ -1720,7 +1739,7 @@
         "fen": "r3Q1k1/5ppp/p4q2/1p6/1P6/P2n3P/2P2PP1/4R1K1 b - - 0 1",
         "fenHistory": ["r3Q1k1/5ppp/p4q2/1p6/1P6/P2n3P/2P2PP1/4R1K1 b - - 0 1"],
         "history": [],
-        "panelText": "Chess, as well as other disciplines in life, is a deep study. You will face unknowns and you will not always be prepared to handle them. Do you have the courage to take the first step and every step after that?",
+        "panelText": "Sacrifices can be tricky. If it is unsound and you can't follow it with a good attack or tactic then it may cost you the game. But if you can get enough of your pieces to join the party, then a sacrifice may prove useful!",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1755,5 +1774,493 @@
       "victory": "",
       "defeat": ""
     }
+  },
+  "mission-1": {
+    "id": "mission-1",
+    "title": "New Beginnings",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "hero": "",
+    "storyTitle": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "2nbkr2/2pppp2/8/8/8/8/2PPPP2/2NBKR2 w - - 0 1",
+        "fenHistory": ["2nbkr2/2pppp2/8/8/8/8/2PPPP2/2NBKR2 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {
+          "dyadA": 1,
+          "sumnP": 1,
+          "shftP": 1,
+          "modsINH": 1
+        },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-2": {
+    "id": "mission-2",
+    "title": "Subtle Origins",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "hero": "",
+    "storyTitle": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "2uhkn2/2pppp2/8/8/8/8/2PPPP2/2UHKN2 w - - 0 1",
+        "fenHistory": ["2uhkn2/2pppp2/8/8/8/8/2PPPP2/2UHKN2 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {
+          "dyadH": 1,
+          "sumnH": 1,
+          "offrH": 1,
+          "modsCON": 1
+        },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-3": {
+    "id": "mission-3",
+    "title": "Exotic Footing",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "hero": "",
+    "storyTitle": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "2znkbu1/2ppppp1/8/8/8/8/2PPPPP1/2ZNKBU1 w - - 0 1",
+        "fenHistory": ["2znkbu1/2ppppp1/8/8/8/8/2PPPPP1/2ZNKBU1 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {
+          "dyadN": 1,
+          "sumnN": 1,
+          "offrC": 1,
+          "modsREA": 1
+        },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-4": {
+    "id": "mission-4",
+    "title": "Herring’s Crossroads",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "hero": "",
+    "storyTitle": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "2mhkrz1/2ppppp1/8/8/8/8/2PPPPP1/2MHKRZ1 w - - 0 1",
+        "fenHistory": ["2mhkrz1/2ppppp1/8/8/8/8/2PPPPP1/2MHKRZ1 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {
+          "dyadB": 1,
+          "sumnB": 1,
+          "offrA": 1,
+          "modsSUS": 1
+        },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-5": {
+    "id": "mission-5",
+    "title": "Broad Horizons",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "hero": "",
+    "storyTitle": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "2ruknbm/2pppppp/8/8/8/8/2PPPPPP/2RUKNBM w - - 0 1",
+        "fenHistory": ["2ruknbm/2pppppp/8/8/8/8/2PPPPPP/2RUKNBM w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {
+          "dyadR": 1,
+          "sumnR": 1,
+          "sumnU": 1,
+          "offrS": 1
+        },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-6": {
+    "id": "mission-6",
+    "title": "Diverse Lances",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "hero": "",
+    "storyTitle": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "2vnkquh/2pppppp/8/8/8/8/2PPPPPP/2VNKQUH w - - 0 1",
+        "fenHistory": ["2vnkquh/2pppppp/8/8/8/8/2PPPPPP/2VNKQUH w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {
+          "dyadQ": 1,
+          "sumnQ": 1,
+          "sumnV": 1,
+          "offrE": 1
+        },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-7": {
+    "id": "mission-7",
+    "title": "Grand Assembly",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "hero": "",
+    "storyTitle": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "1hzmkqrt/1ppppppp/8/8/8/8/1PPPPPPP/1HZMKQRT w - - 0 1",
+        "fenHistory": ["1hzmkqrt/1ppppppp/8/8/8/8/1PPPPPPP/1HZMKQRT w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {
+          "dyadM": 1,
+          "sumnM": 1,
+          "sumnT": 1,
+          "offrR": 1
+        },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-8": {
+    "id": "mission-8",
+    "title": "Rhapsody of Power",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "",
+    "opponent": "",
+    "hero": "",
+    "storyTitle": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "rhuzkmtv/pppppppp/8/8/8/8/PPPPPPPP/RHUZKMTV w - - 0 1",
+        "fenHistory": ["rhuzkmtv/pppppppp/8/8/8/8/PPPPPPPP/RHUZKMTV w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {
+          "dyadV": 1,
+          "sumnZ": 1,
+          "sumnW": 1,
+          "modsEXT": 1
+        },
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "boss": true
   }
 }

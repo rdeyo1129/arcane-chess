@@ -919,7 +919,7 @@ export function SqAttacked(sq, side) {
   }
 
   // herring
-  for (index = 0; index < 4; index++) {
+  for (index = 0; index < 6; index++) {
     pce = GameBoard.pieces[sq + HrDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&

@@ -1929,9 +1929,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         />
                       </h3>
                     </div>
-                    <div className="arcana-select">
-                      {this.arcanaSelect(this.state.playerColor)}
-                    </div>
+                  </div>
+                  <div className="arcana-select">
+                    {this.arcanaSelect(this.state.playerColor)}
                   </div>
                 </div>
               </div>

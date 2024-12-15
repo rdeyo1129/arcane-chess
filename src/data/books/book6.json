@@ -476,11 +476,16 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "8/pp3ppp/8/3p4/3P4/8/PP3PPP/8 w - - 0 1",
+        "fenHistory": ["8/pp3ppp/8/3p4/3P4/8/PP3PPP/8 w - - 0 1"],
         "history": [],
         "panelText": "Targets in chess are elements of the opponent's position that can be attacked or pressured. These include pawns, pieces, squares, or even the king. While not always weak, targets provide focus for strategic or tactical play.",
-        "arrowsCircles": [],
+        "arrowsCircles": [
+          { "orig": "c1", "dest": "c8", "brush": "red" },
+          { "orig": "e1", "dest": "e8", "brush": "red" },
+          { "orig": "d4", "brush": "red" },
+          { "orig": "d5", "brush": "red" }
+        ],
         "nodeText": "",
         "reward": [],
         "description": "An introduction to the concept of targets in chess.",
@@ -497,15 +502,21 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
-        "orientation": "white"
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
       },
       "panel-2": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "3t2k1/1ppr2p1/5p2/2n1pP2/4P1P1/3P3P/1T1RBK2/8 w - - 0 1",
+        "fenHistory": [
+          "3t2k1/1ppr2p1/5p2/2n1pP2/4P1P1/3P3P/1T1RBK2/8 w - - 0 1"
+        ],
         "history": [],
         "panelText": "Targets play a vital role in guiding strategic plans. By focusing on a target, players can coordinate their pieces, provoke weaknesses, or gain dynamic opportunities. Effective targeting can lead to both immediate and long-term advantages.",
-        "arrowsCircles": [],
+        "arrowsCircles": [
+          { "orig": "c5", "dest": "d3", "brush": "green" },
+          { "orig": "d8", "dest": "d3", "brush": "green" }
+        ],
         "nodeText": "",
         "reward": [],
         "description": "Explains how targets shape strategic planning in chess.",
@@ -522,14 +533,15 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
-        "orientation": "white"
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
       },
       "panel-3": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "8/p1p2p1p/1p2p1p1/3p4/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/p1p2p1p/1p2p1p1/3p4/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "In tactical play, identifying and exploiting targets is crucial. Targets often form the basis of combinations or sacrifices, enabling players to gain material, create weaknesses, or seize the initiative.",
+        "panelText": "In tactical play, identifying and exploiting targets is crucial. Targets often form the basis of combinations or sacrifices, enabling players to gain material, create weaknesses, or seize the initiative. Can you spot the weaknesses in black's position?",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
@@ -547,10 +559,44 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
-        "orientation": "white"
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
       },
       "panel-4": {
+        "fen": "8/p1p2p1p/4p1p1/1p1p4/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/p1p2p1p/4p1p1/1p1p4/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "This is an extreme example but notice since Pawns can't move backwards, these squares will have a tougher time of being defended. White's stronger pieces will be able to infiltrate a cause havoc.",
+        "arrowsCircles": [
+          { "orig": "f6", "brush": "red" },
+          { "orig": "h6", "brush": "red" },
+          { "orig": "c5", "brush": "red" },
+          { "orig": "c6", "brush": "red" },
+          { "orig": "a5", "brush": "red" },
+          { "orig": "a6", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
@@ -575,7 +621,7 @@
         "correctMoves": [],
         "orientation": "white"
       },
-      "panel-5": {
+      "panel-6": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
@@ -600,9 +646,9 @@
         "correctMoves": [],
         "orientation": "white"
       },
-      "panel-6": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+      "panel-7": {
+        "fen": "6k1/8/1p6/1P6/P7/8/8/6K1 w - - 0 1",
+        "fenHistory": ["6k1/8/1p6/1P6/P7/8/8/6K1 w - - 0 1"],
         "history": [],
         "panelText": "Weak points are especially decisive in endgames, where structural weaknesses like backward or isolated pawns can determine the outcome. Exploiting such weaknesses often leads to victory in simplified positions.",
         "arrowsCircles": [],
@@ -622,8 +668,9 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
-        "orientation": "white"
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
       }
     },
     "diagWinLose": {
@@ -656,8 +703,8 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "8/pp4pp/2z5/4P3/2P4P/1P3B2/P4PP1/8 w - - 0 1",
+        "fenHistory": ["8/pp4pp/2z5/4P3/2P4P/1P3B2/P4PP1/8 w - - 0 1"],
         "history": [],
         "panelText": "Trades in chess, or exchanges of pieces, significantly impact the position and flow of the game. Each trade should align with a player’s strategic objectives, as poorly considered exchanges can benefit the opponent. The decision to trade depends on the context, including material balance, activity of pieces, and pawn structure.",
         "arrowsCircles": [],
@@ -677,15 +724,29 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
-        "orientation": "white"
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
       },
       "panel-2": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "8/p4ppp/2p5/4P3/2P4P/1P6/P4PP1/8 w - - 0 1",
+        "fenHistory": ["8/p4ppp/2p5/4P3/2P4P/1P6/P4PP1/8 w - - 0 1"],
         "history": [],
-        "panelText": "Simplification, or the intentional trading of pieces to reduce complexity, is a common strategy when holding a material or positional advantage. By removing potential threats and entering an endgame with fewer pieces, the stronger side can focus on converting their advantage into a win. However, over-simplifying can backfire if it eliminates your attacking chances or leaves you in a weaker endgame.",
-        "arrowsCircles": [],
+        "panelText": "Simplification, or the intentional trading of pieces to reduce complexity, is a common strategy when holding a material or positional advantage. By removing potential threats and entering an endgame with fewer pieces, the stronger side can focus on converting their advantage into a win. Here white traded off pieces to prevent counterplay chances and will win with the better Pawn structure.",
+        "arrowsCircles": [
+          { "orig": "a2", "brush": "green" },
+          { "orig": "b3", "brush": "green" },
+          { "orig": "c4", "brush": "green" },
+          { "orig": "e5", "brush": "green" },
+          { "orig": "f2", "brush": "green" },
+          { "orig": "g2", "brush": "green" },
+          { "orig": "h4", "brush": "green" },
+          { "orig": "c6", "brush": "red" },
+          { "orig": "a7", "brush": "red" },
+          { "orig": "f7", "brush": "red" },
+          { "orig": "g7", "brush": "red" },
+          { "orig": "h7", "brush": "red" }
+        ],
         "nodeText": "",
         "reward": [],
         "description": "Simplification as a strategy when holding an advantage.",
@@ -702,15 +763,43 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
-        "orientation": "white"
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
       },
       "panel-3": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "r2mm1k1/p1npp1p1/1p1n1pP1/1Pp2P1p/P1P4P/1N1Q4/5UU1/HK5R w - - 0 1",
+        "fenHistory": [
+          "r2mm1k1/p1npp1p1/1p1n1pP1/1Pp2P1p/P1P4P/1N1Q4/5UU1/HK5R w - - 0 1"
+        ],
         "history": [],
         "panelText": "For players under pressure, trades can serve as a defensive tool. Exchanging key attacking pieces or simplifying a complex position can neutralize threats and restore balance. Careful evaluation of the resulting position is critical to ensure that the trade doesn’t inadvertently create new weaknesses.",
-        "arrowsCircles": [],
+        "arrowsCircles": [
+          { "orig": "b7", "brush": "red" },
+          { "orig": "f8", "brush": "red" },
+          { "orig": "b8", "brush": "red" },
+          { "orig": "c8", "brush": "red" },
+          { "orig": "h8", "brush": "red" },
+          { "orig": "a2", "brush": "green" },
+          { "orig": "b2", "brush": "green" },
+          { "orig": "c3", "brush": "green" },
+          { "orig": "a3", "brush": "green" },
+          { "orig": "d2", "brush": "green" },
+          { "orig": "c1", "brush": "green" },
+          { "orig": "c2", "brush": "green" },
+          { "orig": "d1", "brush": "green" },
+          { "orig": "e1", "brush": "green" },
+          { "orig": "e2", "brush": "green" },
+          { "orig": "f1", "brush": "green" },
+          { "orig": "e3", "brush": "green" },
+          { "orig": "e4", "brush": "green" },
+          { "orig": "f4", "brush": "green" },
+          { "orig": "f3", "brush": "green" },
+          { "orig": "g3", "brush": "green" },
+          { "orig": "h3", "brush": "green" },
+          { "orig": "h2", "brush": "green" },
+          { "orig": "g1", "brush": "green" }
+        ],
         "nodeText": "",
         "reward": [],
         "description": "Using trades to alleviate pressure and neutralize threats.",
@@ -727,8 +816,9 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
-        "orientation": "white"
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
       },
       "panel-4": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -1059,10 +1149,177 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "3rr1k1/5ppp/p3b3/2bp4/2pN4/P1P1B1QP/1q3PP1/R3R1K1 b - - 0 1",
+        "fenHistory": [
+          "3rr1k1/5ppp/p3b3/2bp4/2pN4/P1P1B1QP/1q3PP1/R3R1K1 b - - 0 1"
+        ],
         "history": [],
-        "panelText": "mention square control",
+        "panelText": "While forks are considered a double attack we can use discoveries to create another kind of double attack, the double-pronged attack. Do you see the idea here?",
+        "arrowsCircles": [{ "orig": "b6", "dest": "b2", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-2": {
+        "fen": "3rr1k1/5ppp/p3N3/2bp4/2p5/P1P1B1QP/1q3PP1/R3R1K1 b - - 0 1",
+        "fenHistory": [
+          "3rr1k1/5ppp/p3N3/2bp4/2p5/P1P1B1QP/1q3PP1/R3R1K1 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "White captures material and attacks two pieces at once! Black must choose what material they will lose and white's plan will be to control the center with material advantage and target the backwards Pawn or trade off material to a winning endgame.",
+        "arrowsCircles": [
+          { "orig": "e3", "dest": "c5", "brush": "green" },
+          { "orig": "e6", "dest": "d8", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-3": {
+        "fen": "1k1r2nr/p1pb2p1/1p4qp/4Qp2/8/3BB2P/PP3PP1/RN3RK1 w - - 0 1",
+        "fenHistory": [
+          "1k1r2nr/p1pb2p1/1p4qp/4Qp2/8/3BB2P/PP3PP1/RN3RK1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "White just made a blunder. Can you see why?",
+        "arrowsCircles": [{ "orig": "c5", "dest": "e5", "brush": "green" }],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-4": {
+        "fen": "1k1r2nr/p1p3p1/1pb3qp/4Qp2/8/3BB2P/PP3PP1/RN3RK1 w - - 0 1",
+        "fenHistory": [
+          "1k1r2nr/p1p3p1/1pb3qp/4Qp2/8/3BB2P/PP3PP1/RN3RK1 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Bc6! Black threatens both mate and the hanging Bishop. Double-pronged attacks like this usually arise from a discovery. Another variation of this type of aggression is not to take material right away and create a second threat by improving a different piece.",
+        "arrowsCircles": [
+          { "orig": "d8", "dest": "d3", "brush": "green" },
+          { "orig": "c6", "dest": "g2", "brush": "green" },
+          { "orig": "g6", "dest": "g2", "brush": "green" },
+          { "orig": "d7", "dest": "c6", "brush": "yellow" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-5": {
+        "fen": "8/pppppppp/8/5P1P/6P1/8/PPPPP3/6K1 w - - 0 1",
+        "fenHistory": ["8/pppppppp/8/5P1P/6P1/8/PPPPP3/6K1 w - - 0 1"],
+        "history": [],
+        "panelText": "The Pawn storm: an potentially strong yet risky ploy to attack the enemy position. It is determined mostly by a string of Pawn moves, typically on a flank, especially the side that the opposing King has castled on.",
+        "arrowsCircles": [],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "8/pppppppp/8/5P1P/6P1/8/PPPPP3/6K1 w - - 0 1",
+        "fenHistory": ["8/pppppppp/8/5P1P/6P1/8/PPPPP3/6K1 w - - 0 1"],
+        "history": [],
+        "panelText": "It acts as a double-edged sword because if handled correctly you open up your opponents King for attack. The downside is you also open up lines against your King. If your plan is to do this in a match, you may consider carefully about castling on the other side or closing down the center and not castling.",
+        "arrowsCircles": [
+          { "orig": "a7", "dest": "g1", "brush": "green" },
+          { "orig": "b7", "dest": "h1", "brush": "green" }
+        ],
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "2rr1bk1/p2pn1pp/2n1p1PP/1pp5/5P2/1PP5/PQZP4/1KR1R3 w - - 0 1",
+        "fenHistory": [
+          "2rr1bk1/p2pn1pp/2n1p1PP/1pp5/5P2/1PP5/PQZP4/1KR1R3 w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "If you plan on initiating a Pawn storm, make sure your pieces are developed and participating in the fight when you're ready to exchange the Pawns.",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
@@ -1080,7 +1337,36 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "2rr1bk1/p2pn1pp/2n1p1PP/1pp1Z3/5P2/1PP3R1/P2P4/1K4QR w - - 0 1",
+        "fenHistory": [
+          "2rr1bk1/p2pn1pp/2n1p1PP/1pp1Z3/5P2/1PP3R1/P2P4/1K4QR w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "If you plan on initiating a Pawn storm, make sure your pieces are developed and participating in the fight when you're ready to exchange the Pawns.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
         "orientation": "white"
       }
     },

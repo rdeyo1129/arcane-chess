@@ -781,10 +781,12 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "2rq2k1/p4r1p/1p1BpRp1/nb1p4/P2P4/Q1P1P3/3N2PP/R5K1 b - - 0 1",
+        "fenHistory": [
+          "2rq2k1/p4r1p/1p1BpRp1/nb1p4/P2P4/Q1P1P3/3N2PP/R5K1 b - - 0 1"
+        ],
         "history": [],
-        "panelText": "",
+        "panelText": "Black has just played BxBb5. Should white recapture right away?",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
@@ -793,8 +795,8 @@
         "prereq": "",
         "royalties": {
           "royaltyQ": {},
-          "royaltyT": {},
           "royaltyM": {},
+          "royaltyT": {},
           "royaltyV": {},
           "royaltyE": {}
         },
@@ -802,7 +804,270 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-2": {
+        "fen": "2rq2k1/p4R1p/1p1Bp1p1/nb1p4/P2P4/Q1P1P3/3N2PP/R5K1 b - - 0 1",
+        "fenHistory": [
+          "2rq2k1/p4R1p/1p1Bp1p1/nb1p4/P2P4/Q1P1P3/3N2PP/R5K1 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Before they do, check out the tension between the Rooks. White's is undefended. Best to cancel out the material while it's hanging.",
+        "arrowsCircles": [
+          { "orig": "f6", "brush": "red" },
+          { "orig": "f7", "brush": "red" },
+          { "orig": "f6", "dest": "f7", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-3": {
+        "fen": "2rq4/p4k1p/1p1Bp1p1/nP1p4/3P4/Q1P1P3/3N2PP/R5K1 b - - 0 1",
+        "fenHistory": [
+          "2rq4/p4k1p/1p1Bp1p1/nP1p4/3P4/Q1P1P3/3N2PP/R5K1 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "White recapture's the Bishop now that loose ends are tied up and they hold onto the material advantage.",
+        "arrowsCircles": [
+          { "orig": "g8", "dest": "f7", "brush": "green" },
+          { "orig": "a4", "dest": "b5", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-4": {
+        "fen": "2r3k1/4bppp/8/qr6/2PP4/P1P5/4QPPP/1RB2RK1 w - - 0 1",
+        "fenHistory": ["2r3k1/4bppp/8/qr6/2PP4/P1P5/4QPPP/1RB2RK1 w - - 0 1"],
+        "history": [],
+        "panelText": "This is the \"in-between\" move. Also known as \"intermezzo\" or \"zwischenzug\". The immediately expected or obvious move is not played right away. Instead we play a more forcing move. In this case white went for bigger material.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "1rb2r2/1p1p1p2/p2kp2p/2p4P/2P4Q/3nR3/PP2Nq2/K7 b - - 0 1",
+        "fenHistory": [
+          "1rb2r2/1p1p1p2/p2kp2p/2p4P/2P4Q/3nR3/PP2Nq2/K7 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "This is the \"in-between\" move. Also known as \"intermezzo\" or \"zwischenzug\". The immediately expected or obvious move is not played right away. Instead we play a more forcing move. In this case white went for bigger material.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [{ "orig": "f5", "dest": "f2", "brush": "green" }],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "1rb2r2/1p1p1p2/p2kp2p/2p4P/2P4Q/3R4/PP2Nq2/K7 b - - 0 1",
+        "fenHistory": [
+          "1rb2r2/1p1p1p2/p2kp2p/2p4P/2P4Q/3R4/PP2Nq2/K7 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "White, instead of recapturing with their undefended Queen here, they capture the knight and insert a check. Black's Queen is undefended and must move their King.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "1rb2r2/1p1p1p2/p1k1p2p/2p4P/2P5/3R4/PP2NQ2/K7 b - - 0 1",
+        "fenHistory": [
+          "1rb2r2/1p1p1p2/p1k1p2p/2p4P/2P5/3R4/PP2NQ2/K7 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Intermezzos are hard to find, but they exist in your games. Look for forcing moves, maybe you can gain the tempo before casting the obvious reply.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "h4", "dest": "f2", "brush": "green" },
+          { "orig": "f2", "brush": "green" },
+          { "orig": "d6", "dest": "c6", "brush": "red" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "4r3/p1r2kpp/5p2/R1p5/2P5/3K2P1/P3RP1P/8 w - - 0 1",
+        "fenHistory": ["4r3/p1r2kpp/5p2/R1p5/2P5/3K2P1/P3RP1P/8 w - - 0 1"],
+        "history": [],
+        "panelText": "While attraction can pull a piece into a vulnerable position, deflection distracts them from doing doing a specific job. What should black play here?",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-9": {
+        "fen": "4r3/p2r1kpp/5p2/R1p5/2P5/3K2P1/P3RP1P/8 w - - 0 1",
+        "fenHistory": ["4r3/p2r1kpp/5p2/R1p5/2P5/3K2P1/P3RP1P/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Rd7! White's King is forced to deflect away from guarding the Rook.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "e3", "brush": "red" },
+          { "orig": "d2", "brush": "red" },
+          { "orig": "d3", "brush": "red" },
+          { "orig": "e2", "brush": "red" },
+          { "orig": "e8", "dest": "e2", "brush": "green" },
+          { "orig": "d7", "dest": "d2", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-10": {
+        "fen": "6k1/ppp3p1/4R2p/7r/3P4/2P3Pq/PP2Q2P/R3BrK1 w - - 0 1",
+        "fenHistory": ["6k1/ppp3p1/4R2p/7r/3P4/2P3Pq/PP2Q2P/R3BrK1 w - - 0 1"],
+        "history": [],
+        "panelText": "White's Queen here has been tasked with the defense of h2 and f1. In this scenario if can't protect both.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "f8", "dest": "f1", "brush": "green" },
+          { "orig": "f1", "brush": "green" },
+          { "orig": "h2", "brush": "yellow" },
+          { "orig": "e2", "dest": "h2", "brush": "yellow" },
+          { "orig": "h3", "dest": "h2", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-11": {
+        "fen": "6k1/ppp3p1/4R2p/7r/3P4/2P3Pq/PP5P/R3BQK1 w - - 0 1",
+        "fenHistory": ["6k1/ppp3p1/4R2p/7r/3P4/2P3Pq/PP5P/R3BQK1 w - - 0 1"],
+        "history": [],
+        "panelText": "Deflection can also be called overloading in this scenario, the Queen had too many jobs to do. The black Queen swoops in for the finishing blow.",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "arrowsCircles": [
+          { "orig": "h1", "brush": "red" },
+          { "orig": "g2", "brush": "red" },
+          { "orig": "f2", "brush": "red" },
+          { "orig": "g1", "brush": "red" },
+          { "orig": "f1", "brush": "red" },
+          { "orig": "h3", "dest": "h2", "brush": "green" },
+          { "orig": "h5", "dest": "h2", "brush": "green" }
+        ],
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
         "orientation": "white"
       }
     },
@@ -836,10 +1101,12 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "r4rk1/p3nppp/1p2pn2/3p4/8/q4N2/P1PB1PPP/1R1Q1RK1 b - - 0 1",
+        "fenHistory": [
+          "r4rk1/p3nppp/1p2pn2/3p4/8/q4N2/P1PB1PPP/1R1Q1RK1 b - - 0 1"
+        ],
         "history": [],
-        "panelText": "square control",
+        "panelText": "What is white's best move here? Turn your tactical vision on.",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
@@ -848,8 +1115,8 @@
         "prereq": "",
         "royalties": {
           "royaltyQ": {},
-          "royaltyT": {},
           "royaltyM": {},
+          "royaltyT": {},
           "royaltyV": {},
           "royaltyE": {}
         },
@@ -857,8 +1124,255 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
-        "orientation": "white"
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-2": {
+        "fen": "r4rk1/p3nppp/1p2pn2/3p4/1B6/q4N2/P1P2PPP/1R1Q1RK1 b - - 0 1",
+        "fenHistory": [
+          "r4rk1/p3nppp/1p2pn2/3p4/1B6/q4N2/P1P2PPP/1R1Q1RK1 b - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Bb4! This is called interference. Notice before this move that the black Queen was protecting the Knight on e7. Communication has been cut off and white has forked both pieces in the meantime.",
+        "arrowsCircles": [
+          { "orig": "c5", "brush": "red" },
+          { "orig": "d6", "brush": "red" },
+          { "orig": "e7", "brush": "red" },
+          { "orig": "a3", "dest": "b4", "brush": "red" },
+          { "orig": "d2", "dest": "b4", "brush": "green" },
+          { "orig": "b4", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-3": {
+        "fen": "r1bqk2r/pp3pbp/2n3p1/3B2N1/5P2/8/PP4PP/R1BQ1RK1 w kq - 0 1",
+        "fenHistory": [
+          "r1bqk2r/pp3pbp/2n3p1/3B2N1/5P2/8/PP4PP/R1BQ1RK1 w kq - 0 1"
+        ],
+        "history": [],
+        "panelText": "What is black's best move here?",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-4": {
+        "fen": "r1bqk2r/pp3p1p/2n3p1/3B2N1/3b1P2/8/PP4PP/R1BQ1RK1 w kq - 0 1",
+        "fenHistory": [
+          "r1bqk2r/pp3p1p/2n3p1/3B2N1/3b1P2/8/PP4PP/R1BQ1RK1 w kq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Bd4! Again, notice that communication for the Queen's protection on the light-squared Bishop has been severed. White is in check and the black Queen will snag the Bishop next turn.",
+        "arrowsCircles": [
+          { "orig": "g1", "brush": "red" },
+          { "orig": "d4", "brush": "yellow" },
+          { "orig": "d8", "dest": "d5", "brush": "green" },
+          { "orig": "d5", "brush": "green" },
+          { "orig": "d1", "dest": "d4", "brush": "red" },
+          { "orig": "g7", "dest": "d4", "brush": "yellow" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-5": {
+        "fen": "2r3k1/p5pp/q3R3/3p4/N5Q1/1P6/P5PP/2r1R2K w - - 0 1",
+        "fenHistory": ["2r3k1/p5pp/q3R3/3p4/N5Q1/1P6/P5PP/2r1R2K w - - 0 1"],
+        "history": [],
+        "panelText": "X-Ray is one of the more subtler tactics to spot. What is black's play here?",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-6": {
+        "fen": "2r3k1/p5pp/4R3/3p4/N5Q1/1P6/P5PP/2r1Rq1K w - - 0 1",
+        "fenHistory": ["2r3k1/p5pp/4R3/3p4/N5Q1/1P6/P5PP/2r1Rq1K w - - 0 1"],
+        "history": [],
+        "panelText": "Qf1! Is the sacrifice sound? Notice in this position that the black Rook is technically not defending the black Queen.",
+        "arrowsCircles": [
+          { "orig": "f1", "brush": "green" },
+          { "orig": "h1", "brush": "red" },
+          { "orig": "a6", "dest": "f1", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-7": {
+        "fen": "2r3k1/p5pp/4R3/3p4/N5Q1/1P6/P5PP/2r2R1K w - - 0 1",
+        "fenHistory": ["2r3k1/p5pp/4R3/3p4/N5Q1/1P6/P5PP/2r2R1K w - - 0 1"],
+        "history": [],
+        "panelText": "What about now? Black is able to recapture and deliver a mate! This tactic can only happen with sliders (Bishops and Rook movement patterns).",
+        "arrowsCircles": [
+          { "orig": "c1", "dest": "f1", "brush": "yellow" },
+          { "orig": "f1", "brush": "yellow" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-8": {
+        "fen": "2r3k1/5ppp/3R4/4P1PP/p1r2BQ1/Pq6/8/1bR1K3 b - - 0 1",
+        "fenHistory": ["2r3k1/5ppp/3R4/4P1PP/p1r2BQ1/Pq6/8/1bR1K3 b - - 0 1"],
+        "history": [],
+        "panelText": "What does white do here? Look carefully at the slider patterns.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-9": {
+        "fen": "2Q3k1/5ppp/3R4/4P1PP/p1r2B2/Pq6/8/1bR1K3 b - - 0 1",
+        "fenHistory": ["2Q3k1/5ppp/3R4/4P1PP/p1r2B2/Pq6/8/1bR1K3 b - - 0 1"],
+        "history": [],
+        "panelText": "Qxc8, another Queen sac! Notice here the two Rooks share the same movement pattern. The black Rook starts to capture the Queen, the white Rook's scope increases. That's the x-ray in action! ",
+        "arrowsCircles": [
+          { "orig": "c1", "brush": "yellow" },
+          { "orig": "c2", "brush": "yellow" },
+          { "orig": "c3", "brush": "yellow" },
+          { "orig": "c4", "brush": "yellow" },
+          { "orig": "c5", "brush": "yellow" },
+          { "orig": "c6", "brush": "yellow" },
+          { "orig": "c7", "brush": "yellow" },
+          { "orig": "c8", "brush": "yellow" },
+          { "orig": "c4", "dest": "c8", "brush": "green" },
+          { "orig": "c1", "dest": "c4", "brush": "yellow" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
       }
     },
     "diagWinLose": {
@@ -894,7 +1408,7 @@
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
         "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
         "history": [],
-        "panelText": "mention square control",
+        "panelText": "A forcing move in chess is any move that demands an immediate and specific response from your opponent. These moves include checks, captures, and serious threats that cannot be safely ignored. By playing a forcing move, you limit your opponent’s options and steer the game toward outcomes you’ve calculated in advance.",
         "arrowsCircles": [],
         "nodeText": "",
         "reward": [],
@@ -903,8 +1417,8 @@
         "prereq": "",
         "royalties": {
           "royaltyQ": {},
-          "royaltyT": {},
           "royaltyM": {},
+          "royaltyT": {},
           "royaltyV": {},
           "royaltyE": {}
         },
@@ -912,8 +1426,139 @@
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
-        "correctMoves": [],
-        "orientation": "white"
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-2": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "To make forcing moves work, you should look for moves that create urgent problems for your opponent. Checks must be answered right away, captures threaten material loss, and major threats like unstoppable checkmate force defensive responses. When you consistently search for forcing moves, you’ll gain more control over the flow of the game, pushing your opponent into reactive decisions.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-3": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The key lesson is to always consider whether you can impose your will with a move that your opponent cannot ignore. By spotting and using forcing moves at the right moments, you can win material, expose the enemy king, or simplify into a winning endgame. Ultimately, forcing moves help you shape the game’s direction, leaving your opponent with fewer and often less appealing options.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-4": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Counterplay refers to the active measures you take to fight back when you’re under pressure or at a disadvantage. Instead of passively defending, counterplay involves creating threats or complications in the opponent’s position, forcing them to address your ideas rather than freely carrying out their plans. Effective counterplay can save struggling positions or even turn the tables completely.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-5": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "To find counterplay, look for weaknesses or sensitive points in your opponent’s position: an exposed king, unprotected pieces, or important squares you can invade. Even when you’re behind, trying to generate threats in another part of the board can distract your opponent from their intended strategy. A successful attempt at counterplay often relieves pressure on your position and provides chances for a comeback.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
+      },
+      "panel-6": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The main takeaway is that you don’t have to sit and wait for your opponent to break down your defenses. By seeking out opportunities to create problems for them, you gain time and keep your hopes alive. Good counterplay can transform a difficult situation into one where you have real chances, helping you remain actively engaged in the fight rather than simply hoping for an opponent’s mistake.",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "orientation": "white",
+        "viewOnly": true
       }
     },
     "diagWinLose": {

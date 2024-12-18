@@ -371,16 +371,28 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
             <div className="book">
               <div className="hud">
                 <div className="left">
-                  <Link to="/campaign">
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Link to="/campaign">
+                      <Button
+                        text="BACK"
+                        className="tertiary"
+                        color="B"
+                        width={200}
+                        height={35}
+                        disabled={false}
+                        backgroundColorOverride="#33333388"
+                      />
+                    </Link>
                     <Button
-                      text="BACK"
+                      text="BYPASS PUZZLES"
                       className="tertiary"
                       color="B"
                       width={200}
+                      height={35}
                       disabled={false}
                       backgroundColorOverride="#33333388"
                     />
-                  </Link>
+                  </div>
                   <GlobalVolumeControl />
                 </div>
                 <div

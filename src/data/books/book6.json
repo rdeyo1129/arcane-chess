@@ -619,7 +619,8 @@
         "blackArcane": {},
         "config": {},
         "correctMoves": [],
-        "orientation": "white"
+        "orientation": "white",
+        "viewOnly": true
       },
       "panel-6": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -644,7 +645,8 @@
         "blackArcane": {},
         "config": {},
         "correctMoves": [],
-        "orientation": "white"
+        "orientation": "white",
+        "viewOnly": true
       },
       "panel-7": {
         "fen": "6k1/8/1p6/1P6/P7/8/8/6K1 w - - 0 1",
@@ -843,7 +845,8 @@
         "blackArcane": {},
         "config": {},
         "correctMoves": [],
-        "orientation": "white"
+        "orientation": "white",
+        "viewOnly": true
       },
       "panel-5": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -868,7 +871,8 @@
         "blackArcane": {},
         "config": {},
         "correctMoves": [],
-        "orientation": "white"
+        "orientation": "white",
+        "viewOnly": true
       }
     },
     "diagWinLose": {

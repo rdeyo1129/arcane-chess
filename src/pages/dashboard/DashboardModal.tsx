@@ -12,7 +12,7 @@ export default class DashboardModal extends React.Component<
   DashboardModalProps,
   DashboardModalState
 > {
-  private readonly version = '2.0.0';
+  private readonly version = '3.0.0';
 
   constructor(props: DashboardModalProps) {
     super(props);
@@ -57,8 +57,8 @@ export default class DashboardModal extends React.Component<
             {' '}
             Hello, meda here. Thank you for visiting the site. Version{' '}
             {this.version} has just been released, bringing a host of new arcana
-            (spells) for you to discover and experiment with. If you are a
-            first-time visitor, I recommend starting with{' '}
+            (spells) and the complete campaign. If you are a first-time visitor,
+            I recommend starting with{' '}
             <Link to="/quickplay" style={{ color: '#00f' }}>
               {' '}
               Quick Play{' '}
@@ -76,7 +76,7 @@ export default class DashboardModal extends React.Component<
             {' '}
             While this site is a showcase of the story, lessons, and variants,
             it is also a thought experiment. Most engines traditionally give the
-            white pieces a 0.4-point starting advantage over black. With the
+            white pieces a 0.3-point starting advantage over black. With the
             introduction of conditional spells, the aim is to seek out a
             perfectly balanced start to the game but also introduce a layer of
             strategic unpredictability.{' '}

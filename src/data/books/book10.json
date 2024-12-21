@@ -318,5 +318,280 @@
       "victory": "",
       "defeat": ""
     }
+  },
+  "lesson-3": {
+    "id": "lesson-3",
+    "prereq": "",
+    "title": "Mating Patterns II",
+    "nodeText": "Learn about the Arabian mate and Dovetail mate.",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [0, 0],
+      [0, 0]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {
+      "panel-1": {
+        "fen": "6k1/1ppb2pp/p2p4/3N4/2P1P2q/3PQn1P/PP2BrP1/5R1K w - - 0 1",
+        "fenHistory": [
+          "6k1/1ppb2pp/p2p4/3N4/2P1P2q/3PQn1P/PP2BrP1/5R1K w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "Can you find the winning sequence for black?",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-2": {
+        "fen": "6k1/1ppb2pp/p2p4/3N4/2P1P3/3PQn1q/PP2BrP1/5R1K w - - 0 1",
+        "fenHistory": [
+          "6k1/1ppb2pp/p2p4/3N4/2P1P3/3PQn1q/PP2BrP1/5R1K w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-3": {
+        "fen": "6k1/1ppb2pp/p2p4/3N4/2P1P3/3PQn1P/PP2Br2/5R1K w - - 0 1",
+        "fenHistory": [
+          "6k1/1ppb2pp/p2p4/3N4/2P1P3/3PQn1P/PP2Br2/5R1K w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "6k1/1ppb2pp/p2p4/3N4/2P1P3/3PQn1P/PP2B2r/5R1K w - - 0 1",
+        "fenHistory": [
+          "6k1/1ppb2pp/p2p4/3N4/2P1P3/3PQn1P/PP2B2r/5R1K w - - 0 1"
+        ],
+        "history": [],
+        "panelText": "The Arabian mate.",
+        "arrowsCircles": [
+          { "orig": "g2", "brush": "red" },
+          { "orig": "g1", "brush": "red" },
+          { "orig": "h1", "brush": "red" },
+          { "orig": "h2", "brush": "red" },
+          { "orig": "f3", "dest": "h2", "brush": "green" },
+          { "orig": "f3", "dest": "g1", "brush": "green" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "r2q1bnr/1pp1k1pp/p7/n2Pp2Q/P1p5/2N1P3/1P3PPP/R1B1K2R b KQkq - 0 1",
+        "fenHistory": [
+          "r2q1bnr/1pp1k1pp/p7/n2Pp2Q/P1p5/2N1P3/1P3PPP/R1B1K2R b KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Can you find the winning sequence for white?",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "r2q1bnr/1pp1k1pp/p7/n2PQ3/P1p5/2N1P3/1P3PPP/R1B1K2R b KQkq - 0 1",
+        "fenHistory": [
+          "r2q1bnr/1pp1k1pp/p7/n2PQ3/P1p5/2N1P3/1P3PPP/R1B1K2R b KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Can you find the winning sequence for white?",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "r2q1bnr/1pp2kpp/p7/n2PQ3/P1p5/2N1P3/1P3PPP/R1B1K2R b KQkq - 0 1",
+        "fenHistory": [
+          "r2q1bnr/1pp2kpp/p7/n2PQ3/P1p5/2N1P3/1P3PPP/R1B1K2R b KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "Can you find the winning sequence for white?",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-8": {
+        "fen": "r2q1bnr/1pp2kpp/p3Q3/n2P4/P1p5/2N1P3/1P3PPP/R1B1K2R b KQkq - 0 1",
+        "fenHistory": [
+          "r2q1bnr/1pp2kpp/p3Q3/n2P4/P1p5/2N1P3/1P3PPP/R1B1K2R b KQkq - 0 1"
+        ],
+        "history": [],
+        "panelText": "The Dovetail mate.",
+        "arrowsCircles": [
+          { "orig": "d5", "dest": "e6", "brush": "green" },
+          { "orig": "e6", "dest": "e8", "brush": "green" },
+          { "orig": "e6", "dest": "f7", "brush": "green" },
+          { "orig": "e6", "dest": "g6", "brush": "green" },
+          { "orig": "e6", "brush": "red" },
+          { "orig": "f6", "brush": "red" },
+          { "orig": "g6", "brush": "red" },
+          { "orig": "g7", "brush": "red" },
+          { "orig": "g8", "brush": "red" },
+          { "orig": "f8", "brush": "red" },
+          { "orig": "e8", "brush": "red" },
+          { "orig": "e7", "brush": "red" },
+          { "orig": "f7", "brush": "red" }
+        ],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyM": {},
+          "royaltyT": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      }
+    },
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
   }
 }

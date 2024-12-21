@@ -135,7 +135,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                 <p>
                   This preamble explains the purpose of spell chess. Chess
                   engines currently estimate that white starts the game with an
-                  advantage of about 0.4 points. The introduction of conditional
+                  advantage of about 0.3 points. The introduction of conditional
                   spells and alternative game modes is an experiment, a search
                   for potential rule changes that could create a more balanced
                   yet equally playable version of the game. These ideas are

@@ -586,5 +586,295 @@
       "victory": "",
       "defeat": ""
     }
+  },
+  "temple-1": {
+    "id": "temple-1",
+    "prereq": "",
+    "title": "",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [450, 12],
+      [410, 14]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "temple-2": {
+    "id": "temple-2",
+    "prereq": "",
+    "title": "",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [430, 14],
+      [390, 16]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "temple-3": {
+    "id": "temple-3",
+    "prereq": "",
+    "title": "",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [450, 12],
+      [410, 14]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "temple-4": {
+    "id": "temple-4",
+    "prereq": "",
+    "title": "",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [430, 14],
+      [390, 16]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "temple-5": {
+    "id": "temple-5",
+    "prereq": "",
+    "title": "",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [450, 12],
+      [410, 14]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "temple-6": {
+    "id": "temple-6",
+    "prereq": "",
+    "title": "",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [430, 14],
+      [390, 16]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "temple-7": {
+    "id": "temple-7",
+    "prereq": "",
+    "title": "",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [450, 12],
+      [410, 14]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "temple-8": {
+    "id": "temple-8",
+    "prereq": "",
+    "title": "",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [430, 14],
+      [390, 16]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "temple-9": {
+    "id": "temple-9",
+    "prereq": "",
+    "title": "",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [450, 12],
+      [410, 14]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
+  },
+  "temple-10": {
+    "id": "temple-10",
+    "prereq": "",
+    "title": "",
+    "nodeText": "",
+    "storyTitle": "",
+    "storyText": "",
+    "hero": "",
+    "opponent": "",
+    "theme": "",
+    "bookTheme": "",
+    "time": [
+      [430, 14],
+      [390, 16]
+    ],
+    "boss": false,
+    "reward": [],
+    "panels": {},
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    }
   }
 }

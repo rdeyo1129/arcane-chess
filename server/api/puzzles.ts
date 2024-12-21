@@ -45,10 +45,11 @@ function readAndProcessCSV() {
   });
 }
 
-function filterData(data: any, rating: any, keyword: any) {
+function filterData(data: any, rating: any, keyword: any = '') {
   return data.filter((row: any) => {
     const isWithinRatingRange = Math.abs(row.Rating - rating) <= 100;
     const containsKeyword = row.Themes.includes(keyword);
+    if (keyword === '') return isWithinRatingRange;
     return isWithinRatingRange && containsKeyword;
   });
 }

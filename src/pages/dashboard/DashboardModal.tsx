@@ -72,7 +72,7 @@ export default class DashboardModal extends React.Component<
             met, but the site is best experienced from a desktop device.
           </p>{' '}
           <br />{' '}
-          <p>
+          {/* <p>
             {' '}
             While this site is a showcase of the story, lessons, and variants,
             it is also a thought experiment. Most engines traditionally give the
@@ -81,7 +81,7 @@ export default class DashboardModal extends React.Component<
             perfectly balanced start to the game but also introduce a layer of
             strategic unpredictability.{' '}
           </p>{' '}
-          <br />{' '}
+          <br />{' '} */}
           <p>
             {' '}
             As always, this site is a work in progress. Your suggestions and

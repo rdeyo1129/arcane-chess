@@ -15073,5 +15073,173 @@
       }
     },
     "boss": true
+  },
+  "mission-9": {
+    "id": "mission-9",
+    "title": "",
+    "storyTitle": "",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "mission-8",
+    "opponent": "",
+    "hero": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": false,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-10": {
+    "id": "mission-10",
+    "title": "",
+    "storyTitle": "",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "mission-9",
+    "opponent": "",
+    "hero": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": false,
+        "orientation": "white"
+      }
+    },
+    "boss": false
+  },
+  "mission-11": {
+    "id": "mission-11",
+    "title": "",
+    "storyTitle": "",
+    "diagWinLose": {
+      "win1": "",
+      "win2": "",
+      "win3": "",
+      "lose1": "",
+      "lose2": "",
+      "lose3": "",
+      "victory": "",
+      "defeat": ""
+    },
+    "time": [
+      [600, 30],
+      [300, 15]
+    ],
+    "nodeText": "",
+    "storyText": "",
+    "reward": [],
+    "prereq": "mission-10",
+    "opponent": "",
+    "hero": "",
+    "theme": "",
+    "bookTheme": "",
+    "panels": {
+      "panel-1": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "prereq": "",
+        "royalties": {
+          "royaltyQ": {},
+          "royaltyT": {},
+          "royaltyM": {},
+          "royaltyV": {},
+          "royaltyE": {}
+        },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": false,
+        "orientation": "white"
+      }
+    },
+    "boss": false
   }
 }

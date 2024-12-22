@@ -383,15 +383,6 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         backgroundColorOverride="#33333388"
                       />
                     </Link>
-                    <Button
-                      text="BYPASS PUZZLES"
-                      className="tertiary"
-                      color="B"
-                      width={200}
-                      height={35}
-                      disabled={false}
-                      backgroundColorOverride="#33333388"
-                    />
                   </div>
                   <GlobalVolumeControl />
                 </div>
@@ -399,10 +390,10 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   className="center"
                   style={{ padding: '0 10px 0 10px', fontSize: '12px' }}
                 >
-                  Click on a chapter to view its details below and click arcana
-                  if the chapter is a mission. Click the story button to toggle
-                  between the chess and story details. Click the start button to
-                  begin the chapter.
+                  Click on a chapter to view its details. If the chapter is a
+                  mission, you can click Arcana for additional information. Use
+                  the Story button to switch between chess and story details,
+                  and click the Start button to begin the chapter.
                 </div>
                 <div className="right">
                   <div className="buttons">

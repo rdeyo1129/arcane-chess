@@ -18,8 +18,8 @@
     ],
     "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
     "storyText": "",
-    "reward": [],
     "prereq": "",
+    "reward": [],
     "opponent": "book",
     "hero": "",
     "storyTitle": "",
@@ -304,7 +304,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -330,7 +329,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -356,7 +354,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -412,7 +409,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -446,7 +442,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -492,7 +487,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -599,7 +593,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -642,7 +635,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -777,7 +769,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -968,7 +959,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1352,7 +1342,7 @@
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-4",
+    "prereq": "",
     "opponent": "owl",
     "theme": "owls",
     "bookTheme": "owls",
@@ -1367,7 +1357,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1393,7 +1382,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1461,7 +1449,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1487,7 +1474,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1513,7 +1499,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1539,7 +1524,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1565,7 +1549,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1591,7 +1574,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1647,7 +1629,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1673,7 +1654,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1741,7 +1721,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1767,7 +1746,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1793,7 +1771,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1819,7 +1796,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1845,7 +1821,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1871,7 +1846,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1927,7 +1901,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -1953,7 +1926,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1979,7 +1951,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2005,7 +1976,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2031,7 +2001,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2078,7 +2047,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2104,7 +2072,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2130,7 +2097,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2156,7 +2122,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2212,7 +2177,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -2238,7 +2202,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2264,7 +2227,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2290,7 +2252,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2316,7 +2277,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2363,7 +2323,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2389,7 +2348,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2415,7 +2373,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2441,7 +2398,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2499,7 +2455,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2525,7 +2480,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2553,7 +2507,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2581,7 +2534,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2609,7 +2561,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2637,7 +2588,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2663,7 +2613,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2691,7 +2640,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2719,7 +2667,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2745,7 +2692,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2771,7 +2717,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2799,7 +2744,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2825,7 +2769,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2851,7 +2794,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2877,7 +2819,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2905,7 +2846,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2933,7 +2873,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2959,7 +2898,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -2985,7 +2923,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3013,7 +2950,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3039,7 +2975,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3067,7 +3002,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3093,7 +3027,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3121,7 +3054,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3147,7 +3079,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3175,7 +3106,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3201,7 +3131,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3229,7 +3158,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3255,7 +3183,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3281,7 +3208,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3307,7 +3233,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3335,7 +3260,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3361,7 +3285,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3387,7 +3310,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3413,7 +3335,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3441,7 +3362,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3469,7 +3389,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3495,7 +3414,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3521,7 +3439,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3547,7 +3464,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3573,7 +3489,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3601,7 +3516,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3627,7 +3541,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3653,7 +3566,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3681,7 +3593,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3709,7 +3620,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3737,7 +3647,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3763,7 +3672,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3789,7 +3697,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3817,7 +3724,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3843,7 +3749,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3869,7 +3774,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3897,7 +3801,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3923,7 +3826,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3949,7 +3851,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -3977,7 +3878,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4005,7 +3905,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4031,7 +3930,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4057,7 +3955,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4083,7 +3980,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4111,7 +4007,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4139,7 +4034,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4167,7 +4061,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4193,7 +4086,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4221,7 +4113,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4247,7 +4138,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4275,7 +4165,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4301,7 +4190,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4329,7 +4217,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4357,7 +4244,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4385,7 +4271,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4413,7 +4298,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4441,7 +4325,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4469,7 +4352,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4495,7 +4377,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4521,7 +4402,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4547,7 +4427,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4575,7 +4454,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4603,7 +4481,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4629,7 +4506,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4657,7 +4533,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4683,7 +4558,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4711,7 +4585,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4739,7 +4612,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4765,7 +4637,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4791,7 +4662,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4819,7 +4689,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4847,7 +4716,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4875,7 +4743,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4901,7 +4768,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4927,7 +4793,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4953,7 +4818,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -4979,7 +4843,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5007,7 +4870,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5035,7 +4897,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5061,7 +4922,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5089,7 +4949,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5117,7 +4976,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5145,7 +5003,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5173,7 +5030,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5229,7 +5085,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5257,7 +5112,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5283,7 +5137,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5311,7 +5164,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5339,7 +5191,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5365,7 +5216,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5393,7 +5243,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5419,7 +5268,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5445,7 +5293,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5471,7 +5318,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5499,7 +5345,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5527,7 +5372,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5553,7 +5397,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5581,7 +5424,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5607,7 +5449,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5633,7 +5474,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5659,7 +5499,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5685,7 +5524,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5711,7 +5549,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5739,7 +5576,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5765,7 +5601,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5793,7 +5628,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5821,7 +5655,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5849,7 +5682,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5877,7 +5709,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5905,7 +5736,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5931,7 +5761,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5959,7 +5788,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -5985,7 +5813,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6011,7 +5838,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6039,7 +5865,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6065,7 +5890,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6091,7 +5915,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6117,7 +5940,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6143,7 +5965,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6169,7 +5990,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6195,7 +6015,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6221,7 +6040,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6247,7 +6065,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6273,7 +6090,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6299,7 +6115,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6327,7 +6142,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6353,7 +6167,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6381,7 +6194,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6407,7 +6219,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6433,7 +6244,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6459,7 +6269,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6485,7 +6294,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6511,7 +6319,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6539,7 +6346,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6565,7 +6371,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6591,7 +6396,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6617,7 +6421,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6643,7 +6446,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6669,7 +6471,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6697,7 +6498,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6723,7 +6523,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6751,7 +6550,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6779,7 +6577,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6805,7 +6602,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6833,7 +6629,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6859,7 +6654,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6885,7 +6679,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6911,7 +6704,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6937,7 +6729,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6965,7 +6756,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -6991,7 +6781,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7019,7 +6808,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7045,7 +6833,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7073,7 +6860,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7101,7 +6887,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7127,7 +6912,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7153,7 +6937,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7179,7 +6962,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7205,7 +6987,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7233,7 +7014,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7259,7 +7039,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7287,7 +7066,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7315,7 +7093,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7343,7 +7120,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7369,7 +7145,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7395,7 +7170,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7423,7 +7197,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7451,7 +7224,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7477,7 +7249,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7503,7 +7274,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7529,7 +7299,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7555,7 +7324,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7583,7 +7351,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7611,7 +7378,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7639,7 +7405,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7667,7 +7432,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7695,7 +7459,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7721,7 +7484,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7749,7 +7511,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7777,7 +7538,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7805,7 +7565,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7833,7 +7592,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7861,7 +7619,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7887,7 +7644,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -7928,7 +7684,7 @@
     "nodeText": "",
     "storyText": "",
     "reward": [],
-    "prereq": "lesson-2",
+    "prereq": "",
     "opponent": "ephilate",
     "theme": "tavern",
     "bookTheme": "town",
@@ -7943,7 +7699,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -7999,7 +7754,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -8055,7 +7809,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -8111,7 +7864,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -8152,7 +7904,7 @@
     "nodeText": "",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-2",
+    "prereq": "mission-4",
     "opponent": "ephilate",
     "theme": "forest",
     "bookTheme": "forest",
@@ -8167,7 +7919,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -8223,7 +7974,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -8264,7 +8014,7 @@
     "nodeText": "",
     "storyText": "",
     "reward": [],
-    "prereq": "temple-5",
+    "prereq": "mission-6",
     "opponent": "",
     "theme": "tree",
     "bookTheme": "tree",
@@ -8279,7 +8029,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -8337,7 +8086,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -8379,7 +8127,7 @@
     "nodeText": "",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-8",
+    "prereq": "",
     "opponent": "",
     "hero": "",
     "theme": "",
@@ -8395,7 +8143,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -8451,7 +8198,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -8507,7 +8253,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},

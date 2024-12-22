@@ -5,8 +5,8 @@ import _ from 'lodash';
 // import book1 from 'src/data/books/book1.json';
 // import book2 from 'src/data/books/book2.json';
 // import book3 from 'src/data/books/book3.json';
-// import book4 from 'src/data/books/book4.json';
-import book5 from 'src/data/books/book5.json';
+import book4 from 'src/data/books/book4.json';
+// import book5 from 'src/data/books/book5.json';
 // import book6 from 'src/data/books/book6.json';
 // import book7 from 'src/data/books/book7.json';
 // import book8 from 'src/data/books/book8.json';
@@ -15,7 +15,7 @@ import book5 from 'src/data/books/book5.json';
 // import book11 from 'src/data/books/book11.json';
 // import book12 from 'src/data/books/book12.json';
 
-const microscopeData: any = book5;
+const microscopeData: any = book4;
 
 interface CustomTreeNodeDatum {
   name: string;
@@ -85,7 +85,8 @@ export const Lab = () => {
     <g onClick={() => handleNodeClick(nodeDatum)}>
       <circle r={20} fill="#333" />
       <text fill="#000000" fontSize={16} x={30} dy="0.3em" textAnchor="start">
-        {nodeDatum.opponent}
+        {/* {nodeDatum.opponent} */}
+        {nodeDatum.id}
       </text>
       {nodeDatum.attributes &&
         Object.entries(nodeDatum.attributes).map(([key, value]) => (

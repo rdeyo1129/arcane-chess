@@ -36,7 +36,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -62,7 +61,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -88,7 +86,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -114,7 +111,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -170,7 +166,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -196,7 +191,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -222,7 +216,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -248,7 +241,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -325,7 +317,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -640,7 +631,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyM": {},
@@ -698,7 +688,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -959,7 +948,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -989,7 +977,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1036,7 +1023,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1073,7 +1059,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1099,7 +1084,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1135,7 +1119,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1168,7 +1151,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1201,7 +1183,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1240,7 +1221,7 @@
     "nodeText": "Attain more details about the Bishop and Equus pieces.",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-6",
+    "prereq": "lesson-5",
     "opponent": "wizard",
     "hero": "",
     "storyTitle": "",
@@ -1289,7 +1270,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1323,7 +1303,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1351,7 +1330,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1382,7 +1360,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1414,7 +1391,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1440,7 +1416,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1466,7 +1441,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1492,7 +1466,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1554,7 +1527,7 @@
     "nodeText": "Learn about novice-level tactics and how to spot them.",
     "storyText": "",
     "reward": [],
-    "prereq": "lesson-5",
+    "prereq": "lesson-6",
     "opponent": "ephilate",
     "hero": "",
     "storyTitle": "",
@@ -1571,7 +1544,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1599,7 +1571,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1632,7 +1603,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1658,7 +1628,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1684,7 +1653,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1710,7 +1678,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1736,7 +1703,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1767,7 +1733,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1818,7 +1783,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1873,7 +1837,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1908,7 +1871,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -1938,7 +1900,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -14645,7 +14606,7 @@
     "nodeText": "Get your King to the center to win or defeat your opponent normally.",
     "storyText": "",
     "reward": [],
-    "prereq": "lesson-2",
+    "prereq": "",
     "opponent": "ephilate",
     "hero": "",
     "storyTitle": "",
@@ -14715,7 +14676,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -14754,7 +14714,7 @@
     "nodeText": "",
     "storyText": "",
     "reward": [],
-    "prereq": "lesson-4",
+    "prereq": "mission-2",
     "opponent": "ephilate",
     "hero": "",
     "storyTitle": "",
@@ -14771,7 +14731,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -14827,7 +14786,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -14883,7 +14841,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -14922,7 +14879,7 @@
     "nodeText": "",
     "storyText": "",
     "reward": [],
-    "prereq": "lesson-5",
+    "prereq": "mission-5",
     "opponent": "ephilate",
     "hero": "",
     "storyTitle": "",
@@ -14939,7 +14896,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -14997,7 +14953,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -15055,7 +15010,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -15095,7 +15049,7 @@
     "nodeText": "",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-8",
+    "prereq": "",
     "opponent": "",
     "hero": "",
     "theme": "",
@@ -15111,7 +15065,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -15167,7 +15120,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},
@@ -15223,7 +15175,6 @@
         "reward": [],
         "description": "",
         "opponent": "",
-        "prereq": "",
         "royalties": {
           "royaltyQ": {},
           "royaltyT": {},

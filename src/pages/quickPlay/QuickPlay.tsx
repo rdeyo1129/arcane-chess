@@ -16,7 +16,7 @@ import TactoriusModal from 'src/components/Modal/Modal';
 import PromotionModal from 'src/components/PromotionModal/PromotionModal';
 import QuickplayModal from 'src/components/Modal/QuickplayModal';
 
-import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+// import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
 import arcanaJson from 'src/data/arcana.json';
 
@@ -1138,7 +1138,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                 />
               </div>
               <div className="global-volume-control">
-                <GlobalVolumeControl />
+                {/* <GlobalVolumeControl /> */}
               </div>
             </div>
             <div className="time-board-time">
@@ -1630,7 +1630,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             </div>
             <div className="nav-history-buttons-player">
               <div className="global-volume-control">
-                <GlobalVolumeControl />
+                {/* <GlobalVolumeControl /> */}
               </div>
               <div className="buttons">
                 <Button

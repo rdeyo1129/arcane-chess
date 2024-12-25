@@ -42,7 +42,7 @@ import { editMovePiece } from '../../arcaneChess/gui.mjs';
 import Button from '../../components/Button/Button';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
-import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+// import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
 const booksMap: { [key: string]: { [key: string]: Node } } = {
   book1,
@@ -654,7 +654,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                   <div className="arcana-select"></div>
                 </div>
                 <div className="global-volume-control">
-                  <GlobalVolumeControl />
+                  {/* <GlobalVolumeControl /> */}
                 </div>
               </div>
               <div className="time-board-time">
@@ -706,7 +706,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               </div>
               <div className="lesson-clock-buttons">
                 <div className="global-volume-control">
-                  <GlobalVolumeControl />
+                  {/* <GlobalVolumeControl /> */}
                 </div>
                 <div className="lesson-text">
                   {

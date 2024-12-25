@@ -261,20 +261,20 @@ export function CheckResult(preset = GameBoard.preset) {
   }
 
   if (preset === 'XCHECK') {
+    const opponent = GameBoard.side ^ 1;
     if (
-      GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
-      GameBoard.checksGiven[GameBoard.side ^ 1] >=
-        GameBoard.xCheckLimit[GameBoard.side ^ 1]
+      GameBoard.xCheckLimit[opponent] > 0 &&
+      GameBoard.checksGiven[opponent] >= GameBoard.xCheckLimit[opponent]
     ) {
       if (GameBoard.side === COLOURS.WHITE) {
         return {
           gameOver: true,
-          gameResult: 'black mates (x check ending)',
+          gameResult: 'black mates (3 check ending)',
         };
       } else {
         return {
           gameOver: true,
-          gameResult: 'white mates (x check ending)',
+          gameResult: 'white mates (3 check ending)',
         };
       }
     }

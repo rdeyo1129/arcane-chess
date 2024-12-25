@@ -566,11 +566,11 @@ export function TakeMove(wasDyadMove = false) {
 
   if (
     SqAttacked(
-      GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
-      GameBoard.side ^ 1
+      GameBoard.pList[PCEINDEX(Kings[GameBoard.side ^ 1], 0)],
+      GameBoard.side
     )
   ) {
-    GameBoard.checksGiven[GameBoard.side ^ 1]--;
+    GameBoard.checksGiven[GameBoard.side]--;
   }
 
   let move = GameBoard.history[GameBoard.hisPly].move;

@@ -9,11 +9,11 @@ import 'src/chessground/styles/normal.scss';
 
 import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
 
-import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+// import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
-import ArcanaSelect from 'src/pages/book/ArcanaSelect';
+import ArcanaSelect, { unlockableArcana } from 'src/pages/book/ArcanaSelect';
 
 import arcanaJson from 'src/data/arcana.json';
 
@@ -174,6 +174,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
         this.booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`]?.bookTheme,
       selectedTab: 'chess',
       hoverArcane: '',
+      selectedArcana: getLocalStorage(this.props.auth.user.username)?.arcana,
     };
     this.toggleAllNodesUnlocked = this.toggleAllNodesUnlocked.bind(this);
   }
@@ -308,6 +309,49 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
     setTimeout(startAnimation, pauseDuration);
   }
 
+  handleMultiplierChange = (value: number) => {
+    this.setState({
+      multiplier: this.state.multiplier + value,
+    });
+    this.updateMultiplier(value);
+  };
+
+  availableChapterArcana = () => {
+    const chapter = getLocalStorage(this.props.auth.user.username).chapter;
+    const unlockedArcana = unlockableArcana
+      .slice(0, chapter)
+      .reduce((acc, current) => {
+        return { ...acc, ...current };
+      }, {});
+    return unlockedArcana;
+  };
+
+  handleArcanaClick = (key: string) => {
+    const { auth } = this.props;
+
+    const storedData = getLocalStorage(auth.user.username);
+    const selectedArcana: Record<string, number> = storedData.arcana || {};
+    const multiplierValues: Record<string, number> =
+      this.availableChapterArcana();
+    let newSelectedArcana = { ...selectedArcana };
+
+    newSelectedArcana = _.omit(selectedArcana, key);
+
+    setLocalStorage({
+      ...storedData,
+      arcana: newSelectedArcana,
+      config: {
+        ...storedData.confg,
+        multiplier: storedData.config.multiplier + multiplierValues[key],
+      },
+    });
+
+    this.setState({
+      selectedArcana: newSelectedArcana,
+      multiplier: storedData.config.multiplier + multiplierValues[key],
+    });
+  };
+
   render() {
     const { auth } = this.props;
     const LS = getLocalStorage(auth.user.username);
@@ -371,7 +415,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
             <div className="book">
               <div className="hud">
                 <div className="left">
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div>
                     <Link to="/campaign">
                       <Button
                         text="BACK"
@@ -384,7 +428,31 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       />
                     </Link>
                   </div>
-                  <GlobalVolumeControl />
+                  <div className="arcana-helper">
+                    {_.map(LS.arcana, (_value, key: string) => {
+                      return (
+                        <img
+                          key={key}
+                          className="arcane"
+                          src={`${arcana[key].imagePath}${
+                            this.state.hoverArcane === `${key}` ? '-hover' : ''
+                          }.svg`}
+                          style={{
+                            height: '50px',
+                            width: '50px',
+                            cursor:
+                              'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
+                          }}
+                          onClick={() => {
+                            this.handleArcanaClick(key);
+                          }}
+                          onMouseEnter={() => this.toggleHover(`${key}`)}
+                          onMouseLeave={() => this.toggleHover('')}
+                        />
+                      );
+                    })}
+                  </div>
+                  {/* <GlobalVolumeControl /> */}
                 </div>
                 <div
                   className="center"
@@ -726,7 +794,12 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       style={{ background: '#77777788' }}
                     >
                       <h2 className="time">{this.getTimeDisplay()}</h2>
-                      <div className="arcana">
+                      <div
+                        style={{
+                          height: '240px',
+                          width: '200px',
+                        }}
+                      >
                         {this.state.selectedSwatch === '' ? null : this.state
                             .playerColor === 'white' ? (
                           <ArcanaSelect
@@ -770,7 +843,12 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       style={{ background: '#33333388' }}
                     >
                       <h2 className="time">{this.getTimeDisplay()}</h2>
-                      <div className="arcana">
+                      <div
+                        style={{
+                          height: '240px',
+                          width: '200px',
+                        }}
+                      >
                         {this.state.selectedSwatch === '' ? null : this.state
                             .playerColor === 'black' ? (
                           <ArcanaSelect

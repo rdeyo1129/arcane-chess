@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
+import Button from 'src/components/Button/Button';
+
 import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 
 import arcanaJson from 'src/data/arcana.json';
@@ -44,6 +46,7 @@ export const unlockableArcana = [
     dyadP: 1,
     shftP: 1,
     modsFUT: 2,
+    modsSKI: 1,
   },
   // 2
   {
@@ -51,6 +54,8 @@ export const unlockableArcana = [
     sumnU: 4,
     dyadN: 3,
     dyadU: 3,
+    modsTRO: 2,
+    offrC: 2,
   },
   // 3
   {
@@ -66,6 +71,7 @@ export const unlockableArcana = [
     sumnRE: 4,
     modsIMP: 2,
     modsFUG: 3,
+    offrS: 4,
   },
   // 5
   {
@@ -81,6 +87,7 @@ export const unlockableArcana = [
     sumnRM: 6,
     dyadM: 8,
     modsCON: 4,
+    sumnRZ: 5,
   },
   // 7
   {
@@ -88,17 +95,22 @@ export const unlockableArcana = [
     sumnRT: 6,
     dyadT: 9,
     shftB: 4,
+    sumnRY: 5,
+    offrR: 3,
   },
   // 8
   {
     sumnQ: 12,
     sumnRQ: 7,
     dyadQ: 11,
-    // modsTEL: 5,
+    sumnRA: 6,
+    offrM: 4,
+    // modsTEL: 5, won't use
   },
   // 9
   {
-    sumnH: 3,
+    offrH: 5,
+    sumnH: 6,
     dyadH: 2,
     modsSUS: 4,
     modsINH: 7,
@@ -108,36 +120,22 @@ export const unlockableArcana = [
     dyadW: 8,
     dyadS: 8,
     dyadA: 8,
+    modsREA: 7,
+    offrA: 5,
   },
   // 11
   {
     sumnW: 9,
     sumnS: 9,
     modsTEM: 6,
+    modsEXT: 7,
   },
   // 12
   {
     sumnV: 15,
     sumnRV: 13,
     dyadV: 14,
-  },
-  // todo
-  {
-    modsGLI: 0,
-    modsSKI: 0,
-    modsEXT: 0,
-    modsREA: 0,
-    modsTRO: 0,
-    sumnRY: 0,
-    sumnRZ: 0,
-    sumnRA: 0,
-    offrH: 0,
-    offrS: 0,
-    offrM: 0,
-    offrE: 0,
-    offrR: 0,
-    offrC: 0,
-    offrA: 0,
+    modsGLI: 9,
   },
 ];
 
@@ -212,6 +210,30 @@ export default class ArcanaSelect extends React.Component<
     });
   };
 
+  handleClearArcana = () => {
+    const { selectedArcana } = this.state;
+    const { auth, missionArcana } = this.props;
+    const arcanaObj: Record<string, number> =
+      (Object.keys(missionArcana || {}).length !== 0
+        ? missionArcana
+        : this.availableChapterArcana()) || {};
+    let multiplierAddBack = 0;
+    Object.keys(selectedArcana).forEach((key) => {
+      if (arcanaObj[key] !== undefined) {
+        multiplierAddBack += arcanaObj[key];
+      }
+    });
+    this.setState({
+      selectedArcana: {},
+      multiplier: this.state.multiplier + multiplierAddBack,
+    });
+    this.props.updateBookMultiplier(multiplierAddBack);
+    setLocalStorage({
+      ...getLocalStorage(auth.user.username),
+      arcana: {},
+    });
+  };
+
   render() {
     const { isPlayerArcana, isMission, missionArcana } = this.props;
     const { hoverArcane, selectedArcana } = this.state;
@@ -225,50 +247,72 @@ export default class ArcanaSelect extends React.Component<
     if (!isMission) return null;
 
     return (
-      <>
-        {isPlayerArcana &&
-          _.map(arcanaObj, (value: number, key: string) => {
-            const isSelected = _.includes(Object.keys(selectedArcana), key);
-            const isDisabled = !isPlayerArcana || hasMissionArcana;
-            return (
-              <img
-                key={key}
-                className="arcane"
-                src={`${arcana[key].imagePath}${
-                  hoverArcane === `${key}` ? '-hover' : ''
-                }.svg`}
-                style={{
-                  opacity: isDisabled || isSelected ? 1 : 0.5,
-                  cursor: isDisabled
-                    ? 'not-allowed'
-                    : 'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
-                }}
-                onClick={() => {
-                  if (isDisabled) return;
-                  this.handleArcanaClick(key, value);
-                }}
-                onMouseEnter={() => this.props.onToggleHover(`${key}`)}
-                onMouseLeave={() => this.props.onToggleHover('')}
-              />
-            );
-          })}
-        {!isPlayerArcana &&
-          _.map(this.props.engineArcana, (_value: number, key: string) => {
-            return (
-              <img
-                key={key}
-                className="arcane"
-                src={`${arcana[key].imagePath}.svg`}
-                style={{
-                  opacity: 0.5,
-                  cursor: 'not-allowed',
-                }}
-                onMouseEnter={() => this.props.onToggleHover(`${key}`)}
-                onMouseLeave={() => this.props.onToggleHover('')}
-              />
-            );
-          })}
-      </>
+      <div
+        style={{
+          height: '240px',
+          width: '200px',
+        }}
+      >
+        {isPlayerArcana && (
+          <div className="arcana-picker-wrapper">
+            <Button
+              color="B"
+              width={200}
+              text="CLEAR ARCANA"
+              className="tertiary"
+              onClick={() => this.handleClearArcana()}
+            />
+            <div className="arcana-picker">
+              {_.map(arcanaObj, (value: number, key: string) => {
+                const isSelected = _.includes(Object.keys(selectedArcana), key);
+                const isDisabled = !isPlayerArcana || hasMissionArcana;
+                return (
+                  <img
+                    key={key}
+                    className="arcane"
+                    src={`${arcana[key].imagePath}${
+                      hoverArcane === `${key}` ? '-hover' : ''
+                    }.svg`}
+                    style={{
+                      opacity: isDisabled || isSelected ? 1 : 0.5,
+                      cursor: isDisabled
+                        ? 'not-allowed'
+                        : 'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
+                    }}
+                    onClick={() => {
+                      if (isDisabled) return;
+                      this.handleArcanaClick(key, value);
+                    }}
+                    onMouseEnter={() => this.props.onToggleHover(`${key}`)}
+                    onMouseLeave={() => this.props.onToggleHover('')}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )}
+        {!isPlayerArcana && (
+          <div className="arcana-picker-wrapper">
+            <div className="arcana-picker">
+              {_.map(this.props.engineArcana, (_value: number, key: string) => {
+                return (
+                  <img
+                    key={key}
+                    className="arcane"
+                    src={`${arcana[key].imagePath}.svg`}
+                    style={{
+                      opacity: 0.5,
+                      cursor: 'not-allowed',
+                    }}
+                    onMouseEnter={() => this.props.onToggleHover(`${key}`)}
+                    onMouseLeave={() => this.props.onToggleHover('')}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
     );
   }
 }

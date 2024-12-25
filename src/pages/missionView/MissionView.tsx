@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import { Link } from 'react-router-dom';
 
-import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+// import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
 import { audioManager } from 'src/utils/audio/AudioManager';
 
@@ -469,6 +469,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           },
           () => {
             if (CheckAndSet()) {
+              console.log('test', CheckResult());
               this.setState({
                 gameOver: true,
                 gameOverType: CheckResult().gameResult,
@@ -1141,6 +1142,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       this.state.gameOverType.split(' ')[1] === 'mates' &&
       getLocalStorage(this.props.auth.user.username).config.color ===
         this.state.gameOverType.split(' ')[0];
+    const variantExpos: Record<string, string> = {
+      XCHECK: '3 checks equals a win.',
+      CRAZYHOUSE:
+        'Capturing a piece gives you a friendly summon of that same piece type',
+      THRONE: 'A King in the center is a win.',
+      HORDE: 'The horde must checkmate, the army must capture all Pawns.',
+      DELIVERANCE: 'A King on the last rank is a win.',
+      CAPALL: 'Capturing all opponent pieces is a win.',
+      '': '',
+    };
     return (
       <div className="tactorius-board fade">
         {LS.chapter === 0 ? (
@@ -1217,12 +1228,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               isOpen={this.state.gameOver}
               // handleClose={() => this.handleModalClose()}
               // modalType={this.state.endScenario}
-              message={
-                (this.state.gameOverType,
-                playerWins
-                  ? this.state.victoryMessage
-                  : this.state.defeatMessage)
-              }
+              message={`${this.state.gameOverType} 
+                ${
+                  playerWins
+                    ? this.state.victoryMessage
+                    : this.state.defeatMessage
+                }`}
               score={LS.nodeScores[this.state.nodeId]}
               type={playerWins ? 'victory' : 'defeat'}
             />
@@ -1262,8 +1273,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   ) : this.state.hint !== '' ? (
                     this.state.hint
                   ) : (
-                    <div></div>
+                    <div>{variantExpos[this.state.preset]}</div>
                     // hints, taunts, eval + or - dialogue
+                    // todo append any hints or dialogue
                   )}
                 </div>
                 <div className="buttons">
@@ -1285,7 +1297,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   />
                 </div>
                 <div className="global-volume-control">
-                  <GlobalVolumeControl />
+                  {/* <GlobalVolumeControl /> */}
                 </div>
               </div>
               <div className="time-board-time">
@@ -1799,7 +1811,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               </div>
               <div className="nav-history-buttons-player">
                 <div className="global-volume-control">
-                  <GlobalVolumeControl />
+                  {/* <GlobalVolumeControl /> */}
                 </div>
                 <div className="buttons">
                   {/* <Button

@@ -175,9 +175,9 @@ export function Quiescence(alpha, beta) {
 
   if (InCheck() === BOOL.TRUE) {
     if (
-      GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
-      GameBoard.checksGiven[GameBoard.side ^ 1] ===
-        GameBoard.xCheckLimit[GameBoard.side ^ 1]
+      GameBoard.xCheckLimit[GameBoard.side] > 0 &&
+      GameBoard.checksGiven[GameBoard.side] ===
+        GameBoard.xCheckLimit[GameBoard.side]
     ) {
       alpha = -MATE + GameBoard.ply;
     }
@@ -301,9 +301,9 @@ export function AlphaBeta(alpha, beta, depth) {
 
   if (InCheck() === BOOL.TRUE) {
     if (
-      GameBoard.xCheckLimit[GameBoard.side ^ 1] > 0 &&
-      GameBoard.checksGiven[GameBoard.side ^ 1] ===
-        GameBoard.xCheckLimit[GameBoard.side ^ 1]
+      GameBoard.xCheckLimit[GameBoard.side] > 0 &&
+      GameBoard.checksGiven[GameBoard.side] ===
+        GameBoard.xCheckLimit[GameBoard.side]
     ) {
       return MATE + GameBoard.ply;
     }

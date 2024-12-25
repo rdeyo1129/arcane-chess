@@ -9,6 +9,7 @@ interface SelectProps {
   onChange: (val: string) => void;
   width?: number | string;
   height?: number | string;
+  defaultOption?: string | number;
 }
 interface SelectState {
   selectedValue: string | number | boolean | null;
@@ -40,6 +41,7 @@ class Select extends React.Component<SelectProps, SelectState> {
             cursor: "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
           }}
           onChange={this.onChangeUses}
+          defaultValue={this.props.defaultOption}
         >
           {this.props.options.map((option, i) => {
             return (

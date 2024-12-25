@@ -161,6 +161,7 @@ interface State {
   playerColor: string;
   engineColor: string;
   currPanel: number;
+  chapterNum: number;
   thinking: boolean;
   thinkingTime: number;
   history: string[];
@@ -217,6 +218,8 @@ interface Props {
     };
   };
 }
+
+export const puzzleLimits = [0, 10, 10, 10, 8, 8, 8, 5, 5, 5, 3, 3, 3];
 
 class UnwrappedTempleView extends React.Component<Props, State> {
   hasMounted = false;
@@ -279,6 +282,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[
           `panel-${parseInt(initialPanelKey.split('-')[1])}`
         ].correctMoves,
+      chapterNum: LS.chapter,
       thinking: SearchController.thinking,
       engineLastMove: [],
       thinkingTime: 500,
@@ -347,12 +351,11 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       (key) => !this.state.visitedPanels.includes(key)
     );
     const panelCount = panelKeys.length;
+    const puzzleNum = puzzleLimits[this.state.chapterNum];
 
-    if (this.state.visitedPanels.length >= 10) {
-      // Check if 10 panels have been visited
+    if (this.state.visitedPanels.length >= puzzleNum) {
       const timeLeft = this.stopAndReturnTime() as number | null;
       this.handleVictory(timeLeft);
-      console.log('Victory: 10 panels have been solved.');
       return;
     }
 

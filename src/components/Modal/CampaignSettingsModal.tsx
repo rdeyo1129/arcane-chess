@@ -500,7 +500,7 @@ const bookSettingsModal = {
     background: '#000000',
     borderRadius: '10px',
     border: 'none',
-    overflow: 'scroll',
+    overflowY: 'scroll' as const,
   },
   overlay: {
     zIndex: 10,

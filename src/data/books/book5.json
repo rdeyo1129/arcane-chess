@@ -15453,7 +15453,7 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {},
-        "blackArcane": { "dyadU": 3, "sumnP": 1 },
+        "blackArcane": { "sumnU": 3, "sumnP": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
@@ -15509,7 +15509,7 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {},
-        "blackArcane": { "dyadU": 3, "sumnP": 1, "shftN": 2 },
+        "blackArcane": { "sumnU": 1, "sumnP": 1, "shftN": 2 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
@@ -15565,7 +15565,7 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {},
-        "blackArcane": { "dyadH": 1, "shftB": 3 },
+        "blackArcane": { "sumnH": 1, "shftB": 3 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
@@ -15790,8 +15790,8 @@
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {
-          "dyadB": 2,
-          "dyadW": 2,
+          "sumnB": 2,
+          "sumnW": 1,
           "shftB": 4
         },
         "config": {},
@@ -15850,8 +15850,8 @@
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {
-          "dyadB": 2,
-          "dyadW": 2,
+          "sumnB": 2,
+          "sumnW": 1,
           "shftB": 2,
           "modsINH": 1
         },

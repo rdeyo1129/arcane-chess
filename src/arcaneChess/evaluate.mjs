@@ -97,18 +97,14 @@ export const arcanaScore = () => {
   ]);
 
   const totalScore = [...allKeys].reduce((score, key) => {
-    const whiteCount = whiteArcaneConfig[key] ?? 0;
-    const blackCount = blackArcaneConfig[key] ?? 0;
-    const arcanaVal = multipliedArcana[key] ?? 0;
+    const whiteCount = whiteArcaneConfig[key] || 0;
+    const blackCount = blackArcaneConfig[key] || 0;
+    const arcanaVal = multipliedArcana[key] || 0;
     return score + whiteCount * arcanaVal - blackCount * arcanaVal;
   }, 0);
 
   return totalScore;
 };
-
-// todo revisit probably in search engine to grab board situation
-// export const score =
-//   GameBoard.material[COLOURS.WHITE] - GameBoard.material[COLOURS.BLACK];
 
 export function EvalPosition() {
   let score =

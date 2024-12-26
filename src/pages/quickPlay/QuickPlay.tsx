@@ -146,6 +146,7 @@ interface State {
   futureSightAvailable: boolean;
   glitchActive: boolean;
   engineAvatar: string;
+  dialogue: string[];
 }
 
 interface Props {
@@ -261,6 +262,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       futureSightAvailable: true,
       glitchActive: false,
       engineAvatar: this.engineFaction,
+      dialogue: [],
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -301,14 +303,21 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
         resolve(glitchMove);
       } else {
         arcaneChess()
-          .engineReply(this.state.thinkingTime, this.state.engineDepth)
-          .then((move) => {
-            if (CAPTURED(move) > 0 && ARCANEFLAG(move) === 0) {
+          .engineReply(
+            this.state.thinkingTime,
+            this.state.engineDepth,
+            this.state.engineColor
+          )
+          .then(({ bestMove, text }) => {
+            this.setState((prevState) => ({
+              dialogue: [...prevState.dialogue, ...text],
+            }));
+            if (CAPTURED(bestMove) > 0 && ARCANEFLAG(bestMove) === 0) {
               audioManager.playSound('capture');
             } else {
               audioManager.playSound('move');
             }
-            resolve(move);
+            resolve(bestMove);
           });
       }
     })
@@ -363,16 +372,18 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       () => {
         new Promise((resolve) => {
           arcaneChess()
-            .engineSuggestion(1, this.state.playerColor, level)
+            .engineSuggestion(this.state.playerColor, level)
             .then(resolve);
         }).then((reply: any) => {
           const { bestMove, temporalPincer } = reply;
-
           if (level === 1) {
-            this.setState({
-              hint: PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
+            this.setState((prevState) => ({
+              dialogue: [
+                ...prevState.dialogue,
+                PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
+              ],
               thinking: false,
-            });
+            }));
             this.chessgroundRef.current?.setAutoShapes([
               {
                 orig: PrSq(FROMSQ(bestMove)) || 'a0',
@@ -381,10 +392,10 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             ]);
           }
           if (level === 2) {
-            this.setState({
-              hint: PrMove(bestMove),
+            this.setState((prevState) => ({
+              dialogue: [...prevState.dialogue, PrMove(bestMove)],
               thinking: false,
-            });
+            }));
             this.chessgroundRef.current?.setAutoShapes([
               {
                 orig: PrSq(FROMSQ(bestMove)) || PrSq(TOSQ(bestMove)),
@@ -394,10 +405,10 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             ]);
           }
           if (level === 3) {
-            this.setState({
-              hint: temporalPincer,
+            this.setState((prevState) => ({
+              dialogue: [...prevState.dialogue, temporalPincer],
               thinking: false,
-            });
+            }));
           }
           this.setState({
             thinking: false,
@@ -1112,11 +1123,12 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     <h3>{arcana[this.state.hoverArcane].name}</h3>
                     <p>{arcana[this.state.hoverArcane].description}</p>
                   </div>
-                ) : this.state.hint !== '' ? (
-                  this.state.hint
                 ) : (
-                  <div></div>
-                  // hints, taunts, eval + or - dialogue
+                  <ul style={{ padding: '0' }}>
+                    {this.state.dialogue.map((item, key) => {
+                      return <li key={key}>{item}</li>;
+                    })}
+                  </ul>
                 )}
               </div>
               <div className="buttons">
@@ -1152,8 +1164,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   wFaction={this.state.whiteFaction}
                   bFaction={this.state.blackFaction}
                   royalties={this.state.royalties}
-                  // wVisible={this.state.wVisCount === 0}
-                  // bVisible={this.state.bVisCount === 0}
+                  wVisible={this.arcaneChess().getInvisibility()[0] <= 0}
+                  bVisible={this.arcaneChess().getInvisibility()[1] <= 0}
                   premovable={{
                     enabled: false,
                     // premoveFunc: () => {},
@@ -1709,11 +1721,12 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     <h3>{arcana[this.state.hoverArcane].name}</h3>
                     <p>{arcana[this.state.hoverArcane].description}</p>
                   </div>
-                ) : this.state.hint !== '' ? (
-                  this.state.hint
                 ) : (
-                  <div></div>
-                  // hints, taunts, eval + or - dialogue
+                  <ul style={{ padding: '0' }}>
+                    {this.state.dialogue.map((item, key) => {
+                      return <li key={key}>{item}</li>;
+                    })}
+                  </ul>
                 )}
               </div>
               <div className="info-avatar">

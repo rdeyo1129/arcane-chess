@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { GameBoard, FROMSQ } from './board';
 import {
   generatePlayableOptions,
@@ -28,6 +29,7 @@ import {
 } from './defs';
 import { PrMove, ParseMove, PrSq } from './io';
 import { SqAttacked } from './board.mjs';
+import { blackArcaneConfig, whiteArcaneConfig } from './arcaneDefs.mjs';
 
 export function validGroundMoves(summon = '', swap = '') {
   const moveMap = new Map();
@@ -356,28 +358,111 @@ export function CheckAndSet() {
   }
 }
 
-export async function PreSearch(thinkingTime, depth) {
+export async function PreSearch(thinkingTime, depth, engineColor) {
   // not sure if needed but fixed problem with white not moving first
   // if (GameController.GameOver === BOOL.FALSE) {
   SearchController.thinking = BOOL.TRUE;
   await new Promise((resolve) => setTimeout(resolve, 200));
-  const bestMove = startSearch(thinkingTime, depth);
-  return bestMove;
+  const { bestMove, bestScore, text } = startSearch(
+    thinkingTime,
+    depth,
+    engineColor
+  );
+  return { bestMove, bestScore, text };
   // }
 }
 
-export function engineSuggestion(thinkingTime) {
-  SearchController.depth = 8;
-  SearchController.time = thinkingTime * 1000;
+export function engineSuggestion() {
+  SearchController.depth = 7;
+  SearchController.time = 8 * 1000;
   const { bestMove, bestScore, temporalPincer } = SearchPosition();
   return { bestMove, bestScore, temporalPincer };
 }
 
-export function startSearch(thinkingTime, depth) {
-  SearchController.depth = depth || 8;
+const returnDialogueTypes = (score) => {
+  const dialogue = [];
+
+  if (score >= 700) {
+    dialogue.push('lose1');
+  }
+  if (score >= 1500) {
+    dialogue.push('lose2');
+  }
+  if (score >= 90000) {
+    dialogue.push('lose3');
+  }
+
+  if (score <= -700) {
+    dialogue.push('win1');
+  }
+  if (score <= -1500) {
+    dialogue.push('win2');
+  }
+  if (score <= -90000) {
+    dialogue.push('win3');
+  }
+
+  return dialogue;
+};
+
+export function startSearch(thinkingTime, depth, engineColor) {
+  const engineArcana =
+    engineColor === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+  const colorInt = engineColor === 'white' ? COLOURS.WHITE : COLOURS.BLACK;
+
+  SearchController.depth = depth || 7;
   SearchController.time = thinkingTime * 1000;
-  const { bestMove } = SearchPosition();
+
+  const { bestMove, bestScore } = SearchPosition();
+  let text = [...returnDialogueTypes(bestScore)];
+
+  if (
+    _.some(_.keys(engineArcana), (key) => key === 'modsPHA') &&
+    GameBoard.invisibility[colorInt] <= 0 &&
+    engineArcana.modsPHA > 0
+  ) {
+    if (bestScore > 500 || bestScore < -500) {
+      if (Math.random() > 0.5) {
+        GameBoard.invisibility[colorInt] = 6;
+        if (colorInt === COLOURS.WHITE) {
+          whiteArcaneConfig.modsPHA -= 1;
+        } else {
+          blackArcaneConfig.modsPHA -= 1;
+        }
+        text.push(`${engineColor} used invisibility!`);
+      }
+    }
+  }
+  if (
+    _.some(_.keys(engineArcana), (key) => key === 'modsSUS') &&
+    GameBoard.suspend <= 0 &&
+    GameBoard.invisibility[colorInt] <= 0
+  ) {
+    if (bestScore < -900) {
+      if (Math.random() > 0.5) {
+        console.log('oaiwesgsrafogkn');
+        GameBoard.suspend = 6;
+        if (colorInt === COLOURS.WHITE) {
+          whiteArcaneConfig.modsSUS -= 1;
+        } else {
+          blackArcaneConfig.modsSUS -= 1;
+        }
+
+        const { bestMove, bestScore } = SearchPosition();
+
+        text = [...returnDialogueTypes(bestScore)];
+        text.push(
+          `${engineColor} used bulletproof. No captures, checks, or promotions for 3 turns!`
+        );
+
+        MakeMove(bestMove);
+        CheckAndSet();
+        return { bestMove, bestScore, text };
+      }
+    }
+  }
+
   MakeMove(bestMove);
   CheckAndSet();
-  return bestMove;
+  return { bestMove, bestScore, text };
 }

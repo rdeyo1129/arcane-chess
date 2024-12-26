@@ -7996,7 +7996,7 @@
   },
   "mission-7": {
     "id": "mission-7",
-    "title": "Accelerate",
+    "title": "Fate Entwined",
     "diagWinLose": {
       "win1": "",
       "win2": "",
@@ -8005,7 +8005,7 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": "Roots erupt from the ground and wrap around Sidian's limbs. Sidian tries to break free but their body is shocked with fear. The tree laughs as they are brought to their knees. The roots dragging Sidian below the ground is the last thing that they remember. Suddenly, they are awake again, lost in the forest."
+      "defeat": "Roots erupt from the ground and wrap around Sidian's limbs. Sidian tries to break free but their body is shocked with fear. The tree laughs as they are brought to their knees. The roots dragging Sidian below the ground is the last thing that they remember. Suddenly, they are awake again... lost in the forest."
     },
     "time": [
       [360, 2],
@@ -8060,7 +8060,7 @@
       "lose2": "",
       "lose3": "",
       "victory": "The tree gasps in shock as the roots around it shrink and wither. It's arm reaches out to Sidian but fails.\n\n\"You shall join me in peril\"\n\n It begins to conjure a dark spell to connect with Sidian's life force. Sidian in turn connects with their talismen and blocks the spell. The tree topples over and the forest begins to return to normal.",
-      "defeat": "Roots erupt from the ground and wrap around Sidian's limbs. Sidian tries to break free but their body is shocked with fear. The tree laughs as they are brought to their knees. The roots dragging Sidian below the ground is the last thing that they remember. Suddenly, they are awake again, lost in the forest."
+      "defeat": "Roots erupt from the ground and wrap around Sidian's limbs. Sidian tries to break free but their body is shocked with fear. The tree laughs as they are brought to their knees. The roots dragging Sidian below the ground is the last thing that they remember. Suddenly, they are awake again... lost in the forest."
     },
     "time": [
       [360, 2],

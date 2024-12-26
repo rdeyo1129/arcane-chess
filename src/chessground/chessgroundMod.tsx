@@ -32,6 +32,8 @@ export interface IChessground {
     check: boolean;
     royalties?: boolean;
   };
+  wVisible?: boolean;
+  bVisible?: boolean;
   disableContextMenu?: boolean;
   turnColor?: string;
   movable?: any; // Replace `any` with a more specific type if available

@@ -172,7 +172,6 @@ export function MakeMove(move, moveType = '') {
 
   GameBoard.invisibility[0] -= 1;
   GameBoard.invisibility[1] -= 1;
-  // if > 0 ?
   GameBoard.suspend -= 1;
 
   GameBoard.history[GameBoard.hisPly].royaltyQ = { ...GameBoard.royaltyQ };
@@ -591,6 +590,10 @@ export function TakeMove(wasDyadMove = false) {
   GameBoard.invisibility[0] += 1;
   GameBoard.invisibility[1] += 1;
   GameBoard.suspend += 1;
+
+  if (GameBoard.suspend > 6) GameBoard.suspend = 0;
+  if (GameBoard.invisibility[0] > 6) GameBoard.invisibility[0] = 0;
+  if (GameBoard.invisibility[1] > 6) GameBoard.invisibility[1] = 0;
 
   GameBoard.royaltyQ = { ...GameBoard.history[GameBoard.hisPly].royaltyQ };
   GameBoard.royaltyT = { ...GameBoard.history[GameBoard.hisPly].royaltyT };

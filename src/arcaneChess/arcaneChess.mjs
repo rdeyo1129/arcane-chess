@@ -195,15 +195,22 @@ export default function arcaneChess() {
     ) => {
       return MakeUserMove(orig, dest, pieceEpsilon, swapType, royaltyEpsilon);
     },
-    engineReply: async (thinkingTime, depth = 4) => {
-      // return random valid move earlier here
-      return await PreSearch(thinkingTime, depth);
+    engineReply: async (thinkingTime, depth, engineColor) => {
+      const { bestMove, text } = await PreSearch(
+        thinkingTime,
+        depth,
+        engineColor
+      );
+      return { bestMove, text };
     },
     engineGlitch: () => {
       const moves = validMoves();
       const randomMove = moves[Math.floor(Math.random() * moves.length)];
       MakeMove(randomMove);
       return randomMove;
+    },
+    getInvisibility: () => {
+      return GameBoard.invisibility;
     },
     subtractArcanaUse: (type, color) => {
       if (color === 'white') {
@@ -213,7 +220,7 @@ export default function arcaneChess() {
         blackArcaneConfig[type] -= 1;
       }
     },
-    engineSuggestion: async (thinkingTime, playerColor, level) => {
+    engineSuggestion: async (playerColor, level) => {
       const playerArcana =
         playerColor === 'white' ? whiteArcaneConfig : blackArcaneConfig;
       if (level === 1) {
@@ -225,7 +232,7 @@ export default function arcaneChess() {
       if (level === 3) {
         playerArcana.modsTEM -= 1;
       }
-      return await engineSuggestion(thinkingTime);
+      return await engineSuggestion();
     },
     getDyadClock: () => {
       return GameBoard.dyadClock;

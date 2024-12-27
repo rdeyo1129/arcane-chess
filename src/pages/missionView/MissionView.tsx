@@ -420,11 +420,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     );
 
   engineGo = () => {
-    if (this.state.gameOver) return;
     this.setState({
       thinking: true,
     });
-    new Promise((resolve) => {
+    new Promise<{ bestMove: any; text: any }>((resolve) => {
       if (this.state.glitchActive) {
         const glitchMove = arcaneChess().engineGlitch();
         if (CAPTURED(glitchMove) > 0 && ARCANEFLAG(glitchMove) === 0) {
@@ -441,26 +440,37 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             this.state.engineColor
           )
           .then(({ bestMove, text }) => {
-            this.setState((prevState) => ({
-              dialogue: [...prevState.dialogue, ...text],
-            }));
             if (CAPTURED(bestMove) > 0 && ARCANEFLAG(bestMove) === 0) {
               audioManager.playSound('capture');
             } else {
               audioManager.playSound('move');
             }
-            resolve(bestMove);
+            resolve({ bestMove, text });
           });
       }
     })
       .then((reply) => {
+        const { bestMove, text } = reply;
         this.setState(
           (prevState) => {
+            const updatedDialogue = [
+              ...prevState.dialogue,
+              ...text
+                .map((key: string) => {
+                  if (key in prevState.dialogueList) {
+                    const value = prevState.dialogueList[key];
+                    return !prevState.dialogue.includes(value) ? value : null;
+                  }
+                  return key;
+                })
+                .filter((value: string | null) => value),
+            ];
             return {
               ...prevState,
+              dialogue: [...updatedDialogue],
               pvLine: GameBoard.cleanPV,
               historyPly: prevState.historyPly + 1,
-              history: [...prevState.history, PrMove(reply)],
+              history: [...prevState.history, PrMove(bestMove)],
               fen: outputFenOfCurrentPosition(),
               fenHistory: [
                 ...prevState.fenHistory,
@@ -468,19 +478,19 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               ],
               lastMoveHistory: [
                 ...prevState.lastMoveHistory,
-                [PrSq(FROMSQ(reply)), PrSq(TOSQ(reply))],
+                [PrSq(FROMSQ(bestMove)), PrSq(TOSQ(bestMove))],
               ],
               thinking: false,
-              // turn: prevState.turn === 'white' ? 'black' : 'white',
+              turn: prevState.turn === 'white' ? 'black' : 'white',
               royalties: {
                 ...prevState.royalties,
                 ...this.arcaneChess().getPrettyRoyalties(),
               },
+              glitchActive: false,
             };
           },
           () => {
             if (CheckAndSet()) {
-              console.log('test', CheckResult());
               this.setState({
                 gameOver: true,
                 gameOverType: CheckResult().gameResult,
@@ -515,6 +525,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
               ],
               thinking: false,
+              hoverArcane: '',
             }));
             this.chessgroundRef.current?.setAutoShapes([
               {
@@ -527,6 +538,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             this.setState((prevState) => ({
               dialogue: [...prevState.dialogue, PrMove(bestMove)],
               thinking: false,
+              hoverArcane: '',
             }));
             this.chessgroundRef.current?.setAutoShapes([
               {
@@ -540,6 +552,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             this.setState((prevState) => ({
               dialogue: [...prevState.dialogue, temporalPincer],
               thinking: false,
+              hoverArcane: '',
             }));
           }
           this.setState({
@@ -1113,6 +1126,17 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     // });
   }
 
+  componentDidUpdate() {
+    const dialogueDiv = document.getElementById('dialogue');
+    const historyDiv = document.getElementById('history');
+    if (dialogueDiv) {
+      dialogueDiv.scrollTop = dialogueDiv.scrollHeight;
+    }
+    if (historyDiv) {
+      historyDiv.scrollTop = historyDiv.scrollHeight;
+    }
+  }
+
   componentDidMount() {
     const LS = getLocalStorage(this.props.auth.user.username);
     window.addEventListener('keydown', this.handleKeyDown);
@@ -1277,14 +1301,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     {this.arcanaSelect(this.state.engineColor)}
                   </div>
                 </div>
-                <div className="dialogue">
+                <div id="dialogue" className="dialogue">
                   {this.state.hoverArcane !== '' ? (
                     <div className="arcana-detail">
                       <h3>{arcana[this.state.hoverArcane].name}</h3>
                       <p>{arcana[this.state.hoverArcane].description}</p>
                     </div>
                   ) : (
-                    <ul style={{ padding: '0' }}>
+                    <ul style={{ padding: '0', height: 'auto' }}>
                       <li>{variantExpos[this.state.preset]}</li>
                       {this.state.dialogue.map((item, key) => {
                         return <li key={key}>{item}</li>;
@@ -1855,7 +1879,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     backgroundColorOverride="#222222"
                   />
                 </div>
-                <div className="history">
+                <div id="history" className="history">
                   {sortedHistory.map((fullMove, i) => {
                     return (
                       <p className="full-move" key={i}>
@@ -1908,7 +1932,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     backgroundColorOverride="#222222"
                   />
                 </div>
-                <div className="dialogue">
+                <div id="dialogue" className="dialogue">
                   {this.state.hoverArcane !== '' ? (
                     <div className="arcana-detail">
                       <h3>{arcana[this.state.hoverArcane].name}</h3>

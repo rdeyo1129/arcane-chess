@@ -436,6 +436,7 @@ export function startSearch(thinkingTime, depth, engineColor) {
   if (
     _.some(_.keys(engineArcana), (key) => key === 'modsSUS') &&
     GameBoard.suspend <= 0 &&
+    engineArcana.modsSUS > 0 &&
     GameBoard.invisibility[colorInt] <= 0
   ) {
     if (bestScore < -900) {

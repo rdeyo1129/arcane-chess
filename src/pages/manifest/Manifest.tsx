@@ -601,6 +601,9 @@ class UnwrappedManifest extends React.Component<object, State> {
                     transition to major pieces only
                   </li>
                   <li>
+                    Entangled square may be ending a count too early for engine
+                  </li>
+                  <li>
                     Hexweaver arcana can stop the game if king and a checking
                     piece are both entangled once the timer ends
                   </li>

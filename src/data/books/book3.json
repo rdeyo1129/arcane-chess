@@ -1,6 +1,7 @@
 {
   "lesson-1": {
     "id": "lesson-1",
+    "category": "life",
     "title": "Self-Discipline",
     "diagWinLose": {
       "win1": "",
@@ -131,6 +132,7 @@
   },
   "lesson-2": {
     "id": "lesson-2",
+    "category": "life",
     "title": "Focus",
     "diagWinLose": {
       "win1": "",
@@ -261,6 +263,7 @@
   },
   "lesson-3": {
     "id": "lesson-3",
+    "category": "basics",
     "title": "The Draw",
     "diagWinLose": {
       "win1": "",
@@ -651,6 +654,7 @@
   },
   "lesson-4": {
     "id": "lesson-4",
+    "category": "patterns",
     "title": "The Principles",
     "diagWinLose": {
       "win1": "",
@@ -913,6 +917,7 @@
   },
   "lesson-5": {
     "id": "lesson-5",
+    "category": "basics",
     "title": "Minor Pieces I",
     "diagWinLose": {
       "win1": "",
@@ -1203,6 +1208,7 @@
   },
   "lesson-6": {
     "id": "lesson-6",
+    "category": "basics",
     "title": "Minor Pieces II",
     "diagWinLose": {
       "win1": "",
@@ -1509,6 +1515,7 @@
   },
   "lesson-7": {
     "id": "lesson-7",
+    "category": "tactics",
     "title": "Tactics I",
     "diagWinLose": {
       "win1": "",

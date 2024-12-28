@@ -1,6 +1,7 @@
 {
   "lesson-1": {
     "id": "lesson-1",
+    "category": "skills",
     "prereq": "",
     "title": "Skills V",
     "nodeText": "Planning.",
@@ -161,6 +162,7 @@
   },
   "lesson-2": {
     "id": "lesson-2",
+    "category": "skills",
     "prereq": "lesson-1",
     "title": "Skills VI",
     "nodeText": "Adaption.",
@@ -321,6 +323,7 @@
   },
   "lesson-3": {
     "id": "lesson-3",
+    "category": "mates",
     "prereq": "lesson-2",
     "title": "Matting Patterns III",
     "nodeText": "Learn about the back rank mate and the hook mate.",

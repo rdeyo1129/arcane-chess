@@ -488,6 +488,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
   componentWillUnmount(): void {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
+
   componentDidUpdate(prevProps: Props, prevState: State) {
     // Check if relevant data has changed
     if (
@@ -709,13 +710,15 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                   {/* <GlobalVolumeControl /> */}
                 </div>
                 <div className="lesson-text">
-                  {
-                    booksMap[
-                      `book${getLocalStorage(auth.user.username).chapter}`
-                    ][`${getLocalStorage(auth.user.username).nodeId}`].panels[
-                      `panel-${this.state.currPanel}`
-                    ].panelText
-                  }
+                  <div>
+                    {
+                      booksMap[
+                        `book${getLocalStorage(auth.user.username).chapter}`
+                      ][`${getLocalStorage(auth.user.username).nodeId}`].panels[
+                        `panel-${this.state.currPanel}`
+                      ].panelText
+                    }
+                  </div>
                 </div>
                 <div className="lesson-buttons">
                   <Button

@@ -28,7 +28,7 @@
         width: 100%;
         .avatar {
           position: relative;
-          background: rgba(34, 34, 34, 0.7);
+          background: #11111188;
           width: 60px;
           height: 60px;
         }
@@ -42,7 +42,7 @@
           overflow-x: auto;
           overflow-y: hidden;
           white-space: nowrap;
-          background: rgba(34, 34, 34, 0.7);
+          background: #11111188;
           .arcane {
             height: 45px;
             width: 45px;
@@ -57,7 +57,7 @@
         display: flex;
         flex-direction: column;
         height: 190px;
-        background: rgba(34, 34, 34, 0.7);
+        background: #11111188;
       }
     }
     .time-board-time {
@@ -92,11 +92,15 @@
       }
       .lesson-text {
         display: flex;
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
         justify-content: center;
-        align-items: center;
-        height: 400px;
+        background: #11111188;
+        overflow-y: scroll;
+        height: auto;
+        box-sizing: border-box;
         padding: 20px;
-        background-color: #11111188;
         .time-text {
           font-size: 72px;
         }
@@ -111,7 +115,7 @@
         width: 100%;
         .avatar {
           position: relative;
-          background: rgba(34, 34, 34, 0.7);
+          background: #11111188;
           width: 60px;
           height: 60px;
         }
@@ -125,7 +129,7 @@
           overflow-x: auto;
           overflow-y: hidden;
           white-space: nowrap;
-          background: rgba(34, 34, 34, 0.7);
+          background: #11111188;
           .arcane {
             height: 45px;
             width: 45px;
@@ -162,7 +166,7 @@
         flex-direction: column;
         align-items: center;
         flex-shrink: 0;
-        min-height: 60px;
+        max-height: 60px;
         padding: 0 10px 0 10px;
         width: 100%;
         .info-avatar {
@@ -177,7 +181,7 @@
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
-            background: rgba(34, 34, 34, 0.7);
+            background: #11111188;
             margin-right: 10px;
             .name {
               text-align: right;
@@ -238,7 +242,7 @@
           align-items: center;
           height: 400px;
           padding: 20px;
-          background-color: #11111188;
+          background: #11111188;
           .time-text {
             font-size: 72px;
           }
@@ -257,7 +261,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: rgba(34, 34, 34, 0.7);
+            background: #11111188;
             .name {
               text-align: right;
             }
@@ -306,6 +310,7 @@
         flex-direction: column;
         justify-content: center;
         margin: 10px;
+
         .info-avatar {
           display: flex;
           flex-direction: row-reverse;
@@ -371,7 +376,7 @@
           width: 380px;
           height: 400px;
           padding: 20px;
-          background-color: #11111188;
+          background: #11111188;
           .time-text {
             font-size: 72px;
           }

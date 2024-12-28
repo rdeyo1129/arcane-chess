@@ -1,6 +1,7 @@
 {
   "lesson-1": {
     "id": "lesson-1",
+    "category": "life",
     "prereq": "",
     "title": "Vision",
     "nodeText": "",
@@ -135,6 +136,7 @@
   },
   "lesson-2": {
     "id": "lesson-2",
+    "category": "life",
     "prereq": "lesson-1",
     "title": "Drive, Persistence",
     "nodeText": "",
@@ -269,6 +271,7 @@
   },
   "lesson-3": {
     "id": "lesson-3",
+    "category": "patterns",
     "prereq": "lesson-2",
     "title": "Patterns III",
     "nodeText": "Learn about the key event of Pawn breaks.",
@@ -459,6 +462,7 @@
   },
   "lesson-4": {
     "id": "lesson-4",
+    "category": "patterns",
     "prereq": "lesson-3",
     "title": "Patterns IV",
     "nodeText": "Learn about targets and weak points.",
@@ -688,6 +692,7 @@
   },
   "lesson-5": {
     "id": "lesson-5",
+    "category": "patterns",
     "prereq": "lesson-4",
     "title": "Patterns V",
     "nodeText": "Learn about trades and simplification.",
@@ -888,6 +893,7 @@
   },
   "lesson-6": {
     "id": "lesson-6",
+    "category": "tactics",
     "prereq": "lesson-5",
     "title": "Tactics IV",
     "nodeText": "Learn about clearance and attraction.",
@@ -1136,8 +1142,9 @@
   },
   "lesson-7": {
     "id": "lesson-7",
+    "category": "attacking",
     "prereq": "lesson-6",
-    "title": "Aggression III",
+    "title": "Attacking III",
     "nodeText": "Learn about double attacks and Pawn storms.",
     "storyTitle": "",
     "storyText": "",

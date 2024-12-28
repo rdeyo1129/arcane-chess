@@ -1,6 +1,7 @@
 {
   "lesson-1": {
     "id": "lesson-1",
+    "category": "skills",
     "prereq": "",
     "title": "Skills VII",
     "nodeText": "Pattern Recognition.",
@@ -161,6 +162,7 @@
   },
   "lesson-2": {
     "id": "lesson-2",
+    "category": "skills",
     "prereq": "lesson-1",
     "title": "Skills VIII",
     "nodeText": "Prophylaxis.",
@@ -321,6 +323,7 @@
   },
   "lesson-3": {
     "id": "lesson-3",
+    "category": "mates",
     "prereq": "lesson-2",
     "title": "Mating Patterns IV",
     "nodeText": "Learn about Boden's mate and the Smothered mate.",

@@ -1,6 +1,7 @@
 {
   "lesson-1": {
     "id": "lesson-1",
+    "category": "life",
     "prereq": "",
     "title": "Mindfulness",
     "nodeText": "",
@@ -135,6 +136,7 @@
   },
   "lesson-2": {
     "id": "lesson-2",
+    "category": "life",
     "prereq": "lesson-1",
     "title": "Sacrifices",
     "nodeText": "",
@@ -269,6 +271,7 @@
   },
   "lesson-3": {
     "id": "lesson-3",
+    "category": "patterns",
     "prereq": "lesson-2",
     "title": "Patterns VI",
     "nodeText": "Learn more about color complexes.",
@@ -644,6 +647,7 @@
   },
   "lesson-4": {
     "id": "lesson-4",
+    "category": "patterns",
     "prereq": "lesson-3",
     "title": "Patterns VII",
     "nodeText": "Learn about about tempo.",
@@ -764,6 +768,7 @@
   },
   "lesson-5": {
     "id": "lesson-5",
+    "category": "tactics",
     "prereq": "lesson-4",
     "title": "Tactics V",
     "nodeText": "Learn about zwischenzug and deflection.",
@@ -1084,6 +1089,7 @@
   },
   "lesson-6": {
     "id": "lesson-6",
+    "category": "tactics",
     "prereq": "lesson-5",
     "title": "Tactics VI",
     "nodeText": "Learn about interference and x-ray.",
@@ -1388,8 +1394,9 @@
   },
   "lesson-7": {
     "id": "lesson-7",
+    "category": "attacking",
     "prereq": "lesson-6",
-    "title": "Aggression IV",
+    "title": "Attacking IV",
     "nodeText": "Learn about forcing moves and counterplay.",
     "storyTitle": "",
     "storyText": "",

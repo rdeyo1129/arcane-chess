@@ -1,6 +1,7 @@
 {
   "lesson-1": {
     "id": "lesson-1",
+    "category": "life",
     "title": "Into the Unknown",
     "diagWinLose": {
       "win1": "",
@@ -271,6 +272,7 @@
   },
   "lesson-2": {
     "id": "lesson-2",
+    "category": "life",
     "title": "Into the Stillness",
     "diagWinLose": {
       "win1": "",
@@ -376,6 +378,7 @@
   },
   "lesson-3": {
     "id": "lesson-3",
+    "category": "basics",
     "title": "Into the Objective",
     "diagWinLose": {
       "win1": "",
@@ -716,6 +719,7 @@
   },
   "lesson-4": {
     "id": "lesson-4",
+    "category": "basics",
     "title": "Sliders",
     "diagWinLose": {
       "win1": "",
@@ -926,6 +930,7 @@
   },
   "lesson-5": {
     "id": "lesson-5",
+    "category": "pawns",
     "title": "Pawns I",
     "diagWinLose": {
       "win1": "",
@@ -1168,6 +1173,7 @@
   },
   "lesson-6": {
     "id": "lesson-6",
+    "category": "skills",
     "title": "Into the Meta",
     "diagWinLose": {
       "win1": "",

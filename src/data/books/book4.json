@@ -1,6 +1,7 @@
 {
   "lesson-1": {
     "id": "lesson-1",
+    "category": "life",
     "title": "Initiative",
     "diagWinLose": {
       "win1": "",
@@ -127,6 +128,7 @@
   },
   "lesson-2": {
     "id": "lesson-2",
+    "category": "life",
     "title": "Decisions",
     "diagWinLose": {
       "win1": "",
@@ -282,6 +284,7 @@
   },
   "lesson-3": {
     "id": "lesson-3",
+    "category": "pawns",
     "title": "Pawns II",
     "diagWinLose": {
       "win1": "",
@@ -560,6 +563,7 @@
   },
   "lesson-4": {
     "id": "lesson-4",
+    "category": "patterns",
     "title": "Rooks",
     "diagWinLose": {
       "win1": "",
@@ -575,7 +579,7 @@
       [0, 0],
       [0, 0]
     ],
-    "nodeText": "Open your lines and centralize as we cover intermediate ",
+    "nodeText": "Learn about Intermediate Rook concepts.",
     "storyText": "",
     "reward": [],
     "prereq": "lesson-3",
@@ -964,6 +968,7 @@
   },
   "lesson-5": {
     "id": "lesson-5",
+    "category": "patterns",
     "title": "Space",
     "diagWinLose": {
       "win1": "",
@@ -1119,6 +1124,7 @@
   },
   "lesson-6": {
     "id": "lesson-6",
+    "category": "patterns",
     "title": "Coordination",
     "diagWinLose": {
       "win1": "",
@@ -1374,6 +1380,7 @@
   },
   "lesson-7": {
     "id": "lesson-7",
+    "category": "patterns",
     "title": "Patterns I",
     "diagWinLose": {
       "win1": "",

@@ -1,6 +1,7 @@
 {
   "lesson-1": {
     "id": "lesson-1",
+    "category": "life",
     "title": "The Growth Mindset",
     "diagWinLose": {
       "win1": "",
@@ -131,6 +132,7 @@
   },
   "lesson-2": {
     "id": "lesson-2",
+    "category": "life",
     "title": "Adaptability",
     "diagWinLose": {
       "win1": "",
@@ -261,6 +263,7 @@
   },
   "lesson-3": {
     "id": "lesson-3",
+    "category": "basics",
     "title": "Heavy Hitters",
     "diagWinLose": {
       "win1": "",
@@ -482,6 +485,7 @@
   },
   "lesson-4": {
     "id": "lesson-4",
+    "category": "mates",
     "title": "Overkills I",
     "diagWinLose": {
       "win1": "",
@@ -873,6 +877,7 @@
   },
   "lesson-5": {
     "id": "lesson-5",
+    "category": "mates",
     "title": "Overkills II",
     "diagWinLose": {
       "win1": "",
@@ -1455,6 +1460,7 @@
   },
   "lesson-6": {
     "id": "lesson-6",
+    "category": "basics",
     "title": "The Box",
     "diagWinLose": {
       "win1": "",
@@ -1867,6 +1873,7 @@
   },
   "lesson-7": {
     "id": "lesson-7",
+    "category": "mates",
     "title": "Overkills III",
     "diagWinLose": {
       "win1": "",
@@ -2428,6 +2435,7 @@
   },
   "lesson-8": {
     "id": "lesson-8",
+    "category": "basics",
     "title": "Opposition",
     "diagWinLose": {
       "win1": "",

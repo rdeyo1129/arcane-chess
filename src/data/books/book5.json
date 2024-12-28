@@ -1,6 +1,7 @@
 {
   "lesson-1": {
     "id": "lesson-1",
+    "category": "life",
     "prereq": "",
     "title": "Preparation and Resources",
     "nodeText": "",
@@ -187,6 +188,7 @@
   },
   "lesson-2": {
     "id": "lesson-2",
+    "category": "life",
     "prereq": "lesson-1",
     "title": "Creativity and Innovation",
     "nodeText": "",
@@ -321,6 +323,7 @@
   },
   "lesson-3": {
     "id": "lesson-3",
+    "category": "patterns",
     "prereq": "lesson-2",
     "title": "Patterns II",
     "nodeText": "Learn about batteries and rank penetration.",
@@ -660,6 +663,7 @@
   },
   "lesson-4": {
     "id": "lesson-4",
+    "category": "pawns",
     "prereq": "lesson-3",
     "title": "Pawns III",
     "nodeText": "Learn about more Pawn concepts.",
@@ -887,6 +891,7 @@
   },
   "lesson-5": {
     "id": "lesson-5",
+    "category": "tactics",
     "prereq": "lesson-4",
     "title": "Tactics IV",
     "nodeText": "Learn about double check and discoveries",
@@ -1181,8 +1186,9 @@
   },
   "lesson-6": {
     "id": "lesson-6",
+    "category": "attacking",
     "prereq": "lesson-5",
-    "title": "Aggression I",
+    "title": "Attacking I",
     "nodeText": "Learn about attacking f2 and f7, and the initiative.",
     "storyTitle": "",
     "storyText": "",
@@ -1400,8 +1406,9 @@
   },
   "lesson-7": {
     "id": "lesson-7",
+    "category": "",
     "prereq": "lesson-6",
-    "title": "Aggression II",
+    "title": "Attacking II",
     "nodeText": "Learn about gambits and sacrifices.",
     "storyTitle": "",
     "storyText": "",

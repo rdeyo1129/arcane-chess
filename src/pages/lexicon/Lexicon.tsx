@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import _ from 'lodash';
 
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'src/components/withRouter/withRouter';
 
 import { audioManager } from 'src/utils/audio/AudioManager';
@@ -443,9 +444,9 @@ class UnwrappedLexicon extends React.Component<Props, State> {
             width: '100vw',
             background:
               this.state.theme === 'black'
-                ? ''
-                : `url(/assets/dashboard/lexicon.webp)`,
-            backgroundSize: 'cover',
+                ? '#000000cc'
+                : `linear-gradient(#000000cc, #000000cc), url(/assets/dashboard/lexicon.webp)`,
+            backgroundSize: this.state.theme === 'black' ? 'cover' : 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
           }}
@@ -453,6 +454,16 @@ class UnwrappedLexicon extends React.Component<Props, State> {
           <div className="lexicon-view">
             <div className="opponent-arcana-volume">
               <div className="info-avatar">
+                <Link to="/dashboard">
+                  <Button
+                    text="BACK"
+                    className="tertiary"
+                    color="G"
+                    width={160}
+                    height={40}
+                    disabled={false}
+                  />
+                </Link>
                 {this.state.selectedCategory === '' ? (
                   <div style={{ width: '100%' }}>
                     <Button
@@ -733,6 +744,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
             </div>
           </div>
         </div>
+        <div className="lexicon-curtain"></div>
       </div>
     );
   }

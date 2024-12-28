@@ -6,7 +6,7 @@ interface ButtonProps {
   height?: number | string;
   width?: number | string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  text?: string;
+  text?: string | string[];
   disabled?: boolean;
   strong?: boolean;
   submit?: boolean;

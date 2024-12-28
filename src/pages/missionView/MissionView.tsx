@@ -1062,12 +1062,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     );
   };
 
-  navigateHistory(type: string) {
+  navigateHistory(type: string, targetIndex?: number) {
     this.setState((prevState) => {
       let newFenIndex = prevState.historyPly;
       switch (type) {
         case 'back':
-          if (this.state.historyPly > 0) {
+          if (newFenIndex > 0) {
             audioManager.playSound('move');
             newFenIndex -= 1;
           }
@@ -1088,6 +1088,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           if (newFenIndex !== prevState.fenHistory.length - 1) {
             audioManager.playSound('move');
             newFenIndex = prevState.fenHistory.length - 1;
+          }
+          break;
+        case 'jump':
+          if (
+            targetIndex !== undefined &&
+            targetIndex >= 0 &&
+            targetIndex < prevState.fenHistory.length
+          ) {
+            audioManager.playSound('move');
+            newFenIndex = targetIndex;
           }
           break;
       }
@@ -1880,12 +1890,33 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   />
                 </div>
                 <div id="history" className="history">
-                  {sortedHistory.map((fullMove, i) => {
+                  {sortedHistory.map((fullMove, fullMoveIndex) => {
+                    console.log(fullMove);
                     return (
-                      <p className="full-move" key={i}>
-                        <span className="move-number">{i + 1}.</span>
-                        <span className="pgn-item">{fullMove[0]}</span>
-                        <span className="pgn-item">{fullMove[1]}</span>
+                      <p className="full-move" key={fullMoveIndex}>
+                        <span className="move-number">
+                          {fullMoveIndex + 1}.
+                        </span>
+                        <Button
+                          className="tertiary"
+                          text={fullMove[0]}
+                          color="B"
+                          height={20}
+                          onClick={() => {
+                            this.navigateHistory('jump', fullMoveIndex * 2 + 1);
+                          }}
+                          backgroundColorOverride="#00000000"
+                        />
+                        <Button
+                          className="tertiary"
+                          text={fullMove[1]}
+                          color="B"
+                          height={20}
+                          onClick={() => {
+                            this.navigateHistory('jump', fullMoveIndex * 2 + 2);
+                          }}
+                          backgroundColorOverride="#00000000"
+                        />
                       </p>
                     );
                   })}

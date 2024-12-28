@@ -15572,7 +15572,7 @@
           "sumnRE": 1,
           "shftN": 1,
           "swapDEP": 1,
-          "modsFUG": "true"
+          "modsFUG": 1
         },
         "config": {},
         "correctMoves": [""],

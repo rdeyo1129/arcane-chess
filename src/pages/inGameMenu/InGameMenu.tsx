@@ -785,7 +785,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                     {index}
                                   </option>
                                 ))
-                              : ['false', 'true'].map((value, i) => (
+                              : [0, 1].map((value, i) => (
                                   <option key={i} value={value}>
                                     {value}
                                   </option>

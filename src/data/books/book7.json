@@ -16016,7 +16016,7 @@
           "offrC": 1,
           "shftP": 2,
           "swapDEP": 1,
-          "modsFUG": "true"
+          "modsFUG": 1
         },
         "config": {},
         "correctMoves": [""],
@@ -16129,7 +16129,7 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {},
-        "blackArcane": { "modsINH": "true", "modsFUG": "true", "sumnB": 4 },
+        "blackArcane": { "modsINH": 1, "modsFUG": 1, "sumnB": 4 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,

@@ -594,25 +594,31 @@ class UnwrappedManifest extends React.Component<object, State> {
                 <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
                   <li>
                     Computer will ‘pass turn’ in certain scenarios if both sides
-                    have swap arcana
+                    have swap arcana.
                   </li>
                   <li>
                     Teleport has many options, will confuse the engine. Plans to
-                    transition to major pieces only
+                    transition to major pieces only.
                   </li>
                   <li>
-                    Entangled square may be ending a count too early for engine
+                    Entangled square may be ending a count too early for engine.
                   </li>
                   <li>
                     Hexweaver arcana can stop the game if king and a checking
-                    piece are both entangled once the timer ends
+                    piece are both entangled once the timer ends.
                   </li>
                   <li>
                     Selecting a square for a royalty that will put you in check
-                    skips your turn
+                    skips your turn.
                   </li>
+                  <li>
+                    When selecting campaign difficulty, you may need to click a
+                    badge again to get the correct multiplier. The starting
+                    value should always be x80, x95, x110, or x125.
+                  </li>
+                  <li>Castling does not work with every setup.</li>
                 </ul>
-                Feel free to share any additional found bugs in the discord
+                Feel free to share any additional found bugs in the discord.
               </li>
             ) : // this.state.currentTab === 'tos' ? (
             //   <div id="tos" className="tos">

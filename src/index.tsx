@@ -178,6 +178,7 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
+      {/* <Route path="/stacktadium" element={<></>} /> */}
       {/* <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} /> */}
     </Route>

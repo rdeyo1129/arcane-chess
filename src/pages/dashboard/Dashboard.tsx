@@ -20,6 +20,7 @@ interface DashboardState {
   hoverNav: string;
   menuItemDescriptions: {
     campaign: string;
+    stacktadium: string;
     leaderboard: string;
     quickplay: string;
     lexicon: string;
@@ -37,15 +38,16 @@ export class UnwrappedDashboard extends React.Component<
     this.state = {
       hoverNav: 'campaign',
       menuItemDescriptions: {
-        campaign: 'Play the story mode and earn your spot on the leaderboard.',
-        leaderboard:
-          'See the global rankings and scores for each chapter in the campaign.',
+        campaign:
+          'Unravel the arcana, conquer the beasts, and etch your name on the leaderboard.',
+        stacktadium: 'An ancient grid, a fresh enigma—coming soon.',
+        leaderboard: 'Observe global rankings.',
         quickplay:
-          'Test the arcana and face off against the engine with custom battle options.',
+          'Master the arcana and challenge the engine with custom battles.',
         lexicon:
-          'Look back on the lessons you have learned throughout the campaign.',
-        manifest: 'More information: mission statement, about, links, notes.',
-        logout: 'Take a break.',
+          'Review every technic mastered throughout your campaign journey.',
+        manifest: 'Mission, insights, links, bugs, and notes—unveiled.',
+        logout: 'Pause and breathe—your journey can wait.',
       },
     };
   }
@@ -65,6 +67,21 @@ export class UnwrappedDashboard extends React.Component<
                 text="CAMPAIGN"
                 className="tertiary"
                 color="B"
+                height={50}
+                width={'100%'}
+                disabled={false}
+                backgroundColorOverride="#11111188"
+              />
+            </Link>
+            <Link
+              className="home-button"
+              to="/dashboard"
+              onMouseEnter={() => this.setState({ hoverNav: 'stacktadium' })}
+            >
+              <Button
+                text="STACKTADIUM"
+                className="tertiary"
+                color="R"
                 height={50}
                 width={'100%'}
                 disabled={false}

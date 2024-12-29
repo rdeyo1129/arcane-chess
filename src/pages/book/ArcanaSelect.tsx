@@ -140,7 +140,7 @@ export const unlockableArcana = [
   },
 ];
 
-export const allowedArcanaPerChapter = [2, 2, 2, 2, 4, 4, 4, 4, 6, 6, 6, 6];
+export const allowedArcanaPerChapter = [2, 2, 2, 4, 4, 4, 6, 6, 6, 8, 8, 8];
 
 export default class ArcanaSelect extends React.Component<
   ArcanaSelectProps,
@@ -295,10 +295,23 @@ export default class ArcanaSelect extends React.Component<
         {!isPlayerArcana && (
           <div className="arcana-picker-wrapper">
             <div className="arcana-picker">
-              {_.map(this.props.engineArcana, (_value: number, key: string) => {
-                return (
+              {_.map(this.props.engineArcana, (value: number, key: string) => (
+                <div
+                  key={key}
+                  style={{
+                    position: 'relative',
+                    display: 'inline-block',
+                    // padding: '10px', // Adds spacing around the image
+                  }}
+                >
+                  <div
+                    style={{
+                      position: 'absolute',
+                    }}
+                  >
+                    {arcana[key].type === 'inherent' ? 'INH' : value}
+                  </div>
                   <img
-                    key={key}
                     className="arcane"
                     src={`${arcana[key].imagePath}.svg`}
                     style={{
@@ -308,8 +321,8 @@ export default class ArcanaSelect extends React.Component<
                     onMouseEnter={() => this.props.onToggleHover(`${key}`)}
                     onMouseLeave={() => this.props.onToggleHover('')}
                   />
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
         )}

@@ -395,7 +395,7 @@
     "id": "modsTRO",
     "name": "Trojan Gambit",
     "description": "If your opponent can legally capture you via en passant, they must.",
-    "type": "active",
+    "type": "inherent",
     "imagePath": "/assets/arcanaImages/trojanEp"
   },
   "modsINH": {

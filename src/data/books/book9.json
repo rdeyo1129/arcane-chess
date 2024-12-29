@@ -27615,7 +27615,7 @@
       [600, 30],
       [300, 15]
     ],
-    "boss": false,
+    "boss": true,
     "reward": [],
     "panels": {
       "panel-1": {

@@ -16331,14 +16331,14 @@
           "offrM": 1,
           "offrC": 1,
           "shftP": 1,
-          "modsEXT": "true"
+          "modsEXT": 1
         },
         "blackArcane": {
           "sumnRE": 2,
           "offrM": 1,
           "offrC": 1,
           "shftP": 1,
-          "modsEXT": "true"
+          "modsEXT": 1
         },
         "config": {},
         "correctMoves": [""],
@@ -16735,7 +16735,7 @@
       [600, 30],
       [300, 15]
     ],
-    "boss": false,
+    "boss": true,
     "reward": [],
     "panels": {
       "panel-1": {

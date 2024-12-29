@@ -268,25 +268,44 @@ export default class ArcanaSelect extends React.Component<
                 const isSelected = _.includes(Object.keys(selectedArcana), key);
                 const isDisabled = !isPlayerArcana || hasMissionArcana;
                 return (
-                  <img
+                  <div
                     key={key}
-                    className="arcane"
-                    src={`${arcana[key].imagePath}${
-                      hoverArcane === `${key}` ? '-hover' : ''
-                    }.svg`}
                     style={{
-                      opacity: isDisabled || isSelected ? 1 : 0.5,
-                      cursor: isDisabled
-                        ? 'not-allowed'
-                        : 'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
+                      position: 'relative',
+                      display: 'inline-block',
                     }}
-                    onClick={() => {
-                      if (isDisabled) return;
-                      this.handleArcanaClick(key, value);
-                    }}
-                    onMouseEnter={() => this.props.onToggleHover(`${key}`)}
-                    onMouseLeave={() => this.props.onToggleHover('')}
-                  />
+                  >
+                    <div
+                      style={{
+                        position: 'absolute',
+                      }}
+                    >
+                      {!hasMissionArcana
+                        ? ''
+                        : arcana[key].type === 'inherent'
+                        ? 'INH'
+                        : value}
+                    </div>
+                    <img
+                      key={key}
+                      className="arcane"
+                      src={`${arcana[key].imagePath}${
+                        hoverArcane === `${key}` ? '-hover' : ''
+                      }.svg`}
+                      style={{
+                        opacity: isDisabled || isSelected ? 1 : 0.5,
+                        cursor: isDisabled
+                          ? 'not-allowed'
+                          : 'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
+                      }}
+                      onClick={() => {
+                        if (isDisabled) return;
+                        this.handleArcanaClick(key, value);
+                      }}
+                      onMouseEnter={() => this.props.onToggleHover(`${key}`)}
+                      onMouseLeave={() => this.props.onToggleHover('')}
+                    />
+                  </div>
                 );
               })}
             </div>
@@ -301,7 +320,6 @@ export default class ArcanaSelect extends React.Component<
                   style={{
                     position: 'relative',
                     display: 'inline-block',
-                    // padding: '10px', // Adds spacing around the image
                   }}
                 >
                   <div

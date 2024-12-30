@@ -776,147 +776,128 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
           this.state.history.length >= 4 && this.state.futureSightAvailable;
         if (!value || value <= 0 || !key) return;
         return (
-          <img
+          <div
             key={key}
-            className="arcane"
-            src={`${arcana[key].imagePath}${
-              this.state.hoverArcane === key ? '-hover' : ''
-            }.svg`}
             style={{
-              opacity:
-                this.state.playerColor !== color ||
-                (!futureSightAvailable && key === 'modsFUT')
-                  ? 0.5
-                  : 1,
-              cursor:
-                this.state.playerColor !== color ||
-                (!futureSightAvailable && key === 'modsFUT')
-                  ? 'not-allowed'
-                  : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
+              position: 'relative',
+              display: 'inline-block',
             }}
-            onClick={() => {
-              if (
-                this.state.playerColor !== color ||
-                (!futureSightAvailable && key === 'modsFUT')
-              )
-                return;
-              if (
-                this.state.placingPiece > 0 ||
-                this.state.swapType !== '' ||
-                this.state.isTeleport !== false ||
-                this.state.placingRoyalty !== 0 ||
-                this.state.offeringType !== ''
-              ) {
-                this.setState({
-                  placingPiece: 0,
-                  swapType: '',
-                  isTeleport: false,
-                  offeringType: '',
-                  placingRoyalty: 0,
-                });
-                return;
-              } else {
-                if (key.includes('sumn')) {
-                  const dyadClock = this.arcaneChess().getDyadClock();
-                  if (dyadClock > 0 || this.state.isDyadMove) return;
-                  if (key.includes('sumnR') && key !== 'sumnR') {
-                    // if (key !== 'sumnRE' && InCheck()) return;
-                    this.setState({
-                      isDyadMove: false,
-                      placingPiece: 0,
-                      placingRoyalty: royalties[`${key.split('sumn')[1]}`],
-                      swapType: '',
-                      isTeleport: false,
-                      offeringType: '',
-                    });
-                  } else {
-                    this.setState({
-                      isDyadMove: false,
-                      placingRoyalty: 0,
-                      swapType: '',
-                      offeringType: '',
-                      isTeleport: false,
-                      placingPiece:
-                        pieces[
-                          key.split('sumn')[1].toUpperCase() === 'X'
-                            ? 'EXILE'
-                            : `${
-                                this.state.selectedSide === 'white' ? 'w' : 'b'
-                              }${key.split('sumn')[1]}`
-                        ],
-                    });
-                  }
-                }
-                if (key.includes('swap')) {
-                  const dyadClock = this.arcaneChess().getDyadClock();
-                  if (dyadClock > 0 || this.state.isDyadMove) return;
-                  if (this.state.swapType === '') {
-                    this.setState({
-                      swapType: key.split('swap')[1],
-                    });
-                  } else {
-                    this.setState({
-                      swapType: '',
-                    });
-                  }
-                }
-                if (key.includes('offr')) {
-                  const dyadClock = this.arcaneChess().getDyadClock();
-                  if (dyadClock > 0 || this.state.isDyadMove) return;
-                  if (this.state.offeringType === '') {
-                    this.setState({
-                      offeringType: key.split('offr')[1],
-                    });
-                  } else {
-                    this.setState({
-                      offeringType: '',
-                    });
-                  }
-                }
-                if (key.includes('modsSUS')) {
-                  if (GameBoard.suspend > 0) return;
-                  GameBoard.suspend = 6;
-                }
-                if (key.includes('dyad')) {
-                  this.setState((prevState) => {
+          >
+            <div
+              style={{
+                position: 'absolute',
+              }}
+            >
+              {arcana[key].type === 'inherent' ? 'INH' : value}
+            </div>
+            <img
+              key={key}
+              className="arcane"
+              src={`${arcana[key].imagePath}${
+                this.state.hoverArcane === key ? '-hover' : ''
+              }.svg`}
+              style={{
+                opacity:
+                  this.state.playerColor !== color ||
+                  (!futureSightAvailable && key === 'modsFUT')
+                    ? 0.5
+                    : 1,
+                cursor:
+                  this.state.playerColor !== color ||
+                  (!futureSightAvailable && key === 'modsFUT')
+                    ? 'not-allowed'
+                    : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
+              }}
+              onClick={() => {
+                if (
+                  this.state.playerColor !== color ||
+                  (!futureSightAvailable && key === 'modsFUT')
+                )
+                  return;
+                if (
+                  this.state.placingPiece > 0 ||
+                  this.state.swapType !== '' ||
+                  this.state.isTeleport !== false ||
+                  this.state.placingRoyalty !== 0 ||
+                  this.state.offeringType !== ''
+                ) {
+                  this.setState({
+                    placingPiece: 0,
+                    swapType: '',
+                    isTeleport: false,
+                    offeringType: '',
+                    placingRoyalty: 0,
+                  });
+                  return;
+                } else {
+                  if (key.includes('sumn')) {
                     const dyadClock = this.arcaneChess().getDyadClock();
-                    if (prevState.isDyadMove && dyadClock === 0) {
-                      // If it's already a dyad move but no first move was made (dyadClock is 0), cancel it
-                      this.arcaneChess().deactivateDyad();
-                      return {
-                        ...prevState,
+                    if (dyadClock > 0 || this.state.isDyadMove) return;
+                    if (key.includes('sumnR') && key !== 'sumnR') {
+                      // if (key !== 'sumnRE' && InCheck()) return;
+                      this.setState({
                         isDyadMove: false,
-                        normalMovesOnly: false,
                         placingPiece: 0,
-                        placingRoyalty: 0,
+                        placingRoyalty: royalties[`${key.split('sumn')[1]}`],
                         swapType: '',
-                        offeringType: '',
                         isTeleport: false,
-                      };
-                    } else if (dyadClock === 1) {
-                      // If first move of dyad is already made (dyadClock is 1), deactivate the dyad and revert the move
-                      this.arcaneChess().takeBackHalfDyad();
-                      return {
-                        ...prevState,
-                        isDyadMove: true,
-                        normalMovesOnly: true,
-                        history: prevState.history.slice(0, -1),
-                        fen: outputFenOfCurrentPosition(),
-                        fenHistory: prevState.fenHistory.slice(0, -1),
-                        lastMoveHistory: prevState.lastMoveHistory.slice(0, -1),
-                        placingPiece: 0,
-                        placingRoyalty: 0,
-                        swapType: '',
                         offeringType: '',
-                        isTeleport: false,
-                      };
+                      });
                     } else {
-                      // Activate the dyad move
-                      this.arcaneChess().activateDyad(key);
-                      this.arcaneChess().parseCurrentFen();
-                      this.arcaneChess().generatePlayableOptions();
-                      const dests = this.arcaneChess().getGroundMoves();
-                      if (dests.size === 0) {
+                      this.setState({
+                        isDyadMove: false,
+                        placingRoyalty: 0,
+                        swapType: '',
+                        offeringType: '',
+                        isTeleport: false,
+                        placingPiece:
+                          pieces[
+                            key.split('sumn')[1].toUpperCase() === 'X'
+                              ? 'EXILE'
+                              : `${
+                                  this.state.selectedSide === 'white'
+                                    ? 'w'
+                                    : 'b'
+                                }${key.split('sumn')[1]}`
+                          ],
+                      });
+                    }
+                  }
+                  if (key.includes('swap')) {
+                    const dyadClock = this.arcaneChess().getDyadClock();
+                    if (dyadClock > 0 || this.state.isDyadMove) return;
+                    if (this.state.swapType === '') {
+                      this.setState({
+                        swapType: key.split('swap')[1],
+                      });
+                    } else {
+                      this.setState({
+                        swapType: '',
+                      });
+                    }
+                  }
+                  if (key.includes('offr')) {
+                    const dyadClock = this.arcaneChess().getDyadClock();
+                    if (dyadClock > 0 || this.state.isDyadMove) return;
+                    if (this.state.offeringType === '') {
+                      this.setState({
+                        offeringType: key.split('offr')[1],
+                      });
+                    } else {
+                      this.setState({
+                        offeringType: '',
+                      });
+                    }
+                  }
+                  if (key.includes('modsSUS')) {
+                    if (GameBoard.suspend > 0) return;
+                    GameBoard.suspend = 6;
+                  }
+                  if (key.includes('dyad')) {
+                    this.setState((prevState) => {
+                      const dyadClock = this.arcaneChess().getDyadClock();
+                      if (prevState.isDyadMove && dyadClock === 0) {
+                        // If it's already a dyad move but no first move was made (dyadClock is 0), cancel it
                         this.arcaneChess().deactivateDyad();
                         return {
                           ...prevState,
@@ -928,114 +909,156 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           offeringType: '',
                           isTeleport: false,
                         };
-                      } else {
+                      } else if (dyadClock === 1) {
+                        // If first move of dyad is already made (dyadClock is 1), deactivate the dyad and revert the move
+                        this.arcaneChess().takeBackHalfDyad();
                         return {
                           ...prevState,
                           isDyadMove: true,
                           normalMovesOnly: true,
+                          history: prevState.history.slice(0, -1),
+                          fen: outputFenOfCurrentPosition(),
+                          fenHistory: prevState.fenHistory.slice(0, -1),
+                          lastMoveHistory: prevState.lastMoveHistory.slice(
+                            0,
+                            -1
+                          ),
                           placingPiece: 0,
                           placingRoyalty: 0,
                           swapType: '',
                           offeringType: '',
                           isTeleport: false,
                         };
+                      } else {
+                        // Activate the dyad move
+                        this.arcaneChess().activateDyad(key);
+                        this.arcaneChess().parseCurrentFen();
+                        this.arcaneChess().generatePlayableOptions();
+                        const dests = this.arcaneChess().getGroundMoves();
+                        if (dests.size === 0) {
+                          this.arcaneChess().deactivateDyad();
+                          return {
+                            ...prevState,
+                            isDyadMove: false,
+                            normalMovesOnly: false,
+                            placingPiece: 0,
+                            placingRoyalty: 0,
+                            swapType: '',
+                            offeringType: '',
+                            isTeleport: false,
+                          };
+                        } else {
+                          return {
+                            ...prevState,
+                            isDyadMove: true,
+                            normalMovesOnly: true,
+                            placingPiece: 0,
+                            placingRoyalty: 0,
+                            swapType: '',
+                            offeringType: '',
+                            isTeleport: false,
+                          };
+                        }
                       }
+                    });
+                  }
+                  if (key === 'modsIMP') {
+                    this.getHintAndScore(1);
+                  }
+                  if (key === 'modsORA') {
+                    this.getHintAndScore(2);
+                  }
+                  if (key === 'modsTEM') {
+                    this.getHintAndScore(3);
+                  }
+                  if (key === 'modsFUT') {
+                    if (futureSightAvailable) {
+                      this.arcaneChess().takeBackMove(
+                        4,
+                        this.state.playerColor,
+                        this.state.history
+                      );
+                      this.setState((prevState) => {
+                        return {
+                          ...prevState,
+                          historyPly: prevState.historyPly - 4,
+                          fen: outputFenOfCurrentPosition(),
+                          fenHistory: prevState.fenHistory.slice(0, -4),
+                          lastMoveHistory: prevState.lastMoveHistory.slice(
+                            0,
+                            -4
+                          ),
+                          turn: gameBoardTurn,
+                          royalties: {
+                            ...this.arcaneChess().getPrettyRoyalties(),
+                          },
+                          futureSightAvailable: false,
+                          isDyadMove: false,
+                          normalMovesOnly: false,
+                        };
+                      });
                     }
-                  });
-                }
-                if (key === 'modsIMP') {
-                  this.getHintAndScore(1);
-                }
-                if (key === 'modsORA') {
-                  this.getHintAndScore(2);
-                }
-                if (key === 'modsTEM') {
-                  this.getHintAndScore(3);
-                }
-                if (key === 'modsFUT') {
-                  if (futureSightAvailable) {
-                    this.arcaneChess().takeBackMove(
-                      4,
-                      this.state.playerColor,
-                      this.state.history
+                  }
+                  if (key === 'shftT') {
+                    if (this.state.isTeleport) {
+                      this.setState({
+                        isTeleport: false,
+                      });
+                    } else {
+                      this.setState({
+                        isTeleport: true,
+                      });
+                    }
+                  }
+                  if (key === 'modsSKI') {
+                    const { parsed } = this.arcaneChess().makeUserMove(
+                      0,
+                      0,
+                      31,
+                      '',
+                      0
                     );
-                    this.setState((prevState) => {
-                      return {
-                        ...prevState,
-                        historyPly: prevState.historyPly - 4,
-                        fen: outputFenOfCurrentPosition(),
-                        fenHistory: prevState.fenHistory.slice(0, -4),
-                        lastMoveHistory: prevState.lastMoveHistory.slice(0, -4),
-                        turn: gameBoardTurn,
-                        royalties: {
-                          ...this.arcaneChess().getPrettyRoyalties(),
-                        },
-                        futureSightAvailable: false,
-                        isDyadMove: false,
-                        normalMovesOnly: false,
-                      };
-                    });
-                  }
-                }
-                if (key === 'shftT') {
-                  if (this.state.isTeleport) {
-                    this.setState({
-                      isTeleport: false,
-                    });
-                  } else {
-                    this.setState({
-                      isTeleport: true,
-                    });
-                  }
-                }
-                if (key === 'modsSKI') {
-                  const { parsed } = this.arcaneChess().makeUserMove(
-                    0,
-                    0,
-                    31,
-                    '',
-                    0
-                  );
-                  if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
-                    audioManager.playSound('capture');
-                  } else {
-                    audioManager.playSound('move');
-                  }
-                  if (parsed === 0) {
-                    console.log('parsed === 0');
-                    return;
-                  }
-                  this.setState(
-                    (prevState) => ({
-                      ...prevState,
-                      historyPly: prevState.historyPly + 1,
-                      history: [...prevState.history, 'pass'],
-                      fen: outputFenOfCurrentPosition(),
-                      fenHistory: [
-                        ...prevState.fenHistory,
-                        outputFenOfCurrentPosition(),
-                      ],
-                      lastMoveHistory: [...prevState.lastMoveHistory, []],
-                    }),
-                    () => {
-                      this.engineGo();
+                    if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
+                      audioManager.playSound('capture');
+                    } else {
+                      audioManager.playSound('move');
                     }
-                  );
+                    if (parsed === 0) {
+                      console.log('parsed === 0');
+                      return;
+                    }
+                    this.setState(
+                      (prevState) => ({
+                        ...prevState,
+                        historyPly: prevState.historyPly + 1,
+                        history: [...prevState.history, 'pass'],
+                        fen: outputFenOfCurrentPosition(),
+                        fenHistory: [
+                          ...prevState.fenHistory,
+                          outputFenOfCurrentPosition(),
+                        ],
+                        lastMoveHistory: [...prevState.lastMoveHistory, []],
+                      }),
+                      () => {
+                        this.engineGo();
+                      }
+                    );
+                  }
+                  if (key === 'modsGLI') {
+                    arcaneChess().subtractArcanaUse(
+                      'modsGLI',
+                      this.state.playerColor
+                    );
+                    this.setState({
+                      glitchActive: true,
+                    });
+                  }
                 }
-                if (key === 'modsGLI') {
-                  arcaneChess().subtractArcanaUse(
-                    'modsGLI',
-                    this.state.playerColor
-                  );
-                  this.setState({
-                    glitchActive: true,
-                  });
-                }
-              }
-            }}
-            onMouseEnter={() => this.toggleHover(key)}
-            onMouseLeave={() => this.toggleHover('')}
-          />
+              }}
+              onMouseEnter={() => this.toggleHover(key)}
+              onMouseLeave={() => this.toggleHover('')}
+            />
+          </div>
         );
       }
     );

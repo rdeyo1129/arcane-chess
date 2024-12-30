@@ -191,15 +191,18 @@ export default class ArcanaSelect extends React.Component<
   handleArcanaClick = (key: string, value: number) => {
     const { selectedArcana, allowedArcana } = this.state;
     const { auth } = this.props;
-    let newSelectedArcana = { ...selectedArcana };
+    const newSelectedArcana = { ...selectedArcana };
+    const totalArcanaValue = Object.values(newSelectedArcana).reduce(
+      (sum, count) => sum + count,
+      0
+    );
 
-    if (_.includes(Object.keys(selectedArcana), key)) {
-      newSelectedArcana = _.omit(selectedArcana, key);
-      this.handleMultiplierChange(value);
-    } else if (Object.keys(selectedArcana).length < allowedArcana) {
-      newSelectedArcana[key] = 1;
-      this.handleMultiplierChange(-value);
-    }
+    if (arcana[key].type === 'inherent' && selectedArcana[key]) return;
+    if (totalArcanaValue >= allowedArcana) return;
+
+    newSelectedArcana[key] = (newSelectedArcana[key] || 0) + 1;
+
+    this.handleMultiplierChange(-value);
 
     this.setState({
       selectedArcana: newSelectedArcana,
@@ -221,7 +224,7 @@ export default class ArcanaSelect extends React.Component<
     let multiplierAddBack = 0;
     Object.keys(selectedArcana).forEach((key) => {
       if (arcanaObj[key] !== undefined) {
-        multiplierAddBack += arcanaObj[key];
+        multiplierAddBack += arcanaObj[key] * selectedArcana[key];
       }
     });
     this.setState({
@@ -236,8 +239,9 @@ export default class ArcanaSelect extends React.Component<
   };
 
   render() {
-    const { isPlayerArcana, isMission, missionArcana } = this.props;
+    const { auth, isPlayerArcana, isMission, missionArcana } = this.props;
     const { hoverArcane, selectedArcana } = this.state;
+    const LS = getLocalStorage(auth.user.username);
 
     const arcanaObj =
       Object.keys(missionArcana || {}).length !== 0
@@ -280,11 +284,13 @@ export default class ArcanaSelect extends React.Component<
                         position: 'absolute',
                       }}
                     >
-                      {!hasMissionArcana
-                        ? ''
-                        : arcana[key].type === 'inherent'
+                      {arcana[key].type === 'inherent'
                         ? 'INH'
-                        : value}
+                        : hasMissionArcana
+                        ? missionArcana && missionArcana[key]
+                        : missionArcana && missionArcana[key]
+                        ? 'INH'
+                        : LS.arcana[key]}
                     </div>
                     <img
                       key={key}

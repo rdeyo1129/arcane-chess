@@ -257,6 +257,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       inventory: LS.inventory,
       nodeId: LS.nodeId,
       chapterEnd: LS.chapterEnd,
+      difficulty: LS.difficulty,
     });
     this.setState({
       multiplier: newMultiplier,
@@ -342,13 +343,18 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
       arcana: newSelectedArcana,
       config: {
         ...storedData.confg,
-        multiplier: storedData.config.multiplier + multiplierValues[key],
+        multiplier:
+          storedData.config.multiplier +
+          multiplierValues[key] * selectedArcana[key],
       },
+      difficulty: storedData.difficulty,
     });
 
     this.setState({
       selectedArcana: newSelectedArcana,
-      multiplier: storedData.config.multiplier + multiplierValues[key],
+      multiplier:
+        storedData.config.multiplier +
+        multiplierValues[key] * selectedArcana[key],
     });
   };
 
@@ -431,24 +437,43 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   <div className="arcana-helper">
                     {_.map(LS.arcana, (_value, key: string) => {
                       return (
-                        <img
+                        <div
                           key={key}
-                          className="arcane"
-                          src={`${arcana[key].imagePath}${
-                            this.state.hoverArcane === `${key}` ? '-hover' : ''
-                          }.svg`}
                           style={{
-                            height: '50px',
-                            width: '50px',
-                            cursor:
-                              'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
+                            position: 'relative',
+                            display: 'inline-block',
                           }}
-                          onClick={() => {
-                            this.handleArcanaClick(key);
-                          }}
-                          onMouseEnter={() => this.toggleHover(`${key}`)}
-                          onMouseLeave={() => this.toggleHover('')}
-                        />
+                        >
+                          <div
+                            style={{
+                              position: 'absolute',
+                            }}
+                          >
+                            {arcana[key].type === 'inherent'
+                              ? 'INH'
+                              : LS.arcana[key]}
+                          </div>
+                          <img
+                            key={key}
+                            className="arcane"
+                            src={`${arcana[key].imagePath}${
+                              this.state.hoverArcane === `${key}`
+                                ? '-hover'
+                                : ''
+                            }.svg`}
+                            style={{
+                              height: '50px',
+                              width: '50px',
+                              cursor:
+                                'url(/assets/images/cursors/pointer.svg) 12 4, pointer',
+                            }}
+                            onClick={() => {
+                              this.handleArcanaClick(key);
+                            }}
+                            onMouseEnter={() => this.toggleHover(`${key}`)}
+                            onMouseLeave={() => this.toggleHover('')}
+                          />
+                        </div>
                       );
                     })}
                   </div>
@@ -562,10 +587,19 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                               ).length
                                 ? {}
                                 : currLS.arcana;
+                              const diffMults: Record<string, number> = {
+                                novice: 80,
+                                intermediate: 95,
+                                advanced: 110,
+                                expert: 125,
+                              };
                               if (
                                 Object.keys(missionArcanaDelta || {}).length
                               ) {
-                                this.updateMultiplier(80, true);
+                                this.updateMultiplier(
+                                  diffMults[LS.difficulty],
+                                  true
+                                );
                               }
                               setLocalStorage({
                                 auth: currLS.auth,
@@ -576,6 +610,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                 inventory: currLS.inventory,
                                 nodeId: node.id,
                                 chapterEnd: currLS.chapterEnd,
+                                difficulty: currLS.difficulty,
                               });
                             }
                           );

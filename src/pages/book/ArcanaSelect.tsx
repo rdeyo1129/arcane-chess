@@ -110,8 +110,8 @@ export const unlockableArcana = [
   },
   // 9
   {
-    offrH: 1,
-    sumnH: 2,
+    offrH: 5,
+    sumnH: 6,
     dyadH: 2,
     modsSUS: 4,
     modsINH: 7,

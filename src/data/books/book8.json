@@ -16794,7 +16794,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Viswanathan Anand vs Magnus Carlsen: Moscow RUS (2009)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-8",
@@ -16804,8 +16804,8 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "r3r1k1/5pp1/3Q4/3p4/3P2pP/4Pq2/5P2/1RR3K1 b - - 4 29",
+        "fenHistory": ["r3r1k1/5pp1/3Q4/3p4/3P2pP/4Pq2/5P2/1RR3K1 b - - 4 29"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -16827,7 +16827,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "black",
+        "turn": "black"
       }
     },
     "boss": false
@@ -16850,7 +16851,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Magnus Carlsen vs Alexander Grischuk: Moscow RUS (2012)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-9",
@@ -16860,8 +16861,8 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "2R5/5pkp/4n3/r1p5/3p4/3N1p1P/6P1/2R4K w - - 0 44",
+        "fenHistory": ["2R5/5pkp/4n3/r1p5/3p4/3N1p1P/6P1/2R4K w - - 0 44"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -16883,7 +16884,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false
@@ -16906,7 +16908,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Magnus Carlsen vs Hikaru Nakamura: London ENG (2010)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-10",
@@ -16916,8 +16918,8 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "8/8/5k2/5P2/1p2BP2/4P3/b7/6K1 w - - 0 52",
+        "fenHistory": ["8/8/5k2/5P2/1p2BP2/4P3/b7/6K1 w - - 0 52"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -16939,7 +16941,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false

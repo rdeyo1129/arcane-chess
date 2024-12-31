@@ -16149,7 +16149,7 @@
   },
   "mission-9": {
     "id": "mission-9",
-    "title": "",
+    "title": "revenge",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -16165,7 +16165,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Jose Raul Capablanca vs Masyutin: Kiev RUE (1914)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-8",
@@ -16175,8 +16175,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "r1bq1n1r/pp2k1pB/2p1pb2/3pN2Q/3P4/2N5/PPP3PP/R4RK1 w - - 1 13",
+        "fenHistory": [
+          "r1bq1n1r/pp2k1pB/2p1pb2/3pN2Q/3P4/2N5/PPP3PP/R4RK1 w - - 1 13"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -16198,7 +16200,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false
@@ -16221,7 +16224,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Viswanathan Anand vs Joel Lautier: Biel SUI (1997)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-9",
@@ -16231,8 +16234,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "3rk2r/pR3p1p/2p1p2p/3n4/3q2P1/3BRP2/P1P2Kb1/2BQ4 w k - 0 21",
+        "fenHistory": [
+          "3rk2r/pR3p1p/2p1p2p/3n4/3q2P1/3BRP2/P1P2Kb1/2BQ4 w k - 0 21"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -16254,7 +16259,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false
@@ -16277,7 +16283,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Vassily Ivanchuk vs Garry Kasparov: Linares ESP (1991)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-10",
@@ -16287,8 +16293,8 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "2N1bbr1/5pk1/4p2q/pPp5/P4PPp/3Q3P/4N3/6RK w - - 2 32",
+        "fenHistory": ["2N1bbr1/5pk1/4p2q/pPp5/P4PPp/3Q3P/4N3/6RK w - - 2 32"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -16310,7 +16316,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false

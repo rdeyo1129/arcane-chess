@@ -15897,7 +15897,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Edwin Ziegler Adams vs Carlos Torre Repetto: New Orleans (1920)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-8",
@@ -15907,8 +15907,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "2r1r1k1/1p1qbppp/3p1n2/p2P2B1/3Q4/5N2/PP2RPPP/4R1K1 w - - 4 17",
+        "fenHistory": [
+          "2r1r1k1/1p1qbppp/3p1n2/p2P2B1/3Q4/5N2/PP2RPPP/4R1K1 w - - 4 17"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15930,7 +15932,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false
@@ -15953,7 +15956,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Sergey Karjakin vs Alireza Firouzja",
     "storyText": "",
     "reward": [],
     "prereq": "mission-9",
@@ -15963,8 +15966,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "3r4/4kp2/2q1p3/pp1pPnpp/2r5/P1PN2PP/1P1R1P1K/3R3Q b - - 7 32",
+        "fenHistory": [
+          "3r4/4kp2/2q1p3/pp1pPnpp/2r5/P1PN2PP/1P1R1P1K/3R3Q b - - 7 32"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15986,7 +15991,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "black",
+        "turn": "black"
       }
     },
     "boss": false
@@ -16009,7 +16015,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Adolf Anderssen vs Paul Morphy: (1858)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-10",
@@ -16019,8 +16025,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "4r1r1/Qppk4/p2b2qp/3P1pBb/7P/2NP1pP1/PPP4R/R4K2 b - - 1 20",
+        "fenHistory": [
+          "4r1r1/Qppk4/p2b2qp/3P1pBb/7P/2NP1pP1/PPP4R/R4K2 b - - 1 20"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -16042,7 +16050,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "black",
+        "turn": "black"
       }
     },
     "boss": false

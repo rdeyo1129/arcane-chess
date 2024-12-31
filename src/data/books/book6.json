@@ -15905,7 +15905,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Alexander Alekhine vs K Isakov: Moscow RUE (1907)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-8",
@@ -15915,8 +15915,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "r1b1k2r/p5p1/2p3n1/QpP2pp1/P3N3/2Pq1P2/1P4PP/R4RK1 w kq - 0 22",
+        "fenHistory": [
+          "r1b1k2r/p5p1/2p3n1/QpP2pp1/P3N3/2Pq1P2/1P4PP/R4RK1 w kq - 0 22"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15938,7 +15940,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false
@@ -15961,7 +15964,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Paul Morphy vs Duke Karl and Count Isouard: Paris FRA (1858)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-9",
@@ -15971,8 +15974,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+        "fenHistory": [
+          "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15994,7 +15999,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false
@@ -16017,7 +16023,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Mir Sultan Khan vs Jose Raul Capablanca: Hastings ENG (1930)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-10",
@@ -16027,8 +16033,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "3kn3/7p/1pRp2pP/pP1p2P1/P2PpBbq/2K1P3/5P2/2R2B2 w - - 26 59",
+        "fenHistory": [
+          "3kn3/7p/1pRp2pP/pP1p2P1/P2PpBbq/2K1P3/5P2/2R2B2 w - - 26 59"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -16050,7 +16058,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false

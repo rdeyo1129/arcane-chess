@@ -15454,7 +15454,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "CLEAR",
+        "preset": "CAPALL",
         "whiteArcane": {},
         "blackArcane": { "sumnRY": 1, "sumnRZ": 1, "sumnRA": 1, "offrH": 3 },
         "config": {},

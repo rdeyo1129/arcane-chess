@@ -28748,7 +28748,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "CLEAR",
+        "preset": "CAPALL",
         "whiteArcane": {},
         "blackArcane": { "modsPHA": 3, "sumnN": 2, "sumnZ": 2, "sumnU": 2 },
         "config": {},

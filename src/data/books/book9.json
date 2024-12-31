@@ -27001,7 +27001,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "CLEAR",
+        "preset": "CAPALL",
         "whiteArcane": {},
         "blackArcane": { "shftP": 3, "offrH": 3 },
         "config": {},

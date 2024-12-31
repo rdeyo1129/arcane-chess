@@ -1914,7 +1914,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 </div>
                 <div id="history" className="history">
                   {sortedHistory.map((fullMove, fullMoveIndex) => {
-                    console.log(fullMove);
                     return (
                       <p className="full-move" key={fullMoveIndex}>
                         <span className="move-number">

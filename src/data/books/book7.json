@@ -16193,8 +16193,8 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "empty": 1 },
+        "blackArcane": { "empty": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
@@ -16249,8 +16249,8 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "empty": 1 },
+        "blackArcane": { "empty": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
@@ -16305,8 +16305,8 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "empty": 1 },
+        "blackArcane": { "empty": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,

@@ -8574,7 +8574,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Garry Kasparov vs Milan Vukic: EUR chT Skara (1980)",
     "storyText": "",
     "reward": [],
     "prereq": "",
@@ -8584,8 +8584,8 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "8/1p3pp1/p1krpn1p/P6P/2P2PP1/2B5/1PK5/4R3 w - - 0 1",
+        "fenHistory": ["8/1p3pp1/p1krpn1p/P6P/2P2PP1/2B5/1PK5/4R3 w - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -8601,12 +8601,13 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "empty": 1 },
+        "blackArcane": { "empty": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false
@@ -8629,7 +8630,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Bobby Fischer vs Samuel Reshevsky",
     "storyText": "",
     "reward": [],
     "prereq": "mission-11",
@@ -8639,8 +8640,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "r1bqnrk1/pp1pppbp/6p1/n3P3/3N4/1BN1B3/PPP2PPP/R2QK2R w KQq - 0 1",
+        "fenHistory": [
+          "r1bqnrk1/pp1pppbp/6p1/n3P3/3N4/1BN1B3/PPP2PPP/R2QK2R w KQq - 0 1"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -8656,12 +8659,13 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "empty": 1 },
+        "blackArcane": { "empty": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": true
@@ -8694,8 +8698,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "r4rk1/3q2pp/p2bp3/1b1p1p1n/1p1PP3/6PP/PP1B1PBK/1NRQ2R1 b q - 0 1",
+        "fenHistory": [
+          "r4rk1/3q2pp/p2bp3/1b1p1p1n/1p1PP3/6PP/PP1B1PBK/1NRQ2R1 b q - 0 1"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -8711,12 +8717,13 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "empty": 1 },
+        "blackArcane": { "empty": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "black",
+        "turn": "black"
       }
     },
     "boss": false

@@ -8130,7 +8130,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Fischer vs Tal: Yugoslavia ct Rd: 21 (1959)",
     "storyText": "",
     "reward": [],
     "prereq": "",
@@ -8140,8 +8140,8 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "4rr1k/q6p/8/4pp2/1pP5/1B6/PP2Q1KP/R7 b - - 0 1",
+        "fenHistory": ["4rr1k/q6p/8/4pp2/1pP5/1B6/PP2Q1KP/R7 b - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -8157,12 +8157,13 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "empty": 1 },
+        "blackArcane": { "empty": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "black",
+        "turn": "black"
       }
     },
     "boss": false
@@ -8185,7 +8186,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Paul Morphy vs Alonzo Morphy: New Orleans (1848)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-9",
@@ -8195,8 +8196,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "rn2q1k1/pp3ppp/1bpPbn2/6N1/2BP1B2/2NQ4/PPPK2PP/7R w - - 0 1",
+        "fenHistory": [
+          "rn2q1k1/pp3ppp/1bpPbn2/6N1/2BP1B2/2NQ4/PPPK2PP/7R w - - 0 1"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -8212,12 +8215,13 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "empty": 1 },
+        "blackArcane": { "empty": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false
@@ -8240,7 +8244,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Tony Miles vs Alexander Beliavsky: Tilburg Interpolis (1986)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-10",
@@ -8250,8 +8254,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "3rq2r/p1kb1R2/1pn4p/2PQp3/4P1pP/2P3B1/P5P1/5RK1 w - - 0 1",
+        "fenHistory": [
+          "3rq2r/p1kb1R2/1pn4p/2PQp3/4P1pP/2P3B1/P5P1/5RK1 w - - 0 1"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -8267,12 +8273,13 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": {},
-        "blackArcane": {},
+        "whiteArcane": { "empty": 1 },
+        "blackArcane": { "empty": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false

@@ -151,6 +151,7 @@ interface Node {
       };
       correctMoves?: string[];
       orientation: string;
+      turn?: string;
       // dialogue: [
       //   // [ 'narrator', 'message']
       //   // [ 'medavas', 'message']
@@ -267,7 +268,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     super(props);
     const LS = getLocalStorage(this.props.auth.user.username);
     this.state = {
-      turn: 'white',
+      turn:
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId]?.panels[
+          'panel-1'
+        ]?.turn || 'white',
       playerInc:
         getLocalStorage(this.props.auth.user.username).config.color === 'white'
           ? booksMap[
@@ -292,8 +298,18 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               `book${getLocalStorage(this.props.auth.user.username).chapter}`
             ]?.[getLocalStorage(this.props.auth.user.username).nodeId]
               .time[1][0],
-      playerColor: getLocalStorage(this.props.auth.user.username).config.color,
+      playerColor:
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId]?.panels[
+          'panel-1'
+        ]?.turn || getLocalStorage(this.props.auth.user.username).config.color,
       engineColor:
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId]?.panels[
+          'panel-1'
+        ]?.turn ||
         getLocalStorage(this.props.auth.user.username).config.color === 'white'
           ? 'black'
           : 'white',
@@ -360,7 +376,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         ]?.[getLocalStorage(this.props.auth.user.username).nodeId].panels[
           'panel-1'
         ].royalties,
-      orientation: getLocalStorage(this.props.auth.user.username).config.color,
+      orientation:
+        booksMap[
+          `book${getLocalStorage(this.props.auth.user.username).chapter}`
+        ]?.[getLocalStorage(this.props.auth.user.username).nodeId]?.panels[
+          'panel-1'
+        ]?.turn || getLocalStorage(this.props.auth.user.username).config.color,
       preset:
         booksMap[
           `book${getLocalStorage(this.props.auth.user.username).chapter}`
@@ -583,6 +604,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   getFen() {
     let fen = '';
     if (
+      !booksMap[
+        `book${getLocalStorage(this.props.auth.user.username).chapter}`
+      ]?.[getLocalStorage(this.props.auth.user.username).nodeId]?.panels[
+        'panel-1'
+      ]?.turn &&
       getLocalStorage(this.props.auth.user.username).config.color === 'black'
     ) {
       fen = swapArmies(
@@ -1183,6 +1209,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         this.state.royalties,
         this.state.preset
       );
+      // if (this.state.turn === 'black') GameBoard.side = 1;
       this.setState(
         {
           turn: GameBoard.side === 0 ? 'white' : 'black',
@@ -1194,7 +1221,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           },
         },
         () => {
-          if (this.state.engineColor === this.state.turn) {
+          if (
+            this.state.turn !== 'black' &&
+            this.state.engineColor === this.state.turn
+          ) {
             this.engineGo();
           }
         }

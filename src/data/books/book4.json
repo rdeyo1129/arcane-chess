@@ -15776,7 +15776,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Mikhail Tal vs Dieter Keller: Zuerich (1959)",
     "storyText": "",
     "reward": [],
     "prereq": "",
@@ -15786,8 +15786,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "r5r1/1k2Pp1p/p1n2p2/PNb1q3/Q1p1b1B1/2P3P1/5P1P/R3R1K1 w - - 7 24",
+        "fenHistory": [
+          "r5r1/1k2Pp1p/p1n2p2/PNb1q3/Q1p1b1B1/2P3P1/5P1P/R3R1K1 w - - 7 24"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15808,7 +15810,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false
@@ -15831,7 +15834,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Efim Bogoljubov vs Alexander Alekhine: Hastings (1922)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-9",
@@ -15841,8 +15844,8 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "8/7k/3p1p1p/7P/4qP2/5p2/3R4/5NK1 b - - 0 1",
+        "fenHistory": ["8/7k/3p1p1p/7P/4qP2/5p2/3R4/5NK1 b - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15863,7 +15866,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "black",
+        "turn": "black"
       }
     },
     "boss": false
@@ -15886,7 +15890,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Robert James Fischer vs Tigran Petrosian: Bled-Zagreb-Belgrade Candidates (1959)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-10",
@@ -15896,8 +15900,8 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "6Q1/8/1kp4P/2q1p3/2PpP3/2nP2P1/8/q4BK1 w - - 0 36",
+        "fenHistory": ["6Q1/8/1kp4P/2q1p3/2PpP3/2nP2P1/8/q4BK1 w - - 0 36"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15918,7 +15922,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false

@@ -15053,7 +15053,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Bogdan Sliwa vs David Bronstein: Gotha (1957)",
     "storyText": "",
     "reward": [],
     "prereq": "",
@@ -15063,8 +15063,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "5qk1/p5b1/4N1pp/2P5/1n1n1P1P/2Nb2P1/PP1Q2B1/2KR3R w - - 0 1",
+        "fenHistory": [
+          "5qk1/p5b1/4N1pp/2P5/1n1n1P1P/2Nb2P1/PP1Q2B1/2KR3R w - - 0 1"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15085,7 +15087,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "white",
+        "turn": "white"
       }
     },
     "boss": false
@@ -15108,7 +15111,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Richard Reti vs Alexander Alekhine: Baden-Baden (1925)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-9",
@@ -15118,8 +15121,8 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "r5k1/1N3pp1/4b3/8/8/4rNP1/2RRnnBK/8 b - - 0 1",
+        "fenHistory": ["r5k1/1N3pp1/4b3/8/8/4rNP1/2RRnnBK/8 b - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15140,7 +15143,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "black",
+        "turn": "black"
       }
     },
     "boss": false
@@ -15163,7 +15167,7 @@
       [600, 30],
       [300, 15]
     ],
-    "nodeText": "",
+    "nodeText": "Anatoly Karpov vs Garry Kasparov: World Championship Match (1985)",
     "storyText": "",
     "reward": [],
     "prereq": "mission-10",
@@ -15173,8 +15177,10 @@
     "bookTheme": "",
     "panels": {
       "panel-1": {
-        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
-        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "fen": "2r1r3/5pk1/6bp/8/Np1qnRP1/1P1Q2P1/6BP/1N1R3K b - - 0 34",
+        "fenHistory": [
+          "2r1r3/5pk1/6bp/8/Np1qnRP1/1P1Q2P1/6BP/1N1R3K b - - 0 34"
+        ],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15195,7 +15201,8 @@
         "config": {},
         "correctMoves": [""],
         "viewOnly": false,
-        "orientation": "white"
+        "orientation": "black",
+        "turn": "black"
       }
     },
     "boss": false

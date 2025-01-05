@@ -33,16 +33,15 @@ export class UnwrappedCampaign extends React.Component<
     super(props);
     this.state = {
       books: [
-        // TODO: To be read from db
         'NONARRIVAL',
         'SUBSTRATE',
         'PENTAGRAMS',
         'WEST',
-        'BANISHED',
+        '?', // 'BANISHED',
         'FOURIER',
         'ARCHIVE',
         'JERICHO',
-        'FLAME',
+        'EMBER',
         'FIBONACCI',
         'ABYSS',
         'WANDER',

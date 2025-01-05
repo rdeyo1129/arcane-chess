@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Tree from 'react-d3-tree';
 import _ from 'lodash';
 
-// import book1 from 'src/data/books/book1.json';
-// import book2 from 'src/data/books/book2.json';
-// import book3 from 'src/data/books/book3.json';
+import book1 from 'src/data/books/book1.json';
+import book2 from 'src/data/books/book2.json';
+import book3 from 'src/data/books/book3.json';
 import book4 from 'src/data/books/book4.json';
 // import book5 from 'src/data/books/book5.json';
 // import book6 from 'src/data/books/book6.json';
@@ -15,7 +15,7 @@ import book4 from 'src/data/books/book4.json';
 // import book11 from 'src/data/books/book11.json';
 // import book12 from 'src/data/books/book12.json';
 
-const microscopeData: any = book4;
+const microscopeData: any = book1;
 
 interface CustomTreeNodeDatum {
   name: string;
@@ -84,22 +84,27 @@ export const Lab = () => {
   const renderCustomNodeElement = ({ nodeDatum }: any) => (
     <g onClick={() => handleNodeClick(nodeDatum)}>
       <circle r={20} fill="#333" />
-      <text fill="#000000" fontSize={16} x={30} dy="0.3em" textAnchor="start">
-        {/* {nodeDatum.opponent} */}
+      <text fill="#000000" fontSize={16} x={30} y={-30} textAnchor="start">
         {nodeDatum.id}
       </text>
-      {nodeDatum.attributes &&
-        Object.entries(nodeDatum.attributes).map(([key, value]) => (
-          <text
-            key={key}
-            fill="#000000"
-            fontSize={14}
-            x={15}
-            textAnchor="start"
-          >
-            {`${key}: ${value}`}
-          </text>
-        ))}
+      <text fill="#000000" fontSize={16} x={30} y={-10} textAnchor="start">
+        {nodeDatum.title}
+      </text>
+      <text fill="#000000" fontSize={16} x={30} y={10} textAnchor="start">
+        {nodeDatum.hero || 'sidian'}
+      </text>
+      <text fill="#000000" fontSize={16} x={30} y={30} textAnchor="start">
+        {nodeDatum.bookTheme}
+      </text>
+      <text fill="#000000" fontSize={16} x={30} y={50} textAnchor="start">
+        {nodeDatum.theme}
+      </text>
+      <text fill="#000000" fontSize={16} x={30} y={70} textAnchor="start">
+        {nodeDatum.opponent}
+      </text>
+      <text fill="#000000" fontSize={16} x={30} y={90} textAnchor="start">
+        {nodeDatum.storyText !== '' ? '' : 'needs story'}
+      </text>
     </g>
   );
 
@@ -120,7 +125,7 @@ export const Lab = () => {
           orientation="vertical"
           pathFunc="diagonal"
           translate={{ x: window.innerWidth / 3, y: 250 }}
-          nodeSize={{ x: 200, y: 100 }}
+          nodeSize={{ x: 200, y: 180 }}
           zoom={1.8}
           zoomable
           onNodeClick={(node: any) => {

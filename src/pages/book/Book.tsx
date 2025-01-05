@@ -421,7 +421,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
             <div className="book">
               <div className="hud">
                 <div className="left">
-                  <div>
+                  <div style={{ display: 'flex' }}>
                     <Link to="/campaign">
                       <Button
                         text="BACK"
@@ -433,6 +433,16 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         backgroundColorOverride="#33333388"
                       />
                     </Link>
+                    <Button
+                      text="ALL CHAPTERS"
+                      className="tertiary"
+                      color="B"
+                      width={200}
+                      height={35}
+                      disabled={false}
+                      backgroundColorOverride="#33333388"
+                      onClick={() => this.toggleAllNodesUnlocked()}
+                    />
                   </div>
                   <div className="arcana-helper">
                     {_.map(LS.arcana, (_value, key: string) => {
@@ -484,7 +494,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   style={{ padding: '0 10px 0 10px', fontSize: '12px' }}
                 >
                   Click on a chapter to view its details. If the chapter is a
-                  mission, you can click Arcana for additional information. Use
+                  mission, you can click or hover on arcana badges for
+                  additional information or to add them to your inventory. Use
                   the Story button to switch between chess and story details,
                   and click the Start button to begin the chapter.
                 </div>

@@ -18,7 +18,7 @@
       [0, 0]
     ],
     "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
-    "storyText": "",
+    "storyText": "Sidian wakes in a forest. He has no memory of who his is or how he got there. A bow, quiver, and book lay at his side. He opens the book. All the pages are empty except the first few.",
     "prereq": "",
     "reward": [],
     "opponent": "book",
@@ -289,12 +289,12 @@
       [0, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sidian makes his way through the forest but always seems to end up at the same fork. Eventually, a new path leads to a house with a wise mage inside. The mage says nothing but directs Sidian to a chessboard.",
     "reward": [],
     "prereq": "lesson-1",
-    "opponent": "book",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "opponent": "mage",
+    "theme": "mage-room",
+    "bookTheme": "mage-house",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -395,12 +395,12 @@
       [0, 0]
     ],
     "nodeText": "What are you fighting for? Learn about why Chess is a zero-sum game.",
-    "storyText": "",
+    "storyText": "The mage calls the forest Thornshade. He has been wandering for years. Some say that you can impose your will upon the forest. He has tried, even using his most advanced magic but the curse is too strong. Sidian tries to respond but realizes that he can't speak.",
     "reward": [],
     "prereq": "lesson-2",
-    "opponent": "wizard",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "opponent": "mage",
+    "theme": "mage-room",
+    "bookTheme": "mage-house",
     "panels": {
       "panel-1": {
         "fen": "8/8/5b2/3r4/8/5K2/8/8 w - - 0 1",
@@ -736,12 +736,12 @@
       [0, 0]
     ],
     "nodeText": "Learn about the bread and butter of pieces.",
-    "storyText": "",
+    "storyText": "The mage continues: a curse has been cast on Thornshade by an evil sorcer and is guarded by a monster, Gravespine. This monster was once a powerful mage like himself that was trapped within a tree by the sorcerer to guard the forest and trap it's occupants. The mage was only able to find Gravespine's lair once, battled him, but was defeated and has been doomed to wander forever.",
     "reward": [],
     "prereq": "lesson-3",
-    "opponent": "wizard",
-    "theme": "wizard-room",
-    "bookTheme": "wizard-house",
+    "opponent": "mage",
+    "theme": "mage-room",
+    "bookTheme": "mage-house",
     "panels": {
       "panel-1": {
         "fen": "8/8/1u6/8/1R3X2/1P6/8/8 w - - 0 1",
@@ -947,12 +947,12 @@
       [0, 0]
     ],
     "nodeText": "Learn about the backbone of every army... the Pawn.",
-    "storyText": "",
+    "storyText": "The mage explains that their is greater evil at work besides Gravespine and the sorcerer. He hands Sidian a small rune. Energy flys from the rune and into Sidian's forehead. The wizard explains the rune is an arcana and grants special abilities. He finds them every once in awhile in the forest. He can't explain their existence, only that a higher power is at work.",
     "reward": [],
     "prereq": "lesson-4",
-    "opponent": "wizard",
-    "theme": "wizard-room",
-    "bookTheme": "wizard-house",
+    "opponent": "mage",
+    "theme": "mage-room",
+    "bookTheme": "mage-house",
     "panels": {
       "panel-1": {
         "fen": "8/1pp1kpp1/p2p3p/3P4/2P5/1P2K1P1/P4P1P/8 w - - 0 1",
@@ -1190,12 +1190,12 @@
       [0, 0]
     ],
     "nodeText": "Learn about curiosity, the framework behind your thinking during a game.",
-    "storyText": "",
+    "storyText": "With the advice and blessing of the mage, he sends Sidian off to find Thornreach, a town lost somewhere in the forest. He tells Sidian warns Sidian about unknown entities in the forest but also of clues of Gravespine and the higher power at work.",
     "reward": [],
     "prereq": "lesson-5",
-    "opponent": "wizard",
-    "theme": "wizard-room",
-    "bookTheme": "wizard-house",
+    "opponent": "mage",
+    "theme": "mage-room",
+    "bookTheme": "mage-house",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -1346,7 +1346,7 @@
       [100, 0]
     ],
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
-    "storyText": "",
+    "storyText": "Sidian arrives at a small, dark grove. An Owl speaks from the tree promising of information to Sidian but at a price.",
     "reward": [],
     "prereq": "",
     "opponent": "owl",
@@ -1618,7 +1618,7 @@
       [50, 3]
     ],
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
-    "storyText": "",
+    "storyText": "Within the temple, secrets lie, Of curses bent beneath the sky. The owls hold keys to fates undone, Through riddles spun for chosen ones.",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "owl",
@@ -1890,7 +1890,7 @@
       [60, 0]
     ],
     "nodeText": "Play through two-move puzzles to further test your knowledge of the pieces.",
-    "storyText": "",
+    "storyText": "Once a creator, now a husk, Tejeduras drifts through lands of dusk. A force once great, now bound by fear, Their aimless path grows year by year.",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "owl",
@@ -2166,7 +2166,7 @@
       [50, 3]
     ],
     "nodeText": "Play through two-move puzzles to further test your knowledge of the pieces.",
-    "storyText": "",
+    "storyText": "A hero rose, both brave and true, To challenge fate, their heart anew. But purpose lost and deeds forgot, Left Tejeduras to curse their lot.",
     "reward": [],
     "prereq": "temple-2",
     "opponent": "owl",
@@ -2442,7 +2442,7 @@
       [200, 5]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "To bargain here, a cost is paid, The memories of what was made. A piece of self, to fade away, So travelers tread the forest’s sway.",
     "reward": [],
     "prereq": "temple-2",
     "opponent": "owl",
@@ -5074,7 +5074,7 @@
       [80, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "To Gravespine’s heart, the path lies still, Revealed by roots through moonlit will. When the moon is new, the forest sighs, And shadows dance where silence lies. A fleeting trail through twisted trees, Where none have tread with lives at ease.",
     "reward": [],
     "prereq": "temple-3",
     "opponent": "owl",
@@ -7688,12 +7688,12 @@
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sundown hits, Sidian notices the wisps, small mystical beings that the mage mention come out at night. They are spirits from another realm that come to socialize in the forest. A wisp approaches Sidian and offers to lead him onward.",
     "reward": [],
     "prereq": "",
-    "opponent": "ephilate",
-    "theme": "tavern",
-    "bookTheme": "town",
+    "opponent": "",
+    "theme": "wisps",
+    "bookTheme": "wisps",
     "panels": {
       "panel-1": {
         "fen": "4k3/3pp3/8/8/8/8/8/3RK3 w - - 0 1",
@@ -7743,12 +7743,12 @@
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sidian follows the wisp to a more maze-like part of the forest and it abandons him as it's intentions were mischievous. Lost again, Sidian must find more clues to lead him to Gravespine or Thornreach.",
     "reward": [],
     "prereq": "mission-1",
-    "opponent": "ephilate",
-    "theme": "tavern",
-    "bookTheme": "town",
+    "opponent": "",
+    "theme": "wisps",
+    "bookTheme": "wisps",
     "panels": {
       "panel-1": {
         "fen": "3nk3/3pp3/8/8/8/8/2PPP3/2BBK3 w - - 0 1",
@@ -7790,7 +7790,7 @@
       "lose1": "",
       "lose2": "",
       "lose3": "",
-      "victory": "",
+      "victory": "The machine rages in frustration at it's defeat. It makes to atack Sidian directly but the years of earth have corroded and covered it's body so much that keep him locked in the ground.",
       "defeat": ""
     },
     "time": [
@@ -7798,12 +7798,12 @@
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "In the distance, Sidian notices a weather machine. As he approaches, the machine creaks awake. The machine says it was a prototype of a more advanced society, sent off this world as a dumping ground. It is still loyal to a forgotten duty.",
     "reward": [],
     "prereq": "mission-2",
-    "opponent": "hunter",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "opponent": "",
+    "theme": "forgotten",
+    "bookTheme": "forgotten",
     "panels": {
       "panel-1": {
         "fen": "2nkn3/2ppp3/8/8/8/8/2PPP3/2NKN3 w - - 0 1",
@@ -7845,7 +7845,7 @@
       "lose1": "",
       "lose2": "",
       "lose3": "",
-      "victory": "",
+      "victory": "Sidian looks deep into his arcana and the heart of the machine and shuts it down for good.",
       "defeat": ""
     },
     "time": [
@@ -7853,12 +7853,12 @@
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The machine promises Sidian of a similar end, to be forgotten by his gods. Sidian asks about Gravespine. The machine energizes in more rage and challenges Sidian again.",
     "reward": [],
     "prereq": "mission-3",
-    "opponent": "hunter",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "opponent": "",
+    "theme": "forgotten",
+    "bookTheme": "forgotten",
     "panels": {
       "panel-1": {
         "fen": "2kbb3/2ppp3/8/8/8/8/2PPP3/2RKR3 w - - 0 1",
@@ -7908,12 +7908,12 @@
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "As Sidian approaches the ruins, the clouds above churn unnaturally, smothering the moon in darkness. At the center of the crumbling spire lies a stone gargoyle, seemingly lifeless, its wings folded and eyes shut. But as Sidian steps closer, the air sharpens, and the ground trembles faintly. Cracks race across the gargoyle’s surface, light seeping through them like veins awakening. With a sudden, thunderous roar, it springs to life, wings unfurling in one swift motion, and its glowing eyes lock onto Sidian, marking the start of the battle.",
     "reward": [],
     "prereq": "mission-4",
-    "opponent": "ephilate",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "opponent": "",
+    "theme": "ruins",
+    "bookTheme": "ruins",
     "panels": {
       "panel-1": {
         "fen": "2ukn3/2ppp3/8/8/8/8/2PPP3/2NKZ3 w - - 0 1",
@@ -7955,7 +7955,7 @@
       "lose1": "",
       "lose2": "",
       "lose3": "",
-      "victory": "",
+      "victory": "The gargoyle groans as Sidian commits his final blow. The gargoyle stumbles back to his perch as the clouds begin to dissipate, turning back to stone before he can reposition in a crouch.",
       "defeat": ""
     },
     "time": [
@@ -7963,12 +7963,12 @@
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The gargoyle lunges, stone claws carving through the air as Sidian barely dodges, the ground beneath splintering from the impact. Moonlight filters through fleeting breaks in the clouds, and Sidian realizes the fight isn’t just physical—every blow shifts the storm above, threatening to extinguish the light entirely. Weaving between strikes, Sidian lands a sharp blow to the gargoyle’s wing, causing it to falter, but the storm grows fiercer in response. With each clash, the clouds thicken, forcing Sidian to think quickly: brute force won’t clear the skies. Sidian feints, using the gargoyle’s momentum to shatter one of the ancient pillars controlling the storm. The clouds begin to part, but the gargoyle rises again, unrelenting.",
     "reward": [],
     "prereq": "mission-5",
-    "opponent": "ephilate",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "opponent": "",
+    "theme": "ruins",
+    "bookTheme": "ruins",
     "panels": {
       "panel-1": {
         "fen": "2rkr3/2pppp2/8/8/8/8/1PPPPP2/1ZNKBU2 w - - 0 1",
@@ -8011,14 +8011,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": "Roots erupt from the ground and wrap around Sidian's limbs. Sidian tries to break free but their body is shocked with fear. The tree laughs as they are brought to their knees. The roots dragging Sidian below the ground is the last thing that they remember. Suddenly, they are awake again... lost in the forest."
+      "defeat": "Roots erupt from the ground and wrap around Sidian's limbs. Sidian tries to break free but his body is shocked with fear. The tree laughs as he is brought to his knees. The roots dragging Sidian below the ground is the last thing that he  remembers. Suddenly, he is awake again... lost in the forest."
     },
     "time": [
       [360, 2],
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The forest is bathed in silver light as the full moon reaches its zenith. Sidian steps carefully, and the twisted trees of Thornshade seem to shift, parting just enough to reveal the elusive path to Gravespine. The air grows colder with each step, the forest unnervingly quiet. At the path’s end, Sidian finds the massive skeletal form of Gravespine itself, its roots and bones forming an intricate, towering gate. Suddenly, the ground beneath Sidian trembles, and the gate comes alive, the monstrous guardian rising from the earth to defend its domain.",
     "reward": [],
     "prereq": "mission-6",
     "opponent": "",
@@ -8065,15 +8065,15 @@
       "lose1": "",
       "lose2": "",
       "lose3": "",
-      "victory": "The tree gasps in shock as the roots around it shrink and wither. It's arm reaches out to Sidian but fails.\n\n\"You shall join me in peril\"\n\n It begins to conjure a dark spell to connect with Sidian's life force. Sidian in turn connects with their talismen and blocks the spell. The tree topples over and the forest begins to return to normal.",
-      "defeat": "Roots erupt from the ground and wrap around Sidian's limbs. Sidian tries to break free but their body is shocked with fear. The tree laughs as they are brought to their knees. The roots dragging Sidian below the ground is the last thing that they remember. Suddenly, they are awake again... lost in the forest."
+      "victory": "The tree gasps in shock as the roots around it shrink and wither. It's arm reaches out to Sidian but fails. It begins to conjure a dark spell toward Sidian. Sidian in turn connects with his arcana and blocks the spell. The tree topples over and the forest begins to return to normal.",
+      "defeat": "Roots erupt from the ground and wrap around Sidian's limbs. Sidian tries to break free but his body is shocked with fear. The tree laughs as he is brought to his knees. The roots dragging Sidian below the ground is the last thing that he  remembers. Suddenly, he is awake again... lost in the forest."
     },
     "time": [
       [360, 2],
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Gravespine’s massive form lashes out, its roots and bones weaving together like living tendrils. Sidian darts between strikes, each impact sending shockwaves through the ground, but there’s no safe place to stand. The guardian’s hollow eyes blaze brighter as it shifts its massive frame, roaring with a sound like splitting wood. Sidian strikes at the exposed roots, severing one, but the creature regenerates instantly, drawing strength from the forest around it. Realizing brute strength won’t be enough, Sidian shifts focus, looking for a weakness in the intricate bonework. Gravespine’s core—a glowing, pulsing knot of energy—flickers briefly, revealing its vulnerable heart. Sidian dives through a collapsing arch of roots, aiming for the core, but Gravespine blocks the path, forcing Sidian into another desperate maneuver.",
     "reward": [],
     "prereq": "mission-7",
     "opponent": "",

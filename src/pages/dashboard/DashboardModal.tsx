@@ -56,8 +56,8 @@ export default class DashboardModal extends React.Component<
           <p>
             Hello, meda here. Thank you for visiting the site. Version{' '}
             {this.version} has just been released, bringing a host of new arcana
-            (spells) and the first and second of three sagas in the campaign. If
-            you are a first-time visitor, I recommend starting with{' '}
+            (spells) and the first of three sagas in the campaign. If you are a
+            first-time visitor, I recommend starting with{' '}
             <Link to="/quickplay" style={{ color: '#00f' }}>
               Quick Play
             </Link>{' '}

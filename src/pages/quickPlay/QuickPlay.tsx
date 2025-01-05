@@ -1172,7 +1172,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               <div className="info-avatar">
                 <div className="avatar">
                   <img
-                    src={`/assets/avatars/factions/${this.state.engineAvatar}.webp`}
+                    src={`/assets/avatars/${this.state.engineAvatar}.webp`}
                     style={{
                       height: '60px',
                       width: '60px',
@@ -1818,7 +1818,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               <div className="info-avatar">
                 <div className="avatar">
                   <img
-                    src="/assets/avatars/factions/normal.webp"
+                    src="/assets/avatars/normal.webp"
                     style={{
                       height: '60px',
                       width: '60px',

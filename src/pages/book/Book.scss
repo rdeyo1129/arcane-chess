@@ -116,9 +116,10 @@
         }
       }
       .description-inventory.story-column {
+        width: 100%;
         .story-text {
           display: flex;
-          width: 400px;
+          width: 100%;
           overflow-y: scroll;
           .node {
             margin: 10px;
@@ -126,7 +127,6 @@
               text-align: center;
             }
             .node-description {
-              width: 80%;
               padding-bottom: 20px;
               p {
                 margin: 10px;

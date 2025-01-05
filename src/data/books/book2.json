@@ -18,14 +18,14 @@
       [0, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The air in Sidian's cell crackled as the portal ripped open, a swirling vortex of deep indigo and electric gold tearing through reality like a jagged wound. Cassandra appeared without hesitation, her movements sharp and urgent as she seized Sidian's arm. The portal consumed them, its core an endless void streaked with flashing fragments of otherworldly sights—a shimmering ocean, a city in flames, a mechanical forest. Gravity warped as they tumbled through, and the sound of overlapping worlds whispered in Sidian's ears. The descent ended abruptly as they landed in a sprawling metropolis of towering structures, their surfaces a mosaic of glass and steel pulsing with neon veins. Below, streams of humanoid figures—half-machine, half-organic—moved with purpose through glowing pathways, the hum of machinery drowning the faint echoes of distant alarms. The city's air felt charged, heavy with the weight of unspoken urgency.",
     "reward": [],
     "prereq": "",
-    "opponent": "wizard",
+    "opponent": "cassandra",
     "hero": "",
     "storyTitle": "",
-    "theme": "wizard-room",
-    "bookTheme": "wizard-house",
+    "theme": "jail",
+    "bookTheme": "jail",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -149,14 +149,14 @@
       [0, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The portal tore reality open with a blinding flash, revealing a swirling cascade of metallic hues and flickering images of fractured worlds. Sidian emerged onto Automata Prime, a planet of towering spires and sprawling ruins, where the remnants of a failed utopia loomed large. Once ruled by their creators, the sentient automata had risen in revolt, casting humanity into exile. The creators fled to forge a new world, leaving behind chaos and a fractured society. Partial human-automata, created as a bridge between species, were grudgingly accepted in the cities, yet their presence sparked constant debate, seen by many as symbols of betrayal or weakness. Without their creators' guidance, the automata struggled to govern themselves, and the political vacuum was swiftly filled by Voltaire’s militia. His iron rule brought order, but at a cost—freedom was sacrificed, and the streets hummed with the tension of crime and fear, as the city became a haven for Voltaire's influence.",
     "reward": [],
     "prereq": "lesson-1",
-    "opponent": "book",
+    "opponent": "cassandra",
     "hero": "",
     "storyTitle": "",
-    "theme": "library",
-    "bookTheme": "town",
+    "theme": "robotcity",
+    "bookTheme": "robotcity",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -280,14 +280,14 @@
       [0, 0]
     ],
     "nodeText": "Learn about the strongest pieces in the game.",
-    "storyText": "",
+    "storyText": "Cassandra moved through the shadows effortlessly, her shapeshifting form a testament to her nature as a Primalseer, often called a wraith—gifted individuals known for heightened senses and fluid transformation. She explained the world’s hidden balance, where others like her existed alongside Veinwalkers, or spectres, who wielded the powers of invisibility and phasing through matter. Sidian, struggling to grasp his place in this strange reality, felt a shift within himself during their journey. In a moment of instinct, his body flickered and passed through solid stone as if it were air, revealing his nature as a spectre. The revelation left him awed and unsettled, knowing his gift was both a weapon and a burden in the fight ahead.",
     "reward": [],
     "prereq": "lesson-2",
-    "opponent": "book",
+    "opponent": "cassandra",
     "hero": "",
     "storyTitle": "",
-    "theme": "library",
-    "bookTheme": "town",
+    "theme": "robotcity",
+    "bookTheme": "robotcity",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/3Q4/8/8/8 w - - 0 1",
@@ -502,13 +502,13 @@
       [0, 0]
     ],
     "nodeText": "Learn about the KRR vs K endgame scenario.",
-    "storyText": "",
+    "storyText": "Cassandra’s presence was unshakable as she explained the Goliath—a colossal being of unmatched power, forged long ago to defend Tetraea from multiversal threats. The Goliath was no mere weapon; it was an extension of its summoner, bound by their will and resolve. To command it was to wield the strength of nations, a role granted only to the victor of the Tactorius Games. These brutal contests were more than sport; they were a crucible, testing champions from rival factions for their worthiness to bear the mantle. The current games were especially tense, with each competitor driven by ambition, vengeance, or desperation. Sidian felt the weight of her words; the Goliath was not just a prize—it was a responsibility, one that could reshape the fractured cities of Tetraea. For some, the games offered salvation. For others, they were the ultimate path to domination.",
     "reward": [],
     "prereq": "lesson-3",
-    "opponent": "automata2",
+    "opponent": "cassandra",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
+    "theme": "robotcity",
     "bookTheme": "robotcity",
     "panels": {
       "panel-1": {
@@ -894,13 +894,13 @@
       [0, 0]
     ],
     "nodeText": "Learn about the KQ vs K endgame scenario.",
-    "storyText": "",
+    "storyText": "Cassandra guided Sidian to the Conclave, a hidden underground forum carved into the bedrock beneath Tactorius. The air was damp and electric, charged with the whispers of strategists, dissidents, and rebels who operated beyond Voltaire’s reach. Ophion stood at the center, commanding the attention of the room as he unraveled Voltaire's stranglehold on the city. Voltaire’s militia not only dominated the streets but had also corrupted the sacred Tactorius Games, ensuring his victory year after year through bribes, intimidation, and outright cheating. His champions were handpicked enforcers, serving his ambition to maintain absolute power. Ophion’s plan was clear: to expose Voltaire’s schemes and disrupt his control, they needed a spectre—an unseen force to infiltrate his operations, unmask his treachery, and dismantle the web of deceit that kept the games under his thumb. Without it, the games would remain a hollow contest, further solidifying Voltaire’s rule.",
     "reward": [],
     "prereq": "lesson-4",
-    "opponent": "automata2",
+    "opponent": "nu",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
+    "theme": "conclave",
     "bookTheme": "robotcity",
     "panels": {
       "panel-1": {
@@ -1477,13 +1477,13 @@
       [0, 0]
     ],
     "nodeText": "A quick rule to tell if a Pawn can be stopped from promotion.",
-    "storyText": "",
+    "storyText": "Ophion outlined the factions: the Syndicate, ruthless traders and spies leveraging wealth and influence for power; the Covenant, Voltaire’s militaristic regime enforcing order through fear; the Zealots, religious extremists treating the games as divine trials; the Deviants, anarchists bent on dismantling the system; the Legion, disciplined warriors defending Tactorius from chaos; and the Riftborn, scientists fascinated by the mysteries of the multiverse, treating the games as experiments to unravel universal truths. While each faction pursued its own goals, Voltaire’s control of the Covenant and his corruption of the games made him the most pressing and dangerous threat.",
     "reward": [],
     "prereq": "lesson-5",
-    "opponent": "automata2",
+    "opponent": "nu",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
+    "theme": "conclave",
     "bookTheme": "robotcity",
     "panels": {
       "panel-1": {
@@ -1890,13 +1890,13 @@
       [0, 0]
     ],
     "nodeText": "Dive into this last overkill variant. You are up a full Rook and need to mate.",
-    "storyText": "",
+    "storyText": "Ophion explained the Tactorius Games, a brutal contest of strategy and survival where each faction selected a single strategist-champion to represent them. These champions engaged in a one-on-one chess match, but this was no ordinary game—arcana empowered their pieces, introducing unpredictable powers and abilities. Meanwhile, teams of gunmen clashed in the arena, fighting to secure their champion’s position and eliminate their opponents. A victory on the chessboard granted the winning team enhanced abilities, tipping the balance of power in the chaos below. Ultimately, the champion who triumphed in the final match was granted control of the Goliath, the ultimate prize, bestowed by the Axiom to shape the fate of Tactorius.",
     "reward": [],
     "prereq": "lesson-6",
-    "opponent": "automata2",
+    "opponent": "nu",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
+    "theme": "conclave",
     "bookTheme": "robotcity",
     "panels": {
       "panel-1": {
@@ -2452,13 +2452,13 @@
       [0, 0]
     ],
     "nodeText": "Outflank your opponents King in this endgame scenario.",
-    "storyText": "",
+    "storyText": "The plan to attack Voltaire at the docks was precise and dangerous, relying on the unique strengths of the team. Ophion’s gunmen would create a diversion, engaging Voltaire’s enforcers in a firefight to draw attention away from the main objective. Cassandra, with her wraith-like shapeshifting and heightened senses, would infiltrate the warehouses, disabling security and marking key targets. Sidian, as the spectre, would phase through barriers undetected, slipping into Voltaire’s command post to gather intel and sabotage critical operations. The combined efforts were designed to destabilize Voltaire’s operations, but success hinged on perfect coordination and the hope that the chaos would expose the cracks in Voltaire’s iron grip on the city.",
     "reward": [],
     "prereq": "lesson-7",
-    "opponent": "automata2",
+    "opponent": "nu",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
+    "theme": "conclave",
     "bookTheme": "robotcity",
     "panels": {
       "panel-1": {

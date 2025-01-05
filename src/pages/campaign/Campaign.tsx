@@ -37,7 +37,7 @@ export class UnwrappedCampaign extends React.Component<
         'SUBSTRATE',
         'PENTAGRAMS',
         'WEST',
-        '?', // 'BANISHED',
+        'BANISHED',
         'FOURIER',
         'ARCHIVE',
         'JERICHO',

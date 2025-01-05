@@ -15,7 +15,7 @@ import book4 from 'src/data/books/book4.json';
 // import book11 from 'src/data/books/book11.json';
 // import book12 from 'src/data/books/book12.json';
 
-const microscopeData: any = book1;
+const microscopeData: any = book2;
 
 interface CustomTreeNodeDatum {
   name: string;

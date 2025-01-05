@@ -1346,7 +1346,7 @@
       [100, 0]
     ],
     "nodeText": "Play through one-move puzzles to test your knowledge of the pieces.",
-    "storyText": "Sidian arrives at a small, dark grove. An Owl speaks from the tree promising of information to Sidian but at a price.",
+    "storyText": "Sidian stepped into the shadowed grove, the air thick and still. High in the branches of an ancient oak, an owl watched him, its golden eyes glowing in the dark. The weight of its gaze held him in place, as if the grove itself was waiting. the owl spoke in poem:",
     "reward": [],
     "prereq": "",
     "opponent": "owl",
@@ -7688,7 +7688,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "Sundown hits, Sidian notices the wisps, small mystical beings that the mage mention come out at night. They are spirits from another realm that come to socialize in the forest. A wisp approaches Sidian and offers to lead him onward.",
+    "storyText": "As the sun dipped below the horizon, the grove came alive with an otherworldly glow. Small, ethereal beings began to emerge, their light dancing like fireflies in the growing darkness. These were the wisps the mage had spoken of—spirits from another realm, drawn here to gather and commune under the shelter of the forest. Their movements were graceful, almost playful, as they weaved among the trees, their faint whispers barely audible over the rustling leaves. One wisp drifted closer to Sidian, its light soft yet mesmerizing. Hovering before him, it pulsed gently, as if acknowledging his presence. Without a sound, it gestured forward, beckoning him to follow deeper into the grove, its intent clear despite the lack of words.",
     "reward": [],
     "prereq": "",
     "opponent": "",
@@ -7743,7 +7743,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "Sidian follows the wisp to a more maze-like part of the forest and it abandons him as it's intentions were mischievous. Lost again, Sidian must find more clues to lead him to Gravespine or Thornreach.",
+    "storyText": "Sidian followed the wisp as it weaved through the forest, its light bobbing like a distant lantern. The trees grew denser, their twisted branches forming an intricate maze that seemed to close in around him. Shadows deepened, and the air grew colder as he ventured further. Suddenly, the wisp halted, its glow dimming. With a flicker, it vanished into the darkness, leaving Sidian alone. Realizing its playful mischief, frustration bubbled within him, but there was no time to linger. He was lost again, the path to Gravespine or Thornreach more uncertain than ever. Sidian steeled himself, knowing he would need sharper instincts or new signs to guide his way forward.",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "",
@@ -7798,7 +7798,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "In the distance, Sidian notices a weather machine. As he approaches, the machine creaks awake. The machine says it was a prototype of a more advanced society, sent off this world as a dumping ground. It is still loyal to a forgotten duty.",
+    "storyText": "In the dim light, Sidian's eyes caught the outline of something unnatural against the trees—a towering, rusted machine, half-buried in the forest floor. As he approached, its joints groaned to life, gears grinding with an almost pained slowness. The machine's voice crackled, ancient and mechanical, as it addressed him. It explained it was a relic, a prototype from a once-advanced society that had discarded it here, treating this world as a dumping ground. Yet, despite its abandonment, the machine remained steadfast, bound to a forgotten duty it could not ignore. Its glowing eyes flickered as it scanned Sidian, as if searching for purpose in a world that had long left it behind.",
     "reward": [],
     "prereq": "mission-2",
     "opponent": "",
@@ -7853,7 +7853,7 @@
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "The machine promises Sidian of a similar end, to be forgotten by his gods. Sidian asks about Gravespine. The machine energizes in more rage and challenges Sidian again.",
+    "storyText": "The machine’s voice crackled louder, its tone bitter as it foretold Sidian’s fate—a future mirroring its own, discarded and forgotten by even the gods he sought to serve. Its words hung heavy in the air, laced with an undeniable finality. Undeterred, Sidian pressed for answers about Gravespine. At the mention of the name, the machine jolted, its eyes blazing brighter, its ancient mechanisms whirring to life with furious energy. The air around it seemed to vibrate as its rage intensified, its towering frame shifting as if preparing to challenge him once more.",
     "reward": [],
     "prereq": "mission-3",
     "opponent": "",

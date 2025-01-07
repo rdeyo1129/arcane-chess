@@ -35,6 +35,7 @@
 .saloon-board,
 .tornados-board,
 .mirror-temple-board,
+.conclave-board,
 .everwanderers-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
@@ -60,7 +61,11 @@
 .forest-board,
 .owls-board,
 .tree-board,
-.wizard-room-board,
+.wisps-board,
+.forgotten-board,
+.mage-house-board,
+.mage-room-board,
+.ruins-board,
 .robotcity-garden-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
@@ -72,7 +77,6 @@
     left top;
 }
 .town-board,
-.robotcity-room-board,
 .sunset-board,
 .tavern-board {
   background-image: 
@@ -85,6 +89,7 @@
     left top;
 }
 .church-room-board,
+.figure-board,
 .cliff-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
@@ -98,6 +103,8 @@
 .jail-board,
 .ravensden-room-board,
 .library-board,
+.robotcity-board,
+.docks-board,
 .clocktower-board {
   background-image: 
   // url('/assets/images/white-texture.png'),

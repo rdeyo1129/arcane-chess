@@ -1890,7 +1890,7 @@
       [0, 0]
     ],
     "nodeText": "Dive into this last overkill variant. You are up a full Rook and need to mate.",
-    "storyText": "Ophion explained the Tactorius Games, a brutal contest of strategy and survival where each faction selected a single strategist-champion to represent them. These champions engaged in a one-on-one chess match, but this was no ordinary game—arcana empowered their pieces, introducing unpredictable powers and abilities. Meanwhile, teams of gunmen clashed in the arena, fighting to secure their champion’s position and eliminate their opponents. A victory on the chessboard granted the winning team enhanced abilities, tipping the balance of power in the chaos below. Ultimately, the champion who triumphed in the final match was granted control of the Goliath, the ultimate prize, bestowed by the Axiom to shape the fate of Tactorius.",
+    "storyText": "Ophion explained the Tactorius Games, a brutal contest of strategy and survival where each faction selected a single strategist-champion to represent them. These champions engaged in a one-on-one chess match, but this was no ordinary game—arcana empowered their pieces, introducing unpredictable powers and abilities. Meanwhile, teams of soldiers clashed in the arena, fighting to secure their champion’s position and eliminate their opponents. A victory on the chessboard granted the winning team enhanced abilities, tipping the balance of power in the chaos below. Ultimately, the champion who triumphed in the final match was granted control of the Goliath, the ultimate prize, bestowed by the Axiom to shape the fate of Tactorius.",
     "reward": [],
     "prereq": "lesson-6",
     "opponent": "nu",
@@ -2452,7 +2452,7 @@
       [0, 0]
     ],
     "nodeText": "Outflank your opponents King in this endgame scenario.",
-    "storyText": "The plan to attack Voltaire at the docks was precise and dangerous, relying on the unique strengths of the team. Ophion’s gunmen would create a diversion, engaging Voltaire’s enforcers in a firefight to draw attention away from the main objective. Cassandra, with her wraith-like shapeshifting and heightened senses, would infiltrate the warehouses, disabling security and marking key targets. Sidian, as the spectre, would phase through barriers undetected, slipping into Voltaire’s command post to gather intel and sabotage critical operations. The combined efforts were designed to destabilize Voltaire’s operations, but success hinged on perfect coordination and the hope that the chaos would expose the cracks in Voltaire’s iron grip on the city.",
+    "storyText": "The plan to attack Voltaire at the docks was precise and dangerous, relying on the unique strengths of the team. Ophion’s soldiers would create a diversion, engaging Voltaire’s enforcers in a firefight to draw attention away from the main objective. Cassandra, with her wraith-like shapeshifting and heightened senses, would infiltrate the warehouses, disabling security and marking key targets. Sidian, as the spectre, would phase through barriers undetected, slipping into Voltaire’s command post to gather intel and sabotage critical operations. The combined efforts were designed to destabilize Voltaire’s operations, but success hinged on perfect coordination and the hope that the chaos would expose the cracks in Voltaire’s iron grip on the city.",
     "reward": [],
     "prereq": "lesson-7",
     "opponent": "nu",
@@ -3269,14 +3269,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The Wise Peacock folded its radiant feathers gently, its gaze calm yet contemplative. The arcana around Sidian dimmed, but there was no judgment in the silence—only a quiet understanding. The balance of Tetraea had shifted, but the Peacock’s presence carried a sense of patience, as if to remind him that even failure could be a step toward growth."
     },
     "time": [
       [400, 3],
       [200, 1]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "In the serene garden at the heart of the city, the Wise Peacock stood among blooming arcana-infused flora, its mechanical form radiating a timeless elegance. Here, knowledge flowed freely, shared with any who sought it, for the Peacock believed wisdom was a gift meant for all. It spoke of Tetraea, a world of interconnected cities, each powered by an Axiom—ancient constructs that provided the energy sustaining life and order. Automata Prime, a realm of sentient machines, struggled with chaos as its Axiom pulsed faintly amid political strife. Ra Metropolis thrived in innovation, its Axiom a beacon of progress. Vermillion, the arid and war-torn desert, survived through sheer will under the protection of its flickering Axiom. Cerulean Deep, a vast oceanic expanse, held its Axiom deep beneath the waves, shrouded in mystery. The Peacock’s words painted a picture of Tetraea as a fragile ecosystem, each Axiom vital, yet vulnerable, its balance tied to the fate of all.",
     "reward": [],
     "prereq": "lesson-8",
     "opponent": "peacock",
@@ -3324,14 +3324,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The Wise Peacock folded its radiant feathers gently, its gaze calm yet contemplative. The arcana around Sidian dimmed, but there was no judgment in the silence—only a quiet understanding. The balance of Tetraea had shifted, but the Peacock’s presence carried a sense of patience, as if to remind him that even failure could be a step toward growth."
     },
     "time": [
       [160, 0],
       [80, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The Wise Peacock continued, its mechanical eyes glinting with insight as it spoke of the delicate balance between the cities of Tetraea. Ra Metropolis and Automata Prime maintained an uneasy neutrality, their interactions limited to cautious trade agreements and shared technological advancements. Yet beneath the surface, mistrust lingered, as Automata Prime’s volatile politics often threatened to spill into Ra’s carefully controlled order. Vermillion and Cerulean Deep, however, stood locked in a cold war, their ideologies irreconcilable. Vermillion, the heretics, rejected the sanctity of the Axioms, viewing them as relics of oppression, while Cerulean Deep, the disciples, revered the Axioms as divine entities, their existence central to their culture and faith. Skirmishes at their shared borders were rare but fierce, each side wary of provoking the other into full-scale conflict. The Peacock’s words underscored the fragility of the peace and the ever-present risk that one spark could engulf Tetraea in chaos.",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "peacock",
@@ -3379,14 +3379,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The Wise Peacock folded its radiant feathers gently, its gaze calm yet contemplative. The arcana around Sidian dimmed, but there was no judgment in the silence—only a quiet understanding. The balance of Tetraea had shifted, but the Peacock’s presence carried a sense of patience, as if to remind him that even failure could be a step toward growth."
     },
     "time": [
       [300, 5],
       [200, 5]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The Wise Peacock described the Goliaths, each a towering embodiment of its city’s essence and power. Automata Prime’s Goliath, a humanoid automaton of steel and precision, symbolized the ingenuity and resilience of its creators. Ra Metropolis’s Goliath took the form of a sphinx, its sleek design exuding authority and wisdom, a guardian of progress. Vermillion’s Goliath was a fiery phoenix, rising endlessly from the ashes, a living testament to survival through destruction. Cerulean Deep’s Goliath, a sinuous serpent of coral and shimmering water, moved with fluid grace, embodying the city’s deep connection to the ocean and its mysteries. Each Goliath was unique, its power tied to the Axiom of its city, and all were vital to maintaining the fragile balance of Tetraea.",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "peacock",
@@ -3659,14 +3659,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The Wise Peacock folded its radiant feathers gently, its gaze calm yet contemplative. The arcana around Sidian dimmed, but there was no judgment in the silence—only a quiet understanding. The balance of Tetraea had shifted, but the Peacock’s presence carried a sense of patience, as if to remind him that even failure could be a step toward growth."
     },
     "time": [
       [120, 3],
       [80, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The Wise Peacock lamented the misuse of arcana, its shimmering feathers dimming as it spoke. Once a source of harmony and growth, arcana had become a tool for greed and violence in the fractured cities. In Automata Prime, black-market arcana fueled Voltaire’s militia, enhancing weapons and creating forbidden constructs. Ra Metropolis exploited arcana to drive unchecked innovation, its elite hoarding it for profit while the poor suffered. Vermillion saw arcana as a weapon of rebellion, wielded by desperate outcasts in their war against oppression. Even Cerulean Deep, with its reverence for arcana, had fallen to corruption, as smugglers plundered its sacred reserves for power and wealth. The Peacock viewed this desecration as a tragedy, warning that arcana, if abused, could destabilize the Axioms themselves, plunging Tetraea further into chaos.",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "peacock",
@@ -3939,14 +3939,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The Wise Peacock folded its radiant feathers gently, its gaze calm yet contemplative. The arcana around Sidian dimmed, but there was no judgment in the silence—only a quiet understanding. The balance of Tetraea had shifted, but the Peacock’s presence carried a sense of patience, as if to remind him that even failure could be a step toward growth."
     },
     "time": [
       [200, 5],
       [100, 5]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Automata Prime’s politics were mired in chaos, with Voltaire’s control extending beyond his militia to the multiplying arcana, a powerful resource that allowed his forces to outnumber all others. The factions, fractured by conflicting ideals and rivalries, failed to unite against him, their inability to coordinate leaving them vulnerable to his domination. The Wise Peacock lamented this disarray, condemning the Tactorius Games as a hollow spectacle manipulated by Voltaire to maintain his stranglehold on the city, while the factions’ disunity ensured his continued rule over the broken remains of Automata Prime.",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "peacock",
@@ -6041,14 +6041,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The Wise Peacock folded its radiant feathers gently, its gaze calm yet contemplative. The arcana around Sidian dimmed, but there was no judgment in the silence—only a quiet understanding. The balance of Tetraea had shifted, but the Peacock’s presence carried a sense of patience, as if to remind him that even failure could be a step toward growth."
     },
     "time": [
       [120, 3],
       [80, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "In the serene garden of the Peacock’s temple, the Wise Peacock extended a shimmering arcana to Sidian, its form pulsing faintly with an unfamiliar energy. The gift, intricate and enigmatic, resonated in his hands, yet its purpose remained unclear to him. The Peacock, its mechanical eyes glinting with gentle understanding, offered no instruction, only a calm assurance that its power would reveal itself when the time was right. As Sidian prepared to leave, the Peacock’s voice echoed softly, welcoming him to return whenever he sought guidance or clarity, for the temple and its wisdom would always remain open to him.",
     "reward": [],
     "prereq": "temple-2",
     "opponent": "peacock",
@@ -8129,21 +8129,21 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "Sidian miscalculated the chaos of the Deviants, their unpredictable tactics overwhelming his focus. Their champion’s erratic moves, bolstered by volatile arcana, left him cornered and unable to recover. His gunmen faltered below, and with a decisive blow, the Deviants secured their victory, leaving Sidian to reflect on the dangers of disorder."
     },
     "time": [
       [400, 0],
       [140, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The arena was chaotic, reflecting the unorthodox nature of the Deviants. Their champion played recklessly, sacrificing pawns to trigger explosive arcana effects that left Sidian scrambling for control. The soldiers below mirrored this chaos, using wild, unpredictable tactics to disorient their opponents. Sidian, relying on his emerging spectre abilities, managed to phase through an arcana-powered assault and counter with precision, exploiting gaps in their chaos. He barely secured victory, learning that unpredictability, while powerful, often left dangerous openings.",
     "reward": [],
     "prereq": "",
-    "opponent": "ephilate",
+    "opponent": "sigma",
     "hero": "",
     "storyTitle": "",
-    "theme": "jail",
-    "bookTheme": "jail",
+    "theme": "conclave",
+    "bookTheme": "conclave",
     "panels": {
       "panel-1": {
         "fen": "2nbkr2/2pppp2/8/8/8/8/2PPPP2/2RRKR2 w - - 0 1",
@@ -8180,21 +8180,21 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The Zealots’ unrelenting fervor proved too much for Sidian’s measured approach. Their champion’s divine arcana struck with overwhelming power, pushing him into a defensive corner. Below, their disciplined gunmen swept the field, and Sidian was forced to concede, learning that sheer force of belief could be a formidable weapon."
     },
     "time": [
       [270, 2],
       [70, 1]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The Zealots brought a relentless fervor to the match, their champion wielding divine arcana that transformed their pieces into radiant weapons of destruction. The battlefield below echoed this energy, with their soldiers advancing in disciplined waves, bolstered by an aura of invincibility. Sidian quickly realized that direct confrontation was futile. Instead, he bided his time, using his spectre abilities to evade their attacks and waiting for the moment when their overconfidence left their defenses exposed. With a calculated strike, he turned their aggression against them, narrowly earning victory through patience and precision.",
     "reward": [],
     "prereq": "mission-2",
-    "opponent": "automata1",
+    "opponent": "omega",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
-    "bookTheme": "robotcity",
+    "theme": "conclave",
+    "bookTheme": "conclave",
     "panels": {
       "panel-1": {
         "fen": "1rrrkr2/1ppppp2/8/8/8/8/PPPPPPP1/NNBBKZZ1 w - - 0 1",
@@ -8231,21 +8231,21 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The Syndicate’s calculated precision slowly dismantled Sidian’s strategy. Their champion exploited every weakness, and their gunmen methodically cut off his team’s advances. Pinned and outmaneuvered, Sidian watched as the final moves unfolded against him, a harsh reminder of the cost of underestimating a well-oiled machine."
     },
     "time": [
       [300, 4],
       [90, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The Syndicate’s champion approached the match like a business deal, using arcana to subtly manipulate the board, creating traps that left Sidian’s forces cornered. Below, their soldiers worked methodically, cutting off Sidian’s team’s options with precision strikes. For much of the match, Sidian felt like he was losing control, but he began to recognize the Syndicate’s reliance on patterns and predictability. By breaking the rhythm with an unexpected move, he disrupted their strategy and seized the upper hand. The victory was a hard-earned lesson in outthinking even the most calculated opponents.",
     "reward": [],
     "prereq": "mission-3",
-    "opponent": "automata2",
+    "opponent": "mu",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
-    "bookTheme": "robotcity",
+    "theme": "conclave",
+    "bookTheme": "conclave",
     "panels": {
       "panel-1": {
         "fen": "2nnknn1/2ppppp1/8/8/8/8/2PPPPP1/2BBKBB1 w - - 0 1",
@@ -8286,21 +8286,21 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "Sidian faltered under the relentless waves of multiplying arcana, unable to disrupt the core in time. As his simulated allies fell and the projection closed in, the test ended, leaving him with the bitter sting of failure and a reminder from Ophion that defeat was part of growth."
     },
     "time": [
       [300, 4],
       [90, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Ophion’s test culminated in a simulated boss battle, a vivid recreation of a Voltaire-like figure commanding an army powered by multiplying arcana. The arena warped into a crumbling cityscape, with enemies emerging from every shadow. The simulated Voltaire, an imposing figure draped in ethereal armor, stood atop a towering platform, unleashing waves of arcana that overwhelmed Sidian’s defenses. Sidian had to think quickly, phasing through collapsing structures to avoid devastating attacks while coordinating with simulated allies. As the enemies multiplied, Sidian realized the key wasn’t brute force—it was precision. Using his spectre abilities, he infiltrated the platform, bypassing the enemy’s defenses, and struck at the core of the arcana system controlling the horde. With a final surge of energy, the platform shattered, the enemies dissipated, and the simulated Voltaire crumbled into light. Sidian stood amidst the ruins, exhausted but victorious, as Ophion ended the test, impressed by his determination but warning that the real Voltaire would not be so easily undone.",
     "reward": [],
     "prereq": "mission-4",
-    "opponent": "voltairegrunt",
+    "opponent": "nu",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
-    "bookTheme": "robotcity",
+    "theme": "conclave",
+    "bookTheme": "conslave",
     "panels": {
       "panel-1": {
         "fen": "4k3/2pppp2/8/8/8/8/2PPPP2/4K3 w - - 0 1",
@@ -8341,20 +8341,20 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The shadowy figure’s patterns wove faster, light spiraling around Sidian as he was pulled into shattered visions—ruins, lost battles, and a broken Goliath. The world around him dissolved, leaving him stranded in the fragmented echoes of failure."
     },
     "time": [
       [300, 4],
       [90, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sidian left the Conclave, the weight of Ophion’s warnings heavy on his mind as he stepped into the dimly lit streets. The city’s hum surrounded him, but the air soon grew unnaturally still, the sounds fading as though the world held its breath. Ahead, a shadowy figure appeared, indistinct yet deliberate, their movements weaving glowing patterns into the air. The intricate designs shimmered briefly, revealing fractured glimpses of possible futures—battlefields drenched in ruin, a crumbling city, and the towering silhouette of the Goliath. Sidian froze, watching as the figure’s patterns dissolved into nothingness, leaving him alone in the oppressive silence. The moment passed, and the noise of the streets returned, but the encounter lingered in his mind, an enigma tied to the growing storm he could feel approaching.",
     "reward": [],
     "prereq": "mission-5",
-    "opponent": "voltairegrunt",
+    "opponent": "",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
+    "theme": "figure",
     "bookTheme": "robotcity",
     "panels": {
       "panel-1": {
@@ -8402,21 +8402,21 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "Cornered against the crumbling walls of the dockside lair, Sidian, Cassandra, and Ophion faced Voltaire’s militia, their forces pressing closer with multiplying arcana. Exhausted and outmatched, the trio stood defiant but helpless as Voltaire advanced, his triumph sealed, their rebellion crushed."
     },
     "time": [
       [300, 4],
       [90, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The assault on Voltaire’s dockside lair began under the cover of darkness, the crashing waves masking the sounds of approaching footsteps. Ophion’s gunmen moved first, spreading through the shadows to secure key positions, their weapons trained on Voltaire’s enforcers patrolling the perimeter. Cassandra, shifting fluidly between forms, infiltrated the warehouse, disabling arcana-powered alarms and marking critical targets with swift precision. Sidian phased through the walls, navigating the labyrinth of containers and machinery toward Voltaire’s command post. The docks were a fortress of multiplying arcana, and as the first shots rang out, chaos erupted. Voltaire’s forces swarmed from hidden positions, their numbers seemingly endless, bolstered by the multiplying arcana that Sidian had to dismantle. The battle raged, the air thick with the hum of arcana and gunfire, as Sidian pressed deeper into the heart of Voltaire’s lair, knowing that this was only the beginning.",
     "reward": [],
     "prereq": "mission-6",
-    "opponent": "voltairegrunt",
+    "opponent": "chi",
     "hero": "",
     "storyTitle": "",
-    "theme": "robotcity-room",
-    "bookTheme": "robotcity",
+    "theme": "docks",
+    "bookTheme": "docks",
     "panels": {
       "panel-1": {
         "fen": "2rwkbb1/2ppppp1/8/8/8/8/2PPPPP1/2RWKNR1 w - - 0 1",
@@ -8457,21 +8457,21 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "Cornered against the crumbling walls of the dockside lair, Sidian, Cassandra, and Ophion faced Voltaire’s militia, their forces pressing closer with multiplying arcana. Exhausted and outmatched, the trio stood defiant but helpless as Voltaire advanced, his triumph sealed, their rebellion crushed."
     },
     "time": [
       [300, 4],
       [90, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The docks were a battleground of fire and chaos, but Sidian pressed forward, his focus locked on Voltaire’s operations. He encountered one of Voltaire’s high-ranking grunts, a towering enforcer clad in arcana-infused armor. The grunt fought with brutal efficiency, wielding weapons enhanced by the multiplying arcana, his strikes relentless and overwhelming. As they clashed, the grunt’s words cut through the noise, defending Voltaire’s rule as the only force capable of maintaining order in a fractured world. Sidian dodged a powerful blow, phasing through the wreckage to gain an advantage. He countered with precision, using his spectre abilities to destabilize the arcana fueling his opponent. With a final, calculated strike, the grunt fell, but his justification lingered in Sidian’s mind—Voltaire’s reign wasn’t just fear; for some, it was survival. Shaken, Sidian moved deeper into the lair, the weight of the confrontation fueling his determination.",
     "reward": [],
     "prereq": "mission-7",
-    "opponent": "voltaire",
+    "opponent": "chi",
     "hero": "",
     "storyTitle": "",
-    "theme": "city-voltaire",
-    "bookTheme": "robotcity-room",
+    "theme": "docks",
+    "bookTheme": "docks",
     "panels": {
       "panel-1": {
         "fen": "1wwwkbb1/1pppppp1/8/8/8/8/PPPPPPPP/UZBWKBZN w - - 0 1",
@@ -8511,22 +8511,22 @@
       "lose1": "",
       "lose2": "",
       "lose3": "",
-      "victory": "",
-      "defeat": ""
+      "victory": "As Voltaire stood triumphant, the portal's energy shifted, its glow intensifying as the Axiom intervened. The forbidden power he had wielded turned against him, the portal pulling him toward its core. His protests were drowned out by the crackling void as he was cast into an ancient battlefield, a realm of eternal conflict and judgment. The portal collapsed behind him, leaving only silence and the ruins of his lair, his reign shattered in an instant.",
+      "defeat": "Cornered against the crumbling walls of the dockside lair, Sidian, Cassandra, and Ophion faced Voltaire’s militia, their forces pressing closer with multiplying arcana. Exhausted and outmatched, the trio stood defiant but helpless as Voltaire advanced, his triumph sealed, their rebellion crushed."
     },
     "time": [
       [300, 4],
       [90, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The chamber erupted with chaos as Voltaire unleashed the full force of his multiplying arcana, his platform glowing with an intensity that fractured the air around it. As Sidian phased through the maelstrom to strike at the arcana cores, Voltaire countered with devastating precision. Cassandra fought relentlessly, her wraith-like form tearing through the constructs, but Voltaire was prepared. Activating the forbidden cross-multiverse portal, he used its raw energy to break the battle’s tide. With a violent surge, he cast Sidian into the swirling void, sending him hurtling toward the depths of the city jail. Cassandra, caught in the blast, vanished into the portal’s pull, flung into the endless sands of the Vermillion desert. The battlefield fell silent for a moment, the portal's energy crackling ominously.",
     "reward": [],
     "prereq": "mission-8",
-    "opponent": "automata2",
+    "opponent": "voltaire",
     "hero": "",
     "storyTitle": "",
     "theme": "city-voltaire",
-    "bookTheme": "robotcity-room",
+    "bookTheme": "city-voltaire",
     "panels": {
       "panel-1": {
         "fen": "1wwwkww1/1pppppp1/8/8/8/8/1PPPPPP1/1QWRKWQ1 w - - 0 1",

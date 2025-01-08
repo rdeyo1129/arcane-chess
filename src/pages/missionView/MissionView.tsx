@@ -1095,7 +1095,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               if (
                 _.includes(
                   this.state.gameOverType,
-                  `${this.state.playerColor} mates`
+                  `${this.state.playerColor} mates.`
                 )
               ) {
                 this.stopAndReturnTime();
@@ -1386,7 +1386,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       this.stopAndReturnTime();
                       this.setState({
                         gameOver: true,
-                        gameOverType: `${this.state.playerColor} resigns`,
+                        gameOverType: `${this.state.playerColor} resigns.`,
                       });
                     }}
                     color="B"
@@ -1931,7 +1931,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       audioManager.playSound('defeat');
                       this.setState({
                         gameOver: true,
-                        gameOverType: `${this.state.playerColor} resigns`,
+                        gameOverType: `${this.state.playerColor} resigns.`,
                       });
                     }}
                     color="B"
@@ -2058,7 +2058,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           playerTimeout={() => {
                             this.setState({
                               gameOver: true,
-                              gameOverType: 'player timed out',
+                              gameOverType: 'player timed out.',
                             });
                           }}
                         />

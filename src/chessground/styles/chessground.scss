@@ -36,6 +36,7 @@
 .tornados-board,
 .mirror-temple-board,
 .conclave-board,
+.tavern-board,
 .everwanderers-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
@@ -77,8 +78,7 @@
     left top;
 }
 .town-board,
-.sunset-board,
-.tavern-board {
+.sunset-board {
   background-image: 
   // url('/assets/images/white-texture.png'),
     url('/assets/images/board/tactoriusBlue.svg');

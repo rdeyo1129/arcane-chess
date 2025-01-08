@@ -18,7 +18,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sidian stood before a towering bookshelf as an arcana-etched tome floated to him, its pages flipping open with a faint glow. The librarian’s disembodied voice began recounting the ancient battles—a time when the lands were ruled by endless war. Armies clashed without end, their leaders consumed by greed and vengeance. There was no unity, only fractured factions vying for fleeting power, staining the earth with blood. Sidian absorbed the weight of the past, understanding how deeply conflict had shaped Tetraea’s fractured present.",
     "reward": [],
     "prereq": "",
     "opponent": "book",
@@ -149,7 +149,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "A second tome floated forward, its cover dark and pulsing with a faint, ominous glow. As Sidian opened it, the library seemed to dim, the description of the Abyss pouring out like a void. The librarian’s voice painted a grim picture of an infinite, chaotic realm where lost souls drifted endlessly. The Abyss was a prison of despair, a plane beyond life, light, and escape. Sidian felt a shiver as the weight of its existence settled over him, a reminder of the stakes tied to failure.",
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "book",
@@ -280,7 +280,7 @@
       [0, 0]
     ],
     "nodeText": "The endgame scenario that may or may not be in your favor.",
-    "storyText": "",
+    "storyText": "The next tome radiated faint lines of light forming angular patterns across its surface. As Sidian read, the librarian explained the pentagrams—ancient seals created to bind great power. Over time, they became tools of judgment, marking the fates of those defeated in the Tactorius Games. To lose under a pentagram was to be cast into the Abyss, body and soul, ensuring no return. Sidian clenched his fists, realizing how deeply the games were tied to fear and finality.",
     "reward": [],
     "prereq": "lesson-2",
     "opponent": "book",
@@ -671,13 +671,13 @@
       [0, 0]
     ],
     "nodeText": "If you want to hold your own through a full game, keep in mind these conventions when deciding on your moves.",
-    "storyText": "",
+    "storyText": "A larger, heavier tome arrived, its pages gilded with faintly shimmering symbols of unity. Sidian learned how exhaustion from the ancient battles eventually forced the warring factions into uneasy alliances. These alliances gave rise to the cities of Tetraea, with Axioms emerging as stabilizing forces to channel the chaos of arcana. Yet even as the wars ended, the mistrust and scars they left behind became the foundation for Tetraea’s fractured state.",
     "reward": [],
     "prereq": "lesson-3",
-    "opponent": "ephilate",
+    "opponent": "book",
     "hero": "",
     "storyTitle": "",
-    "theme": "clocktower",
+    "theme": "library",
     "bookTheme": "town",
     "panels": {
       "panel-1": {
@@ -934,13 +934,13 @@
       [0, 0]
     ],
     "nodeText": "Learn about the Bishop and Equus pieces. They aren't the strongest, but they are important.",
-    "storyText": "",
+    "storyText": "A slim but intricate tome drifted to Sidian, its cover resembling interwoven threads of light. The librarian recounted the Hexweavers’ intervention at the height of the ancient wars. These enigmatic multiversal beings wove reality itself, using their power to bind the warring factions and establish the first pentagrams to stabilize the multiverse. The Hexweavers vanished after their task, leaving only their seals and whispered legends, but their influence shaped the laws of Tetraea that still endured.",
     "reward": [],
     "prereq": "lesson-4",
-    "opponent": "ephilate",
+    "opponent": "book",
     "hero": "",
     "storyTitle": "",
-    "theme": "clocktower",
+    "theme": "library",
     "bookTheme": "town",
     "panels": {
       "panel-1": {
@@ -1225,14 +1225,14 @@
       [0, 0]
     ],
     "nodeText": "Attain more details about the Bishop and Equus pieces.",
-    "storyText": "",
+    "storyText": "A spectral tome appeared, its pages flickering like distant constellations. As Sidian studied it, the librarian recounted the tale of Tejeduras, the wrathful demigod and ancient ghostly creator tied to the fabric of the multiverse. Tejeduras was said to have crafted the first arcana, weaving it into constructs and entities that laid the foundation for all magic in Tetraea. Though revered for this creation, his wrath stemmed from betrayal by those who sought to misuse his gifts, leading to his retreat into the deepest folds of the multiverse. Sidian felt a chill as he realized that the whispers of Tejeduras’ influence still lingered, shaping the arcana that fueled Tetraea’s fragile balance.",
     "reward": [],
     "prereq": "lesson-5",
-    "opponent": "wizard",
+    "opponent": "book",
     "hero": "",
     "storyTitle": "",
-    "theme": "wizard-room",
-    "bookTheme": "wizard-house",
+    "theme": "library",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/3N4/8/8/7N w - - 0 1",
@@ -1532,13 +1532,13 @@
       [0, 0]
     ],
     "nodeText": "Learn about novice-level tactics and how to spot them.",
-    "storyText": "",
+    "storyText": "The final tome, radiating a kaleidoscope of colors, opened before Sidian, its pages brimming with flowing script and diagrams. The librarian detailed arcana as the essence of life and reality, categorized into elemental, dimensional, and spectral types. Forbidden arcana, tied to the Abyss and pentagrams, were powerful but dangerous, capable of warping existence itself. Sidian began to grasp the magnitude of arcana’s potential, understanding both its wonders and its dangers as he prepared for the trials ahead.",
     "reward": [],
     "prereq": "lesson-6",
-    "opponent": "ephilate",
+    "opponent": "book",
     "hero": "",
     "storyTitle": "",
-    "theme": "tavern",
+    "theme": "library",
     "bookTheme": "town",
     "panels": {
       "panel-1": {
@@ -1943,7 +1943,7 @@
       [100, 5]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The air shifted as Sidian entered Raven’s Den, a dimly lit temple cloaked in perpetual twilight. A raven perched atop a jagged column at the entrance, its eyes gleaming with intelligence and mischief. It cawed sharply and fluttered into the corridor ahead, beckoning him to follow. As Sidian stepped through, the entrance behind him dissolved, replaced by an endless hallway lined with doors. The raven lingered just ahead, offering cryptic remarks that felt more mocking than helpful, its presence both a guide and a challenge.",
     "reward": [],
     "prereq": "lesson-7",
     "opponent": "raven",
@@ -4032,7 +4032,7 @@
       [80, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The raven flitted down the corridor, landing near a heavy stone door and tilting its head as if to encourage Sidian forward. Trusting the hint, Sidian pushed open the door, revealing only a blank stone wall on the other side. The air grew heavy with silence, broken only by the raven’s soft cackle as it disappeared down another corridor. Frustrated, Sidian retraced his steps, the endless doors feeling more oppressive with every turn.",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "raven",
@@ -6092,7 +6092,7 @@
       [100, 5]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sidian pressed his hand against the cold stone door, the weight of it groaning as it swung open. Beyond lay a dimly lit hallway stretching forward before splitting into two paths, each shrouded in shadow. The left fork flickered faintly with a soft blue light emanating from an unseen source, while the right remained dark and uninviting, its air heavy with an oppressive stillness. The raven landed on a nearby ledge, tilting its head as if amused, its cryptic caw echoing through the space. Sidian hesitated, feeling the pull of both paths, uncertain whether the raven’s presence was a warning or an invitation to trust his instincts.",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "raven",
@@ -8212,7 +8212,7 @@
       [80, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The raven perched atop another doorway, its beady eyes watching as it spoke in riddles, hinting at a correct path. Sidian, suspicious of its intentions, chose to ignore the advice and opened a door at random. The room beyond was empty, its silence ringing with futility. As he turned, the corridor behind him had shifted, the way back now obscured. The raven reappeared, its mocking cry echoing through the maze as Sidian realized he had wasted precious time on mistrust.",
     "reward": [],
     "prereq": "temple-3",
     "opponent": "raven",
@@ -10332,7 +10332,7 @@
       [100, 5]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "After wandering aimlessly, Sidian followed the raven into a hidden chamber deep within the maze. At the center stood a pedestal, atop which rested a shimmering arcana pulsing with faint light. The raven circled the room, offering riddles about focus and calculation. As Sidian reached for the arcana, it filled him with a surge of energy, granting fleeting visions of possible futures. The raven cawed approvingly and vanished into the shadows, leaving Sidian with newfound clarity to navigate the temple.",
     "reward": [],
     "prereq": "temple-3",
     "opponent": "raven",
@@ -12464,7 +12464,7 @@
       [80, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "With the future sight arcana, Sidian began to anticipate the outcomes of each door, visualizing paths before committing to them. The raven returned, sometimes offering misleading riddles, other times cryptic encouragement, but Sidian tuned out its distractions, trusting his own focus and the power of the arcana. Door by door, he moved with purpose, the labyrinth’s oppressive weight lifting as the correct path revealed itself. At last, he stepped through the final door, emerging into the open air, the raven’s caw fading into the distance as the temple stood silent behind him.",
     "reward": [],
     "prereq": "temple-5",
     "opponent": "raven",
@@ -14611,14 +14611,14 @@
       [45, 0]
     ],
     "nodeText": "Get your King to the center to win or defeat your opponent normally.",
-    "storyText": "",
+    "storyText": "The dimly lit tavern buzzed with hushed conversation as Sidian approached a grizzled hunter nursing a half-empty tankard. The hunter recounted the strange disappearances plaguing Thornreach—travelers vanishing without a trace, their camps eerily untouched save for faint scorch marks etched into the ground. As the hunter leaned closer, his voice dropped to a whisper, and he mentioned an ancient name: Baelgorath. The sorcerer’s curse, he claimed, was the source of the disappearances, spreading like a sickness through the forest. Winning a game of cards against the hunter, Sidian earned a few coins and a warning not to stray too far into the shadows of Thornreach.",
     "reward": [],
     "prereq": "",
-    "opponent": "ephilate",
+    "opponent": "hunter",
     "hero": "",
     "storyTitle": "",
-    "theme": "forest",
-    "bookTheme": "forest",
+    "theme": "tavern",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
@@ -14664,14 +14664,14 @@
       [45, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Later that night, Sidian met another hunter who shared tales of the Ephilates, spectral figures cursed to wander Thornshade. Their souls, stolen by Baelgorath’s dark magic, were bound to the forest, endlessly searching for more to trap in their cursed state. The hunter described the spirits’ eerie stillness, their silent forms concealing the power to ensnare the living with spectral chains. After losing a few coins in a dice game, Sidian left the tavern with more questions than answers, the looming presence of Baelgorath casting a shadow over everything he had learned.",
     "reward": [],
     "prereq": "mission-1",
-    "opponent": "oldwoman",
+    "opponent": "hunter",
     "hero": "",
     "storyTitle": "",
-    "theme": "sunset",
-    "bookTheme": "sunset",
+    "theme": "tavern",
+    "bookTheme": "town",
     "panels": {
       "panel-1": {
         "fen": "4k3/3ppp2/8/8/8/8/2PPPP2/4K3 w - - 0 1",
@@ -14719,13 +14719,13 @@
       [45, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sidian climbed the spiraling staircase of the clocktower, the rhythmic ticking reverberating through the massive structure. At the summit, he found the Watchmaker, an enigmatic figure cloaked in metallic robes, their hands carefully adjusting the intricate mechanisms of the central gear. Without turning, the Watchmaker spoke, their voice calm yet unsettling, weaving cryptic remarks about the fragility of time and the delicate balance Sidian’s actions threatened to unravel. Amid their musings, they mentioned the Mirror Temple, a place west of Thornshade that existed only in whispers—a rumored multiverse portal connecting realms beyond comprehension.",
     "reward": [],
     "prereq": "mission-2",
-    "opponent": "ephilate",
+    "opponent": "",
     "hero": "",
     "storyTitle": "",
-    "theme": "tavern",
+    "theme": "clocktower",
     "bookTheme": "town",
     "panels": {
       "panel-1": {
@@ -14774,13 +14774,13 @@
       [45, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "As the conversation lingered, the Watchmaker’s tone shifted, hinting at another destination—Raven’s Den. Unlike the Mirror Temple, which bridged dimensions, Raven’s Den was a mystical sanctuary said to house a rare form of magic unlike anything in Tetraea. The Watchmaker warned that Raven’s Den was as dangerous as it was powerful, its magic capable of reshaping perception itself. Turning back to their work, the Watchmaker dismissed Sidian with a final cryptic comment, leaving him to descend the clocktower, the weight of their revelations pressing heavily on his thoughts.",
     "reward": [],
     "prereq": "mission-3",
-    "opponent": "ephilate",
+    "opponent": "",
     "hero": "",
     "storyTitle": "",
-    "theme": "tavern",
+    "theme": "clocktower",
     "bookTheme": "town",
     "panels": {
       "panel-1": {
@@ -14822,21 +14822,21 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The Ephilate’s summoning circle erupted, spectral chains pulling Sidian into its glowing core. The ground fractured beneath him as the portal to the Abyss opened wide, its endless void swallowing him whole. As he fell, the oppressive darkness closed in, and distant chanting echoed around him, a haunting chorus from the satanic church that grew louder with each passing moment, marking his descent into eternal oblivion."
     },
     "time": [
       [500, 0],
       [60, 10]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Venturing deeper into Thornreach, Sidian encountered his first Ephilate—a spectral figure shrouded in an eerie stillness. It sat motionless, its hollow eyes fixed on him, emitting a faint hum that seemed to pull at his very essence. As Sidian approached, the Ephilate’s arcana flared, and spectral chains erupted from the ground, forcing him to phase and counterattack with precision. With a final blow, the Ephilate dissolved into the shadows, but the oppressive energy in the air remained.",
     "reward": [],
     "prereq": "mission-4",
     "opponent": "ephilate",
     "hero": "",
     "storyTitle": "",
-    "theme": "tavern",
-    "bookTheme": "town",
+    "theme": "forest",
+    "bookTheme": "forest",
     "panels": {
       "panel-1": {
         "fen": "3wk3/3pp3/8/8/8/8/3PP3/3SK3 w - - 0 1",
@@ -14877,14 +14877,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The Ephilate’s summoning circle erupted, spectral chains pulling Sidian into its glowing core. The ground fractured beneath him as the portal to the Abyss opened wide, its endless void swallowing him whole. As he fell, the oppressive darkness closed in, and distant chanting echoed around him, a haunting chorus from the satanic church that grew louder with each passing moment, marking his descent into eternal oblivion."
     },
     "time": [
       [600, 10],
       [200, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Deeper into the shadowed expanse of Thornreach, Sidian encountered a second Ephilate, its spectral form still and unyielding as it blocked his path. Without warning, the creature raised its ghostly hands, weaving intricate patterns of arcana into the air. The ground beneath Sidian erupted into a glowing summoning circle, spectral chains lashing out to bind him before he could react. Stripped of his spectre abilities, he struggled in vain as the circle pulsed with dark energy, dragging him through a twisting veil of dimensions. When the light faded, he found himself in the heart of the satanic church, surrounded by chanting priests and under the cold, piercing gaze of Baelgorath, his captor and tormentor.",
     "reward": [],
     "prereq": "mission-5",
     "opponent": "ephilate",
@@ -14932,14 +14932,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The summoning circle flared with unnatural light, and Sidian, restrained by Baelgorath’s arcane chains, was dragged into its center. The portal roared open, revealing towering cross-dimensional beings with piercing eyes and twisted forms. Baelgorath’s voice echoed with triumph as he declared Sidian the final offering. The beings’ claws reached through the portal, pulling Sidian into their realm as the circle’s glow faded, leaving behind only silence and Baelgorath’s dark laughter."
     },
     "time": [
       [720, 2],
       [360, 4]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sidian awoke bound in spectral chains, the cold, damp air of the satanic church pressing down like a shroud. The cathedral’s towering walls glowed faintly with arcane runes, their light pulsing in rhythm with the chants of robed priests encircling him. At the center of the grand hall, Baelgorath stood within a massive summoning circle, his form imposing and his voice commanding. He addressed his followers, detailing his dark triumph—the curse he had unleashed upon Thornshade and Gravespine. By corrupting the lands, he had siphoned their life force into the summoning circle, preparing to open a portal to the Abyss that would solidify his dominion over Tetraea.",
     "reward": [],
     "prereq": "mission-6",
     "opponent": "priest",
@@ -14988,15 +14988,15 @@
       "lose1": "",
       "lose2": "",
       "lose3": "",
-      "victory": "",
-      "defeat": ""
+      "victory": "Sidian channeled the arcana’s power, shattering Baelgorath’s defenses and redirecting the summoning circle’s energy. The portal to the Abyss flared, its pull reversing onto Baelgorath. The sorcerer’s defiant screams faded as he was dragged into the void. The portal closed, leaving Sidian victorious amidst the ruins, the chamber finally silent.",
+      "defeat": "The summoning circle flared with unnatural light, and Sidian, restrained by Baelgorath’s arcane chains, was dragged into its center. The portal roared open, revealing towering cross-dimensional beings with piercing eyes and twisted forms. Baelgorath’s voice echoed with triumph as he declared Sidian the final offering. The beings’ claws reached through the portal, pulling Sidian into their realm as the circle’s glow faded, leaving behind only silence and Baelgorath’s dark laughter."
     },
     "time": [
       [500, 10],
       [200, 10]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The summoning circle erupted in chaos as Sidian shattered its arcane flow, sending cracks rippling across the cathedral floor. Baelgorath sneered, his escape into the Abyss interrupted as he turned his full attention to Sidian. With a wave of his hand, the sorcerer unleashed waves of abyssal energy, summoning spectral constructs to overwhelm him. The priests scattered, their chants silenced by the raw power now coursing through the chamber. Sidian steadied himself, channeling the arcana he had mastered to counter Baelgorath’s relentless onslaught. The air thickened with the clash of energies, every strike bringing the two closer to the inevitable confrontation at the center of the shattered circle.",
     "reward": [],
     "prereq": "mission-7",
     "opponent": "priest",

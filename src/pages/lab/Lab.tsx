@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 // import book1 from 'src/data/books/book1.json';
 // import book2 from 'src/data/books/book2.json';
-import book3 from 'src/data/books/book3.json';
+// import book3 from 'src/data/books/book3.json';
 import book4 from 'src/data/books/book4.json';
 // import book5 from 'src/data/books/book5.json';
 // import book6 from 'src/data/books/book6.json';

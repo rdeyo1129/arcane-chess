@@ -1279,7 +1279,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "HORDE",
+        "preset": "",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
@@ -1306,7 +1306,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "HORDE",
+        "preset": "",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
@@ -1336,7 +1336,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "HORDE",
+        "preset": "",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
@@ -1367,7 +1367,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "HORDE",
+        "preset": "",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
@@ -1510,7 +1510,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "HORDE",
+        "preset": "",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
@@ -15558,9 +15558,9 @@
     "bookTheme": "tornados",
     "panels": {
       "panel-1": {
-        "fen": "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1",
+        "fen": "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPKPPP w kq - 0 1",
         "fenHistory": [
-          "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w kq - 0 1"
+          "rnbqkbnr/pppppppp/8/1PP2PP1/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPKPPP w kq - 0 1"
         ],
         "history": [],
         "panelText": "",
@@ -15576,7 +15576,7 @@
           "royaltyV": {},
           "royaltyE": {}
         },
-        "preset": "HORDE",
+        "preset": "",
         "whiteArcane": {},
         "blackArcane": {},
         "config": {},
@@ -15672,9 +15672,9 @@
     "bookTheme": "desert-voltaire",
     "panels": {
       "panel-1": {
-        "fen": "pppppppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/RNBQKBNR w - - 0 1",
+        "fen": "ppppkppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/RNBQKBNR w - - 0 1",
         "fenHistory": [
-          "pppppppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/RNBQKBNR w - - 0 1"
+          "ppppkppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/RNBQKBNR w - - 0 1"
         ],
         "history": [],
         "panelText": "",

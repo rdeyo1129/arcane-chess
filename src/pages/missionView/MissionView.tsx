@@ -1095,7 +1095,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               if (
                 _.includes(
                   this.state.gameOverType,
-                  `${this.state.playerColor} mates.`
+                  `${this.state.playerColor} mates`
                 )
               ) {
                 this.stopAndReturnTime();

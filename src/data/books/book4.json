@@ -18,7 +18,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sidian stepped from the dense shadows of Thornshade into the blinding expanse of the western desert, where the air shimmered with heat and possibility. At the edge of the sands, a figure stood waiting. Mirage, her form indistinct and shifting like the mirages that danced across the horizon, was there as though she had always been a part of this landscape. Her presence was immediate and undeniable, an anchor in the sea of emptiness.",
     "reward": [],
     "prereq": "",
     "opponent": "oldwoman",
@@ -145,7 +145,7 @@
       [0, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Without preamble, the truths of his journey began to unfold through her. The Mirror Temple, she revealed, was no ordinary destination. It was a gateway to another realm, a place where the boundaries of existence dissolved and the soul was laid bare. The temple’s power was tied to the balance of the realms, and its secrets could reshape those who entered—but only if they proved worthy.",
     "reward": [],
     "prereq": "lesson-1",
     "opponent": "oldwoman",
@@ -301,14 +301,14 @@
       [0, 0]
     ],
     "nodeText": "Learn intermediate Pawn patterns.",
-    "storyText": "",
+    "storyText": "She pointed Sidian toward Stormcall Junction, a town perched precariously on the edge of this balance. The town was fractured, its people and the spirits of its dead trapped in limbo. Beneath its crumbling surface, the mines held scattered fragments of arcana, ancient and powerful, their presence calling to both the living and the dead. Stormcall Junction had become a flashpoint, its instability threatening the realms it connected.",
     "reward": [],
     "prereq": "lesson-2",
-    "opponent": "cowboy",
-    "hero": "oldwoman",
+    "opponent": "oldwoman",
+    "hero": "",
     "storyTitle": "",
-    "theme": "saloon",
-    "bookTheme": "wildwest",
+    "theme": "sunset",
+    "bookTheme": "sunset",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -580,14 +580,14 @@
       [0, 0]
     ],
     "nodeText": "Learn about Intermediate Rook concepts.",
-    "storyText": "",
+    "storyText": "Mirage then spoke of Voltaire—not the one Sidian had encountered before, but a rogue variant of him, twisted by arcane obsession. This Voltaire sought to claim all arcana, believing it would grant him dominion over existence and elevate him to demigod status. He had already turned his sights to the mines of Stormcall Junction, and his ambition left destruction in its wake.",
     "reward": [],
     "prereq": "lesson-3",
-    "opponent": "cowboy",
-    "hero": "oldwoman",
+    "opponent": "oldwoman",
+    "hero": "",
     "storyTitle": "",
-    "theme": "saloon",
-    "bookTheme": "wildwest",
+    "theme": "sunset",
+    "bookTheme": "sunset",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/2R5/8/8 w - - 0 1",
@@ -985,14 +985,14 @@
       [0, 0]
     ],
     "nodeText": "Space is a physical realization of the chessboard where pieces can be mobile.",
-    "storyText": "",
+    "storyText": "The path ahead, Mirage explained, would be as much a trial of character as of strength. Sidian would need to guide the restless spirits of the junction, helping them find peace while safeguarding the arcana hidden in the depths. The spirits would demand patience, humility, and understanding—qualities that would test his resolve.",
     "reward": [],
     "prereq": "lesson-4",
     "opponent": "oldwoman",
     "hero": "",
     "storyTitle": "",
-    "theme": "mirror-temple",
-    "bookTheme": "mirror-temple",
+    "theme": "sunset",
+    "bookTheme": "sunset",
     "panels": {
       "panel-1": {
         "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
@@ -1141,14 +1141,14 @@
       [0, 0]
     ],
     "nodeText": "On the outside, chess is a singular-minded game. Warlords clashing it out against one another. On the inside it's a team sport. Let's find out why.",
-    "storyText": "",
+    "storyText": "She spoke of sacrifice, the thread that tied all journeys to the temple. To prove himself worthy of entering the Mirror Temple, Sidian would have to give up more than he expected. The weight of his choices would not only shape his future but ripple across the delicate balance of realms.",
     "reward": [],
     "prereq": "lesson-5",
     "opponent": "oldwoman",
     "hero": "",
     "storyTitle": "",
-    "theme": "mirror-temple",
-    "bookTheme": "mirror-temple",
+    "theme": "sunset",
+    "bookTheme": "sunset",
     "panels": {
       "panel-1": {
         "fen": "1k2nn2/2pu2up/p2p1p1q/1p1NpP1Z/1P1PP3/4N2P/2Q1B3/1K6 w - - 0 1",
@@ -1397,7 +1397,7 @@
       [0, 0]
     ],
     "nodeText": "The fianchetto, open lines, and batteries.",
-    "storyText": "",
+    "storyText": "As the winds rose and the desert shifted around them, Mirage’s form began to blur, merging with the heat haze that surrounded her. She left him with a final understanding: when he had proven himself, she would return to guide him to the Mirror Temple. Until then, Stormcall Junction—and all the trials it contained—awaited him.",
     "reward": [],
     "prereq": "lesson-6",
     "opponent": "oldwoman",
@@ -1654,14 +1654,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The shadows closed in, a suffocating mass as the vultures descended, their cries piercing and triumphant. Sidian’s strength faltered, and the offering stone’s glow faded, rejecting him. The last thing he felt was the chill of wings and the weight of his failure as the vultures swarmed, their victory sealed in the consuming darkness."
     },
     "time": [
       [360, 2],
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The vultures surrounded Sidian as he stepped onto the cliff, their wings spread wide and their talons scraping against the rock. One stepped forward, its presence heavy and commanding, its beak pointing toward him like a blade. Without words, it demanded a wager: his body, his soul, or something of value. Failure to meet their challenge would mean becoming their feast, the ultimate price for daring to tread their domain.",
     "reward": [],
     "prereq": "lesson-7",
     "opponent": "vulture",
@@ -4206,14 +4206,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The shadows closed in, a suffocating mass as the vultures descended, their cries piercing and triumphant. Sidian’s strength faltered, and the offering stone’s glow faded, rejecting him. The last thing he felt was the chill of wings and the weight of his failure as the vultures swarmed, their victory sealed in the consuming darkness."
     },
     "time": [
       [120, 4],
       [60, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The vultures spoke as one, their voices a chorus of rasping tones, describing Tejeduras—a shadowed figure who wove the threads of fate unseen. They claimed that he watched over the cliffs, not as protector but as witness, his silent gaze shaping the destinies of those who passed. Sidian felt the weight of the unseen force pressing against his thoughts, as though his every step was already being measured.",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "vulture",
@@ -6774,14 +6774,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The shadows closed in, a suffocating mass as the vultures descended, their cries piercing and triumphant. Sidian’s strength faltered, and the offering stone’s glow faded, rejecting him. The last thing he felt was the chill of wings and the weight of his failure as the vultures swarmed, their victory sealed in the consuming darkness."
     },
     "time": [
       [360, 2],
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "From the cliff’s edge, the vultures gestured toward the valley below, where a roiling storm churned endlessly. The winds howled with a sound that echoed the cries of trapped souls, and the vultures described it as both prison and protector. The storm’s fury was born of misuse, a curse tied to the arcana hidden within the mines, and Sidian would have to decide whether to calm it or let it rage on.",
     "reward": [],
     "prereq": "temple-1",
     "opponent": "vulture",
@@ -8957,14 +8957,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The shadows closed in, a suffocating mass as the vultures descended, their cries piercing and triumphant. Sidian’s strength faltered, and the offering stone’s glow faded, rejecting him. The last thing he felt was the chill of wings and the weight of his failure as the vultures swarmed, their victory sealed in the consuming darkness."
     },
     "time": [
       [120, 4],
       [60, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The vultures' shadows twisted unnaturally around Sidian, contorting into grotesque forms that clawed at his resolve. Within the shifting darkness, fleeting figures emerged—faceless and fluid, yet unmistakably accusatory. Their silent gestures spoke of betrayal, their presence a creeping doubt. Above, the vultures circled, their whispers sharp and insidious, promising that treachery was inevitable—an ally's dagger, an enemy's snare, or a fracture in his own resolve. Sidian’s breath hitched, but he steadied himself, forcing his grip to tighten and his gaze to hold firm. He would not falter, not now.",
     "reward": [],
     "prereq": "temple-3",
     "opponent": "vulture",
@@ -11161,14 +11161,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The shadows closed in, a suffocating mass as the vultures descended, their cries piercing and triumphant. Sidian’s strength faltered, and the offering stone’s glow faded, rejecting him. The last thing he felt was the chill of wings and the weight of his failure as the vultures swarmed, their victory sealed in the consuming darkness."
     },
     "time": [
       [360, 2],
       [180, 0]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The lead vulture stepped closer, its wings unfurling as it posed a riddle, its voice reverberating within Sidian’s mind: \n\nBorn of dust, I am the first breath. \n\nWith time, I am the weight of death. \n\nCarry me too long, I will decay. \n\nSet me free, I light the way. \n\nWhat am I? \n\nThe vultures stilled, their gaze locking onto Sidian as they awaited his answer, their hunger palpable in the silence.",
     "reward": [],
     "prereq": "temple-3",
     "opponent": "vulture",
@@ -13239,14 +13239,14 @@
       "lose2": "",
       "lose3": "",
       "victory": "",
-      "defeat": ""
+      "defeat": "The shadows closed in, a suffocating mass as the vultures descended, their cries piercing and triumphant. Sidian’s strength faltered, and the offering stone’s glow faded, rejecting him. The last thing he felt was the chill of wings and the weight of his failure as the vultures swarmed, their victory sealed in the consuming darkness."
     },
     "time": [
       [120, 4],
       [60, 2]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "At the cliff’s summit, Sidian placed a shard of arcana onto the weathered offering stone, its faintly glowing runes flaring as the shard dissolved. In its place, a new arcana emerged, pulsing with strange, raw energy. As he grasped the unfamiliar power, a hollow ache lingered from the trade. The vultures watched in bitter silence, their disappointment clear—he had passed the challenge they had hoped would break him.",
     "reward": [],
     "prereq": "temple-5",
     "opponent": "vulture",
@@ -15322,14 +15322,14 @@
       [300, 15]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The tavern was a crumbling relic at the heart of Stormcall Junction, its doors swinging open with an eerie creak that echoed into the night. Inside, spirits lingered at scattered tables, their forms flickering like dying candle flames. They spoke in hushed tones, their words a mixture of regret and longing. Sidian listened, each story a fragment of a life unfinished, revealing the pain and confusion that bound them to this place.",
     "reward": [],
     "prereq": "",
     "opponent": "cowboy",
     "hero": "",
     "storyTitle": "",
     "theme": "saloon",
-    "bookTheme": "wildwest",
+    "bookTheme": "junction",
     "panels": {
       "panel-1": {
         "fen": "4k3/pppppppp/8/8/8/8/PPPPPPPP/4K3 w - - 0 1",
@@ -15377,14 +15377,14 @@
       [300, 15]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Among the restless spirits, one stood out—a man with hollow eyes who seemed more lost than the others. His story spilled forth in broken whispers: a lifetime of mistakes, a family left behind, and a death that came too soon. Sidian guided him to confront his regrets, helping him find the closure he sought. As the spirit faded into the after-realm, the air in the tavern grew lighter, the first sign of peace returning.",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "cowboy",
     "hero": "",
     "storyTitle": "",
     "theme": "saloon",
-    "bookTheme": "wildwest",
+    "bookTheme": "junction",
     "panels": {
       "panel-1": {
         "fen": "3nk3/2pppp2/8/8/8/8/3PPP2/3RK3 w - - 0 1",
@@ -15432,14 +15432,14 @@
       [300, 15]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The mines stretched deep beneath the town, their tunnels carved from jagged stone and shrouded in darkness. Sidian ventured into the depths, where faint whispers echoed through the shafts. He encountered spectral miners, their faces etched with sorrow and betrayal. Piecing together their fragmented stories, Sidian uncovered the greed and treachery that had sealed their fates. By releasing their spirits and recovering a shard of arcana, he left the mines quieter than he had found them, though the weight of what had transpired lingered.",
     "reward": [],
     "prereq": "mission-2",
     "opponent": "cowboy",
     "hero": "",
     "storyTitle": "",
-    "theme": "saloon",
-    "bookTheme": "wildwest",
+    "theme": "mines",
+    "bookTheme": "mines",
     "panels": {
       "panel-1": {
         "fen": "3tk3/2pppp2/8/8/8/8/2PPPP2/2NUKZ2 w - - 0 1",
@@ -15487,14 +15487,14 @@
       [300, 15]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The valley was a maelstrom of chaos, the tornado’s unending fury ripping through the land with a deafening roar. Sidian braced against the winds, his every step a struggle as he searched for the trapped souls caught within the storm’s grasp. Their cries mingled with the howling winds, and one by one, he guided them to the edge of the storm, where they could slip free into the after-realm.",
     "reward": [],
     "prereq": "mission-3",
-    "opponent": "cowboy",
+    "opponent": "",
     "hero": "",
     "storyTitle": "",
-    "theme": "saloon",
-    "bookTheme": "wildwest",
+    "theme": "tornados",
+    "bookTheme": "tornados",
     "panels": {
       "panel-1": {
         "fen": "1rrkrr2/1ppppp2/8/8/8/8/1PPPPP2/1RRKRR2 w - - 0 1",
@@ -15548,10 +15548,10 @@
       [300, 15]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "As Sidian worked, the storm’s true nature revealed itself. It was not just a force of destruction but a manifestation of grief, anger, and arcane imbalance. Drawing upon the arcana he had recovered and the lessons learned from the spirits, Sidian calmed the storm, unraveling its fury until only a quiet breeze remained. The silence that followed was heavy but peaceful, and the valley, once a prison, became still.",
     "reward": [],
     "prereq": "mission-4",
-    "opponent": "sheriff",
+    "opponent": "",
     "hero": "",
     "storyTitle": "",
     "theme": "tornados",
@@ -15605,14 +15605,14 @@
       [300, 15]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Stormcall Junction trembled as Voltaire emerged from the ruins, an arcana shard glowing with power in his hands. The rogue variant of the arcane practitioner Sidian once knew was consumed by ambition, his eyes gleaming with a hunger that burned brighter than the shard he wielded. The town became a battlefield as their clash began, Voltaire’s power overwhelming Sidian at every turn. Destruction spread like wildfire, and the cries of spirits rose above the chaos.",
     "reward": [],
     "prereq": "mission-5",
-    "opponent": "sheriff",
+    "opponent": "voltaire",
     "hero": "",
     "storyTitle": "",
-    "theme": "tornados",
-    "bookTheme": "tornados",
+    "theme": "desert-voltaire",
+    "bookTheme": "desert-voltaire",
     "panels": {
       "panel-1": {
         "fen": "uuuukuuu/pppppppp/8/8/8/8/PPPPPPPP/ZZZZKZZZ w KQkq - 0 1",
@@ -15662,7 +15662,7 @@
       [300, 15]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "The battle reached its apex as the town crumbled around them. Sidian, battered and outmatched, was forced to retreat, the weight of failure pressing heavily on him. Yet in his retreat, he uncovered something vital: a fragment of knowledge about the arcana’s connection to the Mirror Temple and Voltaire’s ultimate goal. Though the battle was lost, the insight he gained pointed to the next steps in his journey.",
     "reward": [],
     "prereq": "mission-6",
     "opponent": "voltaire",
@@ -15719,14 +15719,14 @@
       [300, 15]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "At the edge of the desert, Mirage waited, her presence as striking and inscrutable as ever. This time, she did not hold back. The clash between them was fierce, testing not only Sidian’s strength but his understanding of the lessons he had learned. Every strike and parry felt like a question: Had he truly grasped what it meant to be worthy? As the battle reached its end, Mirage withdrew, leaving Sidian standing on the threshold of his greatest trial—the entrance to the Mirror Temple.",
     "reward": [],
     "prereq": "mission-7",
-    "opponent": "voltaire",
+    "opponent": "oldwoman",
     "hero": "",
     "storyTitle": "",
-    "theme": "desert-voltaire",
-    "bookTheme": "desert-voltaire",
+    "theme": "mirror-temple",
+    "bookTheme": "mirror-temple",
     "panels": {
       "panel-1": {
         "fen": "rnbtkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBTKBNR w KQkq - 0 1",

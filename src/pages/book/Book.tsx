@@ -493,11 +493,11 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                   className="center"
                   style={{ padding: '0 10px 0 10px', fontSize: '12px' }}
                 >
-                  Click on a chapter to view its details. If the chapter is a
+                  {/* Click on a chapter to view its details. If the chapter is a
                   mission, you can click or hover on arcana badges for
                   additional information or to add them to your inventory. Use
                   the Story button to switch between chess and story details,
-                  and click the Start button to begin the chapter.
+                  and click the Start button to begin the chapter. */}
                 </div>
                 <div className="right">
                   <div className="buttons">

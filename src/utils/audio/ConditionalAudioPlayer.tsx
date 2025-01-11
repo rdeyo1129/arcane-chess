@@ -13,24 +13,24 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
       audioManager.registerSound('capture', audioLinks.captureSoundUrl);
     }
     if (!audioManager.isSoundRegistered('victory')) {
-      audioManager.registerSound('victory', audioLinks.victorySoundUrl);
+      // audioManager.registerSound('victory', audioLinks.victorySoundUrl);
     }
     if (!audioManager.isSoundRegistered('defeat')) {
-      audioManager.registerSound('defeat', audioLinks.defeatSoundUrl);
+      // audioManager.registerSound('defeat', audioLinks.defeatSoundUrl);
     }
     if (!audioManager.isSoundRegistered('impact')) {
-      audioManager.registerSound('impact', audioLinks.impactSoundUrl);
+      // audioManager.registerSound('impact', audioLinks.impactSoundUrl);
     }
 
     // Register Songs
     if (!audioManager.isSoundRegistered('nexus')) {
-      audioManager.registerSound('nexus', audioLinks.nexusSongUrl);
+      // audioManager.registerSound('nexus', audioLinks.nexusSongUrl);
     }
     if (!audioManager.isSoundRegistered('electron')) {
-      audioManager.registerSound('electron', audioLinks.electronSongUrl);
+      // audioManager.registerSound('electron', audioLinks.electronSongUrl);
     }
     if (!audioManager.isSoundRegistered('menu')) {
-      audioManager.registerSound('menu', audioLinks.menuSongUrl, true);
+      // audioManager.registerSound('menu', audioLinks.menuSongUrl, true);
     }
   }, []);
 

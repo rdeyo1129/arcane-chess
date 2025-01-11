@@ -15037,7 +15037,7 @@
   },
   "mission-9": {
     "id": "mission-9",
-    "title": "",
+    "title": "Evil Unveiling I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -15058,9 +15058,9 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "skeleton-battle",
+    "bookTheme": "skeleton-battle",
     "panels": {
       "panel-1": {
         "fen": "5qk1/p5b1/4N1pp/2P5/1n1n1P1P/2Nb2P1/PP1Q2B1/2KR3R w - - 0 1",
@@ -15095,7 +15095,7 @@
   },
   "mission-10": {
     "id": "mission-10",
-    "title": "",
+    "title": "Evil Unveiling II",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -15116,9 +15116,9 @@
     "reward": [],
     "prereq": "mission-9",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "skeleton-battle",
+    "bookTheme": "skeleton-battle",
     "panels": {
       "panel-1": {
         "fen": "r5k1/1N3pp1/4b3/8/8/4rNP1/2RRnnBK/8 b - - 0 1",
@@ -15151,7 +15151,7 @@
   },
   "mission-11": {
     "id": "mission-11",
-    "title": "",
+    "title": "Evil Unveiling III",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -15172,9 +15172,9 @@
     "reward": [],
     "prereq": "mission-10",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "skeleton-battle",
+    "bookTheme": "skeleton-battle",
     "panels": {
       "panel-1": {
         "fen": "2r1r3/5pk1/6bp/8/Np1qnRP1/1P1Q2P1/6BP/1N1R3K b - - 0 34",

@@ -15760,7 +15760,7 @@
   },
   "mission-9": {
     "id": "mission-9",
-    "title": "",
+    "title": "Age of Beasts I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -15781,9 +15781,9 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "beast-battle",
+    "bookTheme": "beast-battle",
     "panels": {
       "panel-1": {
         "fen": "r5r1/1k2Pp1p/p1n2p2/PNb1q3/Q1p1b1B1/2P3P1/5P1P/R3R1K1 w - - 7 24",
@@ -15818,7 +15818,7 @@
   },
   "mission-10": {
     "id": "mission-10",
-    "title": "",
+    "title": "Age of Beasts II",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -15839,9 +15839,9 @@
     "reward": [],
     "prereq": "mission-9",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "beast-battle",
+    "bookTheme": "beast-battle",
     "panels": {
       "panel-1": {
         "fen": "8/7k/3p1p1p/7P/4qP2/5p2/3R4/5NK1 b - - 0 1",
@@ -15874,7 +15874,7 @@
   },
   "mission-11": {
     "id": "mission-11",
-    "title": "",
+    "title": "Age of Beasts III",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -15895,9 +15895,9 @@
     "reward": [],
     "prereq": "mission-10",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "beast-battle",
+    "bookTheme": "beast-battle",
     "panels": {
       "panel-1": {
         "fen": "6Q1/8/1kp4P/2q1p3/2PpP3/2nP2P1/8/q4BK1 w - - 0 36",

@@ -8114,7 +8114,7 @@
   },
   "mission-9": {
     "id": "mission-9",
-    "title": "",
+    "title": "A Sprectre Apparition I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -8135,9 +8135,9 @@
     "reward": [],
     "prereq": "",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "spectre-battle",
+    "bookTheme": "spectre-battle",
     "panels": {
       "panel-1": {
         "fen": "4rr1k/q6p/8/4pp2/1pP5/1B6/PP2Q1KP/R7 b - - 0 1",
@@ -8170,7 +8170,7 @@
   },
   "mission-10": {
     "id": "mission-10",
-    "title": "",
+    "title": "A Sprectre Apparition II",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -8191,9 +8191,9 @@
     "reward": [],
     "prereq": "mission-9",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "spectre-battle",
+    "bookTheme": "spectre-battle",
     "panels": {
       "panel-1": {
         "fen": "rn2q1k1/pp3ppp/1bpPbn2/6N1/2BP1B2/2NQ4/PPPK2PP/7R w - - 0 1",
@@ -8228,7 +8228,7 @@
   },
   "mission-11": {
     "id": "mission-11",
-    "title": "",
+    "title": "A Sprectre Apparition III",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -8249,9 +8249,9 @@
     "reward": [],
     "prereq": "mission-10",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "spectre-battle",
+    "bookTheme": "spectre-battle",
     "panels": {
       "panel-1": {
         "fen": "3rq2r/p1kb1R2/1pn4p/2PQp3/4P1pP/2P3B1/P5P1/5RK1 w - - 0 1",

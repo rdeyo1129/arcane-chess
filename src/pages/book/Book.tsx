@@ -434,7 +434,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       />
                     </Link>
                     <Button
-                      text="ALL CHAPTERS"
+                      text="UNLOCK CHAPTERS"
                       className="tertiary"
                       color="B"
                       width={200}

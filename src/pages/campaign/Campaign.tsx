@@ -23,6 +23,7 @@ interface CampaignState {
   books: string[];
   configModalOpen: boolean;
   chapter: number;
+  booksUnlocked: boolean;
 }
 
 export class UnwrappedCampaign extends React.Component<
@@ -48,6 +49,7 @@ export class UnwrappedCampaign extends React.Component<
       ],
       configModalOpen: false,
       chapter: getLocalStorage(this.props.auth.user.username)?.chapter || 0,
+      booksUnlocked: false,
     };
   }
 
@@ -82,8 +84,11 @@ export class UnwrappedCampaign extends React.Component<
           <div className="chapters">
             {this.state.books.map((book, i) => {
               const LS = getLocalStorage(this.props.auth.user.username);
-              const isUnlocked = true;
-              // LS.auth.user.campaign?.topScores[i - 1] || i === 0;
+              const isUnlocked =
+                (LS.auth.user.campaign?.topScores[i - 1] ||
+                  i === 0 ||
+                  this.state.booksUnlocked) &&
+                i < 4;
               return (
                 <Button
                   key={i}
@@ -109,6 +114,22 @@ export class UnwrappedCampaign extends React.Component<
           </div>
         </div>
         <div className="reset">
+          <Button
+            text="UNLOCK BOOKS"
+            className="tertiary"
+            color="B"
+            width={200}
+            height={40}
+            backgroundColorOverride="#11111188"
+            onClick={() => {
+              this.setState({
+                booksUnlocked: true,
+              });
+            }}
+            styles={{
+              marginRight: '5px',
+            }}
+          />
           <Button
             text="RESET CHAPTER"
             className="tertiary"

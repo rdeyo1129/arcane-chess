@@ -207,12 +207,45 @@ export const modes: Record<string, GameModeType> = padModes({
   newClassic: {
     name: 'The New Classic',
     white: {
-      arcana: [arcana.offrH, arcana.sumnX, arcana.sumnRQ],
+      arcana: [arcana.dyadA, arcana.offrH, arcana.sumnRQ, arcana.sumnX],
       setup: 'RNBTKBNR',
     },
     black: {
-      arcana: [arcana.offrH, arcana.sumnX, arcana.sumnRQ],
+      arcana: [arcana.dyadA, arcana.offrH, arcana.sumnRQ, arcana.sumnX],
       setup: 'rnbtkbnr',
+    },
+  },
+  sequel: {
+    name: 'The Sequel',
+    white: {
+      arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
+      setup: 'RNMQKBNR',
+    },
+    black: {
+      arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
+      setup: 'rnmqkbnr',
+    },
+  },
+  chronicles: {
+    name: 'Chronicles',
+    white: {
+      arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
+      setup: 'RNMQKMNR',
+    },
+    black: {
+      arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
+      setup: 'rnmqkmnr',
+    },
+  },
+  alternateTimeline: {
+    name: 'Alternate Timeline',
+    white: {
+      arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
+      setup: 'RNBQKBTR',
+    },
+    black: {
+      arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
+      setup: 'rnbqkbtr',
     },
   },
   theoretical: {
@@ -251,11 +284,11 @@ export const modes: Record<string, GameModeType> = padModes({
   suddenDeath: {
     name: 'Sudden Death',
     white: {
-      arcana: [],
+      arcana: [arcana.dyadA, arcana.sumnRE, arcana.modsEXT, arcana.modsREA],
       setup: 'TMQVKQMT',
     },
     black: {
-      arcana: [],
+      arcana: [arcana.dyadA, arcana.sumnRE, arcana.modsEXT, arcana.modsREA],
       setup: 'tmqvkqmt',
     },
   },

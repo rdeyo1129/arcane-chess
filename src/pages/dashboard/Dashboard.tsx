@@ -105,7 +105,7 @@ export class UnwrappedDashboard extends React.Component<
               <Button
                 text="LEADERBOARD"
                 className="tertiary"
-                color="B"
+                color="Y"
                 height={50}
                 width={'100%'}
                 disabled={false}
@@ -135,7 +135,7 @@ export class UnwrappedDashboard extends React.Component<
               <Button
                 text="LEXICON"
                 className="tertiary"
-                color="B"
+                color="G"
                 height={50}
                 width={'100%'}
                 disabled={false}
@@ -150,7 +150,7 @@ export class UnwrappedDashboard extends React.Component<
               <Button
                 text="MANIFEST"
                 className="tertiary"
-                color="B"
+                color="O"
                 height={50}
                 width={'100%'}
                 disabled={false}

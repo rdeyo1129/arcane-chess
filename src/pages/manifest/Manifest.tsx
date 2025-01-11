@@ -340,9 +340,17 @@ class UnwrappedManifest extends React.Component<object, State> {
               </div>
             ) : this.state.currentTab === 'notes' ? (
               <div id="notes" className="notes">
+                <h3>v3.0.0 Release Notes</h3>
+                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                  <li>Lexicon updated</li>
+                  <li>Saga 1 released</li>
+                  <li>Saga 2 and 3 lessons released</li>
+                  <li>Mobile support</li>
+                  <li>Phantom Mist added (invisibile armies)</li>
+                  <li>Click on move history</li>
+                </ul>
                 <h3>v2.0.0 Release Notes</h3>
                 <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                  <li>Music and sound effects included</li>
                   <li>
                     Quickplay:
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
@@ -592,8 +600,9 @@ class UnwrappedManifest extends React.Component<object, State> {
               <li>
                 Known bugs:
                 <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                  <li>Engine will ‘pass turn’ in certain scenarios.</li>
                   <li>
-                    Computer will ‘pass turn’ in certain scenarios if both sides
+                    Engine will ‘pass turn’ in certain scenarios if both sides
                     have swap arcana.
                   </li>
                   <li>
@@ -617,6 +626,10 @@ class UnwrappedManifest extends React.Component<object, State> {
                     value should always be x80, x95, x110, or x125.
                   </li>
                   <li>Castling does not work with every setup.</li>
+                  <li>
+                    Horde setups require a King for now. Capture all or
+                    checkmate to win.
+                  </li>
                 </ul>
                 Feel free to share any additional found bugs in the discord.
               </li>

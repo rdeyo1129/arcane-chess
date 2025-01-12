@@ -57,16 +57,10 @@ export default class DashboardModal extends React.Component<
             Hello, meda here. Thank you for visiting the site. Version{' '}
             {this.version} has just been released, bringing a host of new arcana
             (spells) and the first of three sagas in the campaign. If you are a
-            first-time visitor, I recommend starting with{' '}
-            <Link to="/quickplay" style={{ color: '#00f' }}>
-              Quick Play
-            </Link>{' '}
-            to explore exciting new ways to enjoy the game, or check out the{' '}
-            <Link to="/manifest" style={{ color: '#00f' }}>
-              Manifest
-            </Link>{' '}
-            for a deeper dive. A note that mobile development has basically been
-            met, but the site is best experienced from a desktop device.
+            first-time visitor, I recommend starting with Quickplay to explore
+            exciting new ways to enjoy the game, or check out the Manifest for a
+            deeper dive. A note that mobile development has basically been met,
+            but the site is best experienced from a desktop device.
           </p>{' '}
           <br />{' '}
           {/* <p>
@@ -83,15 +77,8 @@ export default class DashboardModal extends React.Component<
             This site is a work in progress, and we genuinely value your
             suggestions and constructive feedback! While the manifest includes
             some known bugs, we’re actively working to improve. Be part of the
-            journey—join our community on{' '}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://discord.gg/QuuNv3Gqts"
-            >
-              Discord
-            </a>{' '}
-            to share your thoughts or connect with other players.{' '}
+            journey—join our community on Discord to share your thoughts or
+            connect with other players.
           </p>
           <div
             style={{

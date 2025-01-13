@@ -143,13 +143,13 @@ export const POWERBIT = {
   swapADJ: 2,
   // 12
   modsCON: 1, // passive
-  modsTEL: 2, // moved //
+  modsAET: 2, // inherent
   modsFUG: 4, // inherent
-  modsRAN: 8, // deprecated // /////// room for another validated spell here
+  modsLIN: 8, // inherent // can be replaced
   modsINH: 16, // inherent
   modsSUS: 32, // active
-  modsPHA: 64, // active
-  modsFUT: 128, // active
+  modsGLU: 64, // inherent
+  modsFUT: 128, // active // can be replaced I think
   modsREA: 2048, // inherent
   modsEXT: 4096, // inherent
   modsSKI: 16384, // active

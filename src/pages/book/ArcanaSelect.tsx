@@ -56,6 +56,7 @@ export const unlockableArcana = [
     dyadU: 3,
     modsTRO: 2,
     offrC: 2,
+    modsAET: 2,
   },
   // 3
   {
@@ -106,7 +107,6 @@ export const unlockableArcana = [
     dyadQ: 11,
     sumnRA: 6,
     offrM: 8,
-    // modsTEL: 5, won't use
   },
   // 9
   {
@@ -137,6 +137,7 @@ export const unlockableArcana = [
     sumnRV: 13,
     dyadV: 14,
     modsGLI: 9,
+    modsGLU: 9,
   },
 ];
 

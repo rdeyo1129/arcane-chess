@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Button from 'src/components/Button/Button';
 
 interface DashboardModalProps {}

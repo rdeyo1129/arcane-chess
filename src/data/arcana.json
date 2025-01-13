@@ -239,7 +239,7 @@
   },
   "sumnRY": {
     "id": "sumnRY",
-    "name": "Hexweaver's Bind",
+    "name": "Hexweaver's Tornado",
     "description": "Select a square, all squares along that file have entanglement for 4 turns.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/mageRed"
@@ -453,6 +453,20 @@
     "description": "The next engine move is randomized.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/glitch"
+  },
+  "modsAET": {
+    "id": "modsAET",
+    "name": "Aetherstep",
+    "description": "Friendly Pawns may can step through a piece on their first turn.",
+    "type": "inherent",
+    "imagePath": "/assets/arcanaImages/aetherstep"
+  },
+  "modsGLU": {
+    "id": "modsGLU",
+    "name": "Gluttony",
+    "description": "You may capture pieces during dyad moves.",
+    "type": "inherent",
+    "imagePath": "/assets/arcanaImages/gluttony"
   },
   "empty": {
     "id": "empty",

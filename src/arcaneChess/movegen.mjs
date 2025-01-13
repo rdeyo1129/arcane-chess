@@ -105,7 +105,13 @@ export function MOVE(from, to, captured, promoted, flag) {
 }
 
 export function AddCaptureMove(move, consume = false, capturesOnly = false) {
-  if (GameBoard.dyad > 0) return;
+  if (
+    GameBoard.dyad > 0 &&
+    ((GameBoard.side === COLOURS.WHITE && !(GameBoard.whiteArcane[4] & 64)) ||
+      (GameBoard.side === COLOURS.BLACK && !(GameBoard.blackArcane[4] & 64)))
+  ) {
+    return;
+  }
   if (GameBoard.royaltyE[TOSQ(move)] > 0) return;
   if ((capturesOnly && !consume) || !capturesOnly) {
     if (move & MFLAGSWAP) {
@@ -1173,12 +1179,15 @@ export function GenerateMoves(
         // NORMAL PAWN MOVES
         if (GameBoard.pieces[sq + 10] === PIECES.EMPTY) {
           AddWhitePawnQuietMove(sq, sq + 10, 0, capturesOnly);
-          if (
-            (RanksBrd[sq] === RANKS.RANK_1 &&
-              GameBoard.pieces[sq + 20] === PIECES.EMPTY) ||
-            (RanksBrd[sq] === RANKS.RANK_2 &&
-              GameBoard.pieces[sq + 20] === PIECES.EMPTY)
-          ) {
+        }
+        if (
+          (GameBoard.pieces[sq + 10] === PIECES.EMPTY &&
+            GameBoard.pieces[sq + 20] === PIECES.EMPTY) ||
+          // aetherstep
+          (GameBoard.pieces[sq + 20] === PIECES.EMPTY &&
+            GameBoard.whiteArcane[4] & 2)
+        ) {
+          if (RanksBrd[sq] === RANKS.RANK_1 || RanksBrd[sq] === RANKS.RANK_2) {
             AddQuietMove(
               MOVE(sq, sq + 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS),
               capturesOnly
@@ -1278,38 +1287,44 @@ export function GenerateMoves(
               RanksBrd[sq + 9] === RANKS.RANK_7
             ) {
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wQ, MFLAGEP)
+                MOVE(sq, sq + 9, GameBoard.pieces[sq + 9], PIECES.wQ, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wT, MFLAGEP)
+                MOVE(sq, sq + 9, GameBoard.pieces[sq + 9], PIECES.wT, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wM, MFLAGEP)
+                MOVE(sq, sq + 9, GameBoard.pieces[sq + 9], PIECES.wM, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wR, MFLAGEP)
+                MOVE(sq, sq + 9, GameBoard.pieces[sq + 9], PIECES.wR, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wB, MFLAGEP)
+                MOVE(sq, sq + 9, GameBoard.pieces[sq + 9], PIECES.wB, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wN, MFLAGEP)
+                MOVE(sq, sq + 9, GameBoard.pieces[sq + 9], PIECES.wN, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wZ, MFLAGEP)
+                MOVE(sq, sq + 9, GameBoard.pieces[sq + 9], PIECES.wZ, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wU, MFLAGEP)
+                MOVE(sq, sq + 9, GameBoard.pieces[sq + 9], PIECES.wU, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wS, MFLAGEP)
+                MOVE(sq, sq + 9, GameBoard.pieces[sq + 9], PIECES.wS, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.wW, MFLAGEP)
+                MOVE(sq, sq + 9, GameBoard.pieces[sq + 9], PIECES.wW, MFLAGEP)
               );
             } else {
               AddEnPassantMove(
-                MOVE(sq, sq + 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+                MOVE(
+                  sq,
+                  sq + 9,
+                  GameBoard.pieces[sq + 9],
+                  PIECES.EMPTY,
+                  MFLAGEP
+                )
               );
             }
           }
@@ -1319,38 +1334,44 @@ export function GenerateMoves(
               RanksBrd[sq + 11] === RANKS.RANK_7
             ) {
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wQ, MFLAGEP)
+                MOVE(sq, sq + 11, GameBoard.pieces[sq + 11], PIECES.wQ, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wT, MFLAGEP)
+                MOVE(sq, sq + 11, GameBoard.pieces[sq + 11], PIECES.wT, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wM, MFLAGEP)
+                MOVE(sq, sq + 11, GameBoard.pieces[sq + 11], PIECES.wM, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wR, MFLAGEP)
+                MOVE(sq, sq + 11, GameBoard.pieces[sq + 11], PIECES.wR, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wB, MFLAGEP)
+                MOVE(sq, sq + 11, GameBoard.pieces[sq + 11], PIECES.wB, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wN, MFLAGEP)
+                MOVE(sq, sq + 11, GameBoard.pieces[sq + 11], PIECES.wN, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wZ, MFLAGEP)
+                MOVE(sq, sq + 11, GameBoard.pieces[sq + 11], PIECES.wZ, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wU, MFLAGEP)
+                MOVE(sq, sq + 11, GameBoard.pieces[sq + 11], PIECES.wU, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wS, MFLAGEP)
+                MOVE(sq, sq + 11, GameBoard.pieces[sq + 11], PIECES.wS, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.wW, MFLAGEP)
+                MOVE(sq, sq + 11, GameBoard.pieces[sq + 11], PIECES.wW, MFLAGEP)
               );
             } else {
               AddEnPassantMove(
-                MOVE(sq, sq + 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+                MOVE(
+                  sq,
+                  sq + 11,
+                  GameBoard.pieces[sq + 11],
+                  PIECES.EMPTY,
+                  MFLAGEP
+                )
               );
             }
           }
@@ -1442,14 +1463,18 @@ export function GenerateMoves(
           GameBoard.dyad === 2) &&
         !herrings.length
       ) {
+        // NORMAL PAWN MOVES
         if (GameBoard.pieces[sq - 10] === PIECES.EMPTY) {
           AddBlackPawnQuietMove(sq, sq - 10, 0, capturesOnly);
-          if (
-            (RanksBrd[sq] === RANKS.RANK_8 &&
-              GameBoard.pieces[sq - 20] === PIECES.EMPTY) ||
-            (RanksBrd[sq] === RANKS.RANK_7 &&
-              GameBoard.pieces[sq - 20] === PIECES.EMPTY)
-          ) {
+        }
+        if (
+          (GameBoard.pieces[sq - 10] === PIECES.EMPTY &&
+            GameBoard.pieces[sq - 20] === PIECES.EMPTY) ||
+          // aetherstep
+          (GameBoard.pieces[sq - 20] === PIECES.EMPTY &&
+            GameBoard.blackArcane[4] & 2)
+        ) {
+          if (RanksBrd[sq] === RANKS.RANK_6 || RanksBrd[sq] === RANKS.RANK_7) {
             AddQuietMove(
               MOVE(sq, sq - 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS),
               capturesOnly
@@ -1549,38 +1574,44 @@ export function GenerateMoves(
               RanksBrd[sq - 9] === RANKS.RANK_2
             ) {
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bQ, MFLAGEP)
+                MOVE(sq, sq - 9, GameBoard.pieces[sq - 9], PIECES.bQ, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bT, MFLAGEP)
+                MOVE(sq, sq - 9, GameBoard.pieces[sq - 9], PIECES.bT, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bM, MFLAGEP)
+                MOVE(sq, sq - 9, GameBoard.pieces[sq - 9], PIECES.bM, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bR, MFLAGEP)
+                MOVE(sq, sq - 9, GameBoard.pieces[sq - 9], PIECES.bR, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bB, MFLAGEP)
+                MOVE(sq, sq - 9, GameBoard.pieces[sq - 9], PIECES.bB, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bN, MFLAGEP)
+                MOVE(sq, sq - 9, GameBoard.pieces[sq - 9], PIECES.bN, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bZ, MFLAGEP)
+                MOVE(sq, sq - 9, GameBoard.pieces[sq - 9], PIECES.bZ, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bU, MFLAGEP)
+                MOVE(sq, sq - 9, GameBoard.pieces[sq - 9], PIECES.bU, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bS, MFLAGEP)
+                MOVE(sq, sq - 9, GameBoard.pieces[sq - 9], PIECES.bS, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.bW, MFLAGEP)
+                MOVE(sq, sq - 9, GameBoard.pieces[sq - 9], PIECES.bW, MFLAGEP)
               );
             } else {
               AddEnPassantMove(
-                MOVE(sq, sq - 9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+                MOVE(
+                  sq,
+                  sq - 9,
+                  GameBoard.pieces[sq - 9],
+                  PIECES.EMPTY,
+                  MFLAGEP
+                )
               );
             }
           }
@@ -1591,44 +1622,50 @@ export function GenerateMoves(
               RanksBrd[sq - 11] === RANKS.RANK_2
             ) {
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bQ, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bQ, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bT, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bT, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bM, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bM, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bR, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bR, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bB, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bB, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bN, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bN, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bZ, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bZ, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bU, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bU, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bZ, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bZ, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bU, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bU, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bS, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bS, MFLAGEP)
               );
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.bW, MFLAGEP)
+                MOVE(sq, sq - 11, GameBoard.pieces[sq - 11], PIECES.bW, MFLAGEP)
               );
             } else {
               AddEnPassantMove(
-                MOVE(sq, sq - 11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP)
+                MOVE(
+                  sq,
+                  sq - 11,
+                  GameBoard.pieces[sq - 11],
+                  PIECES.EMPTY,
+                  MFLAGEP
+                )
               );
             }
           }

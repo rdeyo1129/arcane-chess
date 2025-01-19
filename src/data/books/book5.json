@@ -6,8 +6,8 @@
     "title": "Preparation and Resources",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Chieftain loomed over Cassandra, his presence as unyielding as the desert itself. He handed her a scimitar, its blade curved like the dunes, and silently demanded she attack. Each swing she made was met with a precise, punishing deflection. His strikes were deliberate, forcing her to adjust, to anticipate, to feel the weapon rather than merely wield it. When she moved to the sun-hardened spear, his corrections came as sharp as his blows. With the sling, he pushed her to hit impossible targets—the tip of a shadow, a stone mid-fall—until her muscles burned and precision was the only option. The Chieftain’s eyes betrayed no approval, but when she struck true, he stepped aside, a silent acknowledgment of progress.",
+    "hero": "cassandra",
     "opponent": "",
     "theme": "everwanderers",
     "bookTheme": "everwanderers",
@@ -193,8 +193,8 @@
     "title": "Creativity and Innovation",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Chieftain led Cassandra to a barren ridge, the sun relentless overhead. He gestured toward the shimmering horizon and knelt, carving grooves into the sand. Watching him, she mimicked his movements, setting up a rudimentary distiller with scavenged materials. Hours passed before the first drop of water formed, and even longer before her attempts yielded anything of use. When a sandstorm began to brew on the horizon, the Chieftain’s instruction became a series of deliberate gestures. She followed his lead, constructing a shelter that bent with the storm rather than resisted it. As the winds howled and the sands swallowed the world outside, the Chieftain remained still, testing her resolve in the silence of survival.",
+    "hero": "cassandra",
     "opponent": "",
     "theme": "everwanderers",
     "bookTheme": "everwanderers",
@@ -328,11 +328,11 @@
     "title": "Patterns II",
     "nodeText": "Learn about batteries and rank penetration.",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Chieftain stood at the edge of the firelight, his shadow stretching across the circle. When the others began their dance, he motioned for Cassandra to join. Her steps were hesitant, faltering under the weight of unfamiliar movements. He did not correct her but circled the group like a hawk, his watchful gaze pressing her to find the rhythm on her own. When the chants began, his deep, unyielding voice cut through the night, grounding the ritual. The energy of the group surged, and Cassandra felt it pull her in, her body finally aligning with the cadence. The Chieftain’s stare met hers briefly, a moment of shared understanding before he turned back to the flames.",
+    "hero": "cassandra",
     "opponent": "",
     "theme": "everwanderers",
-    "bookTheme": "",
+    "bookTheme": "everwanderers",
     "time": [
       [0, 0],
       [0, 0]
@@ -668,11 +668,11 @@
     "title": "Pawns III",
     "nodeText": "Learn about more Pawn concepts.",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "In the cool predawn light, the Chieftain led Cassandra to a ridge overlooking an endless expanse of sand. He pointed to the faintest track—a whisper of a trail—and began to walk. She followed, her feet sinking into the dunes, her eyes straining to catch the signs he saw so effortlessly. At night, he paused beneath the stars, tracing constellations with a weathered hand. He offered no words, only the expectation that she would learn their patterns and meanings. When she misread the land, he would stop and stand in silence until she corrected herself, the weight of his patience heavier than words. Each step was a lesson in precision, and by the end, her movements mirrored his—quiet, confident, and certain.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "everwanderers",
+    "bookTheme": "everwanderers",
     "time": [
       [0, 0],
       [0, 0]
@@ -896,11 +896,11 @@
     "title": "Tactics IV",
     "nodeText": "Learn about double check and discoveries",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Chieftain demonstrated stealth not with words but by vanishing into the desert itself. Cassandra would blink, and he would be gone, his form swallowed by the shifting shadows of the dunes. Her task was to find him—not by sight but by the faintest signs he left behind: a disturbed patch of sand, the whisper of movement against the wind. When she failed, he appeared silently behind her, his disapproval heavy but unspoken. Over time, she learned to move as he did, her figure blending with the landscape. One evening, as the shadows grew long, she found him crouched beneath a dune’s edge. He said nothing, only nodded, before disappearing again.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "everwanderers",
+    "bookTheme": "everwanderers",
     "time": [
       [0, 0],
       [0, 0]
@@ -1191,11 +1191,11 @@
     "title": "Attacking I",
     "nodeText": "Learn about attacking f2 and f7, and the initiative.",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Chieftain’s hand thrust a shard of rusted metal toward Cassandra, its jagged edges catching the light. He motioned for her to follow and led her to the remains of a long-abandoned caravan. Without a word, he began dismantling fragments of wagons and relics, transforming them into tools and weapons. Cassandra mimicked him, her movements clumsy at first. He watched without helping, his silence urging her to push through her frustration. When she finally shaped the metal into a crude yet functional blade, he inspected it with the intensity of a predator. With a sharp nod, he placed the blade into her hand, its weight now a symbol of her growing capability.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "everwanderers",
+    "bookTheme": "everwanderers",
     "time": [
       [0, 0],
       [0, 0]
@@ -1411,11 +1411,11 @@
     "title": "Attacking II",
     "nodeText": "Learn about gambits and sacrifices.",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Chieftain stood atop a dune, his silhouette stark against the endless horizon. He raised a hand, motioning for Cassandra to stop and look. Around her, the desert stretched infinitely, its expanse both vast and empty. The Chieftain’s stillness was a lesson in itself. There was no lecture, no story—only the silent understanding that the desert demanded humility and strength in equal measure. The journey was not about conquering but enduring, and in enduring, finding peace. When he finally moved, Cassandra followed, her steps lighter and her spirit unburdened by the weight of seeking an end to the endless.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "everwanderers",
+    "bookTheme": "everwanderers",
     "time": [
       [0, 0],
       [0, 0]
@@ -1788,11 +1788,11 @@
     "title": "Temple of Discoveries I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The air shimmered with heat as Cassandra rested in the Everwanderer camp, her vision blurred by exhaustion. The zebra appeared as if born from the mirage—a figure of radiant stripes that seemed both ethereal and real. Its form glowed faintly, its outline shifting like water. As she stared, it turned its head toward her, its eyes filled with an ancient knowing. Though its mouth didn’t move, its voice filled her mind—a blend of riddles and cryptic phrases. The words seemed to echo endlessly: a warning, a puzzle, a beckoning. Before she could grasp their meaning, the zebra dissolved into light, leaving behind a sensation of balance and unease.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "zebra",
+    "bookTheme": "zebra",
     "time": [
       [240, 5],
       [200, 7]
@@ -4003,11 +4003,11 @@
     "title": "Temple of Discoveries II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "In the days that followed, the zebra reappeared in fleeting moments, always at the edge of her sight. It stood silent and still when doubt clouded her judgment, its presence a quiet nudge forward. When she faltered, its luminous form grew clearer, each time offering cryptic guidance through its subtle movements or enigmatic whispers. The visions were never predictable but always timely, as if the zebra walked not through the desert but through her mind, guiding her inward as much as outward.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "zebra",
+    "bookTheme": "zebra",
     "time": [
       [220, 7],
       [180, 9]
@@ -6218,11 +6218,11 @@
     "title": "Temple of Double Checks I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The ruined temple rose from the sands, a crumbling relic etched with glyphs that pulsed faintly like a heartbeat. The zebra waited at the entrance, its glow casting shadows that danced along the ancient stone. Following it inside, Cassandra navigated a labyrinth of shifting walls and intricate puzzles, each challenge sharpening her focus and pulling her deeper into the temple’s mysteries. The zebra illuminated glyphs she needed to decode, its silent guidance leading her to the temple’s heart, where its presence vanished, leaving her alone with a final inscription hinting at the arcana’s location within the obelisk field.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "zebra",
+    "bookTheme": "zebra",
     "time": [
       [240, 5],
       [200, 7]
@@ -8501,11 +8501,11 @@
     "title": "Temple of Double Checks II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Emerging from the temple, Cassandra couldn’t shake the zebra’s lingering image, its duality—light and shadow, presence and absence—a reflection of her own internal struggle. Its cryptic guidance had forced her to trust both her intuition and reason, teaching her to find balance amid uncertainty. The zebra became a symbol of her journey, a reminder that she must walk the line between chaos and clarity to uncover the truths she sought.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "zebra",
+    "bookTheme": "zebra",
     "time": [
       [220, 7],
       [180, 9]
@@ -10784,11 +10784,11 @@
     "title": "Temple of the Heart I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The zebra’s whispers, though fragmented, left Cassandra with subtle but vital insights. Each encounter offered hints cloaked in riddles: the sequence of glyphs to follow, the shapes of symbols etched in the obelisks, and methods to resist the disorienting effects of the field. She began piecing together its cryptic messages, realizing they weren’t just hallucinations but invaluable tools for survival and progress.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "zebra",
+    "bookTheme": "zebra",
     "time": [
       [240, 5],
       [200, 7]
@@ -13106,11 +13106,11 @@
     "title": "Temple of the Heart II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The temple and the zebra’s guidance reshaped Cassandra, honing her mind and awakening her to the desert’s strange energies. What once felt alien became familiar; what once seemed chaotic now hinted at patterns she could perceive. Trusting the zebra’s visions transformed her into something more than a wanderer—someone deeply attuned to the world’s rhythms, prepared to face the challenges ahead with sharpened instincts and newfound clarity.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "zebra",
+    "bookTheme": "zebra",
     "time": [
       [220, 7],
       [180, 9]
@@ -15425,14 +15425,14 @@
   "mission-1": {
     "id": "mission-1",
     "prereq": "",
-    "title": "",
+    "title": "Pretend Formations",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Cassandra fell hard from the portal, the heat of the desert crashing over her like a wave. Dazed, she rose to her knees, the vast emptiness of the dunes stretching out in every direction. The remnants of Voltaire’s smirk and the crackling sound of magic still echoed in her mind. Where was Sidian? The thought clawed at her, gnawing alongside the creeping dread of her predicament. The sun burned relentless overhead as she began her aimless trek, her boots sinking deep into the scalding sand. As days passed, thirst and hunger weakened her resolve. Her mind fractured under the strain, conjuring visions of Sidian trapped in some arcane prison, pleading for her help. Hallucinations soon blurred reality—a chessboard formed from the dunes, and the pieces, towering and alive, moved against her. Knights charged; pawns flanked her. Each imagined step of the game became a mental war of attrition, her body giving out long before her spirit did. When she collapsed, she wondered if Sidian had fared any better—or if she had failed them both.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "desert",
+    "bookTheme": "desert",
     "time": [
       [600, 30],
       [300, 15]
@@ -15481,14 +15481,14 @@
   "mission-2": {
     "id": "mission-2",
     "prereq": "mission-1",
-    "title": "",
+    "title": "Dissolving Formations",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Cassandra woke to unfamiliar faces, their outlines softened by the haze of heat and exhaustion. The Everwanderers had found her crumpled in the dunes, their cautious hands dragging her to the shade of their caravan’s tents. They spoke among themselves in a language that twisted like the wind, their tones curious but wary. They offered her water—life itself—and Cassandra drank until she could feel her strength begin to flicker back. Lying on the rough fabric of a cot, she stared at the ceiling of the tent, the question gnawing at her: where was Sidian? The Everwanderers moved around her, their eyes veiled with suspicion as they whispered in low voices. She felt like an interloper in their world, a fragile thing saved by their mercy. But the desert had already begun to harden her, and as the days passed, she prepared for whatever trial would come next.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "desert",
+    "bookTheme": "desert",
     "time": [
       [600, 30],
       [300, 15]
@@ -15537,14 +15537,14 @@
   "mission-3": {
     "id": "mission-3",
     "prereq": "mission-2",
-    "title": "",
+    "title": "Hex Theater",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The obelisk field rose before Cassandra like a jagged forest of stone, its towering monoliths humming with an unnatural energy that made her skin crawl. She moved cautiously, each step a gamble on shifting sands. The Everwanderers, now her cautious allies, watched from a distance as she approached the first obelisk. The air warped around her, shimmering with heat and an otherworldly distortion. Strange glyphs adorned the blackened stone, glowing faintly as she ran her fingers over them. Her hallucinations returned, the chess pieces flickering at the edge of her vision, but this time, they seemed to guide her. The zebra apparition appeared briefly, its glowing form stepping delicately between the obelisks, offering silent hints on which symbols to follow. Cassandra felt the heat intensify, the field becoming a crucible of both physical and mental endurance.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "obelisks",
+    "bookTheme": "obelisks",
     "time": [
       [600, 30],
       [300, 15]
@@ -15593,14 +15593,14 @@
   "mission-4": {
     "id": "mission-4",
     "prereq": "mission-3",
-    "title": "",
+    "title": "Herring Warfare",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "A sudden roar of thunder split the air, and rain began to fall in a torrential flood. The obelisk field transformed as water pooled and surged, creating rushing currents that threatened to sweep her away. Cassandra clung to the base of a monolith, her grip slipping as the black stone grew slick. The Everwanderers called to her from the edge of the field, but their words were drowned out by the roar of water. Gritting her teeth, she began to climb, her hands and feet finding holds in the intricate carvings. From above, she could see patterns emerging in the chaos below, the shapes of the glyphs forming paths through the flooded labyrinth. Trusting her sharpened instincts, she descended carefully, finding her way to safety and uncovering another fragment of the field’s mystery.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "obelisks",
+    "bookTheme": "obelisks",
     "time": [
       [600, 30],
       [300, 15]
@@ -15649,14 +15649,14 @@
   "mission-5": {
     "id": "mission-5",
     "prereq": "mission-4",
-    "title": "",
+    "title": "Valley Collapsing",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "At the heart of the obelisk field stood an ancient well of arcana, guarded by a hulking, armor-plated rhino. Its massive frame blocked the path, its breath steaming in the cool night air. Cassandra approached cautiously, gripping her spear tightly, her training with the Everwanderers echoing in her mind. The battle was swift and brutal—the rhino charged with earth-shaking force, and her strikes barely scratched its thick hide. Every move she made was met with overwhelming strength, forcing her to retreat, battered and frustrated. Watching the beast from a safe distance, she realized brute strength alone would not be enough. The desert had taught her patience, and now she would need to rely on strategy.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "rhino",
+    "bookTheme": "rhino",
     "time": [
       [600, 30],
       [300, 15]
@@ -15705,14 +15705,14 @@
   "mission-6": {
     "id": "mission-6",
     "prereq": "mission-5",
-    "title": "",
+    "title": "Armor of the Prowess",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The second confrontation was different. Cassandra studied the terrain, marking the weak points in the ground and the natural barriers she could use to her advantage. When the rhino charged, she sidestepped at the last moment, guiding it into a crumbling ravine. It stumbled, momentarily disoriented, and she struck with precision, aiming for the gaps in its armor. The battle was long, each moment requiring focus and control, but her tactics eventually prevailed. As the beast fell, she stood over it, her body trembling with exhaustion but her spirit unbroken. The well of arcana stood before her, its power palpable, and she knew this victory was a testament to how far she had come.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "rhino",
+    "bookTheme": "rhino",
     "time": [
       [600, 30],
       [300, 15]
@@ -15761,14 +15761,14 @@
   "mission-7": {
     "id": "mission-7",
     "prereq": "mission-6",
-    "title": "",
+    "title": "Rendevous",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Chieftain stood silently at the edge of the camp, his gaze fixed on the endless horizon. Cassandra knew this was her first trial—an endurance test that would push her to her limits. He handed her a small pack with barely enough supplies for a day and pointed toward the vast expanse of dunes. The journey was grueling. The sun bore down mercilessly, and the nights brought biting cold. Each step felt heavier than the last, her muscles screaming in protest, but she pressed on, relying on the survival skills the Everwanderers had taught her. When she finally returned to the camp, blistered and half-delirious, the Chieftain gave no sign of approval, but his silence spoke volumes. She had earned his respect.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "everwanderers",
+    "bookTheme": "everwanderers",
     "time": [
       [600, 30],
       [300, 15]
@@ -15777,8 +15777,8 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "rbwbwbwk/pppppppp/8/8/8/8/PPPPPPPP/RSZSUSNK w - - 0 1",
-        "fenHistory": ["rbwbwbwk/pppppppp/8/8/8/8/PPPPPPPP/RSZSUSNK w - - 0 1"],
+        "fen": "rbbwkbbr/pppppppp/8/8/8/8/PPPPPPPP/RNNSKNNR w - - 0 1",
+        "fenHistory": ["rbbwkbbr/pppppppp/8/8/8/8/PPPPPPPP/RNNSKNNR w - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -15798,8 +15798,7 @@
         "whiteArcane": {},
         "blackArcane": {
           "sumnB": 2,
-          "sumnW": 1,
-          "shftB": 4
+          "shftB": 6
         },
         "config": {},
         "correctMoves": [""],
@@ -15822,13 +15821,13 @@
     "id": "mission-8",
     "prereq": "mission-7",
     "title": "",
-    "nodeText": "",
+    "nodeText": "Backtrack Flight",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The final test was one of leadership. The Chieftain assembled a group of Everwanderers, their expressions stoic as they waited for Cassandra’s command. The simulated battle was set—a rival faction had been sighted near their territory, and she was to lead her team in a mock skirmish. Cassandra’s mind raced as she formulated a plan, recalling every lesson in strategy and tactics she had learned. Her orders were swift and decisive, and her team moved like a well-oiled machine. The 'battle' ended with a resounding success, her strategies outmaneuvering the opposing force. The Chieftain, watching from a distance, finally approached. Though he said nothing, the subtle nod he gave her was enough. She had proven herself worthy among the Everwanderers.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "everwanderers",
+    "bookTheme": "everwanderers",
     "time": [
       [600, 30],
       [300, 15]
@@ -15881,7 +15880,7 @@
   },
   "mission-9": {
     "id": "mission-9",
-    "title": "",
+    "title": "Inhuman Request I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -15900,11 +15899,11 @@
     "nodeText": "Edwin Ziegler Adams vs Carlos Torre Repetto: New Orleans (1920)",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-8",
+    "prereq": "",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "mantis-battle",
+    "bookTheme": "mantis-battle",
     "panels": {
       "panel-1": {
         "fen": "2r1r1k1/1p1qbppp/3p1n2/p2P2B1/3Q4/5N2/PP2RPPP/4R1K1 w - - 4 17",
@@ -15940,7 +15939,7 @@
   },
   "mission-10": {
     "id": "mission-10",
-    "title": "",
+    "title": "Inhuman Request I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -15961,9 +15960,9 @@
     "reward": [],
     "prereq": "mission-9",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "mantis-battle",
+    "bookTheme": "mantis-battle",
     "panels": {
       "panel-1": {
         "fen": "3r4/4kp2/2q1p3/pp1pPnpp/2r5/P1PN2PP/1P1R1P1K/3R3Q b - - 7 32",
@@ -15999,7 +15998,7 @@
   },
   "mission-11": {
     "id": "mission-11",
-    "title": "",
+    "title": "Inhuman Request I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -16020,9 +16019,9 @@
     "reward": [],
     "prereq": "mission-10",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "mantis-battle",
+    "bookTheme": "mantis-battle",
     "panels": {
       "panel-1": {
         "fen": "4r1r1/Qppk4/p2b2qp/3P1pBb/7P/2NP1pP1/PPP4R/R4K2 b - - 1 20",

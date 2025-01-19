@@ -88,7 +88,7 @@ export class UnwrappedCampaign extends React.Component<
                 (LS.auth.user.campaign?.topScores[i - 1] ||
                   i === 0 ||
                   this.state.booksUnlocked) &&
-                i < 4;
+                i < 8;
               return (
                 <Button
                   key={i}

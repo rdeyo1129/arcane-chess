@@ -57,7 +57,7 @@ export default class Hero extends React.Component {
       piece: piece[this.getRandomNumber(0, 13)],
       color: color[this.getRandomNumber(0, 1)],
       // faction: faction[this.getRandomNumber(0, 5)],
-      faction: 'nu',
+      faction: 'normal',
     };
   };
 

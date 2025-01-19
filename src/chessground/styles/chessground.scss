@@ -23,8 +23,7 @@
 .city-voltaire-board,
 .beast-battle-board,
 .desert-voltaire-board {
-  background-image: 
-  // url('/assets/images/white-texture.png'),
+  background-image: url('/assets/images/textures/swirl.png'),
     url('/assets/images/board/tactoriusRed.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
   background-repeat: repeat, no-repeat;
@@ -39,8 +38,7 @@
 .conclave-board,
 .tavern-board,
 .everwanderers-board {
-  background-image: 
-  // url('/assets/images/white-texture.png'),
+  background-image: url('/assets/images/textures/white-wall-3-2.png'),
     url('/assets/images/board/tactoriusBrown.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
   background-repeat: repeat, no-repeat;
@@ -50,8 +48,7 @@
 }
 .creator-board,
 .yellow-board {
-  background-image: 
-  // url('/assets/images/white-texture.png'),
+  background-image: url('/assets/images/textures/skulls.png'),
     url('/assets/images/board/tactoriusYellow.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
   background-repeat: repeat, no-repeat;
@@ -69,8 +66,7 @@
 .mage-room-board,
 .ruins-board,
 .robotcity-garden-board {
-  background-image: 
-  // url('/assets/images/white-texture.png'),
+  background-image: url('/assets/images/textures/xv.png'),
     url('/assets/images/board/tactoriusGreen.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
   background-repeat: repeat, no-repeat;
@@ -81,8 +77,7 @@
 .town-board,
 .skeleton-battle-board,
 .sunset-board {
-  background-image: 
-  // url('/assets/images/white-texture.png'),
+  background-image: url('/assets/images/textures/diagmonds.png'),
     url('/assets/images/board/tactoriusBlue.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
   background-repeat: repeat, no-repeat;
@@ -94,8 +89,7 @@
 .figure-board,
 .spectre-battle-board,
 .cliff-board {
-  background-image: 
-  // url('/assets/images/white-texture.png'),
+  background-image: url('/assets/images/textures/white-texture.png'),
     url('/assets/images/board/tactoriusPurple.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
   background-repeat: repeat, no-repeat;
@@ -111,8 +105,7 @@
 .mines-board,
 .ninja-battle-board,
 .clocktower-board {
-  background-image: 
-  // url('/assets/images/white-texture.png'),
+  background-image: url('/assets/images/textures/dark-mosaic.png'),
     url('/assets/images/board/tactoriusGray.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
   background-repeat: repeat, no-repeat;
@@ -122,10 +115,10 @@
 }
 
 .tactorius-default-board {
-  background-image: 
-  // url('/assets/images/white-texture.png'),
+  background-image:
+    url('/assets/images/textures/random-grey-variations.png'),
     // url('/assets/images/board/electricblue.svg');
-    url('/assets/images/board/tactoriusDefault.svg');
+    url('/assets/images/board/tactoriusBlue.svg');
   // radial-gradient(circle, rgb(212, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)
   // background-color: #333; /* Dark background */
   // box-shadow: 0 0 15px 5px rgba(0, 162, 255, 0.6); /* Blue glow */

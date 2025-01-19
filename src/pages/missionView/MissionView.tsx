@@ -1015,6 +1015,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     );
                     this.setState({
                       glitchActive: true,
+                      hoverArcane: '',
                     });
                   }
                 }

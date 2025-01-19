@@ -180,8 +180,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       engineColor: 'black',
       whiteSetup: 'RNBQKBNR',
       blackSetup: 'rnbqkbnr',
-      whiteFaction: 'nu',
-      blackFaction: 'nu',
+      whiteFaction: 'normal',
+      blackFaction: 'normal',
       whiteTime: 600,
       blackTime: 600,
       whiteInc: 0,
@@ -230,8 +230,8 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
       thinking: SearchController.thinking,
       thinkingTime: this.props.config.thinkingTime,
       engineDepth: this.props.config.engineDepth,
-      whiteFaction: 'nu',
-      blackFaction: 'nu',
+      whiteFaction: 'normal',
+      blackFaction: 'normal',
       selected: 'a',
       config: {
         a: { disabled: false, powers: {}, picks: 0 },
@@ -1051,6 +1051,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     );
                     this.setState({
                       glitchActive: true,
+                      hoverArcane: '',
                     });
                   }
                 }
@@ -1773,7 +1774,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               </div>
               <div id="history" className="history">
                 {sortedHistory.map((fullMove, fullMoveIndex) => {
-                  console.log(fullMove);
                   return (
                     <p className="full-move" key={fullMoveIndex}>
                       <span className="move-number">{fullMoveIndex + 1}.</span>

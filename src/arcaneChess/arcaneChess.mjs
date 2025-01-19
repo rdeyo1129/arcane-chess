@@ -207,7 +207,7 @@ export default function arcaneChess() {
       const moves = validMoves();
       const randomMove = moves[Math.floor(Math.random() * moves.length)];
       MakeMove(randomMove);
-      return randomMove;
+      return { bestMove: randomMove, text: ['glitch activated!'] };
     },
     getInvisibility: () => {
       return GameBoard.invisibility;

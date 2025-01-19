@@ -7,8 +7,9 @@ class AudioManager {
   private globalVolume: number;
 
   constructor() {
-    const storedVolume = localStorage.getItem('globalVolume');
-    this.globalVolume = storedVolume !== null ? parseFloat(storedVolume) : 0.3;
+    // const storedVolume = localStorage.getItem('globalVolume');
+    // this.globalVolume = storedVolume !== null ? parseFloat(storedVolume) : 0.8;
+    this.globalVolume = 1;
   }
 
   setPlaylist(songs: string[]): void {

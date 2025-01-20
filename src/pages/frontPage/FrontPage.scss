@@ -9,7 +9,7 @@
     display: flex;
     height: 100px;
     width: 100%;
-    background: none; // No direct background on .header
+    background: none;
     align-items: center;
     z-index: 20;
     position: relative;
@@ -54,9 +54,9 @@
       url(/assets/dashboard/hallway.webp);
     background-size: cover;
     background-position: center;
-    filter: blur(2px); // Apply blur to the background image
-    z-index: -1; // Place the background behind .header content
-    pointer-events: none; // Prevent interaction with the pseudo-element
+    filter: blur(2px);
+    z-index: -1;
+    pointer-events: none;
   }
   .front-page {
     position: relative;

@@ -38,6 +38,8 @@
 .conclave-board,
 .tavern-board,
 .rhino-board,
+.sphinx-board,
+.wizard-battle-board,
 .everwanderers-board {
   background-image: url('/assets/images/textures/white-wall-3-2.png'),
     url('/assets/images/board/tactoriusBrown.svg');
@@ -48,6 +50,10 @@
     left top;
 }
 .creator-board,
+.future-egypt-room-board,
+.future-egypt-board,
+.nehkmet-board,
+.ra-dojo-board,
 .yellow-board {
   background-image: url('/assets/images/textures/skulls.png'),
     url('/assets/images/board/tactoriusYellow.svg');
@@ -119,7 +125,8 @@
     left top;
 }
 
-.tactorius-default-board {
+.tactorius-default-board,
+.tsar-board {
   background-image:
     url('/assets/images/textures/random-grey-variations.png'),
     // url('/assets/images/board/electricblue.svg');

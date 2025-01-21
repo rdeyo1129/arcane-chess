@@ -40,6 +40,7 @@
 .rhino-board,
 .sphinx-board,
 .wizard-battle-board,
+.tigran-rashida-board,
 .everwanderers-board {
   background-image: url('/assets/images/textures/white-wall-3-2.png'),
     url('/assets/images/board/tactoriusBrown.svg');
@@ -54,6 +55,11 @@
 .future-egypt-board,
 .nehkmet-board,
 .ra-dojo-board,
+.egypt-hall-board,
+.gladiator-hall-board,
+.komodo-battle-board,
+.rebels-board,
+.victorious-tigran-board,
 .yellow-board {
   background-image: url('/assets/images/textures/skulls.png'),
     url('/assets/images/board/tactoriusYellow.svg');
@@ -73,6 +79,7 @@
 .mage-room-board,
 .ruins-board,
 .mantis-battle-board,
+.anubis-board,
 .robotcity-garden-board {
   background-image: url('/assets/images/textures/xv.png'),
     url('/assets/images/board/tactoriusGreen.svg');
@@ -85,6 +92,9 @@
 .town-board,
 .skeleton-battle-board,
 .desert-board,
+.ancient-egypt-board,
+.portal-keeper-board,
+.gladiator-board,
 .sunset-board {
   background-image: url('/assets/images/textures/diagmonds.png'),
     url('/assets/images/board/tactoriusBlue.svg');
@@ -126,6 +136,7 @@
 }
 
 .tactorius-default-board,
+.tiger-egypt-board,
 .tsar-board {
   background-image:
     url('/assets/images/textures/random-grey-variations.png'),

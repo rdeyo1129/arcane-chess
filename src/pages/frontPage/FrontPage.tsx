@@ -128,16 +128,6 @@ class UnwrappedFrontPage extends React.Component<
         </div>
         <div className="front-page fade offset-hero">
           <div className="row-a">
-            <div className="intro-box">
-              <div className="intro">
-                <h3>
-                  Education in Chess has to be an education in independent
-                  thinking and judgment. Chess must not be memorized.
-                </h3>
-                {/* <hr /> */}
-                <h5>&emsp; - Emanuel Lasker, Second World Chess Champion</h5>
-              </div>
-            </div>
             <div className="enter-buttons">
               {/* revert to login page when ready for users */}
               <Link
@@ -234,7 +224,6 @@ class UnwrappedFrontPage extends React.Component<
                   disabled={false}
                   styles={{
                     color: 'white',
-                    marginBottom: '100px',
                     fontStyle: 'italic',
                   }}
                   fontSize={24}
@@ -254,6 +243,16 @@ class UnwrappedFrontPage extends React.Component<
                 // strong={true}
               />
             </Link> */}
+            </div>
+            <div className="intro-box" style={{ marginBottom: '200px' }}>
+              <div className="intro">
+                <h3>
+                  Education in Chess has to be an education in independent
+                  thinking and judgment. Chess must not be memorized.
+                </h3>
+                {/* <hr /> */}
+                <h5>&emsp; - Emanuel Lasker, Second World Chess Champion</h5>
+              </div>
             </div>
           </div>
           <Hero />

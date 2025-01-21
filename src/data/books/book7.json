@@ -6,11 +6,11 @@
     "title": "Mindfulness",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The walls of the Egyptian Hall stretched endlessly, carved with vivid depictions of Ra-Metropolis’ ancient history. Each panel told fragmented tales of Apex’s rise, the creation of the Goliaths, and the Axiom’s fall into division. Sidian moved slowly, his fingers brushing the grooves as he pieced together the kingdom’s once-proud unity, shattered by ambition and betrayal. The stories hinted at cycles of power and downfall, their echoes still present in the city’s corruption.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "egypt-hall",
+    "bookTheme": "ancient-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -141,11 +141,11 @@
     "title": "Sacrifices",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "In the depths of the hall, Sidian discovered a section devoted to forbidden spells, its markings glowing faintly in the dim light. The glyphs detailed the process of separating one’s spirit from their body, allowing exploration beyond physical limits. Sidian followed the instructions, focusing his energy until his surroundings blurred, and his body felt distant. The sensation of stepping outside himself was exhilarating yet disorienting, and the carvings warned of the dangers—too long in this form, and one might lose their way back entirely.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "egypt-hall",
+    "bookTheme": "ancient-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -276,11 +276,11 @@
     "title": "Patterns VI",
     "nodeText": "Learn more about color complexes.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Among the carvings, Sidian found an intricate riddle surrounded by symbols of peace and stillness. It spoke of a temple hidden within the fabric of reality, accessible only through deep meditation. The instructions were enigmatic, requiring patience, focus, and an unwavering mind. Sidian struggled to decipher its full meaning, the words pulling him toward a test of inner strength and discipline that he had yet to master.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "egypt-hall",
+    "bookTheme": "ancient-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -652,11 +652,11 @@
     "title": "Patterns VII",
     "nodeText": "Learn about about tempo.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "On one wall, Sidian came across an elaborate carving of a figure enveloped in swirling darkness, their hands shaping tendrils of shadow into solid forms. The glyphs detailed the creation of voidweaving—a magic born from desperation, isolation, and betrayal. The carvings showed how the power grew stronger as the wielder’s bonds to others frayed, feeding off their solitude. Sidian saw voidweaving not just as a weapon but as a self-perpetuating curse, a power that demanded sacrifice in exchange for control.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "egypt-hall",
+    "bookTheme": "ancient-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -773,11 +773,11 @@
     "title": "Tactics V",
     "nodeText": "Learn about zwischenzug and deflection.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian paused before a towering mural depicting the creation of the Goliaths, their immense forms forged to unify the fractured kingdoms. Anubis, the first Goliath, was depicted at the forefront—a protector meant to bring order to chaos. The mural shifted, showing his transformation into an enforcer of fear, his purpose corrupted by dark magic. Sidian studied the depiction of Anubis’ fall, seeing how even the most noble intentions could be twisted into tyranny.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "egypt-hall",
+    "bookTheme": "ancient-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -1094,11 +1094,11 @@
     "title": "Tactics VI",
     "nodeText": "Learn about interference and x-ray.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Deeper in the hall, carvings revealed the origins of spectres and wraiths. These twisted beings were once warriors and leaders, their souls bound to shadow magic after death. Sidian saw their forms etched in agonizing detail, their hollow eyes and clawed hands symbols of their eternal servitude. The carvings warned that voidweaving did not stop at its wielder but consumed those who followed, turning loyalty into an unending curse.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "egypt-hall",
+    "bookTheme": "ancient-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -1399,11 +1399,11 @@
     "title": "Attacking IV",
     "nodeText": "Learn about forcing moves and counterplay.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "In a secluded alcove, Sidian discovered carvings of a legendary soldier who once protected Ra-Metropolis with unmatched skill and determination. The soldier’s victories were etched in intricate detail, but so too were signs of betrayal and isolation. The murals depicted a gradual descent, the soldier surrounded by shadows as his once-bright legacy turned to tragedy. The story ended abruptly, leaving Sidian with a sense of unease and the feeling that this soldier’s path was far from finished.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "egypt-hall",
+    "bookTheme": "ancient-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -1585,11 +1585,11 @@
     "title": "Temple of Intermezzo I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian sat in the silent chamber, his breaths steady but his mind restless. The riddle had led him here, to a room where nothing moved, nothing spoke. Hours stretched into an eternity as the weight of stillness pressed on him, urging him to let go of his impatience. The air was thick with ancient energy, a presence that demanded he quiet not just his thoughts but his spirit. The silence became his test, and only when his resolve aligned with the stillness did the chamber shift, the air rippling with newfound purpose.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "desert",
+    "bookTheme": "desert",
     "time": [
       [300, 7],
       [260, 9]
@@ -3915,11 +3915,11 @@
     "title": "Temple of Intermezzo II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "From the ripple of silence emerged a spectral tiger, its glowing form pacing with a calm, deliberate grace. Its eyes locked onto Sidian, its gaze both piercing and serene. The tiger moved as though testing him, its presence a quiet demand for focus and stillness. Sidian mirrored the tiger’s poise, his breaths aligning with its steady rhythm. As he embraced the calm, the tiger lowered its head, and the chamber opened further, the path ahead revealed in response to his newfound balance.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tiger-egypt",
+    "bookTheme": "desert",
     "time": [
       [280, 9],
       [240, 11]
@@ -6245,11 +6245,11 @@
     "title": "Tmeple of Assassins I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian followed the tiger into a chamber where murals stretched across the walls, their vivid carvings illuminated by a faint golden light. They told the story of Anubis, the first Goliath, created to unite the fractured kingdoms. At first, Anubis was a symbol of hope, his immense strength used to enforce peace. But the murals shifted, depicting betrayal by those he trusted, his purpose twisted by dark forces. The tiger moved with quiet authority, its gaze resting on the final image of Anubis standing alone, his power corrupted, his legacy tarnished.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tiger-egypt",
+    "bookTheme": "tiger-egypt",
     "time": [
       [300, 7],
       [260, 9]
@@ -8618,11 +8618,11 @@
     "title": "Tmeple of Assassins II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The next chamber was darker, the air heavy with a foreboding energy. Murals depicted Anubis discovering shadow magic, his form surrounded by swirling tendrils of darkness. The carvings showed the toll it took on him, his once noble frame contorting as the void magic consumed him. The tiger paused before a panel showing Anubis wielding voidweaving to maintain control, each use driving him further from his original purpose. Sidian felt the weight of the tiger’s presence as though it were silently asking him to understand the cost of wielding unchecked power.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tiger-egypt",
+    "bookTheme": "tiger-egypt",
     "time": [
       [280, 9],
       [240, 11]
@@ -10991,11 +10991,11 @@
     "title": "Temple of the Eclipse I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The chamber shifted again, revealing grotesque carvings of wraiths and spectres—souls twisted by Anubis’ void magic into eternal servants. Their hollow faces stared out from the walls, their forms misshapen by the magic that bound them. The tiger paced silently, its presence a reminder of the danger of creating such creatures. The murals showed how these beings were once proud warriors and advisors, transformed into tools of terror. Sidian felt the tragedy of their fate, a warning etched into the very foundation of the temple.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tiger-egypt",
+    "bookTheme": "tiger-egypt",
     "time": [
       [300, 7],
       [260, 9]
@@ -13342,11 +13342,11 @@
     "title": "Temple of the Eclipse II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "At the heart of the temple, the tiger led Sidian to a final mural—a depiction of a hidden path leading back to Ra-Metropolis. The carvings were fragmented, their meaning veiled in cryptic symbols that demanded intuition and insight. The tiger’s form began to fade, leaving behind only its glowing eyes. The message was clear: the path to the portal required more than strength or skill. It demanded patience, understanding, and the will to see through the layers of deception. As the tiger vanished entirely, Sidian felt the weight of its guidance, the next step in his journey etched into his mind.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tiger-egypt",
+    "bookTheme": "tiger-egypt",
     "time": [
       [280, 9],
       [240, 11]
@@ -15690,14 +15690,14 @@
   "mission-1": {
     "id": "mission-1",
     "prereq": "",
-    "title": "",
+    "title": "Tooth and Claw",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian’s vision blurred as the chamber around him transformed into a scene from a fractured memory. He stood in a modest Egyptian home, watching as a young boy clung to his mother’s hand, their faces tense with fear. The boy’s father, a rebel against Anubis’ oppressive rule, left to join an uprising but never returned. Days later, soldiers stormed the home, taking the boy’s mother as part of the tribute demanded by the throne. The boy, now orphaned, was taken in by the soldiers who had destroyed his life, raised in their ranks to serve the very force that had shattered his family.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "rebels",
+    "bookTheme": "rebels",
     "time": [
       [600, 30],
       [300, 15]
@@ -15745,7 +15745,7 @@
   },
   "mission-2": {
     "id": "mission-2",
-    "title": "",
+    "title": "Unphased",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -15762,13 +15762,13 @@
       [300, 15]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sidian stepped across the shimmering surface of the mirror in the Mirror Temple, the liquid-like glass rippling beneath his feet. As he moved, the chamber around him dissolved into blinding light, leaving Mirage behind, her reflection fading into the void. When the brilliance subsided, Sidian found himself in a desolate corner of Ra-Metropolis, its once vibrant streets now cloaked in shadow and silence. The air crackled faintly with the hum of void energy, an oppressive reminder of Tsar’s presence. \n\n Navigating the city’s labyrinthine alleys, Sidian made his way to the portal hub, its towering spires visible even through the dense haze of Tsar’s control. Armed with the lessons and arcana he had gathered, Sidian confronted Tsar in the heart of the portal chamber. Tsar’s voidweaver form loomed, his power radiating in arcs of unpredictable lightning and tendrils of living shadow. The battle erupted with terrifying speed, Sidian’s attacks landing but doing little to pierce Tsar’s defenses. Each strike was met with overwhelming force, Tsar’s power pressing down on him like a storm. \n\n Despite his efforts, Sidian was overwhelmed, his body immobilized by void tendrils that constricted his movements and sapped his strength. With a cruel inevitability, Tsar cast Sidian toward the portal—a shimmering void under his control. Sidian struggled against the pull, but it was futile. He was dragged through the swirling gate and thrown into the unknown desert beyond, a place from which no one had ever returned.",
     "reward": [],
     "prereq": "mission-1",
     "opponent": "",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tsar",
+    "bookTheme": "future-egypt",
     "panels": {
       "panel-1": {
         "fen": "2bkwwb1/2ppppp1/8/8/8/8/1PPPPP2/1NWWKN2 w - - 0 1",
@@ -15790,7 +15790,12 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {},
-        "blackArcane": { "modsSKI": 1, "modsTRO": 1, "modsSUS": 1 },
+        "blackArcane": {
+          "modsSKI": 1,
+          "modsTRO": 1,
+          "modsSUS": 1,
+          "modsAET": 1
+        },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
@@ -15802,14 +15807,14 @@
   "mission-3": {
     "id": "mission-3",
     "prereq": "mission-2",
-    "title": "",
+    "title": "Into the Rabbit Hole",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The world around Sidian was an endless expanse of sand, the air thick with heat and shimmering distortions. Days bled into nights as he wandered aimlessly, his mind unraveling under the weight of isolation. Hallucinations plagued him—visions of Ra-Metropolis burning, Tsubasa calling for him, and the tiger’s glowing eyes watching from the dunes. Each step felt heavier than the last, his strength fading as the vast desert seemed determined to consume him.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "desert",
+    "bookTheme": "desert",
     "time": [
       [600, 30],
       [300, 15]
@@ -15858,14 +15863,14 @@
   "mission-4": {
     "id": "mission-4",
     "prereq": "mission-3",
-    "title": "",
+    "title": "Invention of Nature",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian stumbled into the shade of an ancient, crumbling structure, its halls filled with the echo of past battles. There, he encountered Tigran, a scarred and brooding warrior meditating in the silence. Tigran spoke of his life as a soldier—his victories in countless battles and the resentment he carried for being denied recognition. Despite leading the kingdom’s armies to glory, his ambition and pride had barred him from rising in rank. Tigran’s words carried the bitterness of a man whose talents were both celebrated and feared, his pride twisted into a quiet, simmering rage.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "gladiator",
+    "bookTheme": "gladiator",
     "time": [
       [600, 30],
       [300, 15]
@@ -15915,7 +15920,7 @@
   },
   "mission-5": {
     "id": "mission-5",
-    "title": "",
+    "title": "The Archer's Tribute",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -15932,13 +15937,13 @@
       [300, 15]
     ],
     "nodeText": "",
-    "storyText": "",
+    "storyText": "Sidian, now an astral projection, followed Tigran deeper into the structure and witnessed an intimate moment with his lover, Rashida. Her presence seemed to soften Tigran’s hardened edges, a rare vulnerability in the otherwise stoic soldier. But the tranquility was shattered when Anubis’ forces descended, taking Rashida as a sacrifice to feed the dark magic sustaining his power. Tigran’s anguish was palpable as he fought to stop them, but the loss left a permanent scar. Sidian watched as Tigran’s grief hardened into fury, his faith in the kingdom and those he served replaced by a burning desire for vengeance.",
     "reward": [],
     "prereq": "mission-4",
     "opponent": "",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "victorious-tigran",
+    "bookTheme": "victorious-tigran",
     "panels": {
       "panel-1": {
         "fen": "rnwtkwnr/pppppppp/8/8/8/8/PPPPPPPP/RNWQKWSR w KQkq - 0 1",
@@ -15974,14 +15979,14 @@
   "mission-6": {
     "id": "mission-6",
     "prereq": "mission-5",
-    "title": "",
+    "title": "Disciple's Variation",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian’s astral form drifted through the crumbling temple, the faint glow of his projection casting soft light against the shadows. He found Tigran kneeling beside Rashida, her presence a rare calm in the chaos of his bitterness. Tigran’s devotion to her was unmistakable—the way his rough hands brushed hers, the quiet vulnerability in his gaze. Rashida smiled, her words inaudible to Sidian but heavy with meaning. The warmth of the moment was stark against the cold, unforgiving world surrounding them. Yet, the stillness shattered like glass when Anubis’ soldiers stormed the temple. \n\n Rashida’s expression shifted—fear, guilt, or perhaps a mix of both—just as she turned toward the invaders. Sidian couldn’t tell if she had betrayed Tigran by aiding Anubis or if she had simply become another pawn in the Goliath’s schemes. The soldiers seized her, and though Tigran fought with unmatched ferocity, they overwhelmed him. Rashida was dragged away, her voice echoing with pleas as she was declared a tribute to Anubis’ power. Tigran collapsed in the aftermath, his fists clenched against the stone floor, his cries of anguish filling the empty halls. \n\n The temple grew colder, and Sidian felt the shift as Tigran’s grief hardened into rage. His love for Rashida, the one thing anchoring him to humanity, had been stripped away, leaving a void that shadow magic eagerly filled. Tigran rose, his eyes hollow, his form trembling with fury and despair. Sidian watched helplessly as the broken warrior’s resolve twisted, his heartbreak transforming into the first steps of his descent into darkness.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tigran-rashida",
+    "bookTheme": "tigran-rashida",
     "time": [
       [600, 30],
       [300, 15]
@@ -16038,14 +16043,14 @@
   "mission-7": {
     "id": "mission-7",
     "prereq": "mission-6",
-    "title": "",
+    "title": "Iconoclasm",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian followed Tigran to the heart of a grand temple, its halls echoing with the oppressive presence of Anubis. The Goliath loomed at the center of the chamber, his colossal form radiating an aura of malice and power. Tigran entered without hesitation, his blade gleaming in the dim light, every step carrying the weight of his vengeance. Sidian observed from the shadows of his astral form, his focus locked on the confrontation. Tigran wasted no words, his blade striking with precision and fury. \n\n The battle was ferocious, the clash of steel and stone reverberating through the temple. Anubis countered with devastating strength, his strikes shaking the very foundation of the room. Tigran’s movements were unparalleled—each dodge and counterattack a testament to his unmatched skill. Despite the Goliath’s overwhelming size and power, Tigran’s determination allowed him to outmaneuver Anubis, his blade finding weak points in the Goliath’s armor. With a final, earth-shaking strike, Tigran brought the mighty Anubis to his knees. The Goliath fell, his form crumbling into a cascade of shadow and stone. \n\n Yet victory offered no solace. Anubis’ death left behind only emptiness, his final words—inaudible but dripping with malice—seeming to echo in Tigran’s mind. Rashida was gone, and the kingdom he had once served had abandoned him. Tigran stood amidst the rubble, his body heaving from exhaustion, his soul hollowed by loss. The shadows around him seemed to respond, creeping closer, whispering promises of power and control. With nowhere else to turn, Tigran embraced the void, its dark tendrils wrapping around him like a shroud. Sidian watched as Tigran disappeared into the darkness, his heart heavy with the weight of witnessing a hero fall.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "anubis",
+    "bookTheme": "anubis",
     "time": [
       [600, 30],
       [300, 15]
@@ -16094,14 +16099,14 @@
   "mission-8": {
     "id": "mission-8",
     "prereq": "mission-7",
-    "title": "",
+    "title": "The Hat Trick",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The portal loomed before Sidian, shrouded in flickering shadows and pulsing energy. Guarding its threshold was the portal keeper, a massive construct of stone and void magic, its form crackling with power. As Sidian stepped closer, the creature stirred, its glowing eyes locking onto him with unyielding focus. The battle erupted without warning, the keeper’s colossal limbs swinging with devastating force, each strike sending shockwaves through the ground. Sidian darted around its attacks, his arcana flaring as he countered with precise, calculated blows. The air vibrated with energy as the keeper unleashed a surge of void magic, nearly overwhelming him, but Sidian held firm, channeling his last reserves into a concentrated blast at the construct’s core. The keeper crumbled in a burst of light and shadow, the portal roaring to life as its guardian fell. Exhausted but determined, Sidian stepped through the swirling gate, his resolve hardening for the battles yet to come.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "portal-keeper",
+    "bookTheme": "portal-keeper",
     "time": [
       [600, 30],
       [300, 15]
@@ -16149,7 +16154,7 @@
   },
   "mission-9": {
     "id": "mission-9",
-    "title": "revenge",
+    "title": "Komodo's Revenge I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -16168,11 +16173,11 @@
     "nodeText": "Jose Raul Capablanca vs Masyutin: Kiev RUE (1914)",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-8",
+    "prereq": "",
     "opponent": "",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "komodo-battle",
+    "bookTheme": "komodo-battle",
     "panels": {
       "panel-1": {
         "fen": "r1bq1n1r/pp2k1pB/2p1pb2/3pN2Q/3P4/2N5/PPP3PP/R4RK1 w - - 1 13",
@@ -16208,7 +16213,7 @@
   },
   "mission-10": {
     "id": "mission-10",
-    "title": "",
+    "title": "Komodo's Revenge II",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -16230,8 +16235,8 @@
     "prereq": "mission-9",
     "opponent": "",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "komodo-battle",
+    "bookTheme": "komodo-battle",
     "panels": {
       "panel-1": {
         "fen": "3rk2r/pR3p1p/2p1p2p/3n4/3q2P1/3BRP2/P1P2Kb1/2BQ4 w k - 0 21",
@@ -16267,7 +16272,7 @@
   },
   "mission-11": {
     "id": "mission-11",
-    "title": "",
+    "title": "Komodo's Revenge III",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -16289,8 +16294,8 @@
     "prereq": "mission-10",
     "opponent": "",
     "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "komodo-battle",
+    "bookTheme": "komodo-battle",
     "panels": {
       "panel-1": {
         "fen": "2N1bbr1/5pk1/4p2q/pPp5/P4PPp/3Q3P/4N3/6RK w - - 2 32",

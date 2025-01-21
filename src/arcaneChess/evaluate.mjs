@@ -62,14 +62,14 @@ const KohTable = [
 
 // prettier-ignore
 const deliverance = [
-  1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+  99000, 99000, 99000, 99000, 99000, 99000, 99000, 99000,
   900, 900, 900, 900, 900, 900, 900, 900,
   800, 800, 800, 800, 800, 800, 800, 800,
   700, 700, 700, 700, 700, 700, 700, 700,
   600, 600, 600, 600, 600, 600, 600, 600,
   500, 500, 500, 500, 500, 500, 500, 500,
-  0, 0, 0, 0, 0, 0, 0, 0,
-  -200, -200, -200, -200, -200, -200, -200, -200,
+  -400, -400, -400, -400, -400, -400, -400, -400,
+  -800, -800, -800, -800, -800, -800, -800, -800,
 ]
 
 const BishopPair = 40;
@@ -292,7 +292,7 @@ export function EvalPosition() {
     pce = PIECES.wK;
     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
-      score += deliverance[SQ64(sq)];
+      score += deliverance[MIRROR64(SQ64(sq))];
     }
   }
 
@@ -300,7 +300,7 @@ export function EvalPosition() {
     pce = PIECES.bK;
     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
       sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
-      score -= deliverance[SQ64(sq)];
+      score -= deliverance[MIRROR64(SQ64(sq))];
     }
   }
 

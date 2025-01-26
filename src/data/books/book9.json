@@ -2,15 +2,15 @@
   "lesson-1": {
     "id": "lesson-1",
     "category": "skills",
-    "prereq": "",
+    "prereq": "mission-2",
     "title": "Skills I",
     "nodeText": "Evaluation.",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Vermillion Library was a sanctuary of crimson stone and parchment, where scrolls whispered of devotion and the righteous path to attune to the Axiom. Cassandra moved through its labyrinthine halls, guided by an elder librarian whose hushed words spoke of faith, discipline, and the sacred duty of worthiness. Her fingers traced ornate texts that painted Cerulean Deep as heretical manipulators of the Axiom’s mysteries, twisting its spiritual essence into cold instruments of technology. Yet, within the reverent teachings lay cryptic mentions of a shadowy figure—“the whisper in the dark”—a superstition used to explain chaos and division. While the librarian dismissed it as an old fable, Cassandra saw its presence woven into Vermillion’s growing fear of Cerulean. Hours spent absorbing the library’s teachings left her questioning whether Vermillion’s faith was a path to unity or a wall built by fear, and if the whisper was truly the shadow of an enemy or the echo of mistrust both cities clung to.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-dojo",
+    "bookTheme": "vermillion",
     "time": [
       [0, 0],
       [0, 0]
@@ -167,11 +167,11 @@
     "title": "Skills II",
     "nodeText": "Visualization.",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "High above the world in the quiet stillness of the mountain dojo, Cassandra knelt before the Ninja Supreme, a figure as enigmatic as the frost-laden winds that whispered through the cedar trees. Here, strength was measured not in force but in patience, as Cassandra underwent grueling trials of mental clarity and resilience, forced to confront illusions of her doubts and the fractured ideologies of Vermillion and Cerulean. Between lessons, the Ninja Supreme spoke of the futility of the cold war, where Vermillion’s faith and Cerulean’s science blinded them to the Axiom’s true balance, and referenced “the whisper in the dark” not as a true manipulator but as a shadow exploited by both cities to justify their fears. With each word, they implored Cassandra to rise above the noise, to see past propaganda and fear, and to become the bridge neither city could build—a role that would demand all the patience and clarity she had yet to master.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "mountain-room",
+    "bookTheme": "mountain-temple",
     "time": [
       [0, 0],
       [0, 0]
@@ -328,11 +328,11 @@
     "title": "Mating Patterns I",
     "nodeText": "Learn about Anastasia's mate and the Double bishop mate.",
     "storyTitle": "",
-    "storyText": "Can you find the winning sequence for white?",
-    "hero": "",
+    "storyText": "Tsubasa led Cassandra to a quiet overlook, the sprawl of Vermillion’s crimson cityscape glowing faintly beneath them. As the wind carried the scent of burning incense from distant shrines, he spoke of Vermillion’s legacy, a city forged through unyielding faith and martial discipline. Like the other great Axiom cities, Vermillion had a Goliath—its fiery green phoenix, a creature summoned through ancient rituals tied to the city’s pentagram sigils. The phoenix was more than a guardian; it was a symbol of Vermillion’s belief in purification and rebirth, its flames consuming all that was deemed unworthy. He explained that the Goliath had been called forth during Vermillion’s greatest trials, its power devastating not only its enemies but often exacting a steep price on the city itself. Tsubasa’s voice grew heavy as he revealed his fear that the growing tension with Cerulean Deep and the whispers of mistrust within Vermillion could lead the warlord to summon the phoenix once more, an act that would inevitably plunge both cities into chaos.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-dojo",
+    "bookTheme": "vermillion",
     "time": [
       [0, 0],
       [0, 0]
@@ -575,11 +575,11 @@
     "title": "Temple of Visions I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Cassandra’s first test in the Vermillion Dojo was a sparring match against a skilled samurai. Each strike tested her resolve and discipline, and every mistake was met with precise counters. Passing this trial marked her as worthy to continue her training.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-dojo",
+    "bookTheme": "vermillion",
     "time": [
       [360, 9],
       [320, 11]
@@ -3241,11 +3241,11 @@
     "title": "Temple of Visions II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The second trial focused entirely on mastering the katana. Cassandra trained tirelessly under a strict instructor, refining her movements, balance, and precision. This trial embodied the Vermillion belief that the sword was an extension of the self, requiring spiritual and physical alignment.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-dojo",
+    "bookTheme": "vermillion",
     "time": [
       [340, 11],
       [300, 13]
@@ -5907,11 +5907,11 @@
     "title": "Temple of the Pharaoh's Tomb I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Cassandra participated in a formal duel against a veteran swordsman, a test not only of skill but also composure. Victory required more than technical ability—it demanded patience and control, qualities that reflected Vermillion’s ideals.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-dojo",
+    "bookTheme": "vermillion",
     "time": [
       [360, 9],
       [320, 11]
@@ -8406,11 +8406,11 @@
     "title": "Temple of the Pharaoh's Tomb II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "In a fast-paced test of adaptability, Cassandra faced multiple opponents in a coordinated sparring session. She was forced to balance offense and defense while quickly adjusting to the dynamics of a group battle, proving her ability to thrive under pressure.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-dojo",
+    "bookTheme": "vermillion",
     "time": [
       [340, 11],
       [300, 13]
@@ -10905,11 +10905,11 @@
     "title": "Temple of the Katana I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Cassandra’s final trial brought her before the Vermillion council, where her skills were scrutinized and debated. Although her training earned their approval, doubts lingered due to whispers of her intentions. Ultimately, the council granted her permission to continue, but distrust hung heavy in the air.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-dojo",
+    "bookTheme": "vermillion",
     "time": [
       [360, 9],
       [320, 11]
@@ -13420,15 +13420,15 @@
   },
   "temple-6": {
     "id": "temple-6",
-    "prereq": "temple-5",
+    "prereq": "mission-7",
     "title": "Temple of the Katana II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The first trial at the mountain dojo challenged Cassandra’s stamina and determination. She navigated treacherous terrain and endured physically taxing exercises designed to test her resolve, proving her readiness to train under the Ninja Supreme.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "mountain-room",
+    "bookTheme": "mountain-temple",
     "time": [
       [340, 11],
       [300, 13]
@@ -15939,15 +15939,15 @@
   },
   "temple-7": {
     "id": "temple-7",
-    "prereq": "temple-5",
+    "prereq": "temple-6",
     "title": "Temple of Betrayal I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Cassandra spent hours in meditative stillness under the watch of the Ninja Supreme, resisting distractions and doubts that surfaced in her mind. This trial emphasized the power of patience and clarity, skills essential for seeing beyond illusions and fear.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "mountain-room",
+    "bookTheme": "mountain-temple",
     "time": [
       [360, 9],
       [320, 11]
@@ -18726,11 +18726,11 @@
     "title": "Temple of Betrayal II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "In a labyrinth of shifting passages, Cassandra faced deceptive illusions designed to confuse and overwhelm. By relying on focus and intuition, she navigated the maze, learning that clarity of purpose can cut through even the most intricate lies.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "mountain-room",
+    "bookTheme": "mountain-temple",
     "time": [
       [340, 11],
       [300, 13]
@@ -21509,11 +21509,11 @@
     "title": "Temple of Sovereign Loyalty I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Ninja Supreme guided Cassandra through a vision of Vermillion and Cerulean forces clashing, a symbolic representation of their unending conflict. This trial encouraged her to reflect on the propaganda and fear that fueled the war, revealing how both cities fed the whispers of mistrust.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "mountain-room",
+    "bookTheme": "mountain-temple",
     "time": [
       [360, 9],
       [320, 11]
@@ -24239,11 +24239,11 @@
     "title": "Temple of Sovereign Loyalty II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "In the final trial, Cassandra meditated under the Ninja Supreme’s guidance, overlooking the vast mountain expanse. Here, she gained insights into the futility of the cold war and the shared blindness of Vermillion and Cerulean. The Supreme’s teachings underscored the need for unity, as both sides let their pride obscure the Axiom’s greater truths. Cassandra left the dojo with newfound mental resilience and a sharpened sense of purpose.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "mountain-room",
+    "bookTheme": "mountain-temple",
     "time": [
       [340, 11],
       [300, 13]
@@ -26966,14 +26966,14 @@
   "mission-1": {
     "id": "mission-1",
     "prereq": "",
-    "title": "",
+    "title": "Caught in Retreat",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The air in Ra Metropolis was thick with tension as the aftermath of Tsar’s defeat settled over the city. Cassandra stood amidst the remnants of their battle, her mind still processing the chaos they had endured. Apex’s return brought little solace, his message stark and urgent: the cold war between Vermillion and Cerulean Deep was no longer simmering—it was reaching a dangerous boil. Propaganda, paranoia, and fear had taken root in both cities, with each side justifying its hostility through its interpretation of the Axiom. As Sidian made plans to investigate Cerulean Deep, Cassandra resolved to accompany Tsubasa to Vermillion, the homeland he had distanced himself from, in the hope of averting disaster.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "future-egypt-room",
+    "bookTheme": "future-egypt",
     "time": [
       [600, 30],
       [300, 15]
@@ -26982,9 +26982,9 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "8/pppppppp/pppppppp/pppppppp/8/8/PPPPPPPP/1BNMKNB1 w - - 0 1",
+        "fen": "4k3/pppppppp/pppppppp/pppppppp/8/8/PPPPPPPP/1BNMKNB1 w - - 0 1",
         "fenHistory": [
-          "8/pppppppp/pppppppp/pppppppp/8/8/PPPPPPPP/1BNMKNB1 w - - 0 1"
+          "4k3/pppppppp/pppppppp/pppppppp/8/8/PPPPPPPP/1BNMKNB1 w - - 0 1"
         ],
         "history": [],
         "panelText": "",
@@ -27024,14 +27024,14 @@
   "mission-2": {
     "id": "mission-2",
     "prereq": "mission-1",
-    "title": "",
+    "title": "Mind over Matter",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Despite Apex’s intervention, Cassandra’s reputation in Ra Metropolis remained fraught with suspicion, and bureaucratic red tape threatened to delay their departure. Their path to Vermillion was further blocked by a portal keeper, whose mistrust of outsiders made passage impossible without confrontation. Cassandra and Tsubasa were forced into a brief skirmish, with Cassandra’s quick reflexes and measured attacks overcoming the gatekeeper’s defenses. Tsubasa’s sharp diplomacy diffused the remaining tension, and the portal was reluctantly opened. As they stepped into the swirling energy of the gateway, Cassandra steeled herself for what awaited in Vermillion’s guarded lands.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "portal-keeper",
+    "bookTheme": "portal-keeper",
     "time": [
       [600, 30],
       [300, 15]
@@ -27082,14 +27082,14 @@
   "mission-3": {
     "id": "mission-3",
     "prereq": "mission-2",
-    "title": "",
+    "title": "Proving Grounds",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Vermillion welcomed Cassandra and Tsubasa with suspicion rather than warmth. The city’s towering gates opened into a world of crimson architecture and austere faces, where whispers of the outsider’s arrival preceded them. Led to the warlord’s chamber, Cassandra was met with a council of elders whose distrust hung heavy in the air. The warlord, imposing and resolute, demanded proof of her intentions, and Cassandra’s only recourse was a demonstration of her skill. A duel against elite guards unfolded in the grand chamber, where her technique and discipline earned her grudging respect. The council allowed her to stay and train, though their debate lingered on the whisper, a shadow of fear fueling their mistrust. Beneath this decision, some factions harbored darker intentions.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-dojo",
+    "bookTheme": "vermillion",
     "time": [
       [600, 30],
       [300, 15]
@@ -27141,11 +27141,11 @@
     "title": "Deathwish Amendment",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Having completed the Vermillion Dojo trials, Cassandra sought counsel from Tsubasa, who urged her to seek the guidance of the Ninja Supreme. Residing in the secluded Mountain Dojo, the Supreme was a master of mental resilience and balance, one who eschewed the propaganda and fear that gripped Vermillion. Tsubasa, tethered by his obligations to calm unrest in his homeland, could not accompany her. Cassandra departed alone, her path winding through the treacherous mountains, where the cold winds whispered of trials ahead and unseen dangers lurking in the shadows.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-dojo",
+    "bookTheme": "vermillion",
     "time": [
       [600, 30],
       [300, 15]
@@ -27194,14 +27194,14 @@
   "mission-5": {
     "id": "mission-5",
     "prereq": "mission-4",
-    "title": "",
+    "title": "Armory Sampling",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The narrow mountain trail to the dojo was a gauntlet in itself, but at its heart stood a trial of worthiness. Cassandra’s path was barred by an ancient construct—a towering figure imbued with arcana and designed to challenge those who dared to ascend. The trial was a test of endurance, as the construct’s powerful strikes and unrelenting presence demanded more than brute strength. Cassandra’s movements became sharper, more deliberate, as she used the surrounding terrain to outmaneuver its attacks. Victory came with a final calculated strike, and as the construct crumbled, the gates to the Mountain Dojo opened before her.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "chimera",
+    "bookTheme": "mountain-pass",
     "time": [
       [600, 30],
       [300, 15]
@@ -27250,14 +27250,14 @@
   "mission-6": {
     "id": "mission-6",
     "prereq": "mission-5",
-    "title": "",
+    "title": "Rival Experiment",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Within the winding paths of the mountain, Cassandra was ambushed by a group of Vermillion zealots. This splinter faction, secretly dispatched by distrustful politicians, saw her as a threat to their traditions and a pawn of Cerulean’s supposed schemes. Armed with fervor and arcana-infused weapons, they sought to end her journey. Cassandra’s blade met their aggression with precision, and while she emerged victorious, the battle left her troubled by the depth of Vermillion’s divisions and the ease with which fear had taken root.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "mountain-pass",
+    "bookTheme": "mountain-pass",
     "time": [
       [600, 30],
       [300, 15]
@@ -27306,14 +27306,14 @@
   "mission-7": {
     "id": "mission-7",
     "prereq": "mission-6",
-    "title": "",
+    "title": "Poisoning Indecision",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Further along her journey, Cassandra faced another attack by the splinter group, this time larger and more coordinated. Their accusations rang in her ears as they called her a Cerulean spy and an agent of the whisper. The battle was fierce, with arcana-charged strikes threatening to overwhelm her, but Cassandra’s resolve held firm. She fought with purpose, her strikes measured and decisive, and as the last of her attackers fell, she pressed on, determined to reach the Mountain Dojo.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "mountain-pass",
+    "bookTheme": "mountain-pass",
     "time": [
       [600, 30],
       [300, 15]
@@ -27362,14 +27362,14 @@
   "mission-8": {
     "id": "mission-8",
     "prereq": "mission-7",
-    "title": "",
+    "title": "Pegasus Spellcaster",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "On her return from the mountains, Cassandra’s path back to Vermillion was blocked by a massive golem, a construct of stone and arcana with devastating telekinetic abilities. Rocks and debris moved like extensions of its will, creating a deadly storm of projectiles. Cassandra’s agility and focus were tested as she dodged and deflected its relentless attacks, searching for an opening to strike at the core of its power.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "golem",
+    "bookTheme": "mountain-pass",
     "time": [
       [600, 30],
       [300, 15]
@@ -27418,14 +27418,14 @@
   "mission-9": {
     "id": "mission-9",
     "prereq": "mission-8",
-    "title": "",
+    "title": "Batteries Included",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The battle intensified as the golem’s telekinetic reach grew more aggressive, warping the terrain into deadly traps. Cassandra’s movements became more precise, her attacks calculated to exploit the golem’s momentary vulnerabilities. With a final, decisive blow, she disabled its arcana core, bringing the colossal construct to its knees. Her victory was hard-won, a testament to her growth as a warrior and her unyielding determination.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "golem",
+    "bookTheme": "golem",
     "time": [
       [600, 30],
       [300, 15]
@@ -27474,14 +27474,14 @@
   "mission-10": {
     "id": "mission-10",
     "prereq": "mission-9",
-    "title": "",
+    "title": "Fractured Rage",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Cassandra returned to Vermillion expecting acknowledgment of her efforts, but instead, she was met with suspicion. Rumors had spread of her allegiance to Cerulean, fueled by fear-mongering and political manipulation. The council, now gripped by paranoia, accused her of espionage, claiming her actions aligned with the whispers of treachery. Cassandra’s attempts to mediate were drowned out by their growing distrust, as the city prepared for war under the warlord’s leadership.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-dojo",
+    "bookTheme": "vermillion",
     "time": [
       [600, 30],
       [300, 15]
@@ -27530,14 +27530,14 @@
   "mission-11": {
     "id": "mission-11",
     "prereq": "mission-10",
-    "title": "",
+    "title": "Disengagement of Trust",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Vermillion warlord strode into the arena, his armor glinting with a sickly green luminescence as arcana thrummed in the air around him. Without hesitation, he activated the pentagram beneath their feet, its intricate symbols flaring to life in a blaze of emerald light. The sigil was vast, its power ancient and raw, feeding directly into the warlord’s form. Cassandra could feel the oppressive energy pressing down on her, a crushing weight that made the stakes unmistakably clear—this was no ordinary duel. The warlord had no intention of restraining his strength or limiting the damage. His purpose was absolute: to cement Vermillion’s resolve and ignite the war that had simmered for too long. Above, the council stood in solemn silence, their faces shadowed by the glow of the pentagram as they bore witness to what would become a defining moment in their city’s history. \n\n As the fight began, the warlord attacked with unrelenting ferocity, each movement amplified by the pentagram’s power. His strikes carried the weight of Vermillion’s unwavering faith, each blow more calculated and devastating than the last. Cassandra, though nimble and skilled, found herself on the defensive, forced to counterattack in small, measured bursts. She understood the true risk of the pentagram—its energy wasn’t just empowering the warlord; it was also feeding his Goliath. The ritual wasn’t only about overwhelming her; it was about preparing for something far greater. The longer she delayed, the closer the warlord came to unleashing his phoenix, and Cassandra could feel the mounting inevitability of its arrival. The duel was as much a struggle of will as it was a test of physical prowess, and with each passing moment, the warlord’s intent became clearer: to ensure Vermillion marched to war, leaving no room for peace.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-battle",
+    "bookTheme": "vermillion-battle",
     "time": [
       [600, 30],
       [300, 15]
@@ -27603,14 +27603,14 @@
   "mission-12": {
     "id": "mission-12",
     "prereq": "mission-11",
-    "title": "",
+    "title": "Walk the Line",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The arena trembled as the pentagram reached its peak, its emerald glow blazing with an intensity that burned into the night sky. The warlord raised his weapon high, channeling the sigil’s energy as a swirling vortex of fire erupted from its center. The Goliath emerged—a massive green phoenix wreathed in flames that shimmered with both heat and unnatural vitality. Its fiery wings spread wide, casting an ominous light over the city as it let out a piercing cry that shook the air. The warlord stood beneath it, his figure silhouetted against the inferno, his expression resolute. The phoenix was more than just a manifestation of power; it was Vermillion’s declaration of war, a symbol of its intent to annihilate its enemies and dominate through sheer force. \n\n Cassandra braced herself as the phoenix descended, its attacks swift and relentless, striking in perfect unison with the warlord’s blade. The battlefield became an inferno of green fire, each movement of the phoenix consuming more of her stamina and forcing her into a desperate defense. The overwhelming combination of the warlord’s calculated precision and the Goliath’s destructive might pushed her to the brink. She recognized the futility of the fight—this was not a battle she could win. The warlord’s strength, amplified by the phoenix and fueled by the pentagram’s unrelenting energy, was absolute. The arena was no longer just a stage for combat; it was a crucible where Cassandra’s fate was being sealed. In the final moments, the warlord struck with decisive force, the phoenix’s flames engulfing the battlefield as Cassandra fell. Cast into the abyss, her vision faded into darkness, and the warlord stood victorious, his Goliath’s cry heralding the dawn of a war Vermillion would no longer delay.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "vermillion-battle",
+    "bookTheme": "vermillion-battle",
     "time": [
       [600, 30],
       [300, 15]
@@ -27658,7 +27658,7 @@
   },
   "mission-13": {
     "id": "mission-13",
-    "title": "revenge",
+    "title": "Caro's Stand I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -27677,11 +27677,11 @@
     "nodeText": "Wesley So vs Hikaru Nakamura: St Louis, MO USA (2015)",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-12",
+    "prereq": "temple-5",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "mongol-battle",
+    "bookTheme": "mongol-battle",
     "panels": {
       "panel-1": {
         "fen": "r4qk1/3R4/p2p2n1/1p1Pp3/4n1P1/N2Nb1p1/PPQ1B1KP/5R2 b - - 0 31",
@@ -27717,7 +27717,7 @@
   },
   "mission-14": {
     "id": "mission-14",
-    "title": "",
+    "title": "Caro's Stand II",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -27738,9 +27738,9 @@
     "reward": [],
     "prereq": "mission-13",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "mongol-battle",
+    "bookTheme": "mongol-battle",
     "panels": {
       "panel-1": {
         "fen": "3qr1k1/1b1rbp2/p2p2p1/1p1np3/4P3/P2BB2Q/1PP3PP/4RR1K w - - 0 22",
@@ -27776,7 +27776,7 @@
   },
   "mission-15": {
     "id": "mission-15",
-    "title": "",
+    "title": "Caro's Stand III",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -27797,9 +27797,9 @@
     "reward": [],
     "prereq": "mission-14",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "mongol-battle",
+    "bookTheme": "mongol-battle",
     "panels": {
       "panel-1": {
         "fen": "7r/6pP/5bBp/2K2P1P/8/1k6/8/8 b - - 5 67",

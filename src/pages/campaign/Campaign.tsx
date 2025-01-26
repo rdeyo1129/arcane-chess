@@ -44,7 +44,7 @@ export class UnwrappedCampaign extends React.Component<
         'JERICHO',
         'EMBER',
         'FIBONACCI',
-        'ABYSS',
+        'OBSCURA',
         'TELOS',
       ],
       configModalOpen: false,

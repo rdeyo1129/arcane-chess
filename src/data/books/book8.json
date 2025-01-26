@@ -6,11 +6,11 @@
     "title": "Reaction",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The city stretched before him, a golden sprawl that once shone with divine purpose but now writhed under the weight of shadow. Sidian had returned, carrying the burdens of months spent unraveling the empire’s truths. Every step through Ra-Metropolis was heavy with the fallout of failure—Cassandra and Tsubasa’s first strike against Tsar had failed, leaving the city fractured and spirits low. From the high spires of the metropolis to the winding alleys thick with whispered rebellion, he could feel the shadow of Tigran’s rule tightening its grip. Sidian’s mind churned with plans—possibilities—but the enormity of the challenge before them pressed down like the sunless void that threatened to engulf their world.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ra-dojo",
+    "bookTheme": "future-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -167,11 +167,11 @@
     "title": "Failure",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The table was covered in maps, marked with notes and symbols that spoke of desperation and hope. Sidian’s return injected a flicker of resolve into the resistance. They mapped out the fractures they had discovered in Tsar’s control—whispers of cracks in his spectre network, murmurs of Nehkmet’s faltering loyalty, and the dream shield that loomed as both their greatest obstacle and their most fragile target. The discussion was sharp, filled with measured risk and bold ambition. Tsar was no longer just a tyrant; he was a master of deception, twisting fear into loyalty and loyalty into power. Sidian, Cassandra, and Tsubasa knew this plan had to succeed—failure this time would be absolute.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ra-dojo",
+    "bookTheme": "future-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -302,11 +302,11 @@
     "title": "Patterns VIII",
     "nodeText": "Learn about the importance of critical positions.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Tsubasa stood in the shadows, his voice measured but heavy with emotion as he revealed what few knew: Enas, Apex’s brother, shared a bond that even Tsar’s manipulations couldn’t sever. Enas carried the weight of two wars—one against Tsar and one within himself. The thought of betraying Apex, his brother in blood and loyalty, was a blade that cut deep. Yet Enas had seen the rot that Tsar had brought, watched as his brother became a puppet to the void. This connection, fragile and unspoken, became a thread in the tapestry of rebellion—a chance to fracture Tsar’s hold from the inside.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ra-dojo",
+    "bookTheme": "future-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -411,11 +411,11 @@
     "title": "Imbalances",
     "nodeText": "Learn the difference between static and dynamic advantages.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The rogue sphinx was a tale half-whispered, its origins buried in myth and its actions shrouded in chaos. Tsubasa’s revelation came like a thunderclap: the sphinx, a construct of perfection and wisdom, had broken its bonds. Now it wandered the planet, its immense power untethered, its purpose lost. The idea of confronting such a force was both terrifying and exhilarating. Tsubasa spoke of its wild-eyed rampages through the desert and the cryptic messages it left in its wake—riddles etched into the sands as if daring anyone to understand its newfound madness. The sphinx was a puzzle, one that could either destroy them or offer a key to unraveling Tsar’s empire.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ra-dojo",
+    "bookTheme": "future-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -520,11 +520,11 @@
     "title": "Tactics VII",
     "nodeText": "Learn about zugzwang and desperado.",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Far from the city, Cassandra moved through shadows with the fluid grace of one who could become anyone, anything. She approached the meeting with caution, her shapeshifted form unrecognizable even to herself. The dark philosopher awaited her—a figure cloaked in void and secrecy. They spoke not with authority, but with the weary wisdom of someone who had seen too much and lost more. They wove secrets about the Void Weavers into stories that felt like riddles. Each revelation felt like a stone dropped into a deep well, rippling through Cassandra’s understanding of the world she fought to save. The Void Weavers were not just manipulators—they were architects of fear, masters of bending reality into something unrecognizable.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "future-egypt-room",
+    "bookTheme": "future-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -717,11 +717,11 @@
     "title": "Tactics VIII",
     "nodeText": "Learn about the windmill and quiet moves.",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The dark philosopher’s second lesson unfolded with the weight of inevitability. They spoke of how voidweaving was not just a tool of destruction but a force that could rewrite existence itself. Tsar, they explained, was not merely a tyrant—he was a weaver of nightmares, reshaping the very fabric of the empire to fit his vision. Cassandra listened, the words painting pictures of a world slipping further into chaos with each strand Tsar pulled from the loom. The philosopher’s voice turned softer, almost mournful, as they described the cost of wielding such power. It was not just Tsar’s empire that was unraveling—it was his very soul.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "future-egypt-room",
+    "bookTheme": "future-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -1027,11 +1027,11 @@
     "title": "Planning Samples",
     "nodeText": "Get an idea of some questions you can ask during a game.",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "In the final meeting, the dark philosopher’s tone turned grim. They spoke of moral lines and the fragile balance between righteousness and ruin. They described how even the most noble intentions could be corrupted by the void, how power always demanded a price. Their stories turned inward, recounting personal losses that mirrored the war Cassandra herself was fighting. The philosopher did not offer solutions or absolution—only hard truths. To defeat Tsar, Cassandra would have to confront her own darkness, to decide whether she could walk the razor’s edge without falling. The lesson ended not with clarity, but with questions that would echo in Cassandra’s mind long after she left.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "future-egypt-room",
+    "bookTheme": "future-egypt",
     "time": [
       [0, 0],
       [0, 0]
@@ -1187,11 +1187,11 @@
     "title": "Temple of Indecision I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The desert stretched endlessly before Cassandra, its golden sands shimmering with a cruel, deceptive beauty. The weight of failure clung to her like a second skin, her defeat at Tsar’s hands a fresh wound that refused to heal. She wandered alone, her shapeshifting abilities now more a burden than a gift, each transformation another reminder of the person she no longer recognized in herself. The silence of the desert was oppressive, broken only by the whisper of wind that carried her doubts like a chorus of ghosts. She sought answers, but all she found was the gnawing uncertainty of what lay ahead.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "unicorn",
+    "bookTheme": "unicorn",
     "time": [
       [330, 8],
       [290, 10]
@@ -3731,11 +3731,11 @@
     "title": "Temple of Indecision II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The horizon darkened suddenly, the sun swallowed by an unnatural eclipse. Cassandra stopped, her breath catching in her throat as the world plunged into shadow. From the blackened sky, a figure emerged—a giant shade unicorn, its form both majestic and haunting. It stepped toward her with a gait that seemed to echo the rhythms of her own faltering heart. Its eyes, deep and endless, bore into hers, seeing past the mask of strength she wore. The unicorn’s presence was overwhelming, a force that felt ancient and unknowable. It said nothing, but Cassandra understood: this was not an offering of help but a challenge she would have to face alone.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "unicorn",
+    "bookTheme": "unicorn",
     "time": [
       [310, 10],
       [270, 12]
@@ -6275,11 +6275,11 @@
     "title": "Temple of the Diamond I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The unicorn’s challenge was not one of strength or skill but of vulnerability—a demand that Cassandra lower the walls she had built so carefully. The weight of its gaze pressed on her, peeling back layers she had hidden even from herself. Memories surged forward, unbidden and raw, each one a reminder of what she had lost and what she still feared to lose. It was not a test she could fight or flee from. She had to stand in the open, unguarded, and let the storm of emotions pass through her. The realization left her trembling, but she understood: if she could not face herself, she could never hope to face Tsar.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "unicorn",
+    "bookTheme": "unicorn",
     "time": [
       [330, 8],
       [290, 10]
@@ -8830,11 +8830,11 @@
     "title": "Temple of the Diamond II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "That night, as the desert winds howled around her, Cassandra drifted into a restless sleep. The unicorn was there, not in the physical world but within her dreams. Its presence filled the dreamscape, vast and commanding, reshaping the environment around her with a thought. Cassandra’s surroundings shifted—sands turned to water, stars folded into spirals, and shadows became solid. The unicorn began to teach her the first steps of dreamwalking, showing her how to bend the fabric of the dream without losing herself in its illusions. Each movement, each ripple of her will, was a revelation—a glimpse into a power she had never considered.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "unicorn",
+    "bookTheme": "unicorn",
     "time": [
       [310, 10],
       [270, 12]
@@ -11385,11 +11385,11 @@
     "title": "Temple of Voids I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The second challenge came in a dream of chaos. The unicorn brought Cassandra to a storm, its winds filled with whispers and echoes of her fears. She stood in the heart of the tempest, her mind under siege as the voices grew louder, each one dragging her toward despair. The unicorn did not intervene, watching silently as Cassandra struggled. The challenge was clear: she had to silence the storm, not with force but with understanding. Slowly, painfully, she reached into the chaos and found the source—her own doubts and insecurities given form. By facing them, she quelled the storm, leaving only calm in its wake.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "unicorn",
+    "bookTheme": "unicorn",
     "time": [
       [330, 8],
       [290, 10]
@@ -13840,11 +13840,11 @@
     "title": "Temple of Voids II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The final dream was unlike any before it. Cassandra found herself within the unicorn’s dream, a realm of impossible beauty and danger. The landscape was alive, shifting with the creature’s thoughts, and every step felt like walking on the edge of a blade. The unicorn was her guide and adversary, testing her resolve and her mastery of dreamwalking. The challenge grew fiercer, pushing her to the brink of her abilities. But Cassandra had learned to bend without breaking, to adapt without losing herself. When she emerged from the dream, the unicorn stood before her, its eyes filled with something resembling pride. It granted her its arcane reward—a fragment of its power, a piece of its ancient knowledge. Cassandra awoke in the desert, the eclipse fading, her path clearer than ever before.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "unicorn",
+    "bookTheme": "unicorn",
     "time": [
       [310, 10],
       [270, 12]
@@ -16292,14 +16292,14 @@
   "mission-1": {
     "id": "mission-1",
     "prereq": "",
-    "title": "",
+    "title": "One Wrong Move",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The palace courtyard was a battlefield of twisted light and shadow. Nehkmet, once revered as a spiritual guide, now loomed as a figure of corruption. His eyes burned with voidweaving energy, a flickering sign of Tsar’s dominance over his mind. The air grew thick with the cries of his corrupted militia, their armor etched with sigils of submission. Sidian, Cassandra, and Tsubasa moved as one, their steps measured against the overwhelming force of Nehkmet’s void-enhanced power. The clash was brutal—each strike of Nehkmet’s staff sent waves of corrupted energy spiraling outward, forcing them to retreat. As they regrouped at the edge of the courtyard, Sidian’s gaze lingered on Nehkmet, noticing subtle cracks in his composure, hints of the man he had once been. It was not a victory, but it wasn’t a total loss either.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "nehkmet",
+    "bookTheme": "nehkmet",
     "time": [
       [600, 30],
       [300, 15]
@@ -16360,14 +16360,14 @@
   "mission-2": {
     "id": "mission-2",
     "prereq": "mission-1",
-    "title": "",
+    "title": "Dreaded Timelapse",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The shrine was a place of silence and reverence, now defiled by Tsar’s influence. Nehkmet stood at its center, flanked by void-forged statues that pulsed with dark energy. This time, the group came prepared, Sidian’s astral projection weaving through the spiritual ether to find the fissures in Tsar’s control. The battle was fierce, with Nehkmet summoning militia reinforcements and waves of void energy that rippled through the air like liquid darkness. Cassandra’s shapeshifting allowed her to evade deadly strikes, while Tsubasa’s precision strikes kept the militia at bay. Sidian pushed deeper into the void’s hold over Nehkmet, using his own arcane strength to sever the ties binding the spiritual leader to Tsar. When the battle ended, Nehkmet collapsed, his voice ragged as he whispered vital truths about Tsar’s plans and the mechanisms of the dream shield.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "nehkmet",
+    "bookTheme": "nehkmet",
     "time": [
       [600, 30],
       [300, 15]
@@ -16421,14 +16421,14 @@
   "mission-3": {
     "id": "mission-3",
     "prereq": "mission-2",
-    "title": "",
+    "title": "Legend's Assault",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The Spectre Haven was hidden within the city’s labyrinthine underbelly, its entrance marked only by faint, shifting sigils visible to those who knew where to look. The spectre guarding Apex’s cache of arcana was unlike any foe they had faced—an entity of shadows and sharp edges, its voice a rasping echo that seemed to emanate from the walls. It demanded proof of Sidian’s resolve, pulling him into a trial where the line between reality and illusion blurred. Sidian was forced to confront his deepest fears—visions of failure, of the empire crumbling despite his efforts. The spectre’s trial tested not just his loyalty to the city but his belief in himself. By the end, Sidian emerged shaken but unbroken, having proven his commitment to Ra-Metropolis and its people.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "spectre-haven-room",
+    "bookTheme": "spectre-haven",
     "time": [
       [600, 30],
       [300, 15]
@@ -16437,8 +16437,8 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "2nnkn2/1ppppppp/8/8/8/8/2PPPPP1/2UU1UU1 w - - 0 1",
-        "fenHistory": ["2nnkn2/1ppppppp/8/8/8/8/2PPPPP1/2UU1UU1 w - - 0 1"],
+        "fen": "2nnkn2/1ppppppp/8/8/8/8/2PPPPP1/2UUKUU1 w - - 0 1",
+        "fenHistory": ["2nnkn2/1ppppppp/8/8/8/8/2PPPPP1/2UUKUU1 w - - 0 1"],
         "history": [],
         "panelText": "",
         "arrowsCircles": [],
@@ -16480,11 +16480,11 @@
     "title": "Nightcrawlers",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Satisfied with Sidian’s resolve, the spectre relinquished its secrets. In the dim light of the haven, it revealed the intricate web of Tsar’s spectre network and the vulnerabilities hidden within. Sidian and the others listened intently, piecing together the delicate threads of Tsar’s control. The spectre’s revelations included the design of the dream shield and the hierarchy of Tsar’s enforcers, information that would shape their next moves. As the group departed the haven, the weight of the knowledge they carried was matched only by the growing tension of the battles yet to come.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "spectre-haven-room",
+    "bookTheme": "spectre-haven",
     "time": [
       [600, 30],
       [300, 15]
@@ -16536,11 +16536,11 @@
     "title": "Endgame Rituals",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The throne room was a fortress of loyalty and fear, its walls lined with Tsar’s elite royal guards. Cassandra, disguised as one of them, moved with Enas through the chaos of their plan to disable the dream shield. The clash was ferocious, a deadly ballet of blades and voidweaving that sent sparks flying in the air. Enas fought with the desperation of a man who had everything to lose—his brother, his honor, his city. The group worked in unison, dismantling the mechanisms powering the shield while fending off the relentless assault of the guards. The moment the shield fell, the air seemed to change, the oppressive weight of Tsar’s control lifting slightly. But the cost was high—Enas lay wounded, his life slipping away as he muttered words of hope and regret.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "future-egypt-room",
+    "bookTheme": "future-egypt",
     "time": [
       [600, 30],
       [300, 15]
@@ -16606,11 +16606,11 @@
     "title": "Tactical Hindsight",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The dream began with a jolt, casting Sidian and Cassandra into an infinite expanse of swirling shadows. At the center of the chaos stood Tsar, fully realized in his dream, cloaked in the power of the void. His presence was overwhelming, a crushing weight on the dreamscape that rippled outward in waves of distortion. Around them, the ground fractured into shards of black and silver, floating in a chasm that seemed endless. Tsar’s figure loomed larger than life, his form shifting between a regal silhouette and a monstrous, shadowy being. With a flick of his hand, he summoned illusions of himself and unleashed torrents of void energy, forcing Sidian and Cassandra to react in desperation. \n\n Each attack came faster than the last, the void itself bending to Tsar’s will. Cassandra transformed repeatedly, her shapeshifting barely keeping her one step ahead of the onslaught, while Sidian anchored the dream to stop it from collapsing entirely. The air was thick with tension, every strike threatening to tear them apart. For every opening they created, Tsar’s power surged again, overwhelming them with relentless force. It became clear they couldn’t defeat him here—not while he had full control. Instead, they focused on survival, wearing down the dream’s stability through sheer endurance. With each passing moment, the dream began to flicker, Tsar’s dominance fraying as the state shifted. Finally, the battlefield dissolved, pulling them into the deeper, more vulnerable layers of his subconscious.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "tsar",
+    "theme": "tsar-final",
+    "bookTheme": "tsar-final",
     "time": [
       [600, 30],
       [300, 15]
@@ -16664,11 +16664,11 @@
     "title": "Feather and Hammer",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The dream reformed into a serene memory—a golden field stretching to the horizon, bathed in warm sunlight. The chaos of the void was gone, replaced by the laughter of a young Tigran. He ran through the grass, carefree and untouched by the burdens that would later twist him into Tsar. His parents watched from a distance, their faces radiating pride and love, while Rashida’s soft voice carried on the wind. Sidian and Cassandra stood at the periphery, the tranquility of the moment starkly at odds with the battle they had just endured. Sidian moved cautiously, observing the memory, feeling the fragility of the scene. \n\n Beside him, Cassandra seemed unusually still. There was a subtle tension in her stance, her gaze fixed too intently on the boy. Sidian’s unease grew as he noticed faint ripples in her form, inconsistencies too small to register during the chaos earlier. Then the shift came—a sudden, violent transformation as Cassandra’s form twisted into the wraith’s true shape. It attacked with precision and cruelty, using her voice and mannerisms to disorient him. The wraith’s blows were calculated, aiming to destabilize Sidian’s focus and destroy his trust. The field trembled as the battle raged, the memory distorting under the strain. Sidian, summoning his last reserves of arcane strength, unleashed a burst of energy that shattered the wraith’s form. The false Cassandra dissolved into shadow, leaving Sidian alone in the fractured memory.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "tsar",
+    "theme": "tsar-dream",
+    "bookTheme": "tsar-dream",
     "time": [
       [600, 30],
       [300, 15]
@@ -16726,11 +16726,11 @@
     "title": "The Concluding Stroke",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The battle’s aftermath left the field in a fragile state, cracks forming along the edges as the void crept closer. Sidian turned his attention back to the memory—Tigran’s laughter still echoed faintly, though the boy now seemed smaller, more distant. His parents and Rashida were frozen in place, their figures shimmering as though they might dissolve at any moment. Sidian stepped carefully through the golden grass, the weight of the moment pressing down on him. This was not a battlefield but a glimpse into the humanity Tsar had lost. The boy played, unaware of the shadows closing in, his innocence untainted by the horrors to come. \n\n Sidian knelt in the grass, his presence an unwelcome intrusion on this fragile sanctuary. The void’s tendrils grew more insistent, clawing at the edges of the dream. Sidian acted swiftly, anchoring the memory in place to stave off the encroaching corruption. This was Tsar’s most vulnerable state, his subconscious retreat to a time before power and fear consumed him. The memory wavered as Sidian severed its connection to the void, shattering the illusion into shards of golden light. The boy’s laughter lingered for a fleeting moment before fading into silence, the memory dissolving into the darkness. Sidian stood alone, the dream collapsing around him, the echoes of what Tsar once was haunting the void.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "tsar",
+    "theme": "tsar-dream",
+    "bookTheme": "tsar-dream",
     "time": [
       [600, 30],
       [300, 15]
@@ -16778,7 +16778,7 @@
   },
   "mission-9": {
     "id": "mission-9",
-    "title": "",
+    "title": "Geneva's Reign I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -16797,11 +16797,11 @@
     "nodeText": "Viswanathan Anand vs Magnus Carlsen: Moscow RUS (2009)",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-8",
+    "prereq": "",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "disciple-battle",
+    "bookTheme": "disciple-battle",
     "panels": {
       "panel-1": {
         "fen": "r3r1k1/5pp1/3Q4/3p4/3P2pP/4Pq2/5P2/1RR3K1 b - - 4 29",
@@ -16835,7 +16835,7 @@
   },
   "mission-10": {
     "id": "mission-10",
-    "title": "",
+    "title": "Geneva's Reign II",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -16856,9 +16856,9 @@
     "reward": [],
     "prereq": "mission-9",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "disciple-battle",
+    "bookTheme": "disciple-battle",
     "panels": {
       "panel-1": {
         "fen": "2R5/5pkp/4n3/r1p5/3p4/3N1p1P/6P1/2R4K w - - 0 44",
@@ -16892,7 +16892,7 @@
   },
   "mission-11": {
     "id": "mission-11",
-    "title": "",
+    "title": "Geneva's Reign III",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -16913,9 +16913,9 @@
     "reward": [],
     "prereq": "mission-10",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "disciple-battle",
+    "bookTheme": "disciple-battle",
     "panels": {
       "panel-1": {
         "fen": "8/8/5k2/5P2/1p2BP2/4P3/b7/6K1 w - - 0 52",

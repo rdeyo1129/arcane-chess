@@ -40,7 +40,6 @@
     "lodash": "^4.17.20",
     "mongodb": "^4.1.1",
     "mongoose": "^6.0.5",
-    "night-chess-noise": "https://github.com/rdeyo1129/night-chess-noise.git",
     "passport": "^0.5.0",
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",

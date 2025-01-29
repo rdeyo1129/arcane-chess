@@ -135,7 +135,7 @@ class UnwrappedFrontPage extends React.Component<
                 onClick={(
                   e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
                 ) => {
-                  audioManager.playSound('impact');
+                  // audioManager.playSound('impact');
                   this.onSubmitLogin(e);
                 }}
               >
@@ -211,7 +211,7 @@ class UnwrappedFrontPage extends React.Component<
                 onClick={(
                   e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
                 ) => {
-                  audioManager.playSound('impact');
+                  // audioManager.playSound('impact');
                   this.onSubmitLogin(e);
                 }}
               >

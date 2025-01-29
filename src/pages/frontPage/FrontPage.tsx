@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import { connect } from 'react-redux';
 
-// import { audioManager } from 'src/utils/audio/AudioManager';
+import { audioManager } from 'src/utils/audio/AudioManager';
 
 import './FrontPage.scss';
 import Hero from 'src/components/hero2/Hero';
@@ -135,7 +135,7 @@ class UnwrappedFrontPage extends React.Component<
                 onClick={(
                   e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
                 ) => {
-                  // audioManager.playSound('impact');
+                  audioManager.playSound('impact');
                   this.onSubmitLogin(e);
                 }}
               >
@@ -211,7 +211,7 @@ class UnwrappedFrontPage extends React.Component<
                 onClick={(
                   e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
                 ) => {
-                  // audioManager.playSound('impact');
+                  audioManager.playSound('impact');
                   this.onSubmitLogin(e);
                 }}
               >

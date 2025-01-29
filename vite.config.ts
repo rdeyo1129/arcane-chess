@@ -28,6 +28,9 @@ export default ({ mode }: ConfigEnv) => {
     },
     build: {
       outDir: 'dist',
+      rollupOptions: {
+        external: /night-chess-noise\/noise1\/.*/,
+      },
     },
     optimizeDeps: {
       esbuildOptions: {

@@ -3,6 +3,8 @@ import { audioManager } from './AudioManager';
 
 import audioLinks from 'src/utils/audio/audioLinks.json';
 
+import impact from 'night-chess-noise/noise1/impact.mp3';
+
 const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
   useEffect(() => {
     // Register Sounds
@@ -19,7 +21,7 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
       // audioManager.registerSound('defeat', audioLinks.defeatSoundUrl);
     }
     if (!audioManager.isSoundRegistered('impact')) {
-      // audioManager.registerSound('impact', audioLinks.impactSoundUrl);
+      audioManager.registerSound('impact', impact);
     }
 
     // Register Songs

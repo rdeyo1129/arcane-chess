@@ -15,6 +15,7 @@ import {
   loginUser,
   getGuestUserFromLocalStorage,
 } from '../../actions/authActions';
+
 interface UserData {
   username: string;
   password: string;
@@ -104,14 +105,17 @@ const UnwrappedLogin: React.FC = () => {
     <div className="login-page">
       <Hero />
       <form className="view" noValidate>
-        <img className="logo" src={'/assets/logogold.png'} alt="" />
-        <div></div>
+        <img className="logo" src={'/assets/logoblue.png'} alt="" />
+        <div className="login-info">
+          Create an account if you want to place on the leaderboard. Otherwise,
+          click AS GUEST to enter anonymously.
+        </div>
         <div></div>
         <div className="inputs">
           <div className="input-top">
             <div className="text-inputs">
               <Input
-                color={'Y'}
+                color={'B'}
                 width={220}
                 height={40}
                 placeholder={'Username'}
@@ -121,7 +125,7 @@ const UnwrappedLogin: React.FC = () => {
                 password={false}
               />
               <Input
-                color={'Y'}
+                color={'B'}
                 width={220}
                 height={40}
                 placeholder={'Password'}
@@ -136,7 +140,7 @@ const UnwrappedLogin: React.FC = () => {
               <Button
                 className="secondary"
                 text={'AS GUEST'}
-                color={'Y'}
+                color={'B'}
                 width={140}
                 onClick={(e) => onSubmitLogin(e, true)}
                 styles={{ margin: '2px' }}
@@ -144,7 +148,7 @@ const UnwrappedLogin: React.FC = () => {
               <Button
                 className="primary"
                 text={'LOGIN'}
-                color={'Y'}
+                color={'B'}
                 width={140}
                 onClick={(e) => {
                   return onSubmitLogin(e, false);
@@ -159,7 +163,7 @@ const UnwrappedLogin: React.FC = () => {
               <Button
                 className="tertiary"
                 text={'REGISTER'}
-                color={'Y'}
+                color={'B'}
                 width={80}
                 height={30}
                 fontSize={12}
@@ -170,7 +174,7 @@ const UnwrappedLogin: React.FC = () => {
               <Button
                 className="tertiary"
                 text={'FORGOT'}
-                color={'Y'}
+                color={'B'}
                 width={80}
                 height={30}
                 fontSize={12}
@@ -181,7 +185,7 @@ const UnwrappedLogin: React.FC = () => {
               <Button
                 className="tertiary"
                 text={'HOME'}
-                color={'Y'}
+                color={'B'}
                 width={80}
                 height={30}
                 fontSize={12}

@@ -41,7 +41,6 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
     const nexusRoutes = ['/lesson', '/temple', '/mission', '/quickplay'];
     const menuRoutes = [
       '/',
-      '/dashboard',
       '/campaign',
       '/chapter',
       '/profile',

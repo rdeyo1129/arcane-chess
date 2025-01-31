@@ -1,7 +1,7 @@
+import _ from 'lodash';
 import React from 'react';
 import { Link } from 'react-router-dom';
-// uncomment when ready for users
-// import axios from 'axios';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import Select from 'src/components/Select/Select';
@@ -27,39 +27,40 @@ export class UnwrappedLeaderBoard extends React.Component<
     };
   }
 
-  // getLeaderboard = async (chapter: string) => {
-  //   try {
-  //     const response = await axios.get('/api/campaign/scores', {
-  //       params: {
-  //         chapter: chapter,
-  //       },
-  //     });
-  //     this.setState({
-  //       currentChapterTopScores: response.data,
-  //     });
-  //   } catch (error) {
-  //     console.error('Error fetching leaderboard:', error);
-  //   }
-  // };
+  getLeaderboard = async (chapter: string) => {
+    try {
+      const response = await axios.get('/api/campaign/scores', {
+        params: {
+          chapter: chapter,
+        },
+      });
+      console.log(response);
+      this.setState({
+        currentChapterTopScores: response.data,
+      });
+    } catch (error) {
+      console.error('Error fetching leaderboard:', error);
+    }
+  };
 
   componentDidMount() {
-    // this.getLeaderboard('1');
+    this.getLeaderboard('1');
   }
 
   render() {
-    // const digits = (score: number | string) => {
-    //   const formattedNumber = Number(score).toLocaleString();
+    const digits = (score: number | string) => {
+      const formattedNumber = Number(score).toLocaleString();
 
-    //   return formattedNumber.split('').map((char, index) => (
-    //     <span key={index} className="digit-box">
-    //       {char}
-    //     </span>
-    //   ));
-    // };
+      return formattedNumber.split('').map((char, index) => (
+        <span key={index} className="digit-box">
+          {char}
+        </span>
+      ));
+    };
     return (
       <div className="outer-leaderboard">
         <div className="nav">
-          <Link to="/dashboard">
+          <Link to="/">
             <Button
               text="BACK"
               className="tertiary"
@@ -86,13 +87,13 @@ export class UnwrappedLeaderBoard extends React.Component<
                 '11',
                 '12',
               ]}
-              // onChange={(val) => this.getLeaderboard(val)}
-              onChange={() => null}
+              onChange={(val) => this.getLeaderboard(val)}
+              // onChange={() => null}
             />
           </div>
         </div>
         <div className="leaderboard">
-          {/* {_.map(this.state.currentChapterTopScores, (score, index) => {
+          {_.map(this.state.currentChapterTopScores, (score, index) => {
             if (!score.score) return;
             return (
               <div key={index} className="user-score">
@@ -102,9 +103,7 @@ export class UnwrappedLeaderBoard extends React.Component<
                 </div>
               </div>
             );
-          })} */}
-          Here you will find global rankings as players complete chapters in the
-          campaign... But not yet. Come Back Soon!
+          })}
         </div>
         <div className="leaderboard-curtain"></div>
         <img

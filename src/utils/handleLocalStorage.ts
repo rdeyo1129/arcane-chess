@@ -34,7 +34,9 @@ export const setLocalStorage = ({
     existingData[username] = {
       auth: {},
       chapter: 0,
-      config: {},
+      config: {
+        multiplier: 80,
+      },
       arcana: {},
       nodeScores: {},
       lessonsCompleted: [],

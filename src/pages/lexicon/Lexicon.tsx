@@ -454,7 +454,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
           <div className="lexicon-view">
             <div className="opponent-arcana-volume">
               <div className="info-avatar">
-                <Link to="/dashboard">
+                <Link to="/">
                   <Button
                     text="BACK"
                     className="tertiary"

@@ -15,76 +15,58 @@ import { Score } from '../models/Score.js';
 // @route POST api/users/register
 // @desc Register user
 // @access Public
-router.post('/register', (req, res) => {
-  // Form validation
+router.post('/register', async (req, res) => {
   const { loginRegisterErrors, isValid } = validateRegisterInput(req.body);
 
-  // Check validation
   if (!isValid) {
     return res.status(400).json(loginRegisterErrors);
   }
 
-  User.findOne({
-    $or: [{ email: req.body.email }, { username: req.body.username }],
-  }).then((user) => {
-    if (user) {
-      if (user.email === req.body.email) {
-        return res
-          .status(400)
-          .json({ message: 'Account with that email already exists' });
-      } else if (user.username === req.body.username) {
-        return res
-          .status(400)
-          .json({ message: 'Account with that username already exists' });
+  try {
+    const existingUser = await User.findOne({
+      $or: [{ email: req.body.email }, { username: req.body.username }],
+    });
+
+    if (existingUser) {
+      let error;
+      if (existingUser.email === req.body.email) {
+        error = 'Account with that email already exists';
       }
-    } else {
-      const newUser = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        games: [],
-        campaign: {
-          // chapter: 0,
-          topScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          // config: {
-          //   points: null,
-          //   color: 'White',
-          //   difficulty: 'Novice',
-          //   depth: 2,
-          //   thinkingTime: 4,
-          //   clock: true,
-          //   blunders: false,
-          //   threats: false,
-          //   checks: false,
-          //   hints: false,
-          // },
-        },
-      });
-
-      // Hash password before saving in database
-      bcrypt.genSalt(10, (err, salt) => {
-        if (err) console.log('get salt err', err);
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then((user) => res.json(user))
-            .catch((err) => console.log(err));
-        });
-      });
-
-      // new user score db instance
-      new Score({
-        userId: newUser._id,
-        username: newUser.username,
-        scores: new Map(),
-      })
-        .save()
-        .then((score) => res.json(score))
-        .catch((err) => console.log(err));
+      if (existingUser.username === req.body.username) {
+        error = 'Account with that username already exists';
+      }
+      return res.status(400).json(error);
     }
-  });
+
+    const newUser = new User({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+      games: [],
+      campaign: {
+        topScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      },
+    });
+
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    newUser.password = await bcrypt.hash(newUser.password, salt);
+    const savedUser = await newUser.save();
+
+    // Create new Score document
+    const newScore = new Score({
+      userId: savedUser._id,
+      username: savedUser.username,
+      scores: new Map(),
+    });
+
+    const savedScore = await newScore.save();
+
+    return res.json({ user: savedUser, score: savedScore });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Server error' });
+  }
 });
 
 // @route POST api/users/login

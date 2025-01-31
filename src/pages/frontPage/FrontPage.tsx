@@ -3,23 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import { connect } from 'react-redux';
 
-import { audioManager } from 'src/utils/audio/AudioManager';
+// import { audioManager } from 'src/utils/audio/AudioManager';
 
 import './FrontPage.scss';
 import Hero from 'src/components/hero2/Hero';
 
 import Button from '../../components/Button/Button';
 
-import {
-  loginGuest,
-  getGuestUserFromLocalStorage,
-} from '../../actions/authActions';
+import // loginGuest,
+// getGuestUserFromLocalStorage,
+'../../actions/authActions';
 
-interface UserData {
-  username: string;
-  password: string;
-  guest: boolean;
-}
+// interface UserData {
+//   username: string;
+//   password: string;
+//   guest: boolean;
+// }
 
 type FrontPageProps = {
   loginGuest: (userData: any) => void;
@@ -67,34 +66,34 @@ class UnwrappedFrontPage extends React.Component<
     });
   };
 
-  onSubmitLogin = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault();
+  // onSubmitLogin = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  //   e.preventDefault();
 
-    let guestUserData: UserData | null = null;
+  //   let guestUserData: UserData | null = null;
 
-    const existingGuestUser = getGuestUserFromLocalStorage();
+  //   const existingGuestUser = getGuestUserFromLocalStorage();
 
-    if (existingGuestUser) {
-      guestUserData = {
-        username: existingGuestUser.key,
-        password: '123456',
-        guest: true,
-      };
-    } else {
-      guestUserData = {
-        username: `guest_${Math.random().toString(36).substring(2)}`,
-        password: '123456',
-        guest: true,
-      };
-    }
+  //   if (existingGuestUser) {
+  //     guestUserData = {
+  //       username: existingGuestUser.key,
+  //       password: '123456',
+  //       guest: true,
+  //     };
+  //   } else {
+  //     guestUserData = {
+  //       username: `guest_${Math.random().toString(36).substring(2)}`,
+  //       password: '123456',
+  //       guest: true,
+  //     };
+  //   }
 
-    if (guestUserData) {
-      this.props.loginGuest(guestUserData);
-      this.props.navigate('/dashboard');
-    } else {
-      return false;
-    }
-  };
+  //   if (guestUserData) {
+  //     this.props.loginGuest(guestUserData);
+  //     this.props.navigate('/dashboard');
+  //   } else {
+  //     return false;
+  //   }
+  // };
 
   componentDidMount() {
     const randomIndex = Math.floor(Math.random() * this.slogans.length);
@@ -131,13 +130,14 @@ class UnwrappedFrontPage extends React.Component<
             <div className="enter-buttons">
               {/* revert to login page when ready for users */}
               <Link
-                to="/dashboard"
-                onClick={(
-                  e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-                ) => {
-                  // audioManager.playSound('impact');
-                  this.onSubmitLogin(e);
-                }}
+                to="/login"
+                onClick={() =>
+                  // e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                  {
+                    // audioManager.playSound('impact');
+                    // this.onSubmitLogin(e);
+                  }
+                }
               >
                 <Button
                   text="ENTER THE SITE"
@@ -207,13 +207,14 @@ class UnwrappedFrontPage extends React.Component<
             <div className="enter-buttons">
               {/* revert to login page when ready for users */}
               <Link
-                to="/dashboard"
-                onClick={(
-                  e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-                ) => {
-                  // audioManager.playSound('impact');
-                  this.onSubmitLogin(e);
-                }}
+                to="/login"
+                onClick={() =>
+                  // e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                  {
+                    // audioManager.playSound('impact');
+                    // this.onSubmitLogin(e);
+                  }
+                }
               >
                 <Button
                   text="ENTER THE SITE"
@@ -263,13 +264,13 @@ class UnwrappedFrontPage extends React.Component<
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-  loginGuest: (guestUserData: UserData) => dispatch(loginGuest(guestUserData)),
-});
+// const mapDispatchToProps = (dispatch: any) => ({
+//   loginGuest: (guestUserData: UserData) => dispatch(loginGuest(guestUserData)),
+// });
 
 const FrontPageNoNavigation = connect(
-  null,
-  mapDispatchToProps
+  null
+  // mapDispatchToProps
 )(withRouter(UnwrappedFrontPage));
 
 export const FrontPage = ({ ...mapDispatchToProps }) => {

@@ -340,7 +340,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     color="B"
                     text="HOME"
                     onClick={() => {
-                      this.props.navigate('/dashboard');
+                      this.props.navigate('/');
                     }}
                   />
                   <div className="hover-text">

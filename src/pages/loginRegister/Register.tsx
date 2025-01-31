@@ -48,14 +48,17 @@ const UnwrappedRegister = () => {
     <div className="register-page">
       <Hero />
       <form noValidate onSubmit={onSubmitReg} className="view">
-        <img className="logo" src={'/assets/logogold.png'} alt="" />
-        <div></div>
+        <img className="logo" src={'/assets/logoblue.png'} alt="" />
+        <div className="login-info">
+          Create an account if you want to place on the leaderboard. Otherwise,
+          click AS GUEST to enter anonymously.
+        </div>
         <div></div>
         <div className="reg-input-top">
           <div className="reg-inputs">
             <Input
               className="primary"
-              color={'Y'}
+              color={'B'}
               width={180}
               height={40}
               placeholder={'Username'}
@@ -66,7 +69,7 @@ const UnwrappedRegister = () => {
             />
             <Input
               className="primary"
-              color={'Y'}
+              color={'B'}
               width={180}
               height={40}
               placeholder={'Email'}
@@ -77,7 +80,7 @@ const UnwrappedRegister = () => {
             />
             <Input
               className="primary"
-              color={'Y'}
+              color={'B'}
               width={180}
               height={40}
               placeholder={'Password'}
@@ -88,7 +91,7 @@ const UnwrappedRegister = () => {
             />
             <Input
               className="primary"
-              color={'Y'}
+              color={'B'}
               width={180}
               height={40}
               placeholder={'Confirm Password'}
@@ -104,7 +107,7 @@ const UnwrappedRegister = () => {
                 <Button
                   className="tertiary"
                   text={'LOGIN'}
-                  color={'Y'}
+                  color={'B'}
                   width={80}
                   height={30}
                   fontSize={12}
@@ -115,7 +118,7 @@ const UnwrappedRegister = () => {
                 <Button
                   className="tertiary"
                   text={'HOME'}
-                  color={'Y'}
+                  color={'B'}
                   width={80}
                   height={30}
                   fontSize={12}
@@ -126,7 +129,7 @@ const UnwrappedRegister = () => {
             <Button
               className="primary"
               text={'REGISTER'}
-              color={'Y'}
+              color={'B'}
               width={140}
               // onClick={() => {}}
               disabled={false}

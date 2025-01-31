@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/authActions';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import Button from 'src/components/Button/Button';
 import './Dashboard.scss';
@@ -75,7 +76,7 @@ export class UnwrappedDashboard extends React.Component<
             </Link>
             <Link
               className="home-button"
-              to="/dashboard"
+              to="/"
               onMouseEnter={() => this.setState({ hoverNav: 'stacktadium' })}
             >
               <Button
@@ -166,7 +167,8 @@ export class UnwrappedDashboard extends React.Component<
                 width={'100%'}
                 disabled={false}
                 onClick={() => {
-                  this.props.navigate('/');
+                  this.props.logoutUser();
+                  this.props.navigate('/login');
                 }}
                 backgroundColorOverride="#11111188"
               />
@@ -206,5 +208,5 @@ function mapStateToProps({ auth }: { auth: object }) {
 }
 
 export const Dashboard = connect(mapStateToProps, {
-  /* logoutUser */
+  logoutUser,
 })(withRouter(UnwrappedDashboard));

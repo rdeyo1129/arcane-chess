@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = ({
   className,
   color,
   height = 40,
-  width = 120,
+  width,
   placeholder = 'Type here...',
   value,
   onChange,

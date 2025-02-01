@@ -340,6 +340,25 @@ class UnwrappedManifest extends React.Component<object, State> {
               </div>
             ) : this.state.currentTab === 'notes' ? (
               <div id="notes" className="notes">
+                <h3>v4.0.0 Release Notes</h3>
+                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                  <li>Login added</li>
+                  <li>Leaderboard added</li>
+                  <li>More quickplay game modes have been added</li>
+                  <li>
+                    Arcana
+                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                      <li>
+                        Aetherstep: a friendly Pawn 2-step move may pass through
+                        an occupied square (inherent)
+                      </li>
+                      <li>
+                        Gluttony: you may capture pieces during dyad moves
+                        (inherent)
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
                 <h3>v3.0.0 Release Notes</h3>
                 <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
                   <li>Lexicon updated</li>
@@ -600,6 +619,10 @@ class UnwrappedManifest extends React.Component<object, State> {
               <li>
                 Known bugs:
                 <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                  <li>
+                    May have to refresh, reset chapter and confirm by clicking
+                    on difficulty panel if mission page freezes.
+                  </li>
                   <li>Engine will ‘pass turn’ in certain scenarios.</li>
                   <li>
                     Engine will ‘pass turn’ in certain scenarios if both sides

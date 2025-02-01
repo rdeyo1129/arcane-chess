@@ -75,7 +75,7 @@ class UnwrappedFrontPage extends React.Component<
     this.setState({ fadeOut: true });
     setTimeout(() => {
       this.props.navigate('/login');
-    }, 500);
+    }, 300);
   };
 
   componentDidMount() {

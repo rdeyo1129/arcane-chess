@@ -42,7 +42,7 @@ export class UnwrappedDashboard extends React.Component<
       hoverNav: 'campaign',
       menuItemDescriptions: {
         campaign:
-          'Unravel the arcana, conquer the beasts, and etch your name on the leaderboard.',
+          'Collect the arcana, conquer the beasts, and etch your name on the leaderboard.',
         stacktadium: 'An ancient grid, a fresh enigma—coming soon.',
         leaderboard: 'Observe global rankings.',
         quickplay:
@@ -186,7 +186,7 @@ export class UnwrappedDashboard extends React.Component<
                   setTimeout(() => {
                     this.props.logoutUser();
                     this.props.navigate('/login');
-                  }, 500);
+                  }, 300);
                 }}
                 backgroundColorOverride="#11111188"
               />

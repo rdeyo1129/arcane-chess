@@ -108,7 +108,7 @@ const UnwrappedLogin: React.FC = () => {
         setFadeOut(true);
         setTimeout(() => {
           navigate('/');
-        }, 500);
+        }, 300);
       } else {
         console.error('Login failed:', result.error);
       }
@@ -121,7 +121,7 @@ const UnwrappedLogin: React.FC = () => {
     setFadeOut(true);
     setTimeout(() => {
       navigate(path);
-    }, 500);
+    }, 300);
   };
 
   useEffect(() => {
@@ -149,8 +149,9 @@ const UnwrappedLogin: React.FC = () => {
           <div className="input-top">
             <div className="text-inputs">
               <Input
+                className="login-input"
                 color={'B'}
-                width={220}
+                // width={220}
                 height={40}
                 placeholder={'Username'}
                 value={username}
@@ -159,8 +160,9 @@ const UnwrappedLogin: React.FC = () => {
                 password={false}
               />
               <Input
+                className="login-input"
                 color={'B'}
-                width={220}
+                // width={220}
                 height={40}
                 placeholder={'Password'}
                 value={password}

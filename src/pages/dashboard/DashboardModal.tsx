@@ -12,31 +12,29 @@ export default class DashboardModal extends React.Component<
   DashboardModalProps,
   DashboardModalState
 > {
-  private readonly version = '3.0.0';
+  private readonly version = '4.0.0';
 
   constructor(props: DashboardModalProps) {
     super(props);
+
+    const storedVersion = localStorage.getItem('dashboardModalVersion');
+    const shouldShowModal =
+      storedVersion === null || storedVersion !== this.version;
+
     this.state = {
-      isVisible: true,
+      isVisible: shouldShowModal,
     };
   }
 
-  isVisible = () => {
-    const storedVersion = localStorage.getItem('dashboardModalVersion');
-    if (this.state.isVisible) {
-      localStorage.setItem('dashboardModalVersion', this.version);
-    }
-    return storedVersion !== this.version || storedVersion === null;
-  };
-
   closeModal = () => {
+    localStorage.setItem('dashboardModalVersion', this.version);
     this.setState({ isVisible: false });
   };
 
   render() {
     return (
       <Modal
-        isOpen={this.isVisible() && this.state.isVisible}
+        isOpen={this.state.isVisible && this.state.isVisible}
         onRequestClose={this.closeModal}
         style={dashboardModal}
       >
@@ -54,13 +52,12 @@ export default class DashboardModal extends React.Component<
           }}
         >
           <p>
-            Hello, meda here. Thank you for visiting the site. Version{' '}
-            {this.version} has just been released, bringing a host of new arcana
-            (spells) and the first of three sagas in the campaign. If you are a
+            Hello, meda here. Thank you for visiting the site. If you are a
             first-time visitor, I recommend starting with Quickplay to explore
             exciting new ways to enjoy the game, or check out the Manifest for a
-            deeper dive. A note that mobile development has basically been met,
-            but the site is best experienced from a desktop device.
+            deeper dive into what this site is about. A note that mobile
+            development has basically been met, but the site is best experienced
+            from a desktop device.
           </p>{' '}
           <br />{' '}
           {/* <p>
@@ -87,7 +84,7 @@ export default class DashboardModal extends React.Component<
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              margin: '40px 0 40px 0',
+              margin: '40px 0 0 0',
             }}
           >
             <Button
@@ -112,6 +109,7 @@ const dashboardModal = {
     flexDirection: 'column' as const,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    height: '420px',
     maxHeight: '90vh',
     width: '90vw',
     maxWidth: '600px',

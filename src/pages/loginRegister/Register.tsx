@@ -49,7 +49,7 @@ const UnwrappedRegister = () => {
     setFadeOut(true);
     setTimeout(() => {
       navigate(path);
-    }, 500);
+    }, 300);
   };
 
   useEffect(() => {

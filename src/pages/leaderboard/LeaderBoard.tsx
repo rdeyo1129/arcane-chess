@@ -71,7 +71,7 @@ export class UnwrappedLeaderBoard extends React.Component<
           </Link>
           <div className="chapter-select">
             <Select
-              width={400}
+              width={200}
               height={40}
               options={[
                 '1',
@@ -97,6 +97,7 @@ export class UnwrappedLeaderBoard extends React.Component<
             if (!score.score) return;
             return (
               <div key={index} className="user-score">
+                <div>{index}</div>
                 <div className="username">{score.username}</div>
                 <div className="points">
                   <span className="digit-box">{digits(score.score)}</span>

@@ -14,7 +14,7 @@
   align-items: center;
 
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   // fading
   .fade-overlay {
     position: fixed;
@@ -25,7 +25,7 @@
     background: black;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     z-index: 9999;
   }
   .fade-overlay.active {
@@ -67,8 +67,11 @@
       flex-direction: column;
       .input-top {
         display: flex;
+        width: 220px;
         .text-inputs {
-          width: 224px;
+          .login-input {
+            width: 220px;
+          }
         }
       }
       .login-errors {
@@ -173,5 +176,30 @@
     flex-direction: column;
     color: red;
     font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-page,
+  .register-page {
+    .view {
+      justify-content: center;
+      grid-template-columns: 100px 400px;
+      .inputs {
+        display: flex;
+        .input-top {
+          flex-direction: column;
+          width: 285px;
+          .text-inputs {
+            .login-input {
+              width: 285px;
+            }
+          }
+          .top-buttons {
+            display: flex;
+          }
+        }
+      }
+    }
   }
 }

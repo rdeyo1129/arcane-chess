@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Button from 'src/components/Button/Button';
@@ -18,6 +17,8 @@ const UnwrappedRegister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
+  const [fadeIn, setFadeIn] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
   const loginRegisterErrors = useSelector(
     (state: any) => state.loginRegisterErrors
   );
@@ -44,8 +45,26 @@ const UnwrappedRegister = () => {
     dispatch(registerUser(newUser, navigate));
   };
 
+  const handleEnterClick = (path: string) => {
+    setFadeOut(true);
+    setTimeout(() => {
+      navigate(path);
+    }, 500);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFadeIn(true);
+    }, 50);
+  }, []);
+
   return (
-    <div className="register-page">
+    <div
+      className={`register-page ${fadeIn ? 'fade-in' : ''} ${
+        fadeOut ? 'fade-out' : ''
+      }`}
+    >
+      <div className={`fade-overlay ${fadeOut ? 'active' : ''}`} />
       <Hero />
       <form noValidate onSubmit={onSubmitReg} className="view">
         <img className="logo" src={'/assets/logoblue.png'} alt="" />
@@ -103,28 +122,26 @@ const UnwrappedRegister = () => {
           </div>
           <div className="reg-buttons">
             <div className="mini-buttons">
-              <Link to={'/login'}>
-                <Button
-                  className="tertiary"
-                  text={'LOGIN'}
-                  color={'B'}
-                  width={80}
-                  height={30}
-                  fontSize={12}
-                  backgroundColorOverride="#111111"
-                />
-              </Link>
-              <Link to={'/'}>
-                <Button
-                  className="tertiary"
-                  text={'HOME'}
-                  color={'B'}
-                  width={80}
-                  height={30}
-                  fontSize={12}
-                  backgroundColorOverride="#111111"
-                />
-              </Link>
+              <Button
+                className="tertiary"
+                text={'LOGIN'}
+                color={'B'}
+                width={80}
+                height={30}
+                fontSize={12}
+                backgroundColorOverride="#111111"
+                onClick={() => handleEnterClick('/login')}
+              />
+              <Button
+                className="tertiary"
+                text={'HOME'}
+                color={'B'}
+                width={80}
+                height={30}
+                fontSize={12}
+                backgroundColorOverride="#111111"
+                onClick={() => handleEnterClick('/intro')}
+              />
             </div>
             <Button
               className="primary"
@@ -139,6 +156,7 @@ const UnwrappedRegister = () => {
           </div>
           <div className="reg-errors">
             {_.map(loginRegisterErrors, (value, i) => {
+              console.log(loginRegisterErrors);
               return (
                 <span className="reg-error" key={i}>
                   {value}

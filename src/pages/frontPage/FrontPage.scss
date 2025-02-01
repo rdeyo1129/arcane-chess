@@ -1,10 +1,34 @@
 @import '../../styles/variables.scss';
 
+.front-page-container.fade-in {
+  opacity: 1;
+}
+
 .front-page-container {
   width: 100vw;
   height: 100%;
   flex-direction: column;
   overflow-x: hidden;
+
+  // fading
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  .fade-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 9999;
+  }
+  .fade-overlay.active {
+    opacity: 1;
+  }
+
   .header {
     display: flex;
     height: 100px;

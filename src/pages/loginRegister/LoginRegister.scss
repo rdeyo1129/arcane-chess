@@ -1,5 +1,10 @@
 @import '../../styles/variables.scss';
 
+.login-page.fade-in,
+.register-page.fade-in {
+  opacity: 1;
+}
+
 .login-page,
 .register-page {
   width: 100vw;
@@ -7,6 +12,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  // fading
+  .fade-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 9999;
+  }
+  .fade-overlay.active {
+    opacity: 1;
+  }
+
   .hero {
     width: 100vw;
     height: 100vh;

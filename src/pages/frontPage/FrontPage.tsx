@@ -10,15 +10,13 @@ import Hero from 'src/components/hero2/Hero';
 
 import Button from '../../components/Button/Button';
 
-import // loginGuest,
-// getGuestUserFromLocalStorage,
-'../../actions/authActions';
+import { loginGuest } from '../../actions/authActions';
 
-// interface UserData {
-//   username: string;
-//   password: string;
-//   guest: boolean;
-// }
+interface UserData {
+  username: string;
+  password: string;
+  guest: boolean;
+}
 
 type FrontPageProps = {
   loginGuest: (userData: any) => void;
@@ -29,6 +27,8 @@ type FrontPageProps = {
 type RandomSloganState = {
   currentSlogan: string;
   currentIndex: number;
+  fadeIn: boolean;
+  fadeOut: boolean;
 };
 
 class UnwrappedFrontPage extends React.Component<
@@ -55,7 +55,12 @@ class UnwrappedFrontPage extends React.Component<
       'Built for GMs, fun for aliens, instructive for all.',
       'The war continues... so does your learning.',
     ];
-    this.state = { currentSlogan: '', currentIndex: 0 };
+    this.state = {
+      currentSlogan: '',
+      currentIndex: 0,
+      fadeIn: false,
+      fadeOut: false,
+    };
   }
 
   fetchNextSlogan = () => {
@@ -66,34 +71,12 @@ class UnwrappedFrontPage extends React.Component<
     });
   };
 
-  // onSubmitLogin = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-  //   e.preventDefault();
-
-  //   let guestUserData: UserData | null = null;
-
-  //   const existingGuestUser = getGuestUserFromLocalStorage();
-
-  //   if (existingGuestUser) {
-  //     guestUserData = {
-  //       username: existingGuestUser.key,
-  //       password: '123456',
-  //       guest: true,
-  //     };
-  //   } else {
-  //     guestUserData = {
-  //       username: `guest_${Math.random().toString(36).substring(2)}`,
-  //       password: '123456',
-  //       guest: true,
-  //     };
-  //   }
-
-  //   if (guestUserData) {
-  //     this.props.loginGuest(guestUserData);
-  //     this.props.navigate('/dashboard');
-  //   } else {
-  //     return false;
-  //   }
-  // };
+  handleEnterClick = () => {
+    this.setState({ fadeOut: true });
+    setTimeout(() => {
+      this.props.navigate('/login');
+    }, 500);
+  };
 
   componentDidMount() {
     const randomIndex = Math.floor(Math.random() * this.slogans.length);
@@ -103,10 +86,20 @@ class UnwrappedFrontPage extends React.Component<
     });
 
     this.intervalId = setInterval(this.fetchNextSlogan, 4000);
+
+    setTimeout(() => {
+      this.setState({ fadeIn: true });
+    }, 50);
   }
+
   render() {
     return (
-      <div className="front-page-container">
+      <div
+        className={`front-page-container ${
+          this.state.fadeIn ? 'fade-in' : ''
+        } ${this.state.fadeOut ? 'fade-out' : ''}`}
+      >
+        <div className={`fade-overlay ${this.state.fadeOut ? 'active' : ''}`} />
         <div className="header">
           <div className="inner-header">
             <img className="logo" src={'/assets/logoblue.png'} alt="" />
@@ -128,45 +121,21 @@ class UnwrappedFrontPage extends React.Component<
         <div className="front-page fade offset-hero">
           <div className="row-a">
             <div className="enter-buttons">
-              {/* revert to login page when ready for users */}
-              <Link
-                to="/login"
-                onClick={() =>
-                  // e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-                  {
-                    // audioManager.playSound('impact');
-                    // this.onSubmitLogin(e);
-                  }
-                }
-              >
-                <Button
-                  text="ENTER THE SITE"
-                  className="primary"
-                  color="B"
-                  height={80}
-                  width={400}
-                  disabled={false}
-                  styles={{
-                    color: 'white',
-                    fontStyle: 'italic',
-                  }}
-                  fontSize={24}
-                  strong={true}
-                />
-              </Link>
-              {/* <Link to={'/register'}>
               <Button
-                text="REGISTER"
-                // onClick={() => this.calculateFen()}
-                className="secondary"
+                text="ENTER THE SITE"
+                className="primary"
                 color="B"
-                height={50}
-                width={140}
-                // disabled={this.state.fen === ''}
+                height={80}
+                width={400}
                 disabled={false}
-                // strong={true}
+                styles={{
+                  color: 'white',
+                  fontStyle: 'italic',
+                }}
+                fontSize={24}
+                strong={true}
+                onClick={() => this.handleEnterClick()}
               />
-            </Link> */}
             </div>
             <div className="intro-box">
               <div className="intro">
@@ -205,16 +174,11 @@ class UnwrappedFrontPage extends React.Component<
               </div>
             </div>
             <div className="enter-buttons">
-              {/* revert to login page when ready for users */}
               <Link
-                to="/login"
-                onClick={() =>
-                  // e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-                  {
-                    // audioManager.playSound('impact');
-                    // this.onSubmitLogin(e);
-                  }
-                }
+                to="/dashboard"
+                onClick={() => {
+                  // audioManager.playSound('impact');
+                }}
               >
                 <Button
                   text="ENTER THE SITE"
@@ -229,21 +193,9 @@ class UnwrappedFrontPage extends React.Component<
                   }}
                   fontSize={24}
                   strong={true}
+                  onClick={() => this.handleEnterClick()}
                 />
               </Link>
-              {/* <Link to={'/register'}>
-              <Button
-                text="REGISTER"
-                // onClick={() => this.calculateFen()}
-                className="secondary"
-                color="B"
-                height={50}
-                width={140}
-                // disabled={this.state.fen === ''}
-                disabled={false}
-                // strong={true}
-              />
-            </Link> */}
             </div>
             <div className="intro-box" style={{ marginBottom: '200px' }}>
               <div className="intro">
@@ -264,13 +216,13 @@ class UnwrappedFrontPage extends React.Component<
   }
 }
 
-// const mapDispatchToProps = (dispatch: any) => ({
-//   loginGuest: (guestUserData: UserData) => dispatch(loginGuest(guestUserData)),
-// });
+const mapDispatchToProps = (dispatch: any) => ({
+  loginGuest: (guestUserData: UserData) => dispatch(loginGuest(guestUserData)),
+});
 
 const FrontPageNoNavigation = connect(
-  null
-  // mapDispatchToProps
+  null,
+  mapDispatchToProps
 )(withRouter(UnwrappedFrontPage));
 
 export const FrontPage = ({ ...mapDispatchToProps }) => {

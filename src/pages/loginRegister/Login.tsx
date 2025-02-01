@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
@@ -27,6 +26,8 @@ const UnwrappedLogin: React.FC = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [fadeIn, setFadeIn] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
   // const auth = useSelector((state: RootState) => state.auth);
   const loginRegisterErrors = useSelector(
     (state: any) => state.loginRegisterErrors || {}
@@ -67,7 +68,7 @@ const UnwrappedLogin: React.FC = () => {
     setPassword(value);
   };
 
-  const onSubmitLogin = (
+  const onSubmitLogin = async (
     e: React.MouseEvent<HTMLButtonElement>,
     guest: boolean
   ) => {
@@ -98,11 +99,44 @@ const UnwrappedLogin: React.FC = () => {
       }
     }
 
-    dispatch(loginUser(guest ? guestUserData : userData, navigate));
+    try {
+      const result = await dispatch<any>(
+        loginUser(guest ? guestUserData : userData)
+      );
+
+      if (result.success) {
+        setFadeOut(true);
+        setTimeout(() => {
+          navigate('/');
+        }, 500);
+      } else {
+        console.error('Login failed:', result.error);
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error);
+    }
   };
 
+  const handleEnterClick = (path: string) => {
+    setFadeOut(true);
+    setTimeout(() => {
+      navigate(path);
+    }, 500);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFadeIn(true);
+    }, 50);
+  }, []);
+
   return (
-    <div className="login-page">
+    <div
+      className={`login-page ${fadeIn ? 'fade-in' : ''} ${
+        fadeOut ? 'fade-out' : ''
+      }`}
+    >
+      <div className={`fade-overlay ${fadeOut ? 'active' : ''}`} />
       <Hero />
       <form className="view" noValidate>
         <img className="logo" src={'/assets/logoblue.png'} alt="" />
@@ -138,7 +172,7 @@ const UnwrappedLogin: React.FC = () => {
             <div className="top-buttons">
               {/* <div style={{ height: '44px' }}></div> */}
               <Button
-                className="secondary"
+                className="primary"
                 text={'AS GUEST'}
                 color={'B'}
                 width={140}
@@ -159,17 +193,16 @@ const UnwrappedLogin: React.FC = () => {
             </div>
           </div>
           <div className="mini-buttons">
-            <Link to={'/register'}>
-              <Button
-                className="tertiary"
-                text={'REGISTER'}
-                color={'B'}
-                width={80}
-                height={30}
-                fontSize={12}
-                backgroundColorOverride="#111111"
-              />
-            </Link>
+            <Button
+              className="tertiary"
+              text={'REGISTER'}
+              color={'B'}
+              width={80}
+              height={30}
+              fontSize={12}
+              backgroundColorOverride="#111111"
+              onClick={() => handleEnterClick('/register')}
+            />
             {/* <Link to="/">
               <Button
                 className="tertiary"
@@ -181,17 +214,16 @@ const UnwrappedLogin: React.FC = () => {
                 backgroundColorOverride="#111111"
               />
             </Link> */}
-            <Link to="/">
-              <Button
-                className="tertiary"
-                text={'HOME'}
-                color={'B'}
-                width={80}
-                height={30}
-                fontSize={12}
-                backgroundColorOverride="#111111"
-              />
-            </Link>
+            <Button
+              className="tertiary"
+              text={'HOME'}
+              color={'B'}
+              width={80}
+              height={30}
+              fontSize={12}
+              backgroundColorOverride="#111111"
+              onClick={() => handleEnterClick('/intro')}
+            />
           </div>
           <div className="login-errors">
             {_.map(loginRegisterErrors, (value, i) => {

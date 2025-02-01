@@ -72,12 +72,11 @@ export const getGuestUserFromLocalStorage = () => {
 
 // Login - get user token
 // disabling for now unless we want server in the future
-export const loginUser =
-  (userData: any, navigate: any) => (dispatch: AppDispatch) => {
+export const loginUser = (userData: any) => (dispatch: AppDispatch) => {
+  return new Promise((resolve) => {
     axios
       .post('/api/users/login', userData)
       .then((res) => {
-        // Save to localStorage
         const { token } = res.data;
         localStorage.setItem('jwtToken', token);
         setAuthToken(token);
@@ -111,7 +110,6 @@ export const loginUser =
             };
             setLocalStorage(updatedGuestData);
           } else {
-            // Set new localStorage data if no existing guest is found
             setLocalStorage({
               auth: {
                 user: {
@@ -125,7 +123,6 @@ export const loginUser =
             });
           }
         } else {
-          // Set new localStorage data if no existing guest is found
           setLocalStorage({
             ...getLocalStorage(userData.username),
             auth: {
@@ -141,10 +138,12 @@ export const loginUser =
             },
           });
         }
-        navigate('/');
+
+        dispatch({ type: 'LOGIN_SUCCESS' });
+        resolve({ success: true });
       })
       .catch((err) => {
-        console.error('Login Error: ', err); // Log the error for debugging
+        console.error('Login Error: ', err);
         const errorPayload = err.response
           ? err.response.data
           : { message: 'An error occurred. Please try again.' };
@@ -152,8 +151,10 @@ export const loginUser =
           type: GET_ERRORS,
           payload: errorPayload,
         });
+        resolve({ success: false, error: errorPayload.message });
       });
-  };
+  });
+};
 
 // Guest Login - the static webpage solution - deprecate when ready for more users
 export const loginGuest = (guestData: any) => {

@@ -28,6 +28,8 @@ interface DashboardState {
     manifest: string;
     logout: string;
   };
+  fadeIn: boolean;
+  fadeOut: boolean;
 }
 
 export class UnwrappedDashboard extends React.Component<
@@ -50,12 +52,25 @@ export class UnwrappedDashboard extends React.Component<
         manifest: 'Mission, insights, links, bugs, and notes—unveiled.',
         logout: 'Pause and breathe—your journey can wait.',
       },
+      fadeIn: false,
+      fadeOut: false,
     };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ fadeIn: true });
+    }, 50);
   }
 
   render() {
     return (
-      <div className="dashboard">
+      <div
+        className={`dashboard ${this.state.fadeIn ? 'fade-in' : ''} ${
+          this.state.fadeOut ? 'fade-out' : ''
+        }`}
+      >
+        <div className={`fade-overlay ${this.state.fadeOut ? 'active' : ''}`} />
         <DashboardModal />
         <div className="dashboard-content">
           <div className="nav-bar">
@@ -167,8 +182,11 @@ export class UnwrappedDashboard extends React.Component<
                 width={'100%'}
                 disabled={false}
                 onClick={() => {
-                  this.props.logoutUser();
-                  this.props.navigate('/login');
+                  this.setState({ fadeOut: true });
+                  setTimeout(() => {
+                    this.props.logoutUser();
+                    this.props.navigate('/login');
+                  }, 500);
                 }}
                 backgroundColorOverride="#11111188"
               />

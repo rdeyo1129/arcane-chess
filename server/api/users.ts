@@ -28,14 +28,15 @@ router.post('/register', async (req, res) => {
     });
 
     if (existingUser) {
-      let error;
       if (existingUser.email === req.body.email) {
-        error = 'Account with that email already exists';
+        loginRegisterErrors.existingEmail =
+          'Account with that email already exists';
       }
       if (existingUser.username === req.body.username) {
-        error = 'Account with that username already exists';
+        loginRegisterErrors.existingUser =
+          'Account with that username already exists';
       }
-      return res.status(400).json(error);
+      return res.status(400).json(loginRegisterErrors);
     }
 
     const newUser = new User({

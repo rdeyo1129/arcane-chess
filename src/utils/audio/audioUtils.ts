@@ -21,7 +21,7 @@ export class AudioPlayer {
 
   stop() {
     this.audio.pause();
-    this.audio.currentTime = 0; // Reset playback position
+    this.audio.currentTime = 0;
   }
 
   setVolume(volume: number) {

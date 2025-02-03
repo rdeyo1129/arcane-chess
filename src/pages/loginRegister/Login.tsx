@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 import 'src/pages/loginRegister/LoginRegister.scss';
 
+import { audioManager } from 'src/utils/audio/AudioManager';
+
 import Button from 'src/components/Button/Button';
 import Input from 'src/components/Input/Input';
 import Hero from 'src/components/hero2/Hero';
@@ -106,9 +108,10 @@ const UnwrappedLogin: React.FC = () => {
 
       if (result.success) {
         setFadeOut(true);
+        audioManager.playSound('impact');
         setTimeout(() => {
           navigate('/');
-        }, 300);
+        }, 500);
       } else {
         console.error('Login failed:', result.error);
       }

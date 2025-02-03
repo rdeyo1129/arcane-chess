@@ -16,7 +16,7 @@ import TactoriusModal from 'src/components/Modal/Modal';
 import PromotionModal from 'src/components/PromotionModal/PromotionModal';
 import QuickplayModal from 'src/components/Modal/QuickplayModal';
 
-// import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
 import arcanaJson from 'src/data/arcana.json';
 
@@ -891,6 +891,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   }
                   if (key.includes('modsSUS')) {
                     if (GameBoard.suspend > 0) return;
+                    // placeholder for sdfx
                     GameBoard.suspend = 6;
                   }
                   if (key.includes('dyad')) {
@@ -963,16 +964,20 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     });
                   }
                   if (key === 'modsIMP') {
+                    // placeholder for sdfx
                     this.getHintAndScore(1);
                   }
                   if (key === 'modsORA') {
+                    // placeholder for sdfx
                     this.getHintAndScore(2);
                   }
                   if (key === 'modsTEM') {
+                    // placeholder for sdfx
                     this.getHintAndScore(3);
                   }
                   if (key === 'modsFUT') {
                     if (futureSightAvailable) {
+                      // placeholder for sdfx
                       this.arcaneChess().takeBackMove(
                         4,
                         this.state.playerColor,
@@ -1018,6 +1023,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                       '',
                       0
                     );
+                    // placeholder for sdfx
                     if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
                       audioManager.playSound('capture');
                     } else {
@@ -1045,6 +1051,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     );
                   }
                   if (key === 'modsGLI') {
+                    // placeholder for sdfx
                     arcaneChess().subtractArcanaUse(
                       'modsGLI',
                       this.state.playerColor
@@ -1218,7 +1225,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                 />
               </div>
               <div className="global-volume-control">
-                {/* <GlobalVolumeControl /> */}
+                <GlobalVolumeControl />
               </div>
             </div>
             <div className="time-board-time">
@@ -1338,6 +1345,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           '',
                           this.state.placingRoyalty
                         );
+                        // placeholder for sdfx
                         if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
                           audioManager.playSound('capture');
                         } else {
@@ -1417,11 +1425,6 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           swapOrTeleport,
                           this.state.placingRoyalty
                         );
-                      if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
-                        audioManager.playSound('capture');
-                      } else {
-                        audioManager.playSound('move');
-                      }
                       if (this.state.isDyadMove) {
                         this.arcaneChess().generatePlayableOptions();
                         this.arcaneChess().parseCurrentFen();
@@ -1436,6 +1439,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                           }));
                           return;
                         }
+                        // placeholder for sdfx
                         this.setState((prevState) => ({
                           ...prevState,
                           history: [...prevState.history, [PrMove(parsed)]],
@@ -1449,6 +1453,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                             [orig, dest],
                           ],
                         }));
+                      } else {
+                        // placeholder for sdfx
+                        // to be swap, shft, offr
+                        if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
+                          audioManager.playSound('capture');
+                        } else {
+                          audioManager.playSound('move');
+                        }
                       }
                       if (isInitPromotion) {
                         this.promotionSelectAsync(() => {
@@ -1536,6 +1548,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               '',
                               this.state.placingRoyalty
                             );
+                            // placeholder for sdfx
                             if (
                               CAPTURED(parsed) > 0 &&
                               ARCANEFLAG(parsed) === 0
@@ -1710,7 +1723,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             </div>
             <div className="nav-history-buttons-player">
               <div className="global-volume-control">
-                {/* <GlobalVolumeControl /> */}
+                <GlobalVolumeControl />
               </div>
               <div className="buttons">
                 <Button

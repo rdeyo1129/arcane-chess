@@ -1474,7 +1474,7 @@ export function GenerateMoves(
           (GameBoard.pieces[sq - 20] === PIECES.EMPTY &&
             GameBoard.blackArcane[4] & 2)
         ) {
-          if (RanksBrd[sq] === RANKS.RANK_6 || RanksBrd[sq] === RANKS.RANK_7) {
+          if (RanksBrd[sq] === RANKS.RANK_8 || RanksBrd[sq] === RANKS.RANK_7) {
             AddQuietMove(
               MOVE(sq, sq - 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS),
               capturesOnly

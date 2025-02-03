@@ -9,7 +9,7 @@ import 'src/chessground/styles/normal.scss';
 
 import { Chessground, IChessgroundApi } from 'src/chessground/chessgroundMod';
 
-// import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import Button from 'src/components/Button/Button';
@@ -487,17 +487,14 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       );
                     })}
                   </div>
-                  {/* <GlobalVolumeControl /> */}
                 </div>
-                <div
-                  className="center"
-                  style={{ padding: '0 10px 0 10px', fontSize: '12px' }}
-                >
+                <div className="center">
                   {/* Click on a chapter to view its details. If the chapter is a
                   mission, you can click or hover on arcana badges for
                   additional information or to add them to your inventory. Use
                   the Story button to switch between chess and story details,
                   and click the Start button to begin the chapter. */}
+                  <GlobalVolumeControl />
                 </div>
                 <div className="right">
                   <div className="buttons">

@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import { connect } from 'react-redux';
-
-// import { audioManager } from 'src/utils/audio/AudioManager';
 
 import './FrontPage.scss';
 import Hero from 'src/components/hero2/Hero';
@@ -174,28 +172,21 @@ class UnwrappedFrontPage extends React.Component<
               </div>
             </div>
             <div className="enter-buttons">
-              <Link
-                to="/dashboard"
-                onClick={() => {
-                  // audioManager.playSound('impact');
+              <Button
+                text="ENTER THE SITE"
+                className="primary"
+                color="B"
+                height={80}
+                width={400}
+                disabled={false}
+                styles={{
+                  color: 'white',
+                  fontStyle: 'italic',
                 }}
-              >
-                <Button
-                  text="ENTER THE SITE"
-                  className="primary"
-                  color="B"
-                  height={80}
-                  width={400}
-                  disabled={false}
-                  styles={{
-                    color: 'white',
-                    fontStyle: 'italic',
-                  }}
-                  fontSize={24}
-                  strong={true}
-                  onClick={() => this.handleEnterClick()}
-                />
-              </Link>
+                fontSize={24}
+                strong={true}
+                onClick={() => this.handleEnterClick()}
+              />
             </div>
             <div className="intro-box" style={{ marginBottom: '200px' }}>
               <div className="intro">

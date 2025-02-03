@@ -69,7 +69,7 @@ import Button from '../../components/Button/Button';
 import ChessClock from '../../components/Clock/Clock';
 
 import { Chessground, IChessgroundApi } from '../../chessground/chessgroundMod';
-// import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
 const booksMap: { [key: string]: { [key: string]: Node } } = {
   book1,
@@ -718,7 +718,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                   <div className="arcana-select"></div>
                 </div>
                 <div className="global-volume-control">
-                  {/* <GlobalVolumeControl /> */}
+                  <GlobalVolumeControl />
                 </div>
               </div>
               <div className="time-board-time">
@@ -831,7 +831,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               </div>
               <div className="temple-clock-buttons">
                 <div className="global-volume-control">
-                  {/* <GlobalVolumeControl /> */}
+                  <GlobalVolumeControl />
                 </div>
                 <div className="temple-clock">
                   <ChessClock

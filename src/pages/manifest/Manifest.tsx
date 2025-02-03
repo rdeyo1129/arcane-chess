@@ -619,10 +619,6 @@ class UnwrappedManifest extends React.Component<object, State> {
               <li>
                 Known bugs:
                 <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                  <li>
-                    May have to refresh, reset chapter and confirm by clicking
-                    on difficulty panel if mission page freezes.
-                  </li>
                   <li>Engine will ‘pass turn’ in certain scenarios.</li>
                   <li>
                     Engine will ‘pass turn’ in certain scenarios if both sides

@@ -36,6 +36,10 @@ export const setLocalStorage = ({
       chapter: 0,
       config: {
         multiplier: 80,
+        clock: false,
+        color: 'white',
+        depth: 1,
+        thinkingTime: 2,
       },
       arcana: {},
       nodeScores: {},

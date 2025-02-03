@@ -429,7 +429,7 @@ export function startSearch(thinkingTime, depth, engineColor) {
         } else {
           blackArcaneConfig.modsPHA -= 1;
         }
-        text.push(`${engineColor} used invisibility!`);
+        text.push(`${engineColor} used phantom mist!`);
       }
     }
   }

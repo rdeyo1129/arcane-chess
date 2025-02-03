@@ -6,8 +6,10 @@ import { withRouter } from 'src/components/withRouter/withRouter';
 import Button from 'src/components/Button/Button';
 import './Dashboard.scss';
 
-// import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 import DashboardModal from './DashboardModal';
+
+import { audioManager } from 'src/utils/audio/AudioManager';
 
 // Define the structure for props if any are expected
 interface DashboardProps {
@@ -182,6 +184,7 @@ export class UnwrappedDashboard extends React.Component<
                 width={'100%'}
                 disabled={false}
                 onClick={() => {
+                  audioManager.playSound('impact');
                   this.setState({ fadeOut: true });
                   setTimeout(() => {
                     this.props.logoutUser();
@@ -191,7 +194,7 @@ export class UnwrappedDashboard extends React.Component<
                 backgroundColorOverride="#11111188"
               />
             </div>
-            {/* <GlobalVolumeControl /> */}
+            <GlobalVolumeControl />
           </div>
           <div className="image-description">
             <img

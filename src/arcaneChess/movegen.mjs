@@ -1776,8 +1776,7 @@ export function GenerateMoves(
         ) {
           continue;
         }
-
-        if (GameBoard.dyad === 0 && GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
+        if (GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
           // note ROYALTY HOPPERS CAPTURES
           if (
             !herrings.length ||
@@ -2100,10 +2099,7 @@ export function GenerateMoves(
             !herrings.length ||
             (herrings.length && _.includes(herrings, t_sq))
           ) {
-            if (
-              GameBoard.dyad === 0 &&
-              GameBoard.pieces[t_sq] !== PIECES.EMPTY
-            ) {
+            if (GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
               const targetPieceColor = PieceCol[GameBoard.pieces[t_sq]];
 
               if (

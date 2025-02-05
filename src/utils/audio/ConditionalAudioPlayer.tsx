@@ -4,6 +4,8 @@ import { audioManager } from './AudioManager';
 import explosion from '/assets/noise/sounds/explosion.wav';
 import click1 from '/assets/noise/sounds/click1.mp3';
 import click3 from '/assets/noise/sounds/click3.mp3';
+import levelup from '/assets/noise/sounds/levelup.wav';
+import ghost2 from '/assets/noise/sounds/ghost_2.mp3';
 
 import tactoriusmenu from '/assets/noise/music/tactoriusmenu.wav';
 
@@ -26,10 +28,10 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
       audioManager.registerSound('capture', click3);
     }
     if (!audioManager.isSoundRegistered('victory')) {
-      // audioManager.registerSound('victory', audioLinks.victorySoundUrl);
+      audioManager.registerSound('victory', levelup);
     }
     if (!audioManager.isSoundRegistered('defeat')) {
-      // audioManager.registerSound('defeat', audioLinks.defeatSoundUrl);
+      audioManager.registerSound('defeat', ghost2);
     }
     if (!audioManager.isSoundRegistered('impact')) {
       audioManager.registerSound('impact', explosion);

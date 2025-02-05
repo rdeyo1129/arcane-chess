@@ -5,7 +5,9 @@ import './GlobalVolumeControl.scss';
 import Button from 'src/components/Button/Button';
 
 const GlobalVolumeControl: React.FC = () => {
-  const [volume, setVolume] = useState<number>(audioManager.getGlobalVolume());
+  const [volume, setVolume] = useState<number>(
+    audioManager.getGlobalVolume() as number
+  );
 
   useEffect(() => {
     audioManager.setGlobalVolume(volume);
@@ -14,10 +16,12 @@ const GlobalVolumeControl: React.FC = () => {
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
+    audioManager.setGlobalVolume(newVolume);
   };
 
   const muteVolume = () => {
     setVolume(0);
+    audioManager.setGlobalVolume(0);
   };
 
   return (

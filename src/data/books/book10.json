@@ -2,15 +2,15 @@
   "lesson-1": {
     "id": "lesson-1",
     "category": "skills",
-    "prereq": "",
+    "prereq": "mission-2",
     "title": "Skills III",
     "nodeText": "Calculation.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The Cerulean Archives stood as a monolithic vault of knowledge, a deep labyrinth of towering shelves and encrypted records chronicling centuries of scientific advancements. Sidian navigated its cold, sterile corridors, his presence masked by the hum of arcana-powered systems designed to preserve and protect the city's intellectual wealth. As he sifted through historical accounts, a pattern emerged—each time Cerulean approached a major scientific breakthrough, war followed. Records detailed conflicts driven not by necessity but by fear, as if progress itself invited destruction. Among the files, the whisper appeared not as an entity but as a recurring specter, always surfacing in critical moments before war reshaped the city. Cerulean prided itself on rationality, yet its most defining decisions had been dictated by the same paranoia it claimed to reject. The deeper Sidian searched, the more it became clear: knowledge had not saved Cerulean from repeating history, and now, it was happening again.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "disciple",
+    "theme": "cerulean-room",
+    "bookTheme": "cerulean",
     "time": [
       [0, 0],
       [0, 0]
@@ -167,11 +167,11 @@
     "title": "Skills IV",
     "nodeText": "Pruning.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Beyond the restricted sections of the archives, Sidian followed a series of hidden corridors to a private lab, where an isolated scientist worked in secret. Scattered notes, incomplete equations, and arcana readings covered the walls, each marking the pursuit of something unprecedented. The scientist’s findings suggested a fundamental flaw in Cerulean’s understanding of the Axiom—the deeper they examined its structure, the more it defied definition. Irrational numbers, infinite smallness, and arcana instability hinted at something far beyond comprehension, something not confined to the known world. Sidian examined the incomplete research and saw the implications: if the Axiom was not a singular force but a gateway to another dimension, then Cerulean’s entire foundation—its pursuit of control over the Axiom—was flawed. The scientist, however, lacked proof. Somewhere in the ruins of Cerulean Deep, an ancient arcana artifact existed that could confirm their theory. If Sidian could retrieve it before the council suppressed the findings, the truth might yet survive.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "disciple",
+    "theme": "cerulean-room",
+    "bookTheme": "cerulean",
     "time": [
       [0, 0],
       [0, 0]
@@ -328,11 +328,11 @@
     "title": "Mating Patterns II",
     "nodeText": "Learn about the Arabian mate and Dovetail mate.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian returned from his mission only to find Cerulean’s political chambers in chaos. The warlords had assembled, their voices filling the council chambers with reports of Heretic spies, intercepted messages, and supposed plans for Vermillion’s invasion. The documents, though lacking real verification, were enough to justify a decision that had been waiting to happen—Cerulean would not wait for war to come to them. Their navy was mobilizing, their forces already moving, and in that moment, the transition from cold war to open conflict was sealed. Sidian realized that even with the ancient arcana in hand, it was too late to stop the momentum. The scientist’s research would be buried, their discoveries dismissed as distractions, and the city's pursuit of knowledge would once again be weaponized into the pursuit of war. The council’s decision was not driven by logic, but by the same fear that had plagued Cerulean for generations, a fear that had now ensured the cycle would continue.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "disciple",
+    "theme": "cerulean-room",
+    "bookTheme": "cerulean",
     "time": [
       [0, 0],
       [0, 0]
@@ -599,15 +599,15 @@
   },
   "temple-1": {
     "id": "temple-1",
-    "prereq": "temple-",
+    "prereq": "mission-8",
     "title": "Temple of Venomous Whispers I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian entered the temple’s sunken hall, where the immense whale drifted silently in the abyss, its presence so vast it felt like part of the ocean itself. A stone board lay between them, the pieces illuminated by the glow of arcana-infused coral. The game began at a slow, deliberate pace, the whale’s moves revealing a strategy that stretched far beyond the immediate moment. Sidian’s instincts told him to press forward, but he quickly learned that impatience led to failure, each rushed move unraveling into an eventual loss.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "whale",
+    "bookTheme": "whale",
     "time": [
       [390, 10],
       [350, 12]
@@ -3310,11 +3310,11 @@
     "title": "Temple of Venomous Whispers II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "With each move, the whale’s awareness reached into Sidian’s thoughts, revealing glimpses of Cerulean’s past wars. The city had always believed its battles were necessary, that each war was unique, yet the patterns remained the same. Fear had always been the first weapon drawn. Sidian saw the growing tension with Vermillion not as a sudden crisis, but as the next movement in a cycle that had repeated for generations. The whale’s patience was not passivity—it was understanding.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "whale",
+    "bookTheme": "whale",
     "time": [
       [370, 12],
       [330, 14]
@@ -6017,11 +6017,11 @@
     "title": "Temple of Inheritance I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The whale had been there since the beginning, a silent observer to Cerulean’s rise, its scientific triumphs, and the wars that followed. It had seen leaders justify conflict as necessity, seen knowledge turned into weapons, seen peace dismissed as an illusion. Sidian realized that the whale had no power to intervene, only to witness—but for the first time, someone was listening.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "whale",
+    "bookTheme": "whale",
     "time": [
       [390, 10],
       [350, 12]
@@ -8806,11 +8806,11 @@
     "title": "Temple of Inheritance II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "As the game progressed, Sidian’s awareness expanded, his thoughts no longer confined to his own perspective. A shift occurred—he wasn’t just playing against the whale, he was connected to it. For the first time in centuries, the whale’s thoughts reached someone who could hear them. With this, Sidian unlocked his mind-link ability, his connection to arcana deepening in ways he had never experienced.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "whale",
+    "bookTheme": "whale",
     "time": [
       [370, 12],
       [330, 14]
@@ -11595,11 +11595,11 @@
     "title": "Temple of Unyielding Shadows I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The final sequence of moves played out with an inevitability Sidian had not seen before. The whale’s strategy had been decided long before Sidian understood it, proving that the greatest victories were set in motion far before the final moment. Sidian had not been outmatched—he had been shown a truth he had never considered. The war was not something to be won in battle, but something that had to be dismantled before it even began.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "whale",
+    "bookTheme": "whale",
     "time": [
       [390, 10],
       [350, 12]
@@ -14148,15 +14148,15 @@
   },
   "temple-6": {
     "id": "temple-6",
-    "prereq": "temple-5",
+    "prereq": "mission-7",
     "title": "Temple of Unyielding Shadows II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The temple pulsed with arcana, its walls shifting like currents in a restless tide. The eel coiled around the chamber’s edges, darting through the water like a streak of lightning, its movements erratic, unpredictable. The chessboard between them reflected this energy—every piece moved fast, every shift of the board forcing Sidian to think ahead or be left behind. The eel played aggressively, punishing hesitation with devastating counters.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "eel",
+    "bookTheme": "eel",
     "time": [
       [370, 12],
       [330, 14]
@@ -16705,15 +16705,15 @@
   },
   "temple-7": {
     "id": "temple-7",
-    "prereq": "temple-5",
+    "prereq": "temple-6",
     "title": "Temple of Relentless Trials I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "With each move, the eel’s consciousness pushed images into Sidian’s mind—Vermillion’s banners unfurling, fleets being readied, arcana weapons primed. This was no longer speculation; the war was already set in motion. The time for patience had passed. Every second wasted was another step toward disaster.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "eel",
+    "bookTheme": "eel",
     "time": [
       [390, 10],
       [350, 12]
@@ -19293,11 +19293,11 @@
     "title": "Temple of Relentless Trials II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The eel’s challenge was clear—what would he do? He could see the battle forming, but did he have the power to stop it? If words failed, would he fight? If fighting was not an option, what remained? The eel’s strategy in the game reflected the urgency of his decisions: he could not afford to react, he had to act.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "eel",
+    "bookTheme": "eel",
     "time": [
       [370, 12],
       [330, 14]
@@ -21877,11 +21877,11 @@
     "title": "Temple of Merciless Echoes I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "A sudden shift in the eel’s attack forced Sidian into a losing position—the match, like the war, had already turned against him. The realization struck hard: he was not playing to prevent the war. He was playing to survive it.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "eel",
+    "bookTheme": "eel",
     "time": [
       [390, 10],
       [350, 12]
@@ -24383,11 +24383,11 @@
     "title": "Temple of Merciless Echoes II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The eel delivered its final move, a sudden, devastating checkmate that came before Sidian had even fully processed its setup. This was the lesson—the war could no longer be stopped through patience alone. Some moments demanded action before understanding. Sidian left the temple knowing that hesitation would cost him everything.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "eel",
+    "bookTheme": "eel",
     "time": [
       [370, 12],
       [330, 14]
@@ -26886,14 +26886,14 @@
   "mission-1": {
     "id": "mission-1",
     "prereq": "",
-    "title": "",
+    "title": "Chainbreaker",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The air in Ra Metropolis was thick with the weight of their recent battle, but the world refused to stop moving. With Tsar defeated and Apex back in control, the path forward had splintered, each of them drawn toward different pieces of the unfolding war. Cassandra and Tsubasa prepared for their journey to Vermillion, seeking to navigate its deep-seated traditions and religious fervor, while Sidian knew his destination lay elsewhere. The tension between Cerulean Deep and Vermillion was no longer political—it was accelerating into something irreversible. Sidian watched as his allies vanished through one portal, then turned toward his own, stepping forward into the unknown currents of the deep.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "ra-dojo",
+    "bookTheme": "future-egypt",
     "time": [
       [600, 30],
       [300, 15]
@@ -26923,7 +26923,7 @@
         },
         "preset": "CLEAR",
         "whiteArcane": { "offrC": 2, "offrA": 1, "shftP": 2, "offrH": 1 },
-        "blackArcane": {},
+        "blackArcane": { "offrC": 2, "offrA": 1, "shftP": 2, "offrH": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
@@ -26944,14 +26944,14 @@
   "mission-2": {
     "id": "mission-2",
     "prereq": "mission-1",
-    "title": "",
+    "title": "Through the Gates of Hell",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The portal should have been a seamless entry, but something was wrong. The keeper guarding Cerulean Deep’s access had yet to receive word of Tsar’s fall, leaving Sidian trapped in an outdated reality. The keeper, bound to their duty, refused passage, citing protocol and the chain of command, forcing Sidian into direct confrontation. The battle was not a question of strength but of necessity—he had no time to waste convincing someone who could not see the changing tide. After a precise, calculated fight, he broke through, the portal tearing open as he stepped into the depths of Cerulean’s vast cityscape. The ocean swallowed him whole, and with it came the weight of another war looming on the horizon.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "portal-keeper",
+    "bookTheme": "portal-keeper",
     "time": [
       [600, 30],
       [300, 15]
@@ -26979,7 +26979,7 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {},
-        "blackArcane": { "offrR": 1, "sumnRY": 1, "sumnRT": 1, "swapDEP": 2 },
+        "blackArcane": { "offrS": 1, "sumnRY": 1, "sumnRT": 1, "swapDEP": 2 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
@@ -27000,14 +27000,14 @@
   "mission-3": {
     "id": "mission-3",
     "prereq": "mission-2",
-    "title": "",
+    "title": "God's Cavalry",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The streets of Cerulean Deep were a marvel on the surface, a city of shimmering glass and arcana-powered constructs that operated with calculated precision. But beneath the grandeur, Sidian saw what the archives never recorded—the unintended consequences of Cerulean’s relentless pursuit of knowledge. The city’s poorest districts were littered with failed experiments, discarded arcana-powered husks that once served the elite and now lay abandoned in alleyways. Factories buzzed with workers enhanced by unstable modifications, their bodies half-consumed by arcana implants that blurred the line between human and construct. In the shadows, black-market scientists offered enhancements, unregulated and dangerous, to those desperate enough to risk the consequences. Sidian watched as a man, his arcana grafts failing, collapsed in the street—ignored, left to decay alongside the very technology that was meant to advance civilization.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "disciple",
+    "theme": "cerulean",
+    "bookTheme": "cerulean",
     "time": [
       [600, 30],
       [300, 15]
@@ -27056,14 +27056,14 @@
   "mission-4": {
     "id": "mission-4",
     "prereq": "mission-3",
-    "title": "",
+    "title": "Fisherman's Miniature",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Further into the depths of the city, Sidian found an even darker truth—Cerulean’s intellectual elite had long abandoned those who could not keep up. In a district filled with the remnants of arcana testing facilities, he saw people who had become permanent test subjects, their bodies infused with unstable energy, their minds lost in experiments gone too far. One facility had become a prison of failed attempts at immortality—scientists who had extended their consciousness through arcana, only to lose their physical forms, now reduced to spectral remnants that still roamed the halls, whispering unfinished equations. This was the cost of unchecked progress, of knowledge without restraint. Cerulean did not destroy its people through war—it consumed them through experimentation, always reaching for the next discovery at the expense of those who failed to adapt. Sidian had seen corruption before, but here, it was not greed that had driven the city to this—it was pure, relentless ambition.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "disciple",
+    "theme": "cerulean",
+    "bookTheme": "cerulean",
     "time": [
       [600, 30],
       [300, 15]
@@ -27093,9 +27093,7 @@
         "whiteArcane": {
           "modsEXT": 1,
           "dyadA": 1,
-          "dyadS": "0",
           "sumnS": 1,
-          "sumnH": "0",
           "sumnN": 1
         },
         "blackArcane": { "modsEXT": 1, "sumnW": 1, "sumnH": 1, "sumnN": 1 },
@@ -27119,14 +27117,14 @@
   "mission-5": {
     "id": "mission-5",
     "prereq": "mission-4",
-    "title": "",
+    "title": "Hostage Variation",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "In the outskirts of Cerulean’s ruins, Sidian found himself entangled in something far worse than the political games of the council. A swarm of arcana-infused jellyfish drifted through the flooded remains of ancient structures, their bioluminescent glow pulsing in perfect harmony with the currents. At first, they seemed passive, but the moment Sidian attempted to pass through, the water came alive with crackling energy. These creatures were not just hazards; they were defenses, remnants of forgotten Cerulean experiments that still guarded secrets long abandoned. Each movement became a careful calculation, each strike measured against the unpredictable surges of energy that threatened to consume him.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "jellyfish",
+    "bookTheme": "jellyfish",
     "time": [
       [600, 30],
       [300, 15]
@@ -27158,8 +27156,7 @@
           "sumnRM": 1,
           "sumnRT": 1,
           "offrA": 2,
-          "shftB": 1,
-          "shftT": 1
+          "shftB": 1
         },
         "config": {},
         "correctMoves": [""],
@@ -27181,14 +27178,14 @@
   "mission-6": {
     "id": "mission-6",
     "prereq": "mission-5",
-    "title": "",
+    "title": "Gladiator Spellcaster",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Deep in the ruins, Sidian encountered something far worse than any physical threat—a siren, an arcana-born entity woven from the fabric of illusion and manipulation. It did not attack with force, nor with speed, but with whispers, with voices that echoed through the water, reshaping his thoughts. Memories twisted, reality fragmented, and Sidian felt himself slipping into a world where nothing was certain. The siren was not a being of battle, but of doubt, of deception, a living manifestation of the very fear that had already begun to consume Cerulean. He fought not against its form, but against the lies it attempted to weave into his mind, forcing himself to break free before he lost sight of who he was.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "siren",
+    "bookTheme": "siren",
     "time": [
       [600, 30],
       [300, 15]
@@ -27237,14 +27234,14 @@
   "mission-7": {
     "id": "mission-7",
     "prereq": "mission-6",
-    "title": "",
+    "title": "The Hero Carries",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The wreckage of the Abyssal Leviathan lay in the depths, a remnant of a past war that had long been buried beneath the waves. Sidian stepped carefully through the ruined hull, his presence the first to disturb it in centuries. The ship was a graveyard of forgotten knowledge, a resting place for soldiers who had fought a war much like the one that was now unfolding. As he searched its ruins, he found scattered logs, broken data cores, and fragments of reports that spoke of a conflict eerily similar to the one now brewing. The whisper had been there, guiding events, shaping outcomes, ensuring that war repeated itself, its influence stretching across generations.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "old-ship",
+    "bookTheme": "old-ship",
     "time": [
       [600, 30],
       [300, 15]
@@ -27293,14 +27290,14 @@
   "mission-8": {
     "id": "mission-8",
     "prereq": "mission-7",
-    "title": "",
+    "title": "Banshee Miniature",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Further inside, Sidian uncovered something more—an artifact, ancient but still humming with arcana energy. The lost relic the scientist had spoken of was real, embedded deep within the ship’s heart. As he reached for it, the ship itself seemed to react, a tremor running through its frame as if it were rejecting the removal of something that had been part of it for so long. The moment his fingers met the relic, a flood of energy rushed through him, visions of the past searing into his mind—Cerulean’s past wars, Vermillion’s counterattacks, each event manipulated by forces unseen. The relic pulsed with significance, but Sidian knew he had no time to decipher its meaning. He took it, feeling the weight of history settle on his shoulders as he prepared to leave.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "old-ship",
+    "bookTheme": "old-ship",
     "time": [
       [600, 30],
       [300, 15]
@@ -27349,14 +27346,14 @@
   "mission-9": {
     "id": "mission-9",
     "prereq": "mission-8",
-    "title": "",
+    "title": "Stronghold Collapsing",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "In the deepest part of the ruins, Sidian encountered something he could not explain—a bioluminescent plant, massive and pulsing, its vines twisting as if breathing. The energy it exuded was unlike anything he had felt before, raw and unfiltered, unshaped by arcana yet deeply woven into its nature. As he stepped closer, the world around him seemed to still, time itself holding its breath. Then, the voice came—not spoken, not heard, but understood. \n\n It was not a message, not a warning, but an absolute truth, something deeper than prophecy, beyond the reach of mortal comprehension. The whisper had existed long before Cerulean, before Vermillion, before the wars that had shaped history. It was neither an ally nor an enemy—it simply was. The plant, in its impossible way, conveyed this knowledge to Sidian, showing him that the war he sought to prevent was already part of something far greater than the two cities. The cycle was unbroken, not because of human error, but because it had always been. Sidian had been seeking a way to change the course of history, but now he saw—he was standing in the shadow of something far older than war.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "cerulean-plant",
+    "bookTheme": "cerulean-plant",
     "time": [
       [600, 30],
       [300, 15]
@@ -27407,14 +27404,14 @@
   "mission-10": {
     "id": "mission-10",
     "prereq": "mission-9",
-    "title": "",
+    "title": "Across the Mirror",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The council chamber was silent as Sidian arrived, but the tension in the air felt suffocating. The warlords stood at the center, their arguments already won, their plans already in motion. Reports of Vermillion sleeper agents, intercepted messages of preemptive strikes, and doctored intelligence on impending religious control over the Axiom had been laid out before the council. The decision was no longer up for debate—Cerulean was going to war. Sidian watched as the city’s highest minds, those who had spent their lives pursuing knowledge, succumbed not to wisdom, but to fear. Logic had been weaponized, not as a tool for understanding, but as a justification for destruction. The warlords had forged their own truth, twisting data and half-truths into inevitability. Sidian had seen many wars, but this was the first time he had watched one become real, not through force, but through belief.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "disciple",
+    "theme": "cerulean",
+    "bookTheme": "cerulean",
     "time": [
       [600, 30],
       [300, 15]
@@ -27463,14 +27460,14 @@
   "mission-11": {
     "id": "mission-11",
     "prereq": "mission-10",
-    "title": "",
+    "title": "Rainbow Strike",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The warlord stood at the gates of Cerulean’s Grand Archives, their form radiating with arcana as the Serpent Leviathan loomed in the distance, its massive coils wrapping around the city’s most sacred halls of knowledge. Their voice, laced with contempt, echoed through the water—this was not just a battle, it was a defense of Cerulean’s very purpose. Sidian had seen warlords fight for power, for control, for vengeance—but this one fought for preservation. The warlord did not see themselves as a tyrant, but as a scholar protecting the greatest wealth of knowledge the world had ever known. They fought with calculated precision, every strike designed to drive Sidian back, not through brute strength, but through tactics drawn from centuries of Cerulean warfare. The Leviathan, still distant, watched with cold detachment, as if waiting for the right moment to intervene.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "disciple",
+    "theme": "cerulean-boss",
+    "bookTheme": "cerulean-boss",
     "time": [
       [600, 30],
       [300, 15]
@@ -27509,7 +27506,6 @@
           "modsCON": 2,
           "swapDEP": 1,
           "swapADJ": 1,
-          "shftN": "0",
           "shftB": 2,
           "shftR": 2,
           "shftP": 1
@@ -27537,11 +27533,11 @@
     "title": "Tears in Rain",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "As the battle raged, the warlord’s movements became more erratic, their desperation rising as Sidian began to unravel their strategies. And then, with a single arcana-infused gesture, the battlefield itself changed—the Leviathan moved. The city trembled as the massive serpent coiled tighter around the archives, its arcana reaching into the water, warping the very rules of the fight. Sidian felt it instantly—his arcana no longer functioned as it should. His abilities misfired, his movements slowed, his connection to the Axiom flickering like a failing signal. The warlord, now fully synchronized with the Leviathan, became something more—a conduit of pure arcana intelligence, wielding knowledge itself as a weapon. The Leviathan was not simply a beast; it was Cerulean’s collected history given form, an entity that had recorded and adapted to every battle the city had ever faced. And now, it was rewriting reality itself to ensure Sidian could not win. \n\n The final moments of the battle came as Sidian found himself not just fighting against the warlord, but against the laws of arcana itself. The battlefield had become something beyond his control, a space where Cerulean’s mastery over the Axiom was absolute. The warlord, still fierce but now barely holding control, prepared for the final strike—not to destroy Sidian, but to erase him from the equation entirely. If he could not be killed, he would be removed, his presence made an anomaly, an error in the system of arcana. But at the last moment, Sidian’s instincts kicked in—not to fight, but to escape. The war was now unstoppable, but the battle for the truth, for the Axiom, was far from over. As the Leviathan’s energy surged, Sidian vanished into the currents, retreating into the unknown, knowing that his fight was only beginning.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "disciple",
+    "theme": "cerulean-boss",
+    "bookTheme": "cerulean-boss",
     "time": [
       [600, 30],
       [300, 15]
@@ -27599,7 +27595,7 @@
   },
   "mission-13": {
     "id": "mission-13",
-    "title": "",
+    "title": "Gathering of Believers I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -27618,11 +27614,11 @@
     "nodeText": "Mikhail Botvinnik vs Mikhail Tal: World Championship Match (1960)",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-12",
+    "prereq": "temple-5",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "wraith-battle",
+    "bookTheme": "wraith-battle",
     "panels": {
       "panel-1": {
         "fen": "8/7p/4kbp1/3p4/2b2P2/R6P/4NK2/4rB2 b - - 1 40",
@@ -27656,7 +27652,7 @@
   },
   "mission-14": {
     "id": "mission-14",
-    "title": "",
+    "title": "Gathering of Believers II",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -27677,9 +27673,9 @@
     "reward": [],
     "prereq": "mission-13",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "wraith-battle",
+    "bookTheme": "wraith-battle",
     "panels": {
       "panel-1": {
         "fen": "3R4/5r1p/8/3k4/8/Pp1K2P1/1b5P/8 b - - 0 1",
@@ -27713,7 +27709,7 @@
   },
   "mission-15": {
     "id": "mission-15",
-    "title": "",
+    "title": "Gathering of Believers III",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -27734,9 +27730,9 @@
     "reward": [],
     "prereq": "mission-14",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "wraith-battle",
+    "bookTheme": "wraith-battle",
     "panels": {
       "panel-1": {
         "fen": "3r2k1/1b4pp/p2q4/3PR1P1/1p1B1Q1P/8/PPP5/2K5 b - - 2 29",

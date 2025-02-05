@@ -65,8 +65,8 @@ class AudioManager {
     Object.values(this.sounds).forEach((sound) => sound.setVolume(volume));
   }
 
-  getGlobalVolume(): number {
-    return this.globalVolume;
+  getGlobalVolume() {
+    return localStorage.getItem('globalVolume') ?? (0 as number);
   }
 
   isSoundPlaying(key: string): boolean {

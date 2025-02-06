@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Button from 'src/components/Button/Button';
 import Input from 'src/components/Input/Input';
@@ -69,8 +70,20 @@ const UnwrappedRegister = () => {
       <form noValidate onSubmit={onSubmitReg} className="view">
         <img className="logo" src={'/assets/logoblue.png'} alt="" />
         <div className="login-info">
-          Create an account if you want to place on the leaderboard. Otherwise,
-          click AS GUEST to enter anonymously.
+          <span>
+            By registering, you agree to our terms of service found in the{' '}
+            <Link
+              to="/manifest"
+              style={{
+                color: '#007BFF',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Manifest
+            </Link>
+            . It also includes our privacy policy.
+          </span>
         </div>
         <div></div>
         <div className="reg-input-top">

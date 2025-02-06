@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import './Manifest.scss';
 
+import { audioManager } from 'src/utils/audio/AudioManager';
+
 type State = {
   currentTab: string;
 };
@@ -11,9 +13,14 @@ class UnwrappedManifest extends React.Component<object, State> {
   constructor(props: object) {
     super(props);
     this.state = {
-      currentTab: 'mission',
+      currentTab: 'about',
     };
   }
+
+  componentDidMount(): void {
+    audioManager.setGlobalVolume(0);
+  }
+
   render() {
     return (
       <div className="manifest">
@@ -30,20 +37,6 @@ class UnwrappedManifest extends React.Component<object, State> {
                 backgroundColorOverride="#11111188"
               />
             </Link>
-            <Button
-              text="MISSION"
-              className="tertiary"
-              onClick={() => {
-                this.setState({
-                  currentTab: 'mission',
-                });
-              }}
-              color="B"
-              width={160}
-              height={50}
-              disabled={false}
-              backgroundColorOverride="#11111188"
-            />
             <Button
               text="ABOUT"
               className="tertiary"
@@ -100,7 +93,7 @@ class UnwrappedManifest extends React.Component<object, State> {
               disabled={false}
               backgroundColorOverride="#11111188"
             />
-            {/* <Button
+            <Button
               text="TOS"
               className="tertiary"
               onClick={() => {
@@ -113,7 +106,7 @@ class UnwrappedManifest extends React.Component<object, State> {
               height={50}
               disabled={false}
               backgroundColorOverride="#11111188"
-            /> */}
+            />
             <Button
               text="PRIVACY"
               className="tertiary"
@@ -132,7 +125,7 @@ class UnwrappedManifest extends React.Component<object, State> {
           <div className="content">
             {this.state.currentTab === 'mission' ? (
               <div id="mission" className="mission">
-                <p>
+                {/* <p>
                   This preamble explains the purpose of spell chess. Chess
                   engines currently estimate that white starts the game with an
                   advantage of about 0.3 points. The introduction of conditional
@@ -141,32 +134,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                   yet equally playable version of the game. These ideas are
                   suggestions alone, with their adoption ultimately left to the
                   chess community.
-                </p>
-                <h2>Misson Statements:</h2>
-                <ol style={{ listStyleType: 'decimal' }}>
-                  <li>
-                    To create a free and open-source platform that empowers
-                    players to delve deeply into both the technical and
-                    philosophical aspects of chess, offering a comprehensive
-                    learning experience that enriches their understanding of the
-                    game.
-                  </li>
-                  <li>
-                    To revolutionize the chess experience by integrating
-                    immersive narratives and innovative gameplay enhancements,
-                    encouraging players to think creatively and explore new
-                    strategies beyond traditional gameplay.
-                  </li>
-                  <li>
-                    To cultivate a vibrant community of chess enthusiasts, where
-                    collaboration, creativity, and shared mastery are at the
-                    heart of a continuously evolving and dynamic chess
-                    experience. Above all, the platform emphasizes the
-                    importance of having fun with the game, encouraging players
-                    to enjoy each match—win or lose—as a valuable and rewarding
-                    journey.
-                  </li>
-                </ol>
+                </p> */}
               </div>
             ) : this.state.currentTab === 'about' ? (
               <div id="about" className="about">
@@ -249,6 +217,31 @@ class UnwrappedManifest extends React.Component<object, State> {
                   ensuring it continues to serve the global chess community
                   effectively.
                 </p>
+                <h2>Misson Statements:</h2>
+                <ol style={{ listStyleType: 'decimal' }}>
+                  <li>
+                    To create a free and open-source platform that empowers
+                    players to delve deeply into both the technical and
+                    philosophical aspects of chess, offering a comprehensive
+                    learning experience that enriches their understanding of the
+                    game.
+                  </li>
+                  <li>
+                    To revolutionize the chess experience by integrating
+                    immersive narratives and innovative gameplay enhancements,
+                    encouraging players to think creatively and explore new
+                    strategies beyond traditional gameplay.
+                  </li>
+                  <li>
+                    To cultivate a vibrant community of chess enthusiasts, where
+                    collaboration, creativity, and shared mastery are at the
+                    heart of a continuously evolving and dynamic chess
+                    experience. Above all, the platform emphasizes the
+                    importance of having fun with the game, encouraging players
+                    to enjoy each match—win or lose—as a valuable and rewarding
+                    journey.
+                  </li>
+                </ol>
               </div>
             ) : this.state.currentTab === 'links' ? (
               <div id="links" className="links">
@@ -652,25 +645,25 @@ class UnwrappedManifest extends React.Component<object, State> {
                 </ul>
                 Feel free to share any additional found bugs in the discord.
               </li>
-            ) : // ) :  this.state.currentTab === 'tos' ? (
-            //   <div id="tos" className="tos">
-            //     <h2>Terms of Service</h2>
-            //     <ul>
-            //       <li>
-            //         <strong>Do not cheat</strong> or receive assistance in any
-            //         player vs. player games (from a chess computer, book,
-            //         database, or another person).
-            //       </li>
-            //       <li>
-            //         <strong>Be nice</strong> and courteous to all other players,
-            //         always.
-            //       </li>
-            //       <li>
-            //         <strong>Don{"'"}t do bad things</strong> or break any laws.
-            //       </li>
-            //     </ul>
-            //   </div>
-            this.state.currentTab === 'privacy' ? (
+            ) : this.state.currentTab === 'tos' ? (
+              <div id="tos" className="tos">
+                <h2>Terms of Service</h2>
+                <ul>
+                  <li>
+                    <strong>Do not cheat</strong> or receive assistance in any
+                    player vs. player games (from a chess computer, book,
+                    database, or another person).
+                  </li>
+                  <li>
+                    <strong>Be nice</strong> and courteous to all other players,
+                    always.
+                  </li>
+                  <li>
+                    <strong>Don{"'"}t do bad things</strong> or break any laws.
+                  </li>
+                </ul>
+              </div>
+            ) : this.state.currentTab === 'privacy' ? (
               <div id="privacy" className="privacy">
                 <h2>Privacy Policy</h2>
                 <p>

@@ -94,9 +94,10 @@ const router = createBrowserRouter(
       <Route
         path="/manifest"
         element={
-          <PrivateRoute>
-            <Manifest />
-          </PrivateRoute>
+          // <PrivateRoute>
+          //
+          <Manifest />
+          // </PrivateRoute>
         }
       />
       <Route

@@ -2,7 +2,7 @@
   "lesson-1": {
     "id": "lesson-1",
     "category": "life",
-    "prereq": "",
+    "prereq": "mission-2",
     "title": "Preparation and Resources",
     "nodeText": "",
     "storyTitle": "",
@@ -1784,7 +1784,7 @@
   },
   "temple-1": {
     "id": "temple-1",
-    "prereq": "",
+    "prereq": "lesson-5",
     "title": "Temple of Discoveries I",
     "nodeText": "",
     "storyTitle": "",
@@ -15536,7 +15536,7 @@
   },
   "mission-3": {
     "id": "mission-3",
-    "prereq": "mission-2",
+    "prereq": "lesson-3",
     "title": "Hex Theater",
     "nodeText": "",
     "storyTitle": "",
@@ -15899,7 +15899,7 @@
     "nodeText": "Edwin Ziegler Adams vs Carlos Torre Repetto: New Orleans (1920)",
     "storyText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "temple-4",
     "opponent": "",
     "hero": "voltaire",
     "theme": "mantis-battle",

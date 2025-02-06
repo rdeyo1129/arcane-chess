@@ -1183,7 +1183,7 @@
   },
   "temple-1": {
     "id": "temple-1",
-    "prereq": "",
+    "prereq": "mission-2",
     "title": "Temple of Indecision I",
     "nodeText": "",
     "storyTitle": "",
@@ -16291,7 +16291,7 @@
   },
   "mission-1": {
     "id": "mission-1",
-    "prereq": "",
+    "prereq": "lesson-4",
     "title": "One Wrong Move",
     "nodeText": "",
     "storyTitle": "",
@@ -16797,7 +16797,7 @@
     "nodeText": "Viswanathan Anand vs Magnus Carlsen: Moscow RUS (2009)",
     "storyText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "temple-4",
     "opponent": "",
     "hero": "voltaire",
     "theme": "disciple-battle",

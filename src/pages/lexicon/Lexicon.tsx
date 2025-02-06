@@ -445,7 +445,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
             background:
               this.state.theme === 'black'
                 ? '#000000cc'
-                : `linear-gradient(#000000cc, #000000cc), url(/assets/dashboard/lexicon.webp)`,
+                : `linear-gradient(#000000AA, #000000AA), url(/assets/dashboard/lexicon.webp)`,
             backgroundSize: this.state.theme === 'black' ? 'cover' : 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -744,7 +744,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
             </div>
           </div>
         </div>
-        <div className="lexicon-curtain"></div>
+        {/* <div className="lexicon-curtain"></div> */}
       </div>
     );
   }

@@ -4,7 +4,6 @@
   justify-content: center;
   align-items: flex-start;
   align-self: center;
-  height: 550px;
   width: 100%;
   .player-options-text {
     display: flex;
@@ -15,7 +14,7 @@
       display: flex;
       .hover-text {
         height: 60px;
-        width: 500px;
+        width: 550px;
         margin: 0 0 0 20px;
       }
     }
@@ -44,7 +43,6 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        padding: 10px 0 10px 0;
       }
     }
   }

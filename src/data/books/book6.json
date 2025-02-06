@@ -1394,7 +1394,7 @@
   },
   "temple-1": {
     "id": "temple-1",
-    "prereq": "",
+    "prereq": "lesson-5",
     "title": "Temple of Oblivion I",
     "nodeText": "",
     "storyTitle": "",
@@ -15418,7 +15418,7 @@
   },
   "mission-1": {
     "id": "mission-1",
-    "prereq": "",
+    "prereq": "lesson-3",
     "title": "Stampede a Stampede",
     "nodeText": "",
     "storyTitle": "",
@@ -15707,7 +15707,7 @@
   },
   "mission-6": {
     "id": "mission-6",
-    "prereq": "mission-5",
+    "prereq": "mission-3",
     "title": "The Guard's Ritual",
     "nodeText": "",
     "storyTitle": "",
@@ -15913,7 +15913,7 @@
     "nodeText": "Alexander Alekhine vs K Isakov: Moscow RUE (1907)",
     "storyText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "temple-4",
     "opponent": "voltaire",
     "hero": "",
     "theme": "wizard-battle",

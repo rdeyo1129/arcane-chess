@@ -97,7 +97,7 @@ export class UnwrappedLeaderBoard extends React.Component<
             if (!score.score) return;
             return (
               <div key={index} className="user-score">
-                <div>{index}</div>
+                <div className="standing-int">{index}</div>
                 <div className="username">{score.username}</div>
                 <div className="points">
                   <span className="digit-box">{digits(score.score)}</span>
@@ -106,7 +106,7 @@ export class UnwrappedLeaderBoard extends React.Component<
             );
           })}
         </div>
-        <div className="leaderboard-curtain"></div>
+        {/* <div className="leaderboard-curtain"></div> */}
         <img
           className="leaderboard-image-full"
           src={`/assets/dashboard/leaderboard.webp`}

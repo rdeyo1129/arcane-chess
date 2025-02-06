@@ -2,7 +2,7 @@
   "lesson-1": {
     "id": "lesson-1",
     "category": "life",
-    "prereq": "",
+    "prereq": "mission-3",
     "title": "Mindfulness",
     "nodeText": "",
     "storyTitle": "",
@@ -1581,7 +1581,7 @@
   },
   "temple-1": {
     "id": "temple-1",
-    "prereq": "",
+    "prereq": "mission-3",
     "title": "Temple of Intermezzo I",
     "nodeText": "",
     "storyTitle": "",
@@ -16173,7 +16173,7 @@
     "nodeText": "Jose Raul Capablanca vs Masyutin: Kiev RUE (1914)",
     "storyText": "",
     "reward": [],
-    "prereq": "",
+    "prereq": "temple-4",
     "opponent": "",
     "hero": "",
     "theme": "komodo-battle",

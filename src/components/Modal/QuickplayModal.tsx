@@ -962,7 +962,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }}
                 />
               </div>
-              <div
+              {/* <div
                 className="quickplay-select"
                 onMouseEnter={() => this.toggleHover('promotion')}
                 onMouseLeave={() => this.toggleHover('')}
@@ -990,7 +990,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       this.props.updateConfig('placingPromotion', val);
                   }}
                 />
-              </div>
+              </div> */}
               <div
                 className="quickplay-select"
                 onMouseEnter={() => this.toggleHover('gameMode')}
@@ -1048,7 +1048,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   className="tertiary"
                   color="B"
                   width={260}
-                  height={60}
+                  height={40}
                   styles={{ marginTop: '20px' }}
                   onClick={() => {
                     this.randomizeTemplates('same');
@@ -1065,7 +1065,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   className="tertiary"
                   color="B"
                   width={260}
-                  height={60}
+                  height={40}
                   onClick={() => {
                     this.randomizeTemplates('different');
                   }}
@@ -1081,7 +1081,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   className="tertiary"
                   color="B"
                   width={260}
-                  height={60}
+                  height={40}
                   onClick={() => {
                     this.trueRandomize('same');
                   }}
@@ -1097,7 +1097,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   className="tertiary"
                   color="B"
                   width={260}
-                  height={60}
+                  height={40}
                   onClick={() => {
                     this.trueRandomize('different');
                   }}
@@ -1152,10 +1152,9 @@ const quickPlayModal = {
     display: 'flex',
     height: '100%',
     width: '100vw',
-    background: '#00000000',
-    // borderRadius: '10px',
+    padding: '50px',
+    background: 'linear-gradient(to top, #111111, #333333)',
     border: 'none',
-    padding: '0px',
     overflowY: 'scroll' as const,
     overflowX: 'hidden' as const,
     msOverflowStyle: 'none' as const,

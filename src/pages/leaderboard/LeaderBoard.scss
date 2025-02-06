@@ -48,11 +48,11 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100%;
+    width: 60%;
+    background-color: #11111188;
     z-index: 1;
     .username {
       width: 200px;
-      background-color: #11111188;
       padding: 12px;
       box-sizing: border-box;
     }
@@ -61,7 +61,6 @@
       display: flex;
       justify-content: flex-end;
       padding: 12px;
-      background-color: #11111188;
       width: 400px;
       box-sizing: border-box;
       .digit-box {
@@ -79,6 +78,6 @@
     width: 100vw;
     object-fit: cover;
     z-index: -10;
-    filter: blur(4px);
+    filter: blur(4px) brightness(40%);
   }
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import './Manifest.scss';
 
-import { audioManager } from 'src/utils/audio/AudioManager';
+// import { audioManager } from 'src/utils/audio/AudioManager';
 
 type State = {
   currentTab: string;
@@ -18,7 +18,7 @@ class UnwrappedManifest extends React.Component<object, State> {
   }
 
   componentDidMount(): void {
-    audioManager.setGlobalVolume(0);
+    // audioManager.setGlobalVolume(0);
   }
 
   render() {

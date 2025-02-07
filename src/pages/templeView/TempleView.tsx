@@ -206,6 +206,7 @@ interface State {
   hideCompletedPage: boolean;
   visitedPanels: string[];
   theme: string;
+  hero: string;
   opponent: string;
   victoryMessage: string;
   defeatMessage: string;
@@ -324,6 +325,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           ? 'black'
           : 'white',
       theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
+      hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
       opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
       victoryMessage:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.victory,
@@ -882,7 +884,9 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                 <div className="info-avatar">
                   <div className="avatar">
                     <img
-                      src="/assets/avatars/hero.webp"
+                      src={`assets/avatars/${
+                        this.state.hero === '' ? 'hero' : this.state.hero
+                      }.webp`}
                       style={{
                         height: '60px',
                         width: '60px',

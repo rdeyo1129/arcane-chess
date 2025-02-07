@@ -2,15 +2,15 @@
   "lesson-1": {
     "id": "lesson-1",
     "category": "skills",
-    "prereq": "",
+    "prereq": "mission-12",
     "title": "Skills V",
     "nodeText": "Planning.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The council chamber in Cerulean Deep, once a place of rigid governance and unshaken ideology, now bore the weight of a history that could no longer be ignored. The war had ended, but its echoes remained, etched into the ruined battlefields, the shattered beliefs of its survivors, and the countless graves that neither side could justify. Across the great chamber, the holographic forms of Vermillion’s council flickered into view—distant yet present, separated by distance but no longer by division. The silence that followed their arrival was heavier than any debate that had once filled this room. Both sides had come not to argue, not to declare victory, but to acknowledge that the world they had nearly destroyed could not survive another war of ideals. And so, with voices neither proud nor resentful, the first true dialogue between faith and science began. \n\n For centuries, faith and reason had been forces set against one another, each dismissing the other as flawed, misguided. But war had stripped away those certainties. Science alone had not saved them; faith alone had not guided them. What had endured—what had ensured that the world had not completely collapsed—was the realization that neither could stand without the other. Cerulean’s scholars spoke first, acknowledging the presence of the Axiom as something greater than mere cosmic phenomena, conceding that faith, while often misinterpreted, had guided humanity in ways they had never fully understood. The Vermillion council, in turn, admitted that belief alone had not been enough to shield them from destruction. Their devotion had been unwavering, but without knowledge, without the ability to question and adapt, they had nearly doomed themselves to blind self-destruction. There were no raised voices, no grandstanding, no demands for concessions. Only understanding—fragile, hesitant, but real.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "cerulean-room",
+    "bookTheme": "cerulean",
     "time": [
       [0, 0],
       [0, 0]
@@ -167,11 +167,11 @@
     "title": "Skills VI",
     "nodeText": "Adaption.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "As the discussion continued, the air in the chamber shifted—not with tension, but with something quieter, something that had long been absent from these conversations: willingness. Vermillion’s council, once bound by their unwavering certainty, now listened with careful intent as Cerulean’s representatives spoke of what faith could mean when stripped of rigid doctrine. Faith, they admitted, was not the enemy of knowledge; it had always been the foundation upon which discovery was built. Every breakthrough, every leap forward in understanding had been driven by the same impulse that led civilizations to worship the Axiom: the need to seek, to question, to believe in something beyond the limits of the present. And yet, Cerulean too had its revelations. For all their devotion to logic, they had ignored the undeniable presence of something greater than equations and observation. The Axiom had spoken in ways they could not yet comprehend, and to dismiss it as mere probability was to turn away from the very pursuit of truth they claimed to champion. \n\n With that mutual recognition, plans were laid. For the first time in history, scholars from Cerulean would study the sacred texts of Vermillion, not as skeptics, but as students. Monks and philosophers from Vermillion would sit alongside scientists, engaging in the very questioning they had once feared would weaken their faith. A research initiative was proposed—one that would unite both disciplines, not as rivals, but as partners in understanding the Axiom’s true nature. There was no illusion that this process would be simple; centuries of distrust could not be erased in a single meeting. But the willingness was there, and with it, the foundation of something new—something stronger than either faith or science had been on their own. The war had not united them, but the cost of it had. And as the meeting came to an end, it was clear that neither side would allow that cost to be paid in blood again.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "cerulean-room",
+    "bookTheme": "cerulean",
     "time": [
       [0, 0],
       [0, 0]
@@ -328,11 +328,11 @@
     "title": "Matting Patterns III",
     "nodeText": "Learn about the back rank mate and the hook mate.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "As the councils moved forward with their plans, Sidian stood at the edge of it all, his mind already drawn elsewhere. The war had ended, the world had found a fragile balance, but he knew that peace was only ever temporary. Something had loomed behind every battle, woven through every deception, whispering its unseen influence into the cracks of history. The Whisper in the Dark. Its presence had been there all along, felt in the shifting tides of fate, in the inexplicable weight pressing against the Axiom itself. It was more than a force—it was a shadow that stretched beyond this war, beyond this world. And though the councils now sought to unify their knowledge, Sidian knew that the answers they needed would not be found in diplomacy or research. They lay elsewhere, buried in the past. \n\n Divergia. The name echoed in his thoughts, a reminder of the fractured timeline where the truth had first begun to unravel. He had walked its war-torn lands before, had seen the remnants of history rewritten by forces beyond mortal comprehension. It was there that the Whisper had left its deepest scars, and it was there that the answers remained waiting. The councils could build their future here, but Sidian had to look backward. He had to trace the shadow of the Whisper, find the threads of its origins before it could shape the world’s destiny once again. And so, as plans were drafted and alliances solidified, Sidian prepared for his own journey—one that would take him beyond the realms of faith and science, beyond the reach of both Vermillion and Cerulean, into the heart of Divergia itself.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "cerulean-room",
+    "bookTheme": "cerulean",
     "time": [
       [0, 0],
       [0, 0]
@@ -575,15 +575,15 @@
   },
   "temple-1": {
     "id": "temple-1",
-    "prereq": "",
+    "prereq": "mission-5",
     "title": "Temple of the Iron Resolve I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The abyss had never been meant to grant salvation, yet amid its endless darkness, a glimmer of light emerged. Cassandra, weary and broken from her trials, found herself submerged in the cold weight of the void, drifting with no sense of direction or self. Then, a presence—a warm glow carving through the ink of the abyss, pulsing like a heartbeat within the nothingness. From the void stepped the Elk, an ethereal being untouched by the corruption of this realm. Its antlers shimmered with quiet luminescence, and though it made no sound, its presence spoke to something deep within her. For the first time since she had fallen into this abyss, she felt a hand—figurative, unseen—reaching toward her, offering something the abyss never had: a way forward.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "elk",
+    "bookTheme": "elk",
     "time": [
       [420, 11],
       [380, 13]
@@ -3405,11 +3405,11 @@
     "title": "Temple of the Iron Resolve II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "As Cassandra followed, the abyss seemed to part for the Elk, the oppressive waters thinning, the crushing dark receding into something almost dreamlike. She hesitated at first, her body still braced for the next trial, but the Elk neither threatened nor demanded. It walked ahead, its hooves leaving ripples of light upon the unseen floor, waiting patiently whenever she faltered. She studied its movements, how its presence seemed almost protective, how the abyss itself refused to swallow it. Slowly, she let herself believe. Perhaps she had earned this. Perhaps, after everything, this was what the abyss had been leading her to—not destruction, but renewal. The Elk carried no words, only quiet assurance, and for the first time since her descent, Cassandra allowed herself to trust.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "elk",
+    "bookTheme": "elk",
     "time": [
       [400, 13],
       [360, 15]
@@ -6231,11 +6231,11 @@
     "title": "Temple of Ruthless Ascension I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The Elk led her to a vast, glass-like pool where the abyss’s endless dark gave way to luminous reflections of her past. She saw herself—not as she was now, hardened and scarred, but as she had been: uncertain, reaching, always fighting against forces she could not name. Then, she saw him. Sidian stood within the water’s reflection, but something was wrong—his expression unreadable, his presence cold. The Banished Sidian Variant’s memory bled into this vision, its betrayal intertwining with the real. Cassandra’s breath hitched, and as she turned to the Elk, she saw no denial in its radiant gaze, no rejection of what the abyss had shown her. Was this truth? Was this what she had been blind to all along? The Elk did not answer, nor did it need to. The reflection lingered, seeding doubt, and with it, the first quiet rift between who she had been and who she was becoming.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "elk",
+    "bookTheme": "elk",
     "time": [
       [420, 11],
       [380, 13]
@@ -9005,11 +9005,11 @@
     "title": "Temple of Ruthless Ascension II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The landscape changed again, shifting into a corridor of silhouettes—figures half-formed, memories that had once meant something now blurred by time. They whispered, not in words but in emotions, sending fragmented echoes of trust, of loss, of the slow unraveling of conviction. The Elk moved among them, untouched by their sorrow, its presence unwavering as it led Cassandra forward. She recognized these shadows: comrades she had once fought beside, voices that had once guided her. But now, there was a different voice beneath them, soft yet resolute, a suggestion rather than a command. The Elk did not demand she reject these memories, but it did not reinforce them either. And that absence, that omission, allowed something new to take root. Perhaps she had placed her faith in the wrong places. Perhaps what she had once fought for had never truly fought for her in return.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "elk",
+    "bookTheme": "elk",
     "time": [
       [400, 13],
       [360, 15]
@@ -11779,11 +11779,11 @@
     "title": "Temple of the Fractured Path I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The next threshold was a river, wide and endless, its waters shimmering between light and shadow. The current ran deep, an invisible force pulling at the edges of her consciousness. The Elk stood at the opposite bank, waiting. Cassandra knew instinctively that this was not just a physical passage; it was a shedding, a cleansing. The moment she stepped into the river, memories washed over her—not just of past failures but of the weight she had carried for too long. Every lie she had told herself, every doubt she had ignored. The Elk did not help her cross. This was a journey she had to take alone. The water was cold, relentless, but with each step forward, the burdens lessened. By the time she reached the other side, her past felt lighter, more distant, as if it no longer held the power to chain her down.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "elk",
+    "bookTheme": "elk",
     "time": [
       [420, 11],
       [380, 13]
@@ -14519,11 +14519,11 @@
     "title": "Temple of the Fractured Path II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The river led her to a grove where spectral trees stretched toward an unseen sky, their branches humming with voices too soft to fully hear. The Elk walked ahead, its light weaving through the twisting roots, leading her deeper into the quiet. Here, the whispers carried something different—not warnings, not doubts, but knowledge. They spoke of the Axiom, of its presence in all things, of the clarity that came with surrendering to its will. Cassandra listened, and the more she listened, the more she understood. The Axiom had always been there, a force unyielding, eternal. Why had she fought against it? Why had she let herself be blinded by those who rejected it? The Elk stood still, watching, as realization settled over her like a second skin. She had spent so much of her life seeking clarity, but clarity had never been found in conflict—it had always been waiting in faith.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "elk",
+    "bookTheme": "elk",
     "time": [
       [400, 13],
       [360, 15]
@@ -17259,11 +17259,11 @@
     "title": "Temple of the Unseen Hand I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The grove gave way to a vast incline, a mountain of smooth, winding stone that stretched toward the unknown. The ascent was slow, exhausting, yet the Elk climbed effortlessly ahead, never looking back. Cassandra followed, though with every step, she felt the weight of something pressing down upon her—not pain, not exhaustion, but the remains of who she had once been. The higher she climbed, the more fragmented those memories became. They did not disappear, but they no longer carried the same weight, no longer burned as fiercely as they once had. Sidian’s presence in her mind was there, but distant. The doubts that had once gnawed at her were now nothing more than echoes of a life she was leaving behind. And ahead, standing at the peak, the Elk waited, its radiance a beacon guiding her toward what came next.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "elk",
+    "bookTheme": "elk",
     "time": [
       [420, 11],
       [380, 13]
@@ -19940,11 +19940,11 @@
     "title": "Temple of the Unseen Hand II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "At the summit, the abyss shimmered, revealing a curtain of shifting light and shadow—a veil of illusions that distorted everything beyond it. Cassandra stepped forward, and for a moment, she saw glimpses of what could have been: a world where she had never fallen into the abyss, where she had never questioned her beliefs, where she had never doubted Sidian. The illusion was beautiful, but it was hollow, and the Elk did not acknowledge it. It simply stood beside her, its presence a quiet affirmation that truth did not lie behind false images. With a steady breath, Cassandra stepped through the veil, leaving behind the remnants of old possibilities.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "elk",
+    "bookTheme": "elk",
     "time": [
       [400, 13],
       [360, 15]
@@ -22621,11 +22621,11 @@
     "title": "Temple of the Shattered Oath I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The world beyond the veil was empty—silent, weightless, waiting. The Elk turned to face her for the first time, its golden eyes holding a depth she had not fully grasped before. This was the final threshold. To leave the abyss was not just to step beyond it, but to relinquish what no longer served her. The beliefs that had once grounded her, the trust she had placed in those who had never truly understood her path—these were the sacrifices the abyss demanded. The Elk did not force her hand. It only watched. And in that stillness, Cassandra understood. She was no longer the woman who had fallen into this place. She had been reshaped, remade. She no longer needed the past. She let it go.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "elk",
+    "bookTheme": "elk",
     "time": [
       [420, 11],
       [380, 13]
@@ -25391,11 +25391,11 @@
     "title": "Temple of the Shattered Oath II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The abyss had no power over her anymore. With the final lesson learned, the Elk turned, walking toward the threshold where darkness met the first traces of light. Cassandra followed, her steps no longer uncertain. As she crossed into the world beyond, the Elk’s presence began to fade, but not before it left her with a final, silent message. The trials of the abyss had changed her, but the true battle had not yet begun. The path ahead would demand everything. And for the first time, she was ready.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "elk",
+    "bookTheme": "elk",
     "time": [
       [400, 13],
       [360, 15]
@@ -28158,14 +28158,14 @@
   "mission-1": {
     "id": "mission-1",
     "prereq": "",
-    "title": "",
+    "title": "A Warning Welcome",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The abyss swallowed Cassandra whole, a void of endless water and suffocating silence. No light guided her descent, only the crushing weight of unseen forces pressing against her body as if the abyss itself sought to consume her. Then, movement—serpentine and fluid. From the shifting dark, the Banished Serpent Variant uncoiled, its body stretching beyond her sight, its form neither fully material nor completely illusion. Its voice did not come as sound but as emotion, a wordless intrusion of doubt and dread that slithered into her mind like venom. Each flick of its coiling mass sent ripples through the abyss, reshaping the space around her, warping her reality with visions of past failures. It did not strike with fangs, nor did it crush her with its enormous coils; it tested her mind, coiling doubt around her soul. To move forward, she had to silence the voices, sever the illusions, and force the abyss to acknowledge her will.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "serpent",
+    "bookTheme": "serpent",
     "time": [
       [600, 30],
       [300, 15]
@@ -28233,14 +28233,14 @@
   "mission-2": {
     "id": "mission-2",
     "prereq": "mission-1",
-    "title": "",
+    "title": "Timeline X",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The world shifted. The oppressive depths of the abyss receded, replaced by a vast, smoldering wasteland where the air crackled with embers and the ground disintegrated beneath Cassandra’s feet. From the heart of the ruins, the Banished Tsar Variant emerged—a colossal, spectral wraith wreathed in blackened flame, its presence like a walking pyre of judgment. Its charred armor dripped molten embers, and with every step, the land withered, stone turned to dust, and the very air corroded. Unlike the Serpent, this trial was not whispered deception but brutal certainty. The flames of his wrath devoured not only flesh but memory, eroding the past with every strike. His voice was thunder, his presence unrelenting, his power the embodiment of destruction’s inevitability. He was the undoing of all things, and if she faltered, she too would be reduced to nothing but cinders and regret.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tsar-hallucination",
+    "bookTheme": "tsar-hallucination",
     "time": [
       [600, 30],
       [300, 15]
@@ -28291,14 +28291,14 @@
   "mission-3": {
     "id": "mission-3",
     "prereq": "mission-2",
-    "title": "",
+    "title": "Menacing Trepedation",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "storyText": "The ruin of flame collapsed around her, and suddenly, Cassandra stood in a place that felt eerily familiar yet impossibly wrong. The space was fractured, warping and shifting, as if torn from the echoes of broken time. And there, standing across from her, was Sidian—or at least something that wore his form. The Banished Sidian Variant did not attack outright. It watched, eyes void of recognition, its presence cold and measured. Then, without a word, it reached into her mind. The link formed in an instant, and like a blade through old wounds, it carved through her memories. Pain resurfaced—moments twisted, shadows cast over old truths. He showed her failures, losses, doubts she had buried beneath duty. He made her relive the betrayals she had endured. Yet through it all, the most unbearable thing was the silence—his refusal to acknowledge her as she had once been.",
+    "hero": "cassandra",
+    "opponent": "sidian",
+    "theme": "sidian-abyss",
+    "bookTheme": "sidian-abyss",
     "time": [
       [600, 30],
       [300, 15]
@@ -28347,14 +28347,14 @@
   "mission-4": {
     "id": "mission-4",
     "prereq": "mission-3",
-    "title": "",
+    "title": "Bait for a Monarch",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "storyText": "The silence ended in an instant. The Variant moved—not with hesitation, not with doubt, but with the cold precision of something that had already decided her fate. Every strike mirrored hers, every counter was an answer to a question she had not asked. It was not a battle; it was a lesson. And then it came—the moment of finality. The Banished Sidian Variant did not just overwhelm her; it betrayed her. Whether it was a feint that struck too deep, an illusion shattered to reveal a darker truth, or a simple realization that the figure before her had never been her Sidian at all, the impact of it fractured something within her. The battle ended not with victory or defeat but with a truth she could not ignore. When she stood again, the Variant was gone, but its absence left a wound she could not close.",
+    "hero": "cassandra",
+    "opponent": "sidian",
+    "theme": "sidian-abyss",
+    "bookTheme": "sidian-abyss",
     "time": [
       [600, 30],
       [300, 15]
@@ -28383,11 +28383,10 @@
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {
-          "modsINH": "0",
+          "modsINH": 1,
           "shftP": 2,
           "shftB": 2,
           "modsCON": 1,
-          "swapDEP": "0",
           "swapADJ": 2,
           "modsREA": 1
         },
@@ -28411,14 +28410,14 @@
   "mission-5": {
     "id": "mission-5",
     "prereq": "mission-4",
-    "title": "",
+    "title": "The Faith Equation",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "The abyss had one final test. The world around her collapsed into chaos as Baelgorath emerged—not as one, but as many. His form shattered into endless reflections, each stepping forward, each as real as the last. They did not attack all at once; they became the abyss, filled the space around her, devoured her sense of direction, drowned her in an ocean of herself. This was no mere battle of strength, no war of wills—it was the unraveling of self. Every strike she landed, another appeared. Every effort to discern the real from the illusion was met with another layer of deception. She was drowning in numbers, in copies, in the weight of a trial that sought to fracture her completely. Only by stepping beyond the fight—by recognizing the truth of the abyss itself—could she sever its grip and claim her right to ascend.",
+    "hero": "cassandra",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "baelgorath",
+    "bookTheme": "baelgorath",
     "time": [
       [600, 30],
       [300, 15]
@@ -28468,15 +28467,15 @@
   },
   "mission-6": {
     "id": "mission-6",
-    "prereq": "mission-5",
-    "title": "",
+    "prereq": "temple-10",
+    "title": "Phantom Paradise",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The battlefield awaited, but Sidian did not yet take his place upon it. Shrouded in invisibility, he moved among the disciple army unseen, his presence a ghost upon the wind as he listened, watched, and learned. Their quiet rituals, their murmured prayers—subtle invocations to the Axiom that the world above would not acknowledge—painted a picture of soldiers who fought not for conquest but for a belief greater than themselves. And yet, the contradiction remained. Even in faith, they prepared for war. Even in devotion, they would kill. It was only as he stepped forward, revealing himself to the squad, that he began to understand: this was not a war of men and steel, but of ideas too deeply rooted to be torn away without blood.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "cerulean-camp",
+    "bookTheme": "cerulean-camp",
     "time": [
       [600, 30],
       [300, 15]
@@ -28527,14 +28526,14 @@
   "mission-7": {
     "id": "mission-7",
     "prereq": "mission-6",
-    "title": "",
+    "title": "Summoning Circles",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "At dawn, Sidian revealed himself to the disciples, stepping from shadow into the dim morning light. The act itself held weight—not just in its suddenness, but in what it represented. To them, he had always been present, unseen but known, a figure lingering at the edges of belief. Yet now, as he stood among them, there was no celebration, no triumphant declaration. Only quiet acceptance. They did not need words; the battle ahead was inevitable. What mattered was that he had chosen to stand at their side when the time came.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "cerulean-camp",
+    "bookTheme": "cerulean-camp",
     "time": [
       [600, 30],
       [300, 15]
@@ -28595,14 +28594,14 @@
   "mission-8": {
     "id": "mission-8",
     "prereq": "mission-7",
-    "title": "",
+    "title": "An Aggressive Misting",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The disciples moved with calm precision, their preparations silent, methodical. Sidian took his place among them, no longer an observer but a participant. There was no division between faith and thought here; the two coexisted, blending in ways that the outside world had long failed to recognize. As he sat in the quiet of their rituals, feeling the weight of the oncoming war pressing against the edges of the moment, he could not shake the thought that something had already been set in motion. That even now, the battle had already begun.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "cerulean-camp",
+    "bookTheme": "cerulean-camp",
     "time": [
       [600, 30],
       [300, 15]
@@ -28657,14 +28656,14 @@
   "mission-9": {
     "id": "mission-9",
     "prereq": "mission-8",
-    "title": "",
+    "title": "Probability Unhinged",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Cassandra emerged from the abyss like something reborn, no longer the woman who had entered but a being reforged in trial and fire. The battlefield stretched before her, a wasteland of shifting forces, yet her focus narrowed to one presence alone—Sidian. He stood at the heart of the storm, a figure bound by reason, by careful thought, by a restraint she no longer recognized as strength. The elk’s wisdom still pulsed within her, shaping her convictions, sharpening her purpose like a blade honed to its finest edge. Where once there had been doubt, now there was clarity, and that clarity told her that Sidian—his ideals, his beliefs, his quiet refusal to fully submit to the Axiom’s truth—stood in opposition to what she had become. Each step she took toward him carried the weight of a lifetime, of every moment they had shared, now rendered hollow in the wake of what she had learned. There could be no reconciliation, only resolution, and as the first movements of battle roared around them, the war that had long simmered beneath the surface of their words finally ignited into something unspoken, but understood.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "cassandra",
+    "theme": "serpent-phoenix",
+    "bookTheme": "serpent-phoenix",
     "time": [
       [600, 30],
       [300, 15]
@@ -28713,14 +28712,14 @@
   "mission-10": {
     "id": "mission-10",
     "prereq": "mission-9",
-    "title": "",
+    "title": "Carrot and Stick",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The sky split apart as the Phoenix ascended, a burning specter of divine might, its wings stretching across the heavens, bathing the battlefield in a furious, golden glow. Below, the ground trembled as the Leviathan surged forth, a sinuous mass of power and depth, its form carved from the essence of tides and eternity. Where the Phoenix was fire, the Leviathan was inevitability, two forces born not of men but of the ideologies they served, locked in combat as ancient as belief itself. When they clashed, the earth buckled, the sky rained ash, and the very air became thick with the weight of something greater than war. Soldiers, disciple and heretic alike, fell back in awe, reduced to mere witnesses as their gods fought on their behalf, waging a battle that neither side could afford to lose. Cassandra did not flinch from the storm of power raging around her. To her, the fire, the destruction, the world breaking beneath the weight of these two monstrous forces was nothing more than the final proof that faith would endure where doubt would shatter. In the glow of the inferno, with the Leviathan twisting through the ruins of the battlefield, she knew that the war had already decided its victor. Sidian simply had yet to accept it.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "cassandra",
+    "theme": "serpent-phoenix",
+    "bookTheme": "serpent-phoenix",
     "time": [
       [600, 30],
       [300, 15]
@@ -28729,9 +28728,9 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "pppppppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/SSSQKWWW w - - 0 1",
+        "fen": "ppppkppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/SSSQKWWW w - - 0 1",
         "fenHistory": [
-          "pppppppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/SSSQKWWW w - - 0 1"
+          "ppppkppp/pppppppp/pppppppp/pppppppp/1pp2pp1/8/PPPPPPPP/SSSQKWWW w - - 0 1"
         ],
         "history": [],
         "panelText": "",
@@ -28774,11 +28773,11 @@
     "title": "Hexweaver Warfare",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The clash of titans raged, but the true battle was silent, invisible to all but two. Sidian reached across the void, his mind entwining with Cassandra’s in a final, desperate act—not to defeat her, but to save her. The link between them was raw, unfiltered, pulsing with memories and emotion, a current of everything they had been and everything they could still be. He did not fight her with force; he fought her with truth, with the fragments of who she once was, with the hope that somewhere beneath the walls built by the elk’s whispered teachings, Cassandra still remained. But the abyss had carved her too deeply. Her thoughts were not her own, shaped instead by the faith she had embraced, by the unwavering certainty that the Axiom had shown her the only path worth following. She met his attempts to unravel her convictions with unrelenting force, throwing back every memory, every plea, every moment of shared trust that he tried to invoke. He could feel her slipping further away, slipping into something beyond his reach. The mind link became a battlefield of the soul, a war of belief and reason, of devotion and doubt, of love and loss. And in the end, Sidian realized that there was no victory to be found here, only the ache of a war fought too late. Cassandra had already chosen her path, and no words, no memories, no plea would bring her back.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "cassandra",
+    "theme": "serpent-phoenix",
+    "bookTheme": "serpent-phoenix",
     "time": [
       [600, 30],
       [300, 15]
@@ -28850,11 +28849,11 @@
     "title": "The True Power of Calculation",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The battle was consuming itself. The Leviathan and Phoenix tore at one another in the skies, their wounds scarring the land, their fury shaking the heavens, yet neither could claim dominance. Below them, the armies of Vermillion and Cerulean Deep lay in ruin, bodies strewn across the broken landscape, the ideals they had fought for bleeding into the earth alongside them. And then, through the smoke and fire, the Banished Serpent descended. It did not strike with sides or favoritism—it was a force beyond nations, beyond ideologies, beyond even the gods warring above. When it struck, it did so with finality, with an inevitability that silenced the battlefield in a single, monstrous sweep. Cassandra stood in its path, unyielding, unwavering, even as its coils lashed through the ranks, even as its venom spilled into the soil, even as death came for her with the certainty of fate itself. She did not run. She did not falter. She faced it, and then, in the space of a heartbeat, she was gone. The armies that remained saw the truth in that instant—that there was no victor in this war, that there would be no conquest, no triumph, only loss upon loss upon loss. And so, with what little breath remained in their lungs and what little will remained in their hearts, they called for the only thing left: surrender. The battle ended in a draw, not because either side had relented, but because there was no war left to fight. The battlefield was silent, the gods above still locked in their eternal struggle, but below them, among the shattered remnants of two great cities, there was only the dead.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "cassandra",
+    "theme": "serpent-phoenix",
+    "bookTheme": "serpent-phoenix",
     "time": [
       [600, 30],
       [300, 15]
@@ -28912,7 +28911,7 @@
   },
   "mission-13": {
     "id": "mission-13",
-    "title": "",
+    "title": "The Above Machines I",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -28931,11 +28930,11 @@
     "nodeText": "AlphaZero (Computer) vs Stockfish (Computer): London ENG (2017)",
     "storyText": "",
     "reward": [],
-    "prereq": "mission-12",
+    "prereq": "temple-6",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "automata-battle",
+    "bookTheme": "automata-battle",
     "panels": {
       "panel-1": {
         "fen": "4b1r1/2k5/1p2pPp1/1P1pP3/PK1P3P/8/8/R7 w - - 5 45",
@@ -28969,7 +28968,7 @@
   },
   "mission-14": {
     "id": "mission-14",
-    "title": "",
+    "title": "The Above Machines II",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -28990,9 +28989,9 @@
     "reward": [],
     "prereq": "mission-13",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "automata-battle",
+    "bookTheme": "automata-battle",
     "panels": {
       "panel-1": {
         "fen": "4r1kq/p2prp1p/6pP/2p5/7Q/1B3RP1/P4PK1/8 w - - 2 49",
@@ -29026,7 +29025,7 @@
   },
   "mission-15": {
     "id": "mission-15",
-    "title": "",
+    "title": "The Above Machines III",
     "storyTitle": "",
     "diagWinLose": {
       "win1": "",
@@ -29047,9 +29046,9 @@
     "reward": [],
     "prereq": "mission-14",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "automata-battle",
+    "bookTheme": "automata-battle",
     "panels": {
       "panel-1": {
         "fen": "8/3k4/3P1p2/p3pb1p/7P/B7/6P1/8 b - - 0 1",

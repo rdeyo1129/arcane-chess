@@ -226,6 +226,7 @@ interface State {
   hint: string;
   theme: string;
   hideCompletedPage: boolean;
+  hero: string;
   opponent: string;
   futureSightAvailable: boolean;
   victoryMessage: string;
@@ -406,6 +407,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       hideCompletedPage:
         _.includes(Object.keys(LS.nodeScores), LS.nodeId) ||
         LS.nodeId?.split('-')[0] !== 'mission',
+      hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
       opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
       futureSightAvailable: true,
       victoryMessage:
@@ -2036,6 +2038,22 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     backgroundColorOverride="#222222"
                   />
                 </div>
+                <div className="timer">
+                  <ChessClock
+                    ref={this.chessclockRef}
+                    type="inc"
+                    playerTurn={this.state.turn === this.state.playerColor}
+                    turn={gameBoardTurn}
+                    time={this.state.playerClock}
+                    timePrime={this.state.playerInc}
+                    playerTimeout={() => {
+                      this.setState({
+                        gameOver: true,
+                        gameOverType: 'player timed out.',
+                      });
+                    }}
+                  />
+                </div>
                 <div id="dialogue" className="dialogue">
                   {this.state.hoverArcane !== '' ? (
                     <div className="arcana-detail">
@@ -2054,37 +2072,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 <div className="info-avatar">
                   <div className="avatar">
                     <img
-                      src="/assets/avatars/hero.webp"
+                      src={`assets/avatars/${
+                        this.state.hero === '' ? 'hero' : this.state.hero
+                      }.webp`}
                       style={{
                         height: '60px',
                         width: '60px',
                         objectFit: 'contain',
                       }}
                     />
-                  </div>
-                  <div className="info">
-                    {/* or lesson hero name? though sometimes it says things like oldwoman */}
-                    <div className="name"></div>
-                    <div className="player-time">
-                      <h3>
-                        <ChessClock
-                          ref={this.chessclockRef}
-                          type="inc"
-                          playerTurn={
-                            this.state.turn === this.state.playerColor
-                          }
-                          turn={gameBoardTurn}
-                          time={this.state.playerClock}
-                          timePrime={this.state.playerInc}
-                          playerTimeout={() => {
-                            this.setState({
-                              gameOver: true,
-                              gameOverType: 'player timed out.',
-                            });
-                          }}
-                        />
-                      </h3>
-                    </div>
                   </div>
                   <div className="arcana-select">
                     {this.arcanaSelect(this.state.playerColor)}

@@ -173,6 +173,7 @@ interface State {
   hideCompletedPage: boolean;
   viewOnly: boolean;
   theme: string;
+  hero: string;
   opponent: string;
   victoryMessage: string;
   defeatMessage: string;
@@ -261,6 +262,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].panels[`panel-1`]
           .viewOnly,
       theme: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].theme,
+      hero: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].hero,
       opponent: booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].opponent,
       victoryMessage:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.victory,
@@ -754,7 +756,9 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                 <div className="info-avatar">
                   <div className="avatar">
                     <img
-                      src="/assets/avatars/hero.webp"
+                      src={`assets/avatars/${
+                        this.state.hero === '' ? 'hero' : this.state.hero
+                      }.webp`}
                       style={{
                         height: '60px',
                         width: '60px',

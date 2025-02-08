@@ -97,8 +97,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       config: {
         multiplier: LS.config.multiplier,
         color: LS.config.color,
-        thinkingTime: 4,
-        engineDepth: 3,
+        thinkingTime: 2,
+        engineDepth: 1,
         clock: LS.config.clock,
         blunderVision: false,
         threatVision: false,
@@ -903,7 +903,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   type="number"
                   width={260}
                   height={40}
-                  defaultOption={'Intermediate'}
+                  defaultOption={'Novice'}
                   options={['Novice', 'Intermediate', 'Advanced', 'Expert']}
                   onChange={(val) => {
                     if (!this.props.updateConfig) return;

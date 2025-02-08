@@ -612,6 +612,7 @@ class UnwrappedManifest extends React.Component<object, State> {
               <li>
                 Known bugs:
                 <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                  <li>Music may sometimes overlap and needs a page refresh.</li>
                   <li>Engine will ‘pass turn’ in certain scenarios.</li>
                   <li>
                     Engine will ‘pass turn’ in certain scenarios if both sides
@@ -624,6 +625,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                   <li>
                     Entangled square may be ending a count too early for engine.
                   </li>
+                  <li>Entangled may cause a stalemate</li>
                   <li>
                     Hexweaver arcana can stop the game if king and a checking
                     piece are both entangled once the timer ends.

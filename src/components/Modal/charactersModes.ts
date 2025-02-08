@@ -260,7 +260,7 @@ export const modes: Record<string, GameModeType> = padModes({
     },
   },
   evenMoreTheoretical: {
-    name: 'An Even More Theoretical Balance',
+    name: 'Theoretical Balance 2',
     white: {
       arcana: [arcana.modsFUG],
       setup: 'RNBQKBNR',

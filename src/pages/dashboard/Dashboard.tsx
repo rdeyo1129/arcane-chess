@@ -184,7 +184,7 @@ export class UnwrappedDashboard extends React.Component<
                 width={'100%'}
                 disabled={false}
                 onClick={() => {
-                  audioManager.playSound('impact');
+                  audioManager.playSFX('impact');
                   this.setState({ fadeOut: true });
                   setTimeout(() => {
                     this.props.logoutUser();

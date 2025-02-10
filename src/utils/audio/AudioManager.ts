@@ -1,87 +1,111 @@
 import { AudioPlayer } from './audioUtils';
 
 class AudioManager {
-  private sounds: { [key: string]: AudioPlayer } = {};
+  private sounds: { [key: string]: AudioPlayer } = {}; // SFX
+  private music: { [key: string]: AudioPlayer } = {}; // Background Music
   private playlist: string[] = [];
   private currentSongIndex: number = 0;
-  private globalVolume: number;
+  private globalSFXVolume: number;
+  private globalMusicVolume: number;
 
   constructor() {
-    this.globalVolume = 0.25;
+    this.globalSFXVolume = parseFloat(
+      localStorage.getItem('globalSFXVolume') ?? '0.5'
+    );
+    this.globalMusicVolume = parseFloat(
+      localStorage.getItem('globalMusicVolume') ?? '0.25'
+    );
   }
 
+  /** Register Sound Effects */
+  registerSFX(key: string, src: string): void {
+    const sound = new AudioPlayer(src, this.globalSFXVolume, false);
+    sound.load();
+    this.sounds[key] = sound;
+  }
+
+  /** Register Background Music */
+  registerMusic(key: string, src: string, loop: boolean = true): void {
+    const music = new AudioPlayer(src, this.globalMusicVolume, loop);
+    music.load();
+    this.music[key] = music;
+  }
+
+  /** Play SFX */
+  playSFX(key: string): void {
+    this.sounds[key]?.play();
+  }
+
+  /** Play Background Music */
+  playMusic(key: string): void {
+    const music = this.music[key];
+    if (music) {
+      music.play();
+    }
+  }
+
+  /** Stop a specific music track */
+  stopMusic(key: string): void {
+    this.music[key]?.stop();
+  }
+
+  /** Stop a specific SFX */
+  stopSFX(key: string): void {
+    this.sounds[key]?.stop();
+  }
+
+  /** Check if sound is registered */
+  isSoundRegistered(key: string): boolean {
+    return !!(this.sounds[key] || this.music[key]);
+  }
+
+  /** Set Music Playlist */
   setPlaylist(songs: string[]): void {
     this.playlist = songs;
     this.currentSongIndex = Math.floor(Math.random() * this.playlist.length);
     if (this.playlist.length > 0) this.playCurrentSong();
   }
 
+  /** Play the current song in the playlist */
   private playCurrentSong(): void {
     const currentSongKey = this.playlist[this.currentSongIndex];
-    const sound = this.sounds[currentSongKey];
-    if (sound) {
-      sound.play();
-      sound.on('ended', this.handleSongEnd);
+    const song = this.music[currentSongKey];
+    if (song) {
+      song.play();
+      song.on('ended', this.handleSongEnd);
     }
   }
 
+  /** Handle song end and play next */
   private handleSongEnd = (): void => {
     const currentSongKey = this.playlist[this.currentSongIndex];
-    const sound = this.sounds[currentSongKey];
-    if (sound) sound.off('ended', this.handleSongEnd);
+    const song = this.music[currentSongKey];
+    if (song) song.off('ended', this.handleSongEnd);
 
     this.currentSongIndex = (this.currentSongIndex + 1) % this.playlist.length;
     this.playCurrentSong();
   };
 
-  registerSound(key: string, src: string, loop: boolean = false): void {
-    const sound = new AudioPlayer(src, this.globalVolume, loop);
-    sound.load();
-    this.sounds[key] = sound;
+  /** Set Volume Separately for Music & SFX */
+  setSFXVolume(volume: number): void {
+    this.globalSFXVolume = volume;
+    localStorage.setItem('globalSFXVolume', volume.toString());
+    Object.values(this.sounds).forEach((s) => s.setVolume(volume));
   }
 
-  isSoundRegistered(key: string): boolean {
-    return !!this.sounds[key];
+  setMusicVolume(volume: number): void {
+    this.globalMusicVolume = volume;
+    localStorage.setItem('globalMusicVolume', volume.toString());
+    Object.values(this.music).forEach((m) => m.setVolume(volume));
   }
 
-  playSound(key: string): void {
-    const sound = this.sounds[key];
-    if (sound) sound.play();
+  /** Get Stored Volume */
+  getSFXVolume(): number {
+    return parseFloat(localStorage.getItem('globalSFXVolume') ?? '0.5');
   }
 
-  pauseSound(key: string): void {
-    const sound = this.sounds[key];
-    if (sound) sound.pause();
-  }
-
-  stopSound(key: string): void {
-    const sound = this.sounds[key];
-    if (sound) sound.stop();
-  }
-
-  setGlobalVolume(volume: number): void {
-    this.globalVolume = volume;
-    localStorage.setItem('globalVolume', volume.toString());
-    Object.values(this.sounds).forEach((sound) => sound.setVolume(volume));
-  }
-
-  getGlobalVolume() {
-    return localStorage.getItem('globalVolume') ?? (0 as number);
-  }
-
-  isSoundPlaying(key: string): boolean {
-    const sound = this.sounds[key];
-    return sound ? sound.isPlaying() : false;
-  }
-
-  on(key: string, event: string, callback: () => void): void {
-    const sound = this.sounds[key];
-    if (sound) sound.on(event, callback);
-  }
-
-  off(key: string, event: string, callback: () => void): void {
-    const sound = this.sounds[key];
-    if (sound) sound.off(event, callback);
+  getMusicVolume(): number {
+    return parseFloat(localStorage.getItem('globalMusicVolume') ?? '0.25');
   }
 }
 

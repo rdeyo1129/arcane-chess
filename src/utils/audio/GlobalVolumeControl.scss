@@ -6,54 +6,59 @@
   flex-direction: column;
   justify-self: flex-end;
   z-index: 5;
-  .volume-bar {
-    display: flex;
-    .volume-level {
+  .volume-group {
+    .volume-label {
+      font-size: 12px;
+    }
+    .volume-bar {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 30px;
-    }
-    .volume-slider {
-      width: 120px;
-      appearance: none;
-      background: #222222;
-      border: none;
-      height: 20px;
-      margin: 0;
-      outline: none;
-      &::-webkit-slider-thumb {
+      .volume-level {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+      }
+      .volume-slider {
+        width: 120px;
         appearance: none;
-        width: 30px;
+        background: #222222;
+        border: none;
         height: 20px;
-        background-color: $B_MENU;
-        cursor:
-          url('/assets/images/cursors/pointer.svg') 12 4,
-          pointer;
+        margin: 0;
+        outline: none;
+        &::-webkit-slider-thumb {
+          appearance: none;
+          width: 30px;
+          height: 20px;
+          background-color: $B_MENU;
+          cursor:
+            url('/assets/images/cursors/pointer.svg') 12 4,
+            pointer;
+        }
+        &::-moz-range-thumb {
+          width: 30px;
+          height: 20px;
+          background-color: $B_MENU;
+          cursor:
+            url('/assets/images/cursors/pointer.svg') 12 4,
+            pointer;
+        }
+        &::-ms-thumb {
+          width: 30px;
+          height: 20px;
+          background-color: $B_MENU;
+          cursor:
+            url('/assets/images/cursors/pointer.svg') 12 4,
+            pointer;
+        }
       }
-      &::-moz-range-thumb {
-        width: 30px;
+      .volume-level {
+        font-size: 14px;
         height: 20px;
-        background-color: $B_MENU;
-        cursor:
-          url('/assets/images/cursors/pointer.svg') 12 4,
-          pointer;
+        width: 40px;
+        background: #222222;
+        cursor: url('/assets/images/cursors/default.svg'), default;
       }
-      &::-ms-thumb {
-        width: 30px;
-        height: 20px;
-        background-color: $B_MENU;
-        cursor:
-          url('/assets/images/cursors/pointer.svg') 12 4,
-          pointer;
-      }
-    }
-    .volume-level {
-      font-size: 14px;
-      height: 20px;
-      width: 40px;
-      background: #222222;
-      cursor: url('/assets/images/cursors/default.svg'), default;
     }
   }
 }

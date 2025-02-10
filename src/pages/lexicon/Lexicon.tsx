@@ -330,7 +330,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
       const lastKey = keys[keys.length - 1];
       return property === lastKey;
     }
-    audioManager.playSound('move');
+    audioManager.playSFX('move');
     if (
       this.state.moveNumber === this.state.fenHistory.length - 1 &&
       isLastProperty(
@@ -347,7 +347,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
   };
 
   stepBackward = () => {
-    audioManager.playSound('move');
+    audioManager.playSFX('move');
     if (this.state.gameOver) {
       this.setState({ gameOver: false });
     } else if (this.state.moveNumber === 0) {
@@ -672,7 +672,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
                   events={{
                     move: (orig: string, dest: string) => {
                       editMovePiece(orig, dest);
-                      audioManager.playSound('move');
+                      audioManager.playSFX('move');
                       this.setState({
                         fen: outputFenOfCurrentPosition(),
                         fenHistory: [outputFenOfCurrentPosition()],

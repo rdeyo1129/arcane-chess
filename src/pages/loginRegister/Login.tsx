@@ -108,7 +108,7 @@ const UnwrappedLogin: React.FC = () => {
 
       if (result.success) {
         setFadeOut(true);
-        audioManager.playSound('impact');
+        audioManager.playSFX('impact');
         setTimeout(() => {
           navigate('/');
         }, 500);

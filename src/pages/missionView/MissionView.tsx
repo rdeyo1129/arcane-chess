@@ -450,9 +450,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       if (this.state.glitchActive) {
         const glitchMove = arcaneChess().engineGlitch();
         if (CAPTURED(glitchMove) > 0 && ARCANEFLAG(glitchMove) === 0) {
-          audioManager.playSound('capture');
+          audioManager.playSFX('capture');
         } else {
-          audioManager.playSound('move');
+          audioManager.playSFX('move');
         }
         resolve(glitchMove);
       } else {
@@ -464,9 +464,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           )
           .then(({ bestMove, text }) => {
             if (CAPTURED(bestMove) > 0 && ARCANEFLAG(bestMove) === 0) {
-              audioManager.playSound('capture');
+              audioManager.playSFX('capture');
             } else {
-              audioManager.playSound('move');
+              audioManager.playSFX('move');
             }
             resolve({ bestMove, text });
           });
@@ -518,7 +518,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 gameOver: true,
                 gameOverType: CheckResult().gameResult,
               });
-              audioManager.playSound('defeat');
+              audioManager.playSFX('defeat');
               return;
             }
           }
@@ -541,7 +541,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             .then(resolve);
         }).then((reply: any) => {
           const { bestMove, temporalPincer } = reply;
-          audioManager.playSound('evil');
+          audioManager.playSFX('spell');
           if (level === 1) {
             this.setState((prevState) => ({
               dialogue: [
@@ -638,7 +638,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
 
   handleVictory = (timeLeft: number | null) => {
     const LS = getLocalStorage(this.props.auth.user.username);
-    audioManager.playSound('victory');
+    audioManager.playSFX('victory');
     setLocalStorage({
       ...getLocalStorage(this.props.auth.user.username),
       nodeScores: {
@@ -862,7 +862,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   }
                   if (key.includes('modsSUS')) {
                     if (GameBoard.suspend > 0) return;
-                    audioManager.playSound('freeze');
+                    audioManager.playSFX('freeze');
                     GameBoard.suspend = 6;
                   }
                   if (key.includes('dyad')) {
@@ -945,7 +945,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   }
                   if (key === 'modsFUT') {
                     if (futureSightAvailable) {
-                      audioManager.playSound('evil');
+                      audioManager.playSFX('spell');
                       this.arcaneChess().takeBackMove(
                         4,
                         this.state.playerColor,
@@ -984,7 +984,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     }
                   }
                   if (key === 'modsSKI') {
-                    audioManager.playSound('evil');
+                    audioManager.playSFX('spell');
                     const { parsed } = this.arcaneChess().makeUserMove(
                       0,
                       0,
@@ -993,9 +993,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       0
                     );
                     if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
-                      audioManager.playSound('capture');
+                      audioManager.playSFX('capture');
                     } else {
-                      audioManager.playSound('move');
+                      audioManager.playSFX('move');
                     }
                     if (parsed === 0) {
                       console.log('parsed === 0');
@@ -1019,7 +1019,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     );
                   }
                   if (key === 'modsGLI') {
-                    audioManager.playSound('evil');
+                    audioManager.playSFX('spell');
                     arcaneChess().subtractArcanaUse(
                       'modsGLI',
                       this.state.playerColor
@@ -1129,25 +1129,25 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       switch (type) {
         case 'back':
           if (newFenIndex > 0) {
-            audioManager.playSound('move');
+            audioManager.playSFX('move');
             newFenIndex -= 1;
           }
           break;
         case 'forward':
           if (newFenIndex < prevState.fenHistory.length - 1) {
-            audioManager.playSound('move');
+            audioManager.playSFX('move');
             newFenIndex += 1;
           }
           break;
         case 'start':
           if (newFenIndex !== 0) {
-            audioManager.playSound('move');
+            audioManager.playSFX('move');
             newFenIndex = 0;
           }
           break;
         case 'end':
           if (newFenIndex !== prevState.fenHistory.length - 1) {
-            audioManager.playSound('move');
+            audioManager.playSFX('move');
             newFenIndex = prevState.fenHistory.length - 1;
           }
           break;
@@ -1157,7 +1157,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             targetIndex >= 0 &&
             targetIndex < prevState.fenHistory.length
           ) {
-            audioManager.playSound('move');
+            audioManager.playSFX('move');
             newFenIndex = targetIndex;
           }
           break;
@@ -1533,7 +1533,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             '',
                             this.state.placingRoyalty
                           );
-                          audioManager.playSound('fire');
+                          audioManager.playSFX('fire');
                           if (!PrMove(parsed)) {
                             console.log('invalid move', PrMove(parsed), piece);
                           }
@@ -1624,7 +1624,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             }));
                             return;
                           }
-                          audioManager.playSound('fire');
+                          audioManager.playSFX('fire');
                           this.setState((prevState) => ({
                             ...prevState,
                             history: [...prevState.history, [PrMove(parsed)]],
@@ -1643,14 +1643,14 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           // placeholder for sdfx
                           // to be swap, shft, offr
                           if (dyadClock === 1) {
-                            audioManager.playSound('fire');
+                            audioManager.playSFX('fire');
                           } else if (
                             CAPTURED(parsed) > 0 &&
                             ARCANEFLAG(parsed) === 0
                           ) {
-                            audioManager.playSound('capture');
+                            audioManager.playSFX('capture');
                           } else {
-                            audioManager.playSound('move');
+                            audioManager.playSFX('move');
                           }
                         }
                         if (isInitPromotion) {
@@ -1666,9 +1666,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               CAPTURED(parsed) > 0 &&
                               ARCANEFLAG(parsed) === 0
                             ) {
-                              audioManager.playSound('capture');
+                              audioManager.playSFX('capture');
                             } else {
-                              audioManager.playSound('move');
+                              audioManager.playSFX('move');
                             }
                             if (!PrMove(parsed)) {
                               console.log('invalid move');
@@ -1748,7 +1748,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                                   '',
                                   this.state.placingRoyalty
                                 );
-                              audioManager.playSound('freeze');
+                              audioManager.playSFX('freeze');
                               if (parsed === 0) {
                                 console.log('parsed === 0');
                                 // this.arcaneChess().takeUserMove();
@@ -1838,9 +1838,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               CAPTURED(parsed) > 0 &&
                               ARCANEFLAG(parsed) === 0
                             ) {
-                              audioManager.playSound('capture');
+                              audioManager.playSFX('capture');
                             } else {
-                              audioManager.playSound('move');
+                              audioManager.playSFX('move');
                             }
                             if (parsed === 0) {
                               console.log('parsed === 0');
@@ -1936,7 +1936,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   <Button
                     className="tertiary"
                     onClick={() => {
-                      audioManager.playSound('defeat');
+                      audioManager.playSFX('defeat');
                       this.setState({
                         gameOver: true,
                         gameOverType: `${this.state.playerColor} resigns.`,

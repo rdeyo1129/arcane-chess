@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { audioManager } from './AudioManager';
 
+// Sound Effects
 import explosion from '/assets/noise/sounds/explosion.wav';
 import click1 from '/assets/noise/sounds/click1.mp3';
 import click3 from '/assets/noise/sounds/click3.mp3';
@@ -10,10 +11,9 @@ import freeze from '/assets/noise/sounds/freeze.mp3';
 import levelup from '/assets/noise/sounds/levelup.wav';
 import ghost2 from '/assets/noise/sounds/ghost_2.mp3';
 
+// Music Tracks
 import tactoriusmenu from '/assets/noise/music/tactoriusmenu.wav';
-
 import caller from '/assets/noise/music/caller.mp3';
-
 import darkcity from '/assets/noise/music/darkcity.wav';
 import Dream2Ambience from '/assets/noise/music/Dream2Ambience.mp3';
 import monoliths from '/assets/noise/music/monoliths.mp3';
@@ -23,62 +23,45 @@ import darkamb from '/assets/noise/music/Dark-Amb.mp3';
 
 const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
   useEffect(() => {
-    // Register Sounds
-    if (!audioManager.isSoundRegistered('move')) {
-      audioManager.registerSound('move', click1);
-    }
-    if (!audioManager.isSoundRegistered('capture')) {
-      audioManager.registerSound('capture', click3);
-    }
-    if (!audioManager.isSoundRegistered('evil')) {
-      audioManager.registerSound('evil', spell);
-    }
-    if (!audioManager.isSoundRegistered('fire')) {
-      audioManager.registerSound('fire', fire);
-    }
-    if (!audioManager.isSoundRegistered('freeze')) {
-      audioManager.registerSound('freeze', freeze);
-    }
-    if (!audioManager.isSoundRegistered('victory')) {
-      audioManager.registerSound('victory', levelup);
-    }
-    if (!audioManager.isSoundRegistered('defeat')) {
-      audioManager.registerSound('defeat', ghost2);
-    }
-    if (!audioManager.isSoundRegistered('impact')) {
-      audioManager.registerSound('impact', explosion);
-    }
+    // Register Sound Effects
+    if (!audioManager.isSoundRegistered('move'))
+      audioManager.registerSFX('move', click1);
+    if (!audioManager.isSoundRegistered('capture'))
+      audioManager.registerSFX('capture', click3);
+    if (!audioManager.isSoundRegistered('spell'))
+      audioManager.registerSFX('spell', spell);
+    if (!audioManager.isSoundRegistered('fire'))
+      audioManager.registerSFX('fire', fire);
+    if (!audioManager.isSoundRegistered('freeze'))
+      audioManager.registerSFX('freeze', freeze);
+    if (!audioManager.isSoundRegistered('victory'))
+      audioManager.registerSFX('victory', levelup);
+    if (!audioManager.isSoundRegistered('defeat'))
+      audioManager.registerSFX('defeat', ghost2);
+    if (!audioManager.isSoundRegistered('impact'))
+      audioManager.registerSFX('impact', explosion);
 
-    // Register Songs
-    if (!audioManager.isSoundRegistered('lessons')) {
-      audioManager.registerSound('lesson1', caller, true);
-    }
+    // Register Background Music
+    if (!audioManager.isSoundRegistered('lesson1'))
+      audioManager.registerMusic('lesson1', caller);
+    if (!audioManager.isSoundRegistered('menu'))
+      audioManager.registerMusic('menu', tactoriusmenu);
 
-    if (!audioManager.isSoundRegistered('game1')) {
-      audioManager.registerSound('game1', darkcity);
-    }
-    if (!audioManager.isSoundRegistered('game2')) {
-      audioManager.registerSound('game2', Dream2Ambience);
-    }
-    if (!audioManager.isSoundRegistered('game3')) {
-      audioManager.registerSound('game3', monoliths);
-    }
-    if (!audioManager.isSoundRegistered('game4')) {
-      audioManager.registerSound('game4', booyab);
-    }
-    if (!audioManager.isSoundRegistered('game5')) {
-      audioManager.registerSound('game5', v312);
-    }
-    if (!audioManager.isSoundRegistered('game6')) {
-      audioManager.registerSound('game6', darkamb);
-    }
-
-    if (!audioManager.isSoundRegistered('menu')) {
-      audioManager.registerSound('menu', tactoriusmenu, true);
-    }
+    if (!audioManager.isSoundRegistered('game1'))
+      audioManager.registerMusic('game1', darkcity);
+    if (!audioManager.isSoundRegistered('game2'))
+      audioManager.registerMusic('game2', Dream2Ambience);
+    if (!audioManager.isSoundRegistered('game3'))
+      audioManager.registerMusic('game3', monoliths);
+    if (!audioManager.isSoundRegistered('game4'))
+      audioManager.registerMusic('game4', booyab);
+    if (!audioManager.isSoundRegistered('game5'))
+      audioManager.registerMusic('game5', v312);
+    if (!audioManager.isSoundRegistered('game6'))
+      audioManager.registerMusic('game6', darkamb);
   }, []);
 
-  // Trigger song play/stop based on the current route
+  // Trigger Music Play/Stop based on Route
   useEffect(() => {
     const lessonRoutes = ['/lexicon', '/lesson'];
     const gameRoutes = ['/temple', '/mission', '/quickplay'];
@@ -91,47 +74,34 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
       '/manifest',
     ];
 
-    const shouldPlayLesson = lessonRoutes.includes(location.pathname);
-    const shouldPlayGame = gameRoutes.includes(location.pathname);
-    const shouldPlayMenu = menuRoutes.includes(location.pathname);
-
-    if (shouldPlayLesson) {
-      audioManager.stopSound('menu');
-      audioManager.stopSound('game1');
-      audioManager.stopSound('game2');
-      audioManager.stopSound('game3');
-      audioManager.stopSound('game4');
-      audioManager.stopSound('game5');
-      audioManager.stopSound('game6');
-      audioManager.playSound('lesson1');
-    } else if (shouldPlayGame) {
-      audioManager.stopSound('menu');
-      audioManager.stopSound('lesson1');
-      audioManager.stopSound('game1');
-      audioManager.stopSound('game2');
-      audioManager.stopSound('game3');
-      audioManager.stopSound('game4');
-      audioManager.stopSound('game5');
-      audioManager.stopSound('game6');
+    if (lessonRoutes.includes(location.pathname)) {
+      audioManager.stopMusic('menu');
+      audioManager.stopMusic('game1');
+      audioManager.stopMusic('game2');
+      audioManager.stopMusic('game3');
+      audioManager.stopMusic('game4');
+      audioManager.stopMusic('game5');
+      audioManager.stopMusic('game6');
+      audioManager.playMusic('lesson1');
+    } else if (gameRoutes.includes(location.pathname)) {
+      audioManager.stopMusic('menu');
+      audioManager.stopMusic('lesson1');
+      audioManager.stopMusic('game1');
+      audioManager.stopMusic('game2');
+      audioManager.stopMusic('game3');
+      audioManager.stopMusic('game4');
+      audioManager.stopMusic('game5');
+      audioManager.stopMusic('game6');
       audioManager.setPlaylist(['game1', 'game2', 'game3', 'game4', 'game5']);
-    } else if (shouldPlayMenu) {
-      audioManager.stopSound('lesson1');
-      audioManager.stopSound('game1');
-      audioManager.stopSound('game2');
-      audioManager.stopSound('game3');
-      audioManager.stopSound('game4');
-      audioManager.stopSound('game5');
-      audioManager.stopSound('game6');
-      audioManager.playSound('menu');
-    } else {
-      audioManager.stopSound('menu');
-      audioManager.stopSound('lesson1');
-      audioManager.stopSound('game1');
-      audioManager.stopSound('game2');
-      audioManager.stopSound('game3');
-      audioManager.stopSound('game4');
-      audioManager.stopSound('game5');
-      audioManager.stopSound('game6');
+    } else if (menuRoutes.includes(location.pathname)) {
+      audioManager.stopMusic('lesson1');
+      audioManager.stopMusic('game1');
+      audioManager.stopMusic('game2');
+      audioManager.stopMusic('game3');
+      audioManager.stopMusic('game4');
+      audioManager.stopMusic('game5');
+      audioManager.stopMusic('game6');
+      audioManager.playMusic('menu');
     }
   }, [location.pathname]);
 

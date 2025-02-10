@@ -4,6 +4,9 @@ import { audioManager } from './AudioManager';
 import explosion from '/assets/noise/sounds/explosion.wav';
 import click1 from '/assets/noise/sounds/click1.mp3';
 import click3 from '/assets/noise/sounds/click3.mp3';
+import fire from '/assets/noise/sounds/Fire1.mp3';
+import spell from '/assets/noise/sounds/Spell1.mp3';
+import freeze from '/assets/noise/sounds/freeze.mp3';
 import levelup from '/assets/noise/sounds/levelup.wav';
 import ghost2 from '/assets/noise/sounds/ghost_2.mp3';
 
@@ -26,6 +29,15 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
     }
     if (!audioManager.isSoundRegistered('capture')) {
       audioManager.registerSound('capture', click3);
+    }
+    if (!audioManager.isSoundRegistered('evil')) {
+      audioManager.registerSound('evil', spell);
+    }
+    if (!audioManager.isSoundRegistered('fire')) {
+      audioManager.registerSound('fire', fire);
+    }
+    if (!audioManager.isSoundRegistered('freeze')) {
+      audioManager.registerSound('freeze', freeze);
     }
     if (!audioManager.isSoundRegistered('victory')) {
       audioManager.registerSound('victory', levelup);
@@ -95,6 +107,12 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
     } else if (shouldPlayGame) {
       audioManager.stopSound('menu');
       audioManager.stopSound('lesson1');
+      audioManager.stopSound('game1');
+      audioManager.stopSound('game2');
+      audioManager.stopSound('game3');
+      audioManager.stopSound('game4');
+      audioManager.stopSound('game5');
+      audioManager.stopSound('game6');
       audioManager.setPlaylist(['game1', 'game2', 'game3', 'game4', 'game5']);
     } else if (shouldPlayMenu) {
       audioManager.stopSound('lesson1');

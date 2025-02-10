@@ -270,6 +270,28 @@ export const modes: Record<string, GameModeType> = padModes({
       setup: 'rnbqkbnr',
     },
   },
+  somewhatMoreTheoretical: {
+    name: 'Theoretical Balance 3',
+    white: {
+      arcana: [arcana.modsAET],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.modsFUG],
+      setup: 'rnbqkbnr',
+    },
+  },
+  minorInconvenience: {
+    name: 'A Minor Inconvenience',
+    white: {
+      arcana: [arcana.dyadB, arcana.modsGLU],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.dyadN, arcana.modsGLU],
+      setup: 'rnbqkbnr',
+    },
+  },
   rockAndHardPlace: {
     name: 'A Rock and a Hard Place',
     white: {

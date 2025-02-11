@@ -18,7 +18,7 @@ class UnwrappedManifest extends React.Component<object, State> {
   }
 
   componentDidMount(): void {
-    audioManager.stopSound('menu');
+    audioManager.stopMusic('menu');
   }
 
   render() {

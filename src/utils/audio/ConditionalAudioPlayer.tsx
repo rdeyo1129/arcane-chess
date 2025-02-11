@@ -102,6 +102,15 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
       audioManager.stopMusic('game5');
       audioManager.stopMusic('game6');
       audioManager.playMusic('menu');
+    } else {
+      audioManager.stopMusic('menu');
+      audioManager.stopMusic('game1');
+      audioManager.stopMusic('game2');
+      audioManager.stopMusic('game3');
+      audioManager.stopMusic('game4');
+      audioManager.stopMusic('game5');
+      audioManager.stopMusic('game6');
+      audioManager.stopMusic('lesson1');
     }
   }, [location.pathname]);
 

@@ -14,11 +14,11 @@ import ghost2 from '/assets/noise/sounds/ghost_2.mp3';
 // Music Tracks
 import tactoriusmenu from '/assets/noise/music/tactoriusmenu.wav';
 import caller from '/assets/noise/music/caller.mp3';
-import darkcity from '/assets/noise/music/darkcity.wav';
+import darkcity from '/assets/noise/music/darkcity.mp3';
 import Dream2Ambience from '/assets/noise/music/Dream2Ambience.mp3';
 import monoliths from '/assets/noise/music/monoliths.mp3';
 import booyab from '/assets/noise/music/booyab.mp3';
-import v312 from '/assets/noise/music/v312.wav';
+import v312 from '/assets/noise/music/v312.mp3';
 import darkamb from '/assets/noise/music/Dark-Amb.mp3';
 
 const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {

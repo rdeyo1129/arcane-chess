@@ -207,16 +207,15 @@ document.addEventListener('DOMContentLoaded', () => {
       </Provider>
     </React.StrictMode>
   );
-  // Register Service Worker for caching images
   if ('serviceWorker' in navigator) {
     if (process.env.NODE_ENV === 'production') {
       navigator.serviceWorker
         .register('/service-worker.js')
         .then((registration) => {
-          console.log('Service Worker registered:', registration);
+          console.log('✅ Service Worker registered:', registration);
         })
         .catch((error) => {
-          console.error('Service Worker registration failed:', error);
+          console.error('❌ Service Worker registration failed:', error);
         });
     }
   }

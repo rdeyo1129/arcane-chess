@@ -29,6 +29,6 @@
       "src/arcaneChess/*": ["src/arcaneChess/*"]
     }
   },
-  "include": ["src/**/*", "shared/*"],
+  "include": ["src/**/*", "shared/*", "public/service-worker.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

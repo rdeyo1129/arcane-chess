@@ -1,42 +1,56 @@
-const CACHE_NAME = 'image-cache-v1';
-const IMAGE_URLS = [
-  '/assets/dashboard/campaign.webp',
-  '/assets/dashboard/stacktadium.webp',
-  '/assets/dashboard/leaderboard.webp',
-  '/assets/dashboard/quickplay.webp',
-  '/assets/dashboard/lexicon.webp',
-  '/assets/dashboard/manifest.webp',
-  '/assets/dashboard/logout.webp',
-];
+const CACHE_NAME = 'static-assets-v1';
+const MAX_CACHE_SIZE = 200 * 1024 * 1024; // 200MB
 
-// ✅ Install event: Pre-cache images
+// ✅ Install event: Pre-cache critical assets only
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[Service Worker] Pre-caching images...');
-      return cache.addAll(IMAGE_URLS);
+      return cache.addAll([
+        '/',
+        '/index.html',
+        '/src/main.js',
+        '/src/styles.css',
+      ]);
     })
   );
+  self.skipWaiting(); // Activate immediately
 });
 
-// ✅ Fetch event: Serve images from cache first
+// ✅ Fetch event: Cache assets dynamically from /assets/
 self.addEventListener('fetch', (event) => {
-  if (event.request.destination === 'image') {
-    event.respondWith(
-      caches.match(event.request).then((cachedResponse) => {
-        if (cachedResponse) {
-          console.log(
-            '[Service Worker] Serving from cache:',
-            event.request.url
-          );
-          return cachedResponse;
-        }
+  const url = new URL(event.request.url);
 
-        console.log('[Service Worker] Fetching new image:', event.request.url);
-        return fetch(event.request).then((response) => {
-          return caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, response.clone());
-            return response;
+  if (url.pathname.startsWith('/assets/')) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then((cache) => {
+        return cache.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+
+          return fetch(event.request).then((networkResponse) => {
+            cache.put(event.request, networkResponse.clone());
+
+            // ✅ Check cache size and remove old items if too big
+            cache.keys().then((keys) => {
+              let totalSize = 0;
+              Promise.all(
+                keys.map((request) =>
+                  cache.match(request).then((response) => {
+                    if (response) {
+                      return response.blob().then((blob) => {
+                        totalSize += blob.size;
+                        if (totalSize > MAX_CACHE_SIZE) {
+                          cache.delete(request);
+                        }
+                      });
+                    }
+                  })
+                )
+              );
+            });
+
+            return networkResponse;
           });
         });
       })
@@ -44,7 +58,7 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
-// ✅ Activate event: Clear old cache versions
+// ✅ Activate event: Delete old caches when a new SW version is installed
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -55,4 +69,5 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
+  self.clients.claim(); // Take control of open pages immediately
 });

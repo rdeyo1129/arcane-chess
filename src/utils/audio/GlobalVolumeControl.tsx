@@ -33,13 +33,9 @@ const GlobalVolumeControl: React.FC = () => {
 
   return (
     <div className="global-volume-control">
-      {/* Music Volume */}
       <div className="volume-group">
-        <label className="volume-label">Music Volume</label>
         <div className="volume-bar">
-          <label className="volume-level" htmlFor="music-volume">
-            {Math.round(musicVolume * 100)}%
-          </label>
+          <div className="volume-level">MUSIC</div>
           <input
             id="music-volume"
             type="range"
@@ -55,14 +51,9 @@ const GlobalVolumeControl: React.FC = () => {
           />
         </div>
       </div>
-
-      {/* SFX Volume */}
       <div className="volume-group">
-        <label className="volume-label">SFX Volume</label>
         <div className="volume-bar">
-          <label className="volume-level" htmlFor="sfx-volume">
-            {Math.round(sfxVolume * 100)}%
-          </label>
+          <div className="volume-level">SDFX</div>
           <input
             id="sfx-volume"
             type="range"

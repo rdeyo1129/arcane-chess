@@ -7,17 +7,8 @@
   justify-self: flex-end;
   z-index: 5;
   .volume-group {
-    .volume-label {
-      font-size: 12px;
-    }
     .volume-bar {
       display: flex;
-      .volume-level {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 30px;
-      }
       .volume-slider {
         width: 120px;
         appearance: none;
@@ -25,6 +16,7 @@
         border: none;
         height: 20px;
         margin: 0;
+        padding-left: 5px;
         outline: none;
         &::-webkit-slider-thumb {
           appearance: none;
@@ -35,6 +27,9 @@
             url('/assets/images/cursors/pointer.svg') 12 4,
             pointer;
         }
+        &::-webkit-slider-thumb:hover {
+          filter: brightness(1.5);
+        }
         &::-moz-range-thumb {
           width: 30px;
           height: 20px;
@@ -42,6 +37,9 @@
           cursor:
             url('/assets/images/cursors/pointer.svg') 12 4,
             pointer;
+        }
+        &::-moz-range-thumb:hover {
+          filter: brightness(1.5);
         }
         &::-ms-thumb {
           width: 30px;
@@ -51,11 +49,18 @@
             url('/assets/images/cursors/pointer.svg') 12 4,
             pointer;
         }
+        &::-ms-thumb:hover {
+          filter: brightness(1.5);
+        }
       }
       .volume-level {
-        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
         height: 20px;
         width: 40px;
+        padding: 5px;
         background: #222222;
         cursor: url('/assets/images/cursors/default.svg'), default;
       }

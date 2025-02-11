@@ -441,7 +441,6 @@ export function startSearch(thinkingTime, depth, engineColor) {
   ) {
     if (bestScore < -900) {
       if (Math.random() > 0.5) {
-        console.log('oaiwesgsrafogkn');
         GameBoard.suspend = 6;
         if (colorInt === COLOURS.WHITE) {
           whiteArcaneConfig.modsSUS -= 1;

@@ -29,7 +29,18 @@ import arcaneChess from '../../arcaneChess/arcaneChess.mjs';
 //   arcaneChessWorker,
 // } from '../../arcaneChess/arcaneChessInstance.js';
 
-import { GameBoard, InCheck, TOSQ, FROMSQ } from '../../arcaneChess/board.mjs';
+import {
+  GameBoard,
+  InCheck,
+  TOSQ,
+  FROMSQ,
+  PROMOTED,
+  ARCANEFLAG,
+  CAPTURED,
+  MFLAGSUMN,
+  MFLAGCNSM,
+  MFLAGSHFT,
+} from '../../arcaneChess/board.mjs';
 import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
 import {
   prettyToSquare,
@@ -39,11 +50,7 @@ import {
   RtyChar,
   PceChar,
 } from '../../arcaneChess/defs.mjs';
-import {
-  outputFenOfCurrentPosition,
-  CAPTURED,
-  ARCANEFLAG,
-} from '../../arcaneChess/board.mjs';
+import { outputFenOfCurrentPosition } from '../../arcaneChess/board.mjs';
 import { SearchController } from '../../arcaneChess/search.mjs';
 import { CheckAndSet, CheckResult } from '../../arcaneChess/gui.mjs';
 
@@ -463,7 +470,23 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             this.state.engineColor
           )
           .then(({ bestMove, text }) => {
-            if (CAPTURED(bestMove) > 0 && ARCANEFLAG(bestMove) === 0) {
+            if (
+              (CAPTURED(bestMove) !== 0 && bestMove & MFLAGSUMN) ||
+              text.some((t: string) => t.includes('phantom mist')) ||
+              text.some((t: string) => t.includes('bulletproof'))
+            ) {
+              audioManager.playSFX('freeze');
+            } else if (
+              PROMOTED(bestMove) ||
+              bestMove & MFLAGSUMN ||
+              bestMove & MFLAGCNSM ||
+              bestMove & MFLAGSHFT ||
+              (PROMOTED(bestMove) && bestMove & MFLAGSUMN)
+            ) {
+              audioManager.playSFX('fire');
+            } else if (ARCANEFLAG(bestMove) > 0) {
+              audioManager.playSFX('spell');
+            } else if (CAPTURED(bestMove) > 0) {
               audioManager.playSFX('capture');
             } else {
               audioManager.playSFX('move');
@@ -530,59 +553,56 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   };
 
   getHintAndScore = (level: number) => {
+    audioManager.playSFX('spell');
     this.setState(
-      {
+      (prevState) => ({
         thinking: true,
-      },
+        dialogue: [...prevState.dialogue, 'thinking'],
+        hoverArcane: '',
+      }),
       () => {
-        new Promise((resolve) => {
+        setTimeout(() => {
           arcaneChess()
             .engineSuggestion(this.state.playerColor, level)
-            .then(resolve);
-        }).then((reply: any) => {
-          const { bestMove, temporalPincer } = reply;
-          audioManager.playSFX('spell');
-          if (level === 1) {
-            this.setState((prevState) => ({
-              dialogue: [
-                ...prevState.dialogue,
-                PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
-              ],
-              thinking: false,
-              hoverArcane: '',
-            }));
-            this.chessgroundRef.current?.setAutoShapes([
-              {
-                orig: PrSq(FROMSQ(bestMove)) || 'a0',
-                brush: 'yellow',
-              },
-            ]);
-          }
-          if (level === 2) {
-            this.setState((prevState) => ({
-              dialogue: [...prevState.dialogue, PrMove(bestMove)],
-              thinking: false,
-              hoverArcane: '',
-            }));
-            this.chessgroundRef.current?.setAutoShapes([
-              {
-                orig: PrSq(FROMSQ(bestMove)) || PrSq(TOSQ(bestMove)),
-                dest: !FROMSQ(bestMove) ? null : PrSq(TOSQ(bestMove)),
-                brush: 'yellow',
-              },
-            ]);
-          }
-          if (level === 3) {
-            this.setState((prevState) => ({
-              dialogue: [...prevState.dialogue, temporalPincer],
-              thinking: false,
-              hoverArcane: '',
-            }));
-          }
-          this.setState({
-            thinking: false,
-          });
-        });
+            .then((reply: any) => {
+              const { bestMove, temporalPincer } = reply;
+              let newDialogue: string[] = [];
+
+              if (level === 1) {
+                newDialogue = [
+                  ...this.state.dialogue,
+                  PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
+                ];
+                this.chessgroundRef.current?.setAutoShapes([
+                  {
+                    orig: PrSq(FROMSQ(bestMove)) || 'a0',
+                    brush: 'yellow',
+                  },
+                ]);
+              } else if (level === 2) {
+                newDialogue = [...this.state.dialogue, PrMove(bestMove)];
+                this.chessgroundRef.current?.setAutoShapes([
+                  {
+                    orig: PrSq(FROMSQ(bestMove)) || PrSq(TOSQ(bestMove)),
+                    dest: !FROMSQ(bestMove) ? null : PrSq(TOSQ(bestMove)),
+                    brush: 'yellow',
+                  },
+                ]);
+              } else if (level === 3) {
+                newDialogue = [...this.state.dialogue, temporalPincer];
+              }
+              this.setState(
+                {
+                  dialogue: newDialogue,
+                  thinking: false,
+                  hoverArcane: '',
+                },
+                () => {
+                  audioManager.playSFX('spell');
+                }
+              );
+            });
+        }, 0);
       }
     );
   };
@@ -772,11 +792,13 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               style={{
                 opacity:
                   this.state.playerColor !== color ||
+                  this.state.thinking ||
                   (!futureSightAvailable && key === 'modsFUT')
                     ? 0.5
                     : 1,
                 cursor:
                   this.state.playerColor !== color ||
+                  this.state.thinking ||
                   (!futureSightAvailable && key === 'modsFUT')
                     ? 'not-allowed'
                     : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
@@ -784,7 +806,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               onClick={() => {
                 if (
                   this.state.playerColor !== color ||
-                  (!futureSightAvailable && key === 'modsFUT')
+                  (!futureSightAvailable && key === 'modsFUT') ||
+                  this.state.thinking
                 )
                   return;
                 if (
@@ -984,7 +1007,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     }
                   }
                   if (key === 'modsSKI') {
-                    audioManager.playSFX('spell');
                     const { parsed } = this.arcaneChess().makeUserMove(
                       0,
                       0,
@@ -992,14 +1014,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       '',
                       0
                     );
-                    if (CAPTURED(parsed) > 0 && ARCANEFLAG(parsed) === 0) {
-                      audioManager.playSFX('capture');
-                    } else {
-                      audioManager.playSFX('move');
-                    }
+                    audioManager.playSFX('spell');
                     if (parsed === 0) {
                       console.log('parsed === 0');
-                      // return;
                     }
                     this.setState(
                       (prevState) => ({
@@ -1457,6 +1474,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       rookCastle: false,
                       color: this.state.playerColor,
                       dests: (() => {
+                        if (this.state.thinking) return;
                         let dests;
                         if (this.state.placingPiece === 0) {
                           if (this.state.placingRoyalty === 0) {
@@ -1533,7 +1551,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             '',
                             this.state.placingRoyalty
                           );
-                          audioManager.playSFX('fire');
+                          if (this.state.placingPiece > 0) {
+                            audioManager.playSFX('fire');
+                          }
+                          if (this.state.placingRoyalty > 0) {
+                            audioManager.playSFX('freeze');
+                          }
                           if (!PrMove(parsed)) {
                             console.log('invalid move', PrMove(parsed), piece);
                           }
@@ -1639,15 +1662,15 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                             ],
                           }));
                         } else {
-                          const dyadClock = this.arcaneChess().getDyadClock();
-                          // placeholder for sdfx
-                          // to be swap, shft, offr
-                          if (dyadClock === 1) {
-                            audioManager.playSFX('fire');
-                          } else if (
-                            CAPTURED(parsed) > 0 &&
-                            ARCANEFLAG(parsed) === 0
+                          if (
+                            PROMOTED(parsed) > 0 ||
+                            parsed & MFLAGCNSM ||
+                            parsed & MFLAGSHFT
                           ) {
+                            audioManager.playSFX('fire');
+                          } else if (ARCANEFLAG(parsed) > 0) {
+                            audioManager.playSFX('spell');
+                          } else if (CAPTURED(parsed) > 0) {
                             audioManager.playSFX('capture');
                           } else {
                             audioManager.playSFX('move');
@@ -1663,8 +1686,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               this.state.placingRoyalty
                             );
                             if (
-                              CAPTURED(parsed) > 0 &&
-                              ARCANEFLAG(parsed) === 0
+                              (CAPTURED(parsed) > 0 &&
+                                ARCANEFLAG(parsed) === 0) ||
+                              InCheck()
                             ) {
                               audioManager.playSFX('capture');
                             } else {
@@ -1751,8 +1775,6 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               audioManager.playSFX('freeze');
                               if (parsed === 0) {
                                 console.log('parsed === 0');
-                                // this.arcaneChess().takeUserMove();
-                                // return;
                               }
                               this.setState(
                                 (prevState) => ({
@@ -1834,17 +1856,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                               '',
                               this.state.offeringType
                             );
-                            if (
-                              CAPTURED(parsed) > 0 &&
-                              ARCANEFLAG(parsed) === 0
-                            ) {
-                              audioManager.playSFX('capture');
-                            } else {
-                              audioManager.playSFX('move');
-                            }
+                            audioManager.playSFX('spell');
                             if (parsed === 0) {
                               console.log('parsed === 0');
-                              // return;
                             }
                             this.setState(
                               (prevState) => ({

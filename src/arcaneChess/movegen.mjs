@@ -105,6 +105,11 @@ export function MOVE(from, to, captured, promoted, flag) {
 }
 
 export function AddCaptureMove(move, consume = false, capturesOnly = false) {
+  const targetSquare = TOSQ(move);
+  const capturedPiece = GameBoard.pieces[targetSquare];
+  if (capturedPiece === PIECES.wK || capturedPiece === PIECES.bK) {
+    return;
+  }
   if (
     GameBoard.dyad > 0 &&
     ((GameBoard.side === COLOURS.WHITE && !(GameBoard.whiteArcane[4] & 64)) ||
@@ -1210,72 +1215,73 @@ export function GenerateMoves(
       }
 
       // note WHITE PAWN CAPTURES AND CONSUME
-      if (GameBoard.dyad === 0) {
-        if (
-          !activeWhiteForcedEpCapture &&
-          ((SQOFFBOARD(sq + 9) === BOOL.FALSE && !herrings.length) ||
-            (SQOFFBOARD(sq + 9) === BOOL.FALSE &&
-              herrings.length &&
-              _.includes(herrings, sq + 9)))
-        ) {
-          if (PieceCol[GameBoard.pieces[sq + 9]] === COLOURS.BLACK) {
-            AddWhitePawnCaptureMove(
-              sq,
-              sq + 9,
-              GameBoard.pieces[sq + 9],
-              false,
-              capturesOnly
-            );
-          }
-          // note white pawn consume
-          if (
-            PieceCol[GameBoard.pieces[sq + 9]] === COLOURS.WHITE &&
-            GameBoard.whiteArcane[4] & 1 &&
-            !PieceKing[GameBoard.pieces[sq + 9]]
-          ) {
-            AddWhitePawnCaptureMove(
-              sq,
-              sq + 9,
-              GameBoard.pieces[sq + 9],
-              true,
-              capturesOnly
-            );
-          }
-        }
 
-        if (
-          (SQOFFBOARD(sq + 11) === BOOL.FALSE &&
-            !herrings.length &&
-            !activeWhiteForcedEpCapture) ||
-          (SQOFFBOARD(sq + 11) === BOOL.FALSE &&
+      if (
+        !activeWhiteForcedEpCapture &&
+        ((SQOFFBOARD(sq + 9) === BOOL.FALSE && !herrings.length) ||
+          (SQOFFBOARD(sq + 9) === BOOL.FALSE &&
             herrings.length &&
-            _.includes(herrings, sq + 11))
-        ) {
-          if (PieceCol[GameBoard.pieces[sq + 11]] === COLOURS.BLACK) {
-            AddWhitePawnCaptureMove(
-              sq,
-              sq + 11,
-              GameBoard.pieces[sq + 11],
-              false,
-              capturesOnly
-            );
-          }
-          // note white pawn consume
-          if (
-            PieceCol[GameBoard.pieces[sq + 11]] === COLOURS.WHITE &&
-            GameBoard.whiteArcane[4] & 1 &&
-            !PieceKing[GameBoard.pieces[sq + 11]]
-          ) {
-            AddWhitePawnCaptureMove(
-              sq,
-              sq + 11,
-              GameBoard.pieces[sq + 11],
-              true,
-              capturesOnly
-            );
-          }
+            _.includes(herrings, sq + 9)))
+      ) {
+        if (PieceCol[GameBoard.pieces[sq + 9]] === COLOURS.BLACK) {
+          AddWhitePawnCaptureMove(
+            sq,
+            sq + 9,
+            GameBoard.pieces[sq + 9],
+            false,
+            capturesOnly
+          );
         }
+        // note white pawn consume
+        if (
+          PieceCol[GameBoard.pieces[sq + 9]] === COLOURS.WHITE &&
+          GameBoard.whiteArcane[4] & 1 &&
+          !PieceKing[GameBoard.pieces[sq + 9]]
+        ) {
+          AddWhitePawnCaptureMove(
+            sq,
+            sq + 9,
+            GameBoard.pieces[sq + 9],
+            true,
+            capturesOnly
+          );
+        }
+      }
 
+      if (
+        (SQOFFBOARD(sq + 11) === BOOL.FALSE &&
+          !herrings.length &&
+          !activeWhiteForcedEpCapture) ||
+        (SQOFFBOARD(sq + 11) === BOOL.FALSE &&
+          herrings.length &&
+          _.includes(herrings, sq + 11))
+      ) {
+        if (PieceCol[GameBoard.pieces[sq + 11]] === COLOURS.BLACK) {
+          AddWhitePawnCaptureMove(
+            sq,
+            sq + 11,
+            GameBoard.pieces[sq + 11],
+            false,
+            capturesOnly
+          );
+        }
+        // note white pawn consume
+        if (
+          PieceCol[GameBoard.pieces[sq + 11]] === COLOURS.WHITE &&
+          GameBoard.whiteArcane[4] & 1 &&
+          !PieceKing[GameBoard.pieces[sq + 11]]
+        ) {
+          AddWhitePawnCaptureMove(
+            sq,
+            sq + 11,
+            GameBoard.pieces[sq + 11],
+            true,
+            capturesOnly
+          );
+        }
+      }
+
+      if (GameBoard.dyad === 0) {
         // NOTE WHITE EP
         if (
           (GameBoard.enPas !== SQUARES.NO_SQ && !herrings.length) ||
@@ -1497,73 +1503,73 @@ export function GenerateMoves(
       }
 
       // note BLACK PAWN CAPTURES AND CONSUME
-      if (GameBoard.dyad === 0) {
+      if (
+        (SQOFFBOARD(sq - 9) === BOOL.FALSE &&
+          !herrings.length &&
+          !activeBlackForcedEpCapture) ||
+        (SQOFFBOARD(sq - 9) === BOOL.FALSE &&
+          herrings.length &&
+          _.includes(herrings, sq - 9))
+      ) {
+        if (PieceCol[GameBoard.pieces[sq - 9]] === COLOURS.WHITE) {
+          AddBlackPawnCaptureMove(
+            sq,
+            sq - 9,
+            GameBoard.pieces[sq - 9],
+            false,
+            capturesOnly
+          );
+        }
+        // note black pawn consume
         if (
-          (SQOFFBOARD(sq - 9) === BOOL.FALSE &&
-            !herrings.length &&
-            !activeBlackForcedEpCapture) ||
-          (SQOFFBOARD(sq - 9) === BOOL.FALSE &&
+          PieceCol[GameBoard.pieces[sq - 9]] === COLOURS.BLACK &&
+          GameBoard.blackArcane[4] & 1 &&
+          !PieceKing[GameBoard.pieces[sq - 9]]
+        ) {
+          AddBlackPawnCaptureMove(
+            sq,
+            sq - 9,
+            GameBoard.pieces[sq - 9],
+            true,
+            capturesOnly
+          );
+        }
+      }
+
+      if (
+        !activeBlackForcedEpCapture &&
+        ((SQOFFBOARD(sq - 11) === BOOL.FALSE && !herrings.length) ||
+          (SQOFFBOARD(sq - 11) === BOOL.FALSE &&
             herrings.length &&
-            _.includes(herrings, sq - 9))
-        ) {
-          if (PieceCol[GameBoard.pieces[sq - 9]] === COLOURS.WHITE) {
-            AddBlackPawnCaptureMove(
-              sq,
-              sq - 9,
-              GameBoard.pieces[sq - 9],
-              false,
-              capturesOnly
-            );
-          }
-          // note black pawn consume
-          if (
-            PieceCol[GameBoard.pieces[sq - 9]] === COLOURS.BLACK &&
-            GameBoard.blackArcane[4] & 1 &&
-            !PieceKing[GameBoard.pieces[sq - 9]]
-          ) {
-            AddBlackPawnCaptureMove(
-              sq,
-              sq - 9,
-              GameBoard.pieces[sq - 9],
-              true,
-              capturesOnly
-            );
-          }
+            _.includes(herrings, sq - 11)))
+      ) {
+        if (PieceCol[GameBoard.pieces[sq - 11]] === COLOURS.WHITE) {
+          AddBlackPawnCaptureMove(
+            sq,
+            sq - 11,
+            GameBoard.pieces[sq - 11],
+            false,
+            capturesOnly
+          );
         }
-
+        // note black pawn consume
         if (
-          !activeBlackForcedEpCapture &&
-          ((SQOFFBOARD(sq - 11) === BOOL.FALSE && !herrings.length) ||
-            (SQOFFBOARD(sq - 11) === BOOL.FALSE &&
-              herrings.length &&
-              _.includes(herrings, sq - 11)))
+          PieceCol[GameBoard.pieces[sq - 11]] === COLOURS.BLACK &&
+          GameBoard.blackArcane[4] & 1 &&
+          !PieceKing[GameBoard.pieces[sq - 11]]
         ) {
-          if (PieceCol[GameBoard.pieces[sq - 11]] === COLOURS.WHITE) {
-            AddBlackPawnCaptureMove(
-              sq,
-              sq - 11,
-              GameBoard.pieces[sq - 11],
-              false,
-              capturesOnly
-            );
-          }
-          // note black pawn consume
-          if (
-            PieceCol[GameBoard.pieces[sq - 11]] === COLOURS.BLACK &&
-            GameBoard.blackArcane[4] & 1 &&
-            !PieceKing[GameBoard.pieces[sq - 11]]
-          ) {
-            AddBlackPawnCaptureMove(
-              sq,
-              sq - 11,
-              GameBoard.pieces[sq - 11],
-              true,
-              capturesOnly
-            );
-          }
+          AddBlackPawnCaptureMove(
+            sq,
+            sq - 11,
+            GameBoard.pieces[sq - 11],
+            true,
+            capturesOnly
+          );
         }
+      }
 
-        // note BLACK EP
+      // note BLACK EP
+      if (GameBoard.dyad === 0) {
         if (
           (GameBoard.enPas !== SQUARES.NO_SQ && !herrings.length) ||
           activeBlackForcedEpCapture

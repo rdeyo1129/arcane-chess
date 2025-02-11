@@ -208,18 +208,18 @@ document.addEventListener('DOMContentLoaded', () => {
     </React.StrictMode>
   );
   // Register Service Worker for caching images
-  if ('serviceWorker' in navigator) {
-    if (process.env.NODE_ENV === 'production') {
-      navigator.serviceWorker
-        .register('/service-worker.js')
-        .then((registration) => {
-          console.log('Service Worker registered:', registration);
-        })
-        .catch((error) => {
-          console.error('Service Worker registration failed:', error);
-        });
-    }
-  }
+  // if ('serviceWorker' in navigator) {
+  //   if (process.env.NODE_ENV === 'production') {
+  //     navigator.serviceWorker
+  //       .register('/service-worker.js')
+  //       .then((registration) => {
+  //         console.log('Service Worker registered:', registration);
+  //       })
+  //       .catch((error) => {
+  //         console.error('Service Worker registration failed:', error);
+  //       });
+  //   }
+  // }
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

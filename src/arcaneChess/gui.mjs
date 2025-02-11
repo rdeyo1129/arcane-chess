@@ -388,7 +388,7 @@ const returnDialogueTypes = (score) => {
   if (score >= 1500) {
     dialogue.push('lose2');
   }
-  if (score >= 90000) {
+  if (score >= 3000) {
     dialogue.push('lose3');
   }
 
@@ -398,7 +398,7 @@ const returnDialogueTypes = (score) => {
   if (score <= -1500) {
     dialogue.push('win2');
   }
-  if (score <= -90000) {
+  if (score <= -3000) {
     dialogue.push('win3');
   }
 

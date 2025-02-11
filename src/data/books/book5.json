@@ -15468,12 +15468,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The chess pieces shift—was it the desert heat, or was the game real?",
+      "win2": "Cassandra steadies her mind, recognizing the patterns among the mirages.",
+      "win3": "The board bends to her will. Her hallucinations become her strategy.",
+      "lose1": "The pieces close in. Her body grows heavy with exhaustion.",
+      "lose2": "The desert consumes her, warping reality into a cruel game.",
+      "lose3": "She collapses, the pieces looming over her, sealing her fate.",
       "victory": "",
       "defeat": ""
     }
@@ -15524,12 +15524,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Everwanderers watch her carefully, testing her resolve.",
+      "win2": "Cassandra regains her strength, but their trust is not yet won.",
+      "win3": "She proves her resilience. The whispers around her shift in tone.",
+      "lose1": "Their eyes are wary—she is an outsider, a mystery.",
+      "lose2": "The desert has taken its toll. Her body is slow to recover.",
+      "lose3": "She fights against exhaustion, but her mind drifts into uneasy sleep.",
       "victory": "",
       "defeat": ""
     }
@@ -15580,12 +15580,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The glyphs shimmer. A path reveals itself through the obelisks.",
+      "win2": "The chess hallucinations return, but this time, they guide her steps.",
+      "win3": "She deciphers the symbols, moving with certainty through the maze.",
+      "lose1": "The air distorts—she struggles to tell illusion from reality.",
+      "lose2": "Her vision blurs. The heat is overwhelming.",
+      "lose3": "She missteps. The energy within the obelisks pulses dangerously.",
       "victory": "",
       "defeat": ""
     }
@@ -15636,12 +15636,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "She clings to the monolith, finding a foothold in the chaos.",
+      "win2": "The water rises, but she begins to see patterns in the storm.",
+      "win3": "Cassandra moves with purpose, navigating the flood with precision.",
+      "lose1": "The storm surges. Her grip weakens.",
+      "lose2": "Her footing slips. The current threatens to pull her under.",
+      "lose3": "She is swept away, fighting against the relentless waters.",
       "victory": "",
       "defeat": ""
     }
@@ -15692,12 +15692,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "She sizes up the rhino, watching its movements carefully.",
+      "win2": "Her attacks land, but the beast remains unshaken.",
+      "win3": "She outmaneuvers the creature, testing its weaknesses.",
+      "lose1": "The rhino charges with unstoppable force.",
+      "lose2": "Each strike is absorbed by its armor—it does not slow.",
+      "lose3": "She is thrown back, her body aching from the impact.",
       "victory": "",
       "defeat": ""
     }
@@ -15748,12 +15748,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "She adapts, using the terrain to her advantage.",
+      "win2": "The rhino stumbles—she exploits the opening.",
+      "win3": "Her strategy works. The beast falters at last.",
+      "lose1": "It charges again. She barely avoids being trampled.",
+      "lose2": "Her strikes are well-placed, but the rhino refuses to fall.",
+      "lose3": "She miscalculates. The creature retaliates with brutal force.",
       "victory": "",
       "defeat": ""
     }
@@ -15807,12 +15807,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "She trudges through the dunes, her endurance tested.",
+      "win2": "Each step is agony, but she refuses to stop.",
+      "win3": "Her mind and body work in unison—she will not break.",
+      "lose1": "The desert is merciless. The heat drains her strength.",
+      "lose2": "The cold of night gnaws at her resolve.",
+      "lose3": "Her vision blurs. Each step feels like the last.",
       "victory": "",
       "defeat": ""
     }
@@ -15868,12 +15868,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Your commands are clear. The Everwanderers follow without question.",
+      "win2": "Your formation tightens. The rival force struggles to react.",
+      "win3": "The skirmish is decided before it begins. You have outmaneuvered them entirely.",
+      "lose1": "Your strategy is sound, but execution falters. The Everwanderers hesitate.",
+      "lose2": "The rival force counters your orders. You underestimated them.",
+      "lose3": "Your formation crumbles. The Chieftain watches in silence.",
       "victory": "",
       "defeat": ""
     }
@@ -15883,12 +15883,12 @@
     "title": "Inhuman Request I",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Manti warlord watches. It recognizes something in you.",
+      "win2": "Their bioluminescence shifts—approval, curiosity, or something more?",
+      "win3": "‘Unfinished,’ the warlord says, but now there is admiration in its voice.",
+      "lose1": "You falter. The Manti observe, unimpressed.",
+      "lose2": "Their shifting forms outpace your understanding. You are still lesser.",
+      "lose3": "‘Not ready,’ the warlord concludes. It turns away, dismissing you.",
       "victory": "",
       "defeat": ""
     },
@@ -15942,12 +15942,12 @@
     "title": "Inhuman Request I",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The transformation begins. Your systems adapt—slowly.",
+      "win2": "Something inside you shifts. The changes feel... natural.",
+      "win3": "Your body is no longer rigid. You are beyond what you once were.",
+      "lose1": "Your systems reject the alterations. The process struggles.",
+      "lose2": "Warnings flood your consciousness. You are losing control.",
+      "lose3": "Panic surges through you. What are they turning you into?",
       "victory": "",
       "defeat": ""
     },
@@ -16001,12 +16001,12 @@
     "title": "Inhuman Request I",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The battlefield is in chaos. You remain steady in the storm.",
+      "win2": "The Dominion and the Manti see you not as an outsider—but a force.",
+      "win3": "The factions collapse into madness. You alone stand apart.",
+      "lose1": "Your form shifts unwillingly. The conflict rages beyond you.",
+      "lose2": "The Manti call you kin. The Dominion calls you a mistake.",
+      "lose3": "Your identity fractures. You are neither. You are lost.",
       "victory": "",
       "defeat": ""
     },

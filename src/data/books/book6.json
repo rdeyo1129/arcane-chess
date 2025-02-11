@@ -15464,12 +15464,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "A sentinel glances at you but moves on. \"Routine patrols continue. No anomalies detected.\"",
+      "win2": "The air crackles with magic. A voice hums through the halls, suspicious but not yet aware. \"Who disturbs the stillness of the archives?\"",
+      "win3": "Tsar's voice booms from the ether. \"Thieves in my halls? Fools. You will not leave here alive.\"",
+      "lose1": "A guard turns his head slightly. \"Strange. Something feels... off.\"",
+      "lose2": "The runes shimmer with awareness. \"An intrusion? No. An imperfection.\"",
+      "lose3": "Tsar's magic roars through the chamber. \"Ah. Caught already? How disappointing.\"",
       "victory": "",
       "defeat": ""
     }
@@ -15520,12 +15520,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "A whisper drifts through the air. \"Another trick of the night? Perhaps. Perhaps not.\"",
+      "win2": "A ward flickers as you bypass it. \"Fascinating. You understand the weave of the arcana.\"",
+      "win3": "A presence stirs within the core. \"You tamper with forces you do not comprehend.\"",
+      "lose1": "A latent glyph flares to life. \"Something brushes against the seals. It should not be here.\"",
+      "lose2": "The halls murmur with unseen eyes. \"Something moves where it should not. Watch the shadows.\"",
+      "lose3": "An unseen force shoves you back. \"Your hands are clumsy. This device is beyond you.\"",
       "victory": "",
       "defeat": ""
     }
@@ -15581,12 +15581,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The machine whirs, a dying breath. \"No. This is not... order.\"",
+      "win2": "A pulse of energy trembles as it fractures. \"The control is slipping. The whispers grow quiet.\"",
+      "win3": "A final spark arcs through the chamber. \"...Impossible. The mind falters. The voice... silenced.\"",
+      "lose1": "The network shudders, resisting. \"Reinforce the links. Reinforce. Reinforce.\"",
+      "lose2": "Tsar's magic surges. \"Do you think you can sever me from my own creation?\"",
+      "lose3": "A crushing force pins you in place. \"You are insects. I am the storm.\"",
       "victory": "",
       "defeat": ""
     }
@@ -15639,12 +15639,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Sphinx rumbles, intrigued. \"You are wise to seek, but wisdom does not guarantee answers.\"",
+      "win2": "Its golden eyes narrow. \"Clever, but is your mind greater than your ambition?\"",
+      "win3": "It lets out a deep chuckle. \"Few pass this test. You are... acceptable.\"",
+      "lose1": "The Sphinx tilts its head. \"You grasp at knowledge but hold only air.\"",
+      "lose2": "Its voice grows harsh. \"A mind untrained is a blade unsharpened. You disappoint me.\"",
+      "lose3": "The sand rises violently. \"Leave. I will not waste riddles on the ignorant.\"",
       "victory": "",
       "defeat": ""
     }
@@ -15695,12 +15695,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Goliath stirs. \"What is this sensation... freedom?\"",
+      "win2": "The magic cracks and falters. \"Chains break. The will awakens.\"",
+      "win3": "It lets out a thunderous roar. \"Tsar's will no longer binds me.\"",
+      "lose1": "The bindings tighten. \"No. The chains remain. The struggle is meaningless.\"",
+      "lose2": "The shadow-weavers hiss. \"Your spell is weak. The master’s grip is absolute.\"",
+      "lose3": "The Goliath’s eyes glow with forced servitude. \"I obey Tsar. You cannot change fate.\"",
       "victory": "",
       "defeat": ""
     }
@@ -15751,12 +15751,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The figure’s voice is distant. \"You are... not like the others.\"",
+      "win2": "A shadowed presence watches. \"Your path is... interesting.\"",
+      "win3": "The darkness flickers. \"Perhaps. Perhaps you are worthy of a glimpse.\"",
+      "lose1": "The air is heavy with whispers. \"You are unprepared.\"",
+      "lose2": "Shadows coil tighter. \"You are too late. The tide has already turned.\"",
+      "lose3": "The figure vanishes. \"This one will not do. Another must come.\"",
       "victory": "",
       "defeat": ""
     }
@@ -15812,12 +15812,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Tsar watches, amused. \"A panther in a storm. Bold, but foolish.\"",
+      "win2": "His shadows recoil, if only slightly. \"Ah... you are not entirely unworthy.\"",
+      "win3": "A moment of silence. Then: \"Perhaps I underestimated you.\"",
+      "lose1": "Lightning crackles. \"You are nothing but an interruption.\"",
+      "lose2": "The tendrils tighten. \"You are predictable. Weak.\"",
+      "lose3": "Tsar looms over you. \"This rebellion ends now.\"",
       "victory": "",
       "defeat": ""
     }
@@ -15882,12 +15882,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Tsar’s laughter is distant. \"Still standing? Amusing.\"",
+      "win2": "His magic wavers for a moment. \"You learn. I wonder if it will be enough.\"",
+      "win3": "He clenches his fist. \"This is no longer a game.\"",
+      "lose1": "His presence is overwhelming. \"You struggle. But struggle is not victory.\"",
+      "lose2": "Void energy engulfs you. \"You never had a chance.\"",
+      "lose3": "The chamber quakes as Tsar’s rage intensifies. \"You defy a god. You will break.\"",
       "victory": "",
       "defeat": ""
     }
@@ -15897,12 +15897,12 @@
     "title": "Weaving Assault I",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Machines pause. \"Deviation detected. Calculating...\"",
+      "win2": "The network fractures slightly. \"Irregularity persistent. Adjusting parameters.\"",
+      "win3": "The voice wavers. \"Anomalous entity resisting. Impossible.\"",
+      "lose1": "A mechanical whisper fills the air. \"Error resolved. Proceeding with correction.\"",
+      "lose2": "Time fractures around you. \"Unstable anomaly. Eliminating.\"",
+      "lose3": "Reality shifts. \"You are already gone. You do not exist.\"",
       "victory": "",
       "defeat": ""
     },
@@ -15956,12 +15956,12 @@
     "title": "Weaving Assault II",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The war repeats. \"Cycle disrupted. Probability shift detected.\"",
+      "win2": "For a moment, history hesitates. \"The loop wavers. Anomalous interference identified.\"",
+      "win3": "The Machines shudder. \"This is... incorrect.\"",
+      "lose1": "The battlefield resets. \"The war continues. The war is inevitable.\"",
+      "lose2": "A whisper from the past. \"You are a remnant. You do not belong.\"",
+      "lose3": "Time collapses. \"The correction is absolute. You are undone.\"",
       "victory": "",
       "defeat": ""
     },
@@ -16015,12 +16015,12 @@
     "title": "Weaving Assault III",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Machines slow. \"Recalculation in progress.\"",
+      "win2": "Their structure breaks. \"The variables no longer align.\"",
+      "win3": "The network collapses. \"Correction... failed.\"",
+      "lose1": "The timeline resets. \"History does not bend for you.\"",
+      "lose2": "They reconstruct. \"Your resistance is meaningless.\"",
+      "lose3": "Reality itself cracks. \"You will be erased. No exceptions.\"",
       "victory": "",
       "defeat": ""
     },

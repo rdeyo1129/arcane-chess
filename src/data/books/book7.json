@@ -15733,12 +15733,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The boy clutches his mother’s hand. \"He’ll come back. He promised.\"",
+      "win2": "A soldier watches from the doorway. \"The strong will survive. The rest will kneel.\"",
+      "win3": "A voice, distant but cruel. \"You will forget. You will obey.\"",
+      "lose1": "The mother’s whisper is desperate. \"Don’t let them take me.\"",
+      "lose2": "The soldier steps forward. \"It is the way of things. Cry if you must.\"",
+      "lose3": "The boy’s scream cuts through the air. \"Father said we’d be free!\"",
       "victory": "",
       "defeat": ""
     }
@@ -15748,12 +15748,12 @@
     "title": "Unphased",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The void hums. \"You walk among shadows, but they do not belong to you.\"",
+      "win2": "Tsar’s voice ripples through the air. \"You think the city resists me? It breathes because I allow it.\"",
+      "win3": "Tsar looms. \"I am not power. I am inevitability.\"",
+      "lose1": "The walls shift. \"Turn back. There is nothing left to reclaim.\"",
+      "lose2": "Tsar’s tendrils coil around you. \"Struggle if you wish. The void has patience.\"",
+      "lose3": "The last thing you hear before the fall: \"Foolish. You were never meant to win.\"",
       "victory": "",
       "defeat": ""
     },
@@ -15850,12 +15850,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The dunes whisper. \"You are alone, but not forgotten.\"",
+      "win2": "A distant voice—Tsubasa? \"Sidian... don’t stop moving.\"",
+      "win3": "Golden eyes watch from the storm. \"You are not ready to die yet.\"",
+      "lose1": "The sand pulls at your limbs. \"Sleep. The desert will bury you gently.\"",
+      "lose2": "The wind howls. \"No one is coming. No one ever was.\"",
+      "lose3": "A tiger’s growl cuts through the void. \"Do you understand now? You are nothing here.\"",
       "victory": "",
       "defeat": ""
     }
@@ -15908,12 +15908,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Tigran glances at you. \"A wanderer. Tell me—do you fight for honor? Or because you have nothing left?\"",
+      "win2": "His eyes narrow. \"You are strong. But do you know why you fight?\"",
+      "win3": "Tigran’s grip tightens around his blade. \"Good. Let’s see if you are worth my time.\"",
+      "lose1": "Tigran scoffs. \"You hesitate. That will kill you faster than steel.\"",
+      "lose2": "His voice is cold. \"Glory belongs to those who take it.\"",
+      "lose3": "He turns away. \"You are not ready. Leave before you embarrass yourself further.\"",
       "victory": "",
       "defeat": ""
     }
@@ -15923,12 +15923,12 @@
     "title": "The Archer's Tribute",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Rashida smiles. \"I told you, my love. Not every battle is won with a sword.\"",
+      "win2": "Her fingers brush his cheek. \"You still dream of war. But what of peace?\"",
+      "win3": "She laughs softly. \"Even now, you are still the man I fell in love with.\"",
+      "lose1": "Rashida’s expression dims. \"Is this what you wanted? To live only for battle?\"",
+      "lose2": "Her voice trembles. \"Tigran… please, don’t do this.\"",
+      "lose3": "Her last words before the soldiers take her: \"I never wanted you to fight for me.\"",
       "victory": "",
       "defeat": ""
     },
@@ -16030,12 +16030,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Tigran’s voice is hollow. \"She was my reason. Now, I have none.\"",
+      "win2": "The air is heavy. \"They took her. And I will take everything from them.\"",
+      "win3": "Tigran’s fists clench. \"They wanted war. I will give it to them.\"",
+      "lose1": "His breath is uneven. \"No. No, I can’t let this be the end.\"",
+      "lose2": "The shadows shift. \"I am done kneeling. I am done waiting.\"",
+      "lose3": "Tigran’s voice is steel. \"Let them fear my name.\"",
       "victory": "",
       "defeat": ""
     }
@@ -16086,12 +16086,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Anubis watches. \"A mortal dares challenge me? Amusing.\"",
+      "win2": "His voice rumbles. \"You fight well. But so did the others.\"",
+      "win3": "A rare pause. \"Perhaps there is more to you than I expected.\"",
+      "lose1": "The shadows coil. \"Your blade is swift. But I am eternal.\"",
+      "lose2": "Anubis strikes. \"You will kneel, just as all before you have.\"",
+      "lose3": "The last thing you hear before the fall: \"You are dust beneath my heel.\"",
       "victory": "",
       "defeat": ""
     }
@@ -16142,12 +16142,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Portal Keeper stirs. \"You do not belong here.\"",
+      "win2": "Its eyes burn. \"The path is not for you to take.\"",
+      "win3": "The Keeper falters. \"A mistake. You should not have been allowed through.\"",
+      "lose1": "The portal flickers. \"Turn back while you still can.\"",
+      "lose2": "The void hums. \"You are a ripple in the current. I am the tide.\"",
+      "lose3": "The Keeper’s voice is final. \"You will not pass.\"",
       "victory": "",
       "defeat": ""
     }
@@ -16157,12 +16157,12 @@
     "title": "Komodo's Revenge I",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "A Komodo warrior growls. \"We do not fear death. We only fear being forgotten.\"",
+      "win2": "The warlord’s blade flashes. \"The swarm will break against our walls.\"",
+      "win3": "A warcry echoes. \"For the mountain. For vengeance!\"",
+      "lose1": "The Manti hiss. \"You will not survive the tide.\"",
+      "lose2": "The Komodo strongholds crumble. \"We cannot hold forever…\"",
+      "lose3": "A final whisper. \"The end comes for us all.\"",
       "victory": "",
       "defeat": ""
     },
@@ -16216,12 +16216,12 @@
     "title": "Komodo's Revenge II",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "A Komodo spits blood. \"We do not stop. We do not bow.\"",
+      "win2": "A Manti warlord speaks. \"We adapt. We survive. We consume.\"",
+      "win3": "The battlefield trembles. \"No surrender. No survivors.\"",
+      "lose1": "The war drags on. \"Endless. Meaningless.\"",
+      "lose2": "The Manti advance. \"The swarm does not tire.\"",
+      "lose3": "The Komodo warlord falls. \"Tell my kin… I fought to the end.\"",
       "victory": "",
       "defeat": ""
     },
@@ -16275,12 +16275,12 @@
     "title": "Komodo's Revenge III",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Voltaire observes. \"No victors. Only ruins.\"",
+      "win2": "A Komodo warrior breathes his last. \"Was it worth it?\"",
+      "win3": "The war fades. \"Only the dead remain.\"",
+      "lose1": "The sky darkens. \"No more. No more.\"",
+      "lose2": "The Manti cease. \"Extinction. Equal for both.\"",
+      "lose3": "The silence is deafening. \"It ends here.\"",
       "victory": "",
       "defeat": ""
     },

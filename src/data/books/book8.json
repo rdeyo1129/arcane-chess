@@ -16347,12 +16347,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You hesitate. Doubt is a weakness.",
+      "win2": "You believe you can break the void’s grip? Naïve.",
+      "win3": "I feel… something—NO! Tsar’s will is absolute!",
+      "lose1": "You will submit, as I have. As all must.",
+      "lose2": "Your strength falters. Soon, you will see the truth.",
+      "lose3": "There is no Nehkmet, only Tsar’s design.",
       "victory": "",
       "defeat": ""
     }
@@ -16408,12 +16408,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "There… is something… beneath this darkness.",
+      "win2": "Tsar's hold weakens. Tell me—how much time do we have?",
+      "win3": "The dream shield… you must dismantle it before he senses your intent.",
+      "lose1": "Fools! You sever nothing! You only delay the inevitable!",
+      "lose2": "The void does not loosen its grip. It only tightens.",
+      "lose3": "Tsar will come. And when he does, you will beg for his mercy.",
       "victory": "",
       "defeat": ""
     }
@@ -16464,12 +16464,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You endure. Barely. But endurance is not victory.",
+      "win2": "Interesting... Perhaps you are more than whispers in the wind.",
+      "win3": "Ra-Metropolis stands on a blade’s edge. Walk carefully, or you will fall.",
+      "lose1": "Your fears consume you. The city will fall. And you will fall with it.",
+      "lose2": "You question your own worth? Then you have already lost.",
+      "lose3": "Illusions? No. These are the futures you refuse to see.",
       "victory": "",
       "defeat": ""
     }
@@ -16520,12 +16520,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You listen well. That is good. Few do.",
+      "win2": "Truth is a blade sharper than any weapon. Wield it wisely.",
+      "win3": "Take what you have learned. But know this: Tsar watches, always.",
+      "lose1": "You are not ready. Return when your heart is steel, not trembling sand.",
+      "lose2": "Ignorance is a prison. And you? You have built the walls yourself.",
+      "lose3": "Your presence here is tolerated—for now. Leave.",
       "victory": "",
       "defeat": ""
     }
@@ -16590,12 +16590,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The shield is down. The fight is far from over.",
+      "win2": "Tsar will strike back harder than ever. Be ready.",
+      "win3": "I can die knowing we took something from him.",
+      "lose1": "Too slow… You must move faster… or be buried beneath the weight of failure.",
+      "lose2": "They still stand. Damn it… I should have done more.",
+      "lose3": "You hesitate, and the city pays for it.",
       "victory": "",
       "defeat": ""
     }
@@ -16648,12 +16648,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "A flicker of resistance. Pathetic.",
+      "win2": "You believe you endure, yet you are drowning.",
+      "win3": "Leave now, or I will ensure you never wake again.",
+      "lose1": "I do not fight. I simply correct errors.",
+      "lose2": "You are an anomaly. And anomalies are erased.",
+      "lose3": "This is not a battle. This is your undoing.",
       "victory": "",
       "defeat": ""
     }
@@ -16710,12 +16710,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "No… this memory should not be here.",
+      "win2": "A trick. You dare use my past against me?",
+      "win3": "This… was never meant to be seen again.",
+      "lose1": "You see a boy. I see nothing but ashes.",
+      "lose2": "What was lost cannot be reclaimed.",
+      "lose3": "You do not belong in this memory.",
       "victory": "",
       "defeat": ""
     }
@@ -16766,12 +16766,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You hold onto something fragile. It will not last.",
+      "win2": "Do you think this changes anything?",
+      "win3": "Even if you destroy this memory… I remain.",
+      "lose1": "The boy is gone. There is only Tsar.",
+      "lose2": "A future unshaken by the past—that is strength.",
+      "lose3": "You fight for ghosts. But ghosts do not fight for you.",
       "victory": "",
       "defeat": ""
     }
@@ -16781,12 +16781,12 @@
     "title": "Geneva's Reign I",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Your numbers mean nothing before faith.",
+      "win2": "The gods have willed your destruction.",
+      "win3": "You will be erased as an act of holiness.",
+      "lose1": "We adapt. Unlike you, we can change.",
+      "lose2": "Your faith is not pure—it is fragile.",
+      "lose3": "You fight for gods who do not answer.",
       "victory": "",
       "defeat": ""
     },
@@ -16838,12 +16838,12 @@
     "title": "Geneva's Reign II",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Contradiction detected. Your beliefs are flawed.",
+      "win2": "The probability of your victory approaches zero.",
+      "win3": "Humanity thrives on falsehoods. We correct them.",
+      "lose1": "Even logic is not infallible. We acknowledge adaptation.",
+      "lose2": "You persist. That is inefficient.",
+      "lose3": "We calculate, but we do not feel. You have that advantage.",
       "victory": "",
       "defeat": ""
     },
@@ -16895,12 +16895,12 @@
     "title": "Geneva's Reign III",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The gods did not answer. Only silence.",
+      "win2": "What have we done? Have we fought for nothing?",
+      "win3": "If our faith is a lie… what are we?",
+      "lose1": "Faith is not measured in victories. It is measured in sacrifice.",
+      "lose2": "You do not understand. We do not fight to win—we fight to believe.",
+      "lose3": "History will remember us not as conquerors… but as martyrs.",
       "victory": "",
       "defeat": ""
     },

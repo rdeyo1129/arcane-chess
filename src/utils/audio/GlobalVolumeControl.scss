@@ -16,7 +16,7 @@
         border: none;
         height: 20px;
         margin: 0;
-        padding-left: 5px;
+        padding-left: 2px;
         outline: none;
         &::-webkit-slider-thumb {
           appearance: none;
@@ -60,7 +60,6 @@
         font-size: 12px;
         height: 20px;
         width: 40px;
-        padding: 5px;
         background: #222222;
         cursor: url('/assets/images/cursors/default.svg'), default;
       }

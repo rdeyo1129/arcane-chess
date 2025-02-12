@@ -2,15 +2,15 @@
   "lesson-1": {
     "id": "lesson-1",
     "category": "skills",
-    "prereq": "",
+    "prereq": "mission-8",
     "title": "Skills VII",
     "nodeText": "Pattern Recognition.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian had met the Watchmaker within a secluded nook of Thornreach soon after enduring Mirage’s illusions. The Watchmaker had spoken of Tejeduras in hushed terms, describing how his cosmic reach affected not just battlefields, but the way reality itself could be bent to mislead unsuspecting minds. Sidian had grasped that illusions were no mere trickery—they were echoes of Tejeduras’s lingering influence, testing whether a traveler’s will could withstand the blurring of perception.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "clocktower",
+    "bookTheme": "jungle-town",
     "time": [
       [0, 0],
       [0, 0]
@@ -167,11 +167,11 @@
     "title": "Skills VIII",
     "nodeText": "Prophylaxis.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Upon returning to the Watchmaker, Sidian had listened as the old scholar detailed how Tejeduras’s attempts to bind arcana had distorted entire timelines, casting Sidian unexpectedly into the future. The Watchmaker had shown Sidian a charted web of anomalies, all leading back to Tejeduras’s fierce determination to contain uncontrolled magic. Realizing that his own displacement had sprung from this cosmic tug-of-war, Sidian had strengthened his resolve to confront whatever lay ahead.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "clocktower",
+    "bookTheme": "jungle-town",
     "time": [
       [0, 0],
       [0, 0]
@@ -328,11 +328,11 @@
     "title": "Mating Patterns IV",
     "nodeText": "Learn about Boden's mate and the Smothered mate.",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "For the Watchmaker’s final teaching, Sidian had been directed to ancient markings hinting at the Hydra’s lair, a gatekeeper rumored to speak dire warnings about Tejeduras. The Watchmaker had cautioned that the Hydra might conceal truths under layers of fear, forcing Sidian to discern what arose from Tejeduras’s actual methods versus the myths surrounding him. By the time Sidian had departed for the Hydra, he had carried with him a sharpened understanding of the forces at play and the necessity of facing Tejeduras’s domain with clear purpose.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "clocktower",
+    "bookTheme": "jungle-town",
     "time": [
       [0, 0],
       [0, 0]
@@ -592,15 +592,15 @@
   },
   "temple-1": {
     "id": "temple-1",
-    "prereq": "",
+    "prereq": "mission-4",
     "title": "Temple of Cursed Light I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian had stepped into the Witch Doctor’s dwelling expecting cramped walls and smoky air, and though he found both, he also sensed an undercurrent of potent energy woven into every corner. Shadows flickered across a floor strewn with curious talismans and battered tomes, hinting at a history of experimentation with arcana far deeper than any traveler’s rumor could capture. Without ceremony, the Witch Doctor motioned him to sit beside a window where a single vine wilted in the dim light.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "witch-doctor",
+    "theme": "witch-doctor-room",
+    "bookTheme": "witch-doctor-house",
     "time": [
       [450, 12],
       [410, 14]
@@ -3490,11 +3490,11 @@
     "title": "Temple of Cursed Light II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Eager to convey her lessons through demonstration, the Witch Doctor brushed her hand across the vine’s leaves, applying the faintest trace of arcana to its limp form. Within moments, the plant’s color intensified, and Sidian watched in awe as the vine slowly regained its former vigor. The Witch Doctor spoke quietly of how this same force, capable of saving a dying creature, had razed entire cities when wielded carelessly, underscoring the fragile balance between creation and devastation that arcana embodied.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "witch-doctor",
+    "theme": "witch-doctor-room",
+    "bookTheme": "witch-doctor-house",
     "time": [
       [430, 14],
       [390, 16]
@@ -6384,11 +6384,11 @@
     "title": "Temple of the Fading Flame I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Expanding on that idea, she pointed out that arcana had always been a natural part of Divergia’s lifeblood. She insisted that for every act of renewal—like the vine’s revival—there existed a corresponding threat if power became an end in itself. With a gesture to an array of etched symbols on the wall, she explained that these glyphs depicted ages of strife whenever mortals tried to usurp arcana’s synergy with nature, leading to monstrous conflicts that called down forces far beyond human understanding.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "witch-doctor",
+    "theme": "witch-doctor-room",
+    "bookTheme": "witch-doctor-house",
     "time": [
       [450, 12],
       [410, 14]
@@ -9261,11 +9261,11 @@
     "title": "Temple of the Fading Flame I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "After allowing a pause for Sidian to absorb her words, the Witch Doctor addressed the larger presence behind these warnings: Tejeduras, whom she described as a cosmic steward tasked with binding arcana when it strayed from its intended purpose. According to her lore, Tejeduras would emerge whenever Divergia’s collective will grew too reckless, sealing away the source of such unchecked power to avert greater ruin. Though his methods were seen as harsh, she reasoned that his role transcended personal malice, rooted instead in preserving the delicate rhythms that sustained life across realms.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "witch-doctor",
+    "theme": "witch-doctor-room",
+    "bookTheme": "witch-doctor-house",
     "time": [
       [430, 14],
       [390, 16]
@@ -12138,11 +12138,11 @@
     "title": "Temple of the Twisting Maw I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "By the time Sidian rose to leave, his thoughts swirled with new perspectives on the arcana woven through every vine, stone, and breath of air in Divergia. The Witch Doctor’s parting words cautioned him that mastering this intricate force was not simply about strength or proficiency, but about whether he could respect the boundaries that made it a tool of balance rather than destruction. If he could hold onto that respect, she believed there remained hope for a resolution that did not demand Tejeduras’s intervention—yet if he faltered, the guardian’s appearance would be both inevitable and dire in its consequences.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "witch-doctor",
+    "theme": "witch-doctor-room",
+    "bookTheme": "witch-doctor-house",
     "time": [
       [450, 12],
       [410, 14]
@@ -14897,15 +14897,15 @@
   },
   "temple-6": {
     "id": "temple-6",
-    "prereq": "temple-5",
+    "prereq": "mission-9",
     "title": "Temple of the Twisting Maw II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian had ventured into a secluded jungle clearing, heavy with the smell of damp earth and the constant hum of hidden insects. He had settled into a meditative posture, recalling the Witch Doctor’s emphasis on respecting the delicate fabric of Divergia. It was only after a stretch of stillness—broken by nothing but the quiet pulse of living foliage—that the Tiger emerged, its amber gaze calm yet penetrating. Offering a silent invitation, it turned and padded forward, prompting Sidian to follow deeper into the lush greenery.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tiger",
+    "bookTheme": "tiger",
     "time": [
       [430, 14],
       [390, 16]
@@ -17660,15 +17660,15 @@
   },
   "temple-7": {
     "id": "temple-7",
-    "prereq": "temple-5",
+    "prereq": "temple-6",
     "title": "Temple of Unforgiving Depths I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The jungle’s canopy had thickened, creating a natural corridor where thin beams of sunlight danced over thick roots and hanging vines. As they walked, the Tiger had spoken of truth, hinting that genuine understanding often lay beyond the layers of mortal ambition. Sidian had listened intently, noting that what the Tiger called truth required a readiness to let go of preconceived notions—an openness that arose only when one accepted humility as an integral part of wisdom.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tiger",
+    "bookTheme": "tiger",
     "time": [
       [450, 12],
       [410, 14]
@@ -20526,11 +20526,11 @@
     "title": "Temple of Unforgiving Depths II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Veering down a winding path, they had reached an ancient grove, its stillness oddly comforting despite the wildness around it. Here, the Tiger had explained that each living soul held an echo of the divine, a spark connecting them to the broader tapestry of creation. Recognizing this thread of godliness did not grant license to wield arcana with impunity; rather, it demanded respect for the world’s interwoven harmony, ensuring that power served balance rather than dominating it.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tiger",
+    "bookTheme": "tiger",
     "time": [
       [430, 14],
       [390, 16]
@@ -23388,11 +23388,11 @@
     "title": "Temple of the Valkyrie I",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Continuing along a trail half-obscured by ferns and drifting spores, the Tiger had talked about the dual nature of consciousness—how fear and compassion, destruction and creation, all stemmed from the same reservoir of potential. Arcana, the Tiger had said, magnified whichever aspect of the self prevailed. By remembering their inner spark of divinity, mortals could tap into that energy as stewards, not conquerors. For Sidian, this resonated powerfully as he weighed the reality of his coming confrontation with Tejeduras.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tiger",
+    "bookTheme": "tiger",
     "time": [
       [450, 12],
       [410, 14]
@@ -26167,11 +26167,11 @@
     "title": "Temple of the Valkyrie II",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "The jungle opened onto a small clearing where sunlight broke through in a luminous column, catching the Tiger’s fur in a momentary glow. It paused there, regarding Sidian with measured resolve. The Tiger explained that true harmony arose when individuals recognized their godlike capacity, yet also honored the boundaries set by cosmic forces. The tension between self-discovery and universal law formed the crucible in which real understanding was forged. Then, as quietly as it had appeared, the Tiger faded back into the undergrowth, leaving Sidian to contemplate how this dual perspective—personal divinity and cosmic restraint—might guide him to preserve Divergia’s fragile equilibrium.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tiger",
+    "bookTheme": "tiger",
     "time": [
       [430, 14],
       [390, 16]
@@ -28943,14 +28943,14 @@
   "mission-1": {
     "id": "mission-1",
     "prereq": "",
-    "title": "",
+    "title": "Night Vision",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "By the time Sidian had returned to Automata Prime, he had known that he, Cassandra, and Voltaire had all vanished around the same moment. Ophion had awaited an explanation, braced for unsettling news. Upon learning that Cassandra had been killed in battle, he had stood silent for a long stretch, letting the weight of Sidian’s words settle over a city already teetering on the edge of disorder. With Voltaire’s whereabouts still unknown, Automata Prime had found itself in a tenuous state: rumors of arcana misuse had circulated in back alleys, and confidence in the Tactorius Games had waned without the familiar figures who once commanded them. Sidian, meanwhile, had understood that his own link to arcana bore a measure of responsibility for the unrest. Though grief for Cassandra pressed heavily on him, he had recognized that he could not remain idle if Divergia’s future hung in the balance.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "nu",
+    "theme": "robotcity",
+    "bookTheme": "robotcity",
     "time": [
       [600, 30],
       [300, 15]
@@ -28991,12 +28991,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You return, but do you truly understand what has changed? Automata Prime does not wait for lost figures to reclaim their place.",
+      "win2": "The arcana stirs within you, but do you wield it, or does it lead you forward? Divergia has seen its share of those who thought themselves masters.",
+      "win3": "You move with conviction, but even conviction is not immune to fate. What will you do when the path diverges beyond your control?",
+      "lose1": "Hesitation? I expected more from one who has stood before the unknown. The moment will pass, but will you be ready when it comes again?",
+      "lose2": "You listen, but do you hear? You act, but do you see? The echoes of those before you warn of what happens when such lessons are ignored.",
+      "lose3": "Even those with power can falter. Even those with resolve can stumble. You must ask yourself—how many times can you fall before you do not rise?",
       "victory": "",
       "defeat": ""
     }
@@ -29004,14 +29004,14 @@
   "mission-2": {
     "id": "mission-2",
     "prereq": "mission-1",
-    "title": "",
+    "title": "New Levels New Devils",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian had ventured beyond Automata Prime’s walls and found himself enveloped by a stark hush on the open road, reflecting on the tumult that lingered at his back. Before long, the Hexweaver had emerged in that familiar shimmer of woven light, and Sidian had recognized it instantly, recalling their previous encounter when its cryptic warnings first alerted him to the arcana’s destabilizing effect. This time, the Hexweaver had radiated a deeper urgency, as though centuries of cosmic tension had pressed closer to Divergia’s borders. Although the details of its message had been elliptical, Sidian had gathered that Tetraea stood on the brink of disruption, and that his own link to the arcana served as both a beacon for malevolent forces and a potential shield for innocent realms. Fueled by the memory of their earlier meeting, he had steeled himself for the journey ahead, determined to unearth the precise threat overshadowing Tetraea—and by extension, the entire world he had once sworn to protect.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "figure",
+    "bookTheme": "figure",
     "time": [
       [600, 30],
       [300, 15]
@@ -29053,12 +29053,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Hexweaver’s words are never without meaning. You have felt its warnings before—do you grasp their weight now?",
+      "win2": "The arcana hums around you. It knows what the Hexweaver knows. Do you fear what comes next, or are you merely pretending not to?",
+      "win3": "You press forward with purpose. But purpose alone does not save a world from collapse. Only those who listen may guide it to safety.",
+      "lose1": "The Hexweaver does not speak lightly, nor does it repeat itself for those unwilling to listen. You risk much if you turn from its words.",
+      "lose2": "Uncertainty clouds your vision, but the tide does not wait for clarity. When the flood comes, will you be caught in it, or will you rise?",
+      "lose3": "You hesitate before the inevitable. The Hexweaver has seen this before. Do you wish to learn from those who fell, or become one of them?",
       "victory": "",
       "defeat": ""
     }
@@ -29066,14 +29066,14 @@
   "mission-3": {
     "id": "mission-3",
     "prereq": "mission-2",
-    "title": "",
+    "title": "That Left Unsaid",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "In his search for clarity, Sidian had ventured into the Mirror Temple, guided by rumors that its winding corridors bridged realities and time. He had encountered Mirage within those reflective halls, an entity that had relied on illusions to expose the doubts and regrets festering in his subconscious. Despite the onslaught of guilt-laden apparitions, Sidian had persevered by recalling the imperative need to protect Automata Prime—and possibly Tetraea—from an escalating danger. Upon emerging victorious, he had learned that the Watchmaker possessed the key to unearthing deeper truths about Tejeduras and the nature of arcana itself. Armed with that vital clue, he had prepared himself to press onward into unknown territories.",
     "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "opponent": "oldwoman",
+    "theme": "mirror-temple",
+    "bookTheme": "mirror-temple",
     "time": [
       [600, 30],
       [300, 15]
@@ -29116,12 +29116,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Mirage reflects your doubts, but you do not waver. Tell me, is your confidence earned or borrowed from a future not yet written?",
+      "win2": "You have seen through one illusion, but how many more will follow? You step forward, yet the path shifts beneath you.",
+      "win3": "Few pass through the Mirror Temple unshaken. Fewer still emerge unchanged. You claim strength—let us see if time agrees with you.",
+      "lose1": "A reflection does not lie, but neither does it tell the whole truth. Are you shaken because you saw something false, or because you saw yourself?",
+      "lose2": "Mirage does not deceive—it reveals. If you turn away, it is not from illusion but from understanding.",
+      "lose3": "You crumble under shadows cast by your own past. The Mirror Temple does not make fools of travelers; it merely shows them what was always there.",
       "victory": "",
       "defeat": ""
     }
@@ -29129,14 +29129,14 @@
   "mission-4": {
     "id": "mission-4",
     "prereq": "mission-3",
-    "title": "",
+    "title": "Smoke and Mirrors",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian had then directed his attention toward Thornshade, a jungle rumored to hide more than mere wildlife. Reports of a Witch Doctor practicing archaic rites had led him to believe that her knowledge could bolster his understanding of curses or suppressed energies. As he had navigated the overgrown pathways beneath colossal canopies, he had sensed that the terrain itself might have been transformed by lingering arcana. Though the atmosphere had been thick with danger, he had refused to abandon his goal, surmising that any insight gleaned from the Witch Doctor might prove indispensable in confronting whatever awaited him in Tetraea and beyond.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "jungle",
+    "bookTheme": "jungle",
     "time": [
       [600, 30],
       [300, 15]
@@ -29145,9 +29145,9 @@
     "reward": [],
     "panels": {
       "panel-1": {
-        "fen": "rsqvkqsr/bbbbbbbb/8/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w - - 0 1",
+        "fen": "rsqvkqsr/bbbbbbbb/8/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPKPPP w - - 0 1",
         "fenHistory": [
-          "rsqvkqsr/bbbbbbbb/8/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP w - - 0 1"
+          "rsqvkqsr/bbbbbbbb/8/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPPPPP/PPPPKPPP w - - 0 1"
         ],
         "history": [],
         "panelText": "",
@@ -29180,27 +29180,27 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The jungle does not welcome those who walk with uncertainty. But you have not turned back—perhaps it sees something in you.",
+      "win2": "The roots of Thornshade stretch deeper than you know, and so do the truths buried beneath its leaves. Tread carefully.",
+      "win3": "You step into Thornshade with a steady will. Those who fear the unknown do not belong here. You, however, have chosen to listen.",
+      "lose1": "You seek the Witch Doctor’s wisdom, yet the jungle resists you. Ask yourself—are you truly ready to hear what she has to say?",
+      "lose2": "Thornshade is not a simple path, nor is its guardian a simple teacher. You stumble before you reach her door. Will you rise again?",
+      "lose3": "The jungle does not reject you, but nor does it embrace you. Perhaps it senses your doubts, your hesitation. Strength alone does not grant passage.",
       "victory": "",
       "defeat": ""
     }
   },
   "mission-5": {
     "id": "mission-5",
-    "prereq": "mission-4",
-    "title": "",
+    "prereq": "mission-15",
+    "title": "Technical Knockout",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
+    "storyText": "Elsewhere in Divergia, Voltaire had reemerged into the present after enduring ages in a war-scarred past. Having tempered his old inclinations toward conquest, he had encountered the Wandering Sphinx Goliath almost immediately, as though the world had been testing the depth of his transformation. Rather than relying on brute force, Voltaire had used strategic restraint to quell the creature’s aggression. In doing so, he had proven that centuries of conflict had taught him the value of measured strength over unchecked domination. This decisive encounter had propelled him toward the Mirror Temple, drawn by the possibility that further revelations—and perhaps an old sense of responsibility—might have awaited him within its reflective confines.",
+    "hero": "voltaire",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "sphinx-automata",
+    "bookTheme": "sphinx-automata",
     "time": [
       [600, 30],
       [300, 15]
@@ -29246,12 +29246,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Wandering Sphinx watches you, curious. You hold yourself differently than before. Have the years reshaped you, or have you merely learned to wear restraint?",
+      "win2": "Your movements speak of patience where once there was none. Have you truly changed, or is this simply another battle in a war you refuse to leave behind?",
+      "win3": "You no longer fight to prove yourself, nor to impose your will. That is why the Sphinx falters, and why you remain standing.",
+      "lose1": "Old instincts linger in your form. The Sphinx does not judge them—it merely exposes what you have not yet left behind.",
+      "lose2": "Your past self fights beside you, and you do not even realize it. How can you claim to move forward when the echoes of conquest still whisper in your step?",
+      "lose3": "You hesitate, not because you fear defeat, but because you fear what it will mean. And that is why you falter.",
       "victory": "",
       "defeat": ""
     }
@@ -29259,14 +29259,14 @@
   "mission-6": {
     "id": "mission-6",
     "prereq": "mission-5",
-    "title": "",
+    "title": "Arbelos",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "storyText": "Voltaire had entered the Mirror Temple to find Mirage once again conjuring specters of his past—the uncompromising tactics, the single-minded pursuit of power, and the unchecked arrogance that had driven him to seek dominion. However, this time, he had stood firm against those illusions by acknowledging his past actions without surrendering to them. Having recognized the lessons of his long exile, Voltaire had demonstrated that he no longer aligned himself with the conqueror he had once been. Mirage, sensing genuine change, had permitted his passage, though not without hinting that his renewed path would remain tied to the arcana’s greater mysteries. With that final confrontation behind him, Voltaire had departed for Automata Prime to relinquish his hold on the Tactorius Games and finalize the closure of an old chapter in his life.",
+    "hero": "voltaire",
+    "opponent": "oldwoman",
+    "theme": "mirror-temple",
+    "bookTheme": "mirror-temple",
     "time": [
       [600, 30],
       [300, 15]
@@ -29310,12 +29310,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Mirage returns, but you do not stumble as before. Even illusions must shift before those who refuse to be undone by their past.",
+      "win2": "You do not reject the images of what you once were—you face them. That is why the Mirror Temple does not hold you.",
+      "win3": "You move forward, no longer tethered by what you were. Few leave the Mirror Temple lighter than when they entered.",
+      "lose1": "Mirage does not fight you. It only shows you what lingers. Do you see now why you still struggle?",
+      "lose2": "Your past self does not let you go so easily. Have you changed, or have you only learned to disguise what you were?",
+      "lose3": "You claim to have left your old ways behind, yet when tested, you hesitate. The Mirror Temple does not believe in lies.",
       "victory": "",
       "defeat": ""
     }
@@ -29323,14 +29323,14 @@
   "mission-7": {
     "id": "mission-7",
     "prereq": "mission-6",
-    "title": "",
+    "title": "The Art of Surrender",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
-    "hero": "",
-    "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "storyText": "Voltaire had returned to Automata Prime after enduring centuries in a fractured past, carrying the lessons of countless battles. He had found the city at a crossroads, its citizens unsure how to regard the man who once wielded power with such force. Determined to break from his former path, he had resolved to relinquish his claim on the Tactorius Games and abandon the Goliath that had symbolized his might. By taking a more measured role within Automata Prime, he had signaled a new chapter: one guided by stability and thoughtful governance rather than conquest.",
+    "hero": "voltaire",
+    "opponent": "nu",
+    "theme": "robotcity",
+    "bookTheme": "robotcity",
     "time": [
       [600, 30],
       [300, 15]
@@ -29363,7 +29363,7 @@
           "sumnRE": 3,
           "sumnRZ": 1,
           "offrR": 1,
-          "shftN": "0",
+          "shftN": 1,
           "shftB": 1,
           "shftR": 2,
           "swapADJ": 2
@@ -29375,27 +29375,27 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You return not as the ruler you once were, but as something else. Do you know what that is yet?",
+      "win2": "Power, once so important to you, no longer seems to weigh as heavily in your mind. But power does not vanish—it only changes hands.",
+      "win3": "You step away from the Games, from conquest. Few would have believed you capable of this. Perhaps even you did not.",
+      "lose1": "You hesitate at the gates of Automata Prime, as if wondering if the city will accept you back. Tell me—do you accept yourself?",
+      "lose2": "The city watches, unsure of what you are now. Have you come to lead? To disappear? Or is it something else entirely?",
+      "lose3": "You have let go of your past, or so you say. Yet even now, the remnants of it whisper around you. What will you do with what remains?",
       "victory": "",
       "defeat": ""
     }
   },
   "mission-8": {
     "id": "mission-8",
-    "prereq": "mission-7",
-    "title": "",
+    "prereq": "mission-4",
+    "title": "Blood and Thunder",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Far from the city, Sidian had traveled deeper into Thornreach, bracing himself for what he had expected to be a modest journey. Instead, he had discovered a maze-like sprawl where time had bent unpredictably, leaving entire districts transformed into modern enclaves seemingly overnight. In the midst of these abrupt changes, he had encountered lingering echoes of arcana that hinted at darker developments, prompting him to seek out the elusive Watchmaker. According to local whispers, this mysterious figure had harnessed Thornreach’s warped timelines for his own ends, and his aid might have been crucial in unraveling the whereabouts of Tejeduras.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "jungle-town",
+    "bookTheme": "jungle-town",
     "time": [
       [600, 30],
       [300, 15]
@@ -29436,27 +29436,27 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Time has shifted in Thornreach, but you do not waver. You walk among echoes of a place both familiar and strange.",
+      "win2": "This city has outgrown what you once knew of it. But has it outgrown you?",
+      "win3": "You do not hesitate, even as time itself has moved beyond you. You are no longer lost in the flow.",
+      "lose1": "You are displaced, but not by distance—by time. Can you walk forward when the path you remember no longer exists?",
+      "lose2": "You look upon Thornreach as if it still belongs to the past. You will not find what you seek by searching for ghosts.",
+      "lose3": "You left Thornreach for only a moment, yet it has changed without you. Are you a visitor now, or something else?",
       "victory": "",
       "defeat": ""
     }
   },
   "mission-9": {
     "id": "mission-9",
-    "prereq": "mission-8",
-    "title": "",
+    "prereq": "lesson-3",
+    "title": "Anatomy of a Moment",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "After gleaning cryptic information from the Watchmaker, Sidian had emerged from Thornreach’s labyrinth, only to find the surrounding jungles teeming with signs of ancient enchantments. Through tense exchanges with wary locals and hidden guardians, he had traced tales of a Witch Doctor’s shrine that might still lie in the overgrown wilderness. Each new revelation had pointed him toward an inevitable confrontation with an entity known as the Hydra, depicted by some as a malevolent gatekeeper to realms beyond mortal reach. Determined to finish what he had started, Sidian had pressed on, steeling himself for the trials that lay ahead.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "jungle",
+    "bookTheme": "jungle",
     "time": [
       [600, 30],
       [300, 15]
@@ -29501,12 +29501,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You leave the jungle changed, but is the change one of knowledge or mere survival?",
+      "win2": "The whispers of Thornshade linger in your mind. Do they warn you or guide you?",
+      "win3": "You have walked the jungle and emerged with more than you entered. That is the way of those who listen.",
+      "lose1": "The jungle does not give up its secrets to the uncertain. You leave, but with what?",
+      "lose2": "You fought against the unknown, but did you learn from it? Or did you merely survive it?",
+      "lose3": "You step beyond Thornshade, but something in your movement says the jungle has not fully left you.",
       "victory": "",
       "defeat": ""
     }
@@ -29514,14 +29514,14 @@
   "mission-10": {
     "id": "mission-10",
     "prereq": "mission-9",
-    "title": "",
+    "title": "Monolith Behemoth",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian had located the Hydra after a grueling ascent, finding it coiled among jagged ruins in a bleak corner of Divergia’s outskirts. Its multiple heads had spoken with eerie harmony, insisting that Tejeduras was a ruthless force bent on punishing any mortal who dared to harness arcana. The Hydra’s claims had intensified Sidian’s unease about the being he sought, yet he had refused to succumb to fear or complacency. In a fierce encounter that tested his fortitude, he had subdued the Hydra, though its parting words continued to gnaw at him, painting Tejeduras as neither benevolent guardian nor misunderstood entity but a looming threat whose motives remained unclear.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "hydra",
+    "bookTheme": "hydra",
     "time": [
       [600, 30],
       [300, 15]
@@ -29564,12 +29564,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Hydra speaks, and you listen. But do you trust what it tells you, or do you only hear what you already fear?",
+      "win2": "The Hydra spins its tale, but you do not falter. You know that stories are never so simple as they seem.",
+      "win3": "You step past the Hydra, untouched by the weight of its words. You see now that it was never meant to guide you—only to test you.",
+      "lose1": "Doubt lingers in the Hydra’s voice, and you hesitate. That is all it needed.",
+      "lose2": "You let the Hydra’s words take root. Be careful—seeds of uncertainty, once planted, are not so easily removed.",
+      "lose3": "You sought answers, but you received a warning. And you listened. Are you sure you are ready to meet what lies ahead?",
       "victory": "",
       "defeat": ""
     }
@@ -29577,14 +29577,14 @@
   "mission-11": {
     "id": "mission-11",
     "prereq": "mission-10",
-    "title": "",
+    "title": "Hanging by a Thread",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian had journeyed through a stark mountain range under a sky that seemed drained of warmth, guided by lingering fragments of the Watchmaker’s teachings. Each day had passed in harsh solitude, with no sign of life other than rare echoes of wind and the faint remembrance of those who had once braved the peaks. He had turned repeatedly to his inner reserves of determination, recalling Cassandra’s fate and the sense of responsibility that had weighed on him ever since. At times, the stillness had pressed down like a physical weight, as though the mountains themselves tested his will to see if he truly sought an audience with something as momentous as Tejeduras. \n\n Eventually, Tejeduras had manifested amid a quiet clearing swept bare by unrelenting gusts, appearing without thunder or spectacle. Sidian had braced himself for hostility but found no immediate sign of malice. Instead, Tejeduras had offered a measured recounting of Sidian’s earlier banishment, explaining that the mishap had stemmed from an attempt to contain unstable arcana. While the Hydra’s words had portrayed Tejeduras as merciless, the being’s calm reasoning had suggested a different perspective—one rooted in cosmic duty rather than a personal grudge. In that moment, Sidian had recognized that final clarity would only come through a confrontation of wills, bearing far-reaching consequences for Divergia and any realm touched by arcana.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tejeduras",
+    "bookTheme": "tejeduras",
     "time": [
       [600, 30],
       [300, 15]
@@ -29613,8 +29613,6 @@
         "preset": "XCHECK",
         "whiteArcane": {},
         "blackArcane": {
-          "dyadZ": "0",
-          "dyadU": "0",
           "sumnM": 2,
           "sumnRV": 2,
           "sumnRQ": 2,
@@ -29632,12 +29630,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Tejeduras watches you, his gaze unburdened by judgment. Do you truly wish to understand, or are you simply here to defy?",
+      "win2": "You stand before Tejeduras, listening, questioning. That is more than most have done before you.",
+      "win3": "You do not rush to challenge, nor do you turn away. Few who come before Tejeduras stand as you do now.",
+      "lose1": "Tejeduras speaks, and you recoil. Are you unsettled by his words, or by the truths you did not wish to hear?",
+      "lose2": "You came seeking understanding, but now that it is before you, you waver. Are you afraid of his reasoning, or that it may be correct?",
+      "lose3": "Tejeduras offers no cruelty, no deception. He does not need to. The weight of his words is enough.",
       "victory": "",
       "defeat": ""
     }
@@ -29648,11 +29646,11 @@
     "title": "Firing On All Cylinders",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "",
+    "storyText": "Sidian had listened as Tejeduras expounded on the burden that arcana had inflicted on civilizations throughout history, pointing to the strife and disorder that had followed its misuse. Tejeduras had presented his mission as a necessity, insisting that humanity’s inability to handle arcana’s vast potential justified locking it away. Unmoved by fleeting emotional appeals, he had declared that preserving balance outweighed personal freedoms—a verdict formed in the wake of catastrophic events he claimed to have witnessed across countless ages. No trace of rage had clouded his words, only conviction that Divergia would flourish more securely without the draw of arcane power. \n\n In a decisive act, Tejeduras had drawn out the arcana from Sidian, effectively severing his connection to the force that had shaped his entire quest. Both the arcana and Tejeduras had disappeared into the hidden folds of reality, leaving the Axioms untouched as silent pillars of universal order. Sidian, left in the stillness, had resolved to dedicate himself to rebuilding what he could. He had journeyed back and reestablished the place once known as Stormcall Junction, renaming it Ascendant’s Requiem, a haven where spirits and fragments of a turbulent past could pass freely into peace. As he stood on those renewed grounds, he had realized that losing arcana did not diminish his resolve to shield Divergia; rather, it had freed him to serve without the burden of the power that had once defined his destiny.",
     "hero": "",
     "opponent": "",
-    "theme": "",
-    "bookTheme": "",
+    "theme": "tejeduras",
+    "bookTheme": "tejeduras",
     "time": [
       [600, 30],
       [300, 15]
@@ -29701,27 +29699,27 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The arcana fades, drawn from you as if it had never belonged to you at all. Do you regret its loss, or do you feel lighter without it?",
+      "win2": "Tejeduras does not celebrate his victory, nor does he mourn it. This was always the path. You only delayed its conclusion.",
+      "win3": "The Axioms remain, untouched by what has transpired. You have lost the arcana, but have you gained something in return?",
+      "lose1": "You fought for something you could not keep. Do you resent Tejeduras for taking it, or do you resent that you were powerless to stop it?",
+      "lose2": "The arcana is gone, and you are still here. Does that mean you were never meant to wield it, or does it mean you were meant to let it go?",
+      "lose3": "Ascendant’s Requiem stands, a monument to what was and what will be. You are not the same as you were before.",
       "victory": "",
       "defeat": ""
     }
   },
   "mission-13": {
     "id": "mission-13",
-    "title": "",
+    "title": "Valkyrie's Decision I",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You hold the line, but do you see the truth? This battle is only another in a cycle without end.",
+      "win2": "Tactics will not save you from history, Voltaire. This war has played out before, and it will play out again.",
+      "win3": "You command well, but victory here changes nothing. What lesson have you truly learned?",
+      "lose1": "You hesitate. You see the pattern, but still you fight as if this war matters.",
+      "lose2": "Even the greatest strategist cannot outmaneuver inevitability. Will you see it before it's too late?",
+      "lose3": "It does not matter how strong you are. If you do not understand, you will be trapped here forever.",
       "victory": "",
       "defeat": ""
     },
@@ -29730,13 +29728,13 @@
       [300, 15]
     ],
     "nodeText": "Boris Gelfand vs Hikaru Nakamura: World Team Championship (2010)",
-    "storyText": "The battlefield stretched for miles, a ruined wasteland where the last remnants of Divergia’s warring factions had gathered for what all believed to be the final battle. The Dominion, still standing after centuries of conquest, had one last enemy before it could claim absolute victory—what remained of those who refused to kneel. Broken warlords, surviving warriors, remnants of extinct factions—all had coalesced into one last coalition, not united by ideology, not by loyalty, but by the simple refusal to fade into history. They had no leader, no grand strategy, only the certainty that if they fell here, their stories would end. The Valkyrie Queen rode at the head of the Dominion, her banners the last symbol of an empire that had endured, not by strength alone, but by persistence. She did not fight for conquest. She fought for finality. As the two forces met, Voltaire stood at the edge of the battlefield, watching as the last of Divergia’s great warriors charged forward, their weapons drawn, their fate sealed. This was how it always ended.",
+    "storyText": "The battlefield stretched beyond the horizon, where the final war of Divergia’s past would be waged. Across the torn landscape, six factions converged for the last time—an echo of centuries of bloodshed and shifting alliances. The Wraithborn called forth their dead, skeletal warlords commanding legions that would never tire. The Disciples, cloaked in prophecy, declared this battle as the final trial of their faith. The Automata, relentless and precise, moved with mechanical synchronization, while the remnants of humanity—Valkyries, Mongols, Samurai—stood together in defiance of extinction. Above them all, the sky churned with unnatural energy, the weight of war pressing against the very fabric of Divergia’s past. \n\n Voltaire, standing at the center, felt the weight of every battle before this one. The cycle had repeated too many times—wars fought, empires rising and falling, but nothing ever truly changing. He had seen this before, lived through it, manipulated its tides, and now he stood at the precipice of its inevitable conclusion. The Goliath, his towering war machine, waited at his side, its metal plating scarred from centuries of conflict. He had the power to crush enemies, to shift the tide once more, but for the first time, he hesitated. War was no longer a puzzle to solve—it was a lesson he was beginning to understand. And if he was right, then this battle was nothing more than a final move in a game played for too long.",
     "reward": [],
-    "prereq": "mission-12",
+    "prereq": "temple-5",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "valkyrie-battle",
+    "bookTheme": "valkyrie-battle",
     "panels": {
       "panel-1": {
         "fen": "r1bq1bk1/1pP2r2/1p3n2/P3p2p/2N1Pp2/2N2Pp1/4B2P/R3Q1BK b - - 0 25",
@@ -29772,15 +29770,15 @@
   },
   "mission-14": {
     "id": "mission-14",
-    "title": "",
+    "title": "Valkyrie's Decision II",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You fight, but do you fight for the right reason? What will you do when the war is over?",
+      "win2": "Your strength is unmatched, but what is your purpose beyond battle?",
+      "win3": "You hold the field, but do you hold the answer? War is not the key to your future.",
+      "lose1": "You falter because you are torn. Will you cling to control, or will you finally let go?",
+      "lose2": "Even you must see it now. This war does not end with a victor. It ends with a choice.",
+      "lose3": "You think like a machine, but even machines evolve. Will you take the final step?",
       "victory": "",
       "defeat": ""
     },
@@ -29789,13 +29787,13 @@
       [300, 15]
     ],
     "nodeText": "Donald Byrne vs Robert James Fischer: Third Rosenwald Trophy (1956)",
-    "storyText": "The battle raged through the night, but the outcome had never been in doubt. The Dominion was stronger, better supplied, more disciplined. The coalition of the broken had fought with desperation, but desperation was not enough. One by one, they fell, not just men, but symbols—the last of the Komodo warlords, the final disciple of Geneva, the last rogue Automata to defy the Imperium. It was an execution, a war fought for no reason other than to ensure there were no more wars left to fight. And yet, at the peak of victory, the Valkyrie Queen raised her sword… and did not strike the final blow. She looked upon the battlefield, at what remained, and saw not enemies, not rebels, but the last echoes of Divergia’s past. And in that moment, she did something no ruler had ever done. She chose not to erase her enemies. She chose to let them live. Voltaire watched as, for the first time in history, a war ended not with blood, but with a decision.",
+    "storyText": "The war erupted in a cataclysm of fire and steel. Goliaths tore through the battlefield, ancient war machines colliding with the brute force of the Komodos and the spectral strikes of the Wraithborn. Spells split the sky as the Disciples rained divine judgment upon the battlefield, while human warriors fought with desperation, carving through automaton ranks in a final act of defiance. Voltaire commanded the Goliath into the fray, but this time, not to conquer—only to hold the line, to prevent senseless slaughter. But the machine inside him, the conqueror he once was, still itched to seize control, to orchestrate every move to a perfect outcome. He fought that instinct. \n\n Through the chaos, the Valkyrie emerged, cutting through the battlefield with impossible grace. She was not like the others—her blade did not seek victory, only clarity. As she reached Voltaire, the fighting around them seemed to slow, as if the battle itself bent to the moment. “You see it now,” she said, her voice carrying over the destruction. “The war never ends unless we decide to end it.” Voltaire met her gaze, and for the first time in his long exile, he truly understood. The lesson of Divergia’s past was not in who won or lost—but in the fact that it never had to happen at all.",
     "reward": [],
     "prereq": "mission-13",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "The war was over. Not through annihilation, not through total victory, but through the recognition that war did not need to be the answer. The Dominion had won, but it did not conquer. The surviving warriors were given a choice—swear fealty or walk away. Some stayed. Some left, fading into the lands beyond history. Divergia, after centuries of endless battles, stood on the edge of something new. Voltaire did not linger. There was nothing left for him here. The cycle had been broken, if only for a time, and there were no more battles to fight. Not yet. He walked the roads of Divergia, passing through the lands where he had once fought, where empires had risen and fallen, where he had seen history repeat itself again and again. But no new wars came. For the first time in centuries, he was not a warrior. He was simply a watcher, waiting, knowing that one day, Divergia would fall into war once more. But that war would not be his. Not yet. And so, he continued onward, step by step, through time itself, back toward the present, back toward the moment he had left. The moment that had sent him to this past in the first place. The war was over, but Voltaire’s story was not.",
+    "hero": "voltaire",
+    "theme": "valkyrie-battle",
+    "bookTheme": "valkyrie-battle",
     "panels": {
       "panel-1": {
         "fen": "r3r1k1/pp3pbp/1Bp1b1p1/8/2BP4/Q1n2N2/P4PPP/3R1K1R b - - 0 18",
@@ -29831,15 +29829,15 @@
   },
   "mission-15": {
     "id": "mission-15",
-    "title": "",
+    "title": "Valkyrie's Decision III",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You understand now. This was never about winning. It was about waking up.",
+      "win2": "You have broken free, Voltaire. You are no longer bound by war.",
+      "win3": "You stand at the precipice of something greater. Are you ready to leave this all behind?",
+      "lose1": "You hesitate even now. Do you still believe war is all that defines you?",
+      "lose2": "You have come so far, but one choice remains. Will you leave, or will you repeat the past?",
+      "lose3": "There is nothing left for you here. Let go. It is time to return.",
       "victory": "",
       "defeat": ""
     },
@@ -29848,13 +29846,13 @@
       [300, 15]
     ],
     "nodeText": "Garry Kasparov vs Veselin Topalov: Hoogovens Group A (1999)",
-    "storyText": "",
+    "storyText": "The Valkyrie raised her blade, but this was no weapon—it was a key, a conduit for the arcana that had remained hidden beneath centuries of warfare. The energy crackled around her as she reached into the unseen, pulling at the very fabric of time. Voltaire did not resist. He had spent ages trying to control the past, but control was never the answer. His place was not here, not in this endless cycle, but in the world that awaited him beyond it. As the magic swirled, he cast one last glance at the battlefield. The war would go on for some, but not for him. He had learned what he needed. \n\n The arcana took hold, and in an instant, Voltaire was no longer standing on the battlefield. The roar of war faded, replaced by the hum of Automata City—present-day Divergia. He had returned, centuries having passed without him, yet his mind carried the weight of them all. His militia, his copies, his plans for domination—none of it seemed to matter anymore. He had spent a lifetime at war, but he would not spend another. The Tactorius Games awaited him, as did Automata Prime, but Voltaire had already made his decision. He would no longer be a conqueror. He would be something else entirely.",
     "reward": [],
     "prereq": "mission-14",
     "opponent": "",
-    "hero": "",
-    "theme": "",
-    "bookTheme": "",
+    "hero": "voltaire",
+    "theme": "valkyrie-battle",
+    "bookTheme": "valkyrie-battle",
     "panels": {
       "panel-1": {
         "fen": "b2r3r/k4p1p/p2q1np1/NppP4/3p1Q2/P4PPB/1PP4P/1K1RR3 w - - 1 24",

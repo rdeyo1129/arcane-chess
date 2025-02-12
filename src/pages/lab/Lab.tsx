@@ -6,16 +6,16 @@ import _ from 'lodash';
 // import book2 from 'src/data/books/book2.json';
 // import book3 from 'src/data/books/book3.json';
 // import book4 from 'src/data/books/book4.json';
-import book5 from 'src/data/books/book5.json';
+// import book5 from 'src/data/books/book5.json';
 // import book6 from 'src/data/books/book6.json';
 // import book7 from 'src/data/books/book7.json';
 // import book8 from 'src/data/books/book8.json';
 // import book9 from 'src/data/books/book9.json';
 // import book10 from 'src/data/books/book10.json';
 // import book11 from 'src/data/books/book11.json';
-// import book12 from 'src/data/books/book12.json';
+import book12 from 'src/data/books/book12.json';
 
-const microscopeData: any = book5;
+const microscopeData: any = book12;
 
 interface CustomTreeNodeDatum {
   name: string;

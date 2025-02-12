@@ -407,11 +407,10 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
   getHintAndScore = (level: number) => {
     audioManager.playSFX('spell');
     this.setState(
-      (prevState) => ({
+      {
         thinking: true,
-        dialogue: [...prevState.dialogue, 'thinking'],
         hoverArcane: '',
-      }),
+      },
       () => {
         setTimeout(() => {
           arcaneChess()
@@ -1211,9 +1210,11 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   </div>
                 ) : (
                   <ul style={{ padding: '0' }}>
-                    {this.state.dialogue.map((item, key) => {
-                      return <li key={key}>{item}</li>;
-                    })}
+                    {this.state.thinking
+                      ? 'The engine is thinking...'
+                      : this.state.dialogue.map((item, key) => {
+                          return <li key={key}>{item}</li>;
+                        })}
                   </ul>
                 )}
               </div>

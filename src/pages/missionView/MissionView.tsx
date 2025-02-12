@@ -555,11 +555,10 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   getHintAndScore = (level: number) => {
     audioManager.playSFX('spell');
     this.setState(
-      (prevState) => ({
+      {
         thinking: true,
-        dialogue: [...prevState.dialogue, 'thinking'],
         hoverArcane: '',
-      }),
+      },
       () => {
         setTimeout(() => {
           arcaneChess()
@@ -1400,11 +1399,12 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                       <p>{arcana[this.state.hoverArcane].description}</p>
                     </div>
                   ) : (
-                    <ul style={{ padding: '0', height: 'auto' }}>
-                      <li>{variantExpos[this.state.preset]}</li>
-                      {this.state.dialogue.map((item, key) => {
-                        return <li key={key}>{item}</li>;
-                      })}
+                    <ul style={{ padding: '0' }}>
+                      {this.state.thinking
+                        ? 'The engine is thinking...'
+                        : this.state.dialogue.map((item, key) => {
+                            return <li key={key}>{item}</li>;
+                          })}
                     </ul>
                   )}
                 </div>

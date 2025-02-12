@@ -28220,12 +28220,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The abyss coils around you, but you press forward.",
+      "win2": "The serpent tests your mind, but your will does not waver.",
+      "win3": "The illusions shatter, and the abyss acknowledges your strength.",
+      "lose1": "Doubt slithers into your thoughts, slowing your steps.",
+      "lose2": "The darkness grows heavy—the abyss does not yield easily.",
+      "lose3": "The serpent's whispers drown your resolve—you must silence them.",
       "victory": "",
       "defeat": ""
     }
@@ -28278,12 +28278,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Banished Tsar stands before you, judgment incarnate.",
+      "win2": "Flames consume the past, and only your resolve remains.",
+      "win3": "Destruction seeks to erase you, but you endure beyond ruin.",
+      "lose1": "The fire of history scorches your memories.",
+      "lose2": "Each strike burns not just the battlefield, but what once was.",
+      "lose3": "The Tsar’s wrath is absolute, seeking to reduce you to nothing.",
       "victory": "",
       "defeat": ""
     }
@@ -28334,12 +28334,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Variant watches without recognition, yet you hold firm.",
+      "win2": "Memories twist and fracture, but you reclaim your truth.",
+      "win3": "Even as your past is unraveled, you refuse to break.",
+      "lose1": "His silence is heavier than any strike.",
+      "lose2": "Your mind is an open wound, bleeding doubt.",
+      "lose3": "The Variant carves into your memories, leaving only shadows.",
       "victory": "",
       "defeat": ""
     }
@@ -28397,12 +28397,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The battle is not just steel and strength—it is conviction.",
+      "win2": "The Variant moves with perfect precision, but so do you.",
+      "win3": "This is more than a fight—it is the unraveling of what was.",
+      "lose1": "His every move answers yours, a perfect mirror.",
+      "lose2": "Your strikes feel hollow, your defenses fragile.",
+      "lose3": "This is not a battle—it is a lesson you are failing.",
       "victory": "",
       "defeat": ""
     }
@@ -28455,12 +28455,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Baelgorath’s illusions tighten around you, but you remain aware.",
+      "win2": "You cut through the deception, breaking the endless cycle.",
+      "win3": "The abyss no longer holds you—you step beyond its reach.",
+      "lose1": "Every reflection is real, and none are real.",
+      "lose2": "You are drowning, lost in an ocean of illusions.",
+      "lose3": "You cannot fight what you cannot see.",
       "victory": "",
       "defeat": ""
     }
@@ -28513,12 +28513,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You move unseen, observing the disciples’ whispered prayers.",
+      "win2": "Their rituals speak of devotion, but also of war.",
+      "win3": "You step forward—not as an outsider, but as a force within their story.",
+      "lose1": "The weight of their faith is suffocating, pressing upon your thoughts.",
+      "lose2": "Even in their reverence, there is an undercurrent of violence.",
+      "lose3": "You are not watching them; they have always been watching you.",
       "victory": "",
       "defeat": ""
     }
@@ -28581,12 +28581,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Your presence among them is not questioned—it is accepted.",
+      "win2": "No words are needed; the battle ahead binds you all.",
+      "win3": "The war has already begun—not with weapons, but with belief.",
+      "lose1": "Faith does not welcome outsiders easily.",
+      "lose2": "They watch you with quiet understanding, yet you remain separate.",
+      "lose3": "To them, you are both ally and stranger—an uncertain force.",
       "victory": "",
       "defeat": ""
     }
@@ -28643,12 +28643,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "Preparation is silent, yet the air hums with anticipation.",
+      "win2": "Each disciple moves with precision, faith guiding their every step.",
+      "win3": "The battle is already decided in their minds—their victory, inevitable.",
+      "lose1": "You feel the weight of the inevitable pressing down upon you.",
+      "lose2": "Even before the battle begins, you sense its outcome is set.",
+      "lose3": "The silence before war is louder than the battle itself.",
       "victory": "",
       "defeat": ""
     }
@@ -28699,12 +28699,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "You step forward, conviction stronger than hesitation.",
+      "win2": "Sidian stands before you—not as an enemy, but as opposition.",
+      "win3": "The war you never spoke of is finally fought.",
+      "lose1": "Each step forward feels heavier than the last.",
+      "lose2": "Between you and Sidian lies a lifetime of unspoken battles.",
+      "lose3": "This fight is not about strength—it is about everything unsaid.",
       "victory": "",
       "defeat": ""
     }
@@ -28757,12 +28757,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Phoenix and Leviathan collide, shaping the battlefield with their fury.",
+      "win2": "Gods wage war while mortals watch in reverence and fear.",
+      "win3": "Fire and tide consume the land—there is no middle ground.",
+      "lose1": "The battlefield is no longer yours—it belongs to forces beyond control.",
+      "lose2": "You stand between titans, insignificant in their storm.",
+      "lose3": "The gods do not care who wins or loses—they only fight.",
       "victory": "",
       "defeat": ""
     }
@@ -28833,12 +28833,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The battle is no longer physical—it is fought in the mind.",
+      "win2": "You reach for Cassandra, but she is already too far gone.",
+      "win3": "This is not a war you can win, only one you must understand.",
+      "lose1": "The mind link pulses with memories—too many to hold onto.",
+      "lose2": "She throws back everything you offer, cutting deeper with each moment.",
+      "lose3": "You see what she has become, and you cannot stop it.",
       "victory": "",
       "defeat": ""
     }
@@ -28849,7 +28849,7 @@
     "title": "The True Power of Calculation",
     "nodeText": "",
     "storyTitle": "",
-    "storyText": "The battle was consuming itself. The Leviathan and Phoenix tore at one another in the skies, their wounds scarring the land, their fury shaking the heavens, yet neither could claim dominance. Below them, the armies of Vermillion and Cerulean Deep lay in ruin, bodies strewn across the broken landscape, the ideals they had fought for bleeding into the earth alongside them. And then, through the smoke and fire, the Banished Serpent descended. It did not strike with sides or favoritism—it was a force beyond nations, beyond ideologies, beyond even the gods warring above. When it struck, it did so with finality, with an inevitability that silenced the battlefield in a single, monstrous sweep. Cassandra stood in its path, unyielding, unwavering, even as its coils lashed through the ranks, even as its venom spilled into the soil, even as death came for her with the certainty of fate itself. She did not run. She did not falter. She faced it, and then, in the space of a heartbeat, she was gone. The armies that remained saw the truth in that instant—that there was no victor in this war, that there would be no conquest, no triumph, only loss upon loss upon loss. And so, with what little breath remained in their lungs and what little will remained in their hearts, they called for the only thing left: surrender. The battle ended in a draw, not because either side had relented, but because there was no war left to fight. The battlefield was silent, the gods above still locked in their eternal struggle, but below them, among the shattered remnants of two great cities, there was only the dead.",
+    "storyText": "The battle was consuming itself. The Leviathan and Phoenix tore at one another in the skies, their wounds scarring the land, their fury shaking the heavens, yet neither could claim dominance. Below them, the armies of Vermillion and Cerulean Deep lay in ruin, bodies strewn across the broken landscape, the ideals they had fought for bleeding into the earth alongside them. And then, through the smoke and fire, the Serpent descended. It did not strike with sides or favoritism—it was a force beyond nations, beyond ideologies, beyond even the gods warring above. When it struck, it did so with finality, with an inevitability that silenced the battlefield in a single, monstrous sweep. Cassandra stood in its path, unyielding, unwavering, even as its coils lashed through the ranks, even as its venom spilled into the soil, even as death came for her with the certainty of fate itself. She did not run. She did not falter. She faced it, and then, in the space of a heartbeat, she was gone. The armies that remained saw the truth in that instant—that there was no victor in this war, that there would be no conquest, no triumph, only loss upon loss upon loss. And so, with what little breath remained in their lungs and what little will remained in their hearts, they called for the only thing left: surrender. The battle ended in a draw, not because either side had relented, but because there was no war left to fight. The battlefield was silent, the gods above still locked in their eternal struggle, but below them, among the shattered remnants of two great cities, there was only the dead.",
     "hero": "",
     "opponent": "cassandra",
     "theme": "serpent-phoenix",
@@ -28899,12 +28899,12 @@
       }
     },
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Serpent strikes, ending the war with finality.",
+      "win2": "Cassandra does not falter—even in the face of oblivion.",
+      "win3": "The battlefield falls silent—not from victory, but from emptiness.",
+      "lose1": "You see the end approaching, and you cannot stop it.",
+      "lose2": "Everything collapses—not in conquest, but in ruin.",
+      "lose3": "The war does not end in triumph—it ends because there is nothing left.",
       "victory": "",
       "defeat": ""
     }
@@ -28914,12 +28914,12 @@
     "title": "The Above Machines I",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Imperium has seen the cycles of war—and it has chosen to end them.",
+      "win2": "This is not conquest, not destruction. This is correction.",
+      "win3": "There will be no more chaos. Only order.",
+      "lose1": "The machines move with cold precision, their purpose absolute.",
+      "lose2": "Every possibility has been accounted for. Every mistake erased.",
+      "lose3": "To resist is to defy logic itself. And logic always prevails.",
       "victory": "",
       "defeat": ""
     },
@@ -28971,12 +28971,12 @@
     "title": "The Above Machines II",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The Manti evolve, adapting at every turn—but the machines adapt faster.",
+      "win2": "Every mutation is countered before it takes root.",
+      "win3": "For the first time, the Manti are outmatched.",
+      "lose1": "The battlefield is a calculation, and you are an unsolved variable.",
+      "lose2": "The Imperium’s logic is undeniable. It does not break—it refines.",
+      "lose3": "Their response is immediate, their adjustments flawless. The Manti are losing.",
       "victory": "",
       "defeat": ""
     },
@@ -29028,12 +29028,12 @@
     "title": "The Above Machines III",
     "storyTitle": "",
     "diagWinLose": {
-      "win1": "",
-      "win2": "",
-      "win3": "",
-      "lose1": "",
-      "lose2": "",
-      "lose3": "",
+      "win1": "The war collapses under its own weight—neither side victorious.",
+      "win2": "Evolution unravels. The machines reach a paradox. Both forces fail.",
+      "win3": "The battlefield is silent, filled only with remnants of what once was.",
+      "lose1": "The Manti’s mutations spiral out of control, unsustainable.",
+      "lose2": "The Imperium’s calculations fracture under infinite possibilities.",
+      "lose3": "The war does not end in battle. It ends in irreparable failure.",
       "victory": "",
       "defeat": ""
     },

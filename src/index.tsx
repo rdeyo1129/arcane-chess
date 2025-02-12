@@ -24,8 +24,8 @@ import '@fontsource/exo/700-italic.css';
 import ConditionalAudioPlayer from './utils/audio/ConditionalAudioPlayer';
 
 import { FrontPage } from '././pages/frontPage/FrontPage';
-import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
-import { Lab } from '././pages/lab/Lab';
+// import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
+// import { Lab } from '././pages/lab/Lab';
 import { Campaign } from '././pages/campaign/Campaign';
 import { Dashboard } from '././pages/dashboard/Dashboard';
 import { Book } from '././pages/book/Book';
@@ -100,7 +100,7 @@ const router = createBrowserRouter(
           // </PrivateRoute>
         }
       />
-      <Route
+      {/* <Route
         path="/create"
         element={
           <PrivateRoute>
@@ -115,7 +115,7 @@ const router = createBrowserRouter(
             <Lab />
           </PrivateRoute>
         }
-      />
+      /> */}
       <Route
         path="/quickplay"
         element={

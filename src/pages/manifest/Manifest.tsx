@@ -335,9 +335,11 @@ class UnwrappedManifest extends React.Component<object, State> {
               <div id="notes" className="notes">
                 <h3>v4.0.0 Release Notes</h3>
                 <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                  <li>Sagas 2 and 3 released</li>
                   <li>Login added</li>
                   <li>Leaderboard added</li>
                   <li>More quickplay game modes have been added</li>
+                  <li>Music and sound effects added</li>
                   <li>
                     Arcana
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>

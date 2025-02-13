@@ -267,6 +267,25 @@
         "correctMoves": [],
         "viewOnly": true,
         "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The journey of a thousand miles begins with a single step. — Confucius",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "royalties": {},
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       }
     }
   },
@@ -363,6 +382,25 @@
           "royaltyV": {},
           "royaltyE": {}
         },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-4": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "The answers you seek never come when the mind is busy, they come when the mind is still. — Leon Brown",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "royalties": {},
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},

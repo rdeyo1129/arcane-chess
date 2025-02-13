@@ -126,6 +126,25 @@
         "correctMoves": [""],
         "viewOnly": true,
         "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "How we do one thing is how we do everything. — Cheri Huber",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "royalties": {},
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       }
     },
     "boss": false
@@ -250,6 +269,25 @@
           "royaltyV": {},
           "royaltyE": {}
         },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "When your house is on fire, do not waste time chasing rats. — African Chess Proverb",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "royalties": {},
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},

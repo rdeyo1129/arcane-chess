@@ -71,7 +71,6 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
       '/chapter',
       '/profile',
       '/leaderboard',
-      '/manifest',
     ];
 
     if (lessonRoutes.includes(location.pathname)) {

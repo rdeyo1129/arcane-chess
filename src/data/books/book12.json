@@ -29730,7 +29730,7 @@
     "nodeText": "Boris Gelfand vs Hikaru Nakamura: World Team Championship (2010)",
     "storyText": "The battlefield stretched beyond the horizon, where the final war of Divergia’s past would be waged. Across the torn landscape, six factions converged for the last time—an echo of centuries of bloodshed and shifting alliances. The Wraithborn called forth their dead, skeletal warlords commanding legions that would never tire. The Disciples, cloaked in prophecy, declared this battle as the final trial of their faith. The Automata, relentless and precise, moved with mechanical synchronization, while the remnants of humanity—Valkyries, Mongols, Samurai—stood together in defiance of extinction. Above them all, the sky churned with unnatural energy, the weight of war pressing against the very fabric of Divergia’s past. \n\n Voltaire, standing at the center, felt the weight of every battle before this one. The cycle had repeated too many times—wars fought, empires rising and falling, but nothing ever truly changing. He had seen this before, lived through it, manipulated its tides, and now he stood at the precipice of its inevitable conclusion. The Goliath, his towering war machine, waited at his side, its metal plating scarred from centuries of conflict. He had the power to crush enemies, to shift the tide once more, but for the first time, he hesitated. War was no longer a puzzle to solve—it was a lesson he was beginning to understand. And if he was right, then this battle was nothing more than a final move in a game played for too long.",
     "reward": [],
-    "prereq": "temple-5",
+    "prereq": "",
     "opponent": "",
     "hero": "voltaire",
     "theme": "valkyrie-battle",

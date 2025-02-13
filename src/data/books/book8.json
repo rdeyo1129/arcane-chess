@@ -147,6 +147,25 @@
         "correctMoves": [""],
         "viewOnly": true,
         "orientation": "white"
+      },
+      "panel-6": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "You may learn much more from a game you lose than from a game you win. — José Raúl Capablanca",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "royalties": {},
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       }
     },
     "diagWinLose": {
@@ -275,6 +294,25 @@
           "royaltyV": {},
           "royaltyE": {}
         },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Our greatest glory is not in never falling, but in rising every time we fall. — Ralph Waldo Emerson",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "royalties": {},
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},

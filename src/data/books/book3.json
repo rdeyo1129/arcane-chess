@@ -126,6 +126,25 @@
         "correctMoves": [""],
         "viewOnly": true,
         "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "There is no such thing as an unbeatable position. — Garry Kasparov",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "royalties": {},
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       }
     },
     "boss": false
@@ -250,6 +269,25 @@
           "royaltyV": {},
           "royaltyE": {}
         },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Avoid the crowd. Do your own thinking independently. Be the chess player, not the chess piece. — Ralph Charell",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "royalties": {},
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},

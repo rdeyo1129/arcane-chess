@@ -173,6 +173,25 @@
         "correctMoves": [""],
         "viewOnly": true,
         "orientation": "white"
+      },
+      "panel-7": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Luck is what happens when preparation meets opportunity. — Seneca",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "royalties": {},
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
       }
     },
     "diagWinLose": {
@@ -301,6 +320,25 @@
           "royaltyV": {},
           "royaltyE": {}
         },
+        "preset": "CLEAR",
+        "whiteArcane": {},
+        "blackArcane": {},
+        "config": {},
+        "correctMoves": [""],
+        "viewOnly": true,
+        "orientation": "white"
+      },
+      "panel-5": {
+        "fen": "8/8/8/8/8/8/8/8 w - - 0 1",
+        "fenHistory": ["8/8/8/8/8/8/8/8 w - - 0 1"],
+        "history": [],
+        "panelText": "Tactics is knowing what to do when there is something to do; strategy is knowing what to do when there is nothing to do. — Savielly Tartakower",
+        "arrowsCircles": [],
+        "nodeText": "",
+        "reward": [],
+        "description": "",
+        "opponent": "",
+        "royalties": {},
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {},

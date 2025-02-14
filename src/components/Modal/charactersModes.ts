@@ -215,74 +215,85 @@ export const modes: Record<string, GameModeType> = padModes({
       setup: 'rnbtkbnr',
     },
   },
-  sequel: {
-    name: 'The Sequel',
+  sacsAndSwaps: {
+    name: 'Sacs and Swaps',
     white: {
-      arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
-      setup: 'RNMQKBNR',
+      arcana: [arcana.offrA, arcana.swapDEP, arcana.modsEXT],
+      setup: 'RNBMKBNR',
     },
     black: {
-      arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
-      setup: 'rnmqkbnr',
+      arcana: [arcana.offrA, arcana.swapDEP, arcana.modsEXT],
+      setup: 'rnbmkbnr',
     },
   },
-  chronicles: {
-    name: 'Chronicles',
-    white: {
-      arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
-      setup: 'RNMQKMNR',
-    },
-    black: {
-      arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
-      setup: 'rnmqkmnr',
-    },
-  },
-  alternateTimeline: {
-    name: 'Alternate Timeline',
-    white: {
-      arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
-      setup: 'RNBQKBTR',
-    },
-    black: {
-      arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
-      setup: 'rnbqkbtr',
-    },
-  },
-  theoretical: {
-    name: 'A Theoretical Balance',
+  // sequel: {
+  //   name: 'The Sequel',
+  //   white: {
+  //     arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
+  //     setup: 'RNMQKBNR',
+  //   },
+  //   black: {
+  //     arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
+  //     setup: 'rnmqkbnr',
+  //   },
+  // },
+  // chronicles: {
+  //   name: 'Chronicles',
+  //   white: {
+  //     arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
+  //     setup: 'RNMQKMNR',
+  //   },
+  //   black: {
+  //     arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
+  //     setup: 'rnmqkmnr',
+  //   },
+  // },
+  // alternateTimeline: {
+  //   name: 'Alternate Timeline',
+  //   white: {
+  //     arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
+  //     setup: 'RNBQKBTR',
+  //   },
+  //   black: {
+  //     arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
+  //     setup: 'rnbqkbtr',
+  //   },
+  // },
+  senario2: {
+    name: 'Scenario 2',
     white: {
       arcana: [],
       setup: 'RNBQKBNR',
     },
     black: {
-      arcana: [arcana.modsFUG],
+      arcana: [arcana.modsAET],
       setup: 'rnbqkbnr',
     },
   },
-  evenMoreTheoretical: {
-    name: 'Theoretical Balance 2',
-    white: {
-      arcana: [arcana.modsFUG],
-      setup: 'RNBQKBNR',
-    },
-    black: {
-      arcana: [arcana.modsINH],
-      setup: 'rnbqkbnr',
-    },
-  },
-  somewhatMoreTheoretical: {
-    name: 'Theoretical Balance 3',
+  secnario6: {
+    name: 'Scenario 6',
     white: {
       arcana: [arcana.modsAET],
       setup: 'RNBQKBNR',
     },
     black: {
-      arcana: [arcana.modsFUG],
+      arcana: [arcana.dyadP],
       setup: 'rnbqkbnr',
     },
   },
-  minorInconvenience: {
-    name: 'A Minor Inconvenience',
+  // somewhatMoreTheoretical: {
+  //   name: 'Theoretical Balance 3',
+  //   white: {
+  //     arcana: [arcana.modsAET],
+  //     setup: 'RNBQKBNR',
+  //   },
+  //   black: {
+  //     arcana: [arcana.modsFUG],
+  //     setup: 'rnbqkbnr',
+  //   },
+  // },
+  seconds: {
+    name: 'Seconds',
     white: {
       arcana: [arcana.dyadB, arcana.modsGLU],
       setup: 'RNBQKBNR',
@@ -306,23 +317,23 @@ export const modes: Record<string, GameModeType> = padModes({
   suddenDeath: {
     name: 'Sudden Death',
     white: {
-      arcana: [arcana.dyadA, arcana.sumnRE, arcana.modsEXT, arcana.modsREA],
+      arcana: [arcana.dyadA, arcana.modsREA, arcana.modsINH, arcana.modsGLU],
       setup: 'TMQVKQMT',
     },
     black: {
-      arcana: [arcana.dyadA, arcana.sumnRE, arcana.modsEXT, arcana.modsREA],
+      arcana: [arcana.dyadA, arcana.modsREA, arcana.modsINH, arcana.modsGLU],
       setup: 'tmqvkqmt',
     },
   },
-  stampede: {
-    name: 'Stampede!',
-    white: {
-      arcana: [],
-      setup: 'ZNUVKUNZ',
-    },
-    black: {
-      arcana: [],
-      setup: 'znuvkunz',
-    },
-  },
+  // stampede: {
+  //   name: 'Stampede!',
+  //   white: {
+  //     arcana: [],
+  //     setup: 'ZNUVKUNZ',
+  //   },
+  //   black: {
+  //     arcana: [],
+  //     setup: 'znuvkunz',
+  //   },
+  // },
 });

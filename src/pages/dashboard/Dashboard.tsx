@@ -197,6 +197,9 @@ export class UnwrappedDashboard extends React.Component<
             <GlobalVolumeControl />
           </div>
           <div className="image-description">
+            <div className="welcome">
+              Welcome, {this.props.auth.user.username}
+            </div>
             <img
               className="hover-image"
               src={`/assets/dashboard/${this.state.hoverNav}.webp`}

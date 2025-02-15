@@ -167,6 +167,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
   }
 
   render() {
+    const currLS = getLocalStorage(this.props.auth.user.username);
     return (
       <div className="container">
         <Modal
@@ -202,7 +203,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                   outline:
                     this.state.hoverDifficulty === 'novice'
                       ? '2px solid #dddddd'
-                      : this.state.difficulty === 'novice'
+                      : currLS.difficulty === 'novice'
                       ? '2px solid #3f48cc'
                       : 'none',
                   borderRadius: '5px',
@@ -255,7 +256,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                   outline:
                     this.state.hoverDifficulty === 'intermediate'
                       ? '2px solid #dddddd'
-                      : this.state.difficulty === 'intermediate'
+                      : currLS.difficulty === 'intermediate'
                       ? '2px solid #34aa48'
                       : 'none',
                   borderRadius: '5px',
@@ -308,7 +309,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                   outline:
                     this.state.hoverDifficulty === 'advanced'
                       ? '2px solid #dddddd'
-                      : this.state.difficulty === 'advanced'
+                      : currLS.difficulty === 'advanced'
                       ? '2px solid #d9b800'
                       : 'none',
                   borderRadius: '5px',
@@ -361,7 +362,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                   outline:
                     this.state.hoverDifficulty === 'expert'
                       ? '2px solid #dddddd'
-                      : this.state.difficulty === 'expert'
+                      : currLS.difficulty === 'expert'
                       ? '2px solid #c53939'
                       : 'none',
                   borderRadius: '5px',
@@ -399,24 +400,24 @@ class UnwrappedCampaignSettingsModal extends React.Component<
               <div className="settings">
                 <div className="multiplier">
                   <div className="setting">CHALLENGE MULTIPLIER:</div>x
-                  {this.state.config.multiplier}
+                  {currLS.config.multiplier}
                 </div>
                 <div className="setting-descriptions">
                   <div className="setting">
                     <div>ENGINE DEPTH:</div>
-                    <div>{this.state.config.depth} moves</div>
+                    <div>{currLS.config.depth} moves</div>
                   </div>
                   <div className="setting">
                     <div>PLAYER CLOCK:</div>
-                    <div>{this.state.config.clock ? 'ON' : 'OFF'}</div>
+                    <div>{currLS.config.clock ? 'ON' : 'OFF'}</div>
                   </div>
                   <div className="setting">
                     <div>ENGINE TIME:</div>
-                    <div>{this.state.config.thinkingTime} seconds</div>
+                    <div>{currLS.config.thinkingTime} seconds</div>
                   </div>
                   <div className="setting">
                     <div>PLAYER COLOR:</div>
-                    <div>{this.state.config.color}</div>
+                    <div>{currLS.config.color}</div>
                   </div>
                 </div>
               </div>

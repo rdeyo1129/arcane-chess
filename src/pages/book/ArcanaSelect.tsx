@@ -141,7 +141,7 @@ export const unlockableArcana = [
   },
 ];
 
-export const allowedArcanaPerChapter = [2, 2, 2, 4, 4, 4, 6, 6, 6, 8, 8, 8];
+export const allowedArcanaPerChapter = [0, 2, 2, 2, 4, 4, 4, 6, 6, 6, 8, 8, 8];
 
 export default class ArcanaSelect extends React.Component<
   ArcanaSelectProps,
@@ -237,6 +237,42 @@ export default class ArcanaSelect extends React.Component<
       ...getLocalStorage(auth.user.username),
       arcana: {},
     });
+  };
+
+  calculateArcanaScore = (LS: any) => {
+    if (!unlockableArcana || !Array.isArray(unlockableArcana)) {
+      console.error('unlockableArcana is undefined or not an array.');
+      return 0;
+    }
+
+    const getTotalScore = (arcanaSet: any) => {
+      let total = 0;
+
+      unlockableArcana.forEach((arcanaData, index) => {
+        if (!arcanaData || typeof arcanaData !== 'object') {
+          console.warn(
+            `Skipping invalid arcana set at index ${index}`,
+            arcanaData
+          );
+          return;
+        }
+
+        Object.entries(arcanaData).forEach(([arcana, value]) => {
+          if (arcanaSet && arcanaSet[arcana]) {
+            total += arcanaSet[arcana] * value;
+          }
+        });
+      });
+
+      return total;
+    };
+
+    const totalLSArcanaScore = getTotalScore(LS?.arcana);
+    const totalEngineArcanaScore = getTotalScore(this.props.engineArcana);
+
+    return LS?.config?.color === 'white'
+      ? totalLSArcanaScore - totalEngineArcanaScore
+      : totalEngineArcanaScore - totalLSArcanaScore;
   };
 
   render() {
@@ -348,6 +384,16 @@ export default class ArcanaSelect extends React.Component<
                   />
                 </div>
               ))}
+            </div>
+            <div
+              style={{
+                height: '40px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              Imbalance Score: {this.calculateArcanaScore(LS)}
             </div>
           </div>
         )}

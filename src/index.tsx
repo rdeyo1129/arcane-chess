@@ -25,7 +25,7 @@ import ConditionalAudioPlayer from './utils/audio/ConditionalAudioPlayer';
 
 import { FrontPage } from '././pages/frontPage/FrontPage';
 // import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
-// import { Lab } from '././pages/lab/Lab';
+// import { Lab } from './pages/lab/Lab';
 import { Campaign } from '././pages/campaign/Campaign';
 import { Dashboard } from '././pages/dashboard/Dashboard';
 import { Book } from '././pages/book/Book';

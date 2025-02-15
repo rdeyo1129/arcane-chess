@@ -141,7 +141,14 @@ export class UnwrappedCampaign extends React.Component<
               setLocalStorage({
                 ...currLS,
                 chapter: 0,
-                config: {},
+                config: {
+                  multiplier: 80,
+                  clock: false,
+                  depth: 1,
+                  thinkingTime: 2,
+                  color: 'white',
+                },
+                difficulty: 'novice',
                 nodeScores: {},
                 arcana: {},
                 inventory: {},

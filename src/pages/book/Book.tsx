@@ -601,6 +601,16 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                                 advanced: 110,
                                 expert: 125,
                               };
+                              const updatedConfig = { ...LS.config };
+                              let updatedArcana = arcanaToStore;
+                              if (_.includes(node.id, 'temple')) {
+                                updatedArcana = {};
+                                this.updateMultiplier(
+                                  diffMults[LS.difficulty],
+                                  true
+                                );
+                                this.setState({});
+                              }
                               if (
                                 Object.keys(missionArcanaDelta || {}).length
                               ) {
@@ -612,8 +622,8 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                               setLocalStorage({
                                 auth: currLS.auth,
                                 chapter: currLS.chapter,
-                                config: currLS.config,
-                                arcana: arcanaToStore,
+                                config: updatedConfig,
+                                arcana: updatedArcana,
                                 nodeScores: currLS.nodeScores,
                                 inventory: currLS.inventory,
                                 nodeId: node.id,

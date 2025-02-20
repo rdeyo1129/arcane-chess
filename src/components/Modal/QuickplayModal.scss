@@ -1,10 +1,13 @@
+@import 'src/styles/_components.scss';
+@import 'src/styles/_variables.scss';
+
 .quickplay-modal {
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   width: 90%;
-  background: linear-gradient(to top, #111111, #555555);
+  background: linear-gradient(to top, #000011, $B_MENU);
   padding: 30px;
   border-radius: 10px;
   .player-options-text {

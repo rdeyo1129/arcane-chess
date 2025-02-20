@@ -100,7 +100,7 @@ const unpaddedCharacters = [
     setup: 'RNBTKBNR',
     imagePath: 'anarchist',
     color: R,
-    description: 'Rice anyone?',
+    description: 'No rules, but still rules.',
   },
   {
     name: 'The Solider',

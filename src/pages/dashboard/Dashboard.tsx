@@ -94,12 +94,15 @@ export class UnwrappedDashboard extends React.Component<
             <Link
               className="home-button"
               to="/"
+              onClick={() => {
+                audioManager.playSFX('cheer');
+              }}
               onMouseEnter={() => this.setState({ hoverNav: 'stacktadium' })}
             >
               <Button
                 text="STACKTADIUM"
                 className="tertiary"
-                color="R"
+                color="V"
                 height={50}
                 width={'100%'}
                 disabled={false}
@@ -179,7 +182,7 @@ export class UnwrappedDashboard extends React.Component<
               <Button
                 text="LOGOUT"
                 className="tertiary"
-                color="B"
+                color="R"
                 height={50}
                 width={'100%'}
                 disabled={false}

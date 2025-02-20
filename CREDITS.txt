@@ -4,9 +4,9 @@ This project uses open-source assets from OpenGameArt:
 
 ### Sounds:
 
-- "UI Sound Effects (Buttons, Switches, Clicks)" by [Kenney](https://opengameart.org/users/kenney)
+- "Impact Sounds (Buttons, Switches, Clicks)" by [Kenney](www.kenney.nl)
   - License: [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/)
-  - Source: [Link](https://opengameart.org/content/51-ui-sound-effects-buttons-switches-and-clicks)
+  - Source: [Link](https://kenney.nl/assets/impact-sounds)
 
 - "Scary Ghost 2" by [The Berklee College of Music](https://opengameart.org/users/qubodup)
   - License: [Creative Commons Attribution 3.0 Unported (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/)
@@ -23,6 +23,11 @@ This project uses open-source assets from OpenGameArt:
 - "Freeze Spell" by [artisticdude](https://opengameart.org/users/artisticdude)
   - License: [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/)
   - Source: [Link](https://opengameart.org/content/freeze-spell-0)
+
+- "NES 8-bit sound effects" by [shiru8bit](https://opengameart.org/users/shiru8bit)
+  - License: [Creative Commons Attribution 3.0 Unported (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/)
+  - License: [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/)
+  - Source: [Link](https://opengameart.org/content/nes-8-bit-sound-effects)
 
 ### Music:
 

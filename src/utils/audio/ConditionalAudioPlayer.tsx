@@ -2,14 +2,15 @@ import React, { useEffect } from 'react';
 import { audioManager } from './AudioManager';
 
 // Sound Effects
-import explosion from '/assets/noise/sounds/explosion.wav';
-import click1 from '/assets/noise/sounds/click1.mp3';
-import click3 from '/assets/noise/sounds/click3.mp3';
+import impact from '/assets/noise/sounds/explosion.wav';
+import move from '/assets/noise/sounds/footstep_concrete_000.mp3';
+import capture from '/assets/noise/sounds/impactGeneric_light_001.mp3';
 import fire from '/assets/noise/sounds/Fire1.mp3';
 import spell from '/assets/noise/sounds/Spell1.mp3';
 import freeze from '/assets/noise/sounds/freeze.mp3';
-import levelup from '/assets/noise/sounds/levelup.wav';
-import ghost2 from '/assets/noise/sounds/ghost_2.mp3';
+import victory from '/assets/noise/sounds/levelup.wav';
+import defeat from '/assets/noise/sounds/ghost_2.mp3';
+import cheer from '/assets/noise/sounds/01_start2.wav';
 
 // Music Tracks
 import tactoriusmenu from '/assets/noise/music/tactoriusmenu.wav';
@@ -25,9 +26,9 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
   useEffect(() => {
     // Register Sound Effects
     if (!audioManager.isSoundRegistered('move'))
-      audioManager.registerSFX('move', click1);
+      audioManager.registerSFX('move', move);
     if (!audioManager.isSoundRegistered('capture'))
-      audioManager.registerSFX('capture', click3);
+      audioManager.registerSFX('capture', capture);
     if (!audioManager.isSoundRegistered('spell'))
       audioManager.registerSFX('spell', spell);
     if (!audioManager.isSoundRegistered('fire'))
@@ -35,11 +36,13 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
     if (!audioManager.isSoundRegistered('freeze'))
       audioManager.registerSFX('freeze', freeze);
     if (!audioManager.isSoundRegistered('victory'))
-      audioManager.registerSFX('victory', levelup);
+      audioManager.registerSFX('victory', victory);
     if (!audioManager.isSoundRegistered('defeat'))
-      audioManager.registerSFX('defeat', ghost2);
+      audioManager.registerSFX('defeat', defeat);
     if (!audioManager.isSoundRegistered('impact'))
-      audioManager.registerSFX('impact', explosion);
+      audioManager.registerSFX('impact', impact);
+    if (!audioManager.isSoundRegistered('cheer'))
+      audioManager.registerSFX('cheer', cheer);
 
     // Register Background Music
     if (!audioManager.isSoundRegistered('lesson1'))

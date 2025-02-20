@@ -947,6 +947,29 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   </i>
                 </strong>
                 <div className="buttons">
+                  <div className="left-buttons">
+                    <Button
+                      text="HOME"
+                      className="secondary"
+                      color="B"
+                      width={160}
+                      height={40}
+                      onClick={() => {
+                        this.props.navigate('/');
+                      }}
+                    />
+                    <Button
+                      text="ANALYZE"
+                      className="secondary"
+                      color="B"
+                      width={160}
+                      height={40}
+                      disabled
+                      // onClick={() => {
+                      //   this.props.navigate('/chapter');
+                      // }}
+                    />
+                  </div>
                   <Button
                     text="RETRY"
                     className="primary"

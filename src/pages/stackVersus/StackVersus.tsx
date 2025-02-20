@@ -20,11 +20,11 @@ import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
 import arcanaJson from 'src/data/arcana.json';
 
-import arcaneChess from 'src/arcaneChess/arcaneChess.mjs';
+import arcaneChess from 'src/stacktadium/arcaneChess.mjs';
 // import {
 //   arcane as arcaneChess,
 //   arcaneChessWorker,
-// } from '../../arcaneChess/arcaneChessInstance.js';
+// } from '../../stacktadium/arcaneChessInstance.js';
 import {
   GameBoard,
   InCheck,
@@ -36,8 +36,8 @@ import {
   MFLAGSUMN,
   MFLAGCNSM,
   MFLAGSHFT,
-} from 'src/arcaneChess/board.mjs';
-import { PrMove, PrSq } from 'src/arcaneChess/io.mjs';
+} from 'src/stacktadium/board.mjs';
+import { PrMove, PrSq } from 'src/stacktadium/io.mjs';
 import {
   prettyToSquare,
   PIECES,
@@ -45,16 +45,16 @@ import {
   COLOURS,
   RtyChar,
   PceChar,
-} from 'src/arcaneChess/defs.mjs';
-import { outputFenOfCurrentPosition } from 'src/arcaneChess/board.mjs';
-import { SearchController } from 'src/arcaneChess/search.mjs';
-import { CheckAndSet, CheckResult } from 'src/arcaneChess/gui.mjs';
+} from 'src/stacktadium/defs.mjs';
+import { outputFenOfCurrentPosition } from 'src/stacktadium/board.mjs';
+import { SearchController } from 'src/stacktadium/search.mjs';
+import { CheckAndSet, CheckResult } from 'src/stacktadium/gui.mjs';
 
 import {
   whiteArcaneConfig,
   blackArcaneConfig,
   clearArcanaConfig,
-} from 'src/arcaneChess/arcaneDefs.mjs';
+} from 'src/stacktadium/arcaneDefs.mjs';
 
 import Button from 'src/components/Button/Button';
 import ChessClock from 'src/components/Clock/Clock';
@@ -243,8 +243,10 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
         e: { disabled: false, powers: {}, picks: 0 },
         f: { disabled: false, powers: {}, picks: 0 },
       },
-      wArcana: { sumnX: 1, sumnRE: 1, swapDEP: 1, modsEXT: 1 },
-      bArcana: { sumnX: 1, sumnRE: 1, swapDEP: 1, modsEXT: 1 },
+      // wArcana: { sumnX: 1, sumnRE: 1, swapDEP: 1, modsEXT: 1 },
+      // bArcana: { sumnX: 1, sumnRE: 1, swapDEP: 1, modsEXT: 1 },
+      wArcana: {},
+      bArcana: {},
       placingPiece: 0,
       swapType: '',
       isTeleport: false,
@@ -769,10 +771,8 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
         }),
         () => {
           this.setState({
-            fen: `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
-            fenHistory: [
-              `${this.state.blackSetup}/pppppppp/8/8/8/8/PPPPPPPP/${this.state.whiteSetup} w KQkq - 0 1`,
-            ],
+            fen: `2MwMs2/8/T6q/t6Q/T6q/t6Q/8/2mWmS2 w - - 0 1`,
+            fenHistory: [`2MwMs2/8/T6q/t6Q/T6q/t6Q/8/2mWmS2 w - - 0 1`],
             orientation: this.state.playerColor,
             selectedSide: this.state.playerColor,
           });
@@ -1089,7 +1089,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
   render() {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
-    const LS = getLocalStorage(this.props.auth.user.username);
+    // const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
     return (
       <div className="stackversus-tactorius-board fade">
@@ -1116,6 +1116,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                   this.state.royalties,
                   this.state.preset
                 );
+                console.log(this.state.thinkingTime, this.state.engineDepth);
                 this.setState(
                   {
                     turn: GameBoard.side === 0 ? 'white' : 'black',
@@ -1159,9 +1160,8 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
             // handleClose={() => this.handleModalClose()}
             // modalType={this.state.endScenario}
             message={this.state.gameOverType} // interpolate
-            score={LS.nodeScores[this.state.nodeId]}
+            score={null}
             type={
-              this.state.gameOverType.split(' ')[1] === 'mates' &&
               this.state.playerColor === this.state.gameOverType.split(' ')[0]
                 ? 'victory-qp'
                 : 'defeat-qp'
@@ -1249,8 +1249,8 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                   wFaction={this.state.whiteFaction}
                   bFaction={this.state.blackFaction}
                   royalties={this.state.royalties}
-                  wVisible={this.arcaneChess().getInvisibility()[0] <= 0}
-                  bVisible={this.arcaneChess().getInvisibility()[1] <= 0}
+                  wVisible={true}
+                  bVisible={true}
                   premovable={{
                     enabled: false,
                     // premoveFunc: () => {},

@@ -14,13 +14,13 @@ import 'src/chessground/styles/normal.scss';
 import Button from 'src/components/Button/Button';
 import Select from 'src/components/Select/Select';
 
-import CharacterSelect from 'src/components/Modal/CharacterSelect';
-import ArcanaSelect from 'src/components/Modal/ArcanaSelect';
-import ArmySelect, { armies } from 'src/components/Modal/ArmySelect';
+// import CharacterSelect from 'src/components/Modal/CharacterSelect';
+// import ArcanaSelect from 'src/components/Modal/ArcanaSelect';
+import { armies } from 'src/components/Modal/ArmySelect';
 
 import {
   startingInventory,
-  modes,
+  // modes,
   characters,
 } from 'src/components/Modal/charactersModes';
 
@@ -74,9 +74,9 @@ interface ArcanaDetail {
   type: string;
   imagePath: string;
 }
-interface ArcanaMap {
-  [key: string]: ArcanaDetail;
-}
+// interface ArcanaMap {
+//   [key: string]: ArcanaDetail;
+// }
 
 interface Character {
   name: string;
@@ -87,7 +87,7 @@ interface Character {
   description: string;
 }
 
-const arcana: ArcanaMap = arcanaJson as ArcanaMap;
+// const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
 class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
   constructor(props: ModalProps) {
@@ -333,7 +333,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
         >
           <div className="stackversus-modal">
             <>
-              {/* <div className="player-options-text">
+              <div className="player-options-text">
                 <div className="top">
                   <Button
                     className="tertiary"
@@ -343,7 +343,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       this.props.navigate('/');
                     }}
                   />
-                  <div className="hover-text">
+                  {/* <div className="hover-text">
                     <p>{arcana[this.state.hoverId]?.name || ''}</p>
                     <p>
                       {arcana[this.state.hoverId]?.description
@@ -352,10 +352,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         ? this.state.characterDescription
                         : this.descriptions()[this.state.hoverId]}
                     </p>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="sides">
-                  <div className="engine">
+                  {/* <div className="engine">
                     <div className="buttons-arcana">
                       <div className="buttons">
                         <div className="color">
@@ -884,16 +884,17 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         }}
                       />
                     </div>
-                  </div>
+                  </div> */}
                   <div className="engine-strength">
+                    <p>Connect 4 to win!</p>
                     <p>ENGINE DEPTH: {this.state.config.engineDepth}</p>
                     <p>ENGINE TIME: {this.state.config.thinkingTime}</p>
                   </div>
                 </div>
-              </div> */}
+              </div>
             </>
             <div className="settings-go">
-              {/* <div
+              <div
                 className="stackversus-select"
                 onMouseEnter={() => this.toggleHover('difficulty')}
                 onMouseLeave={() => this.toggleHover('')}
@@ -961,7 +962,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     }
                   }}
                 />
-              </div> */}
+              </div>
               {/* <div
                 className="stackversus-select"
                 onMouseEnter={() => this.toggleHover('promotion')}

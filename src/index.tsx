@@ -24,9 +24,10 @@ import '@fontsource/exo/700-italic.css';
 import ConditionalAudioPlayer from './utils/audio/ConditionalAudioPlayer';
 
 import { FrontPage } from '././pages/frontPage/FrontPage';
-// import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
+import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
 // import { Lab } from './pages/lab/Lab';
 import { Campaign } from '././pages/campaign/Campaign';
+import { StackVersus } from '././pages/stackVersus/StackVersus';
 import { Dashboard } from '././pages/dashboard/Dashboard';
 import { Book } from '././pages/book/Book';
 import { Login } from '././pages/loginRegister/Login';
@@ -100,7 +101,7 @@ const router = createBrowserRouter(
           // </PrivateRoute>
         }
       />
-      {/* <Route
+      <Route
         path="/create"
         element={
           <PrivateRoute>
@@ -108,7 +109,7 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
-      <Route
+      {/* <Route
         path="/lab"
         element={
           <PrivateRoute>
@@ -124,6 +125,7 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
+      <Route path="/stacktadium" element={<StackVersus />} />
       <Route
         path="/campaign"
         element={

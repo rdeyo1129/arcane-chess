@@ -93,7 +93,7 @@ export class UnwrappedDashboard extends React.Component<
             </Link>
             <Link
               className="home-button"
-              to="/"
+              to="/stacktadium"
               onClick={() => {
                 audioManager.playSFX('cheer');
               }}

@@ -1106,18 +1106,14 @@ const endgameModal = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    // marginRight: 'auto',
     transform: 'translate(-50%, -50%)',
     display: 'flex',
-    // height: '480px',
-    // maxHight: '574px',
     width: '100%',
     background: '#00000000',
     border: 'none',
     padding: '0',
     borderRadius: '0',
     overflow: 'hidden',
-    // border: '2px solid #a043a2',
   },
   overlay: {
     display: 'flex',
@@ -1126,7 +1122,8 @@ const endgameModal = {
     width: '100vw',
     height: '100vh',
     zIndex: 10,
-    backgroundColor: '#00000000',
+    background:
+      'radial-gradient(circle at center, rgba(0, 0, 0, 0) 0%, black 100%)',
   },
 };
 

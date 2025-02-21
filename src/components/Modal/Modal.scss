@@ -14,9 +14,12 @@
   gap: 10px;
   overflow-y: scroll;
   overflow-x: hidden;
+  background: radial-gradient(circle at center, transparent 00%, black 100%);
   .endgame-image {
-    opacity: 0.5;
-    max-width: 940px;
+    opacity: 0.6;
+    max-height: 100vh;
+    -webkit-mask-image: radial-gradient(circle, white 0%, transparent 100%);
+    mask-image: radial-gradient(circle, white 0%, transparent 100%);
   }
   .endgame-content {
     position: absolute;

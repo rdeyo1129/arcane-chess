@@ -21,11 +21,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(
-    circle,
-    rgba(0, 162, 255, 0.7) 0%,
-    rgba(17, 17, 17, 0) 100%
-  );
+  background-image: url('/assets/images/textures/random-grey-variations.png'),
+    radial-gradient(
+      circle,
+      rgba(0, 162, 255, 0.7) 0%,
+      rgba(17, 17, 17, 0.9) 100%
+    );
+  background-position: center;
   .quickplay-view {
     height: 100%;
     overflow: hidden;
@@ -56,7 +58,7 @@
         }
         .arcana-select {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
           gap: 5px;
           height: 60px;
@@ -96,6 +98,10 @@
       }
     }
     .time-board-time {
+      box-shadow:
+        0px 0px 8px rgba(0, 0, 0, 0.25),
+        0px 0px 16px rgba(0, 0, 0, 0.35),
+        0px 0px 24px rgba(0, 0, 0, 0.4);
       height: calc(100% - 15%);
       max-height: 960px;
       min-height: 480px;
@@ -172,7 +178,7 @@
         }
         .arcana-select {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
           gap: 5px;
           height: 60px;
@@ -204,11 +210,13 @@
     align-items: flex-start;
     overflow: auto;
     overflow-x: hidden;
-    background: radial-gradient(
-      circle,
-      rgba(0, 162, 255, 0.7) 0%,
-      rgba(17, 17, 17, 0.9) 100%
-    );
+    background-image: url('/assets/images/textures/random-grey-variations.png'),
+      radial-gradient(
+        circle,
+        rgba(0, 162, 255, 0.7) 0%,
+        rgba(17, 17, 17, 0.9) 100%
+      );
+    background-position: center;
     .quickplay-view {
       width: 100%;
       height: 100%;
@@ -397,11 +405,13 @@
     justify-content: flex-start;
     align-items: flex-start;
     overflow-x: hidden;
-    background: radial-gradient(
-      circle,
-      rgba(0, 162, 255, 0.7) 0%,
-      rgba(17, 17, 17, 0.9) 100%
-    );
+    background-image: url('/assets/images/textures/random-grey-variations.png'),
+      radial-gradient(
+        circle,
+        rgba(0, 162, 255, 0.7) 0%,
+        rgba(17, 17, 17, 0.9) 100%
+      );
+    background-position: center;
     .quickplay-view {
       width: 100%;
       height: 100%;

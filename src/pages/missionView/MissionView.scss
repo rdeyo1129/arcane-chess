@@ -33,7 +33,7 @@
         }
         .arcana-select {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
           gap: 5px;
           height: 60px;
@@ -155,7 +155,7 @@
         }
         .arcana-select {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
           gap: 5px;
           height: 60px;
@@ -241,16 +241,6 @@
         .dialogue {
           display: none;
         }
-        .arcana {
-          display: flex;
-          flex-direction: column;
-          height: 190px;
-          background: rgba(34, 34, 34, 0.7);
-          .arcana-side-buttons {
-            height: 40px;
-            display: flex;
-          }
-        }
         .buttons {
           display: none;
         }
@@ -320,6 +310,13 @@
           height: 40px;
           width: 100%;
         }
+        .dialogue {
+          display: flex;
+          height: 190px;
+          padding: 20px;
+          background: rgba(34, 34, 34, 0.7);
+          overflow-y: scroll;
+        }
         .info-avatar {
           display: flex;
           flex-direction: row-reverse;
@@ -330,9 +327,10 @@
           }
           .arcana-select {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             height: 100%;
+            white-space: nowrap;
             .arcane:hover {
               cursor: pointer;
             }

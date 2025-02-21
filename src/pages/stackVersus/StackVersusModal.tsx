@@ -354,7 +354,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     </p>
                   </div> */}
                 </div>
-                <h4>Connect 4 friendly pieces to win!</h4>
+                <div className="objective-text">
+                  <h4>Connect 4 friendly pieces to win!</h4>
+                </div>
                 <div className="sides">
                   {/* <div className="engine">
                     <div className="buttons-arcana">
@@ -959,6 +961,37 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           },
                         };
                       });
+                    }
+                  }}
+                />
+                <Select
+                  title="Player Color"
+                  type="number"
+                  width={260}
+                  height={40}
+                  defaultOption={'White'}
+                  options={['White', 'Black']}
+                  onChange={(val) => {
+                    if (!this.props.updateConfig) return;
+                    if (val === 'White') {
+                      this.props.updateConfig('playerColor', 'white');
+                      this.props.updateConfig('engineColor', 'black');
+                      this.setState((prevState) => ({
+                        playerColor:
+                          prevState.playerColor === 'white' ? 'black' : 'white',
+                        engineColor:
+                          prevState.engineColor === 'white' ? 'black' : 'white',
+                      }));
+                    }
+                    if (val === 'Black') {
+                      this.props.updateConfig('playerColor', 'black');
+                      this.props.updateConfig('engineColor', 'white');
+                      this.setState((prevState) => ({
+                        playerColor:
+                          prevState.playerColor === 'white' ? 'black' : 'white',
+                        engineColor:
+                          prevState.engineColor === 'white' ? 'black' : 'white',
+                      }));
                     }
                   }}
                 />

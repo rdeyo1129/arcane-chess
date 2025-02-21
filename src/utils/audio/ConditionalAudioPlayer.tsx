@@ -67,11 +67,10 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
   // Trigger Music Play/Stop based on Route
   useEffect(() => {
     const lessonRoutes = ['/lexicon', '/lesson'];
-    const gameRoutes = ['/temple', '/mission', '/quickplay'];
+    const gameRoutes = ['/temple', '/mission', '/quickplay', '/stacktadium'];
     const menuRoutes = [
       '/',
       '/campaign',
-      '/stacktadium',
       '/chapter',
       '/profile',
       '/leaderboard',

@@ -305,7 +305,7 @@ export const downRightDiagCheck = () => {
 };
 
 export const fileCheck = () => {
-  for (let file = 1; file < 8; file++) {
+  for (let file = 1; file <= 8; file++) {
     let t_sq = 20 + file;
     let comboCountWhite = 0;
     let comboCountBlack = 0;
@@ -313,6 +313,7 @@ export const fileCheck = () => {
     while (GameBoard.pieces[t_sq] !== SQUARES.SQOFFBOARD) {
       let pce = GameBoard.pieces[t_sq];
       let pceCol = PieceCol[pce];
+
       if (pce === 0 || pce === 100) {
         comboCountWhite = 0;
         comboCountBlack = 0;
@@ -351,9 +352,11 @@ export const rankCheck = () => {
     let t_sq = rank * 10 + 1;
     let comboCountWhite = 0;
     let comboCountBlack = 0;
+
     while (GameBoard.pieces[t_sq] !== SQUARES.SQOFFBOARD) {
       let pce = GameBoard.pieces[t_sq];
       let pceCol = PieceCol[pce];
+
       if (pce === 0 || pce === 100) {
         comboCountWhite = 0;
         comboCountBlack = 0;

@@ -5,7 +5,7 @@
   margin: auto;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-end;
   width: 90%;
   background: linear-gradient(to top, #000011, $V_MENU);
   padding: 30px;
@@ -15,6 +15,12 @@
     flex-direction: column;
     justify-content: flex-start;
     margin: 0 20px 0 0;
+    .objective-text {
+      padding: 20px;
+      margin: 20px 0 20px 0;
+      background-color: $V_MENU;
+      border-radius: 10px;
+    }
     .top {
       display: flex;
       .hover-text {

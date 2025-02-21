@@ -100,7 +100,7 @@ class UnwrappedFrontPage extends React.Component<
         <div className={`fade-overlay ${this.state.fadeOut ? 'active' : ''}`} />
         <div className="header">
           <div className="inner-header">
-            <img className="logo" src={'/assets/logoblue.png'} alt="" />
+            <img className="logo" src={'/assets/logoviolet.png'} alt="" />
             <div className="inner-header-a">
               <h1 className="tactorius" style={{ fontWeight: '800' }}>
                 <div className="tact">
@@ -122,7 +122,7 @@ class UnwrappedFrontPage extends React.Component<
               <Button
                 text="ENTER THE SITE"
                 className="primary"
-                color="B"
+                color="V"
                 height={80}
                 width={400}
                 disabled={false}
@@ -175,7 +175,7 @@ class UnwrappedFrontPage extends React.Component<
               <Button
                 text="ENTER THE SITE"
                 className="primary"
-                color="B"
+                color="V"
                 height={80}
                 width={400}
                 disabled={false}

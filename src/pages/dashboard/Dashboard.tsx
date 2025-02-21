@@ -45,7 +45,7 @@ export class UnwrappedDashboard extends React.Component<
       menuItemDescriptions: {
         campaign:
           'Collect the arcana, conquer the beasts, and etch your name on the leaderboard.',
-        stacktadium: 'An ancient grid, a fresh enigma—coming soon.',
+        stacktadium: 'An ancient grid, a fresh enigma.',
         leaderboard: 'Observe global rankings.',
         quickplay:
           'Master the arcana and challenge the engine with custom battles.',

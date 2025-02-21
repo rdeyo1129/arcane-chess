@@ -354,6 +354,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     </p>
                   </div> */}
                 </div>
+                <h4>Connect 4 friendly pieces to win!</h4>
                 <div className="sides">
                   {/* <div className="engine">
                     <div className="buttons-arcana">
@@ -886,7 +887,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     </div>
                   </div> */}
                   <div className="engine-strength">
-                    <p>Connect 4 to win!</p>
                     <p>ENGINE DEPTH: {this.state.config.engineDepth}</p>
                     <p>ENGINE TIME: {this.state.config.thinkingTime}</p>
                   </div>

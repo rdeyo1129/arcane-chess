@@ -223,8 +223,8 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
       gameOverType: '',
       whiteSetup: this.props.config.whiteSetup,
       blackSetup: this.props.config.blackSetup,
-      fen: `2MwMs2/8/T6q/t6Q/T6q/t6Q/8/2mWmS2 w - - 0 1`,
-      fenHistory: [`2MwMs2/8/T6q/t6Q/T6q/t6Q/8/2mWmS2 w - - 0 1`],
+      fen: `2QQqq2/8/t6T/t6T/T6t/T6t/8/2qqQQ2 w - - 0 1`,
+      fenHistory: [`2QQqq2/8/t6T/t6T/T6t/T6t/8/2qqQQ2 w - - 0 1`],
       lastMoveHistory: [],
       pvLine: [],
       historyPly: 0,
@@ -243,8 +243,8 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
         e: { disabled: false, powers: {}, picks: 0 },
         f: { disabled: false, powers: {}, picks: 0 },
       },
-      // wArcana: { sumnX: 1, sumnRE: 1, swapDEP: 1, modsEXT: 1 },
-      // bArcana: { sumnX: 1, sumnRE: 1, swapDEP: 1, modsEXT: 1 },
+      // wArcana: { sumnX: 1, sumnRE: 1, swapDEP: 1, modsEXT: 1, modsPHA: 1 },
+      // bArcana: { sumnX: 1, sumnRE: 1, swapDEP: 1, modsEXT: 1, modsPHA: 1 },
       wArcana: {},
       bArcana: {},
       placingPiece: 0,
@@ -647,7 +647,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
               if (
                 _.includes(
                   this.state.gameOverType,
-                  `${this.state.playerColor} mates`
+                  `${this.state.playerColor} connects four`
                 )
               ) {
                 this.handleVictory(this.stopAndReturnTime() as number | null);
@@ -771,8 +771,8 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
         }),
         () => {
           this.setState({
-            fen: `2MwMs2/8/T6q/t6Q/T6q/t6Q/8/2mWmS2 w - - 0 1`,
-            fenHistory: [`2MwMs2/8/T6q/t6Q/T6q/t6Q/8/2mWmS2 w - - 0 1`],
+            // fen: `2QqQq2/8/Q6q/q6Q/Q6q/q6Q/8/2qQqQ2 w - - 0 1`,
+            // fenHistory: [`2QqQq2/8/Q6q/q6Q/Q6q/q6Q/8/2qQqQ2 w - - 0 1`],
             orientation: this.state.playerColor,
             selectedSide: this.state.playerColor,
           });
@@ -1116,7 +1116,6 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                   this.state.royalties,
                   this.state.preset
                 );
-                console.log(this.state.thinkingTime, this.state.engineDepth);
                 this.setState(
                   {
                     turn: GameBoard.side === 0 ? 'white' : 'black',
@@ -1162,7 +1161,9 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
             message={this.state.gameOverType} // interpolate
             score={null}
             type={
-              this.state.playerColor === this.state.gameOverType.split(' ')[0]
+              this.state.playerColor ===
+                this.state.gameOverType.split(' ')[0] &&
+              !(this.state.gameOverType.split(' ')[1] === 'resigns')
                 ? 'victory-qp'
                 : 'defeat-qp'
             }
@@ -1249,8 +1250,8 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                   wFaction={this.state.whiteFaction}
                   bFaction={this.state.blackFaction}
                   royalties={this.state.royalties}
-                  wVisible={true}
-                  bVisible={true}
+                  wVisible={this.arcaneChess().getInvisibility()[0] <= 0}
+                  bVisible={this.arcaneChess().getInvisibility()[1] <= 0}
                   premovable={{
                     enabled: false,
                     // premoveFunc: () => {},

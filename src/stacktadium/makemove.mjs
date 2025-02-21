@@ -172,7 +172,7 @@ export function MakeMove(move, moveType = '') {
 
   GameBoard.invisibility[0] -= 1;
   GameBoard.invisibility[1] -= 1;
-  GameBoard.suspend -= 1;
+  // GameBoard.suspend -= 1;
 
   GameBoard.history[GameBoard.hisPly].royaltyQ = { ...GameBoard.royaltyQ };
   GameBoard.history[GameBoard.hisPly].royaltyT = { ...GameBoard.royaltyT };

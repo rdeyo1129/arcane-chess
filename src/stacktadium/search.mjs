@@ -1,11 +1,8 @@
-import _ from 'lodash';
 import {
   GameBoard,
-  SqAttacked,
   MFLAGCAP,
   FROMSQ,
   TOSQ,
-  InCheck,
   PrintBoard,
   ParseFen,
 } from './board';
@@ -16,8 +13,6 @@ import {
   INFINITE,
   MAXDEPTH,
   NOMOVE,
-  PCEINDEX,
-  Kings,
   BRD_SQ_NUM,
 } from './defs';
 import { EvalPosition } from './evaluate';
@@ -103,99 +98,6 @@ export function IsRepetition() {
   return BOOL.FALSE;
 }
 
-export function Quiescence(alpha, beta) {
-  if ((SearchController.nodes & 2047) === 0) {
-    CheckUp();
-  }
-
-  SearchController.nodes++;
-
-  if ((IsRepetition() || GameBoard.fiftyMove >= 100) && GameBoard.ply !== 0) {
-    return 0;
-  }
-
-  if (GameBoard.ply > MAXDEPTH - 1) {
-    return EvalPosition();
-  }
-
-  let Score = EvalPosition();
-
-  if (Score >= beta) {
-    return beta;
-  }
-
-  if (Score > alpha) {
-    alpha = Score;
-  }
-
-  generatePlayableOptions(true, true, 'COMP', 'COMP');
-
-  let MoveNum = 0;
-  let Legal = 0;
-  let OldAlpha = alpha;
-  let BestMove = NOMOVE;
-  let Move = NOMOVE;
-
-  for (
-    MoveNum = GameBoard.moveListStart[GameBoard.ply];
-    MoveNum < GameBoard.moveListStart[GameBoard.ply + 1];
-    MoveNum++
-  ) {
-    PickNextMove(MoveNum);
-
-    Move = GameBoard.moveList[MoveNum];
-
-    if (MakeMove(Move) === BOOL.FALSE) {
-      continue;
-    }
-    Legal++;
-
-    Score = -Quiescence(-beta, -alpha);
-
-    TakeMove();
-
-    if (SearchController.stop === BOOL.TRUE) {
-      return 0;
-    }
-
-    if (Score > alpha) {
-      if (Score >= beta) {
-        if (Legal === 1) {
-          SearchController.fhf++;
-        }
-        SearchController.fh++;
-        return beta;
-      }
-      alpha = Score;
-      BestMove = Move;
-    }
-  }
-
-  const kingSquareIndex = _.findIndex(GameBoard.kohSquares, (square) => {
-    return GameBoard.pieces[square] === Kings[GameBoard.side];
-  });
-
-  if (kingSquareIndex !== -1) {
-    alpha = MATE - GameBoard.ply;
-  }
-
-  if (InCheck() === BOOL.TRUE) {
-    if (
-      GameBoard.xCheckLimit[GameBoard.side] > 0 &&
-      GameBoard.checksGiven[GameBoard.side] ===
-        GameBoard.xCheckLimit[GameBoard.side]
-    ) {
-      alpha = -MATE + GameBoard.ply;
-    }
-  }
-
-  if (alpha !== OldAlpha) {
-    StorePvMove(BestMove);
-  }
-
-  return alpha;
-}
-
 export function AlphaBeta(alpha, beta, depth) {
   if (depth <= 0) {
     return EvalPosition();
@@ -216,21 +118,12 @@ export function AlphaBeta(alpha, beta, depth) {
 
   SearchController.nodes++;
 
-  if ((IsRepetition() || GameBoard.fiftyMove >= 100) && GameBoard.ply !== 0) {
+  if (IsRepetition() && GameBoard.ply !== 0) {
     return 0;
   }
 
   if (GameBoard.ply > MAXDEPTH - 1) {
     return EvalPosition();
-  }
-
-  let InCheckA = SqAttacked(
-    GameBoard.pList[PCEINDEX(Kings[GameBoard.side], 0)],
-    GameBoard.side ^ 1
-  );
-
-  if (InCheckA === BOOL.TRUE) {
-    depth++;
   }
 
   let Score = -INFINITE;
@@ -301,36 +194,6 @@ export function AlphaBeta(alpha, beta, depth) {
       BestMove = Move;
     }
   }
-
-  // rook entangled mate
-  // future sight should be the last one
-  // arrows for hints
-
-  // const kingSquareIndex = _.findIndex(GameBoard.kohSquares, (square) => {
-  //   return GameBoard.pieces[square] === Kings[GameBoard.side];
-  // });
-
-  // if (kingSquareIndex !== -1) {
-  //   return MATE - GameBoard.ply;
-  // }
-
-  // if (InCheck() === BOOL.TRUE) {
-  //   if (
-  //     GameBoard.xCheckLimit[GameBoard.side] > 0 &&
-  //     GameBoard.checksGiven[GameBoard.side] ===
-  //       GameBoard.xCheckLimit[GameBoard.side]
-  //   ) {
-  //     return MATE + GameBoard.ply;
-  //   }
-  // }
-
-  // if (Legal === 0) {
-  //   if (InCheckA === BOOL.TRUE) {
-  //     return -MATE + GameBoard.ply;
-  //   } else {
-  //     return 0;
-  //   }
-  // }
 
   if (alpha !== OldAlpha) {
     StorePvMove(BestMove);

@@ -154,7 +154,8 @@ GameBoard.royaltyE = {};
 
 GameBoard.preset;
 
-GameBoard.suspend = 0; // += not =
+// temp fix for stacktadium, also added no decrement
+GameBoard.suspend = 100; // += not =
 GameBoard.invisibility = [0, 0];
 
 GameBoard.xCheckLimit = [0, 0];

@@ -615,6 +615,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                 Known bugs:
                 <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
                   <li>Music may sometimes overlap and needs a page refresh.</li>
+                  <li>Templars cannot move to a1 in Stacktadium.</li>
                   <li>Engine will ‘pass turn’ in certain scenarios.</li>
                   <li>
                     Engine will ‘pass turn’ in certain scenarios if both sides

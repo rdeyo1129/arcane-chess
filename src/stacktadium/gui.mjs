@@ -505,7 +505,8 @@ export function startSearch(thinkingTime, depth, engineColor) {
     engineArcana.modsPHA > 0
   ) {
     if (bestScore > 500 || bestScore < -500) {
-      if (Math.random() > 0.5) {
+      // phantom mist for expert only
+      if (Math.random() > 0.5 && SearchController.depth > 6) {
         GameBoard.invisibility[colorInt] = 6;
         if (colorInt === COLOURS.WHITE) {
           whiteArcaneConfig.modsPHA -= 1;

@@ -398,8 +398,6 @@ export function ParseMove(
     }
   }
 
-  PrMove(Move);
-
   if (found !== BOOL.FALSE) {
     if (MakeMove(Move) === BOOL.FALSE) {
       return {

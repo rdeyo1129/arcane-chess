@@ -71,6 +71,7 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
     const menuRoutes = [
       '/',
       '/campaign',
+      '/stacktadium',
       '/chapter',
       '/profile',
       '/leaderboard',

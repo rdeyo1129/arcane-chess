@@ -6,7 +6,7 @@
 
 ## Overview
 
-Arcane Chess is a full-stack JavaScript chess variant platform featuring a single-player campaign and a built-in component library. It delivers an immersive chess experience with a comprehensive knowledge base covering rules, strategies, and philosophies.
+Tactorius is a free, open-source, full-stack JavaScript spell chess variant platform featuring a single-player campaign and a built-in component library. It delivers an immersive chess experience with a comprehensive knowledge base covering rules, strategies, and philosophies.
 
 ## Features
 

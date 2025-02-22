@@ -1,8 +1,8 @@
-# Tactorius / Arcane Chess / Stacktadium Demo
-
-![Screenshot of Arcane Chess](assets/cerulean-boss.webp)
+# Tactorius / Arcane Chess / Stacktadium
 
 [![License: GNU GPL](https://img.shields.io/badge/License-GPL-blue.svg)](LICENSE)
+
+![Screenshot of Arcane Chess](https://github.com/rdeyo1129/arcane-chess/blob/main/public/assets/pages/cerulean-boss.webp)
 
 ## Overview
 

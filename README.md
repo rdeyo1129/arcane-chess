@@ -95,3 +95,11 @@ arcane-chess/
 ## Contact
 
 For questions or further assistance, please open an issue or contact the maintainers.
+
+## Acknowledgements
+
+We would like to extend our gratitude to the open source Lichess projects for their incredible work and inspiration. Their contributions have greatly influenced our approach and continue to empower the chess community.
+
+Special thanks to the maintainers of the puzzle database, and to this fork that leads to the [Chessground repository](https://github.com/rdeyo1129/night-chess-ui-2) for their valuable contributions.
+
+For further thanks, please see the CREDITS.md file, and in the app: Manifest -> About

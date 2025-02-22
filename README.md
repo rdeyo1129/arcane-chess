@@ -30,8 +30,8 @@ We welcome contributions to expand and enhance the project. Future work areas in
 
 ### Prerequisites
 
-- **Node.js:** Version 14.x or higher is recommended.
-- **npm:** Installed with Node.js (or use Yarn if you prefer).
+- **Node.js:** Version v18.16.0 was used in local development.
+- **npm:** Installed with Node.js.
 
 ### Installation
 
@@ -48,12 +48,6 @@ We welcome contributions to expand and enhance the project. Future work areas in
 
    ```bash
    npm install
-   ```
-
-   Using Yarn:
-
-   ```bash
-   yarn install
    ```
 
 3. **Running the Project Locally**

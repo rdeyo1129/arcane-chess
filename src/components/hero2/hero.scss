@@ -8,7 +8,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  filter: blur(2px);
+  // filter: blur(2px);
   .hero-curtain {
     position: absolute;
     top: 0;
@@ -35,7 +35,8 @@
     // background: #b87d48;
     // background: #8e7200;
     // background: #a043a2;
-    background: #a043a2;
+    // background: #a043a2;
+    background: #7f7f7f;
   }
   .hero-square.dark {
     height: 60px;

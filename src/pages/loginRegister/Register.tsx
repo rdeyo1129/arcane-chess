@@ -68,7 +68,7 @@ const UnwrappedRegister = () => {
       <div className={`fade-overlay ${fadeOut ? 'active' : ''}`} />
       <Hero />
       <form noValidate onSubmit={onSubmitReg} className="view">
-        <img className="logo" src={'/assets/logoviolet.png'} alt="" />
+        <img className="logo" src={'/assets/logoall.png'} alt="" />
         <div className="login-info">
           <span>
             By registering, you agree to our terms of service found in the{' '}
@@ -90,7 +90,7 @@ const UnwrappedRegister = () => {
           <div className="reg-inputs">
             <Input
               className="primary"
-              color={'V'}
+              color={'S'}
               width={180}
               height={40}
               placeholder={'Username'}
@@ -101,7 +101,7 @@ const UnwrappedRegister = () => {
             />
             <Input
               className="primary"
-              color={'V'}
+              color={'S'}
               width={180}
               height={40}
               placeholder={'Email'}
@@ -112,7 +112,7 @@ const UnwrappedRegister = () => {
             />
             <Input
               className="primary"
-              color={'V'}
+              color={'S'}
               width={180}
               height={40}
               placeholder={'Password'}
@@ -123,7 +123,7 @@ const UnwrappedRegister = () => {
             />
             <Input
               className="primary"
-              color={'V'}
+              color={'S'}
               width={180}
               height={40}
               placeholder={'Confirm Password'}
@@ -138,7 +138,7 @@ const UnwrappedRegister = () => {
               <Button
                 className="tertiary"
                 text={'LOGIN'}
-                color={'V'}
+                color={'S'}
                 width={80}
                 height={30}
                 fontSize={12}
@@ -148,7 +148,7 @@ const UnwrappedRegister = () => {
               <Button
                 className="tertiary"
                 text={'HOME'}
-                color={'V'}
+                color={'S'}
                 width={80}
                 height={30}
                 fontSize={12}
@@ -159,7 +159,7 @@ const UnwrappedRegister = () => {
             <Button
               className="primary"
               text={'REGISTER'}
-              color={'V'}
+              color={'S'}
               width={140}
               // onClick={() => {}}
               disabled={false}

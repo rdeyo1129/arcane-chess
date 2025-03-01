@@ -1,6 +1,6 @@
 @import 'variables.scss';
 
-$colors: R, O, W, Y, G, BK, B, V;
+$colors: R, O, W, Y, G, BK, B, V, S;
 
 $menu_colors: (
   R: $R_MENU,
@@ -11,6 +11,7 @@ $menu_colors: (
   BK: $GS_2,
   B: $B_MENU,
   V: $V_MENU,
+  S: $S_MENU,
 );
 $hover_colors: (
   R: $R_FACT,
@@ -21,6 +22,7 @@ $hover_colors: (
   BK: $GS_1,
   B: $B_FACT,
   V: $V_FACT,
+  S: #aaaaaa,
 );
 
 @each $color in $colors {

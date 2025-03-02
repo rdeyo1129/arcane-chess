@@ -89,7 +89,7 @@ export default class DashboardModal extends React.Component<
           >
             <Button
               text="CLOSE"
-              color="B"
+              color="S"
               className="primary"
               onClick={() => this.closeModal()}
             />

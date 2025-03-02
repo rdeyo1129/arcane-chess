@@ -637,7 +637,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               <Button
                 text="BACK TO CAMPAIGN"
                 className="primary"
-                color="B"
+                color="S"
                 height={200}
                 width={400}
               />
@@ -665,7 +665,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
               <Button
                 text="BACK TO CHAPTER"
                 className="primary"
-                color="B"
+                color="S"
                 height={200}
                 width={400}
               />
@@ -858,7 +858,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     onClick={() => {
                       this.setState({ selected: 'a' });
                     }}
-                    color="B"
+                    color="S"
                     text=""
                     width={190}
                     disabled
@@ -873,7 +873,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                       });
                       audioManager.playSFX('defeat');
                     }}
-                    color="B"
+                    color="S"
                     // strong={true}
                     text="RESIGN"
                     width={100}

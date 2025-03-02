@@ -1304,7 +1304,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               <Button
                 text="BACK TO CAMPAIGN"
                 className="primary"
-                color="B"
+                color="S"
                 height={200}
                 width={400}
               />
@@ -1332,7 +1332,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               <Button
                 text="BACK TO CHAPTER"
                 className="primary"
-                color="B"
+                color="S"
                 height={200}
                 width={400}
               />
@@ -1418,7 +1418,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         gameOverType: `${this.state.playerColor} resigns.`,
                       });
                     }}
-                    color="B"
+                    color="S"
                     // strong={true}
                     text="RESIGN"
                     width={100}
@@ -1940,7 +1940,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   {/* <Button
                 className="tertiary"
                 onClick={() => {}}
-                color="B"
+                color="S"
                 // strong={true}
                 text="1/2"
                 width={100}
@@ -1956,7 +1956,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         gameOverType: `${this.state.playerColor} resigns.`,
                       });
                     }}
-                    color="B"
+                    color="S"
                     // strong={true}
                     text="RESIGN"
                     width={100}
@@ -1974,7 +1974,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         <Button
                           className="tertiary"
                           text={fullMove[0]}
-                          color="B"
+                          color="S"
                           height={20}
                           onClick={() => {
                             this.navigateHistory('jump', fullMoveIndex * 2 + 1);
@@ -1984,7 +1984,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         <Button
                           className="tertiary"
                           text={fullMove[1]}
-                          color="B"
+                          color="S"
                           height={20}
                           onClick={() => {
                             this.navigateHistory('jump', fullMoveIndex * 2 + 2);
@@ -1999,7 +1999,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   <Button
                     className="tertiary"
                     onClick={() => this.navigateHistory('start')}
-                    color="B"
+                    color="S"
                     strong={true}
                     variant="<<"
                     width={100}
@@ -2009,7 +2009,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   <Button
                     className="tertiary"
                     onClick={() => this.navigateHistory('back')}
-                    color="B"
+                    color="S"
                     strong={true}
                     variant="<"
                     width={100}
@@ -2019,7 +2019,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   <Button
                     className="tertiary"
                     onClick={() => this.navigateHistory('forward')}
-                    color="B"
+                    color="S"
                     strong={true}
                     variant=">"
                     width={100}
@@ -2029,7 +2029,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                   <Button
                     className="tertiary"
                     onClick={() => this.navigateHistory('end')}
-                    color="B"
+                    color="S"
                     strong={true}
                     variant=">>"
                     width={100}

@@ -1227,7 +1227,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                       gameOverType: `${this.state.playerColor} resigns`,
                     });
                   }}
-                  color="B"
+                  color="V"
                   // strong={true}
                   text="RESIGN"
                   width={100}
@@ -1737,7 +1737,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                       gameOverType: `${this.state.playerColor} resigns`,
                     });
                   }}
-                  color="B"
+                  color="V"
                   // strong={true}
                   text="RESIGN"
                   width={100}
@@ -1749,7 +1749,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                 <Button
                   className="tertiary"
                   onClick={() => this.navigateHistory('start')}
-                  color="B"
+                  color="V"
                   strong={true}
                   variant="<<"
                   width={100}
@@ -1759,7 +1759,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                 <Button
                   className="tertiary"
                   onClick={() => this.navigateHistory('back')}
-                  color="B"
+                  color="V"
                   strong={true}
                   variant="<"
                   width={100}
@@ -1769,7 +1769,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                 <Button
                   className="tertiary"
                   onClick={() => this.navigateHistory('forward')}
-                  color="B"
+                  color="V"
                   strong={true}
                   variant=">"
                   width={100}
@@ -1779,7 +1779,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                 <Button
                   className="tertiary"
                   onClick={() => this.navigateHistory('end')}
-                  color="B"
+                  color="V"
                   strong={true}
                   variant=">>"
                   width={100}
@@ -1795,7 +1795,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                       <Button
                         className="tertiary"
                         text={fullMove[0]}
-                        color="B"
+                        color="V"
                         height={20}
                         onClick={() => {
                           this.navigateHistory('jump', fullMoveIndex * 2 + 1);
@@ -1805,7 +1805,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                       <Button
                         className="tertiary"
                         text={fullMove[1]}
-                        color="B"
+                        color="V"
                         height={20}
                         onClick={() => {
                           this.navigateHistory('jump', fullMoveIndex * 2 + 2);

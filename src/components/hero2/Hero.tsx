@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import './hero.scss';
 
@@ -57,10 +58,12 @@ export default class Hero extends React.Component {
       'w-piece',
       // 'x-piece',
     ];
+    // const faction = ['chi', 'mu', 'nu', 'sigma', 'omega', 'lambda'];
     const details = {
       piece: pieces[this.getRandomNumber(0, pieces.length - 1)],
       color: colors[this.getRandomNumber(0, colors.length - 1)],
-      faction: 'normal', // You can uncomment and adjust faction logic as needed.
+      faction: 'normal',
+      // faction: faction[this.getRandomNumber(0, 5)],
     };
 
     return (
@@ -81,7 +84,10 @@ export default class Hero extends React.Component {
   // Returns the JSX for a random arcana.
   // It grabs the image from /assets/arcanaImages using the imagePath from the JSON.
   getRandomArcana = () => {
-    const arcanaKeys = Object.keys(arcana);
+    const arcanaKeys = _.filter(
+      Object.keys(arcana),
+      (arcanaName) => arcanaName !== 'empty'
+    );
     if (arcanaKeys.length === 0) return null;
     const randomIndex = this.getRandomNumber(0, arcanaKeys.length - 1);
     const randomArcana = arcana[arcanaKeys[randomIndex]];
@@ -91,11 +97,13 @@ export default class Hero extends React.Component {
         className="arcana-display"
         style={{
           backgroundImage: `url('${randomArcana.imagePath}.svg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          width: '60px',
-          height: '60px',
+          justifySelf: 'center',
+          alignSelf: 'center',
+          width: '50px',
+          height: '50px',
+          padding: '5px',
           position: 'relative',
+          margin: 'auto',
         }}
       ></div>
     );
@@ -140,7 +148,13 @@ export default class Hero extends React.Component {
                   ? 'hero-square light'
                   : 'hero-square dark';
               return (
-                <div key={y} className={squareClass}>
+                <div
+                  key={y}
+                  className={squareClass}
+                  style={{
+                    display: 'flex',
+                  }}
+                >
                   {this.getRandomDisplay(0.1, 0.1)}
                 </div>
               );

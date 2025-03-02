@@ -30,7 +30,7 @@ class UnwrappedManifest extends React.Component<object, State> {
               <Button
                 text="BACK"
                 className="tertiary"
-                color="B"
+                color="S"
                 width={160}
                 height={50}
                 disabled={false}
@@ -45,7 +45,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                   currentTab: 'about',
                 });
               }}
-              color="B"
+              color="S"
               width={160}
               height={50}
               disabled={false}
@@ -59,7 +59,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                   currentTab: 'links',
                 });
               }}
-              color="B"
+              color="S"
               width={160}
               height={50}
               disabled={false}
@@ -73,7 +73,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                   currentTab: 'notes',
                 });
               }}
-              color="B"
+              color="S"
               width={160}
               height={50}
               disabled={false}
@@ -87,7 +87,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                   currentTab: 'bugs',
                 });
               }}
-              color="B"
+              color="S"
               width={160}
               height={50}
               disabled={false}
@@ -101,7 +101,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                   currentTab: 'tos',
                 });
               }}
-              color="B"
+              color="S"
               width={160}
               height={50}
               disabled={false}
@@ -115,7 +115,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                   currentTab: 'privacy',
                 });
               }}
-              color="B"
+              color="S"
               width={160}
               height={50}
               disabled={false}
@@ -254,7 +254,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                     <Button
                       text="DISCORD"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={200}
                       height={50}
                       disabled={false}
@@ -271,7 +271,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                     <Button
                       text="X"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={200}
                       height={50}
                       disabled={false}
@@ -288,7 +288,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                     <Button
                       text="PAYPAL"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={200}
                       height={50}
                       disabled={false}
@@ -305,7 +305,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                     <Button
                       text="PROJECT REPO"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={200}
                       height={50}
                       disabled={false}
@@ -322,7 +322,7 @@ class UnwrappedManifest extends React.Component<object, State> {
                     <Button
                       text="CHESSGROUNDx FORK"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={200}
                       height={50}
                       disabled={false}

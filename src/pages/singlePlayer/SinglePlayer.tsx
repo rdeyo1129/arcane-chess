@@ -63,7 +63,7 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
         <Input
           // id="test"
           className="input"
-          color="B"
+          color="S"
           height={40}
           width={400}
           placeholder="FEN"
@@ -76,7 +76,7 @@ class UnwrappedSinglePlayer extends React.Component<object, UIVState> {
           text="SET FEN"
           onClick={() => this.initializeArcaneChessAndTest()}
           className="primary"
-          color="B"
+          color="S"
           // disabled={this.state.fen === ''}
           disabled={false}
           // strong={true}

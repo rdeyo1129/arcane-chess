@@ -578,7 +578,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               <Button
                 text="BACK TO CAMPAIGN"
                 className="primary"
-                color="B"
+                color="S"
                 height={200}
                 width={400}
               />
@@ -606,7 +606,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               <Button
                 text="BACK TO CHAPTER"
                 className="primary"
-                color="B"
+                color="S"
                 height={200}
                 width={400}
               />
@@ -733,7 +733,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                         ? true
                         : false
                     }
-                    color="B"
+                    color="S"
                     strong={true}
                     variant="<"
                     width={190}
@@ -745,7 +745,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                     onClick={() => {
                       this.stepForward();
                     }}
-                    color="B"
+                    color="S"
                     strong={true}
                     variant=">"
                     width={190}

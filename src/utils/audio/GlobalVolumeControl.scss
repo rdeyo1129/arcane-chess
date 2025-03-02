@@ -22,7 +22,7 @@
           appearance: none;
           width: 30px;
           height: 20px;
-          background-color: $B_MENU;
+          background-color: $S_MENU;
           cursor:
             url('/assets/images/cursors/pointer.svg') 12 4,
             pointer;
@@ -33,7 +33,7 @@
         &::-moz-range-thumb {
           width: 30px;
           height: 20px;
-          background-color: $B_MENU;
+          background-color: $S_MENU;
           cursor:
             url('/assets/images/cursors/pointer.svg') 12 4,
             pointer;
@@ -44,7 +44,7 @@
         &::-ms-thumb {
           width: 30px;
           height: 20px;
-          background-color: $B_MENU;
+          background-color: $S_MENU;
           cursor:
             url('/assets/images/cursors/pointer.svg') 12 4,
             pointer;

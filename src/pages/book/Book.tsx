@@ -390,7 +390,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
               <Button
                 text="BACK TO CAMPAIGN"
                 className="primary"
-                color="B"
+                color="S"
                 height={200}
                 width={400}
               />
@@ -426,7 +426,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       <Button
                         text="BACK"
                         className="tertiary"
-                        color="B"
+                        color="S"
                         width={200}
                         height={35}
                         disabled={false}
@@ -436,7 +436,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     <Button
                       text="UNLOCK CHAPTERS"
                       className="tertiary"
-                      color="B"
+                      color="S"
                       width={200}
                       height={35}
                       disabled={false}
@@ -504,7 +504,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                           this.state.selectedTab === 'chess' ? 'STORY' : 'CHESS'
                         }
                         className="tertiary"
-                        color="B"
+                        color="S"
                         width={200}
                         backgroundColorOverride={'#33333388'}
                         onClick={this.toggleTab}
@@ -514,7 +514,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                       <Button
                         text="START"
                         className="primary"
-                        color="B"
+                        color="S"
                         width={200}
                         disabled={this.state.selectedSwatch === ''}
                         styles={{ color: 'white', borderRadius: 0 }}
@@ -563,7 +563,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                     return (
                       <Button
                         text={node.title}
-                        color="B"
+                        color="S"
                         width={'100%'}
                         height={60}
                         disabled={false}

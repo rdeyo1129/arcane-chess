@@ -67,7 +67,7 @@ export class UnwrappedCampaign extends React.Component<
             <Button
               text="BACK"
               className="tertiary"
-              color="B"
+              color="S"
               width={200}
               height={40}
               disabled={false}
@@ -93,7 +93,7 @@ export class UnwrappedCampaign extends React.Component<
                   key={i}
                   text={isUnlocked ? book : '?'}
                   className="tertiary"
-                  color="B"
+                  color="S"
                   width={200}
                   height={80}
                   backgroundColorOverride="#11111188"
@@ -116,7 +116,7 @@ export class UnwrappedCampaign extends React.Component<
           <Button
             text="UNLOCK BOOKS"
             className="tertiary"
-            color="B"
+            color="S"
             width={200}
             height={40}
             backgroundColorOverride="#11111188"
@@ -132,7 +132,7 @@ export class UnwrappedCampaign extends React.Component<
           <Button
             text="RESET CHAPTER"
             className="tertiary"
-            color="B"
+            color="S"
             width={200}
             height={40}
             backgroundColorOverride="#11111188"

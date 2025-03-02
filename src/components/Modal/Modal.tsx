@@ -316,7 +316,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     className="primary"
                     width={180}
                     height={90}
-                    color="B"
+                    color="S"
                     onClick={() => {
                       this.props.navigate('/chapter');
                     }}
@@ -342,7 +342,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     <Button
                       text="TO CHAPTER"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={160}
                       height={40}
                       onClick={() => {
@@ -352,7 +352,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     <Button
                       text="ANALYZE"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={160}
                       height={40}
                       disabled
@@ -366,7 +366,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     className="primary"
                     width={180}
                     height={90}
-                    color="B"
+                    color="S"
                     onClick={() => {
                       location.reload();
                     }}
@@ -434,7 +434,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   <Button
                     text="CONTINUE"
                     className="primary"
-                    color="B"
+                    color="S"
                     width={200}
                     height={60}
                     onClick={() => {
@@ -471,7 +471,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       this.state.playerColor === 'white' ? 'PLAYER' : 'ENGINE'
                     }
                     className="tertiary"
-                    color="B"
+                    color="S"
                     backgroundColorOverride="#AAAAAA"
                     width={240}
                     height={30}
@@ -620,7 +620,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       this.state.playerColor === 'black' ? 'PLAYER' : 'ENGINE'
                     }
                     className="tertiary"
-                    color="B"
+                    color="S"
                     backgroundColorOverride="#333333"
                     width={240}
                     height={30}
@@ -847,7 +847,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Button
                   text="START"
                   className="primary"
-                  color="B"
+                  color="S"
                   width={240}
                   height={60}
                   styles={{ marginTop: '20px' }}
@@ -866,7 +866,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
           >
             <div className="quickplay">
               <div className="top-buttons">
-                <Button className="tertiary" color="B" text="BACK" />
+                <Button className="tertiary" color="S" text="BACK" />
               </div>
               <div className="player-options-text">
                 <div className="sides">
@@ -951,7 +951,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     <Button
                       text="HOME"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={160}
                       height={40}
                       onClick={() => {
@@ -961,7 +961,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     <Button
                       text="ANALYZE"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={160}
                       height={40}
                       disabled
@@ -975,7 +975,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     className="primary"
                     width={180}
                     height={90}
-                    color="B"
+                    color="S"
                     onClick={() => {
                       location.reload();
                     }}
@@ -1001,7 +1001,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     <Button
                       text="HOME"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={160}
                       height={40}
                       onClick={() => {
@@ -1011,7 +1011,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     <Button
                       text="ANALYZE"
                       className="secondary"
-                      color="B"
+                      color="S"
                       width={160}
                       height={40}
                       disabled
@@ -1025,7 +1025,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     className="primary"
                     width={180}
                     height={90}
-                    color="B"
+                    color="S"
                     onClick={() => {
                       location.reload();
                     }}

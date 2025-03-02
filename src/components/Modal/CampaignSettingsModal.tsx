@@ -449,7 +449,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                   <Button
                     text="CANCEL"
                     className="secondary"
-                    color="B"
+                    color="S"
                     height={60}
                     width={120}
                     onClick={() => this.props.toggleModal()}
@@ -457,7 +457,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                   <Button
                     text="START"
                     className="primary"
-                    color="B"
+                    color="S"
                     height={60}
                     width={120}
                     onClick={() => this.saveSettingsStartBook()}

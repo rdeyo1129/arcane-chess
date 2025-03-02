@@ -64,7 +64,7 @@ export class UnwrappedLeaderBoard extends React.Component<
             <Button
               text="BACK"
               className="tertiary"
-              color="B"
+              color="S"
               backgroundColorOverride="#11111188"
               width={200}
             />

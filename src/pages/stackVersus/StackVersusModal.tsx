@@ -337,7 +337,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <div className="top">
                   <Button
                     className="tertiary"
-                    color="B"
+                    color="V"
                     text="HOME"
                     onClick={() => {
                       this.props.navigate('/');
@@ -1080,7 +1080,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Button
                   text="Template Randomize Match"
                   className="tertiary"
-                  color="B"
+                  color="V"
                   width={260}
                   height={40}
                   styles={{ marginTop: '20px' }}
@@ -1097,7 +1097,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Button
                   text="Template Randomize Mismatch"
                   className="tertiary"
-                  color="B"
+                  color="V"
                   width={260}
                   height={40}
                   onClick={() => {
@@ -1113,7 +1113,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Button
                   text="True Randomize Match"
                   className="tertiary"
-                  color="B"
+                  color="V"
                   width={260}
                   height={40}
                   onClick={() => {
@@ -1129,7 +1129,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Button
                   text="True Randomize Mismatch"
                   className="tertiary"
-                  color="B"
+                  color="V"
                   width={260}
                   height={40}
                   onClick={() => {

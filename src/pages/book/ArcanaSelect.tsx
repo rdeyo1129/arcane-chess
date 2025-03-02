@@ -298,7 +298,7 @@ export default class ArcanaSelect extends React.Component<
         {isPlayerArcana && (
           <div className="arcana-picker-wrapper">
             <Button
-              color="B"
+              color="S"
               width={200}
               text="CLEAR ARCANA"
               className="tertiary"

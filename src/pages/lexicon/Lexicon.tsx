@@ -708,7 +708,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
                       ? true
                       : false
                   }
-                  color="B"
+                  color="S"
                   strong={true}
                   variant="<"
                   width={190}
@@ -720,7 +720,7 @@ class UnwrappedLexicon extends React.Component<Props, State> {
                   onClick={() => {
                     this.stepForward();
                   }}
-                  color="B"
+                  color="S"
                   strong={true}
                   variant=">"
                   width={190}

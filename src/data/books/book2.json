@@ -17,7 +17,7 @@
       [0, 0],
       [0, 0]
     ],
-    "nodeText": "",
+    "nodeText": "How we do one thing is how we do everything. — Cheri Huber",
     "storyText": "The air in Sidian's cell crackled as the portal ripped open, a swirling vortex of deep indigo and electric gold tearing through reality like a jagged wound. Cassandra appeared without hesitation, her movements sharp and urgent as she seized Sidian's arm. The portal consumed them, its core an endless void streaked with flashing fragments of otherworldly sights—a shimmering ocean, a city in flames, a mechanical forest. Gravity warped as they tumbled through, and the sound of overlapping worlds whispered in Sidian's ears. The descent ended abruptly as they landed in a sprawling metropolis of towering structures, their surfaces a mosaic of glass and steel pulsing with neon veins. Below, streams of humanoid figures—half-machine, half-organic—moved with purpose through glowing pathways, the hum of machinery drowning the faint echoes of distant alarms. The city's air felt charged, heavy with the weight of unspoken urgency.",
     "reward": [],
     "prereq": "",
@@ -167,7 +167,7 @@
       [0, 0],
       [0, 0]
     ],
-    "nodeText": "",
+    "nodeText": "When your house is on fire, do not waste time chasing rats. — African Chess Proverb",
     "storyText": "The portal tore reality open with a blinding flash, revealing a swirling cascade of metallic hues and flickering images of fractured worlds. Sidian emerged onto Automata Prime, a planet of towering spires and sprawling ruins, where the remnants of a failed utopia loomed large. Once ruled by their creators, the sentient automata had risen in revolt, casting humanity into exile. The creators fled to forge a new world, leaving behind chaos and a fractured society. Partial human-automata, created as a bridge between species, were grudgingly accepted in the cities, yet their presence sparked constant debate, seen by many as symbols of betrayal or weakness. Without their creators' guidance, the automata struggled to govern themselves, and the political vacuum was swiftly filled by Voltaire’s militia. His iron rule brought order, but at a cost—freedom was sacrificed, and the streets hummed with the tension of crime and fear, as the city became a haven for Voltaire's influence.",
     "reward": [],
     "prereq": "lesson-1",

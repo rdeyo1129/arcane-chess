@@ -17,7 +17,7 @@
       [0, 0],
       [0, 0]
     ],
-    "nodeText": "",
+    "nodeText": "There is no such thing as an unbeatable position. — Garry Kasparov",
     "storyText": "Sidian stood before a towering bookshelf as an arcana-etched tome floated to him, its pages flipping open with a faint glow. The librarian’s disembodied voice began recounting the ancient battles—a time when the lands were ruled by endless war. Armies clashed without end, their leaders consumed by greed and vengeance. There was no unity, only fractured factions vying for fleeting power, staining the earth with blood. Sidian absorbed the weight of the past, understanding how deeply conflict had shaped Tetraea’s fractured present.",
     "reward": [],
     "prereq": "",
@@ -167,7 +167,7 @@
       [0, 0],
       [0, 0]
     ],
-    "nodeText": "",
+    "nodeText": "Avoid the crowd. Do your own thinking independently. Be the chess player, not the chess piece. — Ralph Charell",
     "storyText": "A second tome floated forward, its cover dark and pulsing with a faint, ominous glow. As Sidian opened it, the library seemed to dim, the description of the Abyss pouring out like a void. The librarian’s voice painted a grim picture of an infinite, chaotic realm where lost souls drifted endlessly. The Abyss was a prison of despair, a plane beyond life, light, and escape. Sidian felt a shiver as the weight of its existence settled over him, a reminder of the stakes tied to failure.",
     "reward": [],
     "prereq": "lesson-1",

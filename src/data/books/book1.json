@@ -17,7 +17,7 @@
       [0, 0],
       [0, 0]
     ],
-    "nodeText": "Take the first step of your learning journey into the dark, winding forest of Chess.",
+    "nodeText": "The journey of a thousand miles begins with a single step. — Confucius",
     "storyText": "Sidian wakes in a forest. He has no memory of who his is or how he got there. A bow, quiver, and book lay at his side. He opens the book. All the pages are empty except the first few.",
     "prereq": "",
     "reward": [],
@@ -307,7 +307,7 @@
       [0, 0],
       [0, 0]
     ],
-    "nodeText": "",
+    "nodeText": "The answers you seek never come when the mind is busy, they come when the mind is still. — Leon Brown",
     "storyText": "Sidian makes his way through the forest but always seems to end up at the same fork. Eventually, a new path leads to a house with a wise mage inside. The mage says nothing but directs Sidian to a chessboard.",
     "reward": [],
     "prereq": "lesson-1",

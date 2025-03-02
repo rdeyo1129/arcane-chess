@@ -19,28 +19,26 @@ interface ArmySelectState {
 }
 
 export const armies = [
-  'RNWMKWNR',
-  'RNSMKSNR',
-  'RZWMKWZR',
-  'RZSMKSZR',
-  'RUWMKWUR',
-  'RUSMKSUR',
-  //
   'RNBQKBNR',
   'RNBTKBNR',
-  'RZBQKBZR',
-  'RZBTKBZR',
-  'RUBQKBUR',
-  'RUBTKBUR',
-  //
-  'RSMVKQSR',
-  'RSMVKTSR',
-  'RWMVKQWR',
-  'RWMVKTWR',
-  //
+  'RNBMKBNR',
   'RNBVKBNR',
-  'ZNUVKUNZ',
+  // sub N for S
+  'RSBQKBSR',
+  'RSBTKBSR',
+  'RSBMKBSR',
+  'RSBVKBSR',
+  // sub B for W
+  'RNWQKWNR',
+  'RNWTKWNR',
+  'RNWMKWNR',
+  'RNWVKWNR',
+  // sub B and N for W and S
+  'RSWQKWSR',
+  'RSWTKWSR',
+  'RSWMKWSR',
   'RSWVKWSR',
+  // sudden death
   'TMQVKQMT',
 ];
 

@@ -295,7 +295,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     }
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.trueRandomize('same');
+  }
 
   descriptions = (): Record<string, string> => {
     return {
@@ -319,7 +321,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       start: 'Rock and Roll!',
       trueRandDiff:
         'This one is truly random and unbalanced... but great for experimenting! Click if you dare.',
-      '': 'Customize a match against the engine. To start, try clicking one of the randomize buttons or choosing a game mode then click start. Hover over other things for more information.',
+      '': 'You are good to hit start! If you want a different starting position, refresh the page or explore different variants by clicking around',
     };
   };
 

@@ -321,7 +321,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       start: 'Rock and Roll!',
       trueRandDiff:
         'This one is truly random and unbalanced... but great for experimenting! Click if you dare.',
-      '': 'You are good to hit start! If you want a different starting position, refresh the page or explore different variants by clicking around',
+      '': "You're all set! This is a true randomized match, the recommended way to play. Click start to begin or choose a different position with the button.",
     };
   };
 
@@ -421,7 +421,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                             }}
                           />
                         </div>
-                        <div className="character-select-container">
+                        {/* <div className="character-select-container">
                           <img
                             src={`${
                               this.state.engineCharacterImgPath ||
@@ -509,7 +509,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                               }}
                             />
                           ) : null}
-                        </div>
+                        </div> */}
                       </div>
                       <div className="arcana">
                         <ArcanaSelect
@@ -685,7 +685,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                             }}
                           />
                         </div>
-                        <div className="character-select-container">
+                        {/* <div className="character-select-container">
                           <div className="character">
                             <img
                               src={`${
@@ -775,7 +775,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                               }}
                             />
                           ) : null}
-                        </div>
+                        </div> */}
                       </div>
                       <div className="arcana">
                         <ArcanaSelect
@@ -887,10 +887,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       />
                     </div>
                   </div>
-                  <div className="engine-strength">
-                    <p>ENGINE DEPTH: {this.state.config.engineDepth}</p>
-                    <p>ENGINE TIME: {this.state.config.thinkingTime}</p>
-                  </div>
                 </div>
               </div>
             </>
@@ -963,6 +959,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     }
                   }}
                 />
+                <div className="engine-strength">
+                  <p>ENGINE DEPTH: {this.state.config.engineDepth}</p>
+                  <p>ENGINE TIME: {this.state.config.thinkingTime}</p>
+                </div>
               </div>
               {/* <div
                 className="quickplay-select"
@@ -1040,7 +1040,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }}
                 />
               </div>
-              <div
+              {/* <div
                 className="quickplay-select"
                 onMouseEnter={() => this.toggleHover('tempRandSame')}
                 onMouseLeave={() => this.toggleHover('')}
@@ -1056,8 +1056,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     this.randomizeTemplates('same');
                   }}
                 />
-              </div>
-              <div
+              </div> */}
+              {/* <div
                 className="quickplay-select"
                 onMouseEnter={() => this.toggleHover('tempRandDiff')}
                 onMouseLeave={() => this.toggleHover('')}
@@ -1072,14 +1072,14 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     this.randomizeTemplates('different');
                   }}
                 />
-              </div>
+              </div> */}
               <div
                 className="quickplay-select"
                 onMouseEnter={() => this.toggleHover('trueRandSame')}
                 onMouseLeave={() => this.toggleHover('')}
               >
                 <Button
-                  text="True Randomize Match"
+                  text="New Position"
                   className="tertiary"
                   color="B"
                   width={260}
@@ -1089,7 +1089,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }}
                 />
               </div>
-              <div
+              {/* <div
                 className="quickplay-select"
                 onMouseEnter={() => this.toggleHover('trueRandDiff')}
                 onMouseLeave={() => this.toggleHover('')}
@@ -1104,7 +1104,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                     this.trueRandomize('different');
                   }}
                 />
-              </div>
+              </div> */}
               <div
                 className="quickplay-select"
                 onMouseEnter={() => this.toggleHover('start')}

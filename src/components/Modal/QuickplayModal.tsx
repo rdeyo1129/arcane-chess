@@ -14,7 +14,7 @@ import 'src/chessground/styles/normal.scss';
 import Button from '../Button/Button';
 import Select from '../Select/Select';
 
-import CharacterSelect from './CharacterSelect';
+// import CharacterSelect from './CharacterSelect';
 import ArcanaSelect from './ArcanaSelect';
 import ArmySelect, { armies } from './ArmySelect';
 

@@ -835,7 +835,13 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                 <div className="global-volume-control">
                   <GlobalVolumeControl />
                 </div>
-                <div className="temple-clock">
+                <div
+                  className="temple-clock"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
                   <ChessClock
                     ref={this.chessclockRef}
                     type="dec"
@@ -851,6 +857,9 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                       });
                     }}
                   />
+                  {puzzleLimits[this.state.chapterNum] -
+                    this.state.visitedPanels.length}{' '}
+                  PUZZLES REMAINING
                 </div>
                 <div className="temple-buttons">
                   <Button

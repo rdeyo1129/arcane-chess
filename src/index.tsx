@@ -39,6 +39,7 @@ import { QuickPlay } from '././pages/quickPlay/QuickPlay';
 import { LeaderBoard } from '././pages/leaderboard/LeaderBoard';
 import { Lexicon } from '././pages/lexicon/Lexicon';
 import { Manifest } from '././pages/manifest/Manifest';
+import { NotFound } from '././pages/notFound/NotFound';
 
 import ReactDOM from 'react-dom/client';
 import Modal from 'react-modal';
@@ -185,6 +186,7 @@ const router = createBrowserRouter(
       {/* <Route path="/stacktadium" element={<></>} />src/data/book9.json src/data/book10.json src/data/book11.json src/data/book12.json */}
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );

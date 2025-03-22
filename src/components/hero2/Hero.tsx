@@ -26,8 +26,20 @@ interface ArcanaMap {
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-export default class Hero extends React.Component {
-  constructor(props: object) {
+export interface HeroProps {
+  rows?: number;
+  columns?: number;
+  variant?: 'default' | 'ghostSquares';
+}
+
+export default class Hero extends React.Component<HeroProps> {
+  static defaultProps: Partial<HeroProps> = {
+    rows: 50,
+    columns: 50,
+    variant: 'default',
+  };
+
+  constructor(props: HeroProps) {
     super(props);
     this.state = {};
   }
@@ -38,7 +50,6 @@ export default class Hero extends React.Component {
   };
 
   // Returns the JSX for a random chess piece.
-  // This method now uses a single random selection instead of multiple calls.
   getRandomPiece = () => {
     const colors = ['white', 'black'];
     const pieces = [
@@ -56,14 +67,11 @@ export default class Hero extends React.Component {
       'z-piece',
       'v-piece',
       'w-piece',
-      // 'x-piece',
     ];
-    // const faction = ['chi', 'mu', 'nu', 'sigma', 'omega', 'lambda'];
     const details = {
       piece: pieces[this.getRandomNumber(0, pieces.length - 1)],
       color: colors[this.getRandomNumber(0, colors.length - 1)],
       faction: 'normal',
-      // faction: faction[this.getRandomNumber(0, 5)],
     };
 
     return (
@@ -82,7 +90,6 @@ export default class Hero extends React.Component {
   };
 
   // Returns the JSX for a random arcana.
-  // It grabs the image from /assets/arcanaImages using the imagePath from the JSON.
   getRandomArcana = () => {
     const arcanaKeys = _.filter(
       Object.keys(arcana),
@@ -111,12 +118,10 @@ export default class Hero extends React.Component {
 
   /**
    * Decides what to display on a square.
-   * @param arcanaChance a number between 0 and 1 for arcana appearance chance (default 0.1 = 10%)
-   * @param pieceChance a number between 0 and 1 for chess piece appearance chance (default 0.1 = 10%)
    */
   getRandomDisplay = (
-    arcanaChance: number = 0.2,
-    pieceChance: number = 0.2
+    arcanaChance: number = 0.1,
+    pieceChance: number = 0.1
   ) => {
     const rand = Math.random();
     if (rand < arcanaChance) {
@@ -129,16 +134,26 @@ export default class Hero extends React.Component {
   };
 
   shouldComponentUpdate() {
-    return false; // Prevents the component from re-rendering
+    return false; // Prevent re-rendering
   }
 
   render() {
+    const { rows, columns, variant } = this.props;
+    // For ghostSquares variant, a 30% chance to render an empty (transparent) square.
+    const ghostChance = 0.3;
+
     return (
       <div className="hero">
         <div className="hero-curtain"></div>
-        <div className="hero-grid">
-          {[...Array(50).keys()].map((x) => {
-            return [...Array(50).keys()].map((y) => {
+        <div
+          className="hero-grid"
+          style={{
+            gridTemplateColumns: `repeat(${columns}, 60px)`,
+            gridTemplateRows: `repeat(${rows}, 60px)`,
+          }}
+        >
+          {[...Array(rows!).keys()].map((x) =>
+            [...Array(columns!).keys()].map((y) => {
               const squareClass =
                 x % 2 === 0
                   ? y % 2 === 0
@@ -147,19 +162,27 @@ export default class Hero extends React.Component {
                   : y % 2 === 1
                   ? 'hero-square light'
                   : 'hero-square dark';
+
+              const shouldGhost =
+                variant === 'ghostSquares' && Math.random() < ghostChance;
+
+              const squareStyle: React.CSSProperties = { display: 'flex' };
+              if (shouldGhost) {
+                // For ghosted squares, override any background so they appear empty/transparent.
+                squareStyle.backgroundColor = 'transparent';
+              }
+
               return (
                 <div
-                  key={y}
+                  key={`square-${x}-${y}`}
                   className={squareClass}
-                  style={{
-                    display: 'flex',
-                  }}
+                  style={squareStyle}
                 >
-                  {this.getRandomDisplay(0.1, 0.1)}
+                  {!shouldGhost && this.getRandomDisplay(0.1, 0.1)}
                 </div>
               );
-            });
-          })}
+            })
+          )}
         </div>
       </div>
     );

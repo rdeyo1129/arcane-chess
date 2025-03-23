@@ -99,7 +99,7 @@ class UnwrappedNotFound extends React.Component<
           <div className="row-a">
             <div className="intro-box">
               <div className="intro">
-                <h1>This page has slipped into the shadows.</h1>
+                <h3>This page has slipped into the shadows.</h3>
                 <p>
                   Cassandra awoke to a silence punctuated only by the distant
                   hum of cosmic energy, her consciousness now residing within

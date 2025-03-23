@@ -210,6 +210,8 @@ interface State {
   opponent: string;
   victoryMessage: string;
   defeatMessage: string;
+  hintCount: number;
+  hintsUsed: number;
 }
 
 interface Props {
@@ -331,6 +333,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.victory,
       defeatMessage:
         booksMap[`book${LS.chapter}`]?.[`${LS.nodeId}`].diagWinLose.defeat,
+      hintCount: 0,
+      hintsUsed: 0,
     };
     this.arcaneChess = () => {
       return arcaneChess();
@@ -392,6 +396,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
           royalties: panelData.royalties,
           visitedPanels: newVisitedPanels,
           orientation: panelData.fen.split(' ')[1] === 'w' ? 'black' : 'white',
+          hintCount: 0,
         };
       },
       () => {
@@ -415,6 +420,38 @@ class UnwrappedTempleView extends React.Component<Props, State> {
 
   setFen = (fen: string) => {
     this.setState({ fen });
+  };
+
+  getHint = () => {
+    const { hintCount, hintsUsed, correctMoves, moveNumber } = this.state;
+    const currentMove = correctMoves[moveNumber];
+    if (hintsUsed > 2) return;
+    if (hintCount === 0) {
+      audioManager.playSFX('spell');
+      this.chessgroundRef.current?.setAutoShapes([
+        {
+          orig: currentMove.slice(0, 2),
+          brush: 'yellow',
+        },
+      ]);
+      this.setState((prevState) => ({
+        hintCount: prevState.hintCount + 1,
+        hintsUsed: prevState.hintsUsed + 1,
+      }));
+    } else if (hintCount === 1) {
+      audioManager.playSFX('spell');
+      this.chessgroundRef.current?.setAutoShapes([
+        {
+          orig: currentMove.slice(0, 2),
+          dest: currentMove.slice(2, 4),
+          brush: 'yellow',
+        },
+      ]);
+      this.setState((prevState) => ({
+        hintCount: prevState.hintCount + 1,
+        hintsUsed: prevState.hintsUsed + 1,
+      }));
+    }
   };
 
   engineGo = () => {
@@ -527,6 +564,8 @@ class UnwrappedTempleView extends React.Component<Props, State> {
 
   handleVictory = (timeLeft: number | null) => {
     const LS = getLocalStorage(this.props.auth.user.username);
+    const score = (timeLeft ? timeLeft : 1) * 1000 * LS.config.multiplier;
+    const hintPenalty = score * 0.2 * this.state.hintsUsed;
     audioManager.playSFX('victory');
     this.setState({
       gameOver: true,
@@ -536,10 +575,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
       ...getLocalStorage(this.props.auth.user.username),
       nodeScores: {
         ...getLocalStorage(this.props.auth.user.username).nodeScores,
-        [this.state.nodeId]:
-          this.state.playerColor === 'white'
-            ? (timeLeft ? timeLeft : 1) * 1000 * LS.config.multiplier
-            : (timeLeft ? timeLeft : 1) * 1000 * LS.config.multiplier,
+        [this.state.nodeId]: score - hintPenalty,
       },
       chapterEnd: booksMap[`book${LS.chapter}`][this.state.nodeId].boss
         ? true
@@ -857,20 +893,23 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                       });
                     }}
                   />
-                  {puzzleLimits[this.state.chapterNum] -
-                    this.state.visitedPanels.length}{' '}
-                  PUZZLES REMAINING
+                  <div>
+                    {puzzleLimits[this.state.chapterNum] -
+                      this.state.visitedPanels.length}{' '}
+                    PUZZLES REMAINING
+                  </div>
+                  <div>{this.state.hintsUsed} / 3 HINTS USED</div>
+                  <div>({100 - 20 * this.state.hintsUsed}% OF FULL SCORE)</div>
                 </div>
                 <div className="temple-buttons">
                   <Button
                     className="tertiary"
                     onClick={() => {
-                      this.setState({ selected: 'a' });
+                      this.getHint();
                     }}
                     color="S"
-                    text=""
-                    width={190}
-                    disabled
+                    text="HINT"
+                    width={250}
                     backgroundColorOverride="#11111188"
                   />
                   <Button
@@ -885,7 +924,7 @@ class UnwrappedTempleView extends React.Component<Props, State> {
                     color="S"
                     // strong={true}
                     text="RESIGN"
-                    width={100}
+                    width={150}
                     // fontSize={30}
                     backgroundColorOverride="#11111188"
                   />

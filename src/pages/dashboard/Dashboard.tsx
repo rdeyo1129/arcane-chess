@@ -22,7 +22,7 @@ interface DashboardProps {
 interface DashboardState {
   hoverNav: string;
   menuItemDescriptions: {
-    campaign: string;
+    campaign1: string;
     stacktadium2: string;
     leaderboard: string;
     quickplay: string;
@@ -41,9 +41,9 @@ export class UnwrappedDashboard extends React.Component<
   constructor(props: DashboardProps) {
     super(props);
     this.state = {
-      hoverNav: 'campaign',
+      hoverNav: 'campaign1',
       menuItemDescriptions: {
-        campaign:
+        campaign1:
           'Collect the arcana, conquer the beasts, and etch your name on the leaderboard.',
         stacktadium2: 'An ancient grid, a fresh enigma.',
         leaderboard: 'Observe global rankings.',
@@ -79,7 +79,7 @@ export class UnwrappedDashboard extends React.Component<
             <Link
               className="home-button"
               to="/campaign"
-              onMouseEnter={() => this.setState({ hoverNav: 'campaign' })}
+              onMouseEnter={() => this.setState({ hoverNav: 'campaign1' })}
             >
               <Button
                 text="CAMPAIGN"

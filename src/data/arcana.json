@@ -366,7 +366,7 @@
   "modsREA": {
     "id": "modsREA",
     "name": "Iron Reach",
-    "description": "Friendly Valkyrie gains the Queen's moveset.",
+    "description": "Friendly Valkyries gain the Queen moveset, friendly Wraiths gain the Bishop moveset.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/vanUpgrade"
   },

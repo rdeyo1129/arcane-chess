@@ -866,6 +866,55 @@ export function SqAttacked(sq, side) {
     }
   }
 
+  // iron reach valkyrie
+  if (
+    (side === COLOURS.WHITE && GameBoard.whiteArcane[4] & 2048) ||
+    (side === COLOURS.BLACK && GameBoard.blackArcane[4] & 2048)
+  ) {
+    // Orthogonal (rook)
+    for (index = 0; index < 4; index++) {
+      dir = RkDir[index];
+      t_sq = sq + dir;
+      pce = GameBoard.pieces[t_sq];
+      while (pce !== SQUARES.OFFBOARD) {
+        if (pce !== PIECES.EMPTY) {
+          if (
+            PieceCol[pce] === side &&
+            PieceValkyrie[pce] === BOOL.TRUE &&
+            !overridePresent(t_sq) &&
+            !(GameBoard.royaltyE[t_sq] > 0)
+          ) {
+            return BOOL.TRUE;
+          }
+          break;
+        }
+        t_sq += dir;
+        pce = GameBoard.pieces[t_sq];
+      }
+    }
+    // Diagonal (bishop)
+    for (index = 0; index < 4; index++) {
+      dir = BiDir[index];
+      t_sq = sq + dir;
+      pce = GameBoard.pieces[t_sq];
+      while (pce !== SQUARES.OFFBOARD) {
+        if (pce !== PIECES.EMPTY) {
+          if (
+            PieceCol[pce] === side &&
+            PieceValkyrie[pce] === BOOL.TRUE &&
+            !overridePresent(t_sq) &&
+            !(GameBoard.royaltyE[t_sq] > 0)
+          ) {
+            return BOOL.TRUE;
+          }
+          break;
+        }
+        t_sq += dir;
+        pce = GameBoard.pieces[t_sq];
+      }
+    }
+  }
+
   // king
   for (index = 0; index < 8; index++) {
     pce = GameBoard.pieces[sq + KiDir[index]];
@@ -986,6 +1035,33 @@ export function SqAttacked(sq, side) {
       !(GameBoard.royaltyE[sq + WrDir[index]] > 0)
     ) {
       return BOOL.TRUE;
+    }
+  }
+
+  // iron reach wraith
+  if (
+    (side === COLOURS.WHITE && GameBoard.whiteArcane[4] & 2048) ||
+    (side === COLOURS.BLACK && GameBoard.blackArcane[4] & 2048)
+  ) {
+    for (index = 0; index < 4; index++) {
+      dir = BiDir[index];
+      t_sq = sq + dir;
+      pce = GameBoard.pieces[t_sq];
+      while (pce !== SQUARES.OFFBOARD) {
+        if (pce !== PIECES.EMPTY) {
+          if (
+            PieceCol[pce] === side &&
+            PieceWraith[pce] === BOOL.TRUE &&
+            !overridePresent(t_sq) &&
+            !(GameBoard.royaltyE[t_sq] > 0)
+          ) {
+            return BOOL.TRUE;
+          }
+          break;
+        }
+        t_sq += dir;
+        pce = GameBoard.pieces[t_sq];
+      }
     }
   }
 

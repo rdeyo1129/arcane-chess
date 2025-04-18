@@ -2182,8 +2182,7 @@ export function GenerateMoves(
   // SLIDERS
   while (pce !== 0) {
     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; pceNum++) {
-      sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
-
+      const sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
       const isOverrided =
         GameBoard.royaltyQ[sq] > 0 ||
         GameBoard.royaltyT[sq] > 0 ||
@@ -2192,32 +2191,52 @@ export function GenerateMoves(
         GameBoard.royaltyE[sq] > 0;
 
       if (!isOverrided) {
-        if (pce === PIECES.wV) {
-          if (GameBoard.whiteArcane[4] & 2048) {
-            pce = PIECES.wQ;
+        const origPce = pce;
+        let slidePce = origPce;
+        const arc4 =
+          GameBoard.side === COLOURS.WHITE
+            ? GameBoard.whiteArcane[4]
+            : GameBoard.blackArcane[4];
+
+        if (origPce === PIECES.wV) {
+          if (arc4 & 2048) {
+            slidePce = PIECES.wQ;
           } else {
-            return;
+            continue;
           }
         }
-        if (pce === PIECES.bV) {
-          if (GameBoard.blackArcane[4] & 2048) {
-            pce = PIECES.bQ;
+        if (origPce === PIECES.bV) {
+          if (arc4 & 2048) {
+            slidePce = PIECES.bQ;
           } else {
-            return;
+            continue;
+          }
+        }
+        if (origPce === PIECES.wW) {
+          if (arc4 & 2048) {
+            slidePce = PIECES.wB;
+          } else {
+            continue;
+          }
+        }
+        if (origPce === PIECES.bW) {
+          if (arc4 & 2048) {
+            slidePce = PIECES.bB;
+          } else {
+            continue;
           }
         }
 
-        for (index = 0; index < DirNum[pce]; index++) {
+        for (let idx = 0; idx < DirNum[slidePce]; idx++) {
+          const dir = PceDir[slidePce][idx];
+          let t_sq = sq + dir;
           let rDir, bDir, shft_t_R_sq, shft_t_B_sq;
 
-          dir = PceDir[pce][index];
-          t_sq = sq + dir;
-
           if (
-            pce === PIECES.wB ||
-            pce === PIECES.wR ||
-            pce === PIECES.bB ||
-            pce === PIECES.bR
+            slidePce === PIECES.wB ||
+            slidePce === PIECES.wR ||
+            slidePce === PIECES.bB ||
+            slidePce === PIECES.bR
           ) {
             rDir = RkDir[index];
             bDir = BiDir[index];
@@ -2305,7 +2324,10 @@ export function GenerateMoves(
               !herrings.length
             ) {
               if (GameBoard.pieces[shft_t_R_sq] === PIECES.EMPTY) {
-                if (pce === PIECES.wR && GameBoard.whiteArcane[1] & 8) {
+                if (
+                  GameBoard.pieces[sq] === PIECES.wR &&
+                  GameBoard.whiteArcane[1] & 8
+                ) {
                   AddQuietMove(
                     MOVE(
                       sq,
@@ -2317,7 +2339,10 @@ export function GenerateMoves(
                     capturesOnly
                   );
                 }
-                if (pce === PIECES.bR && GameBoard.blackArcane[1] & 8) {
+                if (
+                  GameBoard.pieces[sq] === PIECES.bR &&
+                  GameBoard.blackArcane[1] & 8
+                ) {
                   AddQuietMove(
                     MOVE(
                       sq,
@@ -2342,7 +2367,10 @@ export function GenerateMoves(
               !herrings.length
             ) {
               if (GameBoard.pieces[shft_t_B_sq] === PIECES.EMPTY) {
-                if (pce === PIECES.wB && GameBoard.whiteArcane[1] & 4) {
+                if (
+                  GameBoard.pieces[sq] === PIECES.wB &&
+                  GameBoard.whiteArcane[1] & 4
+                ) {
                   AddQuietMove(
                     MOVE(
                       sq,
@@ -2354,7 +2382,10 @@ export function GenerateMoves(
                     capturesOnly
                   );
                 }
-                if (pce === PIECES.bB && GameBoard.blackArcane[1] & 4) {
+                if (
+                  GameBoard.pieces[sq] === PIECES.bB &&
+                  GameBoard.blackArcane[1] & 4
+                ) {
                   AddQuietMove(
                     MOVE(
                       sq,

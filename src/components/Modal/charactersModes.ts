@@ -204,6 +204,31 @@ const padModes = (modes: Record<string, GameModeType>) => {
 };
 
 export const modes: Record<string, GameModeType> = padModes({
+  goliaths: {
+    name: 'Clash of Goliaths',
+    white: {
+      arcana: [
+        arcana.dyadA,
+        arcana.sumnRA,
+        arcana.sumnV,
+        arcana.swapDEP,
+        arcana.modsEXT,
+        arcana.modsGLU,
+      ],
+      setup: 'TMQVKQMT',
+    },
+    black: {
+      arcana: [
+        arcana.dyadA,
+        arcana.sumnRA,
+        arcana.sumnV,
+        arcana.swapDEP,
+        arcana.modsEXT,
+        arcana.modsGLU,
+      ],
+      setup: 'tmqvkqmt',
+    },
+  },
   newClassic: {
     name: 'The New Classic',
     white: {
@@ -325,15 +350,15 @@ export const modes: Record<string, GameModeType> = padModes({
       setup: 'tmqvkqmt',
     },
   },
-  // stampede: {
-  //   name: 'Stampede!',
-  //   white: {
-  //     arcana: [],
-  //     setup: 'ZNUVKUNZ',
-  //   },
-  //   black: {
-  //     arcana: [],
-  //     setup: 'znuvkunz',
-  //   },
-  // },
+  stampede: {
+    name: 'Stampede!',
+    white: {
+      arcana: [],
+      setup: 'ZNUVKUNZ',
+    },
+    black: {
+      arcana: [],
+      setup: 'znuvkunz',
+    },
+  },
 });

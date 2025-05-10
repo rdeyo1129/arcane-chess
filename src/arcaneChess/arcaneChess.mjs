@@ -175,6 +175,12 @@ export default function arcaneChess() {
         blackArcaneConfig[type] -= 1;
       }
     },
+    useBulletproof: async (playerColor) => {
+      const playerArcana =
+        playerColor === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+      playerArcana.modsSUS -= 1;
+      GameBoard.suspend = 6;
+    },
     engineSuggestion: async (playerColor, level) => {
       const playerArcana =
         playerColor === 'white' ? whiteArcaneConfig : blackArcaneConfig;

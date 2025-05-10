@@ -14,7 +14,7 @@ import cheer from '/assets/noise/sounds/01_start2.wav';
 
 // Music Tracks
 import tactoriusmenu from '/assets/noise/music/tactoriusmenu.wav';
-import caller from '/assets/noise/music/caller.mp3';
+// import caller from '/assets/noise/music/caller.mp3';
 import darkcity from '/assets/noise/music/darkcity.mp3';
 import Dream2Ambience from '/assets/noise/music/Dream2Ambience.mp3';
 import monoliths from '/assets/noise/music/monoliths.mp3';
@@ -45,8 +45,8 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
       audioManager.registerSFX('cheer', cheer);
 
     // Register Background Music
-    if (!audioManager.isSoundRegistered('lesson1'))
-      audioManager.registerMusic('lesson1', caller);
+    // if (!audioManager.isSoundRegistered('lesson1'))
+    //   audioManager.registerMusic('lesson1', caller);
     if (!audioManager.isSoundRegistered('menu'))
       audioManager.registerMusic('menu', tactoriusmenu);
 
@@ -66,8 +66,14 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
 
   // Trigger Music Play/Stop based on Route
   useEffect(() => {
-    const lessonRoutes = ['/lexicon', '/lesson'];
-    const gameRoutes = ['/temple', '/mission', '/quickplay', '/stacktadium'];
+    const gameRoutes = [
+      '/temple',
+      '/mission',
+      '/quickplay',
+      '/stacktadium',
+      '/lexicon',
+      '/lesson',
+    ];
     const menuRoutes = [
       '/',
       '/campaign',
@@ -76,18 +82,9 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
       '/leaderboard',
     ];
 
-    if (lessonRoutes.includes(location.pathname)) {
+    if (gameRoutes.includes(location.pathname)) {
       audioManager.stopMusic('menu');
-      audioManager.stopMusic('game1');
-      audioManager.stopMusic('game2');
-      audioManager.stopMusic('game3');
-      audioManager.stopMusic('game4');
-      audioManager.stopMusic('game5');
-      audioManager.stopMusic('game6');
-      audioManager.playMusic('lesson1');
-    } else if (gameRoutes.includes(location.pathname)) {
-      audioManager.stopMusic('menu');
-      audioManager.stopMusic('lesson1');
+      // audioManager.stopMusic('lesson1');
       audioManager.stopMusic('game1');
       audioManager.stopMusic('game2');
       audioManager.stopMusic('game3');
@@ -96,23 +93,23 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
       audioManager.stopMusic('game6');
       audioManager.setPlaylist(['game1', 'game2', 'game3', 'game4', 'game5']);
     } else if (menuRoutes.includes(location.pathname)) {
-      audioManager.stopMusic('lesson1');
       audioManager.stopMusic('game1');
       audioManager.stopMusic('game2');
       audioManager.stopMusic('game3');
       audioManager.stopMusic('game4');
       audioManager.stopMusic('game5');
       audioManager.stopMusic('game6');
+      // audioManager.stopMusic('lesson1');
       audioManager.playMusic('menu');
     } else {
-      audioManager.stopMusic('menu');
       audioManager.stopMusic('game1');
       audioManager.stopMusic('game2');
       audioManager.stopMusic('game3');
       audioManager.stopMusic('game4');
       audioManager.stopMusic('game5');
       audioManager.stopMusic('game6');
-      audioManager.stopMusic('lesson1');
+      audioManager.stopMusic('menu');
+      // audioManager.stopMusic('lesson1');
     }
   }, [location.pathname]);
 

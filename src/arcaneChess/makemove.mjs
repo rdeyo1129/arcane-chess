@@ -344,7 +344,7 @@ export function MakeMove(move, moveType = '') {
           if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
           if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
           if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
-          GameBoard.royaltyE[square] = 8;
+          GameBoard.royaltyE[square] = 7;
         });
       } else if (captured === 7) {
         // rank bind
@@ -357,7 +357,7 @@ export function MakeMove(move, moveType = '') {
           if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
           if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
           if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
-          GameBoard.royaltyE[square] = 8;
+          GameBoard.royaltyE[square] = 7;
         });
       } else if (captured === 8) {
         const tombSquare = [-11, -10, -9, -1, 0, 1, 9, 10, 11];
@@ -368,7 +368,7 @@ export function MakeMove(move, moveType = '') {
           if (GameBoard.royaltyM[sq] > 0) GameBoard.royaltyM[sq] = 0;
           if (GameBoard.royaltyV[sq] > 0) GameBoard.royaltyV[sq] = 0;
           if (GameBoard.pieces[sq] === PIECES.EXILE) return;
-          GameBoard.royaltyE[sq] = 8;
+          GameBoard.royaltyE[sq] = 7;
         });
       } else if (
         GameBoard[
@@ -380,7 +380,7 @@ export function MakeMove(move, moveType = '') {
       ) {
         GameBoard[
           `royalty${RtyChar.split('')[royaltyIndexMapRestructure[captured]]}`
-        ][to] = 8;
+        ][to] = 7;
       }
     } else if (pieceEpsilon > 0) {
       AddPiece(to, pieceEpsilon, true);

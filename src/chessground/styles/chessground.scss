@@ -370,6 +370,129 @@ cg-board square.royaltyE {
     rgba(158, 105, 0, 0) 100%
   );
 }
+
+cg-board square.move-dest.royaltyQ {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 0, 0.6) 0%,
+      rgba(231, 231, 0, 0.6) 25%,
+      rgba(169, 169, 0, 0) 89%,
+      rgba(158, 158, 0, 0) 100%
+    ),
+    radial-gradient(
+      rgba(255, 223, 0, 0.5) 22%,
+      rgba(0, 0, 0, 0.3) 0,
+      rgba(0, 0, 0, 0) 0
+    );
+}
+cg-board square.move-dest.royaltyT {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 254, 0.6) 0%,
+      rgba(0, 0, 231, 0.6) 25%,
+      rgba(0, 0, 169, 0) 89%,
+      rgba(0, 0, 158, 0) 100%
+    ),
+    radial-gradient(
+      rgba(255, 223, 0, 0.5) 22%,
+      rgba(0, 0, 0, 0.3) 0,
+      rgba(0, 0, 0, 0) 0
+    );
+}
+cg-board square.move-dest.royaltyM {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(0, 254, 0, 0.6) 0%,
+      rgba(0, 231, 0, 0.6) 25%,
+      rgba(0, 169, 0, 0) 89%,
+      rgba(0, 158, 0, 0) 100%
+    ),
+    radial-gradient(
+      rgba(255, 223, 0, 0.5) 22%,
+      rgba(0, 0, 0, 0.3) 0,
+      rgba(0, 0, 0, 0) 0
+    );
+}
+cg-board square.move-dest.royaltyV {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(128, 0, 128, 0.6) 0%,
+      rgba(115, 0, 115, 0.6) 25%,
+      rgba(84, 0, 84, 0) 89%,
+      rgba(79, 0, 79, 0) 100%
+    ),
+    radial-gradient(
+      rgba(255, 223, 0, 0.5) 22%,
+      rgba(0, 0, 0, 0.3) 0,
+      rgba(0, 0, 0, 0) 0
+    );
+}
+cg-board square.move-dest.royaltyE {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(255, 165, 0, 0.6) 0%,
+      rgba(231, 151, 0, 0.6) 25%,
+      rgba(169, 110, 0, 0) 89%,
+      rgba(158, 105, 0, 0) 100%
+    ),
+    radial-gradient(
+      rgba(255, 223, 0, 0.5) 22%,
+      rgba(0, 0, 0, 0.3) 0,
+      rgba(0, 0, 0, 0) 0
+    );
+}
+
+cg-board square.oc.move-dest.royaltyQ {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 0, 0.6) 0%,
+      rgba(231, 231, 0, 0.6) 25%,
+      rgba(169, 169, 0, 0) 89%,
+      rgba(158, 158, 0, 0) 100%
+    ),
+    radial-gradient(transparent 0%, transparent 80%, rgba(255, 223, 0, 0.5) 22%);
+}
+cg-board square.oc.move-dest.royaltyT {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 254, 0.6) 0%,
+      rgba(0, 0, 231, 0.6) 25%,
+      rgba(0, 0, 169, 0) 89%,
+      rgba(0, 0, 158, 0) 100%
+    ),
+    radial-gradient(transparent 0%, transparent 80%, rgba(255, 223, 0, 0.5) 22%);
+}
+cg-board square.oc.move-dest.royaltyM {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(0, 254, 0, 0.6) 0%,
+      rgba(0, 231, 0, 0.6) 25%,
+      rgba(0, 169, 0, 0) 89%,
+      rgba(0, 158, 0, 0) 100%
+    ),
+    radial-gradient(transparent 0%, transparent 80%, rgba(255, 223, 0, 0.5) 22%);
+}
+cg-board square.oc.move-dest.royaltyV {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(128, 0, 128, 0.6) 0%,
+      rgba(115, 0, 115, 0.6) 25%,
+      rgba(84, 0, 84, 0) 89%,
+      rgba(79, 0, 79, 0) 100%
+    ),
+    radial-gradient(transparent 0%, transparent 80%, rgba(255, 223, 0, 0.5) 22%);
+}
+cg-board square.oc.move-dest.royaltyE {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(255, 165, 0, 0.6) 0%,
+      rgba(231, 151, 0, 0.6) 25%,
+      rgba(169, 110, 0, 0) 89%,
+      rgba(158, 105, 0, 0) 100%
+    ),
+    radial-gradient(transparent 0%, transparent 80%, rgba(255, 223, 0, 0.5) 22%);
+}
+
 cg-board square.current-premove {
   background-color: rgba(20, 30, 85, 0.5);
 }

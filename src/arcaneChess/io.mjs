@@ -12,6 +12,7 @@ import {
   MFLAGSWAP,
   MFLAGCA,
   MFLAGEP,
+  InCheck,
 } from './board';
 import {
   NOMOVE,
@@ -286,10 +287,15 @@ export function PrMove(move, returnType) {
       'ep';
   }
 
+  if (InCheck()) {
+    MvStr += '+';
+  }
+
   // from chessground translator
   if (returnType === 'array') {
     return [PrSq(FROMSQ(move)), PrSq(TOSQ(move))];
   }
+
   return MvStr;
 }
 

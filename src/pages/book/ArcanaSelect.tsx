@@ -130,6 +130,7 @@ export const unlockableArcana = [
     sumnS: 8,
     modsTEM: 6,
     modsEXT: 7,
+    modsSIL: 10,
   },
   // 12
   {

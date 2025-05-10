@@ -110,14 +110,22 @@ export function AddCaptureMove(move, consume = false, capturesOnly = false) {
   if (capturedPiece === PIECES.wK || capturedPiece === PIECES.bK) {
     return;
   }
+
+  // gluttony
   if (
     GameBoard.dyad > 0 &&
     ((GameBoard.side === COLOURS.WHITE && !(GameBoard.whiteArcane[4] & 64)) ||
       (GameBoard.side === COLOURS.BLACK && !(GameBoard.blackArcane[4] & 64)))
-  ) {
+  )
     return;
-  }
-  if (GameBoard.royaltyE[TOSQ(move)] > 0) return;
+  // sixfold silk
+  if (
+    GameBoard.royaltyE[TOSQ(move)] > 0 &&
+    ((GameBoard.side === COLOURS.WHITE && !(GameBoard.whiteArcane[4] & 8)) ||
+      (GameBoard.side === COLOURS.BLACK && !(GameBoard.blackArcane[4] & 8)))
+  )
+    return;
+
   if ((capturesOnly && !consume) || !capturesOnly) {
     if (move & MFLAGSWAP) {
       GameBoard.moveList[GameBoard.moveListStart[GameBoard.ply + 1]] = move;
@@ -655,12 +663,14 @@ export function GenerateMoves(
     forcedMoves &&
     GameBoard.side === COLOURS.WHITE &&
     GameBoard.blackArcane[4] & 32768 &&
+    GameBoard.suspend <= 0 &&
     (GameBoard.pieces[GameBoard.enPas - 9] === PIECES.wP ||
       GameBoard.pieces[GameBoard.enPas - 11] === PIECES.wP);
   const activeBlackForcedEpCapture =
     forcedMoves &&
     GameBoard.side === COLOURS.BLACK &&
     GameBoard.whiteArcane[4] & 32768 &&
+    GameBoard.suspend <= 0 &&
     (GameBoard.pieces[GameBoard.enPas + 9] === PIECES.bP ||
       GameBoard.pieces[GameBoard.enPas + 11] === PIECES.bP);
 

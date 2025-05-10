@@ -303,7 +303,7 @@
   "offrA": {
     "id": "offrA",
     "name": "Grave Offering",
-    "description": "Offer any friendly piece (not King) to summon it's spirit back into play.",
+    "description": "Offer any friendly piece (not King) to gain a summon arcana of that piece.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/zombie"
   },
@@ -467,6 +467,13 @@
     "description": "You may capture pieces during dyad moves.",
     "type": "inherent",
     "imagePath": "/assets/arcanaImages/gluttony"
+  },
+  "modsSIL": {
+    "id": "modsSIL",
+    "name": "Sixfold Silk",
+    "description": "You may capture entangled pieces.",
+    "type": "inherent",
+    "imagePath": "/assets/arcanaImages/vial"
   },
   "empty": {
     "id": "empty",

@@ -883,9 +883,16 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     }
                   }
                   if (key.includes('modsSUS')) {
-                    if (GameBoard.suspend > 0) return;
+                    if (GameBoard.suspend > 0) return; // will need adjustment for PvP
                     audioManager.playSFX('freeze');
-                    GameBoard.suspend = 6;
+                    arcaneChess().useBulletproof(this.state.playerColor);
+                    this.setState({
+                      dialogue: [
+                        ...this.state.dialogue,
+                        `${this.state.playerColor} used bulletproof. No captures, checks, or promotions for 3 turns!`,
+                      ],
+                      hoverArcane: '',
+                    });
                   }
                   if (key.includes('dyad')) {
                     this.setState((prevState) => {

@@ -302,7 +302,7 @@ export const modes: Record<string, GameModeType> = padModes({
       setup: 'RNBQKBNR',
     },
     black: {
-      arcana: [arcana.dyadP],
+      arcana: [arcana.dyadB],
       setup: 'rnbqkbnr',
     },
   },
@@ -320,11 +320,11 @@ export const modes: Record<string, GameModeType> = padModes({
   seconds: {
     name: 'Seconds',
     white: {
-      arcana: [arcana.dyadB, arcana.modsGLU],
+      arcana: [arcana.dyadC, arcana.modsGLU],
       setup: 'RNBQKBNR',
     },
     black: {
-      arcana: [arcana.dyadN, arcana.modsGLU],
+      arcana: [arcana.dyadC, arcana.modsGLU],
       setup: 'rnbqkbnr',
     },
   },

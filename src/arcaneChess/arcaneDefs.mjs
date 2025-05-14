@@ -137,7 +137,7 @@ export const POWERBIT = {
   shftN: 2,
   shftB: 4,
   shftR: 8,
-  shftT: 16,
+  shftT: 16, // active
   // 2 active
   swapDEP: 1,
   swapADJ: 2,

@@ -338,14 +338,14 @@
   "shftT": {
     "id": "shftT",
     "name": "Teleportation",
-    "description": "Move a friendly piece to any empty square within your first three ranks. Use at your own risk.",
+    "description": "Move a friendly piece to any empty square within your first three ranks.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsTEL"
   },
   "swapDEP": {
     "id": "swapDEP",
     "name": "Ally Translocate",
-    "description": "Swap the positions of a friendly minor or major piece (no P, H, V, K). Use at your own risk.",
+    "description": "Swap the positions of a friendly minor or major piece (no P, H, V, K).",
     "type": "active",
     "imagePath": "/assets/arcanaImages/swapDEP"
   },

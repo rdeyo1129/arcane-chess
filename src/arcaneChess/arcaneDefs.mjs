@@ -137,7 +137,7 @@ export const POWERBIT = {
   shftN: 2,
   shftB: 4,
   shftR: 8,
-  shftT: 16, // active
+  shftT: 16,
   // 2 active
   swapDEP: 1,
   swapADJ: 2,
@@ -145,14 +145,14 @@ export const POWERBIT = {
   modsCON: 1, // passive
   modsAET: 2, // inherent
   modsFUG: 4, // inherent
-  modsSIL: 8, // inherent // can be replaced
+  modsSIL: 8, // inherent
   modsINH: 16, // inherent
   modsSUS: 32, // active
   modsGLU: 64, // inherent
-  modsFUT: 128, // active // can be replaced I think
+  modsFUT: 128, // active
   modsREA: 2048, // inherent
   modsEXT: 4096, // inherent
-  modsSKI: 16384, // active // can be replace?
+  modsSKI: 16384, // active
   modsTRO: 32768, // inherent
 };
 

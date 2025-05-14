@@ -40,7 +40,7 @@ class UnwrappedFrontPage extends React.Component<
     this.slogans = [
       'Principle. Preparation. Process.',
       'As in war, so in life.',
-      'Is this theory?',
+      'Is this theory? Nope.',
       'Read. Recognize. React.',
       "Let's see a more advanced setup.",
       'Metagame just got a new name.',
@@ -51,6 +51,7 @@ class UnwrappedFrontPage extends React.Component<
       'Less doom scroll, more square control.',
       'Initiative. Formulation. Execution.',
       'Built for GMs, fun for aliens, instructive for all.',
+      'Balanced and volatile.',
       'The war continues... so does your learning.',
     ];
     this.state = {

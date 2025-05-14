@@ -173,6 +173,7 @@ export function AddEnPassantMove(move) {
 }
 
 export function addSummonMove(move) {
+  if (GameBoard.suspend > 0) return;
   // if (move & MFLAGSWAP) return;
   // whiteArcaneConfig[
   //   `sumn${pieceEpsilon > 27 || pieceEpsilon === ARCANE_BIT_VALUES.RV ? 'R' : ''}${PceChar.split('')[

@@ -265,5 +265,8 @@
     "description": "Your pieces become invisible to your opponent for 3 turns.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/modsPHA"
+  },
+  "dyads": {
+    "dyads": "individual ones"
   }
 }

@@ -84,22 +84,13 @@ export const activateDyad = () => {
 // 0011 1111 1111 0000 0000 0000 0000 0000 0000 0000 0000 0000 mods
 
 export const POWERBIT = {
-  // 15 active
-  dyadA: 1,
-  dyadP: 2,
-  dyadS: 4,
-  dyadH: 8,
-  dyadN: 16,
-  dyadB: 32,
-  dyadR: 64,
-  dyadQ: 128,
-  dyadK: 256,
-  dyadT: 512,
-  dyadM: 1024,
-  dyadV: 2048,
-  dyadZ: 4096,
-  dyadU: 8192,
-  dyadW: 16384,
+  // 6 active
+  dyadA: 1, // all
+  dyadB: 2, // p h
+  dyadC: 4, // b n z u r
+  dyadD: 8, // s w
+  dyadE: 16, // m t q
+  dyadF: 32, // v k
   // 22 active
   sumnP: 1,
   sumnS: 2,

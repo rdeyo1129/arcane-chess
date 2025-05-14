@@ -1,108 +1,45 @@
 {
   "dyadA": {
     "id": "dyadA",
-    "name": "General Dyad",
+    "name": "Dyad",
     "description": "Make two moves, no capturing.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadA"
   },
-  "dyadP": {
-    "id": "dyadP",
-    "name": "Pawn Dyad",
-    "description": "Make two Pawn moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadBlue"
-  },
-  "dyadS": {
-    "id": "dyadS",
-    "name": "Spectre Dyad",
-    "description": "Make two Spectre moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadPurple"
-  },
-  "dyadW": {
-    "id": "dyadW",
-    "name": "Wraith Dyad",
-    "description": "Make two Wraith moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadPurple"
-  },
-  "dyadH": {
-    "id": "dyadH",
-    "name": "Herring Dyad",
-    "description": "Make two Herring moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadBlue"
-  },
-  "dyadN": {
-    "id": "dyadN",
-    "name": "Knight Dyad",
-    "description": "Make two Knight moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadGreen"
-  },
   "dyadB": {
     "id": "dyadB",
-    "name": "Bishop Dyad",
-    "description": "Make two Bishop moves, no capturing.",
+    "name": "Step and Shadow Dyad",
+    "description": "Make two moves, no capturing (Pawn, Herring).",
     "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadOrange"
+    "imagePath": "/assets/arcanaImages/dyadBlue"
   },
-  "dyadR": {
-    "id": "dyadR",
-    "name": "Rook Dyad",
-    "description": "Make two Rook moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadOrange"
-  },
-  "dyadQ": {
-    "id": "dyadQ",
-    "name": "Queen Dyad",
-    "description": "Make two Queen moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadYellow"
-  },
-  "dyadK": {
-    "id": "dyadK",
-    "name": "King Dyad",
-    "description": "Make two King moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadYellow"
-  },
-  "dyadT": {
-    "id": "dyadT",
-    "name": "Templar Dyad",
-    "description": "Make two Templar moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadYellow"
-  },
-  "dyadM": {
-    "id": "dyadM",
-    "name": "Mystic Dyad",
-    "description": "Make two Mystic moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadYellow"
-  },
-  "dyadV": {
-    "id": "dyadV",
-    "name": "Valkyrie Dyad",
-    "description": "Make two Valkyrie moves, no capturing.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadYellow"
-  },
-  "dyadZ": {
-    "id": "dyadZ",
-    "name": "Zebra Dyad",
-    "description": "Make two Zebra moves, no capturing.",
+  "dyadC": {
+    "id": "dyadC",
+    "name": "Warrior's Oath Dyad",
+    "description": "Make two moves, no capturing (Bishop, Knight, Zebra, Unicorn, Rook).",
     "type": "active",
     "imagePath": "/assets/arcanaImages/dyadGreen"
   },
-  "dyadU": {
-    "id": "dyadU",
-    "name": "Unicorn Dyad",
-    "description": "Make two Unicorn moves, no capturing.",
+  "dyadD": {
+    "id": "dyadD",
+    "name": "Veil and Vow Dyad",
+    "description": "Make two moves, no capturing (Spectre, Wraith).",
     "type": "active",
-    "imagePath": "/assets/arcanaImages/dyadGreen"
+    "imagePath": "/assets/arcanaImages/dyadPurple"
+  },
+  "dyadE": {
+    "id": "dyadE",
+    "name": "Judgement Dyad",
+    "description": "Make two moves, no capturing (Mystic, Templar, Queen).",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/dyadOrange"
+  },
+  "dyadF": {
+    "id": "dyadF",
+    "name": "Fatebound Dyad",
+    "description": "Make two moves, no capturing (Valkyrie, King).",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/dyadYellow"
   },
   "sumnP": {
     "id": "sumnP",

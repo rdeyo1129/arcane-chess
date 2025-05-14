@@ -760,8 +760,7 @@ export const LoopNonSlidePce = [
   0,
 ];
 export const LoopNonSlideDyad = [
-  16, 256, 4, 8, 512, 1024, 2048, 4096, 8192, 16384, 0, 16, 256, 4, 8, 512,
-  1024, 2048, 4096, 8192, 16384, 0,
+  4, 32, 8, 2, 16, 16, 32, 4, 4, 8, 0, 4, 32, 8, 2, 16, 16, 32, 4, 4, 8, 0,
 ];
 export const LoopNonSlideIndex = [0, 11];
 
@@ -784,8 +783,7 @@ export const LoopSlidePce = [
   0,
 ];
 export const LoopSlideDyad = [
-  32, 64, 128, 512, 1024, 16384, 2048, 0, 32, 64, 128, 512, 1024, 16384, 2048,
-  0,
+  4, 4, 16, 16, 16, 8, 32, 0, 4, 4, 16, 16, 16, 8, 32, 0,
 ];
 // export const LoopSlideIndex = [0, 4];
 export const LoopSlideIndex = [0, 8];

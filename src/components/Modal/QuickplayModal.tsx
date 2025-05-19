@@ -65,6 +65,7 @@ interface ModalState {
   playerCharacterImgPath: string;
   engineCharacterImgPath: string;
   characterDescription: string;
+  selectedModeName: string;
 }
 
 interface ArcanaDetail {
@@ -140,6 +141,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       playerCharacterImgPath: '',
       engineCharacterImgPath: '',
       characterDescription: '',
+      selectedModeName: '',
     };
   }
 
@@ -295,8 +297,35 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     }
   };
 
+  randomGameMode = (modeKey?: string) => {
+    const chosenKey = modeKey || (_.sample(Object.keys(modes)) as string);
+    const chosenMode = modes[chosenKey];
+
+    if (!chosenMode || !this.props.updateConfig) return;
+
+    const { white, black } = chosenMode;
+
+    this.props.updateConfig('wArcana', this.transformedInventory(white.arcana));
+    this.props.updateConfig('bArcana', this.transformedInventory(black.arcana));
+    this.props.updateConfig('whiteSetup', white.setup);
+    this.props.updateConfig('blackSetup', black.setup);
+
+    this.setState({
+      whiteArcana: white.arcana,
+      blackArcana: black.arcana,
+      whiteSetup: white.setup,
+      blackSetup: black.setup,
+      playerCharacterImgPath: '',
+      engineCharacterImgPath: '',
+      showArmySelect: '',
+      showArcanaSelect: '',
+      showCharacterSelect: '',
+      selectedModeName: chosenMode.name,
+    });
+  };
+
   componentDidMount() {
-    this.trueRandomize('same');
+    this.randomGameMode('tutorial1');
   }
 
   descriptions = (): Record<string, string> => {
@@ -321,7 +350,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       start: 'Rock and Roll!',
       trueRandDiff:
         'This one is truly random and unbalanced... but great for experimenting! Click if you dare.',
-      '': "You're all set! This is a true randomized match, the recommended way to play. Click start to begin or choose a different position with the button.",
+      '': 'This is a tutorial to get you familiar with a few spells. Click start or choose a new position!',
     };
   };
 
@@ -1004,9 +1033,10 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   width={260}
                   height={40}
                   options={[
-                    'Game Mode',
+                    // 'Game Mode',
                     ...Object.values(modes).map((mode) => mode.name),
                   ]}
+                  defaultOption={this.state.selectedModeName}
                   onChange={(val) => {
                     const selectedMode = Object.values(modes).find(
                       (mode) => mode.name === val
@@ -1035,6 +1065,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                         blackSetup: selectedMode.black.setup,
                         engineCharacterImgPath: '',
                         playerCharacterImgPath: '',
+                        selectedModeName: val,
                       });
                     }
                   }}
@@ -1085,7 +1116,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   width={260}
                   height={40}
                   onClick={() => {
-                    this.trueRandomize('same');
+                    this.randomGameMode();
                   }}
                 />
               </div>

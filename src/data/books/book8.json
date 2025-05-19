@@ -16677,7 +16677,7 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": { "dyadA": 2, "dyadK": 1, "dyadU": 2 },
+        "whiteArcane": { "dyadA": 2, "dyadF": 1, "dyadC": 2 },
         "blackArcane": { "modsINH": 1 },
         "config": {},
         "correctMoves": [""],
@@ -16733,7 +16733,7 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": { "dyadA": 2, "dyadK": 1, "dyadU": 2 },
+        "whiteArcane": { "dyadA": 2, "dyadF": 1, "dyadC": 2 },
         "blackArcane": {
           "modsINH": 1,
           "sumnN": 3,

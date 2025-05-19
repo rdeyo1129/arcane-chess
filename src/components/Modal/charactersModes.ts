@@ -204,6 +204,119 @@ const padModes = (modes: Record<string, GameModeType>) => {
 };
 
 export const modes: Record<string, GameModeType> = padModes({
+  tutorial1: {
+    name: 'Tutorial 1',
+    white: {
+      arcana: [arcana.modsINH, arcana.sumnZ, arcana.dyadC],
+      setup: 'RNBTKBNR',
+    },
+    black: {
+      arcana: [arcana.modsFUG, arcana.shftB, arcana.swapDEP],
+      setup: 'rnbmkbnr',
+    },
+  },
+  tutorial2: {
+    name: 'Tutorial 2',
+    white: {
+      arcana: [arcana.sumnRE, arcana.sumnX, arcana.sumnRT],
+      setup: 'RNBVKBNR',
+    },
+    black: {
+      arcana: [arcana.modsSKI, arcana.modsCON, arcana.modsTRO],
+      setup: 'rnbvkbnr',
+    },
+  },
+  tutorial3: {
+    name: 'Tutorial 3',
+    white: {
+      arcana: [arcana.modsAET, arcana.modsORA, arcana.offrH],
+      setup: 'RSWQKWSR',
+    },
+    black: {
+      arcana: [arcana.modsPHA, arcana.shftP, arcana.swapADJ],
+      setup: 'rswqkwsr',
+    },
+  },
+  senario2: {
+    name: 'Scenario 2',
+    white: {
+      arcana: [],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.modsAET],
+      setup: 'rnbqkbnr',
+    },
+  },
+  secnario6: {
+    name: 'Scenario 6',
+    white: {
+      arcana: [arcana.modsAET],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.dyadB],
+      setup: 'rnbqkbnr',
+    },
+  },
+  secnario7: {
+    name: 'Scenario 7',
+    white: {
+      arcana: [arcana.modsAET],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.modsFUG],
+      setup: 'rnbqkbnr',
+    },
+  },
+  newClassic: {
+    name: 'The New Classic',
+    white: {
+      arcana: [arcana.dyadA, arcana.offrH, arcana.sumnRQ, arcana.sumnX],
+      setup: 'RNBTKBNR',
+    },
+    black: {
+      arcana: [arcana.dyadA, arcana.offrH, arcana.sumnRQ, arcana.sumnX],
+      setup: 'rnbtkbnr',
+    },
+  },
+  sacsAndSwaps: {
+    name: 'Sacs and Swaps',
+    white: {
+      arcana: [
+        arcana.offrA,
+        arcana.offrA,
+        arcana.offrA,
+        arcana.swapDEP,
+        arcana.swapDEP,
+        arcana.modsEXT,
+      ],
+      setup: 'RNBMKBNR',
+    },
+    black: {
+      arcana: [
+        arcana.offrA,
+        arcana.offrA,
+        arcana.offrA,
+        arcana.swapDEP,
+        arcana.swapDEP,
+        arcana.modsEXT,
+      ],
+      setup: 'rnbmkbnr',
+    },
+  },
+  seconds: {
+    name: 'Seconds',
+    white: {
+      arcana: [arcana.dyadC, arcana.dyadC, arcana.dyadC, arcana.modsGLU],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.dyadC, arcana.dyadC, arcana.dyadC, arcana.modsGLU],
+      setup: 'rnbqkbnr',
+    },
+  },
   goliaths: {
     name: 'Clash of Goliaths',
     white: {
@@ -229,103 +342,29 @@ export const modes: Record<string, GameModeType> = padModes({
       setup: 'tmqvkqmt',
     },
   },
-  newClassic: {
-    name: 'The New Classic',
+  suddenDeath: {
+    name: 'Sudden Death',
     white: {
-      arcana: [arcana.dyadA, arcana.offrH, arcana.sumnRQ, arcana.sumnX],
-      setup: 'RNBTKBNR',
+      arcana: [
+        arcana.dyadA,
+        arcana.dyadA,
+        arcana.sumnRA,
+        arcana.modsEXT,
+        arcana.modsREA,
+        arcana.modsSIL,
+      ],
+      setup: 'TMQVKQMT',
     },
     black: {
-      arcana: [arcana.dyadA, arcana.offrH, arcana.sumnRQ, arcana.sumnX],
-      setup: 'rnbtkbnr',
-    },
-  },
-  sacsAndSwaps: {
-    name: 'Sacs and Swaps',
-    white: {
-      arcana: [arcana.offrA, arcana.swapDEP, arcana.modsEXT],
-      setup: 'RNBMKBNR',
-    },
-    black: {
-      arcana: [arcana.offrA, arcana.swapDEP, arcana.modsEXT],
-      setup: 'rnbmkbnr',
-    },
-  },
-  // sequel: {
-  //   name: 'The Sequel',
-  //   white: {
-  //     arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
-  //     setup: 'RNMQKBNR',
-  //   },
-  //   black: {
-  //     arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
-  //     setup: 'rnmqkbnr',
-  //   },
-  // },
-  // chronicles: {
-  //   name: 'Chronicles',
-  //   white: {
-  //     arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
-  //     setup: 'RNMQKMNR',
-  //   },
-  //   black: {
-  //     arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
-  //     setup: 'rnmqkmnr',
-  //   },
-  // },
-  // alternateTimeline: {
-  //   name: 'Alternate Timeline',
-  //   white: {
-  //     arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
-  //     setup: 'RNBQKBTR',
-  //   },
-  //   black: {
-  //     arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
-  //     setup: 'rnbqkbtr',
-  //   },
-  // },
-  senario2: {
-    name: 'Scenario 2',
-    white: {
-      arcana: [],
-      setup: 'RNBQKBNR',
-    },
-    black: {
-      arcana: [arcana.modsAET],
-      setup: 'rnbqkbnr',
-    },
-  },
-  secnario6: {
-    name: 'Scenario 6',
-    white: {
-      arcana: [arcana.modsAET],
-      setup: 'RNBQKBNR',
-    },
-    black: {
-      arcana: [arcana.dyadB],
-      setup: 'rnbqkbnr',
-    },
-  },
-  // somewhatMoreTheoretical: {
-  //   name: 'Theoretical Balance 3',
-  //   white: {
-  //     arcana: [arcana.modsAET],
-  //     setup: 'RNBQKBNR',
-  //   },
-  //   black: {
-  //     arcana: [arcana.modsFUG],
-  //     setup: 'rnbqkbnr',
-  //   },
-  // },
-  seconds: {
-    name: 'Seconds',
-    white: {
-      arcana: [arcana.dyadC, arcana.modsGLU],
-      setup: 'RNBQKBNR',
-    },
-    black: {
-      arcana: [arcana.dyadC, arcana.modsGLU],
-      setup: 'rnbqkbnr',
+      arcana: [
+        arcana.dyadA,
+        arcana.dyadA,
+        arcana.sumnRA,
+        arcana.modsEXT,
+        arcana.modsREA,
+        arcana.modsSIL,
+      ],
+      setup: 'tmqvkqmt',
     },
   },
   rockAndHardPlace: {
@@ -339,26 +378,317 @@ export const modes: Record<string, GameModeType> = padModes({
       setup: 'rnbvkbnr',
     },
   },
-  suddenDeath: {
-    name: 'Sudden Death',
-    white: {
-      arcana: [arcana.dyadA, arcana.modsREA, arcana.modsINH, arcana.modsGLU],
-      setup: 'TMQVKQMT',
-    },
-    black: {
-      arcana: [arcana.dyadA, arcana.modsREA, arcana.modsINH, arcana.modsGLU],
-      setup: 'tmqvkqmt',
-    },
-  },
   stampede: {
     name: 'Stampede!',
     white: {
-      arcana: [],
+      arcana: [
+        arcana.dyadC,
+        arcana.dyadC,
+        arcana.dyadC,
+        arcana.sumnN,
+        arcana.sumnZ,
+        arcana.sumnU,
+      ],
       setup: 'ZNUVKUNZ',
     },
     black: {
-      arcana: [],
+      arcana: [
+        arcana.dyadC,
+        arcana.dyadC,
+        arcana.dyadC,
+        arcana.sumnN,
+        arcana.sumnZ,
+        arcana.sumnU,
+      ],
       setup: 'znuvkunz',
+    },
+  },
+  tripleSummon: {
+    name: 'Triple Summon',
+    white: {
+      arcana: [
+        arcana.sumnRM,
+        arcana.sumnRT,
+        arcana.sumnRV,
+        arcana.swapADJ,
+        arcana.swapADJ,
+        arcana.swapADJ,
+      ],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [
+        arcana.sumnRM,
+        arcana.sumnRT,
+        arcana.sumnRV,
+        arcana.swapADJ,
+        arcana.swapADJ,
+        arcana.swapADJ,
+      ],
+      setup: 'rnbqkbnr',
+    },
+  },
+  stealthTraining: {
+    name: 'Stealth Training',
+    white: {
+      arcana: [
+        arcana.dyadB,
+        arcana.dyadB,
+        arcana.dyadB,
+        arcana.modsINH,
+        arcana.modsAET,
+      ],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [
+        arcana.dyadB,
+        arcana.dyadB,
+        arcana.dyadB,
+        arcana.modsINH,
+        arcana.modsAET,
+      ],
+      setup: 'rnbqkbnr',
+    },
+  },
+  shiftingField: {
+    name: 'Shifting Field',
+    white: {
+      arcana: [
+        arcana.shftR,
+        arcana.shftR,
+        arcana.shftB,
+        arcana.shftB,
+        // arcana.modsRES,
+      ],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [
+        arcana.shftR,
+        arcana.shftR,
+        arcana.shftB,
+        arcana.shftB,
+        // arcana.modsRES,
+      ],
+      setup: 'rnbqkbnr',
+    },
+  },
+  summonFlood: {
+    name: 'Summon Flood',
+    white: {
+      arcana: [
+        arcana.sumnRY,
+        arcana.sumnRZ,
+        arcana.sumnRA,
+        // arcana.sumnRB,
+        arcana.modsSIL,
+        arcana.modsSUS,
+      ],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [
+        arcana.sumnRY,
+        arcana.sumnRZ,
+        arcana.sumnRA,
+        // arcana.sumnRB,
+        arcana.modsSIL,
+        arcana.modsSUS,
+      ],
+      setup: 'rnbqkbnr',
+    },
+  },
+  cursedStack: {
+    name: 'Cursed Stack',
+    white: {
+      arcana: [arcana.modsAET, arcana.modsFUG, arcana.modsTRO, arcana.modsINH],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.modsAET, arcana.modsFUG, arcana.modsTRO, arcana.modsINH],
+      setup: 'rnbqkbnr',
+    },
+  },
+  ghostMarch: {
+    name: 'Ghost March',
+    white: {
+      arcana: [
+        arcana.modsPHA,
+        arcana.modsPHA,
+        arcana.modsPHA,
+        arcana.sumnRM,
+        arcana.sumnRM,
+        // arcana.shftG,
+      ],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [
+        arcana.modsPHA,
+        arcana.modsPHA,
+        arcana.modsPHA,
+        arcana.sumnRM,
+        arcana.sumnRM,
+        // arcana.shftG,
+      ],
+      setup: 'rnbqkbnr',
+    },
+  },
+  veilAndWraith: {
+    name: 'Veil and Wraith',
+    white: {
+      arcana: [
+        arcana.sumnS,
+        arcana.sumnW,
+        arcana.dyadD,
+        // arcana.modsRES,
+        // arcana.shftG,
+      ],
+      setup: 'RSWQKWSR',
+    },
+    black: {
+      arcana: [
+        arcana.sumnS,
+        arcana.sumnW,
+        arcana.dyadD,
+        // arcana.modsRES,
+        // arcana.shftG,
+      ],
+      setup: 'rswqkwsr',
+    },
+  },
+  hollowGambit: {
+    name: 'Hollow Gambit',
+    white: {
+      arcana: [arcana.modsCON, arcana.modsTRO, arcana.sumnS, arcana.offrH],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.modsCON, arcana.modsTRO, arcana.sumnS, arcana.offrH],
+      setup: 'rnbqkbnr',
+    },
+  },
+  arcaneFlock: {
+    name: 'Arcane Flock',
+    white: {
+      arcana: [arcana.sumnH, arcana.sumnRE, arcana.modsSIL],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.sumnH, arcana.sumnRE, arcana.modsSIL],
+      setup: 'rnbqkbnr',
+    },
+  },
+  royalRush: {
+    name: 'Royal Rush',
+    white: {
+      arcana: [
+        arcana.sumnRQ,
+        arcana.sumnRQ,
+        arcana.sumnRT,
+        arcana.sumnRM,
+        arcana.sumnX,
+      ],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [
+        arcana.sumnRQ,
+        arcana.sumnRQ,
+        arcana.sumnRT,
+        arcana.sumnRM,
+        arcana.sumnX,
+      ],
+      setup: 'rnbqkbnr',
+    },
+  },
+  phantomStride: {
+    name: 'Phantom Stride',
+    white: {
+      arcana: [arcana.dyadD, arcana.dyadD, arcana.modsPHA],
+      setup: 'RSWQKWSR',
+    },
+    black: {
+      arcana: [arcana.dyadD, arcana.dyadD, arcana.modsPHA],
+      setup: 'rswqkwsr',
+    },
+  },
+  mirrorCall: {
+    name: 'Mirror Call',
+    white: {
+      arcana: [arcana.sumnRZ, arcana.sumnM],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.sumnRZ, arcana.sumnM],
+      setup: 'rnbqkbnr',
+    },
+  },
+  lurkersEdge: {
+    name: "Lurker's Edge",
+    white: {
+      arcana: [arcana.sumnH, arcana.swapDEP],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.sumnH, arcana.swapDEP],
+      setup: 'rnbqkbnr',
+    },
+  },
+  stormDive: {
+    name: 'Storm Dive',
+    white: {
+      arcana: [arcana.shftT, arcana.sumnRQ, arcana.sumnRT],
+      setup: 'RNBQKBNR',
+    },
+    black: {
+      arcana: [arcana.shftT, arcana.sumnRQ, arcana.sumnRT],
+      setup: 'rnbqkbnr',
+    },
+  },
+  fortifiedDuel: {
+    name: 'Fortified Duel',
+    white: {
+      arcana: [arcana.dyadF, arcana.modsSUS],
+      setup: 'RNBVKBNR',
+    },
+    black: {
+      arcana: [arcana.dyadF, arcana.modsSUS],
+      setup: 'rnbvkbnr',
+    },
+  },
+  sequel: {
+    name: 'The Sequel',
+    white: {
+      arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
+      setup: 'RNMQKBNR',
+    },
+    black: {
+      arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
+      setup: 'rnmqkbnr',
+    },
+  },
+  chronicles: {
+    name: 'Chronicles',
+    white: {
+      arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
+      setup: 'RNMQKMNR',
+    },
+    black: {
+      arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
+      setup: 'rnmqkmnr',
+    },
+  },
+  alternateTimeline: {
+    name: 'Alternate Timeline',
+    white: {
+      arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
+      setup: 'RNBQKBTR',
+    },
+    black: {
+      arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
+      setup: 'rnbqkbtr',
     },
   },
 });

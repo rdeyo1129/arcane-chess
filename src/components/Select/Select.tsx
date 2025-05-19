@@ -41,7 +41,7 @@ class Select extends React.Component<SelectProps, SelectState> {
             cursor: "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
           }}
           onChange={this.onChangeUses}
-          defaultValue={this.props.defaultOption}
+          value={this.props.defaultOption}
         >
           {this.props.options.map((option, i) => {
             return (

@@ -27571,9 +27571,9 @@
           "sumnRY": 1,
           "sumnRZ": 1,
           "sumnRA": 1,
-          "dyadV": 1,
-          "dyadS": 1,
-          "dyadR": 1
+          "dyadF": 1,
+          "dyadD": 1,
+          "dyadC": 1
         },
         "blackArcane": { "offrH": 2, "sumnRT": 1, "sumnRQ": 1, "sumnV": 1 },
         "config": {},

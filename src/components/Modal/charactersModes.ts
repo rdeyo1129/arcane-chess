@@ -617,22 +617,22 @@ export const modes: Record<string, GameModeType> = padModes({
   mirrorCall: {
     name: 'Mirror Call',
     white: {
-      arcana: [arcana.sumnRZ, arcana.sumnM],
+      arcana: [arcana.sumnRZ, arcana.sumnRZ, arcana.sumnRY, arcana.sumnM],
       setup: 'RNBQKBNR',
     },
     black: {
-      arcana: [arcana.sumnRZ, arcana.sumnM],
+      arcana: [arcana.sumnRZ, arcana.sumnRZ, arcana.sumnRY, arcana.sumnM],
       setup: 'rnbqkbnr',
     },
   },
   lurkersEdge: {
     name: "Lurker's Edge",
     white: {
-      arcana: [arcana.sumnH, arcana.swapDEP],
+      arcana: [arcana.sumnH, arcana.sumnH, arcana.sumnH, arcana.swapDEP],
       setup: 'RNBQKBNR',
     },
     black: {
-      arcana: [arcana.sumnH, arcana.swapDEP],
+      arcana: [arcana.sumnH, arcana.sumnH, arcana.sumnH, arcana.swapDEP],
       setup: 'rnbqkbnr',
     },
   },
@@ -689,6 +689,245 @@ export const modes: Record<string, GameModeType> = padModes({
     black: {
       arcana: [arcana.dyadA, arcana.swapDEP, arcana.shftP, arcana.shftB],
       setup: 'rnbqkbtr',
+    },
+  },
+  revenantDance: {
+    name: 'Revenant Dance',
+    white: {
+      arcana: [arcana.dyadD, arcana.sumnS, arcana.modsPHA, arcana.modsSIL],
+      setup: 'RSBTKWSR',
+    },
+    black: {
+      arcana: [arcana.dyadD, arcana.sumnS, arcana.modsPHA, arcana.modsSIL],
+      setup: 'rsbtkwsr',
+    },
+  },
+  cavalryLinebreak: {
+    name: 'Cavalry Linebreak',
+    white: {
+      arcana: [arcana.dyadC, arcana.sumnZ, arcana.sumnU, arcana.modsGLU],
+      setup: 'RNWTKBNR',
+    },
+    black: {
+      arcana: [arcana.dyadC, arcana.sumnZ, arcana.sumnU, arcana.modsGLU],
+      setup: 'rnwtkbnr',
+    },
+  },
+  hexsealDeployment: {
+    name: 'Hexseal Deployment',
+    white: {
+      arcana: [
+        arcana.sumnRA,
+        arcana.sumnRE,
+        arcana.sumnRZ,
+        arcana.sumnRT,
+        arcana.modsSIL,
+      ],
+      setup: 'RNBTKWNR',
+    },
+    black: {
+      arcana: [
+        arcana.sumnRA,
+        arcana.sumnRE,
+        arcana.sumnRZ,
+        arcana.sumnRT,
+        arcana.modsSIL,
+      ],
+      setup: 'rnbtkwnr',
+    },
+  },
+  betrayersEngine: {
+    name: "Betrayer's Engine",
+    white: {
+      arcana: [arcana.modsCON, arcana.offrA, arcana.modsFUT, arcana.modsORA],
+      setup: 'RSWTKWNR',
+    },
+    black: {
+      arcana: [arcana.modsCON, arcana.offrA, arcana.modsFUT, arcana.modsORA],
+      setup: 'rswtkwnr',
+    },
+  },
+  valkyrieStorm: {
+    name: 'Valkyrie Storm',
+    white: {
+      arcana: [arcana.sumnV, arcana.dyadF, arcana.modsREA, arcana.modsSUS],
+      setup: 'RSWTKWSR',
+    },
+    black: {
+      arcana: [arcana.sumnV, arcana.dyadF, arcana.modsREA, arcana.modsSUS],
+      setup: 'rswtkwsr',
+    },
+  },
+  machineMind: {
+    name: 'Machine Mind',
+    white: {
+      arcana: [arcana.modsIMP, arcana.modsORA, arcana.modsTEM, arcana.modsGLI],
+      setup: 'RSWTKBSR',
+    },
+    black: {
+      arcana: [arcana.modsIMP, arcana.modsORA, arcana.modsTEM, arcana.modsGLI],
+      setup: 'rswtkbsr',
+    },
+  },
+  spectralVaultTrap: {
+    name: 'Spectral Vault Trap',
+    white: {
+      arcana: [arcana.sumnW, arcana.dyadD, arcana.sumnRE, arcana.swapADJ],
+      setup: 'RNWTKWSR',
+    },
+    black: {
+      arcana: [arcana.sumnW, arcana.dyadD, arcana.sumnRE, arcana.swapADJ],
+      setup: 'rnwtkwsr',
+    },
+  },
+  chainLightningTactician: {
+    name: 'Chain Lightning Tactician',
+    white: {
+      arcana: [
+        arcana.sumnRZ,
+        arcana.sumnRQ,
+        arcana.sumnQ,
+        arcana.modsGLU,
+        arcana.dyadE,
+      ],
+      setup: 'RNWTKBSR',
+    },
+    black: {
+      arcana: [
+        arcana.sumnRZ,
+        arcana.sumnRQ,
+        arcana.sumnQ,
+        arcana.modsGLU,
+        arcana.dyadE,
+      ],
+      setup: 'rnwtkbsr',
+    },
+  },
+  pawnPhalanxCollapse: {
+    name: 'Pawn Phalanx Collapse',
+    white: {
+      arcana: [
+        arcana.shftP,
+        arcana.modsTRO,
+        arcana.modsAET,
+        arcana.modsINH,
+        arcana.sumnH,
+      ],
+      setup: 'RSWTKWNR',
+    },
+    black: {
+      arcana: [
+        arcana.shftP,
+        arcana.modsTRO,
+        arcana.modsAET,
+        arcana.modsINH,
+        arcana.sumnH,
+      ],
+      setup: 'rswtkwnr',
+    },
+  },
+  mysticFortress: {
+    name: 'Mystic Fortress',
+    white: {
+      arcana: [
+        arcana.sumnM,
+        arcana.sumnRM,
+        arcana.modsEXT,
+        arcana.dyadE,
+        arcana.modsSUS,
+      ],
+      setup: 'RNBTKWNR',
+    },
+    black: {
+      arcana: [
+        arcana.sumnM,
+        arcana.sumnRM,
+        arcana.modsEXT,
+        arcana.dyadE,
+        arcana.modsSUS,
+      ],
+      setup: 'rnbtkwnr',
+    },
+  },
+  doubleTroubleFlank: {
+    name: 'Double Trouble Flank',
+    white: {
+      arcana: [arcana.dyadB, arcana.sumnZ, arcana.swapDEP],
+      setup: 'RSWTKWNR',
+    },
+    black: {
+      arcana: [arcana.dyadB, arcana.sumnZ, arcana.swapDEP],
+      setup: 'rswtkwnr',
+    },
+  },
+  herringPressurePoint: {
+    name: 'Herring Pressure Point',
+    white: {
+      arcana: [arcana.sumnH, arcana.swapADJ, arcana.offrH, arcana.modsTRO],
+      setup: 'RSWTKWSR',
+    },
+    black: {
+      arcana: [arcana.sumnH, arcana.swapADJ, arcana.offrH, arcana.modsTRO],
+      setup: 'rswtkwsr',
+    },
+  },
+  royalBeaconGambit: {
+    name: 'Royal Beacon Gambit',
+    white: {
+      arcana: [
+        arcana.sumnRT,
+        arcana.sumnT,
+        arcana.offrS,
+        arcana.dyadE,
+        arcana.modsREA,
+      ],
+      setup: 'RSWTKWNR',
+    },
+    black: {
+      arcana: [
+        arcana.sumnRT,
+        arcana.sumnT,
+        arcana.offrS,
+        arcana.dyadE,
+        arcana.modsREA,
+      ],
+      setup: 'rswtkwnr',
+    },
+  },
+  timelessEquilibrium: {
+    name: 'Timeless Equilibrium',
+    white: {
+      arcana: [arcana.modsSKI, arcana.modsFUT, arcana.modsSUS, arcana.modsPHA],
+      setup: 'RNWTKBSR',
+    },
+    black: {
+      arcana: [arcana.modsSKI, arcana.modsFUT, arcana.modsSUS, arcana.modsPHA],
+      setup: 'rnwtkbsr',
+    },
+  },
+  hydraStorm: {
+    name: 'Hydra Storm',
+    white: {
+      arcana: [
+        arcana.sumnRQ,
+        arcana.sumnRT,
+        arcana.sumnRM,
+        arcana.sumnRV,
+        arcana.modsEXT,
+        arcana.dyadA,
+      ],
+      setup: 'RNBTKWSR',
+    },
+    black: {
+      arcana: [
+        arcana.sumnRQ,
+        arcana.sumnRT,
+        arcana.sumnRM,
+        arcana.sumnRV,
+        arcana.modsEXT,
+        arcana.dyadA,
+      ],
+      setup: 'rnbtkwsr',
     },
   },
 });

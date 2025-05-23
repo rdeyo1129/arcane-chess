@@ -4,11 +4,6 @@ import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from 'dotenv';
-import users from './api/users.js';
-import games from './api/games.js';
-import campaign from './api/campaign.js';
-import templates from './api/templates.js';
-import puzzles from './api/puzzles.js';
 import express, { Request, Response, NextFunction } from 'express';
 import crypto from 'crypto';
 import path from 'path';
@@ -17,6 +12,15 @@ import favicon from 'serve-favicon';
 import helmet from 'helmet'; // For setting security headers
 import rateLimit from 'express-rate-limit'; // For rate limiting
 import xss from 'xss'; // For XSS protection
+
+import users from './api/users.js';
+import games from './api/games.js';
+import campaign from './api/campaign.js';
+import templates from './api/templates.js';
+import puzzles from './api/puzzles.js';
+
+import { Server } from 'socket.io';
+import registerSockets from './sockets';
 
 // Load environment variables
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -46,6 +50,9 @@ mongoose
 // Express app setup
 const app = express();
 const server = createServer(app);
+const io = new Server(server, { cors: { origin: '*' } });
+
+// registerSockets(io);
 
 // Security Middleware: Helmet for setting various HTTP headers
 app.use(

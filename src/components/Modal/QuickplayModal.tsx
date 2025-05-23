@@ -339,8 +339,8 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       promotion:
         'Choose what a Pawn promotes to or leave on Select to pick each time.',
       difficulty: "Choose the engine's difficulty.",
-      gameMode:
-        'Choose a game mode, a custom scenario that puts a twist on the game.',
+      gameMode: 'Choose a tutorial, or balanced scenario, or themed battle.',
+      gameModeRand: 'Click to roll a new game mode.',
       tempRandSame:
         'The human and engine get a random, matching army and inventory of spells from the existing template themes.',
       tempRandDiff:
@@ -350,7 +350,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
       start: 'Rock and Roll!',
       trueRandDiff:
         'This one is truly random and unbalanced... but great for experimenting! Click if you dare.',
-      '': 'This is a tutorial to get you familiar with a few spells. Click start or choose a new position!',
+      '': 'Click Start or choose a new position!',
     };
   };
 
@@ -989,8 +989,13 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   }}
                 />
                 <div className="engine-strength">
-                  <p>ENGINE DEPTH: {this.state.config.engineDepth}</p>
-                  <p>ENGINE TIME: {this.state.config.thinkingTime}</p>
+                  <p>
+                    ENGINE DEPTH: {this.state.config.engineDepth} half move(s)
+                  </p>
+                  <p>
+                    ENGINE THINK TIME: {this.state.config.thinkingTime}{' '}
+                    second(s)
+                  </p>
                 </div>
               </div>
               {/* <div
@@ -1106,7 +1111,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div> */}
               <div
                 className="quickplay-select"
-                onMouseEnter={() => this.toggleHover('trueRandSame')}
+                onMouseEnter={() => this.toggleHover('gameModeRand')}
                 onMouseLeave={() => this.toggleHover('')}
               >
                 <Button

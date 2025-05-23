@@ -503,11 +503,11 @@ export const modes: Record<string, GameModeType> = padModes({
     name: 'Cursed Stack',
     white: {
       arcana: [arcana.modsAET, arcana.modsFUG, arcana.modsTRO, arcana.modsINH],
-      setup: 'RNBQKBNR',
+      setup: 'RSBQKWNR',
     },
     black: {
       arcana: [arcana.modsAET, arcana.modsFUG, arcana.modsTRO, arcana.modsINH],
-      setup: 'rnbqkbnr',
+      setup: 'rsbqkwnr',
     },
   },
   ghostMarch: {
@@ -650,11 +650,11 @@ export const modes: Record<string, GameModeType> = padModes({
   fortifiedDuel: {
     name: 'Fortified Duel',
     white: {
-      arcana: [arcana.dyadF, arcana.modsSUS],
+      arcana: [arcana.dyadF, arcana.modsSUS, arcana.modsGLU, arcana.modsCON],
       setup: 'RNBVKBNR',
     },
     black: {
-      arcana: [arcana.dyadF, arcana.modsSUS],
+      arcana: [arcana.dyadF, arcana.modsSUS, arcana.modsGLU, arcana.modsCON],
       setup: 'rnbvkbnr',
     },
   },
@@ -877,7 +877,7 @@ export const modes: Record<string, GameModeType> = padModes({
       arcana: [
         arcana.sumnRT,
         arcana.sumnT,
-        arcana.offrS,
+        arcana.offrR,
         arcana.dyadE,
         arcana.modsREA,
       ],
@@ -887,7 +887,7 @@ export const modes: Record<string, GameModeType> = padModes({
       arcana: [
         arcana.sumnRT,
         arcana.sumnT,
-        arcana.offrS,
+        arcana.offrR,
         arcana.dyadE,
         arcana.modsREA,
       ],

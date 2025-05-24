@@ -43,7 +43,7 @@ export const unlockableArcana = [
   // 1
   {
     sumnP: 1,
-    dyadP: 1,
+    dyadB: 1,
     shftP: 1,
     modsFUT: 2,
     modsSKI: 1,
@@ -52,8 +52,7 @@ export const unlockableArcana = [
   {
     sumnN: 3,
     sumnU: 3,
-    dyadN: 3,
-    dyadU: 3,
+    dyadC: 3,
     modsTRO: 2,
     offrC: 2,
     modsAET: 2,
@@ -62,8 +61,6 @@ export const unlockableArcana = [
   {
     sumnB: 3,
     sumnZ: 3,
-    dyadB: 3,
-    dyadZ: 3,
     shftN: 3,
     offrE: 2,
   },
@@ -78,8 +75,7 @@ export const unlockableArcana = [
   // 5
   {
     sumnR: 5,
-    dyadR: 5,
-    dyadK: 7,
+    dyadF: 7,
     shftR: 4,
     modsORA: 4,
   },
@@ -87,7 +83,7 @@ export const unlockableArcana = [
   {
     sumnM: 9,
     sumnRM: 6,
-    dyadM: 8,
+    dyadE: 8,
     modsCON: 4,
     sumnRZ: 5,
   },
@@ -95,7 +91,6 @@ export const unlockableArcana = [
   {
     sumnT: 10,
     sumnRT: 6,
-    dyadT: 9,
     shftB: 4,
     sumnRY: 5,
     offrR: 8,
@@ -104,7 +99,6 @@ export const unlockableArcana = [
   {
     sumnQ: 11,
     sumnRQ: 7,
-    dyadQ: 11,
     sumnRA: 6,
     offrM: 8,
   },
@@ -112,14 +106,12 @@ export const unlockableArcana = [
   {
     offrH: 5,
     sumnH: 6,
-    dyadH: 2,
     modsSUS: 4,
     modsINH: 7,
   },
   // 10
   {
-    dyadW: 8,
-    dyadS: 8,
+    dyadD: 8,
     dyadA: 8,
     modsREA: 7,
     offrA: 1,
@@ -136,7 +128,6 @@ export const unlockableArcana = [
   {
     sumnV: 14,
     sumnRV: 13,
-    dyadV: 14,
     modsGLI: 9,
     modsGLU: 9,
   },

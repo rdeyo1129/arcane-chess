@@ -7,7 +7,7 @@ import { PassportStatic } from 'passport';
 // import mongoose from 'mongoose';
 // import { keys } from './keys.ts';
 
-import { User } from '../models/User';
+import { User } from '../models/User.js';
 
 const opts: {
   jwtFromRequest: JwtFromRequestFunction;

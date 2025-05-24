@@ -50,7 +50,13 @@ mongoose
 // Express app setup
 const app = express();
 const server = createServer(app);
-const io = new Server(server, { cors: { origin: '*' } });
+const io = new Server(server, {
+  cors: {
+    origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+    credentials: true,
+  },
+});
 
 registerSockets(io);
 

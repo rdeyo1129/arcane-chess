@@ -1,0 +1,52 @@
+.lobby-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  border: 2px solid #444;
+  border-radius: 12px;
+  background: #1c1c1c;
+  color: #fff;
+}
+
+.lobby-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.lobby-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 24px;
+  padding-right: 8px;
+  border: 1px solid #333;
+  border-radius: 8px;
+}
+
+.lobby-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #444;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.lobby-section {
+  margin-bottom: 20px;
+}
+
+.lobby-subtitle {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.lobby-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

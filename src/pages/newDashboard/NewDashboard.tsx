@@ -6,6 +6,9 @@ import { withRouter } from 'src/components/withRouter/withRouter';
 // import Button from 'src/components/Button/Button';
 import './NewDashboard.scss';
 
+import Nav from '../../components/nav/Nav';
+import Lobby from '../../components/lobby/Lobby';
+
 // import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 // import DashboardModal from './DashboardModal';
 
@@ -71,7 +74,10 @@ export class UnwrappedNewDashboard extends React.Component<
       // className={`dashboard ${this.state.fadeIn ? 'fade-in' : ''} ${
       //   this.state.fadeOut ? 'fade-out' : ''
       // }`}
-      ></div>
+      >
+        <Nav />
+        <Lobby />
+      </div>
     );
   }
 }

@@ -29,6 +29,11 @@
       "src/arcaneChess/*": ["src/arcaneChess/*"]
     }
   },
-  "include": ["src/**/*", "shared/*", "public/service-worker.js"],
+  "include": [
+    "src/**/*",
+    "shared/*",
+    "public/service-worker.js",
+    "vite-env.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -17,6 +17,7 @@ export default function quickfind(io: Server) {
       } else {
         const gameId = await gameStore.createGame({
           hostSocketId: socket.id,
+          hostId: socket.handshake.auth.guestId as string,
           matchType: 'quickfind',
         });
         socket.emit('waitingForMatch', { gameId });

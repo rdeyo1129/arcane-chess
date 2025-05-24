@@ -28,7 +28,7 @@ import { FrontPage } from '././pages/frontPage/FrontPage';
 // import { Lab } from './pages/lab/Lab';
 import { Campaign } from '././pages/campaign/Campaign';
 import { StackVersus } from '././pages/stackVersus/StackVersus';
-import { Dashboard } from '././pages/dashboard/Dashboard';
+// import { Dashboard } from '././pages/dashboard/Dashboard';
 import { Book } from '././pages/book/Book';
 import { Login } from '././pages/loginRegister/Login';
 import { Register } from '././pages/loginRegister/Register';
@@ -40,6 +40,8 @@ import { LeaderBoard } from '././pages/leaderboard/LeaderBoard';
 import { Lexicon } from '././pages/lexicon/Lexicon';
 import { Manifest } from '././pages/manifest/Manifest';
 import { NotFound } from '././pages/notFound/NotFound';
+
+import { NewDashboard } from '././pages/newDashboard/NewDashboard';
 
 import ReactDOM from 'react-dom/client';
 import Modal from 'react-modal';
@@ -88,9 +90,9 @@ const router = createBrowserRouter(
         index
         path="/"
         element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
+          // <PrivateRoute>
+          <NewDashboard />
+          // </PrivateRoute>
         }
       />
       <Route

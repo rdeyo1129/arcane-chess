@@ -6,6 +6,7 @@ const LOBBY_SET = 'lobby:list';
 export type LobbyGame = {
   gameId: string;
   hostSocketId: string;
+  hostId: string;
   isFull: string;
   isPrivate: string;
   matchType: string;
@@ -15,12 +16,14 @@ export type LobbyGame = {
 
 interface CreateGameOptions {
   hostSocketId: string;
+  hostId: string;
   isPrivate?: boolean;
   matchType?: string;
 }
 
 export async function createGame({
   hostSocketId,
+  hostId,
   isPrivate = false,
   matchType = 'custom',
 }: CreateGameOptions): Promise<string> {
@@ -30,17 +33,27 @@ export async function createGame({
   const gameData = {
     gameId,
     hostSocketId,
+    hostId,
     isFull: 'false',
     isPrivate: String(isPrivate),
     matchType,
     createdAt: String(Date.now()),
   };
 
-  // v4+ redis client uses camelCase methods
+  // store the full game object
   await redis.hSet(key, gameData);
   await redis.sAdd(LOBBY_SET, gameId);
 
   return gameId;
+}
+
+/**
+ * Remove a lobby game completely (used on disconnect)
+ */
+export async function deleteGame(gameId: string): Promise<void> {
+  const key = `lobby:${gameId}`;
+  await redis.del(key);
+  await redis.sRem(LOBBY_SET, gameId);
 }
 
 export async function findQuickMatchGame(): Promise<LobbyGame | null> {
@@ -74,20 +87,22 @@ export async function listLobbyGames(): Promise<LobbyGame[]> {
 
   for (const gameId of allGameIds) {
     const raw = await redis.hGetAll(`lobby:${gameId}`);
-    const game = parseLobbyGame(raw);
-    if (game.isPrivate !== 'true') {
-      games.push(game);
+    if (raw.isPrivate !== 'true') {
+      games.push(parseLobbyGame(raw));
     }
   }
 
   return games;
 }
 
-// Helper to convert Redis string map into LobbyGame
+/**
+ * Convert Redis hash → LobbyGame
+ */
 function parseLobbyGame(raw: Record<string, string>): LobbyGame {
   return {
     gameId: raw.gameId,
     hostSocketId: raw.hostSocketId,
+    hostId: raw.hostId,
     isFull: raw.isFull,
     isPrivate: raw.isPrivate,
     matchType: raw.matchType,

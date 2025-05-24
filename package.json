@@ -11,9 +11,10 @@
     "build:css": "sass src/styles/main.scss dist/frontend/main.css",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "redis": "docker start redis",
     "server": "nodemon --exec ts-node --project tsconfig.server.json server/server.ts",
-    "backend": "npm run redis && npm run server",
+    "redis:start": "docker run -d --name tactorius -p 6379:6379 redis",
+    "redis:stop": "docker stop tactorius && docker rm redis",
+    "backend": "npm run redis:start && nodemon --exec ts-node --project tsconfig.server.json server/server.ts",
     "start": "node dist/server/server.js",
     "heroku-postbuild": "npm run build"
   },

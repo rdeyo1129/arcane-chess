@@ -1,5 +1,5 @@
 import { Server, Socket } from 'socket.io';
-import * as gameStore from '../redis/gameStore';
+import * as gameStore from '../redis/gameStore.js';
 
 type LobbyJoinPayload = { gameId: string };
 

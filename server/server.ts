@@ -20,7 +20,7 @@ import templates from './api/templates.js';
 import puzzles from './api/puzzles.js';
 
 import { Server } from 'socket.io';
-import registerSockets from './sockets';
+import registerSockets from './sockets/index.js';
 
 // Load environment variables
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -52,7 +52,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 
-// registerSockets(io);
+registerSockets(io);
 
 // Security Middleware: Helmet for setting various HTTP headers
 app.use(

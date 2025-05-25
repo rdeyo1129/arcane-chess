@@ -1,20 +1,20 @@
 import _ from 'lodash';
-import { GameBoard, FROMSQ } from './board';
+import { GameBoard, FROMSQ } from './board.mjs';
 import {
   // generatePlayableOptions,
   GenerateMoves,
   generatePowers,
   forcedEpAvailable,
   herrings,
-} from './movegen';
-import { SearchController, SearchPosition } from './search';
+} from './movegen.mjs';
+import { SearchController, SearchPosition } from './search.mjs';
 import {
   MakeMove,
   TakeMove,
   MovePiece,
   ClearPiece,
   AddPiece,
-} from './makemove';
+} from './makemove.mjs';
 import {
   NOMOVE,
   BOOL,
@@ -28,8 +28,8 @@ import {
   RtyChar,
   SQUARES,
   PieceCol,
-} from './defs';
-import { PrMove, ParseMove, PrSq } from './io';
+} from './defs.mjs';
+import { PrMove, ParseMove, PrSq } from './io.mjs';
 // import { SqAttacked } from './board.mjs';
 import { blackArcaneConfig, whiteArcaneConfig } from './arcaneDefs.mjs';
 

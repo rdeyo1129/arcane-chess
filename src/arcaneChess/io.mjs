@@ -13,7 +13,7 @@ import {
   MFLAGCA,
   MFLAGEP,
   InCheck,
-} from './board';
+} from './board.mjs';
 import {
   NOMOVE,
   FileChar,
@@ -26,8 +26,8 @@ import {
   PceChar,
   RtyChar,
   RANKS,
-} from './defs';
-import { MakeMove, TakeMove } from './makemove';
+} from './defs.mjs';
+import { MakeMove, TakeMove } from './makemove.mjs';
 import { ARCANE_BIT_VALUES, prettyToSquare } from './defs.mjs';
 import { generatePlayableOptions } from './movegen.mjs';
 

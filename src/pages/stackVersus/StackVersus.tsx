@@ -4,17 +4,20 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
 
+import { socket } from 'src/lib/socket';
+import GameService, { GameMove } from 'src/services/GameService';
+
 import 'src/pages/stackVersus/StackVersus.scss';
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/lambda.scss';
 
-import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
+// import { setLocalStorage, getLocalStorage } from 'src/utils/handleLocalStorage';
 import { audioManager } from 'src/utils/audio/AudioManager';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import PromotionModal from 'src/components/PromotionModal/PromotionModal';
-import StackVersusModal from 'src/pages/stackVersus/StackVersusModal';
+// import StackVersusModal from 'src/pages/stackVersus/StackVersusModal';
 
 import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
@@ -33,7 +36,7 @@ import {
   PROMOTED,
   ARCANEFLAG,
   CAPTURED,
-  MFLAGSUMN,
+  // MFLAGSUMN,
   MFLAGCNSM,
   MFLAGSHFT,
 } from 'src/stacktadium/board.mjs';
@@ -47,7 +50,7 @@ import {
   PceChar,
 } from 'src/stacktadium/defs.mjs';
 import { outputFenOfCurrentPosition } from 'src/stacktadium/board.mjs';
-import { SearchController } from 'src/stacktadium/search.mjs';
+// import { SearchController } from 'src/stacktadium/search.mjs';
 import { CheckAndSet, CheckResult } from 'src/stacktadium/gui.mjs';
 
 import {
@@ -89,7 +92,7 @@ interface State {
   playerInc: number | null;
   playerColor: string;
   engineColor: string;
-  thinking: boolean;
+  // thinking: boolean;
   thinkingTime: number;
   engineDepth: number;
   historyPly: number;
@@ -101,7 +104,7 @@ interface State {
   lastMoveHistory: string[][];
   pvLine?: string[];
   hasMounted: boolean;
-  nodeId: string;
+  // nodeId: string;
   whiteFaction: string;
   blackFaction: string;
   selected: string;
@@ -154,7 +157,11 @@ interface State {
   dialogueList: Record<string, string>;
 }
 
-interface Props {
+interface RouterProps {
+  params: { gameId: string };
+}
+
+interface Props extends RouterProps {
   auth: {
     user: {
       id: string;
@@ -215,7 +222,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
       playerColor: this.props.config.playerColor,
       engineColor: this.props.config.engineColor,
       hasMounted: false,
-      nodeId: getLocalStorage(this.props.auth.user.username).nodeId,
+      // nodeId: getLocalStorage(this.props.auth.user.username).nodeId,
       gameOver: false,
       // getLocalStorage(this.props.auth.user.username).nodeScores[
       //   getLocalStorage(this.props.auth.user.username).nodeId
@@ -229,7 +236,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
       pvLine: [],
       historyPly: 0,
       history: [],
-      thinking: SearchController.thinking,
+      // thinking: SearchController.thinking,
       thinkingTime: this.props.config.thinkingTime,
       engineDepth: this.props.config.engineDepth,
       whiteFaction: 'normal',
@@ -301,114 +308,114 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
       {} as Record<string, number>
     );
 
-  engineGo = () => {
-    this.setState({
-      thinking: true,
-    });
-    new Promise<{ bestMove: any; text: any }>((resolve) => {
-      if (this.state.glitchActive) {
-        const glitchMove = arcaneChess().engineGlitch();
-        if (CAPTURED(glitchMove) > 0 && ARCANEFLAG(glitchMove) === 0) {
-          audioManager.playSFX('capture');
-        } else {
-          audioManager.playSFX('move');
-        }
-        resolve(glitchMove);
-      } else {
-        arcaneChess()
-          .engineReply(
-            this.state.thinkingTime,
-            this.state.engineDepth,
-            this.state.engineColor
-          )
-          .then(({ bestMove, text }) => {
-            if (
-              (CAPTURED(bestMove) !== 0 && bestMove & MFLAGSUMN) ||
-              text.some((t: string) => t.includes('phantom mist')) ||
-              text.some((t: string) => t.includes('bulletproof'))
-            ) {
-              audioManager.playSFX('freeze');
-            } else if (
-              PROMOTED(bestMove) ||
-              bestMove & MFLAGSUMN ||
-              bestMove & MFLAGCNSM ||
-              bestMove & MFLAGSHFT ||
-              (PROMOTED(bestMove) && bestMove & MFLAGSUMN)
-            ) {
-              audioManager.playSFX('fire');
-            } else if (ARCANEFLAG(bestMove) > 0) {
-              audioManager.playSFX('spell');
-            } else if (CAPTURED(bestMove) > 0) {
-              audioManager.playSFX('capture');
-            } else {
-              audioManager.playSFX('move');
-            }
-            resolve({ bestMove, text });
-          });
-      }
-    })
-      .then((reply) => {
-        const { bestMove, text } = reply;
-        this.setState(
-          (prevState) => {
-            const updatedDialogue = [
-              ...prevState.dialogue,
-              ...text
-                .map((key: string) => {
-                  if (key in prevState.dialogueList) {
-                    const value = prevState.dialogueList[key];
-                    return !prevState.dialogue.includes(value) ? '' : '';
-                  }
-                  return key;
-                })
-                .filter((value: string | null) => value),
-            ];
-            return {
-              ...prevState,
-              dialogue: [...updatedDialogue],
-              pvLine: GameBoard.cleanPV,
-              historyPly: prevState.historyPly + 1,
-              history: [...prevState.history, PrMove(bestMove)],
-              fen: outputFenOfCurrentPosition(),
-              fenHistory: [
-                ...prevState.fenHistory,
-                outputFenOfCurrentPosition(),
-              ],
-              lastMoveHistory: [
-                ...prevState.lastMoveHistory,
-                [PrSq(FROMSQ(bestMove)), PrSq(TOSQ(bestMove))],
-              ],
-              thinking: false,
-              turn: prevState.turn === 'white' ? 'black' : 'white',
-              royalties: {
-                ...prevState.royalties,
-                ...this.arcaneChess().getPrettyRoyalties(),
-              },
-              glitchActive: false,
-            };
-          },
-          () => {
-            if (CheckAndSet()) {
-              this.setState({
-                gameOver: true,
-                gameOverType: CheckResult().gameResult,
-              });
-              audioManager.playSFX('defeat');
-              return;
-            }
-          }
-        );
-      })
-      .catch((error) => {
-        console.error('An error occurred:', error);
-      });
-  };
+  // engineGo = () => {
+  //   this.setState({
+  //     thinking: true,
+  //   });
+  //   new Promise<{ bestMove: any; text: any }>((resolve) => {
+  //     if (this.state.glitchActive) {
+  //       const glitchMove = arcaneChess().engineGlitch();
+  //       if (CAPTURED(glitchMove) > 0 && ARCANEFLAG(glitchMove) === 0) {
+  //         audioManager.playSFX('capture');
+  //       } else {
+  //         audioManager.playSFX('move');
+  //       }
+  //       resolve(glitchMove);
+  //     } else {
+  //       arcaneChess()
+  //         .engineReply(
+  //           this.state.thinkingTime,
+  //           this.state.engineDepth,
+  //           this.state.engineColor
+  //         )
+  //         .then(({ bestMove, text }) => {
+  //           if (
+  //             (CAPTURED(bestMove) !== 0 && bestMove & MFLAGSUMN) ||
+  //             text.some((t: string) => t.includes('phantom mist')) ||
+  //             text.some((t: string) => t.includes('bulletproof'))
+  //           ) {
+  //             audioManager.playSFX('freeze');
+  //           } else if (
+  //             PROMOTED(bestMove) ||
+  //             bestMove & MFLAGSUMN ||
+  //             bestMove & MFLAGCNSM ||
+  //             bestMove & MFLAGSHFT ||
+  //             (PROMOTED(bestMove) && bestMove & MFLAGSUMN)
+  //           ) {
+  //             audioManager.playSFX('fire');
+  //           } else if (ARCANEFLAG(bestMove) > 0) {
+  //             audioManager.playSFX('spell');
+  //           } else if (CAPTURED(bestMove) > 0) {
+  //             audioManager.playSFX('capture');
+  //           } else {
+  //             audioManager.playSFX('move');
+  //           }
+  //           resolve({ bestMove, text });
+  //         });
+  //     }
+  //   })
+  //     .then((reply) => {
+  //       const { bestMove, text } = reply;
+  //       this.setState(
+  //         (prevState) => {
+  //           const updatedDialogue = [
+  //             ...prevState.dialogue,
+  //             ...text
+  //               .map((key: string) => {
+  //                 if (key in prevState.dialogueList) {
+  //                   const value = prevState.dialogueList[key];
+  //                   return !prevState.dialogue.includes(value) ? '' : '';
+  //                 }
+  //                 return key;
+  //               })
+  //               .filter((value: string | null) => value),
+  //           ];
+  //           return {
+  //             ...prevState,
+  //             dialogue: [...updatedDialogue],
+  //             pvLine: GameBoard.cleanPV,
+  //             historyPly: prevState.historyPly + 1,
+  //             history: [...prevState.history, PrMove(bestMove)],
+  //             fen: outputFenOfCurrentPosition(),
+  //             fenHistory: [
+  //               ...prevState.fenHistory,
+  //               outputFenOfCurrentPosition(),
+  //             ],
+  //             lastMoveHistory: [
+  //               ...prevState.lastMoveHistory,
+  //               [PrSq(FROMSQ(bestMove)), PrSq(TOSQ(bestMove))],
+  //             ],
+  //             thinking: false,
+  //             turn: prevState.turn === 'white' ? 'black' : 'white',
+  //             royalties: {
+  //               ...prevState.royalties,
+  //               ...this.arcaneChess().getPrettyRoyalties(),
+  //             },
+  //             glitchActive: false,
+  //           };
+  //         },
+  //         () => {
+  //           if (CheckAndSet()) {
+  //             this.setState({
+  //               gameOver: true,
+  //               gameOverType: CheckResult().gameResult,
+  //             });
+  //             audioManager.playSFX('defeat');
+  //             return;
+  //           }
+  //         }
+  //       );
+  //     })
+  //     .catch((error) => {
+  //       console.error('An error occurred:', error);
+  //     });
+  // };
 
   getHintAndScore = (level: number) => {
     audioManager.playSFX('spell');
     this.setState(
       {
-        thinking: true,
+        // thinking: true,
         hoverArcane: '',
       },
       () => {
@@ -421,7 +428,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
               if (level === 1) {
                 newDialogue = [
                   ...this.state.dialogue,
-                  PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
+                  // PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
                 ];
                 this.chessgroundRef.current?.setAutoShapes([
                   {
@@ -430,7 +437,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                   },
                 ]);
               } else if (level === 2) {
-                newDialogue = [...this.state.dialogue, PrMove(bestMove)];
+                // newDialogue = [...this.state.dialogue, PrMove(bestMove)];
                 this.chessgroundRef.current?.setAutoShapes([
                   {
                     orig: PrSq(FROMSQ(bestMove)) || PrSq(TOSQ(bestMove)),
@@ -444,7 +451,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
               this.setState(
                 {
                   dialogue: newDialogue,
-                  thinking: false,
+                  // thinking: false,
                   hoverArcane: '',
                 },
                 () => {
@@ -478,76 +485,76 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
     return this.chessclockRef.current?.stopTimer();
   };
 
-  handleVictory = (timeLeft: number | null) => {
-    const LS = getLocalStorage(this.props.auth.user.username);
-    audioManager.playSFX('victory');
-    setLocalStorage({
-      ...getLocalStorage(this.props.auth.user.username),
-      nodeScores: {
-        ...getLocalStorage(this.props.auth.user.username).nodeScores,
-        [this.state.nodeId]:
-          Math.abs(
-            100000 -
-              Math.abs(
-                GameBoard.material[this.state.playerColor === 'white' ? 0 : 1] -
-                  GameBoard.material[this.state.playerColor === 'white' ? 1 : 0]
-              )
-          ) *
-          (timeLeft || 1) *
-          LS.config.multiplier,
-      },
-      // chapterEnd: booksMap[`book${LS.chapter}`][this.state.nodeId].boss
-      //   ? true
-      //   : false,
-    });
-    // below updates score in modal
-    this.setState({});
-    // if (booksMap[`book${LS.chapter}`][this.state.nodeId].boss) {
-    //   const chapterPoints = _.reduce(
-    //     getLocalStorage(this.props.auth.user.username).nodeScores,
-    //     (accumulator, value) => {
-    //       return accumulator + value;
-    //     },
-    //     0
-    //   );
-    //   // set user top score if new
-    //   if (
-    //     chapterPoints >
-    //     getLocalStorage(this.props.auth.user.username).auth.user.campaign
-    //       .topScores[getLocalStorage(this.props.auth.user.username).chapter]
-    //   ) {
-    //     // Retrieve the entire data structure from local storage once
-    //     const localStorageData = getLocalStorage(this.props.auth.user.username);
+  // handleVictory = (timeLeft: number | null) => {
+  //   const LS = getLocalStorage(this.props.auth.user.username);
+  //   audioManager.playSFX('victory');
+  //   setLocalStorage({
+  //     ...getLocalStorage(this.props.auth.user.username),
+  //     nodeScores: {
+  //       ...getLocalStorage(this.props.auth.user.username).nodeScores,
+  //       [this.state.nodeId]:
+  //         Math.abs(
+  //           100000 -
+  //             Math.abs(
+  //               GameBoard.material[this.state.playerColor === 'white' ? 0 : 1] -
+  //                 GameBoard.material[this.state.playerColor === 'white' ? 1 : 0]
+  //             )
+  //         ) *
+  //         (timeLeft || 1) *
+  //         LS.config.multiplier,
+  //     },
+  //     // chapterEnd: booksMap[`book${LS.chapter}`][this.state.nodeId].boss
+  //     //   ? true
+  //     //   : false,
+  //   });
+  //   // below updates score in modal
+  //   this.setState({});
+  //   // if (booksMap[`book${LS.chapter}`][this.state.nodeId].boss) {
+  //   //   const chapterPoints = _.reduce(
+  //   //     getLocalStorage(this.props.auth.user.username).nodeScores,
+  //   //     (accumulator, value) => {
+  //   //       return accumulator + value;
+  //   //     },
+  //   //     0
+  //   //   );
+  //   //   // set user top score if new
+  //   //   if (
+  //   //     chapterPoints >
+  //   //     getLocalStorage(this.props.auth.user.username).auth.user.campaign
+  //   //       .topScores[getLocalStorage(this.props.auth.user.username).chapter]
+  //   //   ) {
+  //   //     // Retrieve the entire data structure from local storage once
+  //   //     const localStorageData = getLocalStorage(this.props.auth.user.username);
 
-    //     // Calculate the chapter index
-    //     const chapterIndex =
-    //       getLocalStorage(this.props.auth.user.username).chapter - 1;
+  //   //     // Calculate the chapter index
+  //   //     const chapterIndex =
+  //   //       getLocalStorage(this.props.auth.user.username).chapter - 1;
 
-    //     // Update the specific chapter points in the campaign topScores array
-    //     localStorageData.auth.user.campaign.topScores[chapterIndex] =
-    //       chapterPoints;
+  //   //     // Update the specific chapter points in the campaign topScores array
+  //   //     localStorageData.auth.user.campaign.topScores[chapterIndex] =
+  //   //       chapterPoints;
 
-    //     // Save the updated data back to local storage
-    //     setLocalStorage(localStorageData);
+  //   //     // Save the updated data back to local storage
+  //   //     setLocalStorage(localStorageData);
 
-    //     if (LS.auth.user.id !== '0') {
-    //       axios
-    //         .post('/api/campaign/topScores', {
-    //           userId: this.props.auth.user.id,
-    //           chapterPoints,
-    //           chapterNumber: getLocalStorage(this.props.auth.user.username)
-    //             .chapter,
-    //         })
-    //         .then((res) => {
-    //           // console.log(res);
-    //         })
-    //         .catch((err) => {
-    //           console.log('top score post err: ', err);
-    //         });
-    //     }
-    //   }
-    // }
-  };
+  //   //     if (LS.auth.user.id !== '0') {
+  //   //       axios
+  //   //         .post('/api/campaign/topScores', {
+  //   //           userId: this.props.auth.user.id,
+  //   //           chapterPoints,
+  //   //           chapterNumber: getLocalStorage(this.props.auth.user.username)
+  //   //             .chapter,
+  //   //         })
+  //   //         .then((res) => {
+  //   //           // console.log(res);
+  //   //         })
+  //   //         .catch((err) => {
+  //   //           console.log('top score post err: ', err);
+  //   //         });
+  //   //     }
+  //   //   }
+  //   // }
+  // };
 
   handlePromotion = (piece: string) => {
     this.setState((prevState) => ({
@@ -580,87 +587,87 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
     });
   };
 
-  normalMoveStateAndEngineGo = (parsed: number, orig: string, dest: string) => {
-    const char = RtyChar.split('')[this.state.placingRoyalty];
-    this.setState(
-      (prevState) => {
-        const newHistory = [...prevState.history];
-        const lastIndex = newHistory.length - 1;
-        if (Array.isArray(newHistory[lastIndex])) {
-          newHistory[lastIndex] = [...newHistory[lastIndex], PrMove(parsed)];
-        } else {
-          newHistory.push(PrMove(parsed));
-        }
-        return {
-          historyPly: prevState.historyPly + 1,
-          history: newHistory,
-          fen: outputFenOfCurrentPosition(),
-          fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
-          lastMoveHistory:
-            prevState.historyPly < prevState.lastMoveHistory.length
-              ? prevState.lastMoveHistory.map((moves, index) =>
-                  index === prevState.historyPly
-                    ? [...moves, orig, dest]
-                    : moves
-                )
-              : [...prevState.lastMoveHistory, [orig, dest]],
-          placingPiece: 0,
-          placingRoyalty: 0,
-          placingPromotion: 0,
-          promotionModalOpen: false,
-          normalMovesOnly: false,
-          swapType: '',
-          isTeleport: false,
-          offeringType: '',
-          royalties: {
-            ...prevState.royalties,
-            royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
-              return typeof value === 'undefined' ? value : (value -= 1);
-            }),
-            royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
-              return typeof value === 'undefined' ? value : (value -= 1);
-            }),
-            royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
-              return typeof value === 'undefined' ? value : (value -= 1);
-            }),
-            royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
-              return typeof value === 'undefined' ? value : (value -= 1);
-            }),
-            royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
-              return typeof value === 'undefined' ? value : (value -= 1);
-            }),
-            [`royalty${char}`]: {
-              ...prevState.royalties[`royalty${char}`],
-              [dest]: 8,
-            },
-          },
-        };
-      },
-      () => {
-        if (CheckAndSet()) {
-          this.setState(
-            {
-              gameOver: true,
-              gameOverType: CheckResult().gameResult,
-            },
-            () => {
-              if (
-                _.includes(
-                  this.state.gameOverType,
-                  `${this.state.playerColor} connects four`
-                )
-              ) {
-                this.handleVictory(this.stopAndReturnTime() as number | null);
-              }
-            }
-          );
-          return;
-        } else {
-          this.engineGo();
-        }
-      }
-    );
-  };
+  // normalMoveStateAndEngineGo = (parsed: number, orig: string, dest: string) => {
+  //   const char = RtyChar.split('')[this.state.placingRoyalty];
+  //   this.setState(
+  //     (prevState) => {
+  //       const newHistory = [...prevState.history];
+  //       const lastIndex = newHistory.length - 1;
+  //       if (Array.isArray(newHistory[lastIndex])) {
+  //         newHistory[lastIndex] = [...newHistory[lastIndex], PrMove(parsed)];
+  //       } else {
+  //         newHistory.push(PrMove(parsed));
+  //       }
+  //       return {
+  //         historyPly: prevState.historyPly + 1,
+  //         history: newHistory,
+  //         fen: outputFenOfCurrentPosition(),
+  //         fenHistory: [...prevState.fenHistory, outputFenOfCurrentPosition()],
+  //         lastMoveHistory:
+  //           prevState.historyPly < prevState.lastMoveHistory.length
+  //             ? prevState.lastMoveHistory.map((moves, index) =>
+  //                 index === prevState.historyPly
+  //                   ? [...moves, orig, dest]
+  //                   : moves
+  //               )
+  //             : [...prevState.lastMoveHistory, [orig, dest]],
+  //         placingPiece: 0,
+  //         placingRoyalty: 0,
+  //         placingPromotion: 0,
+  //         promotionModalOpen: false,
+  //         normalMovesOnly: false,
+  //         swapType: '',
+  //         isTeleport: false,
+  //         offeringType: '',
+  //         royalties: {
+  //           ...prevState.royalties,
+  //           royaltyQ: _.mapValues(prevState.royalties.royaltyQ, (value) => {
+  //             return typeof value === 'undefined' ? value : (value -= 1);
+  //           }),
+  //           royaltyT: _.mapValues(prevState.royalties.royaltyT, (value) => {
+  //             return typeof value === 'undefined' ? value : (value -= 1);
+  //           }),
+  //           royaltyM: _.mapValues(prevState.royalties.royaltyM, (value) => {
+  //             return typeof value === 'undefined' ? value : (value -= 1);
+  //           }),
+  //           royaltyV: _.mapValues(prevState.royalties.royaltyV, (value) => {
+  //             return typeof value === 'undefined' ? value : (value -= 1);
+  //           }),
+  //           royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
+  //             return typeof value === 'undefined' ? value : (value -= 1);
+  //           }),
+  //           [`royalty${char}`]: {
+  //             ...prevState.royalties[`royalty${char}`],
+  //             [dest]: 8,
+  //           },
+  //         },
+  //       };
+  //     },
+  //     () => {
+  //       if (CheckAndSet()) {
+  //         this.setState(
+  //           {
+  //             gameOver: true,
+  //             gameOverType: CheckResult().gameResult,
+  //           },
+  //           () => {
+  //             if (
+  //               _.includes(
+  //                 this.state.gameOverType,
+  //                 `${this.state.playerColor} connects four`
+  //               )
+  //             ) {
+  //               // this.handleVictory(this.stopAndReturnTime() as number | null);
+  //             }
+  //           }
+  //         );
+  //         return;
+  //       } else {
+  //         // this.engineGo();
+  //       }
+  //     }
+  //   );
+  // };
 
   navigateHistory(type: string, targetIndex?: number) {
     this.setState((prevState) => {
@@ -722,6 +729,154 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
     }
   }
 
+  handleGameStart = ({
+    fen,
+    whiteConfig,
+    blackConfig,
+    royalties,
+    preset,
+    yourSide,
+    opponentSide,
+  }: {
+    fen: string;
+    whiteConfig: Record<string, number>;
+    blackConfig: Record<string, number>;
+    royalties: Record<string, Record<string, number>>;
+    preset: string;
+    yourSide: 'white' | 'black';
+    opponentSide: 'white' | 'black';
+  }) => {
+    // 1) Init the engine core
+    this.arcaneChess().init();
+
+    // 2) Tell it to start a fresh game
+    this.arcaneChess().startGame(
+      fen,
+      whiteConfig,
+      blackConfig,
+      royalties,
+      preset
+    );
+
+    // 3) Seed your React state
+    this.setState(
+      {
+        fen,
+        fenHistory: [fen],
+        history: [],
+        lastMoveHistory: [],
+        historyPly: 0,
+        wArcana: whiteConfig,
+        bArcana: blackConfig,
+        royalties,
+        playerColor: yourSide,
+        engineColor: opponentSide,
+        orientation: yourSide,
+        selectedSide: yourSide,
+        gameOver: false,
+      },
+      () => {
+        // 4) If it’s the engine’s turn, kick off the first move
+        const turn = GameBoard.side === 0 ? 'white' : 'black';
+        if (this.state.engineColor === turn) {
+          // this.engineGo();
+        }
+      }
+    );
+  };
+
+  // ─── B) local moves → send → apply ───
+  onLocalMove(orig: string, dest: string) {
+    const { parsed } = this.arcaneChess().makeUserMove(
+      orig,
+      dest,
+      this.state.placingPromotion,
+      this.state.swapType,
+      this.state.placingRoyalty
+    );
+
+    // apply it locally (updates history, FEN, arcana, sounds…)
+    this.applyMoveToState(parsed);
+
+    // then notify opponent via GameService
+    const { gameId } = this.props.params;
+    GameService.sendMove(gameId, {
+      parsed,
+      orig,
+      dest,
+      promo: this.state.placingPromotion,
+      swapType: this.state.swapType,
+      royaltyEpsilon: this.state.placingRoyalty,
+    });
+  }
+
+  // ─── C) when a remote move arrives ───
+  handleRemoteMove = (move: GameMove) => {
+    // you could: MakeMove(move.parsed) or arcaneChess().makeUserMove
+    this.applyMoveToState(move.parsed, move.text);
+  };
+
+  applyMoveToState(parsed: number, text: string[] = []) {
+    const from = PrSq(FROMSQ(parsed));
+    const to = PrSq(TOSQ(parsed));
+    const newFen = outputFenOfCurrentPosition();
+
+    this.setState(
+      (prev: any) => {
+        // build out each derived value once
+        const newHistory = [...prev.history, PrMove(parsed)];
+        const newFenHistory = [...prev.fenHistory, newFen];
+        const newLastMoveHist = [...prev.lastMoveHistory, [from, to]];
+
+        return {
+          ...prev, // spread the rest of state
+          historyPly: prev.historyPly + 1,
+          history: newHistory,
+          fen: newFen,
+          fenHistory: newFenHistory,
+          lastMoveHistory: newLastMoveHist,
+          royalties: this.arcaneChess().getPrettyRoyalties(),
+          dialogue: text.length ? [...prev.dialogue, ...text] : prev.dialogue,
+          turn: prev.turn === 'white' ? 'black' : 'white',
+          glitchActive: false,
+        };
+      },
+      () => {
+        // POST-SETSTATE CALLBACK: check for game over
+        if (CheckAndSet()) {
+          const result = CheckResult().gameResult;
+          this.setState({ gameOver: true, gameOverType: result }, () => {
+            const [winner] = result.split(' ');
+            if (
+              winner === this.state.playerColor &&
+              !result.includes('resigns')
+            ) {
+              // this.handleVictory(this.stopAndReturnTime()!);
+            }
+          });
+        }
+      }
+    );
+  }
+
+  handleGameEnd = ({ winner }: { winner: string }) => {
+    this.setState({
+      gameOver: true,
+      gameOverType: `${winner} wins`,
+    });
+  };
+
+  onResign = () => {
+    const { gameId } = this.props.params;
+    // tell the server you’re out
+    GameService.sendResign(gameId, this.state.playerColor);
+    // and locally fire your modal
+    this.setState({
+      gameOver: true,
+      gameOverType: `${this.state.playerColor} resigns`,
+    });
+  };
+
   componentWillUnmount(): void {
     window.removeEventListener('keydown', this.handleKeyDown);
     // this.arcaneChess().clearRoyalties();
@@ -734,6 +889,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
     //     royaltyE: {},
     //   },
     // });
+    socket.off('game:start', this.handleGameStart);
     clearArcanaConfig();
   }
 
@@ -750,6 +906,9 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
+    socket.on('game:start', this.handleGameStart);
+    GameService.onMove(this.handleRemoteMove);
+    GameService.onEnd(this.handleGameEnd);
     if (!this.hasMounted) {
       this.hasMounted = true;
     }
@@ -813,13 +972,13 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
               style={{
                 opacity:
                   this.state.playerColor !== color ||
-                  this.state.thinking ||
+                  // this.state.thinking ||
                   (!futureSightAvailable && key === 'modsFUT')
                     ? 0.5
                     : 1,
                 cursor:
                   this.state.playerColor !== color ||
-                  this.state.thinking ||
+                  // this.state.thinking ||
                   (!futureSightAvailable && key === 'modsFUT')
                     ? 'not-allowed'
                     : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
@@ -827,8 +986,8 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
               onClick={() => {
                 if (
                   this.state.playerColor !== color ||
-                  (!futureSightAvailable && key === 'modsFUT') ||
-                  this.state.thinking
+                  (!futureSightAvailable && key === 'modsFUT')
+                  // this.state.thinking
                 )
                   return;
                 if (
@@ -1054,7 +1213,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                         lastMoveHistory: [...prevState.lastMoveHistory, []],
                       }),
                       () => {
-                        this.engineGo();
+                        // this.engineGo();
                       }
                     );
                   }
@@ -1104,7 +1263,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <StackVersusModal
+          {/* <StackVersusModal
             isOpen={this.state.stackVersusModalOpen}
             handleClose={() => {
               this.setState({ stackVersusModalOpen: false }, () => {
@@ -1153,7 +1312,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
               this.updateStackVersusState(property, value);
             }}
             type="stackVersus"
-          />
+          /> */}
           <TactoriusModal
             isOpen={this.state.gameOver}
             // handleClose={() => this.handleModalClose()}
@@ -1209,11 +1368,11 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                   </div>
                 ) : (
                   <ul style={{ padding: '0' }}>
-                    {this.state.thinking
+                    {/* {this.state.thinking
                       ? 'The engine is thinking...'
                       : this.state.dialogue.map((item, key) => {
                           return <li key={key}>{item}</li>;
-                        })}
+                        })} */}
                   </ul>
                 )}
               </div>
@@ -1222,10 +1381,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                   className="tertiary"
                   onClick={() => {
                     audioManager.playSFX('defeat');
-                    this.setState({
-                      gameOver: true,
-                      gameOverType: `${this.state.playerColor} resigns`,
-                    });
+                    this.onResign;
                   }}
                   color="V"
                   // strong={true}
@@ -1282,7 +1438,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                     rookCastle: false,
                     color: this.state.playerColor,
                     dests: (() => {
-                      if (this.state.thinking) return;
+                      // if (this.state.thinking) return;
                       let dests;
                       if (this.state.placingPiece === 0) {
                         if (this.state.placingRoyalty === 0) {
@@ -1347,6 +1503,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                     change: () => {},
                     dropNewPiece: (piece: string, key: string) => {
                       this.chessgroundRef.current?.setAutoShapes([]);
+                      console.log(piece);
                       if (
                         GameBoard.pieces[prettyToSquare(key)] === PIECES.EMPTY
                       ) {
@@ -1357,61 +1514,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                           '',
                           this.state.placingRoyalty
                         );
-                        if (this.state.placingPiece > 0) {
-                          audioManager.playSFX('fire');
-                        }
-                        if (this.state.placingRoyalty > 0) {
-                          audioManager.playSFX('freeze');
-                        }
-                        if (!PrMove(parsed)) {
-                          console.log('invalid move', PrMove(parsed), piece);
-                        }
-                        this.setState(
-                          (prevState) => ({
-                            historyPly: prevState.historyPly + 1,
-                            history: [...prevState.history, PrMove(parsed)],
-                            fen: outputFenOfCurrentPosition(),
-                            fenHistory: [
-                              ...prevState.fenHistory,
-                              outputFenOfCurrentPosition(),
-                            ],
-                            lastMoveHistory: [
-                              ...prevState.lastMoveHistory,
-                              ['a0', key],
-                            ],
-                            placingPiece: 0,
-                            placingRoyalty: 0,
-                            swapType: '',
-                            offeringType: '',
-                            isTeleport: false,
-                            futureSightAvailable: true,
-                          }),
-                          () => {
-                            if (CheckAndSet()) {
-                              this.setState(
-                                {
-                                  gameOver: true,
-                                  gameOverType: CheckResult().gameResult,
-                                },
-                                () => {
-                                  if (
-                                    _.includes(
-                                      this.state.gameOverType,
-                                      `${this.state.playerColor} mates`
-                                    )
-                                  ) {
-                                    this.handleVictory(
-                                      this.stopAndReturnTime() as number | null
-                                    );
-                                  }
-                                }
-                              );
-                              return;
-                            } else {
-                              this.engineGo();
-                            }
-                          }
-                        );
+                        this.applyMoveToState(parsed);
                       }
                       if (this.state.placingRoyalty !== 0) {
                         this.setState((prevState) => ({
@@ -1452,19 +1555,20 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                           return;
                         }
                         audioManager.playSFX('fire');
-                        this.setState((prevState) => ({
-                          ...prevState,
-                          history: [...prevState.history, [PrMove(parsed)]],
-                          fen: outputFenOfCurrentPosition(),
-                          fenHistory: [
-                            ...prevState.fenHistory,
-                            outputFenOfCurrentPosition(),
-                          ],
-                          lastMoveHistory: [
-                            ...prevState.lastMoveHistory,
-                            [orig, dest],
-                          ],
-                        }));
+                        this.applyMoveToState(parsed);
+                        // this.setState((prevState) => ({
+                        //   ...prevState,
+                        //   history: [...prevState.history, [PrMove(parsed)]],
+                        //   fen: outputFenOfCurrentPosition(),
+                        //   fenHistory: [
+                        //     ...prevState.fenHistory,
+                        //     outputFenOfCurrentPosition(),
+                        //   ],
+                        //   lastMoveHistory: [
+                        //     ...prevState.lastMoveHistory,
+                        //     [orig, dest],
+                        //   ],
+                        // }));
                       } else {
                         if (
                           PROMOTED(parsed) > 0 ||
@@ -1507,7 +1611,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                               normalMovesOnly: true,
                             });
                           } else {
-                            this.normalMoveStateAndEngineGo(parsed, orig, dest);
+                            // this.normalMoveStateAndEngineGo(parsed, orig, dest);
                           }
                         });
                       } else {
@@ -1521,7 +1625,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                             normalMovesOnly: true,
                           }));
                         } else {
-                          this.normalMoveStateAndEngineGo(parsed, orig, dest);
+                          // this.normalMoveStateAndEngineGo(parsed, orig, dest);
                         }
                       }
                       this.setState({
@@ -1571,59 +1675,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                             if (parsed === 0) {
                               console.log('parsed === 0');
                             }
-                            this.setState(
-                              (prevState) => ({
-                                ...prevState,
-                                historyPly: prevState.historyPly + 1,
-                                history: [...prevState.history, PrMove(parsed)],
-                                fen: outputFenOfCurrentPosition(),
-                                fenHistory: [
-                                  ...prevState.fenHistory,
-                                  outputFenOfCurrentPosition(),
-                                ],
-                                lastMoveHistory: [
-                                  ...prevState.lastMoveHistory,
-                                  ['a0', key],
-                                ],
-                                royalties: {
-                                  ...prevState.royalties,
-                                  ...this.arcaneChess().getPrettyRoyalties(),
-                                },
-                                placingPiece: 0,
-                                placingRoyalty: 0,
-                                swapType: '',
-                                offeringType: '',
-                                isTeleport: false,
-                                futureSightAvailable: true,
-                              }),
-                              () => {
-                                if (CheckAndSet()) {
-                                  this.setState(
-                                    {
-                                      gameOver: true,
-                                      gameOverType: CheckResult().gameResult,
-                                    },
-                                    () => {
-                                      if (
-                                        _.includes(
-                                          this.state.gameOverType,
-                                          `${this.state.playerColor} mates`
-                                        )
-                                      ) {
-                                        this.handleVictory(
-                                          this.stopAndReturnTime() as
-                                            | number
-                                            | null
-                                        );
-                                      }
-                                    }
-                                  );
-                                  return;
-                                } else {
-                                  this.engineGo();
-                                }
-                              }
-                            );
+                            this.applyMoveToState(parsed);
                           }
                         } else {
                           this.setState({
@@ -1652,59 +1704,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                           if (parsed === 0) {
                             console.log('parsed === 0');
                           }
-                          this.setState(
-                            (prevState) => ({
-                              ...prevState,
-                              historyPly: prevState.historyPly + 1,
-                              history: [...prevState.history, PrMove(parsed)],
-                              fen: outputFenOfCurrentPosition(),
-                              fenHistory: [
-                                ...prevState.fenHistory,
-                                outputFenOfCurrentPosition(),
-                              ],
-                              lastMoveHistory: [
-                                ...prevState.lastMoveHistory,
-                                [key, 'a0'],
-                              ],
-                              royalties: {
-                                ...prevState.royalties,
-                                ...this.arcaneChess().getPrettyRoyalties(),
-                              },
-                              placingPiece: 0,
-                              placingRoyalty: 0,
-                              swapType: '',
-                              offeringType: '',
-                              isTeleport: false,
-                              futureSightAvailable: true,
-                            }),
-                            () => {
-                              if (CheckAndSet()) {
-                                this.setState(
-                                  {
-                                    gameOver: true,
-                                    gameOverType: CheckResult().gameResult,
-                                  },
-                                  () => {
-                                    if (
-                                      _.includes(
-                                        this.state.gameOverType,
-                                        `${this.state.playerColor} mates`
-                                      )
-                                    ) {
-                                      this.handleVictory(
-                                        this.stopAndReturnTime() as
-                                          | number
-                                          | null
-                                      );
-                                    }
-                                  }
-                                );
-                                return;
-                              } else {
-                                this.engineGo();
-                              }
-                            }
-                          );
+                          this.applyMoveToState(parsed);
                         } else {
                           this.setState({
                             offeringType: this.state.offeringType,

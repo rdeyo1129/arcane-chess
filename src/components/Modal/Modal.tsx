@@ -73,11 +73,11 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     const LS = getLocalStorage(this.props.auth.user.username);
     this.state = {
       config: {
-        multiplier: LS.config.multiplier,
-        color: LS.config.color,
-        thinkingTime: LS.config.thinkingTime,
-        depth: LS.config.depth,
-        clock: LS.config.clock,
+        multiplier: LS.config?.multiplier,
+        color: LS.config?.color,
+        thinkingTime: LS.config?.thinkingTime,
+        depth: LS.config?.depth,
+        clock: LS.config?.clock,
         blunderVision: false,
         threatVision: false,
         checkVision: false,
@@ -143,7 +143,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     setLocalStorage({
       ...currLS,
       chapter: this.props.chapterNumber,
-      config: this.state.config,
+      config: this.state.config || {},
       nodeScores: {},
       inventory: {},
       nodeId: 'lesson-1',

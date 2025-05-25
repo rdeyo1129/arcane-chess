@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { withRouter } from '../withRouter/withRouter';
+
 import { socket } from '../../lib/socket';
 import { getOrCreateMultiplayerGuestId } from 'src/utils/guestId';
 import Button from 'src/components/Button/Button';
@@ -18,11 +21,15 @@ type State = {
   games: LobbyGame[];
 };
 
-export default class Lobby extends React.Component<object, State> {
+interface Props {
+  navigate: (path: string) => void;
+}
+
+export class Lobby extends React.Component<Props, State> {
   // cache your guestId once
   myId = getOrCreateMultiplayerGuestId();
 
-  constructor(props: object) {
+  constructor(props: Props) {
     super(props);
     this.state = { games: [] };
   }
@@ -32,9 +39,8 @@ export default class Lobby extends React.Component<object, State> {
     socket.on('lobby:update', (games: LobbyGame[]) => {
       this.setState({ games });
     });
-
-    socket.on('game:start', (data: any) => {
-      console.log('Match started!', data);
+    socket.on('game:start', ({ gameId }: { gameId: string }) => {
+      this.props.navigate(`/game/${gameId}`);
     });
   }
 
@@ -47,20 +53,25 @@ export default class Lobby extends React.Component<object, State> {
     socket.emit('quickfind', { timeControl });
   };
 
+  // Creates a custom game (host), then waits for a guest to join
   handleCreateGame = () => {
-    // 2) use hostId for the check
-    const hasOpenGame = this.state.games.some(
+    // don’t let the same host open multiple customs
+    const hasOpen = this.state.games.some(
       (g) => g.matchType === 'custom' && g.hostId === this.myId
     );
-
-    if (hasOpenGame) {
-      alert('You already have a game open.');
-      return;
+    if (hasOpen) {
+      return alert('You already have a game open.');
     }
 
-    socket.emit('lobby:create', { isPrivate: false });
+    socket.emit('lobby:create', {
+      hostSocketId: socket.id,
+      hostId: this.myId,
+      isPrivate: false,
+      matchType: 'custom',
+    });
   };
 
+  // Join an existing game — the server will fire `game:start` on success
   handleJoinGame = (gameId: string) => {
     socket.emit('lobby:join', { gameId });
   };
@@ -137,3 +148,5 @@ export default class Lobby extends React.Component<object, State> {
     );
   }
 }
+
+export default withRouter(Lobby);

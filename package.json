@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true
+  },
   "scripts": {
     "dev": "vite",
     "build": "npm run build:server && npm run build:frontend && npm run build:css",

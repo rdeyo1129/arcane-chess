@@ -5,7 +5,7 @@ import {
   TOSQ,
   PrintBoard,
   ParseFen,
-} from './board';
+} from './board.mjs';
 import {
   BOOL,
   PVENTRIES,
@@ -14,11 +14,11 @@ import {
   MAXDEPTH,
   NOMOVE,
   BRD_SQ_NUM,
-} from './defs';
-import { EvalPosition } from './evaluate';
-import { generatePlayableOptions } from './movegen';
-import { MakeMove, TakeMove } from './makemove';
-import { PrMove } from './io';
+} from './defs.mjs';
+import { EvalPosition } from './evaluate.mjs';
+import { generatePlayableOptions } from './movegen.mjs';
+import { MakeMove, TakeMove } from './makemove.mjs';
+import { PrMove } from './io.mjs';
 import { StorePvMove, ProbePvTable, GetPvLine } from './pvtable.mjs';
 import { GameController } from './board.mjs';
 import {

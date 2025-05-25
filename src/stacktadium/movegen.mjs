@@ -15,8 +15,12 @@ import {
   FROMSQ,
   TOSQ,
   PROMOTED,
-} from './board';
-import { whiteArcaneConfig, blackArcaneConfig, POWERBIT } from './arcaneDefs';
+} from './board.mjs';
+import {
+  whiteArcaneConfig,
+  blackArcaneConfig,
+  POWERBIT,
+} from './arcaneDefs.mjs';
 import {
   COLOURS,
   BOOL,
@@ -55,8 +59,8 @@ import {
   LoopPcePrime,
   LoopPcePrimeSymbols,
   LoopPcePrimeIndex,
-} from './defs';
-import { MakeMove, TakeMove } from './makemove';
+} from './defs.mjs';
+import { MakeMove, TakeMove } from './makemove.mjs';
 import { validMoves } from './gui.mjs';
 
 const MvvLvaValue = [

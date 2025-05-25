@@ -44,8 +44,8 @@ import {
   SQ120,
   PCEINDEX,
   Kings,
-} from './defs';
-import { PrSq } from './io';
+} from './defs.mjs';
+import { PrSq } from './io.mjs';
 
 export function FROMSQ(m) {
   return m & 0x7f;

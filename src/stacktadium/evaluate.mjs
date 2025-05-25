@@ -1,5 +1,5 @@
-import { GameBoard } from './board';
-import { SQUARES, PCEINDEX, PIECES, SQ64, COLOURS, PieceCol } from './defs';
+import { GameBoard } from './board.mjs';
+import { SQUARES, PCEINDEX, PIECES, SQ64, COLOURS, PieceCol } from './defs.mjs';
 
 // 4 5 6 (maybe 7) in a row for win scenarios optional?
 // no king herring valkyrie pawn

@@ -37,7 +37,7 @@ export default function lobby(io: Server) {
           });
         }
 
-        await gameStore.createGame({
+        const gameId = await gameStore.createGame({
           hostSocketId: socket.id,
           hostId,
           isPrivate,
@@ -45,6 +45,7 @@ export default function lobby(io: Server) {
         });
 
         io.emit('lobby:update', await gameStore.listLobbyGames());
+        socket.emit('lobby:created', { gameId });
       } catch (err) {
         console.error('Create game error:', err);
         socket.emit('error', { message: 'Failed to create game.' });
@@ -88,22 +89,46 @@ export default function lobby(io: Server) {
         socket.join(room);
         io.sockets.sockets.get(game.hostSocketId)?.join(room);
 
-        // to the joiner
+        socket.emit('lobby:joined', { gameId: game.gameId });
+
+        // ▪️ coin-flip for who gets white
+        const hostIsWhite = Math.random() < 0.5;
+        const hostSide = hostIsWhite ? 'white' : 'black';
+        const joinerSide = hostIsWhite ? 'black' : 'white';
+
+        // ▪️ your engine payload
+        const initialFen = game.startFen;
+        const whiteConfig = game.whiteArcana;
+        const blackConfig = game.blackArcana;
+        const royalties = game.royalties || {};
+        const preset = game.preset || 'CLEAR';
+
+        // → to the joiner
         socket.emit('game:start', {
-          gameId: game.gameId,
+          gameId,
           yourSocketId: socket.id,
           opponentSocketId: game.hostSocketId,
-          yourSide: 'black',
-          opponentSide: 'white',
+          yourSide: joinerSide,
+          opponentSide: hostSide,
+          fen: initialFen,
+          whiteConfig,
+          blackConfig,
+          royalties,
+          preset,
         });
 
-        // to the host
+        // → to the host
         io.to(game.hostSocketId).emit('game:start', {
-          gameId: game.gameId,
+          gameId,
           yourSocketId: game.hostSocketId,
           opponentSocketId: socket.id,
-          yourSide: 'white',
-          opponentSide: 'black',
+          yourSide: hostSide,
+          opponentSide: joinerSide,
+          fen: initialFen,
+          whiteConfig,
+          blackConfig,
+          royalties,
+          preset,
         });
 
         // 5️⃣ Final broadcast in case game:start changed anything

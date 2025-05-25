@@ -1,7 +1,7 @@
-import { GameBoard } from './board';
-import { NOMOVE, BOOL, PVENTRIES } from './defs';
-import { MakeMove, TakeMove } from './makemove';
-import { MoveExists } from './movegen';
+import { GameBoard } from './board.mjs';
+import { NOMOVE, BOOL, PVENTRIES } from './defs.mjs';
+import { MakeMove, TakeMove } from './makemove.mjs';
+import { MoveExists } from './movegen.mjs';
 
 export function GetPvLine(depth) {
   let move = ProbePvTable();

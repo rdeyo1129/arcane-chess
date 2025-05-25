@@ -19,8 +19,8 @@ import {
   HASH_EP,
   HASH_SIDE,
   SqAttacked,
-} from './board';
-import { whiteArcaneConfig, blackArcaneConfig } from './arcaneDefs';
+} from './board.mjs';
+import { whiteArcaneConfig, blackArcaneConfig } from './arcaneDefs.mjs';
 import {
   COLOURS,
   PIECES,
@@ -33,7 +33,7 @@ import {
   PieceCol,
   SQUARES,
   PceChar,
-} from './defs';
+} from './defs.mjs';
 import { ARCANEFLAG } from './board.mjs';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 

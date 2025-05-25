@@ -28,7 +28,7 @@ import { FrontPage } from '././pages/frontPage/FrontPage';
 // import { Lab } from './pages/lab/Lab';
 import { Campaign } from '././pages/campaign/Campaign';
 import { StackQuickplay } from '././pages/stackQuickplay/StackQuickplay';
-import { Dashboard } from '././pages/dashboard/Dashboard';
+import { StackVersus } from '././pages/stackVersus/StackVersus';
 import { Book } from '././pages/book/Book';
 import { Login } from '././pages/loginRegister/Login';
 import { Register } from '././pages/loginRegister/Register';
@@ -41,6 +41,7 @@ import { Lexicon } from '././pages/lexicon/Lexicon';
 import { Manifest } from '././pages/manifest/Manifest';
 import { NotFound } from '././pages/notFound/NotFound';
 
+// import { Dashboard } from '././pages/dashboard/Dashboard';
 import { NewDashboard } from '././pages/newDashboard/NewDashboard';
 
 import ReactDOM from 'react-dom/client';
@@ -185,6 +186,7 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
+      <Route path="/game/:gameId" element={<StackVersus />} />
       {/* <Route path="/stacktadium" element={<></>} />src/data/book9.json src/data/book10.json src/data/book11.json src/data/book12.json */}
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />

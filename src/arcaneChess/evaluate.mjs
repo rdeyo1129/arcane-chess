@@ -1,5 +1,5 @@
-import { GameBoard } from './board';
-import { PCEINDEX, PIECES, SQ64, COLOURS, MIRROR64 } from './defs';
+import { GameBoard } from './board.mjs';
+import { PCEINDEX, PIECES, SQ64, COLOURS, MIRROR64 } from './defs.mjs';
 import { whiteArcaneConfig, blackArcaneConfig } from './arcaneDefs.mjs';
 import { unlockableArcana } from 'src/pages/book/ArcanaSelect';
 

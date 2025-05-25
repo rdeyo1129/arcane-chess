@@ -16,8 +16,8 @@ import {
   MAXGAMEMOVES,
   NOMOVE,
   PVENTRIES,
-} from './defs';
-import { GameBoard } from './board';
+} from './defs.mjs';
+import { GameBoard } from './board.mjs';
 
 export function InitFilesRanksBrd() {
   for (let index = 0; index < BRD_SQ_NUM; index++) {

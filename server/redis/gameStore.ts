@@ -12,6 +12,11 @@ export type LobbyGame = {
   matchType: string;
   createdAt: string;
   joinSocketId?: string;
+  startFen: string;
+  whiteArcana: Record<string, number>;
+  blackArcana: Record<string, number>;
+  royalties: Record<string, Record<string, number>>;
+  preset: string;
 };
 
 interface CreateGameOptions {
@@ -108,5 +113,12 @@ function parseLobbyGame(raw: Record<string, string>): LobbyGame {
     matchType: raw.matchType,
     createdAt: raw.createdAt,
     joinSocketId: raw.joinSocketId,
+
+    // if these keys ever come back missing or empty, fall back to sane defaults
+    startFen: raw.startFen || '2QQqq2/8/t6T/t6T/T6t/T6t/8/2qqQQ2 w - - 0 1',
+    whiteArcana: raw.whiteArcana ? JSON.parse(raw.whiteArcana) : {},
+    blackArcana: raw.blackArcana ? JSON.parse(raw.blackArcana) : {},
+    royalties: raw.royalties ? JSON.parse(raw.royalties) : {},
+    preset: raw.preset || 'CLEAR',
   };
 }

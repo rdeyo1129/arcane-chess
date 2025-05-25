@@ -4,19 +4,19 @@ import {
   InitHashKeys,
   InitSq120To64,
   InitBoardVars,
-} from './main';
+} from './main.mjs';
 import {
   InitMvvLva,
   generatePlayableOptions,
   herrings,
   forcedEpAvailable,
-} from './movegen';
+} from './movegen.mjs';
 import {
   GameBoard,
   randomize,
   ParseFen,
   outputFenOfCurrentPosition,
-} from './board';
+} from './board.mjs';
 import {
   validMoves,
   validGroundMoves,
@@ -25,7 +25,7 @@ import {
   MakeUserMove,
   PreSearch,
   engineSuggestion,
-} from './gui';
+} from './gui.mjs';
 import { SearchPosition, gameSim } from './search.mjs';
 
 import {
@@ -37,7 +37,7 @@ import {
 } from './arcaneDefs.mjs';
 import { COLOURS, PIECES, prettyToSquare } from './defs.mjs';
 import { MakeMove, TakeMove } from './makemove.mjs';
-import { PrSq } from './io';
+import { PrSq } from './io.mjs';
 
 export default function arcaneChess() {
   const init = () => {

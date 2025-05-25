@@ -27,8 +27,8 @@ import { FrontPage } from '././pages/frontPage/FrontPage';
 // import { InGameMenu } from '././pages/inGameMenu/InGameMenu';
 // import { Lab } from './pages/lab/Lab';
 import { Campaign } from '././pages/campaign/Campaign';
-import { StackVersus } from '././pages/stackVersus/StackVersus';
-// import { Dashboard } from '././pages/dashboard/Dashboard';
+import { StackQuickplay } from '././pages/stackQuickplay/StackQuickplay';
+import { Dashboard } from '././pages/dashboard/Dashboard';
 import { Book } from '././pages/book/Book';
 import { Login } from '././pages/loginRegister/Login';
 import { Register } from '././pages/loginRegister/Register';
@@ -128,7 +128,7 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
-      <Route path="/stacktadium" element={<StackVersus />} />
+      <Route path="/stacktadium" element={<StackQuickplay />} />
       <Route
         path="/campaign"
         element={

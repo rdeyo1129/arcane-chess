@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { getLocalStorage } from 'src/utils/handleLocalStorage';
 
-import 'src/pages/stackVersus/StackVersusModal.scss';
+import 'src/pages/stackQuickplay/StackQuickplayModal.scss';
 import 'src/chessground/styles/chessground.scss';
 import 'src/chessground/styles/normal.scss';
 
@@ -327,7 +327,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
     return (
       <div className="container">
         <Modal
-          style={stackVersusModal}
+          style={stackQuickplayModal}
           isOpen={this.props.isOpen}
           ariaHideApp={false}
         >
@@ -1175,7 +1175,7 @@ const TactoriusModal = connect(
 
 export default TactoriusModal;
 
-const stackVersusModal = {
+const stackQuickplayModal = {
   content: {
     top: '50%',
     left: '50%',

@@ -646,25 +646,6 @@ export function TakeMove(wasDyadMove = false) {
     } else {
       AddPiece(to + 10, PIECES.wP);
     }
-  } else if ((MFLAGCA & move) !== 0) {
-    // get original rook positions? todo randomize
-    // this might be easy because the to square should always be the rook which gives you the original square in the move int
-    switch (to) {
-      case SQUARES.C1:
-        MovePiece(SQUARES.D1, SQUARES.A1);
-        break;
-      case SQUARES.C8:
-        MovePiece(SQUARES.D8, SQUARES.A8);
-        break;
-      case SQUARES.G1:
-        MovePiece(SQUARES.F1, SQUARES.H1);
-        break;
-      case SQUARES.G8:
-        MovePiece(SQUARES.F8, SQUARES.H8);
-        break;
-      default:
-        break;
-    }
   }
 
   if (

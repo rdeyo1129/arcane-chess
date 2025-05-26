@@ -290,7 +290,7 @@ export function PrMove(move, returnType) {
   if (returnType === 'array') {
     return [PrSq(FROMSQ(move)), PrSq(TOSQ(move))];
   }
-  return MvStr;
+  return MvStr || '';
 }
 
 export function PrintMoveList() {

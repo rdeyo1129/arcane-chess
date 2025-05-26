@@ -93,7 +93,7 @@ interface State {
   thinkingTime: number;
   engineDepth: number;
   historyPly: number;
-  history: (string | string[])[];
+  history: Array<string | string[]>;
   whiteSetup: string;
   blackSetup: string;
   fen: string;
@@ -150,7 +150,7 @@ interface State {
   futureSightAvailable: boolean;
   glitchActive: boolean;
   engineAvatar: string;
-  dialogue: string[];
+  dialogue: Array<string | string[]>;
   dialogueList: Record<string, string>;
 }
 
@@ -229,7 +229,7 @@ class UnwrappedStackQuickplay extends React.Component<Props, State> {
       pvLine: [],
       historyPly: 0,
       history: [],
-      thinking: SearchController.thinking,
+      thinking: Boolean(SearchController.thinking),
       thinkingTime: this.props.config.thinkingTime,
       engineDepth: this.props.config.engineDepth,
       whiteFaction: 'normal',
@@ -417,12 +417,9 @@ class UnwrappedStackQuickplay extends React.Component<Props, State> {
             .engineSuggestion(this.state.playerColor, level)
             .then((reply: any) => {
               const { bestMove, temporalPincer } = reply;
-              let newDialogue: string[] = [];
+              let newDialogue: any = [];
               if (level === 1) {
-                newDialogue = [
-                  ...this.state.dialogue,
-                  PrSq(FROMSQ(bestMove)) || PrMove(bestMove).split('@')[0],
-                ];
+                newDialogue = [...this.state.dialogue, PrSq(FROMSQ(bestMove))];
                 this.chessgroundRef.current?.setAutoShapes([
                   {
                     orig: PrSq(FROMSQ(bestMove)) || 'a0',
@@ -587,9 +584,9 @@ class UnwrappedStackQuickplay extends React.Component<Props, State> {
         const newHistory = [...prevState.history];
         const lastIndex = newHistory.length - 1;
         if (Array.isArray(newHistory[lastIndex])) {
-          newHistory[lastIndex] = [...newHistory[lastIndex], PrMove(parsed)];
+          newHistory[lastIndex] = PrMove(parsed);
         } else {
-          newHistory.push(PrMove(parsed));
+          newHistory.push(PrMove(parsed) ?? '');
         }
         return {
           historyPly: prevState.historyPly + 1,
@@ -934,7 +931,7 @@ class UnwrappedStackQuickplay extends React.Component<Props, State> {
                           ...prevState,
                           isDyadMove: true,
                           normalMovesOnly: true,
-                          history: prevState.history.slice(0, -1),
+                          history: prevState.history?.slice(0, -1),
                           fen: outputFenOfCurrentPosition(),
                           fenHistory: prevState.fenHistory.slice(0, -1),
                           lastMoveHistory: prevState.lastMoveHistory.slice(
@@ -1454,7 +1451,7 @@ class UnwrappedStackQuickplay extends React.Component<Props, State> {
                         audioManager.playSFX('fire');
                         this.setState((prevState) => ({
                           ...prevState,
-                          history: [...prevState.history, [PrMove(parsed)]],
+                          history: [...prevState.history, PrMove(parsed)],
                           fen: outputFenOfCurrentPosition(),
                           fenHistory: [
                             ...prevState.fenHistory,

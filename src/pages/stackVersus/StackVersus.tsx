@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'src/components/withRouter/withRouter';
 
 import { socket } from 'src/lib/socket';
-import GameService, { GameMove } from 'src/services/GameService';
 
 import 'src/pages/stackVersus/StackVersus.scss';
 import 'src/chessground/styles/chessground.scss';
@@ -185,6 +184,7 @@ interface Props extends RouterProps {
 }
 
 class UnwrappedStackVersus extends React.Component<Props, State> {
+  private _lastLocalParsed: number | null = null;
   static defaultProps = {
     config: {
       playerColor: 'white',
@@ -737,6 +737,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
     preset,
     yourSide,
     opponentSide,
+    startTurn = yourSide,
   }: {
     fen: string;
     whiteConfig: Record<string, number>;
@@ -745,11 +746,11 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
     preset: string;
     yourSide: 'white' | 'black';
     opponentSide: 'white' | 'black';
+    startTurn?: 'white' | 'black';
   }) => {
-    // 1) Init the engine core
-    this.arcaneChess().init();
+    this.setState({ stackVersusModalOpen: false });
 
-    // 2) Tell it to start a fresh game
+    this.arcaneChess().init();
     this.arcaneChess().startGame(
       fen,
       whiteConfig,
@@ -758,62 +759,46 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
       preset
     );
 
-    // 3) Seed your React state
-    this.setState(
-      {
-        fen,
-        fenHistory: [fen],
-        history: [],
-        lastMoveHistory: [],
-        historyPly: 0,
-        wArcana: whiteConfig,
-        bArcana: blackConfig,
-        royalties,
-        playerColor: yourSide,
-        engineColor: opponentSide,
-        orientation: yourSide,
-        selectedSide: yourSide,
-        gameOver: false,
-      },
-      () => {
-        // 4) If it’s the engine’s turn, kick off the first move
-        const turn = GameBoard.side === 0 ? 'white' : 'black';
-        if (this.state.engineColor === turn) {
-          // this.engineGo();
-        }
-      }
-    );
+    this.setState({
+      fen,
+      fenHistory: [fen],
+      history: [],
+      lastMoveHistory: [],
+      historyPly: 0,
+
+      wArcana: { ...whiteConfig },
+      bArcana: { ...blackConfig },
+      royalties,
+
+      playerColor: yourSide,
+      engineColor: opponentSide,
+      turn: startTurn,
+      orientation: yourSide,
+      selectedSide: yourSide,
+
+      gameOver: false,
+      stackVersusModalOpen: false,
+      futureSightAvailable: true,
+    });
   };
 
-  // ─── B) local moves → send → apply ───
-  onLocalMove(orig: string, dest: string) {
-    const { parsed } = this.arcaneChess().makeUserMove(
-      orig,
-      dest,
-      this.state.placingPromotion,
-      this.state.swapType,
-      this.state.placingRoyalty
-    );
+  handleRemoteMove = ({
+    parsed,
+    text = [],
+    nextTurn,
+  }: {
+    parsed: number;
+    text?: string[];
+    nextTurn: 'white' | 'black';
+  }) => {
+    // apply it in arcaneChess as well, if you need engine state synced:
+    this.arcaneChess()
+      .makeUserMove
+      // move info
+      ();
 
-    // apply it locally (updates history, FEN, arcana, sounds…)
-    this.applyMoveToState(parsed);
-
-    // then notify opponent via GameService
-    const { gameId } = this.props.params;
-    GameService.sendMove(gameId, {
-      parsed,
-      orig,
-      dest,
-      promo: this.state.placingPromotion,
-      swapType: this.state.swapType,
-      royaltyEpsilon: this.state.placingRoyalty,
-    });
-  }
-
-  // ─── C) when a remote move arrives ───
-  handleRemoteMove = (move: GameMove) => {
-    // you could: MakeMove(move.parsed) or arcaneChess().makeUserMove
-    this.applyMoveToState(move.parsed, move.text);
+    this.applyMoveToState(parsed, text);
+    this.setState({ turn: nextTurn });
   };
 
   applyMoveToState(parsed: number, text: string[] = []) {
@@ -868,9 +853,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
 
   onResign = () => {
     const { gameId } = this.props.params;
-    // tell the server you’re out
-    GameService.sendResign(gameId, this.state.playerColor);
-    // and locally fire your modal
+    socket.emit('game:resign', { gameId });
     this.setState({
       gameOver: true,
       gameOverType: `${this.state.playerColor} resigns`,
@@ -906,9 +889,30 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
+
     socket.on('game:start', this.handleGameStart);
-    GameService.onMove(this.handleRemoteMove);
-    GameService.onEnd(this.handleGameEnd);
+    socket.on('game:move', this.handleRemoteMove);
+    socket.on(
+      'game:move:applied',
+      ({
+        parsed,
+        nextTurn,
+        text,
+      }: {
+        parsed: number;
+        nextTurn: string;
+        text: string[];
+      }) => {
+        // 1) if it matches the move we just sent, clear the marker and bail
+        if (parsed === this._lastLocalParsed) {
+          this._lastLocalParsed = null;
+          return;
+        }
+        // 2) otherwise: apply as a remote move
+        this.applyMoveToState(parsed, text);
+        this.setState({ turn: nextTurn });
+      }
+    );
     if (!this.hasMounted) {
       this.hasMounted = true;
     }
@@ -1247,7 +1251,8 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
 
   render() {
     // const greekLetters = ['X', 'Ω', 'Θ', 'Σ', 'Λ', 'Φ', 'M', 'N'];
-    const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
+
+    console.log(this.arcaneChess().getGameBoardTurn());
     // const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
     return (
@@ -1432,7 +1437,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                   }
                   orientation={this.state.playerColor}
                   disableContextMenu={false}
-                  turnColor={gameBoardTurn}
+                  turnColor={this.state.playerColor}
                   movable={{
                     free: false,
                     rookCastle: false,
@@ -1448,6 +1453,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                                 dests =
                                   this.arcaneChess().getGroundMoves('TELEPORT');
                               } else {
+                                console.log(';$$$$$$$$', this.arcaneChess());
                                 dests = this.arcaneChess().getGroundMoves();
                               }
                             } else {
@@ -1470,6 +1476,12 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                           this.state.placingPiece
                         );
                       }
+                      console.log(
+                        '-912385-91425',
+                        this.state.playerColor,
+                        dests,
+                        this.arcaneChess()
+                      );
                       return dests;
                     })(),
                     events: {},
@@ -1532,14 +1544,23 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                         ? 'TELEPORT'
                         : this.state.swapType;
                       this.chessgroundRef.current?.setAutoShapes([]);
-                      const { parsed, isInitPromotion = false } =
-                        this.arcaneChess().makeUserMove(
-                          orig,
-                          dest,
-                          this.state.placingPromotion,
-                          swapOrTeleport,
-                          this.state.placingRoyalty
-                        );
+
+                      // 1️⃣ pull nextTurn from the engine as well
+                      const {
+                        parsed,
+                        isInitPromotion = false,
+                        // nextTurn,
+                      } = this.arcaneChess().makeUserMove(
+                        orig,
+                        dest,
+                        this.state.placingPromotion,
+                        swapOrTeleport,
+                        this.state.placingRoyalty
+                      );
+
+                      this._lastLocalParsed = parsed;
+
+                      // ── A) dyad‐move finishing branch ──
                       if (this.state.isDyadMove) {
                         this.arcaneChess().generatePlayableOptions();
                         this.arcaneChess().parseCurrentFen();
@@ -1547,29 +1568,62 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                         if (dests.size === 0) {
                           this.arcaneChess().takeBackHalfDyad();
                           this.arcaneChess().deactivateDyad();
-                          this.setState((prevState) => ({
-                            ...prevState,
+                          this.setState({
                             isDyadMove: false,
                             normalMovesOnly: false,
-                          }));
+                          });
                           return;
                         }
                         audioManager.playSFX('fire');
                         this.applyMoveToState(parsed);
-                        // this.setState((prevState) => ({
-                        //   ...prevState,
-                        //   history: [...prevState.history, [PrMove(parsed)]],
-                        //   fen: outputFenOfCurrentPosition(),
-                        //   fenHistory: [
-                        //     ...prevState.fenHistory,
-                        //     outputFenOfCurrentPosition(),
-                        //   ],
-                        //   lastMoveHistory: [
-                        //     ...prevState.lastMoveHistory,
-                        //     [orig, dest],
-                        //   ],
-                        // }));
+                        // update turn now that dyad is complete
+                        this.setState({
+                          // turn: nextTurn,
+                          isDyadMove: false,
+                          normalMovesOnly: false,
+                        });
+                        // ▶ emit the completed dyad move
+                        socket.emit('game:move', {
+                          gameId: this.props.params.gameId,
+                          parsed,
+                          orig,
+                          dest,
+                          promo: this.state.placingPromotion,
+                          swapType: swapOrTeleport,
+                          royaltyEpsilon: this.state.placingRoyalty,
+                          // nextTurn,
+                        });
+
+                        // ── B) promotion‐init branch ──
+                      } else if (isInitPromotion) {
+                        this.promotionSelectAsync(() => {
+                          // after user picks promotion piece, re‐make the move
+                          const { parsed: promotedParsed } =
+                            this.arcaneChess().makeUserMove(
+                              orig,
+                              dest,
+                              this.state.placingPromotion,
+                              swapOrTeleport,
+                              this.state.placingRoyalty
+                            );
+                          this.applyMoveToState(promotedParsed);
+                          // this.setState({ turn: promotedNext });
+                          // ▶ emit the finalized promotion move
+                          socket.emit('game:move', {
+                            gameId: this.props.params.gameId,
+                            parsed: promotedParsed,
+                            orig,
+                            dest,
+                            promo: this.state.placingPromotion,
+                            swapType: swapOrTeleport,
+                            royaltyEpsilon: this.state.placingRoyalty,
+                            // nextTurn: promotedNext,
+                          });
+                        });
+
+                        // ── C) normal single‐step move ──
                       } else {
+                        // play correct SFX
                         if (
                           PROMOTED(parsed) > 0 ||
                           parsed & MFLAGCNSM ||
@@ -1583,55 +1637,26 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                         } else {
                           audioManager.playSFX('move');
                         }
-                      }
-                      if (isInitPromotion) {
-                        this.promotionSelectAsync(() => {
-                          const { parsed } = this.arcaneChess().makeUserMove(
-                            orig,
-                            dest,
-                            this.state.placingPromotion,
-                            swapOrTeleport,
-                            this.state.placingRoyalty
-                          );
-                          if (
-                            (CAPTURED(parsed) > 0 &&
-                              ARCANEFLAG(parsed) === 0) ||
-                            InCheck()
-                          ) {
-                            audioManager.playSFX('capture');
-                          } else {
-                            audioManager.playSFX('move');
-                          }
-                          if (!PrMove(parsed)) {
-                            console.log('invalid move');
-                          }
-                          if (this.state.isDyadMove) {
-                            this.setState({
-                              isDyadMove: false,
-                              normalMovesOnly: true,
-                            });
-                          } else {
-                            // this.normalMoveStateAndEngineGo(parsed, orig, dest);
-                          }
+
+                        this.applyMoveToState(parsed);
+                        // this.setState({ turn: nextTurn });
+                        // ▶ emit the normal move
+                        socket.emit('game:move', {
+                          gameId: this.props.params.gameId,
+                          parsed,
+                          orig,
+                          dest,
+                          promo: this.state.placingPromotion,
+                          swapType: swapOrTeleport,
+                          royaltyEpsilon: this.state.placingRoyalty,
+                          // nextTurn,
                         });
-                      } else {
-                        if (!PrMove(parsed)) {
-                          console.log('invalid move');
-                        }
-                        if (this.state.isDyadMove) {
-                          this.setState((prevState) => ({
-                            ...prevState,
-                            isDyadMove: false,
-                            normalMovesOnly: true,
-                          }));
-                        } else {
-                          // this.normalMoveStateAndEngineGo(parsed, orig, dest);
-                        }
                       }
-                      this.setState({
-                        futureSightAvailable: true,
-                      });
+
+                      // finally, re-enable future sight
+                      this.setState({ futureSightAvailable: true });
                     },
+
                     select: (key: string) => {
                       let char = RtyChar.split('')[this.state.placingRoyalty];
                       const whiteLimit =

@@ -1,8 +1,11 @@
 // server/sockets/lobby.ts
 import { Server, Socket } from 'socket.io';
 import * as gameStore from '../redis/gameStore.js';
+import arcaneChessFactory from '../../src/stacktadium/arcaneChess.mjs';
 
 type LobbyJoinPayload = { gameId: string };
+
+const sessions = new Map<string, ReturnType<typeof arcaneChessFactory>>();
 
 export default function lobby(io: Server) {
   io.on('connection', (socket: Socket) => {
@@ -96,39 +99,30 @@ export default function lobby(io: Server) {
         const hostSide = hostIsWhite ? 'white' : 'black';
         const joinerSide = hostIsWhite ? 'black' : 'white';
 
-        // ▪️ your engine payload
-        const initialFen = game.startFen;
-        const whiteConfig = game.whiteArcana;
-        const blackConfig = game.blackArcana;
-        const royalties = game.royalties || {};
-        const preset = game.preset || 'CLEAR';
+        // ─── Initialize the server-side engine ───
+        const session = arcaneChessFactory();
+        session.init();
+        session.startGame(
+          game.startFen,
+          game.whiteArcana,
+          game.blackArcana,
+          game.royalties || {},
+          game.preset || 'CLEAR'
+        );
+        sessions.set(gameId, session);
 
-        // → to the joiner
-        socket.emit('game:start', {
+        console.log(hostSide, joinerSide);
+
+        // ─── Emit once to the entire room ───
+        io.in(room).emit('game:start', {
           gameId,
-          yourSocketId: socket.id,
-          opponentSocketId: game.hostSocketId,
           yourSide: joinerSide,
           opponentSide: hostSide,
-          fen: initialFen,
-          whiteConfig,
-          blackConfig,
-          royalties,
-          preset,
-        });
-
-        // → to the host
-        io.to(game.hostSocketId).emit('game:start', {
-          gameId,
-          yourSocketId: game.hostSocketId,
-          opponentSocketId: socket.id,
-          yourSide: hostSide,
-          opponentSide: joinerSide,
-          fen: initialFen,
-          whiteConfig,
-          blackConfig,
-          royalties,
-          preset,
+          fen: game.startFen,
+          whiteConfig: game.whiteArcana,
+          blackConfig: game.blackArcana,
+          royalties: game.royalties || {},
+          preset: game.preset || 'CLEAR',
         });
 
         // 5️⃣ Final broadcast in case game:start changed anything

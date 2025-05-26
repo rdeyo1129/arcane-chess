@@ -276,5 +276,8 @@ export default function arcaneChess() {
         console.log('');
       }
     },
+    getGameBoardTurn: () => {
+      return GameBoard.side;
+    },
   };
 }

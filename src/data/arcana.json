@@ -219,7 +219,7 @@
   "offrD": {
     "id": "offrD",
     "name": "Siege Gambit",
-    "description": "Offer a friendly Bishop to gain a Rook summon arcana.",
+    "description": "Offer a friendly minor piece to gain a Rook summon arcana.",
     "type": "active",
     "imagePath": "/assets/arcanaImages/siege"
   },

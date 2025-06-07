@@ -904,7 +904,12 @@ export function GenerateMoves(
               (('D' === userSummonPceRty && type === 'OFFERING') ||
                 type !== 'OFFERING')
             ) {
-              if (offeringSymbol === 'B') {
+              if (
+                offeringSymbol === 'N' ||
+                offeringSymbol === 'Z' ||
+                offeringSymbol === 'U' ||
+                offeringSymbol === 'B'
+              ) {
                 addOfferingMove(MOVE(sq, 0, offeringPce, 4, 0));
               }
             }

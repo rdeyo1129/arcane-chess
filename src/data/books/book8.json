@@ -16366,15 +16366,15 @@
         "preset": "CLEAR",
         "whiteArcane": {
           "sumnRE": 2,
-          "offrM": 1,
-          "offrC": 1,
+          "offrE": 1,
+          "offrA": 1,
           "shftP": 1,
           "modsEXT": 1
         },
         "blackArcane": {
           "sumnRE": 2,
-          "offrM": 1,
-          "offrC": 1,
+          "offrE": 1,
+          "offrA": 1,
           "shftP": 1,
           "modsEXT": 1
         },
@@ -16737,7 +16737,7 @@
         "blackArcane": {
           "modsINH": 1,
           "sumnN": 3,
-          "offrC": 2,
+          "offrD": 2,
           "shftN": 2,
           "sumnM": 1
         },

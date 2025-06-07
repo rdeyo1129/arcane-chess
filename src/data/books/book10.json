@@ -26922,8 +26922,8 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": { "offrC": 2, "offrA": 1, "shftP": 2, "offrH": 1 },
-        "blackArcane": { "offrC": 2, "offrA": 1, "shftP": 2, "offrH": 1 },
+        "whiteArcane": { "offrE": 2, "offrI": 1, "shftP": 2, "offrA": 1 },
+        "blackArcane": { "offrE": 2, "offrI": 1, "shftP": 2, "offrA": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
@@ -26979,7 +26979,7 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {},
-        "blackArcane": { "offrS": 1, "sumnRY": 1, "sumnRT": 1, "swapDEP": 2 },
+        "blackArcane": { "offrG": 1, "sumnRY": 1, "sumnRT": 1, "swapDEP": 2 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
@@ -27155,7 +27155,7 @@
         "blackArcane": {
           "sumnRM": 1,
           "sumnRT": 1,
-          "offrA": 2,
+          "offrI": 2,
           "shftB": 1
         },
         "config": {},
@@ -27269,7 +27269,7 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {},
-        "blackArcane": { "sumnRZ": 2, "sumnRQ": 2, "offrR": 1, "swapADJ": 2 },
+        "blackArcane": { "sumnRZ": 2, "sumnRQ": 2, "offrH": 1, "swapADJ": 2 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
@@ -27567,7 +27567,7 @@
         },
         "preset": "CLEAR",
         "whiteArcane": {
-          "offrH": 2,
+          "offrA": 2,
           "sumnRY": 1,
           "sumnRZ": 1,
           "sumnRA": 1,
@@ -27575,7 +27575,7 @@
           "dyadD": 1,
           "dyadC": 1
         },
-        "blackArcane": { "offrH": 2, "sumnRT": 1, "sumnRQ": 1, "sumnV": 1 },
+        "blackArcane": { "offrI": 2, "sumnRT": 1, "sumnRQ": 1, "sumnV": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,

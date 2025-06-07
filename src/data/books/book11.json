@@ -28196,19 +28196,15 @@
         "preset": "CLEAR",
         "whiteArcane": {
           "modsEXT": 1,
-          "offrC": 1,
-          "offrR": 1,
+          "offrH": 2,
           "offrE": 1,
-          "offrA": 1,
-          "offrM": 1,
-          "offrS": 1,
-          "offrH": 1
+          "offrD": 1,
+          "offrA": 1
         },
         "blackArcane": {
           "modsFUG": 1,
           "modsSKI": 1,
           "modsTRO": 1,
-          "modsINH": 1,
           "modsSUS": 1,
           "modsCON": 1,
           "modsPHA": 1
@@ -28633,7 +28629,7 @@
           "modsCON": 1,
           "swapADJ": 3,
           "swapDEP": 2,
-          "offrC": 1,
+          "offrA": 1,
           "shftP": 1
         },
         "config": {},
@@ -28690,8 +28686,8 @@
           "royaltyE": {}
         },
         "preset": "CLEAR",
-        "whiteArcane": { "offrA": 3, "shftN": 3, "modsINH": 1, "modsEXT": 1 },
-        "blackArcane": { "offrA": 3, "shftN": 3, "modsINH": 1, "modsEXT": 1 },
+        "whiteArcane": { "offrI": 3, "shftN": 3, "modsINH": 1, "modsEXT": 1 },
+        "blackArcane": { "offrI": 3, "shftN": 3, "modsINH": 1, "modsEXT": 1 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,
@@ -28887,7 +28883,7 @@
           "modsSUS": 3,
           "modsREA": 1,
           "modsCON": 2,
-          "offrA": 2,
+          "offrI": 2,
           "shftP": 1,
           "sumnRE": 1,
           "sumnX": 1

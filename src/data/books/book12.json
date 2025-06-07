@@ -29042,7 +29042,7 @@
         "blackArcane": {
           "sumnN": 2,
           "sumnS": 2,
-          "offrA": 2,
+          "offrI": 2,
           "sumnRM": 1,
           "sumnRT": 1
         },
@@ -29236,8 +29236,8 @@
           "sumnRQ": 1,
           "sumnRE": 1,
           "sumnRA": 1,
-          "offrE": 1,
-          "offrM": 1
+          "offrH": 1,
+          "offrE": 1
         },
         "config": {},
         "correctMoves": [""],
@@ -29362,7 +29362,7 @@
           "sumnRV": 3,
           "sumnRE": 3,
           "sumnRZ": 1,
-          "offrR": 1,
+          "offrH": 1,
           "shftN": 1,
           "shftB": 1,
           "shftR": 2,
@@ -29550,7 +29550,7 @@
         "preset": "CLEAR",
         "whiteArcane": {},
         "blackArcane": {
-          "offrA": 2,
+          "offrI": 2,
           "modsEXT": 1,
           "swapDEP": 4,
           "sumnP": 4,
@@ -29685,7 +29685,7 @@
           "modsSUS": 1,
           "modsREA": 1,
           "swapADJ": 1,
-          "offrA": 1,
+          "offrI": 1,
           "shftP": 1,
           "sumnN": 1,
           "shftN": 1,

@@ -14,7 +14,7 @@ import { audioManager } from 'src/utils/audio/AudioManager';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import PromotionModal from 'src/components/PromotionModal/PromotionModal';
-import StackVersusModal from 'src/pages/stackVersus/StackVersusModal';
+import StackQuickplayModal from 'src/pages/stackQuickplay/StackQuickplayModal';
 
 import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
@@ -1104,7 +1104,7 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <StackVersusModal
+          <StackQuickplayModal
             isOpen={this.state.stackVersusModalOpen}
             handleClose={() => {
               this.setState({ stackVersusModalOpen: false }, () => {

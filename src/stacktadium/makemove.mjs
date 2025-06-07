@@ -430,30 +430,41 @@ export function MakeMove(move, moveType = '') {
   // should only ever be offering moves
   else if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
     const promoted = PROMOTED(move);
+    // summon arcana being given
     const whitePieceToOfferings = {
       1: [PIECES.wH],
-      2: [PIECES.wR, PIECES.wB],
+      2: [PIECES.wR, PIECES.wR],
       3: [PIECES.wN, PIECES.wZ, PIECES.wU],
-      4: [PIECES.wB],
-      5: [PIECES.wN],
-      6: [PIECES.wZ],
-      7: [PIECES.wU],
-      8: [PIECES.wM],
-      9: [captured],
+      4: [PIECES.wR],
+      5: [PIECES.wT],
+      6: [PIECES.wQ],
+      7: [PIECES.wS],
+      8: [PIECES.wW],
+      9: [PIECES.wT],
+      10: [PIECES.wQ],
+      11: [PIECES.wS],
+      12: [PIECES.wW],
+      13: [captured],
+      // todo: minor for dyadA
     };
     const blackPieceToOfferings = {
       1: [PIECES.bH],
-      2: [PIECES.bR, PIECES.bB],
+      2: [PIECES.bR, PIECES.bR],
       3: [PIECES.bN, PIECES.bZ, PIECES.bU],
-      4: [PIECES.bB],
-      5: [PIECES.bN],
-      6: [PIECES.bZ],
-      7: [PIECES.bU],
-      8: [PIECES.bM],
-      9: [captured],
+      4: [PIECES.bR],
+      5: [PIECES.bT],
+      6: [PIECES.bQ],
+      7: [PIECES.bS],
+      8: [PIECES.bW],
+      9: [PIECES.bT],
+      10: [PIECES.bQ],
+      11: [PIECES.bS],
+      12: [PIECES.bW],
+      13: [captured],
+      // todo: minor for dyadA
     };
 
-    const offerString = '.HSMCCCCRA';
+    const offerString = '.ABCDEEFFGGHHI';
     const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
     const arcaneConfig =
       side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
@@ -465,11 +476,7 @@ export function MakeMove(move, moveType = '') {
     ClearPiece(from);
 
     if (offeringNumbers && offeringNumbers.length > 0) {
-      const offerSymbol =
-        (captured === PIECES.wR || captured === PIECES.bR) &&
-        (promoted === 4 || promoted === 5 || promoted === 6 || promoted === 7)
-          ? 'E'
-          : offerString.split('')[promoted];
+      const offerSymbol = offerString.split('')[promoted];
       const offrKey = `offr${offerSymbol}`;
       for (const offeringNumber of offeringNumbers) {
         const sumnKey = `sumn${PceChar.split('')[
@@ -759,30 +766,41 @@ export function TakeMove(wasDyadMove = false) {
   // should only ever be offering moves
   else if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
     let promoted = PROMOTED(move);
+    // summon arcana being given
     const whitePieceToOfferings = {
       1: [PIECES.wH],
-      2: [PIECES.wR, PIECES.wB],
+      2: [PIECES.wR, PIECES.wR],
       3: [PIECES.wN, PIECES.wZ, PIECES.wU],
-      4: [PIECES.wB],
-      5: [PIECES.wN],
-      6: [PIECES.wZ],
-      7: [PIECES.wU],
-      8: [PIECES.wM],
-      9: [captured],
+      4: [PIECES.wR],
+      5: [PIECES.wT],
+      6: [PIECES.wQ],
+      7: [PIECES.wS],
+      8: [PIECES.wW],
+      9: [PIECES.wT],
+      10: [PIECES.wQ],
+      11: [PIECES.wS],
+      12: [PIECES.wW],
+      13: [captured],
+      // todo: minor for dyadA
     };
     const blackPieceToOfferings = {
       1: [PIECES.bH],
-      2: [PIECES.bR, PIECES.bB],
+      2: [PIECES.bR, PIECES.bR],
       3: [PIECES.bN, PIECES.bZ, PIECES.bU],
-      4: [PIECES.bB],
-      5: [PIECES.bN],
-      6: [PIECES.bZ],
-      7: [PIECES.bU],
-      8: [PIECES.bM],
-      9: [captured],
+      4: [PIECES.bR],
+      5: [PIECES.bT],
+      6: [PIECES.bQ],
+      7: [PIECES.bS],
+      8: [PIECES.bW],
+      9: [PIECES.bT],
+      10: [PIECES.bQ],
+      11: [PIECES.bS],
+      12: [PIECES.bW],
+      13: [captured],
+      // todo: minor for dyadA
     };
 
-    const offerString = '.HSMCCCCRA';
+    const offerString = '.ABCDEEFFGGHHI';
     const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
     const arcaneConfig =
       side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
@@ -794,11 +812,7 @@ export function TakeMove(wasDyadMove = false) {
     AddPiece(from, captured);
 
     if (offeringNumbers && offeringNumbers.length > 0) {
-      const offerSymbol =
-        (captured === PIECES.wR || captured === PIECES.bR) &&
-        (promoted === 4 || promoted === 5 || promoted === 6 || promoted === 7)
-          ? 'E'
-          : offerString.split('')[promoted];
+      const offerSymbol = offerString.split('')[promoted];
       const offrKey = `offr${offerSymbol}`;
       for (const offeringNumber of offeringNumbers) {
         const sumnKey = `sumn${PceChar.split('')[

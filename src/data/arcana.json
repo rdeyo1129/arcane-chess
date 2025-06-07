@@ -195,50 +195,64 @@
     "type": "active",
     "imagePath": "/assets/arcanaImages/mageOrange"
   },
-  "offrH": {
-    "id": "offrH",
+  "offrA": {
+    "id": "offrA",
     "name": "Masquerade",
     "description": "Offer a friendly Pawn to gain a Herring summon arcana. A Herring must be captured if the move is legal.",
     "type": "active",
-    "imagePath": "/assets/arcanaImages/daggerBlue"
+    "imagePath": "/assets/arcanaImages/masquerade"
   },
-  "offrS": {
-    "id": "offrS",
-    "name": "Holy Feint",
-    "description": "Offer a friendly Mystic to gain a Rook and Bishop summon arcana.",
+  "offrB": {
+    "id": "offrB",
+    "name": "Fortification",
+    "description": "Offer a friendly Queen or Templar for 2 Rook summon arcana.",
     "type": "active",
-    "imagePath": "/assets/arcanaImages/daggerYellow"
-  },
-  "offrM": {
-    "id": "offrM",
-    "name": "Rodeo",
-    "description": "Offer a friendly Templar or Queen to gain arcana summons of the Equus Family.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/daggerRed"
-  },
-  "offrE": {
-    "id": "offrE",
-    "name": "Siege Gambit",
-    "description": "Offer a friendly Rook to gain a minor summon arcana.",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/sacExchange"
-  },
-  "offrR": {
-    "id": "offrR",
-    "name": "Mistify",
-    "description": "Offer a friendly Queen or Templar to gain a Mystic summon arcana",
-    "type": "active",
-    "imagePath": "/assets/arcanaImages/sacExchangeR"
+    "imagePath": "/assets/arcanaImages/fortification"
   },
   "offrC": {
     "id": "offrC",
-    "name": "Chameleon's Resurrection",
-    "description": "Offer a friendly minor piece to gain a minor piece summon arcana.",
+    "name": "Rodeo Gambit",
+    "description": "Offer a friendly Templar or Queen to gain arcana summons of the Equus Family.",
     "type": "active",
-    "imagePath": "/assets/arcanaImages/chameleon"
+    "imagePath": "/assets/arcanaImages/rodeo"
   },
-  "offrA": {
-    "id": "offrA",
+  "offrD": {
+    "id": "offrD",
+    "name": "Siege Gambit",
+    "description": "Offer a friendly Bishop to gain a Rook summon arcana.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/siege"
+  },
+  "offrE": {
+    "id": "offrE",
+    "name": "Switching of the Guard",
+    "description": "Offer a friendly Queen or Templar to gain a summon arcana of the other one.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/dropsword"
+  },
+  "offrF": {
+    "id": "offrF",
+    "name": "Dimensional Apparition",
+    "description": "Offer a friendly Spectre or Wraith to gain a summon arcana of the other one.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/bat"
+  },
+  "offrG": {
+    "id": "offrG",
+    "name": "Mystify",
+    "description": "Offer a friendly Mystic to gain a Queen or Templar summon arcana.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/sacExchange"
+  },
+  "offrH": {
+    "id": "offrH",
+    "name": "Phantom Fortress",
+    "description": "Offer a friendly Rook to gain a Spectre or Wraith summon arcana.",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/vampire"
+  },
+  "offrI": {
+    "id": "offrI",
     "name": "Grave Offering",
     "description": "Offer any friendly piece (not King) to gain a summon arcana of that piece.",
     "type": "active",

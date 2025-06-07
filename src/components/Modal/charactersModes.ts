@@ -229,7 +229,7 @@ export const modes: Record<string, GameModeType> = padModes({
   tutorial3: {
     name: 'Tutorial 3',
     white: {
-      arcana: [arcana.modsAET, arcana.modsORA, arcana.offrH],
+      arcana: [arcana.modsAET, arcana.modsORA, arcana.offrA],
       setup: 'RSWQKWSR',
     },
     black: {
@@ -273,11 +273,11 @@ export const modes: Record<string, GameModeType> = padModes({
   newClassic: {
     name: 'The New Classic',
     white: {
-      arcana: [arcana.dyadA, arcana.offrH, arcana.sumnRQ, arcana.sumnX],
+      arcana: [arcana.dyadA, arcana.offrA, arcana.sumnRQ, arcana.sumnX],
       setup: 'RNBTKBNR',
     },
     black: {
-      arcana: [arcana.dyadA, arcana.offrH, arcana.sumnRQ, arcana.sumnX],
+      arcana: [arcana.dyadA, arcana.offrA, arcana.sumnRQ, arcana.sumnX],
       setup: 'rnbtkbnr',
     },
   },
@@ -285,9 +285,9 @@ export const modes: Record<string, GameModeType> = padModes({
     name: 'Sacs and Swaps',
     white: {
       arcana: [
-        arcana.offrA,
-        arcana.offrA,
-        arcana.offrA,
+        arcana.offrI,
+        arcana.offrI,
+        arcana.offrI,
         arcana.swapDEP,
         arcana.swapDEP,
         arcana.modsEXT,
@@ -296,9 +296,9 @@ export const modes: Record<string, GameModeType> = padModes({
     },
     black: {
       arcana: [
-        arcana.offrA,
-        arcana.offrA,
-        arcana.offrA,
+        arcana.offrI,
+        arcana.offrI,
+        arcana.offrI,
         arcana.swapDEP,
         arcana.swapDEP,
         arcana.modsEXT,
@@ -561,11 +561,11 @@ export const modes: Record<string, GameModeType> = padModes({
   hollowGambit: {
     name: 'Hollow Gambit',
     white: {
-      arcana: [arcana.modsCON, arcana.modsTRO, arcana.sumnS, arcana.offrH],
+      arcana: [arcana.modsCON, arcana.modsTRO, arcana.sumnS, arcana.offrA],
       setup: 'RNBQKBNR',
     },
     black: {
-      arcana: [arcana.modsCON, arcana.modsTRO, arcana.sumnS, arcana.offrH],
+      arcana: [arcana.modsCON, arcana.modsTRO, arcana.sumnS, arcana.offrA],
       setup: 'rnbqkbnr',
     },
   },
@@ -661,23 +661,23 @@ export const modes: Record<string, GameModeType> = padModes({
   sequel: {
     name: 'The Sequel',
     white: {
-      arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
+      arcana: [arcana.offrI, arcana.sumnRE, arcana.shftN],
       setup: 'RNMQKBNR',
     },
     black: {
-      arcana: [arcana.offrA, arcana.sumnRE, arcana.shftN],
+      arcana: [arcana.offrI, arcana.sumnRE, arcana.shftN],
       setup: 'rnmqkbnr',
     },
   },
   chronicles: {
     name: 'Chronicles',
     white: {
-      arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
+      arcana: [arcana.modsSUS, arcana.offrE, arcana.modsEXT, arcana.sumnRQ],
       setup: 'RNMQKMNR',
     },
     black: {
-      arcana: [arcana.modsSUS, arcana.offrS, arcana.modsEXT, arcana.sumnRQ],
-      setup: 'rnmqkmnr',
+      arcana: [arcana.modsSUS, arcana.offrE, arcana.modsEXT, arcana.sumnRQ],
+      setup: 'rnmtkmnr',
     },
   },
   alternateTimeline: {
@@ -739,11 +739,11 @@ export const modes: Record<string, GameModeType> = padModes({
   betrayersEngine: {
     name: "Betrayer's Engine",
     white: {
-      arcana: [arcana.modsCON, arcana.offrA, arcana.modsFUT, arcana.modsORA],
+      arcana: [arcana.modsCON, arcana.offrI, arcana.modsFUT, arcana.modsORA],
       setup: 'RSWTKWNR',
     },
     black: {
-      arcana: [arcana.modsCON, arcana.offrA, arcana.modsFUT, arcana.modsORA],
+      arcana: [arcana.modsCON, arcana.offrI, arcana.modsFUT, arcana.modsORA],
       setup: 'rswtkwnr',
     },
   },
@@ -863,11 +863,11 @@ export const modes: Record<string, GameModeType> = padModes({
   herringPressurePoint: {
     name: 'Herring Pressure Point',
     white: {
-      arcana: [arcana.sumnH, arcana.swapADJ, arcana.offrH, arcana.modsTRO],
+      arcana: [arcana.sumnH, arcana.swapADJ, arcana.offrA, arcana.modsTRO],
       setup: 'RSWTKWSR',
     },
     black: {
-      arcana: [arcana.sumnH, arcana.swapADJ, arcana.offrH, arcana.modsTRO],
+      arcana: [arcana.sumnH, arcana.swapADJ, arcana.offrA, arcana.modsTRO],
       setup: 'rswtkwsr',
     },
   },
@@ -877,7 +877,7 @@ export const modes: Record<string, GameModeType> = padModes({
       arcana: [
         arcana.sumnRT,
         arcana.sumnT,
-        arcana.offrR,
+        arcana.offrH,
         arcana.dyadE,
         arcana.modsREA,
       ],
@@ -887,7 +887,7 @@ export const modes: Record<string, GameModeType> = padModes({
       arcana: [
         arcana.sumnRT,
         arcana.sumnT,
-        arcana.offrR,
+        arcana.offrH,
         arcana.dyadE,
         arcana.modsREA,
       ],

@@ -871,76 +871,103 @@ export function GenerateMoves(
             // pawn for herring
             if (
               offeringArcanaSide & 1 &&
-              ('H' === userSummonPceRty || type !== 'OFFERING')
+              (('A' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
             ) {
               if (offeringSymbol === 'P') {
                 addOfferingMove(MOVE(sq, 0, offeringPce, 1, 0));
               }
             }
-            // mystic for sliders
+            // Q or T for 2 R
             if (
               offeringArcanaSide & 2 &&
-              (('S' === userSummonPceRty && type === 'OFFERING') ||
+              (('B' === userSummonPceRty && type === 'OFFERING') ||
                 type !== 'OFFERING')
             ) {
-              if (offeringSymbol === 'M') {
+              if (offeringSymbol === 'Q' || offeringSymbol === 'T') {
                 addOfferingMove(MOVE(sq, 0, offeringPce, 2, 0));
               }
             }
             // templar queen for equus family
             if (
               offeringArcanaSide & 4 &&
-              (('M' === userSummonPceRty && type === 'OFFERING') ||
+              (('C' === userSummonPceRty && type === 'OFFERING') ||
                 type !== 'OFFERING')
             ) {
               if (offeringSymbol === 'Q' || offeringSymbol === 'T') {
                 addOfferingMove(MOVE(sq, 0, offeringPce, 3, 0));
               }
             }
-            // rook for bishop
+            // B for R
             if (
               offeringArcanaSide & 8 &&
-              (('E' === userSummonPceRty && type === 'OFFERING') ||
+              (('D' === userSummonPceRty && type === 'OFFERING') ||
                 type !== 'OFFERING')
             ) {
-              if (offeringSymbol === 'R') {
+              if (offeringSymbol === 'B') {
                 addOfferingMove(MOVE(sq, 0, offeringPce, 4, 0));
               }
             }
-            // quuen templar for mystic
+
+            //////////
+            // T / Q cha
             if (
               offeringArcanaSide & 16 &&
-              (('R' === userSummonPceRty && type === 'OFFERING') ||
+              (('E' === userSummonPceRty && type === 'OFFERING') ||
                 type !== 'OFFERING')
             ) {
-              if (offeringSymbol === 'Q' || offeringSymbol === 'T') {
+              if (offeringSymbol === 'Q') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 5, 0));
+              }
+              if (offeringSymbol === 'T') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 6, 0));
+              }
+            }
+            // W / S cha
+            if (
+              offeringArcanaSide & 32 &&
+              (('F' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'S') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 7, 0));
+              }
+              if (offeringSymbol === 'W') {
                 addOfferingMove(MOVE(sq, 0, offeringPce, 8, 0));
               }
             }
-            // chameleon
+
+            //////////
+            // M for Q or T
             if (
-              offeringArcanaSide & 32 &&
-              (('C' === userSummonPceRty && type === 'OFFERING') ||
+              offeringArcanaSide & 64 &&
+              (('G' === userSummonPceRty && type === 'OFFERING') ||
                 type !== 'OFFERING')
             ) {
-              if (
-                offeringSymbol === 'B' ||
-                offeringSymbol === 'N' ||
-                offeringSymbol === 'Z' ||
-                offeringSymbol === 'U'
-              ) {
+              if (offeringSymbol === 'M') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, _.sample([9, 10]), 0));
+              }
+            }
+            // R for S or W
+            if (
+              offeringArcanaSide & 128 &&
+              (('H' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'R') {
                 addOfferingMove(
-                  MOVE(sq, 0, offeringPce, _.sample([4, 5, 6, 7]), 0)
+                  MOVE(sq, 0, offeringPce, _.sample([11, 12]), 0)
                 );
               }
             }
+
             // any
             if (
-              offeringArcanaSide & 64 &&
-              (('A' === userSummonPceRty && type === 'OFFERING') ||
+              offeringArcanaSide & 256 &&
+              (('I' === userSummonPceRty && type === 'OFFERING') ||
                 type !== 'OFFERING')
             ) {
-              addOfferingMove(MOVE(sq, 0, offeringPce, 9, 0));
+              addOfferingMove(MOVE(sq, 0, offeringPce, 13, 0));
             }
           }
         }

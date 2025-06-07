@@ -162,7 +162,10 @@ export function PrMove(move, returnType) {
   // offering
   if (TOSQ(move) === 0 && CAPTURED(move) > 0 && PROMOTED(move) > 0) {
     MvStr =
-      'o' + '.HSMEEEERA'.split('')[PROMOTED(move)] + '@' + PrSq(FROMSQ(move));
+      'o' +
+      '.ABCDEEFFGGHHI'.split('')[PROMOTED(move)] +
+      '@' +
+      PrSq(FROMSQ(move));
   }
   // shift
   if (TOSQ(move) !== 0 && move & MFLAGSHFT) {

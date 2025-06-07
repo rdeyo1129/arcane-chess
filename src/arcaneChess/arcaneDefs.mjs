@@ -116,13 +116,15 @@ export const POWERBIT = {
   sumnRA: 2097152,
   // sumnRB hexweavers cross to converge on both diagonals?
   // 7 active
-  offrH: 1,
-  offrS: 2,
-  offrM: 4,
-  offrE: 8,
-  offrR: 16,
-  offrC: 32,
-  offrA: 64,
+  offrA: 1,
+  offrB: 2,
+  offrC: 4,
+  offrD: 8,
+  offrE: 16,
+  offrF: 32,
+  offrG: 64,
+  offrH: 128,
+  offrI: 256,
   // 5 passive
   shftP: 1,
   shftN: 2,
@@ -151,7 +153,7 @@ export const varVars = {
   // insert things like 960, crazyhouse, summons vs freezes, koh, xcheck, horde,
 };
 
-// unneeded
+// unneeded / depoerecated
 export const POWERS = (config) => {
   return (
     config.dyad |

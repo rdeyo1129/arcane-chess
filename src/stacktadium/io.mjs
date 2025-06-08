@@ -163,7 +163,7 @@ export function PrMove(move, returnType) {
   if (TOSQ(move) === 0 && CAPTURED(move) > 0 && PROMOTED(move) > 0) {
     MvStr =
       'o' +
-      '.ABCDEEFFGGHHI'.split('')[PROMOTED(move)] +
+      '.ABCDEEFFGGHHIJ'.split('')[PROMOTED(move)] +
       '@' +
       PrSq(FROMSQ(move));
   }

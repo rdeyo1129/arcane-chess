@@ -258,6 +258,13 @@
     "type": "active",
     "imagePath": "/assets/arcanaImages/zombie"
   },
+  "offrJ": {
+    "id": "offrJ",
+    "name": "Demonic Surge",
+    "description": "Offer any friendly minor piece to gain a general dyad arcana",
+    "type": "active",
+    "imagePath": "/assets/arcanaImages/money"
+  },
   "shftP": {
     "id": "shftP",
     "name": "Pawn Strafe",

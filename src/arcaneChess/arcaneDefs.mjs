@@ -125,6 +125,7 @@ export const POWERBIT = {
   offrG: 64,
   offrH: 128,
   offrI: 256,
+  offrJ: 512,
   // 5 passive
   shftP: 1,
   shftN: 2,

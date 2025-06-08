@@ -445,7 +445,7 @@ export function MakeMove(move, moveType = '') {
       11: [PIECES.wS],
       12: [PIECES.wW],
       13: [captured],
-      // todo: minor for dyadA
+      14: ['dyadA'],
     };
     const blackPieceToOfferings = {
       1: [PIECES.bH],
@@ -461,10 +461,10 @@ export function MakeMove(move, moveType = '') {
       11: [PIECES.bS],
       12: [PIECES.bW],
       13: [captured],
-      // todo: minor for dyadA
+      14: ['dyadA'],
     };
 
-    const offerString = '.ABCDEEFFGGHHI';
+    const offerString = '.ABCDEEFFGGHHIJ';
     const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
     const arcaneConfig =
       side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
@@ -475,17 +475,18 @@ export function MakeMove(move, moveType = '') {
 
     ClearPiece(from);
 
-    if (offeringNumbers && offeringNumbers.length > 0) {
-      const offerSymbol = offerString.split('')[promoted];
+    if (Array.isArray(offeringNumbers) && offeringNumbers.length > 0) {
+      const offerSymbol = offerString.charAt(promoted);
       const offrKey = `offr${offerSymbol}`;
-      for (const offeringNumber of offeringNumbers) {
-        const sumnKey = `sumn${PceChar.split('')[
-          offeringNumber
-        ].toUpperCase()}`;
-        if (!arcaneConfig[sumnKey]) {
-          arcaneConfig[sumnKey] = 0;
+      arcaneConfig[offrKey] = arcaneConfig[offrKey] ?? 0;
+
+      for (const gift of offeringNumbers) {
+        if (typeof gift === 'string') {
+          arcaneConfig[gift] = (arcaneConfig[gift] ?? 0) + 1;
+        } else {
+          const sumnKey = `sumn${PceChar.charAt(gift).toUpperCase()}`;
+          arcaneConfig[sumnKey] = (arcaneConfig[sumnKey] ?? 0) + 1;
         }
-        arcaneConfig[sumnKey] += 1;
       }
       arcaneConfig[offrKey] -= 1;
     }
@@ -766,7 +767,6 @@ export function TakeMove(wasDyadMove = false) {
   // should only ever be offering moves
   else if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
     let promoted = PROMOTED(move);
-    // summon arcana being given
     const whitePieceToOfferings = {
       1: [PIECES.wH],
       2: [PIECES.wR, PIECES.wR],
@@ -781,7 +781,7 @@ export function TakeMove(wasDyadMove = false) {
       11: [PIECES.wS],
       12: [PIECES.wW],
       13: [captured],
-      // todo: minor for dyadA
+      14: ['dyadA'],
     };
     const blackPieceToOfferings = {
       1: [PIECES.bH],
@@ -797,28 +797,32 @@ export function TakeMove(wasDyadMove = false) {
       11: [PIECES.bS],
       12: [PIECES.bW],
       13: [captured],
-      // todo: minor for dyadA
+      14: ['dyadA'],
     };
 
-    const offerString = '.ABCDEEFFGGHHI';
+    const offerString = '.ABCDEEFFGGHHIJ';
     const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
     const arcaneConfig =
       side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
     const pieceToOfferings =
       side === 'white' ? whitePieceToOfferings : blackPieceToOfferings;
 
-    const offeringNumbers = pieceToOfferings[promoted];
+    const offeringNumbers = pieceToOfferings[promoted] || [];
 
     AddPiece(from, captured);
 
-    if (offeringNumbers && offeringNumbers.length > 0) {
-      const offerSymbol = offerString.split('')[promoted];
-      const offrKey = `offr${offerSymbol}`;
-      for (const offeringNumber of offeringNumbers) {
-        const sumnKey = `sumn${PceChar.split('')[
-          offeringNumber
-        ].toUpperCase()}`;
-        arcaneConfig[sumnKey] -= 1;
+    if (offeringNumbers.length > 0) {
+      const symbol = offerString.charAt(promoted);
+      const offrKey = `offr${symbol}`;
+      arcaneConfig[offrKey] = arcaneConfig[offrKey] ?? 0;
+
+      for (const gift of offeringNumbers) {
+        if (typeof gift === 'string') {
+          arcaneConfig[gift] = (arcaneConfig[gift] ?? 0) - 1;
+        } else {
+          const sumnKey = `sumn${PceChar.charAt(gift).toUpperCase()}`;
+          arcaneConfig[sumnKey] = (arcaneConfig[sumnKey] ?? 0) - 1;
+        }
       }
       arcaneConfig[offrKey] += 1;
     }

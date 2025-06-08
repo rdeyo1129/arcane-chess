@@ -1015,6 +1015,22 @@ export function GenerateMoves(
             ) {
               addOfferingMove(MOVE(sq, 0, offeringPce, 13, 0));
             }
+
+            // offer for arcana
+            if (
+              offeringArcanaSide & 512 &&
+              (('J' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (
+                offeringSymbol === 'N' ||
+                offeringSymbol === 'Z' ||
+                offeringSymbol === 'U' ||
+                offeringSymbol === 'B'
+              ) {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 14, 0));
+              }
+            }
           }
         }
         offeringPce = LoopPcePrime[offeringIndex];

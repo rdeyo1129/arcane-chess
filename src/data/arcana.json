@@ -242,7 +242,7 @@
     "name": "Mystify",
     "description": "Offer a friendly Mystic to gain a Queen or Templar summon arcana.",
     "type": "active",
-    "imagePath": "/assets/arcanaImages/sacExchange"
+    "imagePath": "/assets/arcanaImages/totem"
   },
   "offrH": {
     "id": "offrH",
@@ -263,7 +263,7 @@
     "name": "Demonic Surge",
     "description": "Offer any friendly minor piece to gain a general dyad arcana",
     "type": "active",
-    "imagePath": "/assets/arcanaImages/money"
+    "imagePath": "/assets/arcanaImages/demon"
   },
   "shftP": {
     "id": "shftP",

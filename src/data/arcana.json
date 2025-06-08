@@ -235,7 +235,7 @@
     "name": "Dimensional Apparition",
     "description": "Offer a friendly Spectre or Wraith to gain a summon arcana of the other one.",
     "type": "active",
-    "imagePath": "/assets/arcanaImages/bat"
+    "imagePath": "/assets/arcanaImages/evilbat"
   },
   "offrG": {
     "id": "offrG",

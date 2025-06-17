@@ -509,7 +509,7 @@ export function startSearch(thinkingTime, depth, engineColor) {
   ) {
     if (bestScore > 500 || bestScore < -500) {
       // phantom mist for expert only
-      if (Math.random() > 0.5 && SearchController.depth > 6) {
+      if (Math.random() > 0.15 && SearchController.depth > 6) {
         GameBoard.invisibility[colorInt] = 6;
         if (colorInt === COLOURS.WHITE) {
           whiteArcaneConfig.modsPHA -= 1;
@@ -527,7 +527,7 @@ export function startSearch(thinkingTime, depth, engineColor) {
     GameBoard.invisibility[colorInt] <= 0
   ) {
     if (bestScore < -900) {
-      if (Math.random() > 0.5) {
+      if (Math.random() > 0.15) {
         GameBoard.suspend = 6;
         if (colorInt === COLOURS.WHITE) {
           whiteArcaneConfig.modsSUS -= 1;

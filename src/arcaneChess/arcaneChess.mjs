@@ -109,6 +109,20 @@ export default function arcaneChess() {
     GameBoard.dyadName = '';
   };
 
+  //   const getArcaneDetails = (value) => {
+  //   // takes unlockableArcana
+  //   // morphs into one list
+  //   return {
+  // //  value: 5,
+  // //  beltType: 'chi', [chi, mu, etc]
+  //     xpToAttain: value * 100,
+  //   }
+  // }
+
+  //
+  // belt object to modify what spells go in which belt or what spirit you are possessing with
+  //
+
   return {
     // filesRanksBoard: () => InitFilesRanksBrd(),
     init: () => init(),

@@ -83,6 +83,12 @@ export const activateDyad = () => {
 // 0000 0000 0000 1111 1111 1111 1111 1000 0000 0000 0000 0000 sumn
 // 0011 1111 11411 0000 0000 0000 0000 0000 0000 0000 0000 0000 mods
 
+//
+// NOTE:
+// these values are not being used in the move object
+// so they are technically not useful besides being used to keep track of what items are being stored in the board in a small way
+// each movetype is it's own byte
+//
 export const POWERBIT = {
   // 6 active
   dyadA: 1, // all
@@ -114,6 +120,7 @@ export const POWERBIT = {
   sumnRY: 524288,
   sumnRZ: 1048576,
   sumnRA: 2097152,
+  sumnRB: 4194304, // x2
   // sumnRB hexweavers cross to converge on both diagonals?
   // 7 active
   offrA: 1,

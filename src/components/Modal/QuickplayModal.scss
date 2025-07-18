@@ -6,10 +6,10 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 90%;
-  background: linear-gradient(to top, #000011, $B_MENU);
+  width: 100%;
+  height: 100%;
+  // background: #000022bb;
   padding: 30px;
-  border-radius: 10px;
   .player-options-text {
     display: flex;
     flex-direction: column;

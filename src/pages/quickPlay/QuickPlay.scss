@@ -24,7 +24,7 @@
   background-image: url('/assets/images/textures/random-grey-variations.png'),
     radial-gradient(
       circle,
-      rgba(0, 162, 255, 0.7) 0%,
+      rgba(221, 221, 221, 0.7) 0%,
       rgba(17, 17, 17, 0.9) 100%
     );
   background-position: center;
@@ -210,12 +210,12 @@
     align-items: flex-start;
     overflow: auto;
     overflow-x: hidden;
-    background-image: url('/assets/images/textures/random-grey-variations.png'),
-      radial-gradient(
-        circle,
-        rgba(0, 162, 255, 0.7) 0%,
-        rgba(17, 17, 17, 0.9) 100%
-      );
+    // background-image: url('/assets/images/textures/random-grey-variations.png'),
+    //   radial-gradient(
+    //     circle,
+    //     rgba(0, 162, 255, 0.7) 0%,
+    //     rgba(17, 17, 17, 0.9) 100%
+    //   );
     background-position: center;
     .quickplay-view {
       width: 100%;
@@ -405,12 +405,12 @@
     justify-content: flex-start;
     align-items: flex-start;
     overflow-x: hidden;
-    background-image: url('/assets/images/textures/random-grey-variations.png'),
-      radial-gradient(
-        circle,
-        rgba(0, 162, 255, 0.7) 0%,
-        rgba(17, 17, 17, 0.9) 100%
-      );
+    // background-image: url('/assets/images/textures/random-grey-variations.png'),
+    //   radial-gradient(
+    //     circle,
+    //     rgba(0, 162, 255, 0.7) 0%,
+    //     rgba(17, 17, 17, 0.9) 100%
+    //   );
     background-position: center;
     .quickplay-view {
       width: 100%;

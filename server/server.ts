@@ -24,8 +24,8 @@ import categories from './api/categories.js';
 
 import errorHandler from './middleware/errorHandler.js';
 
-import { Server } from 'socket.io';
-import registerSockets from './sockets/index.js';
+// import { Server } from 'socket.io';
+// import registerSockets from './sockets/index.js';
 
 // Load environment variables
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -55,9 +55,9 @@ mongoose
 // Express app setup
 const app = express();
 const server = createServer(app);
-const io = new Server(server, { cors: { origin: '*' } });
+// const io = new Server(server, { cors: { origin: '*' } });
 
-registerSockets(io);
+// registerSockets(io);
 
 // Security Middleware (Helmet CSP simplified for readability)
 app.use(

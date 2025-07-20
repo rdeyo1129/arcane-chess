@@ -70,7 +70,8 @@
     "validator": "^13.6.0",
     "vite-plugin-commonjs": "^0.8.2",
     "vite-plugin-env-compatible": "^1.1.1",
-    "xss": "^1.0.15"
+    "xss": "^1.0.15",
+    "zod": "^4.0.5"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.5",

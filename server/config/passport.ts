@@ -1,39 +1,33 @@
+import passport from 'passport';
 import {
   Strategy as JwtStrategy,
   ExtractJwt,
   JwtFromRequestFunction,
 } from 'passport-jwt';
-import { PassportStatic } from 'passport';
-// import mongoose from 'mongoose';
-// import { keys } from './keys.ts';
-
+import dotenv from 'dotenv';
 import { User } from '../models/User.js';
 
-const opts: {
+dotenv.config();
+
+const jwtOptions: {
   jwtFromRequest: JwtFromRequestFunction;
   secretOrKey: string;
 } = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'secret',
+  secretOrKey: process.env.JWT_SECRET!, // <- use your .env
 };
 
-export default (passport: PassportStatic) => {
-  passport.use(
-    new JwtStrategy(
-      opts,
-      (
-        jwt_payload: any,
-        done: (error: any, user?: any, options?: any) => void
-      ) => {
-        User.findById(jwt_payload.id)
-          .then((user) => {
-            if (user) {
-              return done(null, user);
-            }
-            return done(null, false);
-          })
-          .catch((err) => console.log(err));
-      }
-    )
-  );
-};
+passport.use(
+  new JwtStrategy(jwtOptions, async (payload, done) => {
+    try {
+      const user = await User.findById(payload.id);
+      if (user) return done(null, user);
+      return done(null, false);
+    } catch (err) {
+      return done(err, false);
+    }
+  })
+);
+
+// Export the initialized passport instance
+export default passport;

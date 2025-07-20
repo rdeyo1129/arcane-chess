@@ -22,6 +22,8 @@ import threads from './api/threads.js';
 import posts from './api/posts.js';
 import categories from './api/categories.js';
 
+import errorHandler from './middleware/errorHandler';
+
 import { Server } from 'socket.io';
 import registerSockets from './sockets/index.js';
 
@@ -113,6 +115,8 @@ app.use('/api/puzzles', puzzles);
 app.use('/api/threads', threads);
 app.use('/api/posts', posts);
 app.use('/api/categories', categories);
+
+app.use(errorHandler);
 
 // CSP Nonce Middleware
 const generateNonce = () => crypto.randomBytes(16).toString('base64');

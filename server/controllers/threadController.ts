@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import slugify from 'slugify';
 import { Thread } from '../models/Thread.js';
 
 export const listThreads = async (
@@ -27,8 +26,9 @@ export const getThreadById = async (
     const thread = await Thread.findOne({ _id: req.params.id, isHidden: false })
       .populate('author', 'username avatar xp level quote')
       .populate('category', 'name slug');
-    if (!thread) return res.status(404).json({ message: 'Thread not found' });
-    // Optionally increment view count:
+    if (!thread) {
+      return res.status(404).json({ message: 'Thread not found' });
+    }
     thread.views++;
     await thread.save();
     res.json(thread);
@@ -44,14 +44,12 @@ export const createThread = async (
 ) => {
   try {
     const { title, content, author, category, tags = [] } = req.body;
-    const slug = slugify(title, { lower: true, strict: true });
     const thread = new Thread({
       title,
       content,
       author,
       category,
       tags,
-      slug,
     });
     const saved = await thread.save();
     res.status(201).json(saved);
@@ -66,15 +64,13 @@ export const updateThread = async (
   next: NextFunction
 ) => {
   try {
-    const updates: any = { ...req.body };
-    // If title changed, regenerate slug
-    if (updates.title) {
-      updates.slug = slugify(updates.title, { lower: true, strict: true });
-    }
+    const updates: Partial<typeof req.body> = { ...req.body };
     const updated = await Thread.findByIdAndUpdate(req.params.id, updates, {
       new: true,
     });
-    if (!updated) return res.status(404).json({ message: 'Thread not found' });
+    if (!updated) {
+      return res.status(404).json({ message: 'Thread not found' });
+    }
     res.json(updated);
   } catch (err) {
     next(err);
@@ -87,14 +83,15 @@ export const deleteThread = async (
   next: NextFunction
 ) => {
   try {
-    // soft‐delete
     const deleted = await Thread.findByIdAndUpdate(
       req.params.id,
       { isHidden: true },
       { new: true }
     );
-    if (!deleted) return res.status(404).json({ message: 'Thread not found' });
-    res.json({ message: 'Thread hidden (soft‐deleted)' });
+    if (!deleted) {
+      return res.status(404).json({ message: 'Thread not found' });
+    }
+    res.json({ message: 'Thread hidden (soft-deleted)' });
   } catch (err) {
     next(err);
   }

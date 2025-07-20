@@ -22,7 +22,7 @@ import threads from './api/threads.js';
 import posts from './api/posts.js';
 import categories from './api/categories.js';
 
-import errorHandler from './middleware/errorHandler';
+import errorHandler from './middleware/errorHandler.js';
 
 import { Server } from 'socket.io';
 import registerSockets from './sockets/index.js';
@@ -116,6 +116,7 @@ app.use('/api/threads', threads);
 app.use('/api/posts', posts);
 app.use('/api/categories', categories);
 
+app.use((_req, res) => res.status(404).json({ message: 'Not found' }));
 app.use(errorHandler);
 
 // CSP Nonce Middleware

@@ -4,7 +4,7 @@ import { ZodType, ZodError } from 'zod';
 import {
   createThreadSchema,
   updateThreadSchema,
-} from '../validation/threadSchemas';
+} from '../validation/threadSchemas.js';
 
 const schemas: Record<string, ZodType> = {
   createThread: createThreadSchema,

@@ -3,11 +3,12 @@ import passport from '../config/passport.js';
 import * as postCtrl from '../controllers/postController.js';
 import validate from '../middleware/validate.js';
 import authorize from '../middleware/authorize.js';
+import validateQuery from '../middleware/validateQuery.js';
 
 const router = Router();
 
 // Public: list all posts in a thread
-router.get('/:threadId', postCtrl.listPostsByThread);
+router.get('/:threadId', validateQuery, postCtrl.listPostsByThread);
 
 // Protected: create a new post/reply
 router.post(

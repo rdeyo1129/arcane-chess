@@ -77,15 +77,11 @@ export const loginUser = (userData: any) => (dispatch: AppDispatch) => {
     axios
       .post('/api/users/login', userData)
       .then((res) => {
-        // ⬇️ destructure the new shape
         const { token, user } = res.data;
-        // token is "Bearer xxxxx", user is { id, username, role, campaign, avatar }
-
-        // store auth
         localStorage.setItem('jwtToken', token);
         setAuthToken(token);
         const decoded: any = jwt_decode(token);
-        dispatch(setCurrentUser(decoded));
+        dispatch({ type: SET_CURRENT_USER, payload: decoded });
 
         const existingGuestUser = getGuestUserFromLocalStorage();
 
@@ -150,12 +146,12 @@ export const loginUser = (userData: any) => (dispatch: AppDispatch) => {
         resolve({ success: true });
       })
       .catch((err) => {
-        console.error('Login Error: ', err);
-        const errorPayload = err.response
-          ? err.response.data
-          : { message: 'An error occurred. Please try again.' };
-        dispatch({ type: GET_ERRORS, payload: errorPayload });
-        resolve({ success: false, error: errorPayload.message });
+        console.error('Login Error:', err);
+        const responseData = err.response?.data;
+        const fieldErrors = responseData?.errors ??
+          responseData ?? { message: 'An error occurred.' };
+        dispatch({ type: GET_ERRORS, payload: fieldErrors });
+        return { success: false, error: fieldErrors.message || 'Login failed' };
       });
   });
 };

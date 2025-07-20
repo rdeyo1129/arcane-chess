@@ -3,16 +3,30 @@ import { Thread } from '../models/Thread.js';
 import { UserI } from '../models/User.js';
 
 export const listThreads = async (
-  _req: Request,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const threads = await Thread.find({ isHidden: false })
-      .populate('author', 'username avatar xp level quote')
-      .populate('category', 'name slug')
-      .sort({ isPinned: -1, lastActivityAt: -1 });
-    res.json(threads);
+    const page = Math.max(1, parseInt(req.query.page as string) || 1);
+    const limit = Math.max(1, parseInt(req.query.limit as string) || 20);
+    const skip = (page - 1) * limit;
+
+    const filter = {};
+
+    const [totalCount, threads] = await Promise.all([
+      Thread.countDocuments(filter),
+      Thread.find(filter)
+        .populate('author', 'username avatar xp level quote')
+        .populate('category', 'name slug')
+        .sort({ isPinned: -1, lastActivityAt: -1 })
+        .skip(skip)
+        .limit(limit),
+    ]);
+
+    const totalPages = Math.ceil(totalCount / limit);
+
+    res.json({ threads, page, totalPages, totalCount });
   } catch (err) {
     next(err);
   }

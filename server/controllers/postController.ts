@@ -8,13 +8,29 @@ export const listPostsByThread = async (
   next: NextFunction
 ) => {
   try {
-    const posts = await Post.find({
-      thread: req.params.threadId,
-      isHidden: false,
-    })
-      .populate('author', 'username avatar xp level quote')
-      .sort({ createdAt: 1 });
-    res.json(posts);
+    // 1️⃣ Parse page & limit
+    const page = Math.max(1, parseInt(req.query.page as string) || 1);
+    const limit = Math.max(1, parseInt(req.query.limit as string) || 20);
+    const skip = (page - 1) * limit;
+
+    // 2️⃣ Build filter (only non-hidden posts for this thread)
+    const filter = { thread: req.params.threadId, isHidden: false };
+
+    // 3️⃣ Fetch total count and paged posts in parallel
+    const [totalCount, posts] = await Promise.all([
+      Post.countDocuments(filter),
+      Post.find(filter)
+        .populate('author', 'username avatar xp level quote')
+        .sort({ createdAt: 1 })
+        .skip(skip)
+        .limit(limit),
+    ]);
+
+    // 4️⃣ Compute total pages
+    const totalPages = Math.ceil(totalCount / limit);
+
+    // 5️⃣ Return paginated response
+    res.json({ posts, page, totalPages, totalCount });
   } catch (err) {
     next(err);
   }

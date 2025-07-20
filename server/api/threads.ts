@@ -3,11 +3,12 @@ import passport from '../config/passport.js';
 import authorize from '../middleware/authorize.js';
 import * as threadCtrl from '../controllers/threadController.js';
 import validate from '../middleware/validate.js';
+import validateQuery from '../middleware/validateQuery.js';
 
 const router = Router();
 
 // Public reads
-router.get('/', threadCtrl.listThreads);
+router.get('/', validateQuery, threadCtrl.listThreads);
 router.get('/:id', threadCtrl.getThreadById);
 
 // Creation: any logged-in user

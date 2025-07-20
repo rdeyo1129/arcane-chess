@@ -1,23 +1,24 @@
 import express from 'express';
-const router = express.Router();
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-// import { keys } from '../config/keys.js';
+import dotenv from 'dotenv';
+import passport from '../config/passport.js';
 
-// Load input validation
 import validateRegisterInput from '../validation/register.js';
 import validateLoginInput from '../validation/login.js';
 
-// Load User model
-import { User } from '../models/User.js';
+import { User, UserI } from '../models/User.js';
 import { Score } from '../models/Score.js';
 
-// @route POST api/users/register
-// @desc Register user
-// @access Public
+dotenv.config();
+const router = express.Router();
+const JWT_SECRET = process.env.JWT_SECRET || 'secret';
+
+// @route   POST /api/users/register
+// @desc    Register user
+// @access  Public
 router.post('/register', async (req, res) => {
   const { loginRegisterErrors, isValid } = validateRegisterInput(req.body);
-
   if (!isValid) {
     return res.status(400).json(loginRegisterErrors);
   }
@@ -26,16 +27,13 @@ router.post('/register', async (req, res) => {
     const existingUser = await User.findOne({
       $or: [{ email: req.body.email }, { username: req.body.username }],
     });
-
     if (existingUser) {
-      if (existingUser.email === req.body.email) {
+      if (existingUser.email === req.body.email)
         loginRegisterErrors.existingEmail =
           'Account with that email already exists';
-      }
-      if (existingUser.username === req.body.username) {
+      if (existingUser.username === req.body.username)
         loginRegisterErrors.existingUser =
           'Account with that username already exists';
-      }
       return res.status(400).json(loginRegisterErrors);
     }
 
@@ -44,9 +42,9 @@ router.post('/register', async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       games: [],
-      campaign: {
-        topScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      },
+      campaign: { topScores: Array(12).fill(0) },
+      role: 'user',
+      avatar: req.body.avatar || '',
     });
 
     // Hash password
@@ -54,13 +52,12 @@ router.post('/register', async (req, res) => {
     newUser.password = await bcrypt.hash(newUser.password, salt);
     const savedUser = await newUser.save();
 
-    // Create new Score document
+    // Create Score document
     const newScore = new Score({
       userId: savedUser._id,
       username: savedUser.username,
       scores: new Map(),
     });
-
     const savedScore = await newScore.save();
 
     return res.json({ user: savedUser, score: savedScore });
@@ -70,98 +67,107 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// @route POST api/users/login
-// @desc Login user and return JWT token
-// @access Public
-router.post('/login', (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  const guest = req.body.guest;
+// @route   POST /api/users/login
+// @desc    Login user and return JWT + user
+// @access  Public
+router.post('/login', async (req, res) => {
+  const { username, password, guest } = req.body;
 
-  // sign in as guest
   if (guest) {
-    // Create JWT Payload
-    const payload = {
+    // Guest payload
+    const guestUser = {
       id: '0',
-      username: req.body.username,
-      campaign: {
-        topScores: [...Array(12).fill(0)],
-      },
+      username: username || 'guest',
+      role: 'user',
+      campaign: { topScores: Array(12).fill(0) },
+      avatar: '',
     };
-
-    // Sign token
-    jwt.sign(
-      payload,
-      'secret',
-      {
-        expiresIn: 31556926, // 1 year in seconds
-      },
-      (err, token) => {
-        if (err) console.log('jwt err', err);
-        res.json({
-          id: '0',
-          campaign: {
-            topScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          },
-          success: true,
-          token: 'Bearer ' + token,
-        });
-      }
-    );
-  } else {
-    // Form validation
-    const { loginRegisterErrors, isValid } = validateLoginInput(req.body);
-
-    // Check validation
-    if (!isValid) {
-      return res.status(400).json(loginRegisterErrors);
-    }
-
-    // Find user by email
-    User.findOne({ username }).then((user) => {
-      // Check if user exists
-      if (!user) {
-        return res.status(404).json({ usernotfound: 'Username not found' });
-      }
-
-      // Check password
-      bcrypt.compare(password, user.password).then((isMatch) => {
-        if (isMatch) {
-          // User matched
-          // Create JWT Payload
-          const payload = {
-            id: user._id,
-            username: user.username,
-            campaign: user.campaign,
-          };
-
-          // Sign token
-          jwt.sign(
-            payload,
-            'secret',
-            {
-              expiresIn: 31556926, // 1 year in seconds
-            },
-            (err, token) => {
-              if (err) {
-                console.log('jwt err', err);
-              }
-              res.json({
-                id: user.id,
-                campaign: user.campaign,
-                success: true,
-                token: 'Bearer ' + token,
-              });
-            }
-          );
-        } else {
-          return res
-            .status(400)
-            .json({ passwordincorrect: 'Password incorrect' });
-        }
-      });
+    const token = jwt.sign(guestUser, JWT_SECRET, { expiresIn: '1y' });
+    return res.json({
+      success: true,
+      token: 'Bearer ' + token,
+      user: guestUser,
     });
   }
+
+  // Validate input
+  const { loginRegisterErrors, isValid } = validateLoginInput(req.body);
+  if (!isValid) {
+    return res.status(400).json({ errors: loginRegisterErrors });
+  }
+
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ usernotfound: 'Username not found' });
+    }
+
+    // Backfill missing fields if necessary
+    let patched = false;
+    if (!user.role) {
+      user.role = 'user';
+      patched = true;
+    }
+    if (user.avatar === undefined) {
+      user.avatar = '';
+      patched = true;
+    }
+    if (patched) await user.save();
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ passwordincorrect: 'Password incorrect' });
+    }
+
+    // Build JWT payload
+    const payload = {
+      id: user._id,
+      username: user.username,
+      role: user.role,
+      campaign: user.campaign,
+      avatar: user.avatar,
+    };
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1y' });
+
+    return res.json({
+      success: true,
+      token: 'Bearer ' + token,
+      user: {
+        id: user._id,
+        username: user.username,
+        role: user.role,
+        campaign: user.campaign,
+        avatar: user.avatar,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Server error' });
+  }
 });
+
+// @route   GET /api/users/me
+// @desc    Return current user profile
+// @access  Private
+router.get(
+  '/me',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const user = req.user as UserI;
+    if (!user) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+    return res.json({
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      games: user.games,
+      campaign: user.campaign,
+      avatar: user.avatar,
+      createdAt: user.createdAt,
+    });
+  }
+);
 
 export default router;

@@ -1,5 +1,7 @@
 import { model, Schema, Document } from 'mongoose';
 
+export type UserRole = 'user' | 'moderator' | 'admin';
+
 export interface UserI extends Document {
   username: string;
   email: string;
@@ -7,7 +9,8 @@ export interface UserI extends Document {
   password: string;
   games: Array<object>;
   campaign: object;
-  avatar: string;
+  avatar?: string;
+  role: UserRole;
 }
 
 export const UserSchema = new Schema<UserI>(
@@ -39,7 +42,13 @@ export const UserSchema = new Schema<UserI>(
     },
     avatar: {
       type: String,
-      required: false,
+    },
+    // ─── New role field ────────────────────────────────────────
+    role: {
+      type: String,
+      enum: ['user', 'moderator', 'admin'],
+      default: 'user',
+      required: true,
     },
   },
   {

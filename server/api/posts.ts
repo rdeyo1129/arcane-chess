@@ -1,46 +1,37 @@
-import { Router, Request, Response } from 'express';
-import { Post } from '../models/Post.js';
+import { Router } from 'express';
+import passport from '../config/passport.js';
+import * as postCtrl from '../controllers/postController.js';
+import validate from '../middleware/validate.js';
+import authorize from '../middleware/authorize.js';
 
 const router = Router();
 
-// GET /api/posts/:threadId
-router.get('/:threadId', async (req: Request, res: Response) => {
-  try {
-    const posts = await Post.find({ thread: req.params.threadId })
-      .populate('author', 'username')
-      .sort('createdAt');
-    res.json(posts);
-  } catch {
-    res.status(500).json({ message: 'Server error' });
-  }
-});
+// Public: list all posts in a thread
+router.get('/:threadId', postCtrl.listPostsByThread);
 
-// POST /api/posts/:threadId
-router.post('/:threadId', async (req: Request, res: Response) => {
-  try {
-    const { content, author, parentPost } = req.body;
-    const newPost = new Post({
-      thread: req.params.threadId,
-      content,
-      author,
-      parentPost: parentPost || null,
-    });
-    const saved = await newPost.save();
-    res.status(201).json(saved);
-  } catch {
-    res.status(500).json({ message: 'Server error' });
-  }
-});
+// Protected: create a new post/reply
+router.post(
+  '/:threadId',
+  passport.authenticate('jwt', { session: false }),
+  authorize(['user', 'moderator', 'admin']),
+  validate('createPost'),
+  postCtrl.createPost
+);
 
-// DELETE /api/posts/:id
-router.delete('/:id', async (req: Request, res: Response) => {
-  try {
-    const deleted = await Post.findByIdAndDelete(req.params.id);
-    if (!deleted) return res.status(404).json({ message: 'Not found' });
-    res.json({ message: 'Deleted' });
-  } catch {
-    res.status(500).json({ message: 'Server error' });
-  }
-});
+// Protected: soft-delete a post
+router.delete(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  authorize(['moderator', 'admin']),
+  postCtrl.deletePost
+);
+
+router.put(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  authorize(['user', 'moderator', 'admin']),
+  validate('updatePost'),
+  postCtrl.updatePost
+);
 
 export default router;

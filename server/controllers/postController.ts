@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { Post } from '../models/Post';
+import { Post } from '../models/Post.js';
+import { UserI } from '../models/User.js';
 
 export const listPostsByThread = async (
   req: Request,
@@ -53,6 +54,33 @@ export const deletePost = async (
     );
     if (!deleted) return res.status(404).json({ message: 'Post not found' });
     res.json({ message: 'Post hidden (soft‐deleted)' });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const updatePost = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) return res.status(404).json({ message: 'Post not found' });
+
+    const user = req.user as UserI;
+    const isAuthor = post.author.equals(user._id);
+    const isModOrAdmin = ['moderator', 'admin'].includes(user.role);
+
+    if (!isAuthor && !isModOrAdmin) {
+      return res.status(403).json({ message: 'Forbidden' });
+    }
+
+    post.content = req.body.content;
+    post.edited = true;
+    await post.save();
+
+    res.json(post);
   } catch (err) {
     next(err);
   }

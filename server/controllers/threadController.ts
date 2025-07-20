@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { Thread } from '../models/Thread.js';
+import { UserI } from '../models/User.js';
 
 export const listThreads = async (
   _req: Request,
@@ -64,14 +65,24 @@ export const updateThread = async (
   next: NextFunction
 ) => {
   try {
-    const updates: Partial<typeof req.body> = { ...req.body };
-    const updated = await Thread.findByIdAndUpdate(req.params.id, updates, {
-      new: true,
-    });
-    if (!updated) {
-      return res.status(404).json({ message: 'Thread not found' });
+    const thread = await Thread.findById(req.params.id);
+    if (!thread) return res.status(404).json({ message: 'Thread not found' });
+
+    const user = req.user as UserI;
+    const isAuthor = thread.author.equals(user._id);
+    const isModOrAdmin = ['moderator', 'admin'].includes(user.role);
+
+    if (!isAuthor && !isModOrAdmin) {
+      return res.status(403).json({ message: 'Forbidden' });
     }
-    res.json(updated);
+
+    // Apply allowed updates
+    if (req.body.title) thread.title = req.body.title;
+    if (req.body.content) thread.content = req.body.content;
+    if (req.body.tags) thread.tags = req.body.tags;
+
+    await thread.save();
+    res.json(thread);
   } catch (err) {
     next(err);
   }

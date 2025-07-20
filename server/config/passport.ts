@@ -1,4 +1,3 @@
-// server/config/passport.js
 import passport from 'passport';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import dotenv from 'dotenv';

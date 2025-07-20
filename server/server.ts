@@ -24,6 +24,8 @@ import categories from './api/categories.js';
 
 import errorHandler from './middleware/errorHandler.js';
 
+import { User } from './models/User.js';
+
 // import { Server } from 'socket.io';
 // import registerSockets from './sockets/index.js';
 
@@ -50,6 +52,13 @@ if (!dbURI) {
 mongoose
   .connect(dbURI)
   .then(() => console.log('MongoDB successfully connected'))
+  .then(async () => {
+    const { modifiedCount } = await User.updateMany(
+      { role: { $exists: false } },
+      { $set: { role: 'user' } }
+    );
+    console.log(`Backfilled role for ${modifiedCount} users`);
+  })
   .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 // Express app setup

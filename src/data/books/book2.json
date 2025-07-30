@@ -8706,7 +8706,7 @@
         "turn": "white"
       }
     },
-    "boss": true
+    "boss": false
   },
   "mission-13": {
     "id": "mission-13",

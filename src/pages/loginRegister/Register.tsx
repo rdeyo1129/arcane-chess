@@ -68,7 +68,7 @@ const UnwrappedRegister = () => {
       <div className={`fade-overlay ${fadeOut ? 'active' : ''}`} />
       <Hero />
       <form noValidate onSubmit={onSubmitReg} className="view">
-        <img className="logo" src={'/assets/logoall.png'} alt="" />
+        <img className="logo" src={'/assets/logoall+.png'} alt="" />
         <div className="login-info">
           <span>
             By registering, you agree to our terms of service found in the{' '}

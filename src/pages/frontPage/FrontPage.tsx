@@ -101,7 +101,7 @@ class UnwrappedFrontPage extends React.Component<
         <div className={`fade-overlay ${this.state.fadeOut ? 'active' : ''}`} />
         <div className="header">
           <div className="inner-header">
-            <img className="logo" src={'/assets/logoall.png'} alt="" />
+            <img className="logo" src={'/assets/logoall+.png'} alt="" />
             <div className="inner-header-a">
               <h1 className="tactorius" style={{ fontWeight: '800' }}>
                 <div className="tact">

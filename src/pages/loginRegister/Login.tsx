@@ -142,7 +142,7 @@ const UnwrappedLogin: React.FC = () => {
       <div className={`fade-overlay ${fadeOut ? 'active' : ''}`} />
       <Hero />
       <form className="view" noValidate>
-        <img className="logo" src={'/assets/logoall.png'} alt="" />
+        <img className="logo" src={'/assets/logoall+.png'} alt="" />
         <div className="login-info">
           Create an account if you want to place on the leaderboard. Otherwise,
           click AS GUEST to enter anonymously.

@@ -88,7 +88,9 @@ export default class ArcanaList extends React.Component<
     return (
       <div className="arcane-list">
         <div className="types-header">
-          <h4>Arcana Types</h4>
+          <span>Spells that bend the rules of the game. More to follow.</span>
+          <hr />
+          <span>Arcana Types</span>
           <ul>
             <li>
               <strong>Active</strong>: Single-use actions you choose when to
@@ -134,7 +136,21 @@ export default class ArcanaList extends React.Component<
                   width={400}
                   height={40}
                   disabled={false}
-                  backgroundColorOverride="#55555588"
+                  backgroundColorOverride={
+                    prefix === 'sumn'
+                      ? 'linear-gradient(135deg, #8e2de2, #4a00e0)'
+                      : prefix === 'dyad'
+                      ? 'linear-gradient(135deg, #00c6ff, #0072ff)'
+                      : prefix === 'shft'
+                      ? 'linear-gradient(135deg, #f7971e, #ffd200)'
+                      : prefix === 'offr'
+                      ? 'linear-gradient(135deg, #ff512f, #dd2476)'
+                      : prefix === 'swap'
+                      ? 'linear-gradient(135deg, #43cea2, #185a9d)'
+                      : prefix === 'mods'
+                      ? 'linear-gradient(135deg, #ff9f1c, #ff2e63)'
+                      : '#55555588'
+                  }
                 />
                 {expanded && (
                   <div className="arcane-section-list">

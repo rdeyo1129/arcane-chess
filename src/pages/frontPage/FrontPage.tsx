@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import { connect } from 'react-redux';
 
@@ -123,7 +123,7 @@ class UnwrappedFrontPage extends React.Component<
               <Button
                 text="ENTER THE SITE"
                 className="primary"
-                color="S"
+                color="V"
                 height={80}
                 width={400}
                 disabled={false}
@@ -133,6 +133,7 @@ class UnwrappedFrontPage extends React.Component<
                 }}
                 fontSize={24}
                 strong={true}
+                backgroundColorOverride="linear-gradient(135deg, #ff512f, #8e2de2)"
                 onClick={() => this.handleEnterClick()}
               />
             </div>
@@ -150,6 +151,44 @@ class UnwrappedFrontPage extends React.Component<
                   rules—encounter new and formidable pieces. Uncover limitless
                   possibilities for fresh tactics and a new dynamic metagame.
                 </p>
+                <div className="learn-more">
+                  <Link to="/manifest?tab=pieces">
+                    <Button
+                      text="LEARN MORE: PIECES"
+                      className="primary"
+                      color="B"
+                      height={60}
+                      width={300}
+                      disabled={false}
+                      styles={{
+                        color: 'white',
+                        fontStyle: 'italic',
+                      }}
+                      fontSize={16}
+                      strong={true}
+                      backgroundColorOverride="linear-gradient(135deg, #00c6ff, #001f4d)"
+                    />
+                  </Link>
+                </div>
+                <div className="learn-more">
+                  <Link to="/manifest?tab=arcana">
+                    <Button
+                      text="LEARN MORE: ARCANA"
+                      className="primary"
+                      color="G"
+                      height={60}
+                      width={300}
+                      disabled={false}
+                      styles={{
+                        color: 'white',
+                        fontStyle: 'italic',
+                      }}
+                      fontSize={16}
+                      strong={true}
+                      backgroundColorOverride="linear-gradient(135deg, #00b09b, #006400)"
+                    />
+                  </Link>
+                </div>
                 <h3>Embark on a Campaign:</h3>
                 <p>
                   Embark on an epic journey through a story teeming with
@@ -176,7 +215,7 @@ class UnwrappedFrontPage extends React.Component<
               <Button
                 text="ENTER THE SITE"
                 className="primary"
-                color="S"
+                color="V"
                 height={80}
                 width={400}
                 disabled={false}
@@ -186,6 +225,7 @@ class UnwrappedFrontPage extends React.Component<
                 }}
                 fontSize={24}
                 strong={true}
+                backgroundColorOverride="linear-gradient(135deg, #ff512f, #8e2de2)"
                 onClick={() => this.handleEnterClick()}
               />
             </div>

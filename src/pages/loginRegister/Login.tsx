@@ -179,10 +179,11 @@ const UnwrappedLogin: React.FC = () => {
               <Button
                 className="primary"
                 text={'AS GUEST'}
-                color={'S'}
+                color={'O'}
                 width={140}
                 onClick={(e) => onSubmitLogin(e, true)}
                 styles={{ margin: '2px' }}
+                backgroundColorOverride="linear-gradient(135deg, #ff9f1c, #ff2e63)"
               />
               <Button
                 className="primary"

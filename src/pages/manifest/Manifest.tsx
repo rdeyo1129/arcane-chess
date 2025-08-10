@@ -7,21 +7,121 @@ import './Manifest.scss';
 import { audioManager } from 'src/utils/audio/AudioManager';
 
 import ArcanaList from 'src/pages/manifest/ArcanaList';
+import PieceList from 'src/pages/manifest/PieceList';
 
 type State = {
   currentTab: string;
 };
-class UnwrappedManifest extends React.Component<object, State> {
-  constructor(props: object) {
+
+type RouterishProps = {
+  // Your withRouter HOC may (or may not) inject these:
+  location?: { pathname: string; search: string };
+  navigate?: (to: string, opts?: { replace?: boolean }) => void;
+};
+
+const ALLOWED_TABS = new Set([
+  'about',
+  'pieces',
+  'arcana',
+  'tos',
+  'privacy',
+  'mission',
+]);
+const DEFAULT_TAB = 'about';
+
+function getSearchFromPropsOrWindow(props?: RouterishProps) {
+  return (
+    props?.location?.search ??
+    (typeof window !== 'undefined' ? window.location.search : '')
+  );
+}
+
+function getPathnameFromPropsOrWindow(props?: RouterishProps) {
+  return (
+    props?.location?.pathname ??
+    (typeof window !== 'undefined' ? window.location.pathname : '/manifest')
+  );
+}
+
+function readTabFromSearch(search: string): string {
+  const params = new URLSearchParams(search ?? '');
+  const raw = params.get('tab') || DEFAULT_TAB;
+  return ALLOWED_TABS.has(raw) ? raw : DEFAULT_TAB;
+}
+
+function navigateOrPush(props: RouterishProps, url: string, replace = false) {
+  if (props.navigate) {
+    props.navigate(url, { replace });
+  } else if (typeof window !== 'undefined') {
+    if (replace) {
+      window.history.replaceState({}, '', url);
+    } else {
+      window.history.pushState({}, '', url);
+    }
+    // Manually dispatch a popstate-like update if needed; we rely on real popstate for back/forward.
+  }
+}
+
+class UnwrappedManifest extends React.Component<RouterishProps, State> {
+  constructor(props: RouterishProps) {
     super(props);
-    this.state = {
-      currentTab: 'about',
-    };
+    const search = getSearchFromPropsOrWindow(props);
+    this.state = { currentTab: readTabFromSearch(search) };
   }
 
   componentDidMount(): void {
     audioManager.stopMusic('menu');
+
+    // Keep tab in sync with browser back/forward even if router props are missing
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', this.handlePopState);
+    }
+
+    // Optional: ensure URL always has ?tab=... even on first load without one
+    const search = getSearchFromPropsOrWindow(this.props);
+    const pathname = getPathnameFromPropsOrWindow(this.props);
+    const params = new URLSearchParams(search);
+    if (!params.get('tab')) {
+      params.set('tab', this.state.currentTab || DEFAULT_TAB);
+      navigateOrPush(this.props, `${pathname}?${params.toString()}`, true);
+    }
   }
+
+  componentWillUnmount(): void {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('popstate', this.handlePopState);
+    }
+  }
+
+  componentDidUpdate(prevProps: RouterishProps) {
+    // If router does provide location and it changed, sync tab
+    const prevSearch = getSearchFromPropsOrWindow(prevProps);
+    const nextSearch = getSearchFromPropsOrWindow(this.props);
+    if (prevSearch !== nextSearch) {
+      const nextTab = readTabFromSearch(nextSearch);
+      if (nextTab !== this.state.currentTab) {
+        this.setState({ currentTab: nextTab });
+      }
+    }
+  }
+
+  handlePopState = () => {
+    const search = getSearchFromPropsOrWindow(this.props);
+    const tab = readTabFromSearch(search);
+    if (tab !== this.state.currentTab) {
+      this.setState({ currentTab: tab });
+    }
+  };
+
+  changeTab = (tab: string) => {
+    const safeTab = ALLOWED_TABS.has(tab) ? tab : DEFAULT_TAB;
+    const pathname = getPathnameFromPropsOrWindow(this.props);
+    const currentSearch = getSearchFromPropsOrWindow(this.props);
+    const params = new URLSearchParams(currentSearch);
+    params.set('tab', safeTab);
+    navigateOrPush(this.props, `${pathname}?${params.toString()}`, false);
+    this.setState({ currentTab: safeTab });
+  };
 
   render() {
     return (
@@ -42,11 +142,7 @@ class UnwrappedManifest extends React.Component<object, State> {
             <Button
               text="ABOUT"
               className="tertiary"
-              onClick={() => {
-                this.setState({
-                  currentTab: 'about',
-                });
-              }}
+              onClick={() => this.changeTab('about')}
               color="S"
               width={160}
               height={50}
@@ -56,11 +152,7 @@ class UnwrappedManifest extends React.Component<object, State> {
             <Button
               text="PIECES"
               className="tertiary"
-              onClick={() => {
-                this.setState({
-                  currentTab: 'pieces',
-                });
-              }}
+              onClick={() => this.changeTab('pieces')}
               color="S"
               width={160}
               height={50}
@@ -70,11 +162,7 @@ class UnwrappedManifest extends React.Component<object, State> {
             <Button
               text="ARCANA"
               className="tertiary"
-              onClick={() => {
-                this.setState({
-                  currentTab: 'arcana',
-                });
-              }}
+              onClick={() => this.changeTab('arcana')}
               color="S"
               width={160}
               height={50}
@@ -84,11 +172,7 @@ class UnwrappedManifest extends React.Component<object, State> {
             <Button
               text="TOS"
               className="tertiary"
-              onClick={() => {
-                this.setState({
-                  currentTab: 'tos',
-                });
-              }}
+              onClick={() => this.changeTab('tos')}
               color="S"
               width={160}
               height={50}
@@ -98,11 +182,7 @@ class UnwrappedManifest extends React.Component<object, State> {
             <Button
               text="PRIVACY"
               className="tertiary"
-              onClick={() => {
-                this.setState({
-                  currentTab: 'privacy',
-                });
-              }}
+              onClick={() => this.changeTab('privacy')}
               color="S"
               width={160}
               height={50}
@@ -110,19 +190,11 @@ class UnwrappedManifest extends React.Component<object, State> {
               backgroundColorOverride="#11111188"
             />
           </div>
+
           <div className="content">
             {this.state.currentTab === 'mission' ? (
               <div id="mission" className="mission">
-                {/* <p>
-                  This preamble explains the purpose of spell chess. Chess
-                  engines currently estimate that white starts the game with an
-                  advantage of about 0.3 points. The introduction of conditional
-                  spells and alternative game modes is an experiment, a search
-                  for potential rule changes that could create a more balanced
-                  yet equally playable version of the game. These ideas are
-                  suggestions alone, with their adoption ultimately left to the
-                  chess community.
-                </p> */}
+                {/* Mission content */}
               </div>
             ) : this.state.currentTab === 'about' ? (
               <div id="about" className="about">
@@ -320,7 +392,9 @@ class UnwrappedManifest extends React.Component<object, State> {
               </div>
             ) : this.state.currentTab === 'pieces' ? (
               <div>
-                <div className="pieces"></div>
+                <div className="pieces">
+                  <PieceList />
+                </div>
               </div>
             ) : this.state.currentTab === 'arcana' ? (
               <div>
@@ -436,6 +510,7 @@ class UnwrappedManifest extends React.Component<object, State> {
             ) : null}
           </div>
         </div>
+
         <div className="manifest-curtain"></div>
         <img
           className="manifest-image-full"

@@ -71,20 +71,32 @@ const UnwrappedRegister = () => {
         <img className="logo" src={'/assets/logoall+.png'} alt="" />
         <div className="login-info">
           <span>
-            By registering, you agree to our terms of service found in the{' '}
+            By registering, you agree to our{' '}
             <Link
-              to="/manifest"
+              to="/manifest?tab=tos"
               style={{
                 color: '#007BFF',
                 textDecoration: 'none',
                 whiteSpace: 'nowrap',
               }}
             >
-              Manifest
+              Terms of Service
+            </Link>{' '}
+            and{' '}
+            <Link
+              to="/manifest?tab=privacy"
+              style={{
+                color: '#007BFF',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Privacy Policy
             </Link>
-            . It also includes our privacy policy.
+            .
           </span>
         </div>
+
         <div></div>
         <div className="reg-input-top">
           <div className="reg-inputs">

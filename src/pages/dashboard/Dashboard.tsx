@@ -51,9 +51,8 @@ export class UnwrappedDashboard extends React.Component<
         quickplay:
           'Master the arcana and challenge the engine with custom battles.',
         gauntlet: 'What waits above is not what began below. Coming soon.',
-        lexicon:
-          'Review every technic mastered throughout your campaign journey.',
-        manifest2: 'Mission, insights, links, bugs, and notes—unveiled.',
+        lexicon: 'Review every technic mastered throughout the campaign.',
+        manifest2: 'Mission, about, piece and arcana notes, etc.',
         logout: 'Pause and breathe—your journey can wait.',
       },
       fadeIn: false,

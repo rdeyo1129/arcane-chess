@@ -763,9 +763,8 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       color === 'white' ? whiteArcaneConfig : blackArcaneConfig,
       (value: number, key: string) => {
         const futureSightAvailable =
-          key === 'modsFUT' &&
-          this.state.history.length >= 4 &&
-          this.state.futureSightAvailable;
+          this.state.history.length >= 4 && this.state.futureSightAvailable;
+        const active = this.isArcaneActive(key);
         if (!value || value <= 0 || !key) return;
         return (
           <div
@@ -784,7 +783,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             </div>
             <img
               key={key}
-              className="arcane"
+              className={`arcane ${active ? ' is-active' : ''}`}
               src={`${arcana[key].imagePath}${
                 this.state.hoverArcane === key ? '-hover' : ''
               }.svg`}
@@ -1192,6 +1191,39 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       };
     });
   }
+
+  isArcaneActive = (key: string) => {
+    if (key === 'shftT') return this.state.isTeleport;
+
+    if (key.includes('dyad')) return this.state.isDyadMove;
+
+    if (key.includes('swap')) {
+      const type = key.split('swap')[1];
+      return this.state.swapType === type;
+    }
+
+    if (key.includes('offr')) {
+      const type = key.split('offr')[1];
+      return this.state.offeringType === type;
+    }
+
+    if (!key.startsWith('sumn')) return false;
+
+    if (key.includes('sumnR') && key !== 'sumnR') {
+      const rKey = key.split('sumn')[1];
+      const expected = royalties[rKey] ?? -1;
+      return this.state.placingRoyalty === expected;
+    }
+    const id = key.slice(4);
+    if (!id) return false;
+    const pieceKey =
+      id.toUpperCase() === 'X'
+        ? 'EXILE'
+        : `${this.state.selectedSide === 'white' ? 'w' : 'b'}${id}`;
+
+    const expectedPiece = (PIECES as Record<string, number>)[pieceKey] ?? -1;
+    return this.state.placingPiece === expectedPiece;
+  };
 
   handleKeyDown(event: KeyboardEvent) {
     switch (event.key) {

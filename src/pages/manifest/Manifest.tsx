@@ -761,7 +761,7 @@ class UnwrappedManifest extends React.Component<object, State> {
         <div className="manifest-curtain"></div>
         <img
           className="manifest-image-full"
-          src={`/assets/dashboard/manifest.webp`}
+          src={`/assets/dashboard/manifest2.webp`}
           alt={`manifest`}
         />
       </div>

@@ -24,10 +24,11 @@ interface DashboardState {
   menuItemDescriptions: {
     campaign1: string;
     stacktadium2: string;
-    leaderboard: string;
+    leaderboard2: string;
     quickplay: string;
+    gauntlet: string;
     lexicon: string;
-    manifest: string;
+    manifest2: string;
     logout: string;
   };
   fadeIn: boolean;
@@ -46,12 +47,13 @@ export class UnwrappedDashboard extends React.Component<
         campaign1:
           'Collect the arcana, conquer the beasts, and etch your name on the leaderboard.',
         stacktadium2: 'An ancient grid, a fresh enigma.',
-        leaderboard: 'Observe global rankings.',
+        leaderboard2: 'Observe global rankings.',
         quickplay:
           'Master the arcana and challenge the engine with custom battles.',
+        gauntlet: 'What waits above is not what began below. Coming soon.',
         lexicon:
           'Review every technic mastered throughout your campaign journey.',
-        manifest: 'Mission, insights, links, bugs, and notes—unveiled.',
+        manifest2: 'Mission, insights, links, bugs, and notes—unveiled.',
         logout: 'Pause and breathe—your journey can wait.',
       },
       fadeIn: false,
@@ -91,6 +93,24 @@ export class UnwrappedDashboard extends React.Component<
                 backgroundColorOverride="#11111188"
               />
             </Link>
+            {/* <Link
+              className="home-button"
+              to="/gauntlet"
+              onMouseEnter={() => this.setState({ hoverNav: 'gauntlet' })}
+            > */}
+            <div onMouseEnter={() => this.setState({ hoverNav: 'gauntlet' })}>
+              {' '}
+              <Button
+                text="GAUNTLET"
+                className="tertiary"
+                color="Y"
+                height={50}
+                width={'100%'}
+                disabled={false}
+                backgroundColorOverride="#11111188"
+              />
+            </div>
+            {/* </Link> */}
             <Link
               className="home-button"
               to="/stacktadium"
@@ -121,12 +141,12 @@ export class UnwrappedDashboard extends React.Component<
             <Link
               className="home-button"
               to="/leaderboard"
-              onMouseEnter={() => this.setState({ hoverNav: 'leaderboard' })}
+              onMouseEnter={() => this.setState({ hoverNav: 'leaderboard2' })}
             >
               <Button
                 text="LEADERBOARD"
                 className="tertiary"
-                color="Y"
+                color="V"
                 height={50}
                 width={'100%'}
                 disabled={false}
@@ -166,7 +186,7 @@ export class UnwrappedDashboard extends React.Component<
             <Link
               className="home-button"
               to="/manifest"
-              onMouseEnter={() => this.setState({ hoverNav: 'manifest' })}
+              onMouseEnter={() => this.setState({ hoverNav: 'manifest2' })}
             >
               <Button
                 text="MANIFEST"
@@ -200,9 +220,9 @@ export class UnwrappedDashboard extends React.Component<
             <GlobalVolumeControl />
           </div>
           <div className="image-description">
-            <div className="welcome">
+            {/* <div className="welcome">
               Welcome, {this.props.auth.user.username}
-            </div>
+            </div> */}
             <img
               className="hover-image"
               src={`/assets/dashboard/${this.state.hoverNav}.webp`}

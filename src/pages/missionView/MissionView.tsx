@@ -431,6 +431,57 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     clearArcanaConfig();
     this.chessgroundRef = React.createRef();
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleContextMenu = this.handleContextMenu.bind(this);
+  }
+
+  anySpellActive = () =>
+    this.state.placingPiece > 0 ||
+    this.state.swapType !== '' ||
+    this.state.isTeleport === true ||
+    this.state.placingRoyalty > 0 ||
+    this.state.offeringType !== '' ||
+    this.state.isDyadMove === true;
+
+  deactivateAllSpells = () => {
+    try {
+      const dyadClock =
+        typeof this.arcaneChess().getDyadClock === 'function'
+          ? this.arcaneChess().getDyadClock()
+          : 0;
+
+      if (this.state.isDyadMove) {
+        if (
+          dyadClock === 1 &&
+          typeof this.arcaneChess().takeBackHalfDyad === 'function'
+        ) {
+          this.arcaneChess().takeBackHalfDyad();
+        }
+        if (typeof this.arcaneChess().deactivateDyad === 'function') {
+          this.arcaneChess().deactivateDyad();
+        }
+      }
+    } catch (e) {
+      console.warn(e);
+    }
+
+    this.chessgroundRef.current?.setAutoShapes([]);
+
+    this.setState({
+      placingPiece: 0,
+      swapType: '',
+      isTeleport: false,
+      placingRoyalty: 0,
+      offeringType: '',
+      isDyadMove: false,
+      normalMovesOnly: false,
+      hoverArcane: '',
+    });
+  };
+
+  handleContextMenu(event: MouseEvent) {
+    if (!this.anySpellActive()) return;
+    event.preventDefault();
+    this.deactivateAllSpells();
   }
 
   toggleHover = (arcane: string) => {
@@ -1233,6 +1284,11 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       case 'ArrowRight':
         this.navigateHistory('forward');
         break;
+      case 'Escape':
+        if (this.anySpellActive()) {
+          this.deactivateAllSpells();
+        }
+        break;
       default:
         break;
     }
@@ -1240,16 +1296,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
 
   componentWillUnmount(): void {
     window.removeEventListener('keydown', this.handleKeyDown);
-    // this.arcaneChess().clearRoyalties();
-    // this.setState({
-    //   royalties: {
-    //     royaltyQ: {},
-    //     royaltyT: {},
-    //     royaltyM: {},
-    //     royaltyV: {},
-    //     royaltyE: {},
-    //   },
-    // });
+    window.removeEventListener('contextmenu', this.handleContextMenu);
   }
 
   componentDidUpdate() {
@@ -1266,6 +1313,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
   componentDidMount() {
     const LS = getLocalStorage(this.props.auth.user.username);
     window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('contextmenu', this.handleContextMenu);
     if (!this.hasMounted && LS.chapter !== 0) {
       this.hasMounted = true;
       this.arcaneChess().init();

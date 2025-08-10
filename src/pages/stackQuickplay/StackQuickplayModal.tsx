@@ -337,7 +337,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <div className="top">
                   <Button
                     className="tertiary"
-                    color="V"
+                    color="R"
                     text="HOME"
                     onClick={() => {
                       this.props.navigate('/');
@@ -1145,7 +1145,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                 <Button
                   text="START"
                   className="primary"
-                  color="V"
+                  color="R"
                   width={260}
                   height={60}
                   styles={{ marginTop: '20px' }}

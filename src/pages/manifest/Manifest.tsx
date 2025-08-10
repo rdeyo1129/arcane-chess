@@ -6,6 +6,8 @@ import './Manifest.scss';
 
 import { audioManager } from 'src/utils/audio/AudioManager';
 
+import ArcanaList from 'src/pages/manifest/ArcanaList';
+
 type State = {
   currentTab: string;
 };
@@ -52,11 +54,11 @@ class UnwrappedManifest extends React.Component<object, State> {
               backgroundColorOverride="#11111188"
             />
             <Button
-              text="LINKS"
+              text="PIECES"
               className="tertiary"
               onClick={() => {
                 this.setState({
-                  currentTab: 'links',
+                  currentTab: 'pieces',
                 });
               }}
               color="S"
@@ -66,25 +68,11 @@ class UnwrappedManifest extends React.Component<object, State> {
               backgroundColorOverride="#11111188"
             />
             <Button
-              text="NOTES"
+              text="ARCANA"
               className="tertiary"
               onClick={() => {
                 this.setState({
-                  currentTab: 'notes',
-                });
-              }}
-              color="S"
-              width={160}
-              height={50}
-              disabled={false}
-              backgroundColorOverride="#11111188"
-            />
-            <Button
-              text="BUGS"
-              className="tertiary"
-              onClick={() => {
-                this.setState({
-                  currentTab: 'bugs',
+                  currentTab: 'arcana',
                 });
               }}
               color="S"
@@ -242,414 +230,104 @@ class UnwrappedManifest extends React.Component<object, State> {
                     journey.
                   </li>
                 </ol>
+                <div id="links" className="links">
+                  <div className="link">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://discord.gg/QuuNv3Gqts"
+                    >
+                      <Button
+                        text="DISCORD"
+                        className="secondary"
+                        color="S"
+                        width={200}
+                        height={50}
+                        disabled={false}
+                        backgroundColorOverride="#11111188"
+                      />
+                    </a>
+                  </div>
+                  <div className="link">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://x.com/tactorius"
+                    >
+                      <Button
+                        text="X"
+                        className="secondary"
+                        color="S"
+                        width={200}
+                        height={50}
+                        disabled={false}
+                        backgroundColorOverride="#11111188"
+                      />
+                    </a>
+                  </div>
+                  <div className="link">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://paypal.me/tactorius?country.x=US&locale.x=en_US"
+                    >
+                      <Button
+                        text="PAYPAL"
+                        className="secondary"
+                        color="S"
+                        width={200}
+                        height={50}
+                        disabled={false}
+                        backgroundColorOverride="#11111188"
+                      />
+                    </a>
+                  </div>
+                  <div className="link">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://github.com/rdeyo1129/arcane-chess"
+                    >
+                      <Button
+                        text="PROJECT REPO"
+                        className="secondary"
+                        color="S"
+                        width={200}
+                        height={50}
+                        disabled={false}
+                        backgroundColorOverride="#11111188"
+                      />
+                    </a>
+                  </div>
+                  <div className="link">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://github.com/rdeyo1129/night-chess-ui-2"
+                    >
+                      <Button
+                        text="CHESSGROUNDx FORK"
+                        className="secondary"
+                        color="S"
+                        width={200}
+                        height={50}
+                        disabled={false}
+                        backgroundColorOverride="#11111188"
+                      />
+                    </a>
+                  </div>
+                </div>
               </div>
-            ) : this.state.currentTab === 'links' ? (
-              <div id="links" className="links">
-                <div className="link">
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://discord.gg/QuuNv3Gqts"
-                  >
-                    <Button
-                      text="DISCORD"
-                      className="secondary"
-                      color="S"
-                      width={200}
-                      height={50}
-                      disabled={false}
-                      backgroundColorOverride="#11111188"
-                    />
-                  </a>
-                </div>
-                <div className="link">
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://x.com/tactorius"
-                  >
-                    <Button
-                      text="X"
-                      className="secondary"
-                      color="S"
-                      width={200}
-                      height={50}
-                      disabled={false}
-                      backgroundColorOverride="#11111188"
-                    />
-                  </a>
-                </div>
-                <div className="link">
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://paypal.me/tactorius?country.x=US&locale.x=en_US"
-                  >
-                    <Button
-                      text="PAYPAL"
-                      className="secondary"
-                      color="S"
-                      width={200}
-                      height={50}
-                      disabled={false}
-                      backgroundColorOverride="#11111188"
-                    />
-                  </a>
-                </div>
-                <div className="link">
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://github.com/rdeyo1129/arcane-chess"
-                  >
-                    <Button
-                      text="PROJECT REPO"
-                      className="secondary"
-                      color="S"
-                      width={200}
-                      height={50}
-                      disabled={false}
-                      backgroundColorOverride="#11111188"
-                    />
-                  </a>
-                </div>
-                <div className="link">
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://github.com/rdeyo1129/night-chess-ui-2"
-                  >
-                    <Button
-                      text="CHESSGROUNDx FORK"
-                      className="secondary"
-                      color="S"
-                      width={200}
-                      height={50}
-                      disabled={false}
-                      backgroundColorOverride="#11111188"
-                    />
-                  </a>
+            ) : this.state.currentTab === 'pieces' ? (
+              <div>
+                <div className="pieces"></div>
+              </div>
+            ) : this.state.currentTab === 'arcana' ? (
+              <div>
+                <div className="arcana">
+                  <ArcanaList />
                 </div>
               </div>
-            ) : this.state.currentTab === 'notes' ? (
-              <div id="notes" className="notes">
-                <h3>v4.0.0 Release Notes</h3>
-                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                  <li>Sagas 2 and 3 released</li>
-                  <li>Login added</li>
-                  <li>Leaderboard added</li>
-                  <li>More quickplay game modes have been added</li>
-                  <li>Music and sound effects added</li>
-                  <li>
-                    Arcana
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                      <li>
-                        Aetherstep: a friendly Pawn 2-step move may pass through
-                        an occupied square (inherent)
-                      </li>
-                      <li>
-                        Gluttony: you may capture pieces during dyad moves
-                        (inherent)
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                <h3>v3.0.0 Release Notes</h3>
-                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                  <li>Lexicon updated</li>
-                  <li>Saga 1 released</li>
-                  <li>Saga 2 and 3 lessons released</li>
-                  <li>Mobile support</li>
-                  <li>Phantom Mist added (invisibile armies)</li>
-                  <li>Click on move history</li>
-                </ul>
-                <h3>v2.0.0 Release Notes</h3>
-                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                  <li>
-                    Quickplay:
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                      <li>Select custom back rank armies</li>
-                      <li>
-                        Customize your spell inventory with up to 6 arcana
-                      </li>
-                      <li>
-                        Choose a character... Custom templates that gives you a
-                        themed army and spell inventory
-                      </li>
-                      <li>
-                        Choose a game mode... Potential game-balancing templates
-                        or new ways to play the game
-                      </li>
-                      <li>Explore your options with randomizer buttons</li>
-                    </ul>
-                  </li>
-                  <li>
-                    ‘Patch’ notes:
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                      <li>
-                        Piece additions:
-                        <ul
-                          style={{ listStyleType: 'disc', paddingLeft: '20px' }}
-                        >
-                          <li>
-                            The Valkyrie: moves and captures anywhere in the 5x5
-                            grid
-                          </li>
-                          <li>
-                            The Herring: moves in a hex pattern and must be
-                            captured if the move is legal
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        Arcana
-                        <ul
-                          style={{ listStyleType: 'disc', paddingLeft: '20px' }}
-                        >
-                          <li>Dyad Variants: make two moves, no capturing</li>
-                          <li>
-                            Hexweaver variants: entangle on rank, file, or 3x3
-                            grid
-                          </li>
-                          <li>
-                            Offering variants: sacrifice a piece to gain one or
-                            multiple summons
-                          </li>
-                          <li>
-                            Teleportation: move a friendly piece to anywhere on
-                            your first three ranks
-                          </li>
-                          <li>Iron Reach: Valkyrie gains the Queen moveset</li>
-                          <li>Omni Gaze: summon anywhere</li>
-                          <li>Meditate: skip your turn</li>
-                          <li>
-                            Trojan Gambit: if en passant is available for your
-                            opponent, they must take
-                          </li>
-                          <li>Glitch: randomize the next engine move</li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                <h3>v1.0.0 Release Notes</h3>
-                <ul style={{ listStyleType: 'disc' }}>
-                  <li>Initial site release</li>
-                  <li>
-                    Play options:
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                      <li>Single player story mode or quickplay vs engine</li>
-                    </ul>
-                  </li>
-                  <li>
-                    Login:
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                      <li>Not currently active</li>
-                      <li>No forgot password</li>
-                      <li>
-                        Guest login with all features except for campaign scores
-                        being recorded on the leaderboard
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    Campaign:
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                      <li>Book 1 (Chapter 1-4)</li>
-                      <li>Lessons: Philosophy and chess lessons</li>
-                      <li>Temples: Puzzles / themed challenges</li>
-                      <li>
-                        Missions: Story mode scenarios with custom armies and
-                        arcana
-                      </li>
-                      <li>
-                        Collect points to hit the leaderboard, defeat the boss
-                        to get to the next chapter
-                      </li>
-                      <li>
-                        Use optional arcana to help you win battles at the cost
-                        of a lower score
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    Leaderboard:
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                      <li>Not currently active</li>
-                      <li>
-                        With an account only, attain a high score in the
-                        campaign
-                      </li>
-                      <li>
-                        Scores to be reset periodically as the campaign gets
-                        updated per release
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    Quickplay:
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                      <li>
-                        Select side, army composition, custom arcana for player
-                        and engine
-                      </li>
-                      <li>Choose engine strength</li>
-                    </ul>
-                  </li>
-                  <li>
-                    ‘Patch’ notes:
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                      <li>
-                        Engine:
-                        <ul
-                          style={{ listStyleType: 'disc', paddingLeft: '20px' }}
-                        >
-                          <li>
-                            Basic and advanced engine search and evaluation
-                            concepts
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        Recognized engine variants:
-                        <ul
-                          style={{ listStyleType: 'disc', paddingLeft: '20px' }}
-                        >
-                          <li>X check</li>
-                          <li>King of hill (throne)</li>
-                          <li>Racing kings</li>
-                          <li>Crazy house</li>
-                          <li>Capture all pieces victory</li>
-                        </ul>
-                      </li>
-                      <li>
-                        Royalty family additions:
-                        <ul
-                          style={{ listStyleType: 'disc', paddingLeft: '20px' }}
-                        >
-                          <li>Templar (R and N)</li>
-                          <li>Mystic (N and B)</li>
-                        </ul>
-                      </li>
-                      <li>
-                        Ghost family additions:
-                        <ul
-                          style={{ listStyleType: 'disc', paddingLeft: '20px' }}
-                        >
-                          <li>
-                            Spectre (5x5 pattern) - All opposite color squares
-                            of the square the piece sits on
-                          </li>
-                          <li>
-                            Wraith (5x5 pattern) - All same color squares as the
-                            piece sits on
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        Equus family additions:
-                        <ul
-                          style={{ listStyleType: 'disc', paddingLeft: '20px' }}
-                        >
-                          <li>
-                            Unicorn (5x5 pattern) - Jump to Bishop’s second
-                            square, Rook’s first square
-                          </li>
-                          <li>
-                            Zebra (5x5 pattern) - Jump to Rook’s second square,
-                            Bishop’s first square
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        Arcana: Various engine-recognized badges that a single
-                        player may hold that provide certain on-board
-                        advantages:
-                        <ul
-                          style={{ listStyleType: 'disc', paddingLeft: '20px' }}
-                        >
-                          <li>Summon a piece to the board</li>
-                          <li>
-                            Royalty: A piece moves like another piece on a
-                            chosen square for 4 turns
-                          </li>
-                          <li>
-                            Entangle: Freeze a piece to a square for 4 turns
-                          </li>
-                          <li>
-                            Summon exile (a static “duck” for the rest of the
-                            game)
-                          </li>
-                          <li>Swap adjacent pieces with exceptions</li>
-                          <li>Swap most friendly major and minor pieces</li>
-                          <li>
-                            Alternate move patterns, no capturing: (P - right,
-                            left, back. B - Rook’s first square. N - King’s
-                            pattern. R - Bishop’s first square)
-                          </li>
-                          <li>
-                            Bulletproof: Prevent checks and captures for 3 turns
-                          </li>
-                          <li>
-                            3 levels of engine move recommendations (piece only
-                            / summon square only, Full move suggestion, Look at
-                            the principle variation - 4 moves ahead)
-                          </li>
-                          <li>Future sight: Force takeback 2 moves</li>
-                          <li>
-                            Consume / Jaws of Betrayal: Capture a friendly piece
-                          </li>
-                          <li>Fugitive: Castle while in or through check</li>
-                          <li>
-                            Inheritance: Promote Pawns on the second to last
-                            rank
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            ) : this.state.currentTab === 'bugs' ? (
-              <li>
-                Known bugs:
-                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                  <li>Music may sometimes overlap and needs a page refresh.</li>
-                  <li>Templars cannot move to a1 in Stacktadium.</li>
-                  <li>Engine will ‘pass turn’ in certain scenarios.</li>
-                  <li>
-                    Engine will ‘pass turn’ in certain scenarios if both sides
-                    have swap arcana.
-                  </li>
-                  <li>
-                    Teleport has many options, will confuse the engine. Plans to
-                    transition to major pieces only.
-                  </li>
-                  <li>
-                    Entangled square may be ending a count too early for engine.
-                  </li>
-                  <li>Entangled may cause a stalemate</li>
-                  <li>
-                    Hexweaver arcana can stop the game if king and a checking
-                    piece are both entangled once the timer ends.
-                  </li>
-                  <li>
-                    Selecting a square for a royalty that will put you in check
-                    skips your turn.
-                  </li>
-                  <li>
-                    When selecting campaign difficulty, you may need to click a
-                    badge again to get the correct multiplier. The starting
-                    value should always be x80, x95, x110, or x125.
-                  </li>
-                  <li>Castling does not work with every setup.</li>
-                  <li>
-                    Horde setups require a King for now. Capture all or
-                    checkmate to win.
-                  </li>
-                </ul>
-                Feel free to share any additional found bugs in the discord.
-              </li>
             ) : this.state.currentTab === 'tos' ? (
               <div id="tos" className="tos">
                 <h2>Terms of Service</h2>

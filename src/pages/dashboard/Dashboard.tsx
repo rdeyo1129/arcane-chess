@@ -23,7 +23,7 @@ interface DashboardState {
   hoverNav: string;
   menuItemDescriptions: {
     campaign1: string;
-    stacktadium2: string;
+    stacktadium3: string;
     leaderboard2: string;
     quickplay: string;
     gauntlet: string;
@@ -46,7 +46,7 @@ export class UnwrappedDashboard extends React.Component<
       menuItemDescriptions: {
         campaign1:
           'Collect the arcana, conquer the beasts, and etch your name on the leaderboard.',
-        stacktadium2: 'An ancient grid, a fresh enigma.',
+        stacktadium3: 'An ancient grid, a fresh enigma.',
         leaderboard2: 'Observe global rankings.',
         quickplay:
           'Master the arcana and challenge the engine with custom battles.',
@@ -117,12 +117,12 @@ export class UnwrappedDashboard extends React.Component<
               onClick={() => {
                 audioManager.playSFX('cheer');
               }}
-              onMouseEnter={() => this.setState({ hoverNav: 'stacktadium2' })}
+              onMouseEnter={() => this.setState({ hoverNav: 'stacktadium3' })}
             >
               <Button
                 text="STACKTADIUM"
                 className="tertiary"
-                color="V"
+                color="R"
                 height={50}
                 width={'100%'}
                 disabled={false}

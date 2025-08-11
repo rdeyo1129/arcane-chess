@@ -816,6 +816,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         const futureSightAvailable =
           this.state.history.length >= 4 && this.state.futureSightAvailable;
         const active = this.isArcaneActive(key);
+        const trojanActive =
+          this.arcaneChess().getIfTrojanGambitExists(this.state.engineColor) &&
+          key === 'modsTRO';
         if (!value || value <= 0 || !key) return;
         return (
           <div
@@ -834,7 +837,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             </div>
             <img
               key={key}
-              className={`arcane ${active ? ' is-active' : ''}`}
+              className={`arcane ${active || trojanActive ? ' is-active' : ''}`}
               src={`${arcana[key].imagePath}${
                 this.state.hoverArcane === key ? '-hover' : ''
               }.svg`}
@@ -1352,6 +1355,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
     const gameBoardTurn = GameBoard.side === 0 ? 'white' : 'black';
     const LS = getLocalStorage(this.props.auth.user.username);
     const sortedHistory = _.chunk(this.state.history, 2);
+    const trojanActive = this.arcaneChess().getIfTrojanGambitExists(
+      this.state.engineColor
+    );
     // const { auth } = this.props;
     const playerWins =
       this.state.gameOverType.split(' ')[1] === 'mates' &&
@@ -1487,11 +1493,17 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                     </div>
                   ) : (
                     <ul style={{ padding: '0' }}>
-                      {this.state.thinking
-                        ? 'The engine is thinking...'
-                        : this.state.dialogue.map((item, key) => {
-                            return <li key={key}>{item}</li>;
-                          })}
+                      {this.state.thinking ? (
+                        'The engine is thinking...'
+                      ) : trojanActive ? (
+                        <li className="banner banner--trojan">
+                          Trojan Gambit activated! Must take via en passant.
+                        </li>
+                      ) : (
+                        this.state.dialogue.map((item, key) => {
+                          return <li key={key}>{item}</li>;
+                        })
+                      )}
                     </ul>
                   )}
                 </div>

@@ -677,6 +677,12 @@ export function GenerateMoves(
 
   forcedEpAvailable = activeWhiteForcedEpCapture || activeBlackForcedEpCapture;
 
+  if (forcedEpAvailable) {
+    GameBoard.troActive = 1;
+  } else {
+    GameBoard.troActive = 0;
+  }
+
   const NZUBRMTQSWSQS = [[], []];
 
   // todo note does swap override entangle and suspend? I think so maybe no entangle though

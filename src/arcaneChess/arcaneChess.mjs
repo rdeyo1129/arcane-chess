@@ -141,6 +141,13 @@ export default function arcaneChess() {
     getSwapMoves: (swapType) => {
       return validGroundMoves('', swapType);
     },
+    getIfTrojanGambitExists: (playerColor) => {
+      return (
+        GameBoard.troActive &&
+        ((GameBoard.side === 0 && playerColor === 'black') ||
+          (GameBoard.side === 1 && playerColor === 'white'))
+      );
+    },
     makeUserMove: (
       orig,
       dest,

@@ -129,6 +129,7 @@ GameBoard.history = [];
 GameBoard.ply = 0;
 // Gameboard.SubPly = 0; // for dyads I think
 GameBoard.enPas = 0;
+GameBoard.troActive = 0;
 GameBoard.castlePerm = 0;
 GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
 // WHITE, BLACK material of pieces

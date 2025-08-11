@@ -837,7 +837,9 @@ class UnwrappedMissionView extends React.Component<Props, State> {
             </div>
             <img
               key={key}
-              className={`arcane ${active || trojanActive ? ' is-active' : ''}`}
+              className={`arcane ${active ? ' is-active' : ''} ${
+                trojanActive ? 'trojan-active' : ''
+              }`}
               src={`${arcana[key].imagePath}${
                 this.state.hoverArcane === key ? '-hover' : ''
               }.svg`}

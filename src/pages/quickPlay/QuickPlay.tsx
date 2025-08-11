@@ -858,7 +858,9 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             </div>
             <img
               key={key}
-              className={`arcane ${active || trojanActive ? ' is-active' : ''}`}
+              className={`arcane ${active ? ' is-active' : ''} ${
+                trojanActive ? 'trojan-active' : ''
+              }`}
               src={`${arcana[key].imagePath}${
                 this.state.hoverArcane === key ? '-hover' : ''
               }.svg`}
@@ -1306,7 +1308,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                     {this.state.thinking ? (
                       'The engine is thinking...'
                     ) : trojanActive ? (
-                      <li className="banner banner--trojan">
+                      <li>
                         Trojan Gambit activated! Must take via en passant.
                       </li>
                     ) : (

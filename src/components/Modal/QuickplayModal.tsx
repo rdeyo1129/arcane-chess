@@ -1123,6 +1123,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                   onClick={() => {
                     this.randomGameMode();
                   }}
+                  backgroundColorOverride="linear-gradient(135deg, #00c6ff, #0072ff)"
                 />
               </div>
               {/* <div

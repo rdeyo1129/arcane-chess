@@ -164,7 +164,7 @@ export class UnwrappedDashboard extends React.Component<
                 height={50}
                 width={'100%'}
                 disabled={false}
-                backgroundColorOverride="#11111188"
+                backgroundColorOverride="linear-gradient(135deg, #00c6ff, #0072ff)"
               />
             </Link>
             <Link

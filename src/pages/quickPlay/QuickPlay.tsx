@@ -631,6 +631,12 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     });
   };
 
+  analyzeGame = () => {
+    this.setState({
+      gameOver: false,
+    });
+  };
+
   normalMoveStateAndEngineGo = (parsed: number, orig: string, dest: string) => {
     const char = RtyChar.split('')[this.state.placingRoyalty];
     this.setState(
@@ -1253,7 +1259,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
           />
           <TactoriusModal
             isOpen={this.state.gameOver}
-            // handleClose={() => this.handleModalClose()}
+            handleClose={() => this.analyzeGame()}
             // modalType={this.state.endScenario}
             message={this.state.gameOverType} // interpolate
             score={LS.nodeScores[this.state.nodeId]}

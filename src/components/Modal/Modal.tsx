@@ -12,7 +12,6 @@ import 'src/chessground/styles/normal.scss';
 // import { Chessground } from 'src/chessground/chessgroundMod';
 
 import Button from '../Button/Button';
-import Select from '../Select/Select';
 
 import { unlockableArcana } from 'src/pages/book/ArcanaSelect';
 // import { characters, modes } from 'src/components/Modal/charactersModes';
@@ -301,7 +300,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <img className="endgame-image" src="/assets/victory.webp" />
+              <img className="endgame-image" src="/assets/victory2.webp" />
               <div className="endgame-content">
                 <strong className="endgame-text">
                   <i>
@@ -332,7 +331,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <img className="endgame-image" src="/assets/defeat.webp" />
+              <img className="endgame-image" src="/assets/defeat2.webp" />
               <div className="endgame-content">
                 <strong>
                   <i>Defeat... {this.props.message}</i>
@@ -454,410 +453,6 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
               </div>
             </div>
           </Modal>
-        ) : this.props.type === 'quickPlay2' ? (
-          <Modal
-            style={quickPlayModal}
-            isOpen={this.props.isOpen}
-            ariaHideApp={false}
-          >
-            <div className="quickplay">
-              <div className="setup-arcana">
-                <div
-                  onMouseEnter={() => this.toggleHover('Click to swap sides.')}
-                  onMouseLeave={() => this.toggleHover('')}
-                >
-                  <Button
-                    text={
-                      this.state.playerColor === 'white' ? 'PLAYER' : 'ENGINE'
-                    }
-                    className="tertiary"
-                    color="S"
-                    backgroundColorOverride="#AAAAAA"
-                    width={240}
-                    height={30}
-                    onClick={() =>
-                      this.setState(
-                        (prevState) => ({
-                          playerColor:
-                            prevState.playerColor === 'white'
-                              ? 'black'
-                              : 'white',
-                        }),
-                        () => {
-                          if (this.props.updateConfig) {
-                            this.props.updateConfig(
-                              'playerColor',
-                              this.state.playerColor === 'white'
-                                ? 'white'
-                                : 'black'
-                            );
-                            this.props.updateConfig(
-                              'engineColor',
-                              this.state.playerColor === 'white'
-                                ? 'black'
-                                : 'white'
-                            );
-                          }
-                        }
-                      )
-                    }
-                  />
-                </div>
-                <div
-                  className="setup"
-                  onMouseEnter={() =>
-                    this.toggleHover('Click to select a custom army setup.')
-                  }
-                  onMouseLeave={() => this.toggleHover('')}
-                >
-                  <Select
-                    // title="whiteSetup"
-                    type="string"
-                    height={'30px'}
-                    width={'240px'}
-                    options={[
-                      'RNBQKBNR',
-                      'RNBVKBNR',
-                      'RNBTKBNR',
-                      'RBNMKBNR',
-                      'RZBTKBUR',
-                      'RUWMKSUR',
-                      'RZSQKSZR',
-                      'RUWTKWUR',
-                      'RNNMKBBR',
-                      'RUUBKSBR',
-                      'RSBBKNZR',
-                      'MNZQUBTK',
-                      'UBBTUKZZ',
-                    ]}
-                    onChange={(val) => {
-                      if (this.props.updateConfig)
-                        this.props.updateConfig('whiteSetup', val);
-                    }}
-                  />
-                </div>
-                <div className="arcana">
-                  {_.map(arcana, (_arcaneObject: ArcanaDetail, key: string) => {
-                    return (
-                      <img
-                        key={key}
-                        className="arcane"
-                        src={`${arcana[key].imagePath}${
-                          this.state.hoverArcane === `${key}-white`
-                            ? '-hover'
-                            : ''
-                        }.svg`}
-                        style={{
-                          opacity:
-                            _.includes(
-                              Object.keys(this.state.whiteArcana),
-                              key
-                            ) && this.state.whiteArcana[key]
-                              ? 1
-                              : 0.5,
-                          cursor:
-                            "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
-                        }}
-                        onClick={() => {
-                          const currentArcaneType = arcana[key].type;
-                          const isEnabledOrNonNull =
-                            _.includes(
-                              Object.keys(this.state.whiteArcana),
-                              key
-                            ) && this.state.whiteArcana[key];
-                          if (isEnabledOrNonNull) {
-                            this.setState(
-                              (prevState) => ({
-                                whiteArcana: {
-                                  ...prevState.whiteArcana,
-                                  [key]: null,
-                                },
-                              }),
-                              () => {
-                                if (this.props.updateConfig)
-                                  this.props.updateConfig(
-                                    'wArcana',
-                                    this.state.whiteArcana
-                                  );
-                              }
-                            );
-                          } else {
-                            this.setState(
-                              (prevState) => ({
-                                whiteArcana: {
-                                  ...prevState.whiteArcana,
-                                  [key]:
-                                    currentArcaneType === 'active' ||
-                                    currentArcaneType === 'passive'
-                                      ? 2
-                                      : true,
-                                },
-                              }),
-                              () => {
-                                if (this.props.updateConfig)
-                                  this.props.updateConfig(
-                                    'wArcana',
-                                    this.state.whiteArcana
-                                  );
-                              }
-                            );
-                          }
-                        }}
-                        onMouseEnter={() => this.toggleHover(`${key}-white`)}
-                        onMouseLeave={() => this.toggleHover('')}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-              <div className="setup-arcana">
-                <div
-                  onMouseEnter={() => this.toggleHover('Click to swap sides.')}
-                  onMouseLeave={() => this.toggleHover('')}
-                >
-                  <Button
-                    text={
-                      this.state.playerColor === 'black' ? 'PLAYER' : 'ENGINE'
-                    }
-                    className="tertiary"
-                    color="S"
-                    backgroundColorOverride="#333333"
-                    width={240}
-                    height={30}
-                    onClick={() =>
-                      this.setState(
-                        (prevState) => ({
-                          playerColor:
-                            prevState.playerColor === 'white'
-                              ? 'black'
-                              : 'white',
-                        }),
-                        () => {
-                          if (this.props.updateConfig) {
-                            this.props.updateConfig(
-                              'playerColor',
-                              this.state.playerColor === 'white'
-                                ? 'white'
-                                : 'black'
-                            );
-                            this.props.updateConfig(
-                              'engineColor',
-                              this.state.playerColor === 'white'
-                                ? 'black'
-                                : 'white'
-                            );
-                          }
-                        }
-                      )
-                    }
-                  />
-                </div>
-                <div
-                  className="setup-select"
-                  onMouseEnter={() =>
-                    this.toggleHover('Click to select a custom army setup.')
-                  }
-                  onMouseLeave={() => this.toggleHover('')}
-                >
-                  <Select
-                    // title="blackSetup"
-                    type="string"
-                    height={'30px'}
-                    width={'240px'}
-                    options={[
-                      'rnbqkbnr',
-                      'rnbvkbnr',
-                      'rnbtkbnr',
-                      'rbnmkbnr',
-                      'rzbtkbur',
-                      'ruwmksur',
-                      'rzsqkszr',
-                      'ruwtkwur',
-                      'rnnmkbbr',
-                      'ruubksbr',
-                      'rsbbknzr',
-                      'mnzqubtk',
-                      'ubbttukzz',
-                    ]}
-                    onChange={(val) => {
-                      if (this.props.updateConfig)
-                        this.props.updateConfig('blackSetup', val);
-                    }}
-                  />
-                </div>
-                <div className="arcana">
-                  {_.map(arcana, (_arcaneObect: ArcanaDetail, key: string) => {
-                    return (
-                      <img
-                        key={key}
-                        className="arcane"
-                        src={`${arcana[key].imagePath}${
-                          this.state.hoverArcane === `${key}-black`
-                            ? '-hover'
-                            : ''
-                        }.svg`}
-                        style={{
-                          opacity:
-                            _.includes(
-                              Object.keys(this.state.blackArcana),
-                              key
-                            ) && this.state.blackArcana[key]
-                              ? 1
-                              : 0.5,
-                          cursor:
-                            "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
-                        }}
-                        onClick={() => {
-                          const currentArcaneType = arcana[key].type;
-                          const isEnabledOrNonNull =
-                            _.includes(
-                              Object.keys(this.state.blackArcana),
-                              key
-                            ) && this.state.blackArcana[key];
-                          if (isEnabledOrNonNull) {
-                            this.setState(
-                              (prevState) => ({
-                                blackArcana: {
-                                  ...prevState.blackArcana,
-                                  [key]: null,
-                                },
-                              }),
-                              () => {
-                                if (this.props.updateConfig)
-                                  this.props.updateConfig(
-                                    'bArcana',
-                                    this.state.blackArcana
-                                  );
-                              }
-                            );
-                          } else {
-                            this.setState(
-                              (prevState) => ({
-                                blackArcana: {
-                                  ...prevState.blackArcana,
-                                  [key]:
-                                    currentArcaneType === 'active' ||
-                                    currentArcaneType === 'passive'
-                                      ? 2
-                                      : true,
-                                },
-                              }),
-                              () => {
-                                if (this.props.updateConfig)
-                                  this.props.updateConfig(
-                                    'bArcana',
-                                    this.state.blackArcana
-                                  );
-                              }
-                            );
-                          }
-                        }}
-                        onMouseEnter={() => this.toggleHover(`${key}-black`)}
-                        onMouseLeave={() => this.toggleHover('')}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-              <div className="settings-start">
-                <div className="arcana-detail">
-                  <p>{arcana[this.state.hoverArcane.split('-')[0]]?.name}</p>
-                  <p>
-                    {arcana[this.state.hoverArcane.split('-')[0]]
-                      ?.description ||
-                      this.state.hoverArcane ||
-                      'Hover and click on spells to see more information or add to your bag. Hover over other settings for more information.'}
-                  </p>
-                </div>
-                <div
-                  className="quickplay-select"
-                  onMouseEnter={() =>
-                    this.toggleHover(
-                      'Difficulty setting, long should the engine think for?'
-                    )
-                  }
-                  onMouseLeave={() => this.toggleHover('')}
-                >
-                  <Select
-                    title="Thinking Time"
-                    type="number"
-                    width={240}
-                    height={40}
-                    options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                    onChange={(val) => {
-                      if (this.props.updateConfig)
-                        this.props.updateConfig('thinkingTime', Number(val));
-                    }}
-                  />
-                </div>
-                <div
-                  className="quickplay-select"
-                  onMouseEnter={() =>
-                    this.toggleHover(
-                      'Difficulty setting, how many half moves should the engine look ahead?'
-                    )
-                  }
-                  onMouseLeave={() => this.toggleHover('')}
-                >
-                  <Select
-                    title="Depth"
-                    type="number"
-                    width={240}
-                    height={40}
-                    options={[1, 2, 3, 4, 5, 6, 7, 8]}
-                    onChange={(val) => {
-                      if (this.props.updateConfig)
-                        this.props.updateConfig('engineDepth', Number(val));
-                    }}
-                  />
-                </div>
-                <div
-                  className="quickplay-select"
-                  onMouseEnter={() =>
-                    this.toggleHover(
-                      'Choose Select to pick your promotion each time or choose an autopromotion.'
-                    )
-                  }
-                  onMouseLeave={() => this.toggleHover('')}
-                >
-                  <Select
-                    title="Promotion"
-                    type="string"
-                    width={240}
-                    height={40}
-                    options={[
-                      'Select',
-                      'N',
-                      'Z',
-                      'U',
-                      'B',
-                      'R',
-                      'Q',
-                      'T',
-                      'M',
-                      'W',
-                      'S',
-                    ]}
-                    onChange={(val) => {
-                      if (this.props.updateConfig)
-                        this.props.updateConfig('placingPromotion', val);
-                    }}
-                  />
-                </div>
-                <Button
-                  text="START"
-                  className="primary"
-                  color="S"
-                  width={240}
-                  height={60}
-                  styles={{ marginTop: '20px' }}
-                  onClick={() => {
-                    this.props.handleClose();
-                  }}
-                />
-              </div>
-            </div>
-          </Modal>
         ) : this.props.type === 'quickPlay' ? (
           <Modal
             style={quickPlayModal}
@@ -937,7 +532,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <img className="endgame-image" src="/assets/victory.webp" />
+              <img className="endgame-image" src="/assets/victory2.webp" />
               <div className="endgame-content">
                 <strong className="endgame-text">
                   <i>
@@ -964,10 +559,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       color="S"
                       width={160}
                       height={40}
-                      disabled
-                      // onClick={() => {
-                      //   this.props.navigate('/chapter');
-                      // }}
+                      onClick={() => {
+                        this.props.handleClose();
+                      }}
                     />
                   </div>
                   <Button
@@ -991,7 +585,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
             ariaHideApp={false}
           >
             <div className="endgame">
-              <img className="endgame-image" src="/assets/defeat.webp" />
+              <img className="endgame-image" src="/assets/defeat2.webp" />
               <div className="endgame-content">
                 <strong>
                   <i>Defeat... {this.props.message}</i>
@@ -1014,10 +608,9 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       color="S"
                       width={160}
                       height={40}
-                      disabled
-                      // onClick={() => {
-                      //   this.props.navigate('/chapter');
-                      // }}
+                      onClick={() => {
+                        this.props.handleClose();
+                      }}
                     />
                   </div>
                   <Button

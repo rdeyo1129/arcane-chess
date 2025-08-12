@@ -2,7 +2,7 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 800">
   <g id="brown-board">
     <!-- <g id="Light" fill="rgba(128, 34, 34, .7)"> -->
-    <g id="Light" fill="#3a5a40BB">
+    <g id="Light" fill="#3a5a40">
     <!-- #A57FD4 purple -->
       <rect width="800" height="800"/>
     </g>
@@ -10,7 +10,7 @@
       <rect width="800" height="800"/>
     </g>
     <!-- <g id="Dark" fill="rgba(34, 34, 34, .7)"> -->
-    <g id="Dark" fill="#344e41BB">
+    <g id="Dark" fill="#344e41">
     <!-- #585858 grey -->
       <g id="raz">
         <g id="dva">

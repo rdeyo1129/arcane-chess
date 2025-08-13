@@ -1388,7 +1388,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                   movable={{
                     free: false,
                     rookCastle: false,
-                    color: this.state.playerColor,
+                    color: 'both',
                     dests: (() => {
                       if (this.state.thinking) return;
                       let dests;

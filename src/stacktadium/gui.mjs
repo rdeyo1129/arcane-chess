@@ -493,7 +493,7 @@ const returnDialogueTypes = (score) => {
 
 export function startSearch(thinkingTime, depth, engineColor) {
   const engineArcana =
-    engineColor === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+    engineColor === 'white' ? whiteArcaneConfig : blackArcaneConfig;
   const colorInt = engineColor === 'white' ? COLOURS.WHITE : COLOURS.BLACK;
 
   SearchController.depth = depth || 7;

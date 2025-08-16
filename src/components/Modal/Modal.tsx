@@ -354,7 +354,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                       color="S"
                       width={160}
                       height={40}
-                      disabled
+                      // disabled
                       // onClick={() => {
                       //   this.props.navigate('/chapter');
                       // }}

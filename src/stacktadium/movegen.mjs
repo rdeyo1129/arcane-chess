@@ -621,18 +621,29 @@ export function GenerateMoves(
     herrings = [];
   }
 
-  const activeWhiteForcedEpCapture =
+  const epSet = GameBoard.enPas !== SQUARES.NO_SQ;
+
+  const whiteHasEP =
+    epSet &&
+    (GameBoard.pieces[GameBoard.enPas - 9] === PIECES.wP ||
+      GameBoard.pieces[GameBoard.enPas - 11] === PIECES.wP);
+  const activeWhiteForcedEpCapture = !!(
     forcedMoves &&
     GameBoard.side === COLOURS.WHITE &&
     GameBoard.blackArcane[4] & 32768 &&
-    (GameBoard.pieces[GameBoard.enPas - 9] === PIECES.wP ||
-      GameBoard.pieces[GameBoard.enPas - 11] === PIECES.wP);
-  const activeBlackForcedEpCapture =
+    whiteHasEP
+  );
+
+  const blackHasEP =
+    epSet &&
+    (GameBoard.pieces[GameBoard.enPas + 9] === PIECES.bP ||
+      GameBoard.pieces[GameBoard.enPas + 11] === PIECES.bP);
+  const activeBlackForcedEpCapture = !!(
     forcedMoves &&
     GameBoard.side === COLOURS.BLACK &&
     GameBoard.whiteArcane[4] & 32768 &&
-    (GameBoard.pieces[GameBoard.enPas + 9] === PIECES.bP ||
-      GameBoard.pieces[GameBoard.enPas + 11] === PIECES.bP);
+    blackHasEP
+  );
 
   forcedEpAvailable = activeWhiteForcedEpCapture || activeBlackForcedEpCapture;
 
@@ -640,7 +651,7 @@ export function GenerateMoves(
 
   // todo note does swap override entangle and suspend? I think so maybe no entangle though
 
-  if (!activeWhiteForcedEpCapture || !activeBlackForcedEpCapture) {
+  if (!(activeWhiteForcedEpCapture || activeBlackForcedEpCapture)) {
     // SWAP ADJACENT 4
     for (let sq = 21; sq <= 98; sq++) {
       if (GameBoard.pieces[sq] === PIECES.EMPTY) {
@@ -1159,15 +1170,13 @@ export function GenerateMoves(
     if (!herrings.length) {
       if (
         GameBoard.side === COLOURS.WHITE &&
-        GameBoard.whiteArcane[4] &&
-        16384
+        GameBoard.whiteArcane[4] & 16384
       ) {
         AddQuietMove(MOVE(0, 0, PIECES.EMPTY, 31, 0), capturesOnly);
       }
       if (
         GameBoard.side === COLOURS.BLACK &&
-        GameBoard.blackArcane[4] &&
-        16384
+        GameBoard.blackArcane[4] & 16384
       ) {
         AddQuietMove(MOVE(0, 0, PIECES.EMPTY, 31, 0), capturesOnly);
       }
@@ -1193,7 +1202,7 @@ export function GenerateMoves(
 
       // note WHITE PAWN QUIET MOVES
       if (
-        !activeWhiteForcedEpCapture &&
+        !forcedEpAvailable &&
         (GameBoard.dyad === 0 ||
           GameBoard.dyad === 1 ||
           GameBoard.dyad === 2) &&
@@ -1233,9 +1242,8 @@ export function GenerateMoves(
       }
 
       // note WHITE PAWN CAPTURES AND CONSUME
-
       if (
-        !activeWhiteForcedEpCapture &&
+        !forcedEpAvailable &&
         ((SQOFFBOARD(sq + 9) === BOOL.FALSE && !herrings.length) ||
           (SQOFFBOARD(sq + 9) === BOOL.FALSE &&
             herrings.length &&
@@ -1269,7 +1277,7 @@ export function GenerateMoves(
       if (
         (SQOFFBOARD(sq + 11) === BOOL.FALSE &&
           !herrings.length &&
-          !activeWhiteForcedEpCapture) ||
+          !forcedEpAvailable) ||
         (SQOFFBOARD(sq + 11) === BOOL.FALSE &&
           herrings.length &&
           _.includes(herrings, sq + 11))
@@ -1299,12 +1307,12 @@ export function GenerateMoves(
         }
       }
 
-      if (GameBoard.dyad === 0) {
+      if (GameBoard.dyad === 0 || activeWhiteForcedEpCapture) {
         // NOTE WHITE EP
-        if (
-          (GameBoard.enPas !== SQUARES.NO_SQ && !herrings.length) ||
-          activeWhiteForcedEpCapture
-        ) {
+        const epTargetOK =
+          GameBoard.enPas !== SQUARES.NO_SQ &&
+          (!herrings.length || _.includes(herrings, GameBoard.enPas));
+        if (epTargetOK || activeWhiteForcedEpCapture) {
           if (sq + 9 === GameBoard.enPas) {
             if (
               GameBoard.whiteArcane[4] & 16 &&
@@ -1404,7 +1412,7 @@ export function GenerateMoves(
     }
 
     // WARNING, this will only work in a vanilla setup, no extra rooks
-    if (!activeWhiteForcedEpCapture) {
+    if (!forcedEpAvailable) {
       if (GameBoard.castlePerm & CASTLEBIT.WKCA && !herrings.length) {
         if (GameBoard.blackArcane[4] & 8) {
           // todo remove
@@ -1481,7 +1489,7 @@ export function GenerateMoves(
 
       // note BLACK PAWN QUIET MOVES
       if (
-        !activeBlackForcedEpCapture &&
+        !forcedEpAvailable &&
         (GameBoard.dyad === 0 ||
           GameBoard.dyad === 1 ||
           GameBoard.dyad === 2) &&
@@ -1524,7 +1532,7 @@ export function GenerateMoves(
       if (
         (SQOFFBOARD(sq - 9) === BOOL.FALSE &&
           !herrings.length &&
-          !activeBlackForcedEpCapture) ||
+          !forcedEpAvailable) ||
         (SQOFFBOARD(sq - 9) === BOOL.FALSE &&
           herrings.length &&
           _.includes(herrings, sq - 9))
@@ -1555,7 +1563,7 @@ export function GenerateMoves(
       }
 
       if (
-        !activeBlackForcedEpCapture &&
+        !forcedEpAvailable &&
         ((SQOFFBOARD(sq - 11) === BOOL.FALSE && !herrings.length) ||
           (SQOFFBOARD(sq - 11) === BOOL.FALSE &&
             herrings.length &&
@@ -1587,11 +1595,11 @@ export function GenerateMoves(
       }
 
       // note BLACK EP
-      if (GameBoard.dyad === 0) {
-        if (
-          (GameBoard.enPas !== SQUARES.NO_SQ && !herrings.length) ||
-          activeBlackForcedEpCapture
-        ) {
+      if (GameBoard.dyad === 0 || activeBlackForcedEpCapture) {
+        const epTargetOK =
+          GameBoard.enPas !== SQUARES.NO_SQ &&
+          (!herrings.length || _.includes(herrings, GameBoard.enPas));
+        if (epTargetOK || activeBlackForcedEpCapture) {
           if (sq - 9 === GameBoard.enPas) {
             if (
               GameBoard.blackArcane[4] & 16 &&

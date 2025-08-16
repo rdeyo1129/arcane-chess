@@ -185,7 +185,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
             <div className="difficulties">
               <img
                 className="level level-1"
-                src="/assets/levels/novice.webp"
+                src="/assets/levels/novice2.webp"
                 alt="novice"
                 onMouseEnter={() =>
                   this.setState({
@@ -238,7 +238,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
               />
               <img
                 className="level level-2"
-                src="/assets/levels/intermediate.webp"
+                src="/assets/levels/intermediate2.webp"
                 alt="intermediate"
                 onMouseEnter={() =>
                   this.setState({
@@ -291,7 +291,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
               />
               <img
                 className="level level-3"
-                src="/assets/levels/advanced.webp"
+                src="/assets/levels/advanced2.webp"
                 alt="advanced"
                 onMouseEnter={() =>
                   this.setState({
@@ -344,7 +344,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
               />
               <img
                 className="level level-4"
-                src="/assets/levels/expert.webp"
+                src="/assets/levels/expert2.webp"
                 alt="expert"
                 onMouseEnter={() =>
                   this.setState({

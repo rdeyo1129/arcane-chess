@@ -256,7 +256,8 @@ export function MakeMove(move, moveType = '') {
     TOSQ(move) > 0 &&
     captured !== PIECES.EMPTY &&
     (move & MFLAGSWAP) === 0 &&
-    (move & MFLAGSUMN) === 0
+    (move & MFLAGSUMN) === 0 &&
+    (move & MFLAGEP) === 0
   ) {
     ClearPiece(to);
     GameBoard.fiftyMove = 0;
@@ -689,7 +690,8 @@ export function TakeMove(wasDyadMove = false) {
     TOSQ(move) > 0 &&
     captured !== PIECES.EMPTY &&
     (move & MFLAGSWAP) === 0 &&
-    (move & MFLAGSUMN) === 0
+    (move & MFLAGSUMN) === 0 &&
+    (move & MFLAGEP) === 0
   ) {
     AddPiece(to, captured);
     if (GameBoard.crazyHouse[GameBoard.side]) {

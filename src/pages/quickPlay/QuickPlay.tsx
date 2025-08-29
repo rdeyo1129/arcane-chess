@@ -864,12 +864,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             </div>
             <img
               key={key}
-              className={`arcane ${active ? ' is-active' : ''} ${
-                trojanActive ? 'trojan-active' : ''
+              className={`arcane${active ? ' is-active' : ''}${
+                trojanActive
+                  ? ' trojan-active'
+                  : this.state.hoverArcane === key
+                  ? ' focus'
+                  : ''
               }`}
-              src={`${arcana[key].imagePath}${
-                this.state.hoverArcane === key ? '-hover' : ''
-              }.svg`}
+              src={`/assets/arcanaImages${arcana[key].imagePath}.svg`}
               style={{
                 opacity:
                   this.state.playerColor !== color ||

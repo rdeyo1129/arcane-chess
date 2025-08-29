@@ -106,7 +106,7 @@ export default class ArcanaSelect extends React.Component<
                 <img
                   key={key}
                   className="arcane"
-                  src={`${arcane.imagePath}.svg`}
+                  src={`/assets/arcanaImages${arcane.imagePath}.svg`}
                   style={{
                     cursor:
                       "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
@@ -125,10 +125,10 @@ export default class ArcanaSelect extends React.Component<
               return (
                 <img
                   key={key}
-                  className="arcane"
-                  src={`${arcana[key].imagePath}${
-                    this.state.hoverId === `${key}` ? '-hover' : ''
-                  }.svg`}
+                  className={`arcane ${
+                    this.state.hoverId === key ? 'focus' : ''
+                  }`}
+                  src={`/assets/arcanaImages${arcana[key].imagePath}.svg`}
                   style={{
                     cursor:
                       "url('/assets/images/cursors/pointer.svg') 12 4, pointer",

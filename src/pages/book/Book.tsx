@@ -465,12 +465,10 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                           </div>
                           <img
                             key={key}
-                            className="arcane"
-                            src={`${arcana[key].imagePath}${
-                              this.state.hoverArcane === `${key}`
-                                ? '-hover'
-                                : ''
-                            }.svg`}
+                            className={`arcane ${
+                              this.state.hoverArcane === key ? 'focus' : ''
+                            }`}
+                            src={`/assets/arcanaImages${arcana[key].imagePath}.svg`}
                             style={{
                               height: '50px',
                               width: '50px',

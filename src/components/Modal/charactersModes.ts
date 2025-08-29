@@ -47,7 +47,7 @@ const emptyArcane = {
   name: '',
   description: 'No arcane selected here. Click to choose one!',
   type: '',
-  imagePath: '/assets/arcanaImages/empty',
+  imagePath: '/empty',
 };
 
 // CHARACTERS

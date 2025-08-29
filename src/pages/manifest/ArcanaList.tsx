@@ -27,7 +27,31 @@ interface ArcanaListState {
   expandedSections: Record<string, boolean>;
 }
 
-const sectionPrefixes = ['sumn', 'dyad', 'shft', 'offr', 'swap', 'mods'];
+const SECTION_GRADIENTS: Record<string, string> = {
+  sumn: 'linear-gradient(135deg, #6a3093, #2c3e50)', // deeper violet → slate
+  dyad: 'linear-gradient(135deg, #134e5e, #71b280)', // dark teal → soft green
+  shft: 'linear-gradient(135deg, #c79081, #dfa579)', // warm bronze → amber
+  offr: 'linear-gradient(135deg, #b31217, #240b36)', // wine red → midnight violet
+  swap: 'linear-gradient(135deg, #485563, #29323c)', // steel gray → charcoal
+  mods: 'linear-gradient(135deg, #b24592, #f15f79)', // muted magenta → rose
+  mori: 'linear-gradient(135deg, #1d976c, #093028)', // moss → slate
+  mora: 'linear-gradient(135deg, #0f2027, #2c5364)', // deep teal → steel blue
+  area: 'linear-gradient(135deg, #536976, #292e49)', // smoky steel → indigo
+  gain: 'linear-gradient(135deg, #3a7d44, #2c5f2d)', // forest → olive
+};
+
+const sectionPrefixes = [
+  'sumn',
+  'dyad',
+  'shft',
+  'offr',
+  'swap',
+  'mods',
+  'mori',
+  'mora',
+  'area',
+  'gain',
+];
 
 export default class ArcanaList extends React.Component<
   ArcanaListProps,
@@ -51,7 +75,7 @@ export default class ArcanaList extends React.Component<
     <div key={key} className="arcane-item">
       <img
         className="thumb"
-        src={`${arcaneItem.imagePath}.svg`}
+        src={`/assets/arcanaImages${arcaneItem.imagePath}.svg`}
         alt={arcaneItem.name}
       />
       <div className="content">
@@ -137,19 +161,7 @@ export default class ArcanaList extends React.Component<
                   height={40}
                   disabled={false}
                   backgroundColorOverride={
-                    prefix === 'sumn'
-                      ? 'linear-gradient(135deg, #8e2de2, #4a00e0)'
-                      : prefix === 'dyad'
-                      ? 'linear-gradient(135deg, #00c6ff, #0072ff)'
-                      : prefix === 'shft'
-                      ? 'linear-gradient(135deg, #f7971e, #ffd200)'
-                      : prefix === 'offr'
-                      ? 'linear-gradient(135deg, #ff512f, #dd2476)'
-                      : prefix === 'swap'
-                      ? 'linear-gradient(135deg, #43cea2, #185a9d)'
-                      : prefix === 'mods'
-                      ? 'linear-gradient(135deg, #ff9f1c, #ff2e63)'
-                      : '#55555588'
+                    SECTION_GRADIENTS[prefix] ?? '#55555588'
                   }
                 />
                 {expanded && (

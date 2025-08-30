@@ -48,20 +48,6 @@
     "type": "active",
     "imagePath": "/sumnA"
   },
-  "sumnS": {
-    "id": "sumnS",
-    "name": "Summon Spectre",
-    "description": "Summon a Spectre to an empty square.",
-    "type": "active",
-    "imagePath": "/sumnA"
-  },
-  "sumnW": {
-    "id": "sumnW",
-    "name": "Summon Wraith",
-    "description": "Summon a Wraith to an empty square.",
-    "type": "active",
-    "imagePath": "/sumnA"
-  },
   "sumnH": {
     "id": "sumnH",
     "name": "Summon Herring",
@@ -76,6 +62,20 @@
     "type": "active",
     "imagePath": "/sumnA"
   },
+  "sumnZ": {
+    "id": "sumnZ",
+    "name": "Summon Zebra",
+    "description": "Summon a Zebra to an empty square.",
+    "type": "active",
+    "imagePath": "/sumnA"
+  },
+  "sumnU": {
+    "id": "sumnU",
+    "name": "Summon Unicorn",
+    "description": "Summon a Unicorn to an empty square.",
+    "type": "active",
+    "imagePath": "/sumnA"
+  },
   "sumnB": {
     "id": "sumnB",
     "name": "Summon Bishop",
@@ -87,6 +87,20 @@
     "id": "sumnR",
     "name": "Summon Rook",
     "description": "Summon a Rook to an empty square.",
+    "type": "active",
+    "imagePath": "/sumnA"
+  },
+  "sumnS": {
+    "id": "sumnS",
+    "name": "Summon Spectre",
+    "description": "Summon a Spectre to an empty square.",
+    "type": "active",
+    "imagePath": "/sumnA"
+  },
+  "sumnW": {
+    "id": "sumnW",
+    "name": "Summon Wraith",
+    "description": "Summon a Wraith to an empty square.",
     "type": "active",
     "imagePath": "/sumnA"
   },
@@ -115,20 +129,6 @@
     "id": "sumnV",
     "name": "Summon Valkyrie",
     "description": "Summon a Valkyrie to an empty square.",
-    "type": "active",
-    "imagePath": "/sumnA"
-  },
-  "sumnZ": {
-    "id": "sumnZ",
-    "name": "Summon Zebra",
-    "description": "Summon a Zebra to an empty square.",
-    "type": "active",
-    "imagePath": "/sumnA"
-  },
-  "sumnU": {
-    "id": "sumnU",
-    "name": "Summon Unicorn",
-    "description": "Summon a Unicorn to an empty square.",
     "type": "active",
     "imagePath": "/sumnA"
   },
@@ -209,19 +209,19 @@
     "type": "active",
     "imagePath": "/sumnRC"
   },
-  "sumnY": {
-    "id": "sumnY",
+  "sumnXY": {
+    "id": "sumnXY",
     "name": "Tetra Apparition",
     "description": "",
     "type": "active",
-    "imagePath": "/sumnY"
+    "imagePath": "/sumnXY"
   },
-  "sumnJ": {
-    "id": "sumnJ",
+  "sumnXZ": {
+    "id": "sumnXZ",
     "name": "Spire Vision",
     "description": "",
     "type": "active",
-    "imagePath": "/sumnJ"
+    "imagePath": "/sumnXZ"
   },
   "offrA": {
     "id": "offrA",
@@ -296,56 +296,56 @@
   "offrK": {
     "id": "offrK",
     "name": "Energy Repurpose",
-    "description": "",
+    "description": "Offer a friendly Q, T, M, or V to gain 3 royalty arcana of the same type.",
     "type": "active",
     "imagePath": "/offrK"
   },
   "offrL": {
     "id": "offrL",
     "name": "Shadow Reckoning",
-    "description": "",
+    "description": "Offer a friendly Pawn to gain a Teleportation arcana.",
     "type": "active",
     "imagePath": "/offrL"
   },
   "offrM": {
     "id": "offrM",
     "name": "Valkyrie's Decision",
-    "description": "",
+    "description": "Offer a friendly Q, T, or M to gain Valkyrie Royalty, Omni Gaze, and Inheriteance arcana.",
     "type": "active",
     "imagePath": "/offrM"
   },
   "offrN": {
     "id": "offrN",
     "name": "Gladiator's Combo",
-    "description": "",
+    "description": "Offer a friendly Q, T, or M to gain a General Dyad, Gluttony, and Inheriteance arcana.",
     "type": "active",
     "imagePath": "/offrN"
   },
   "offrO": {
     "id": "offrO",
     "name": "Wandering Gambit",
-    "description": "",
+    "description": "Offer a friendly Q, T, or M to gain a Hermit summon, Jester moveset, and Regal Battlecry arcana.",
     "type": "active",
     "imagePath": "/offrO"
   },
-  "offrP": {
-    "id": "offrP",
+  "offrZ": {
+    "id": "offrZ",
     "name": "Bellowing Recall",
-    "description": "",
+    "description": "Offer a friendly Valkyrie to gain a Banshee Summon, and a Veil and Vow Dyad arcana.",
     "type": "active",
-    "imagePath": "/offrP"
+    "imagePath": "/offrZ"
   },
   "offrQ": {
     "id": "offrQ",
     "name": "Combo Berserk",
-    "description": "",
+    "description": "Offer a friendly Queen or Templar to gain a Rook summon, a Warrior's Oath Dyad, Omni Gaze, and Gluttony arcana.",
     "type": "active",
     "imagePath": "/offrQ"
   },
   "offrR": {
     "id": "offrR",
     "name": "Fibonacci Gambit",
-    "description": "",
+    "description": "Offer a friendly Spectre or Wraith to gain 3 Entanglement, and Sixfold Silk arcana.",
     "type": "active",
     "imagePath": "/offrR"
   },
@@ -359,7 +359,7 @@
   "shftN": {
     "id": "shftN",
     "name": "Pegasus",
-    "description": "Move a Knight one square in any orthogonal or diagonal direction, no capturing.",
+    "description": "Move a Knight, Zebra, or Unicorn one square in any orthogonal or diagonal direction, no capturing.",
     "type": "passive",
     "imagePath": "/shftN"
   },
@@ -559,8 +559,8 @@
     "type": "inherent",
     "imagePath": "/modsHER"
   },
-  "modsVAL": {
-    "id": "modsVAL",
+  "modsBAN": {
+    "id": "modsBAN",
     "name": "The Banshee",
     "description": "",
     "type": "inherent",

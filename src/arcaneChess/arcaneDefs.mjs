@@ -117,8 +117,8 @@ export const POWERBIT = {
   sumnRA: 2097152,
   sumnRB: 4194304,
   sumnRC: 8388608,
-  sumnY: 16777216,
-  sumnz: 33554432,
+  sumnXY: 16777216,
+  sumnXZ: 33554432,
 
   // active 18
   offrA: 1,
@@ -136,7 +136,8 @@ export const POWERBIT = {
   offrM: 4096,
   offrN: 8192,
   offrO: 16384,
-  offrP: 32768,
+  // don't use P, it gets replaced in chessground UI
+  offrZ: 32768,
   offrQ: 65536,
   offrR: 131072,
 

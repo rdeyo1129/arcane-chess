@@ -447,6 +447,28 @@ export function MakeMove(move, moveType = '') {
       12: [PIECES.wW],
       13: [captured],
       14: ['dyadA'],
+      // K
+      15: ['sumnRQ', 'sumnRQ', 'sumnRQ'],
+      16: ['sumnRT', 'sumnRT', 'sumnRT'],
+      17: ['sumnRM', 'sumnRM', 'sumnRM'],
+      18: ['sumnRV', 'sumnRV', 'sumnRV'],
+      // L
+      19: ['shftT'],
+      // M
+      20: ['sumnRV', 'modsEXT', 'modsINH'],
+      // N
+      21: ['dyadA', 'modsGLU', 'modsINH'],
+      // O
+      22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
+      23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
+      24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
+      // Z
+      25: ['dyadD', 'sumnS', 'modsBAN'],
+      26: ['dyadD', 'sumnW', 'modsBAN'],
+      // Q
+      27: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
+      // R
+      28: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
     };
     const blackPieceToOfferings = {
       1: [PIECES.bH],
@@ -463,9 +485,31 @@ export function MakeMove(move, moveType = '') {
       12: [PIECES.bW],
       13: [captured],
       14: ['dyadA'],
+      // K
+      15: ['sumnRQ', 'sumnRQ', 'sumnRQ'],
+      16: ['sumnRT', 'sumnRT', 'sumnRT'],
+      17: ['sumnRM', 'sumnRM', 'sumnRM'],
+      18: ['sumnRV', 'sumnRV', 'sumnRV'],
+      // L
+      19: ['shftT'],
+      // M
+      20: ['sumnRV', 'modsEXT', 'modsINH'],
+      // N
+      21: ['dyadA', 'modsGLU', 'modsINH'],
+      // O
+      22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
+      23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
+      24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
+      // Z
+      25: ['dyadD', 'sumnS', 'modsBAN'],
+      26: ['dyadD', 'sumnW', 'modsBAN'],
+      // Q
+      27: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
+      // R
+      28: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
     };
 
-    const offerString = '.ABCDEEFFGGHHIJ';
+    const offerString = '.ABCDEEFFGGHHIJKKKKLMNOOOZZQR';
     const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
     const arcaneConfig =
       side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
@@ -784,6 +828,28 @@ export function TakeMove(wasDyadMove = false) {
       12: [PIECES.wW],
       13: [captured],
       14: ['dyadA'],
+      // K
+      15: ['sumnRQ', 'sumnRQ', 'sumnRQ'],
+      16: ['sumnRT', 'sumnRT', 'sumnRT'],
+      17: ['sumnRM', 'sumnRM', 'sumnRM'],
+      18: ['sumnRV', 'sumnRV', 'sumnRV'],
+      // L
+      19: ['shftT'],
+      // M
+      20: ['sumnRV', 'modsEXT', 'modsINH'],
+      // N
+      21: ['dyadA', 'modsGLU', 'modsINH'],
+      // O
+      22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
+      23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
+      24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
+      // Z
+      25: ['dyadD', 'sumnS', 'modsBAN'],
+      26: ['dyadD', 'sumnW', 'modsBAN'],
+      // Q
+      27: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
+      // R
+      28: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
     };
     const blackPieceToOfferings = {
       1: [PIECES.bH],
@@ -800,9 +866,31 @@ export function TakeMove(wasDyadMove = false) {
       12: [PIECES.bW],
       13: [captured],
       14: ['dyadA'],
+      // K
+      15: ['sumnRQ', 'sumnRQ', 'sumnRQ'],
+      16: ['sumnRT', 'sumnRT', 'sumnRT'],
+      17: ['sumnRM', 'sumnRM', 'sumnRM'],
+      18: ['sumnRV', 'sumnRV', 'sumnRV'],
+      // L
+      19: ['shftT'],
+      // M
+      20: ['sumnRV', 'modsEXT', 'modsINH'],
+      // N
+      21: ['dyadA', 'modsGLU', 'modsINH'],
+      // O
+      22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
+      23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
+      24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
+      // Z
+      25: ['dyadD', 'sumnS', 'modsBAN'],
+      26: ['dyadD', 'sumnW', 'modsBAN'],
+      // Q
+      27: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
+      // R
+      28: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
     };
 
-    const offerString = '.ABCDEEFFGGHHIJ';
+    const offerString = '.ABCDEEFFGGHHIJKKKKLMNOOOZZQR';
     const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
     const arcaneConfig =
       side === 'white' ? whiteArcaneConfig : blackArcaneConfig;

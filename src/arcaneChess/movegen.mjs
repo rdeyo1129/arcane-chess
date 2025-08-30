@@ -613,12 +613,12 @@ export const getHerrings = (color) => {
 
 export const whiteTeleports = [
   21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38, 41, 42, 43,
-  44, 45, 46, 47, 48,
+  44, 45, 46, 47, 48, 51, 52, 53, 54, 55, 56, 57, 58,
 ];
 
 export const blackTeleports = [
   71, 72, 73, 74, 75, 76, 77, 78, 81, 82, 83, 84, 85, 86, 87, 88, 91, 92, 93,
-  94, 95, 96, 97, 98,
+  94, 95, 96, 97, 98, 61, 62, 63, 64, 65, 66, 67, 68,
 ];
 
 export function GenerateMoves(
@@ -1035,6 +1035,111 @@ export function GenerateMoves(
                 offeringSymbol === 'B'
               ) {
                 addOfferingMove(MOVE(sq, 0, offeringPce, 14, 0));
+              }
+            }
+            // K
+            if (
+              offeringArcanaSide & 1024 &&
+              (('K' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'Q') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 15, 0));
+              }
+              if (offeringSymbol === 'T') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 16, 0));
+              }
+              if (offeringSymbol === 'M') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 17, 0));
+              }
+              if (offeringSymbol === 'V') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 18, 0));
+              }
+            }
+            // L
+            if (
+              offeringArcanaSide & 2048 &&
+              (('L' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'P') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 19, 0));
+              }
+            }
+            // M
+            if (
+              offeringArcanaSide & 4096 &&
+              (('M' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (
+                offeringSymbol === 'M' ||
+                offeringSymbol === 'Q' ||
+                offeringSymbol === 'T'
+              ) {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 20, 0));
+              }
+            }
+            // N
+            if (
+              offeringArcanaSide & 8192 &&
+              (('N' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (
+                offeringSymbol === 'M' ||
+                offeringSymbol === 'Q' ||
+                offeringSymbol === 'T'
+              ) {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 21, 0));
+              }
+            }
+            // O
+            if (
+              offeringArcanaSide & 16384 &&
+              (('O' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'Q') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 22, 0));
+              }
+              if (offeringSymbol === 'T') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 23, 0));
+              }
+              if (offeringSymbol === 'M') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 24, 0));
+              }
+            }
+            // Z
+            if (
+              offeringArcanaSide & 32768 &&
+              (('Z' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'V') {
+                addOfferingMove(
+                  MOVE(sq, 0, offeringPce, _.sample([25, 26]), 0)
+                );
+              }
+            }
+            // Q
+            if (
+              offeringArcanaSide & 65536 &&
+              (('Q' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'Q' || offeringSymbol === 'T') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 27, 0));
+              }
+            }
+            // R
+            if (
+              offeringArcanaSide & 131072 &&
+              (('R' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'S' || offeringSymbol === 'W') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 28, 0));
               }
             }
           }

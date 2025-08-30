@@ -1408,6 +1408,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               dests = this.arcaneChess().getOfferingMoves(
                                 this.state.offeringType
                               );
+                              console.log('offering dests', dests);
                             }
                           } else {
                             dests = this.arcaneChess().getSwapMoves(

@@ -53,6 +53,9 @@ const sectionPrefixes = [
   'gain',
 ];
 
+// Add: a dedicated gradient for the global toggle so it has color but isn't a type color
+const TOGGLE_GRADIENT = 'linear-gradient(135deg, #3b8d99, #6b6b83)'; // teal → slate
+
 export default class ArcanaList extends React.Component<
   ArcanaListProps,
   ArcanaListState
@@ -62,7 +65,17 @@ export default class ArcanaList extends React.Component<
     expandedSections: {},
   };
 
-  toggleSection = (prefix: string) => {
+  private expandAll = () => {
+    const allExpanded: Record<string, boolean> = {};
+    sectionPrefixes.forEach((pref) => (allExpanded[pref] = true));
+    this.setState({ expandedSections: allExpanded });
+  };
+
+  private collapseAll = () => {
+    this.setState({ expandedSections: {} });
+  };
+
+  private toggleSection = (prefix: string) => {
     this.setState((prev) => ({
       expandedSections: {
         ...prev.expandedSections,
@@ -70,6 +83,11 @@ export default class ArcanaList extends React.Component<
       },
     }));
   };
+
+  // Helper: are ALL sections expanded?
+  private areAllExpanded() {
+    return sectionPrefixes.every((pref) => this.state.expandedSections[pref]);
+  }
 
   renderArcanaItem = (key: string, arcaneItem: ArcanaDetail) => (
     <div key={key} className="arcane-item">
@@ -102,12 +120,11 @@ export default class ArcanaList extends React.Component<
 
     entries.forEach(([key, arc]) => {
       const prefix = sectionPrefixes.find((pref) => arc.id.startsWith(pref));
-      if (prefix) {
-        (grouped[prefix] ||= []).push([key, arc]);
-      } else {
-        others.push([key, arc]);
-      }
+      if (prefix) (grouped[prefix] ||= []).push([key, arc]);
+      else others.push([key, arc]);
     });
+
+    const allExpanded = this.areAllExpanded();
 
     return (
       <div className="arcane-list">
@@ -131,6 +148,20 @@ export default class ArcanaList extends React.Component<
           </ul>
         </div>
 
+        {/* Single toggle, colored, same size as section buttons */}
+        <div className="expand-controls">
+          <Button
+            color="S"
+            text={allExpanded ? 'COLLAPSE ALL' : 'EXPAND ALL'}
+            className="tertiary"
+            onClick={allExpanded ? this.collapseAll : this.expandAll}
+            width={400}
+            height={40}
+            disabled={false}
+            backgroundColorOverride={TOGGLE_GRADIENT}
+          />
+        </div>
+
         <div className="inventory vertical">
           {others.map(([key, item]) => this.renderArcanaItem(key, item))}
 
@@ -144,19 +175,17 @@ export default class ArcanaList extends React.Component<
                 key={prefix}
                 className={`arcane-section${expanded ? ' is-open' : ''}`}
                 onClick={() => {
-                  if (expanded) {
-                    this.toggleSection(prefix);
-                  }
+                  if (expanded) this.toggleSection(prefix);
                 }}
               >
                 <Button
+                  color="S"
                   text={prefix.toUpperCase()}
                   className="tertiary"
                   onClick={(e) => {
                     e.stopPropagation();
                     this.toggleSection(prefix);
                   }}
-                  color="S"
                   width={400}
                   height={40}
                   disabled={false}

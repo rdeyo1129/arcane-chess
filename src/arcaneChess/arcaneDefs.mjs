@@ -84,7 +84,7 @@ export const activateDyad = () => {
 // 0011 1111 11411 0000 0000 0000 0000 0000 0000 0000 0000 0000 mods
 
 export const POWERBIT = {
-  // dyad active 6
+  // 0 dyad active 6
   dyadA: 1, // all
   dyadB: 2, // p h
   dyadC: 4, // b n z u r
@@ -92,7 +92,7 @@ export const POWERBIT = {
   dyadE: 16, // m t q
   dyadF: 32, // v k
 
-  // summons active 26
+  // 3 summons active 26
   sumnP: 1,
   sumnS: 2,
   sumnH: 4,
@@ -120,7 +120,7 @@ export const POWERBIT = {
   sumnXY: 16777216,
   sumnXZ: 33554432,
 
-  // active 18
+  // 5 active 18
   offrA: 1,
   offrB: 2,
   offrC: 4,
@@ -141,7 +141,7 @@ export const POWERBIT = {
   offrQ: 65536,
   offrR: 131072,
 
-  // passive 9
+  // 1 passive 9
   shftP: 1,
   shftN: 2,
   shftB: 4,
@@ -152,11 +152,11 @@ export const POWERBIT = {
   shftI: 128,
   shftA: 256,
 
-  // active 2
+  // 2 active 2
   swapDEP: 1,
   swapADJ: 2,
 
-  // mods 25
+  // 4 mods 25
   modsCON: 1, // passive
   modsAET: 2, // inherent
   modsFUG: 4, // inherent
@@ -183,25 +183,25 @@ export const POWERBIT = {
   modsMIS: 8388608, // passive
   modsHUR: 16777216, // passive
 
-  // on your piece death 4
+  // 6 on your piece death 4
   moriDYA: 1, // inherent
   moriROY: 2, // inherent
   moriPAW: 4, // inherent
   moriNOR: 8, // inherent
 
-  // on opponent piece death 4
+  // 7 on opponent piece death 4
   moraDYA: 1, // inherent
   moraROY: 2, // inherent
   moraPAW: 4, // inherent
   moraNOR: 8, // inherent
 
-  // area inherent 4
+  // 8 area inherent 4
   areaC: 1,
   areaM: 2,
   areaT: 4,
   areaQ: 8,
 
-  // gain passive 3
+  // 9 gain passive 3
   gainDYA: 1,
   gainVAL: 2,
   gainPAW: 4,

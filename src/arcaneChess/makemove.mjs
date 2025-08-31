@@ -101,6 +101,10 @@ export function MakeMove(move, moveType = '') {
   let to = TOSQ(move);
   let side = GameBoard.side;
 
+  let currentArcanaSide =
+    GameBoard.side === 0 ? GameBoard.whiteArcane : GameBoard.blackArcane;
+  let has5thDimensionSword = currentArcanaSide[4] & 262144;
+
   GameBoard.history[GameBoard.hisPly].posKey = GameBoard.posKey;
   GameBoard.history[GameBoard.hisPly].dyad = GameBoard.dyad;
   GameBoard.history[GameBoard.hisPly].dyadClock = GameBoard.dyadClock;
@@ -313,10 +317,13 @@ export function MakeMove(move, moveType = '') {
     }
   }
   if (TOSQ(move) > 0 && ARCANEFLAG(move) && move & MFLAGSHFT) {
-    const shiftType =
+    let shiftType =
       pieceEpsilon > 0
         ? 'T'
         : PceChar.split('')[GameBoard.pieces[to]].toUpperCase();
+    if (shiftType === 'N' || shiftType === 'Z' || shiftType === 'U')
+      shiftType = 'E';
+    if (shiftType === 'S' || shiftType === 'W') shiftType = 'G';
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[`shft${shiftType}`] -= 1;
     } else {
@@ -327,7 +334,7 @@ export function MakeMove(move, moveType = '') {
   if (
     TOSQ(move) > 0 &&
     pieceEpsilon !== PIECES.EMPTY &&
-    (move & MFLAGSHFT) === 0 &&
+    ((move & MFLAGSHFT) === 0 || has5thDimensionSword) &&
     (move & MFLAGSUMN) === 0 &&
     (ARCANEFLAG(move) === 0 || move & MFLAGCNSM)
   ) {
@@ -592,6 +599,10 @@ export function TakeMove(wasDyadMove = false) {
   if (GameBoard.hisPly > 0) GameBoard.hisPly--;
   if (GameBoard.ply > 0) GameBoard.ply--;
 
+  let currentArcanaSide =
+    GameBoard.side === 0 ? GameBoard.whiteArcane : GameBoard.blackArcane;
+  let has5thDimensionSword = currentArcanaSide[4] & 262144;
+
   GameBoard.dyad = GameBoard.history[GameBoard.hisPly].dyad;
   GameBoard.dyadClock = GameBoard.history[GameBoard.hisPly].dyadClock;
 
@@ -682,10 +693,13 @@ export function TakeMove(wasDyadMove = false) {
     }
   }
   if (TOSQ(move) > 0 && ARCANEFLAG(move) && move & MFLAGSHFT) {
-    const shiftType =
+    let shiftType =
       pieceEpsilon > 0
         ? 'T'
         : PceChar.split('')[GameBoard.pieces[to]].toUpperCase();
+    if (shiftType === 'N' || shiftType === 'Z' || shiftType === 'U')
+      shiftType = 'E';
+    if (shiftType === 'S' || shiftType === 'W') shiftType = 'G';
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[`shft${shiftType}`] += 1;
     } else {
@@ -754,7 +768,7 @@ export function TakeMove(wasDyadMove = false) {
   if (
     TOSQ(move) > 0 &&
     pieceEpsilon !== PIECES.EMPTY &&
-    (move & MFLAGSHFT) === 0 &&
+    ((move & MFLAGSHFT) === 0 || has5thDimensionSword) &&
     (move & MFLAGSUMN) === 0 &&
     (move & MFLAGSWAP) === 0
   ) {

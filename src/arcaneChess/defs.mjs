@@ -699,6 +699,10 @@ export let VaDir = [
 export let ZeDir = [-20, -11, -9, -2, 2, 9, 11, 20];
 export let UnDir = [-22, -18, -10, -1, 1, 10, 18, 22];
 
+export let BanDirSp = [-32, -30, -28, -23, -17, -3, 3, 17, 23, 28, 30, 32];
+export let BanDirWr = [-33, -31, -29, -27, -13, -7, 7, 13, 27, 29, 31, 33];
+export let HerShftDir = [-20, -12, -8, 8, 12, 20];
+
 export const DirNum = [
   0, 0, 8, 4, 4, 8, 8, 0, 8, 4, 4, 8, 8, 0, 12, 6, 4, 4, 24, 12, 6, 4, 4, 24, 8,
   8, 8, 8, 12, 12,

@@ -468,7 +468,6 @@ export function GenerateMoves(
   GameBoard.moveListStart[GameBoard.ply + 1] =
     GameBoard.moveListStart[GameBoard.ply];
 
-  let index;
   let pceType;
   let pceNum;
   let sq;
@@ -2423,8 +2422,8 @@ export function GenerateMoves(
           }
         }
 
-        for (let idx = 0; idx < DirNum[slidePce]; idx++) {
-          const dir = PceDir[slidePce][idx];
+        for (let index = 0; index < DirNum[slidePce]; index++) {
+          const dir = PceDir[slidePce][index];
           let t_sq = sq + dir;
           let rDir, bDir, shft_t_R_sq, shft_t_B_sq;
 
@@ -2511,88 +2510,81 @@ export function GenerateMoves(
             t_sq += dir;
           }
 
-          // note ROOK SHIFT
-          if (SQOFFBOARD(shft_t_R_sq) === BOOL.FALSE) {
-            if (
-              (GameBoard.dyad === 0 ||
-                GameBoard.dyad === 1 ||
-                GameBoard.dyad === dyad) &&
-              !herrings.length
-            ) {
-              if (GameBoard.pieces[shft_t_R_sq] === PIECES.EMPTY) {
-                if (
-                  GameBoard.pieces[sq] === PIECES.wR &&
-                  GameBoard.whiteArcane[1] & 8
-                ) {
-                  AddQuietMove(
-                    MOVE(
-                      sq,
-                      shft_t_R_sq,
-                      PIECES.EMPTY,
-                      PIECES.EMPTY,
-                      MFLAGSHFT
-                    ),
-                    capturesOnly
-                  );
-                }
-                if (
-                  GameBoard.pieces[sq] === PIECES.bR &&
-                  GameBoard.blackArcane[1] & 8
-                ) {
-                  AddQuietMove(
-                    MOVE(
-                      sq,
-                      shft_t_R_sq,
-                      PIECES.EMPTY,
-                      PIECES.EMPTY,
-                      MFLAGSHFT
-                    ),
-                    capturesOnly
-                  );
-                }
+          const hasArcaneBit = (side, bit) =>
+            (side === COLOURS.WHITE
+              ? GameBoard.whiteArcane[1]
+              : GameBoard.blackArcane[1]) & bit;
+
+          const moverPce = GameBoard.pieces[sq];
+          const moverSide = PieceCol[moverPce];
+          const dyadOk =
+            GameBoard.dyad === 0 ||
+            GameBoard.dyad === 1 ||
+            GameBoard.dyad === dyad;
+
+          if (moverPce === PIECES.wR || moverPce === PIECES.bR) {
+            if (SQOFFBOARD(shft_t_R_sq) === BOOL.FALSE) {
+              // quiet shift (side-aware, no duplicate branches)
+              if (
+                dyadOk &&
+                !herrings.length &&
+                GameBoard.pieces[shft_t_R_sq] === PIECES.EMPTY &&
+                hasArcaneBit(moverSide, /* rook bit */ 8)
+              ) {
+                AddQuietMove(
+                  MOVE(sq, shft_t_R_sq, PIECES.EMPTY, PIECES.EMPTY, MFLAGSHFT),
+                  capturesOnly
+                );
+              }
+
+              // 5th-D Sword capture shift
+              const rTargetPce = GameBoard.pieces[shft_t_R_sq];
+              if (
+                rTargetPce !== PIECES.EMPTY &&
+                PieceCol[rTargetPce] !== GameBoard.side &&
+                has5thDimensionSword &&
+                rookCanShift &&
+                (!herrings.length || _.includes(herrings, shft_t_R_sq))
+              ) {
+                AddCaptureMove(
+                  MOVE(sq, shft_t_R_sq, rTargetPce, PIECES.EMPTY, MFLAGSHFT),
+                  false,
+                  capturesOnly
+                );
               }
             }
           }
 
-          // note BISHOP SHIFT
-          if (SQOFFBOARD(shft_t_B_sq) === BOOL.FALSE) {
-            if (
-              (GameBoard.dyad === 0 ||
-                GameBoard.dyad === 1 ||
-                GameBoard.dyad === dyad) &&
-              !herrings.length
-            ) {
-              if (GameBoard.pieces[shft_t_B_sq] === PIECES.EMPTY) {
-                if (
-                  GameBoard.pieces[sq] === PIECES.wB &&
-                  GameBoard.whiteArcane[1] & 4
-                ) {
-                  AddQuietMove(
-                    MOVE(
-                      sq,
-                      shft_t_B_sq,
-                      PIECES.EMPTY,
-                      PIECES.EMPTY,
-                      MFLAGSHFT
-                    ),
-                    capturesOnly
-                  );
-                }
-                if (
-                  GameBoard.pieces[sq] === PIECES.bB &&
-                  GameBoard.blackArcane[1] & 4
-                ) {
-                  AddQuietMove(
-                    MOVE(
-                      sq,
-                      shft_t_B_sq,
-                      PIECES.EMPTY,
-                      PIECES.EMPTY,
-                      MFLAGSHFT
-                    ),
-                    capturesOnly
-                  );
-                }
+          // --- BISHOP SHIFT (if the mover is a bishop) ---
+          if (moverPce === PIECES.wB || moverPce === PIECES.bB) {
+            if (SQOFFBOARD(shft_t_B_sq) === BOOL.FALSE) {
+              // quiet shift
+              if (
+                dyadOk &&
+                !herrings.length &&
+                GameBoard.pieces[shft_t_B_sq] === PIECES.EMPTY &&
+                hasArcaneBit(moverSide, /* bishop bit */ 4)
+              ) {
+                AddQuietMove(
+                  MOVE(sq, shft_t_B_sq, PIECES.EMPTY, PIECES.EMPTY, MFLAGSHFT),
+                  capturesOnly
+                );
+              }
+
+              // 5th-D Sword capture shift
+              const bTargetPce = GameBoard.pieces[shft_t_B_sq];
+              if (
+                bTargetPce !== PIECES.EMPTY &&
+                PieceCol[bTargetPce] !== GameBoard.side &&
+                has5thDimensionSword &&
+                bishopCanShift &&
+                (!herrings.length || _.includes(herrings, shft_t_B_sq))
+              ) {
+                AddCaptureMove(
+                  MOVE(sq, shft_t_B_sq, bTargetPce, PIECES.EMPTY, MFLAGSHFT),
+                  false,
+                  capturesOnly
+                );
               }
             }
           }

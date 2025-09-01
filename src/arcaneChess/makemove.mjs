@@ -38,6 +38,9 @@ import {
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
 const royaltyIndexMapRestructure = [0, 30, 31, 32, 33, 34, 35, 36, 37];
+const TELEPORT_CONST = 30;
+const EPSILON_MYRIAD_CONST = 30;
+// const EPSILON_ECLIPSE_CONST = 31;
 
 export function ClearPiece(sq, summon = false) {
   let pce = GameBoard.pieces[sq];
@@ -259,6 +262,7 @@ export function MakeMove(move, moveType = '') {
   if (
     TOSQ(move) > 0 &&
     captured !== PIECES.EMPTY &&
+    captured !== TELEPORT_CONST &&
     (move & MFLAGSWAP) === 0 &&
     (move & MFLAGSUMN) === 0 &&
     (move & MFLAGEP) === 0
@@ -303,12 +307,31 @@ export function MakeMove(move, moveType = '') {
   }
 
   if (
-    (TOSQ(move) > 0 && ARCANEFLAG(move) === 0) ||
-    move & MFLAGCNSM ||
+    // eclipse here
+    CAPTURED(move) === TELEPORT_CONST &&
     move & MFLAGSHFT
+  ) {
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig[`shftT`] -= 1;
+    } else {
+      blackArcaneConfig[`shftT`] -= 1;
+    }
+  }
+
+  if (TOSQ(move) > 0 && move & MFLAGSHFT && has5thDimensionSword) {
+    // ClearPiece(to);
+  }
+
+  if (
+    (TOSQ(move) > 0 || CAPTURED(move) === TELEPORT_CONST) /* eclipse here */ &&
+    (ARCANEFLAG(move) === 0 ||
+      move & MFLAGCNSM ||
+      move & MFLAGSHFT ||
+      move & MFLAGEP)
   ) {
     MovePiece(from, to);
   }
+
   if (TOSQ(move) > 0 && move & MFLAGCNSM) {
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig.modsCON -= 1;
@@ -316,14 +339,25 @@ export function MakeMove(move, moveType = '') {
       blackArcaneConfig.modsCON -= 1;
     }
   }
-  if (TOSQ(move) > 0 && ARCANEFLAG(move) && move & MFLAGSHFT) {
-    let shiftType =
-      pieceEpsilon > 0
-        ? 'T'
-        : PceChar.split('')[GameBoard.pieces[to]].toUpperCase();
+
+  console.log({ move, pieceEpsilon, captured }, 'make move', GameBoard.pieces);
+
+  if (
+    TOSQ(move) > 0 &&
+    ARCANEFLAG(move) &&
+    move & MFLAGSHFT &&
+    CAPTURED(move) !== 30
+  ) {
+    let shiftType = PceChar.split('')[GameBoard.pieces[to]].toUpperCase();
+
     if (shiftType === 'N' || shiftType === 'Z' || shiftType === 'U')
-      shiftType = 'E';
+      shiftType = 'N';
     if (shiftType === 'S' || shiftType === 'W') shiftType = 'G';
+
+    if (pieceEpsilon === EPSILON_MYRIAD_CONST) {
+      shiftType = 'A';
+    }
+
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[`shft${shiftType}`] -= 1;
     } else {
@@ -334,7 +368,7 @@ export function MakeMove(move, moveType = '') {
   if (
     TOSQ(move) > 0 &&
     pieceEpsilon !== PIECES.EMPTY &&
-    ((move & MFLAGSHFT) === 0 || has5thDimensionSword) &&
+    (move & MFLAGSHFT) === 0 &&
     (move & MFLAGSUMN) === 0 &&
     (ARCANEFLAG(move) === 0 || move & MFLAGCNSM)
   ) {
@@ -599,10 +633,6 @@ export function TakeMove(wasDyadMove = false) {
   if (GameBoard.hisPly > 0) GameBoard.hisPly--;
   if (GameBoard.ply > 0) GameBoard.ply--;
 
-  let currentArcanaSide =
-    GameBoard.side === 0 ? GameBoard.whiteArcane : GameBoard.blackArcane;
-  let has5thDimensionSword = currentArcanaSide[4] & 262144;
-
   GameBoard.dyad = GameBoard.history[GameBoard.hisPly].dyad;
   GameBoard.dyadClock = GameBoard.history[GameBoard.hisPly].dyadClock;
 
@@ -692,14 +722,31 @@ export function TakeMove(wasDyadMove = false) {
       blackArcaneConfig.modsCON += 1;
     }
   }
-  if (TOSQ(move) > 0 && ARCANEFLAG(move) && move & MFLAGSHFT) {
-    let shiftType =
-      pieceEpsilon > 0
-        ? 'T'
-        : PceChar.split('')[GameBoard.pieces[to]].toUpperCase();
+
+  console.log(
+    { move, pieceEpsilon, captured },
+    'take move',
+    GameBoard.pieces,
+    to
+  );
+
+  if (
+    TOSQ(move) > 0 &&
+    ARCANEFLAG(move) &&
+    move & MFLAGSHFT &&
+    CAPTURED(move) !== TELEPORT_CONST
+  ) {
+    let shiftType = PceChar.split('')[GameBoard.pieces[to]].toUpperCase();
+
     if (shiftType === 'N' || shiftType === 'Z' || shiftType === 'U')
-      shiftType = 'E';
+      shiftType = 'N';
     if (shiftType === 'S' || shiftType === 'W') shiftType = 'G';
+
+    // for myriad
+    if (pieceEpsilon === EPSILON_MYRIAD_CONST) {
+      shiftType = 'A';
+    }
+
     if (GameBoard.side === COLOURS.WHITE) {
       whiteArcaneConfig[`shft${shiftType}`] += 1;
     } else {
@@ -734,8 +781,16 @@ export function TakeMove(wasDyadMove = false) {
     }
   }
 
+  if (CAPTURED(move) === TELEPORT_CONST && move & MFLAGSHFT) {
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig[`shftT`] += 1;
+    } else {
+      blackArcaneConfig[`shftT`] += 1;
+    }
+  }
+
   if (
-    TOSQ(move) > 0 &&
+    (TOSQ(move) > 0 || CAPTURED(move) === TELEPORT_CONST) &&
     (ARCANEFLAG(move) === 0 ||
       move & MFLAGCNSM ||
       move & MFLAGSHFT ||
@@ -747,6 +802,7 @@ export function TakeMove(wasDyadMove = false) {
   if (
     TOSQ(move) > 0 &&
     captured !== PIECES.EMPTY &&
+    captured !== TELEPORT_CONST &&
     (move & MFLAGSWAP) === 0 &&
     (move & MFLAGSUMN) === 0 &&
     (move & MFLAGEP) === 0
@@ -768,7 +824,7 @@ export function TakeMove(wasDyadMove = false) {
   if (
     TOSQ(move) > 0 &&
     pieceEpsilon !== PIECES.EMPTY &&
-    ((move & MFLAGSHFT) === 0 || has5thDimensionSword) &&
+    (move & MFLAGSHFT) === 0 &&
     (move & MFLAGSUMN) === 0 &&
     (move & MFLAGSWAP) === 0
   ) {

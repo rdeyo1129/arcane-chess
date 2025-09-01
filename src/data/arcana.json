@@ -633,7 +633,7 @@
     "id": "modsDIM",
     "name": "5th Dimension Weaponry",
     "description": "",
-    "type": "passive",
+    "type": "inherent",
     "imagePath": "/modsDIM"
   },
   "moriDYA": {

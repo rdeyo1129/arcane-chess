@@ -204,6 +204,24 @@ const padModes = (modes: Record<string, GameModeType>) => {
 };
 
 export const modes: Record<string, GameModeType> = padModes({
+  shifttest: {
+    name: 'shift test',
+    white: {
+      arcana: [
+        arcana.shftP,
+        arcana.shftN,
+        arcana.shftB,
+        arcana.shftR,
+        arcana.shftA,
+        arcana.modsDIM,
+      ],
+      setup: 'RNBTKWSR',
+    },
+    black: {
+      arcana: [],
+      setup: 'rnbtkwsr',
+    },
+  },
   tutorial1: {
     name: 'Tutorial 1',
     white: {

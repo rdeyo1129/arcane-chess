@@ -227,7 +227,15 @@ export function addOfferingMove(move) {
   GameBoard.moveListStart[GameBoard.ply + 1]++;
 }
 
-export function AddWhitePawnCaptureMove(from, to, cap, flag, capturesOnly) {
+export function AddWhitePawnCaptureMove(
+  from,
+  to,
+  cap,
+  eps,
+  flag,
+  capturesOnly
+) {
+  AddQuietMove(MOVE(from, to, cap, eps, flag), capturesOnly);
   if (GameBoard.whiteArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_7) {
     AddCaptureMove(MOVE(from, to, cap, PIECES.wQ, flag), flag, capturesOnly);
     AddCaptureMove(MOVE(from, to, cap, PIECES.wT, flag), flag, capturesOnly);
@@ -256,7 +264,16 @@ export function AddWhitePawnCaptureMove(from, to, cap, flag, capturesOnly) {
   }
 }
 
-export function AddBlackPawnCaptureMove(from, to, cap, flag, capturesOnly) {
+export function AddBlackPawnCaptureMove(
+  from,
+  to,
+  cap,
+  eps,
+  flag,
+  capturesOnly
+) {
+  if (flag & MFLAGSHFT)
+    AddQuietMove(MOVE(from, to, cap, eps, flag), capturesOnly);
   if (GameBoard.blackArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_2) {
     AddCaptureMove(MOVE(from, to, cap, PIECES.bQ, flag), flag, capturesOnly);
     AddCaptureMove(MOVE(from, to, cap, PIECES.bT, flag), flag, capturesOnly);
@@ -285,7 +302,9 @@ export function AddBlackPawnCaptureMove(from, to, cap, flag, capturesOnly) {
   }
 }
 
-export function AddWhitePawnQuietMove(from, to, flag, capturesOnly) {
+export function AddWhitePawnQuietMove(from, to, eps, flag, capturesOnly) {
+  if (flag & MFLAGSHFT)
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, eps, flag), capturesOnly);
   if (GameBoard.whiteArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_7) {
     if (GameBoard.suspend > 0) return;
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wQ, flag), capturesOnly);
@@ -319,7 +338,9 @@ export function AddWhitePawnQuietMove(from, to, flag, capturesOnly) {
   }
 }
 
-export function AddBlackPawnQuietMove(from, to, flag, capturesOnly) {
+export function AddBlackPawnQuietMove(from, to, eps, flag, capturesOnly) {
+  if (flag & MFLAGSHFT)
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, eps, flag), capturesOnly);
   if (GameBoard.blackArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_2) {
     if (GameBoard.suspend > 0) return;
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bQ, flag), capturesOnly);
@@ -480,6 +501,7 @@ export function GenerateMoves(
 
   let currentArcanaSide =
     GameBoard.side === 0 ? GameBoard.whiteArcane : GameBoard.blackArcane;
+  let hasMyriadPath = currentArcanaSide[1] & 256;
 
   let has5thDimensionSword = currentArcanaSide[4] & 262144;
   let hasHermit = currentArcanaSide[4] & 1048576;
@@ -718,28 +740,34 @@ export function GenerateMoves(
     if (type2 === 'ADJ' || type2 === 'DEP') return;
 
     if (!herrings.length && (type2 === 'TELEPORT' || type2 === 'COMP')) {
-      if (
-        (GameBoard.side === COLOURS.WHITE && GameBoard.whiteArcane[1] & 16) ||
-        (GameBoard.side === COLOURS.BLACK && GameBoard.blackArcane[1] & 16)
-      ) {
+      const side = GameBoard.side;
+      const arcanaOK =
+        (side === COLOURS.WHITE && GameBoard.whiteArcane[1] & 16) ||
+        (side === COLOURS.BLACK && GameBoard.blackArcane[1] & 16);
+
+      if (arcanaOK) {
         const teleportSquares =
-          GameBoard.side === COLOURS.WHITE ? whiteTeleports : blackTeleports;
+          side === COLOURS.WHITE ? whiteTeleports : blackTeleports;
 
-        for (let pce = PIECES.wP; pce <= PIECES.bK; pce++) {
-          if (PieceCol[pce] !== GameBoard.side) continue;
+        // Allowed pieces by side: N, U, Z, B, R
+        const allowedPieces =
+          side === COLOURS.WHITE
+            ? [PIECES.wN, PIECES.wU, PIECES.wZ, PIECES.wB, PIECES.wR]
+            : [PIECES.bN, PIECES.bU, PIECES.bZ, PIECES.bB, PIECES.bR];
 
-          for (let pceNum = 0; pceNum < GameBoard.pceNum[pce]; pceNum++) {
-            const sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
-            teleportSquares.forEach((toSq) => {
+        for (const pce of allowedPieces) {
+          const count = GameBoard.pceNum[pce] || 0;
+          for (let idx = 0; idx < count; idx++) {
+            const fromSq = GameBoard.pList[PCEINDEX(pce, idx)];
+
+            for (const toSq of teleportSquares) {
               if (GameBoard.pieces[toSq] === PIECES.EMPTY) {
-                const promotionPiece =
-                  GameBoard.side === COLOURS.WHITE ? PIECES.wT : PIECES.bT;
                 AddQuietMove(
-                  MOVE(sq, toSq, PIECES.EMPTY, promotionPiece, MFLAGSHFT),
+                  MOVE(fromSq, toSq, 30, 0, MFLAGSHFT),
                   capturesOnly
                 );
               }
-            });
+            }
           }
         }
         return;
@@ -1223,7 +1251,13 @@ export function GenerateMoves(
         // note WHITE PAWN SHIFTS
         if (pawnCanShift) {
           if (GameBoard.pieces[sq - 1] === PIECES.EMPTY) {
-            AddWhitePawnQuietMove(sq, sq - 1, MFLAGSHFT, capturesOnly);
+            AddWhitePawnQuietMove(
+              sq,
+              sq - 1,
+              hasMyriadPath ? 30 : 1,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
           if (
             has5thDimensionSword &&
@@ -1233,13 +1267,20 @@ export function GenerateMoves(
               sq,
               sq - 1,
               GameBoard.pieces[sq - 1],
+              hasMyriadPath ? 30 : 1,
               MFLAGSHFT,
               capturesOnly
             );
           }
 
           if (GameBoard.pieces[sq + 1] === PIECES.EMPTY) {
-            AddWhitePawnQuietMove(sq, sq + 1, MFLAGSHFT, capturesOnly);
+            AddWhitePawnQuietMove(
+              sq,
+              sq + 1,
+              hasMyriadPath ? 30 : 1,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
           if (
             has5thDimensionSword &&
@@ -1249,13 +1290,20 @@ export function GenerateMoves(
               sq,
               sq + 1,
               GameBoard.pieces[sq + 1],
+              hasMyriadPath ? 30 : 1,
               MFLAGSHFT,
               capturesOnly
             );
           }
 
           if (GameBoard.pieces[sq - 10] === PIECES.EMPTY) {
-            AddWhitePawnQuietMove(sq, sq - 10, MFLAGSHFT, capturesOnly);
+            AddWhitePawnQuietMove(
+              sq,
+              sq - 10,
+              hasMyriadPath ? 30 : 1,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
           if (
             has5thDimensionSword &&
@@ -1265,6 +1313,7 @@ export function GenerateMoves(
               sq,
               sq - 10,
               GameBoard.pieces[sq - 10],
+              hasMyriadPath ? 30 : 1,
               MFLAGSHFT,
               capturesOnly
             );
@@ -1549,7 +1598,13 @@ export function GenerateMoves(
         // note BLACK PAWN SHIFTS
         if (pawnCanShift) {
           if (GameBoard.pieces[sq - 1] === PIECES.EMPTY) {
-            AddBlackPawnQuietMove(sq, sq - 1, MFLAGSHFT, capturesOnly);
+            AddBlackPawnQuietMove(
+              sq,
+              sq - 1,
+              hasMyriadPath ? 30 : 7,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
           if (
             has5thDimensionSword &&
@@ -1559,13 +1614,20 @@ export function GenerateMoves(
               sq,
               sq - 1,
               GameBoard.pieces[sq - 1],
+              hasMyriadPath ? 30 : 7,
               MFLAGSHFT,
               capturesOnly
             );
           }
 
           if (GameBoard.pieces[sq + 1] === PIECES.EMPTY) {
-            AddBlackPawnQuietMove(sq, sq + 1, MFLAGSHFT, capturesOnly);
+            AddBlackPawnQuietMove(
+              sq,
+              sq + 1,
+              hasMyriadPath ? 30 : 7,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
           if (
             has5thDimensionSword &&
@@ -1575,13 +1637,20 @@ export function GenerateMoves(
               sq,
               sq + 1,
               GameBoard.pieces[sq + 1],
+              hasMyriadPath ? 30 : 7,
               MFLAGSHFT,
               capturesOnly
             );
           }
 
           if (GameBoard.pieces[sq + 10] === PIECES.EMPTY) {
-            AddBlackPawnQuietMove(sq, sq + 10, MFLAGSHFT, capturesOnly);
+            AddBlackPawnQuietMove(
+              sq,
+              sq + 10,
+              hasMyriadPath ? 30 : 7,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
           if (
             has5thDimensionSword &&
@@ -1591,6 +1660,7 @@ export function GenerateMoves(
               sq,
               sq + 10,
               GameBoard.pieces[sq + 10],
+              hasMyriadPath ? 30 : 7,
               MFLAGSHFT,
               capturesOnly
             );
@@ -2325,17 +2395,29 @@ export function GenerateMoves(
         const canQuiet = !capturesOnly && !herrings.length;
         const herringSet = herrings.length && _.includes(herrings, t_sq);
 
+        // for eclipse
+        // how to add move
+        // captured === 31
+
         const runShift = (dirCount, getDir, canCapture = true) => {
           for (let i = 0; i < dirCount; i++) {
             const targetSq = sq + getDir(i);
             if (SQOFFBOARD(targetSq) === BOOL.TRUE) continue;
 
-            const p = pieces[targetSq];
+            const hasMyriadPath = currentArcanaSide[1] & 256;
 
-            if (p === PIECES.EMPTY) {
+            const targetPiece = pieces[targetSq];
+
+            if (targetPiece === PIECES.EMPTY) {
               if (canQuiet) {
                 AddQuietMove(
-                  MOVE(sq, targetSq, PIECES.EMPTY, PIECES.EMPTY, MFLAGSHFT),
+                  MOVE(
+                    sq,
+                    targetSq,
+                    PIECES.EMPTY,
+                    hasMyriadPath ? 30 : pce,
+                    MFLAGSHFT
+                  ),
                   capturesOnly
                 );
               }
@@ -2343,11 +2425,17 @@ export function GenerateMoves(
             if (
               canCapture &&
               has5thDimensionSword &&
-              PieceCol[p] !== side &&
+              PieceCol[targetPiece] !== side &&
               (!herringSet || herringSet.has(targetSq))
             ) {
               AddCaptureMove(
-                MOVE(sq, targetSq, p, PIECES.EMPTY, MFLAGSHFT),
+                MOVE(
+                  sq,
+                  targetSq,
+                  targetPiece,
+                  hasMyriadPath ? 30 : pce,
+                  MFLAGSHFT
+                ),
                 false,
                 capturesOnly
               );
@@ -2510,13 +2598,7 @@ export function GenerateMoves(
             t_sq += dir;
           }
 
-          const hasArcaneBit = (side, bit) =>
-            (side === COLOURS.WHITE
-              ? GameBoard.whiteArcane[1]
-              : GameBoard.blackArcane[1]) & bit;
-
           const moverPce = GameBoard.pieces[sq];
-          const moverSide = PieceCol[moverPce];
           const dyadOk =
             GameBoard.dyad === 0 ||
             GameBoard.dyad === 1 ||
@@ -2529,10 +2611,16 @@ export function GenerateMoves(
                 dyadOk &&
                 !herrings.length &&
                 GameBoard.pieces[shft_t_R_sq] === PIECES.EMPTY &&
-                hasArcaneBit(moverSide, /* rook bit */ 8)
+                rookCanShift
               ) {
                 AddQuietMove(
-                  MOVE(sq, shft_t_R_sq, PIECES.EMPTY, PIECES.EMPTY, MFLAGSHFT),
+                  MOVE(
+                    sq,
+                    shft_t_R_sq,
+                    PIECES.EMPTY,
+                    hasMyriadPath ? 30 : pce,
+                    MFLAGSHFT
+                  ),
                   capturesOnly
                 );
               }
@@ -2547,7 +2635,13 @@ export function GenerateMoves(
                 (!herrings.length || _.includes(herrings, shft_t_R_sq))
               ) {
                 AddCaptureMove(
-                  MOVE(sq, shft_t_R_sq, rTargetPce, PIECES.EMPTY, MFLAGSHFT),
+                  MOVE(
+                    sq,
+                    shft_t_R_sq,
+                    rTargetPce,
+                    hasMyriadPath ? 30 : pce,
+                    MFLAGSHFT
+                  ),
                   false,
                   capturesOnly
                 );
@@ -2563,10 +2657,16 @@ export function GenerateMoves(
                 dyadOk &&
                 !herrings.length &&
                 GameBoard.pieces[shft_t_B_sq] === PIECES.EMPTY &&
-                hasArcaneBit(moverSide, /* bishop bit */ 4)
+                bishopCanShift
               ) {
                 AddQuietMove(
-                  MOVE(sq, shft_t_B_sq, PIECES.EMPTY, PIECES.EMPTY, MFLAGSHFT),
+                  MOVE(
+                    sq,
+                    shft_t_B_sq,
+                    GameBoard.pieces[shft_t_B_sq],
+                    hasMyriadPath ? 30 : pce,
+                    MFLAGSHFT
+                  ),
                   capturesOnly
                 );
               }
@@ -2581,7 +2681,13 @@ export function GenerateMoves(
                 (!herrings.length || _.includes(herrings, shft_t_B_sq))
               ) {
                 AddCaptureMove(
-                  MOVE(sq, shft_t_B_sq, bTargetPce, PIECES.EMPTY, MFLAGSHFT),
+                  MOVE(
+                    sq,
+                    shft_t_B_sq,
+                    GameBoard.pieces[shft_t_B_sq],
+                    hasMyriadPath ? 30 : pce,
+                    MFLAGSHFT
+                  ),
                   false,
                   capturesOnly
                 );

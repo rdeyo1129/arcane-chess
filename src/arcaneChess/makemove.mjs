@@ -99,14 +99,99 @@ export function MovePiece(from, to) {
   }
 }
 
+const getPocketCaptureEpsilon = (move, side, captured) => {
+  if ((move & (MFLAGSWAP | MFLAGSUMN)) !== 0) return PIECES.EMPTY;
+  if ((move & MFLAGEP) !== 0) {
+    return side === COLOURS.WHITE ? PIECES.bP : PIECES.wP;
+  }
+  if ((move & MFLAGSHFT) !== 0 && captured === TELEPORT_CONST) {
+    return TELEPORT_CONST;
+  }
+
+  return captured;
+};
+
+const getSumnCaptureForRoyalty = (move, captured) => {
+  return (move & MFLAGSUMN) !== 0 ? captured : PIECES.EMPTY;
+};
+
+function sumnKeyFromMove(move) {
+  if ((move & MFLAGSUMN) === 0) return null;
+  const cap = CAPTURED(move);
+  const eps = PROMOTED(move);
+  if (cap > 0) {
+    const idx = royaltyIndexMapRestructure[cap];
+    const sym = RtyChar.split('')[idx];
+    return `sumnR${sym}`;
+  }
+  if (eps > 0) {
+    return `sumn${PceChar.charAt(eps).toUpperCase()}`;
+  }
+  return null;
+}
+
+function shiftKeyFromMove(move) {
+  if ((move & MFLAGSHFT) === 0) return null;
+
+  if (CAPTURED(move) === TELEPORT_CONST) return 'shftT';
+
+  switch (PROMOTED(move)) {
+    case PIECES.wP:
+    case PIECES.bP:
+      return 'shftP';
+    case PIECES.wB:
+    case PIECES.bB:
+      return 'shftB';
+    case PIECES.wR:
+    case PIECES.bR:
+      return 'shftR';
+    case PIECES.wN:
+    case PIECES.wZ:
+    case PIECES.wU:
+    case PIECES.bN:
+    case PIECES.bZ:
+    case PIECES.bU:
+      return 'shftN';
+    case PIECES.wS:
+    case PIECES.wW:
+    case PIECES.bS:
+    case PIECES.bW:
+      return 'shftG';
+    case EPSILON_MYRIAD_CONST:
+      return 'shftA';
+    default:
+      return null;
+  }
+}
+
 export function MakeMove(move, moveType = '') {
   let from = FROMSQ(move);
   let to = TOSQ(move);
   let side = GameBoard.side;
 
-  let currentArcanaSide =
-    GameBoard.side === 0 ? GameBoard.whiteArcane : GameBoard.blackArcane;
-  let has5thDimensionSword = currentArcanaSide[4] & 262144;
+  let captured = CAPTURED(move);
+  let pieceEpsilon = PROMOTED(move);
+
+  const isShift = (m) => (m & MFLAGSHFT) !== 0;
+  const isSwap = (m) => (m & MFLAGSWAP) !== 0;
+  const isSummon = (m) => (m & MFLAGSUMN) !== 0;
+
+  let promoEpsilon = !isShift(move) ? pieceEpsilon : PIECES.EMPTY;
+
+  // const pocketCap = getPocketCaptureEpsilon(move, side, captured);
+  const sumnCap = getSumnCaptureForRoyalty(move, captured);
+
+  const moverPiece = GameBoard.pieces[from];
+  const targetPieceAtTo = GameBoard.pieces[to];
+  // const isConsume = (move & MFLAGCNSM) !== 0;
+
+  if (
+    promoEpsilon !== PIECES.EMPTY &&
+    !isSummon(move) &&
+    PiecePawn[moverPiece] !== BOOL.TRUE
+  ) {
+    promoEpsilon = PIECES.EMPTY;
+  }
 
   GameBoard.history[GameBoard.hisPly].posKey = GameBoard.posKey;
   GameBoard.history[GameBoard.hisPly].dyad = GameBoard.dyad;
@@ -120,11 +205,25 @@ export function MakeMove(move, moveType = '') {
   const getBlackKingRookPos = _.lastIndexOf(GameBoard.pieces, 10);
   const getBlackQueenRookPos = _.indexOf(GameBoard.pieces, 10, 92);
 
-  if ((move & MFLAGEP) !== 0) {
-    if (side === COLOURS.WHITE) {
-      ClearPiece(to - 10);
-    } else {
-      ClearPiece(to + 10);
+  if (move & MFLAGEP) {
+    // actually remove the pawn that was captured en passant
+    if (side === COLOURS.WHITE) ClearPiece(to - 10);
+    else ClearPiece(to + 10);
+
+    GameBoard.fiftyMove = 0;
+
+    // pocket credit (+1)
+    const epPocket = getPocketCaptureEpsilon(move, side, captured);
+    if (
+      GameBoard.crazyHouse[side] &&
+      epPocket !== PIECES.EMPTY &&
+      epPocket !== TELEPORT_CONST &&
+      PieceCol[epPocket] !== side
+    ) {
+      const key = `sumn${PceChar.charAt(epPocket).toUpperCase()}`;
+      const cfg =
+        side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+      cfg[key] = (cfg[key] ?? 0) + 1;
     }
   } else if ((move & MFLAGCA) !== 0) {
     // if black casts randomize on white
@@ -225,15 +324,14 @@ export function MakeMove(move, moveType = '') {
 
   HASH_CA();
 
-  let captured = CAPTURED(move);
-  let pieceEpsilon = PROMOTED(move);
-
   const isPassMove =
-    TOSQ(move) === 0 &&
     FROMSQ(move) === 0 &&
-    captured === 0 &&
-    pieceEpsilon === 31 &&
-    ARCANEFLAG(move) === 0;
+    TOSQ(move) === 0 &&
+    CAPTURED(move) === 0 &&
+    (move &
+      (MFLAGSHFT | MFLAGSUMN | MFLAGSWAP | MFLAGEP | MFLAGCA | MFLAGPS)) ===
+      0 &&
+    promoEpsilon === 31;
 
   GameBoard.fiftyMove++;
 
@@ -257,41 +355,6 @@ export function MakeMove(move, moveType = '') {
     }
 
     return BOOL.TRUE;
-  }
-
-  if (
-    TOSQ(move) > 0 &&
-    captured !== PIECES.EMPTY &&
-    captured !== TELEPORT_CONST &&
-    (move & MFLAGSWAP) === 0 &&
-    (move & MFLAGSUMN) === 0 &&
-    (move & MFLAGEP) === 0
-  ) {
-    ClearPiece(to);
-    GameBoard.fiftyMove = 0;
-    if (GameBoard.crazyHouse[GameBoard.side]) {
-      if (GameBoard.side === COLOURS.WHITE) {
-        if (
-          !whiteArcaneConfig[`sumn${PceChar.split('')[captured].toUpperCase()}`]
-        )
-          whiteArcaneConfig[
-            `sumn${PceChar.split('')[captured].toUpperCase()}`
-          ] = 0;
-        whiteArcaneConfig[
-          `sumn${PceChar.split('')[captured].toUpperCase()}`
-        ] += 1;
-      } else {
-        if (
-          !blackArcaneConfig[`sumn${PceChar.split('')[captured].toUpperCase()}`]
-        )
-          blackArcaneConfig[
-            `sumn${PceChar.split('')[captured].toUpperCase()}`
-          ] = 0;
-        blackArcaneConfig[
-          `sumn${PceChar.split('')[captured].toUpperCase()}`
-        ] += 1;
-      }
-    }
   }
 
   if (PiecePawn[GameBoard.pieces[from]] === BOOL.TRUE) {
@@ -318,12 +381,35 @@ export function MakeMove(move, moveType = '') {
     }
   }
 
-  if (TOSQ(move) > 0 && move & MFLAGSHFT && has5thDimensionSword) {
-    // ClearPiece(to);
+  // NORMAL CAPTURE (not SWAP/SUMN/EP/teleport sentinel)
+  const isNormalCapture =
+    to > 0 &&
+    (move & (MFLAGSWAP | MFLAGSUMN | MFLAGEP)) === 0 &&
+    targetPieceAtTo !== PIECES.EMPTY &&
+    targetPieceAtTo !== TELEPORT_CONST &&
+    PieceCol[targetPieceAtTo] !== side;
+
+  if (isNormalCapture) {
+    ClearPiece(to);
+    GameBoard.fiftyMove = 0;
+
+    const pocketCapNow = getPocketCaptureEpsilon(move, side, captured);
+    if (
+      GameBoard.crazyHouse[side] &&
+      pocketCapNow !== PIECES.EMPTY &&
+      pocketCapNow !== TELEPORT_CONST &&
+      PieceCol[pocketCapNow] !== side
+    ) {
+      const key = `sumn${PceChar.charAt(pocketCapNow).toUpperCase()}`;
+      const cfg =
+        side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+      cfg[key] = (cfg[key] ?? 0) + 1;
+    }
   }
 
   if (
-    (TOSQ(move) > 0 || CAPTURED(move) === TELEPORT_CONST) /* eclipse here */ &&
+    (move & MFLAGSUMN) === 0 &&
+    (TOSQ(move) > 0 || CAPTURED(move) === TELEPORT_CONST) &&
     (ARCANEFLAG(move) === 0 ||
       move & MFLAGCNSM ||
       move & MFLAGSHFT ||
@@ -340,137 +426,78 @@ export function MakeMove(move, moveType = '') {
     }
   }
 
-  console.log({ move, pieceEpsilon, captured }, 'make move', GameBoard.pieces);
-
-  if (
-    TOSQ(move) > 0 &&
-    ARCANEFLAG(move) &&
-    move & MFLAGSHFT &&
-    CAPTURED(move) !== 30
-  ) {
-    let shiftType = PceChar.split('')[GameBoard.pieces[to]].toUpperCase();
-
-    if (shiftType === 'N' || shiftType === 'Z' || shiftType === 'U')
-      shiftType = 'N';
-    if (shiftType === 'S' || shiftType === 'W') shiftType = 'G';
-
-    if (pieceEpsilon === EPSILON_MYRIAD_CONST) {
-      shiftType = 'A';
+  if (TOSQ(move) > 0 && move & MFLAGSUMN) {
+    // SUMN path only
+    if (captured === 6) {
+      // file bind
+      const onesDigit = to % 10;
+      _.times(8, (i) => {
+        const rank = (i + 2) * 10;
+        const square = rank + onesDigit;
+        if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
+        if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
+        if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
+        if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+        GameBoard.royaltyE[square] = 7;
+      });
+    } else if (captured === 7) {
+      // rank bind
+      const tensDigit = Math.floor(to / 10) * 10;
+      _.times(8, (i) => {
+        const onesDigit = i + 1;
+        const square = tensDigit + onesDigit;
+        if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
+        if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
+        if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
+        if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+        GameBoard.royaltyE[square] = 7;
+      });
+    } else if (captured === 8) {
+      const tombSquare = [-11, -10, -9, -1, 0, 1, 9, 10, 11];
+      _.forEach(tombSquare, (offset) => {
+        const sq = to + offset;
+        if (GameBoard.royaltyQ[sq] > 0) GameBoard.royaltyQ[sq] = 0;
+        if (GameBoard.royaltyT[sq] > 0) GameBoard.royaltyT[sq] = 0;
+        if (GameBoard.royaltyM[sq] > 0) GameBoard.royaltyM[sq] = 0;
+        if (GameBoard.royaltyV[sq] > 0) GameBoard.royaltyV[sq] = 0;
+        if (GameBoard.pieces[sq] === PIECES.EXILE) return;
+        GameBoard.royaltyE[sq] = 7;
+      });
+    } else if (sumnCap > 0) {
+      const idx = royaltyIndexMapRestructure[sumnCap];
+      const sym = RtyChar.split('')[idx];
+      const map = GameBoard[`royalty${sym}`];
+      if (map && (map[to] === undefined || map[to] <= 0)) map[to] = 7;
+    } else if (promoEpsilon > 0) {
+      AddPiece(to, promoEpsilon, true);
     }
-
+  }
+  if (TOSQ(move) > 0 && move & MFLAGSWAP) {
+    const fromPiece = GameBoard.pieces[from];
+    // const toPiece = GameBoard.pieces[to];
+    ClearPiece(from);
+    MovePiece(to, from);
+    AddPiece(to, fromPiece);
+    const swapType = isSwap(move) ? pieceEpsilon : PIECES.EMPTY;
     if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig[`shft${shiftType}`] -= 1;
+      if (swapType === ARCANE_BIT_VALUES.DEP) whiteArcaneConfig.swapDEP -= 1;
+      if (swapType === ARCANE_BIT_VALUES.ADJ) whiteArcaneConfig.swapADJ -= 1;
     } else {
-      blackArcaneConfig[`shft${shiftType}`] -= 1;
+      if (swapType === ARCANE_BIT_VALUES.DEP) blackArcaneConfig.swapDEP -= 1;
+      if (swapType === ARCANE_BIT_VALUES.ADJ) blackArcaneConfig.swapADJ -= 1;
     }
   }
 
-  if (
-    TOSQ(move) > 0 &&
-    pieceEpsilon !== PIECES.EMPTY &&
-    (move & MFLAGSHFT) === 0 &&
-    (move & MFLAGSUMN) === 0 &&
-    (ARCANEFLAG(move) === 0 || move & MFLAGCNSM)
-  ) {
-    ClearPiece(to);
-    AddPiece(to, pieceEpsilon);
-  } else if (TOSQ(move) > 0 && move & MFLAGSUMN) {
-    if (captured > 0) {
-      if (captured === 6) {
-        // file bind
-        let onesDigit = to % 10;
-        _.times(8, (i) => {
-          const rank = (i + 2) * 10;
-          const square = rank + onesDigit;
-          if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
-          if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
-          if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
-          if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
-          GameBoard.royaltyE[square] = 7;
-        });
-      } else if (captured === 7) {
-        // rank bind
-        const tensDigit = Math.floor(to / 10) * 10;
-        _.times(8, (i) => {
-          // i aligns with a file ones spot each time
-          const onesDigit = i + 1;
-          const square = tensDigit + onesDigit;
-          if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
-          if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
-          if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
-          if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
-          GameBoard.royaltyE[square] = 7;
-        });
-      } else if (captured === 8) {
-        const tombSquare = [-11, -10, -9, -1, 0, 1, 9, 10, 11];
-        _.forEach(tombSquare, (offset) => {
-          const sq = TOSQ(move) + offset;
-          if (GameBoard.royaltyQ[sq] > 0) GameBoard.royaltyQ[sq] = 0;
-          if (GameBoard.royaltyT[sq] > 0) GameBoard.royaltyT[sq] = 0;
-          if (GameBoard.royaltyM[sq] > 0) GameBoard.royaltyM[sq] = 0;
-          if (GameBoard.royaltyV[sq] > 0) GameBoard.royaltyV[sq] = 0;
-          if (GameBoard.pieces[sq] === PIECES.EXILE) return;
-          GameBoard.royaltyE[sq] = 7;
-        });
-      } else if (
-        GameBoard[
-          `royalty${RtyChar.split('')[royaltyIndexMapRestructure[captured]]}`
-        ][to] === undefined ||
-        GameBoard[
-          `royalty${RtyChar.split('')[royaltyIndexMapRestructure[captured]]}`
-        ][to] <= 0
-      ) {
-        GameBoard[
-          `royalty${RtyChar.split('')[royaltyIndexMapRestructure[captured]]}`
-        ][to] = 7;
-      }
-    } else if (pieceEpsilon > 0) {
-      AddPiece(to, pieceEpsilon, true);
-    }
-    if (GameBoard.side === COLOURS.WHITE) {
-      if (pieceEpsilon > 0 || captured > 0) {
-        whiteArcaneConfig[
-          `sumn${captured > 0 ? 'R' : ''}${
-            captured > 0
-              ? RtyChar.split('')[royaltyIndexMapRestructure[captured]]
-              : PceChar.split('')[pieceEpsilon].toUpperCase()
-          }`
-        ] -= 1;
-      }
-    } else {
-      if (pieceEpsilon > 0 || captured > 0) {
-        blackArcaneConfig[
-          `sumn${captured > 0 ? 'R' : ''}${
-            captured > 0
-              ? RtyChar.split('')[royaltyIndexMapRestructure[captured]]
-              : PceChar.split('')[pieceEpsilon].toUpperCase()
-          }`
-        ] -= 1;
-      }
-    }
-  } else if (TOSQ(move) > 0 && move & MFLAGSWAP) {
-    ClearPiece(to);
-    MovePiece(from, to);
-    AddPiece(from, captured);
-    if (GameBoard.side === COLOURS.WHITE) {
-      if (pieceEpsilon === ARCANE_BIT_VALUES.DEP) {
-        whiteArcaneConfig.swapDEP -= 1;
-      }
-      if (pieceEpsilon === ARCANE_BIT_VALUES.ADJ) {
-        whiteArcaneConfig.swapADJ -= 1;
-      }
-    } else {
-      if (pieceEpsilon === ARCANE_BIT_VALUES.DEP) {
-        blackArcaneConfig.swapDEP -= 1;
-      }
-      if (pieceEpsilon === ARCANE_BIT_VALUES.ADJ) {
-        blackArcaneConfig.swapADJ -= 1;
-      }
-    }
-  }
+  const cfg = side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+
+  const sKey = sumnKeyFromMove(move);
+  if (sKey) cfg[sKey] = (cfg[sKey] ?? 0) - 1;
+
+  const shKey = shiftKeyFromMove(move);
+  if (shKey) cfg[shKey] = (cfg[shKey] ?? 0) - 1;
 
   // should only ever be offering moves
-  else if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
+  if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
     const promoted = PROMOTED(move);
     // summon arcana being given
     const whitePieceToOfferings = {
@@ -669,7 +696,20 @@ export function TakeMove(wasDyadMove = false) {
   let move = GameBoard.history[GameBoard.hisPly].move;
   let from = FROMSQ(move);
   let to = TOSQ(move);
-  // let swapPiece = GameBoard.pieces[to];
+  let captured = CAPTURED(move);
+  let pieceEpsilon = PROMOTED(move);
+
+  const isShift = (m) => (m & MFLAGSHFT) !== 0;
+  const isSummon = (m) => (m & MFLAGSUMN) !== 0;
+  const isSwap = (m) => (m & MFLAGSWAP) !== 0;
+  const promoEpsilon = !isShift(move) ? pieceEpsilon : PIECES.EMPTY;
+
+  const cfg =
+    GameBoard.side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+  const sKey = sumnKeyFromMove(move);
+  if (sKey) cfg[sKey] = (cfg[sKey] ?? 0) + 1;
+  const shKey = shiftKeyFromMove(move);
+  if (shKey) cfg[shKey] = (cfg[shKey] ?? 0) + 1;
 
   if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
   HASH_CA();
@@ -695,15 +735,14 @@ export function TakeMove(wasDyadMove = false) {
   GameBoard.royaltyV = { ...GameBoard.history[GameBoard.hisPly].royaltyV };
   GameBoard.royaltyE = { ...GameBoard.history[GameBoard.hisPly].royaltyE };
 
-  let captured = CAPTURED(move);
-  let pieceEpsilon = PROMOTED(move);
-
   const isPassMove =
-    TOSQ(move) === 0 &&
     FROMSQ(move) === 0 &&
-    captured === 0 &&
-    pieceEpsilon === 31 &&
-    ARCANEFLAG(move) === 0;
+    TOSQ(move) === 0 &&
+    CAPTURED(move) === 0 &&
+    (move &
+      (MFLAGSHFT | MFLAGSUMN | MFLAGSWAP | MFLAGEP | MFLAGCA | MFLAGPS)) ===
+      0 &&
+    promoEpsilon === 31;
 
   if (isPassMove) {
     if (GameBoard.side === COLOURS.WHITE) {
@@ -723,42 +762,21 @@ export function TakeMove(wasDyadMove = false) {
     }
   }
 
-  console.log(
-    { move, pieceEpsilon, captured },
-    'take move',
-    GameBoard.pieces,
-    to
-  );
-
-  if (
-    TOSQ(move) > 0 &&
-    ARCANEFLAG(move) &&
-    move & MFLAGSHFT &&
-    CAPTURED(move) !== TELEPORT_CONST
-  ) {
-    let shiftType = PceChar.split('')[GameBoard.pieces[to]].toUpperCase();
-
-    if (shiftType === 'N' || shiftType === 'Z' || shiftType === 'U')
-      shiftType = 'N';
-    if (shiftType === 'S' || shiftType === 'W') shiftType = 'G';
-
-    // for myriad
-    if (pieceEpsilon === EPSILON_MYRIAD_CONST) {
-      shiftType = 'A';
-    }
-
-    if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig[`shft${shiftType}`] += 1;
-    } else {
-      blackArcaneConfig[`shft${shiftType}`] += 1;
-    }
-  }
-
-  if ((MFLAGEP & move) !== 0) {
-    if (GameBoard.side === COLOURS.WHITE) {
-      AddPiece(to - 10, PIECES.bP);
-    } else {
-      AddPiece(to + 10, PIECES.wP);
+  if (move & MFLAGEP) {
+    // you already AddPiece(to±10, pawn) above
+    const epPocket = getPocketCaptureEpsilon(move, GameBoard.side, captured);
+    if (
+      GameBoard.crazyHouse[GameBoard.side] &&
+      epPocket !== PIECES.EMPTY &&
+      epPocket !== TELEPORT_CONST &&
+      PieceCol[epPocket] !== GameBoard.side
+    ) {
+      const key = `sumn${PceChar.charAt(epPocket).toUpperCase()}`;
+      const cfg =
+        GameBoard.side === COLOURS.WHITE
+          ? whiteArcaneConfig
+          : blackArcaneConfig;
+      cfg[key] = (cfg[key] ?? 0) - 1;
     }
   } else if ((MFLAGCA & move) !== 0) {
     // get original rook positions? todo randomize
@@ -781,15 +799,8 @@ export function TakeMove(wasDyadMove = false) {
     }
   }
 
-  if (CAPTURED(move) === TELEPORT_CONST && move & MFLAGSHFT) {
-    if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig[`shftT`] += 1;
-    } else {
-      blackArcaneConfig[`shftT`] += 1;
-    }
-  }
-
   if (
+    (move & MFLAGSUMN) === 0 &&
     (TOSQ(move) > 0 || CAPTURED(move) === TELEPORT_CONST) &&
     (ARCANEFLAG(move) === 0 ||
       move & MFLAGCNSM ||
@@ -800,83 +811,61 @@ export function TakeMove(wasDyadMove = false) {
   }
 
   if (
-    TOSQ(move) > 0 &&
+    to > 0 &&
     captured !== PIECES.EMPTY &&
     captured !== TELEPORT_CONST &&
-    (move & MFLAGSWAP) === 0 &&
-    (move & MFLAGSUMN) === 0 &&
-    (move & MFLAGEP) === 0
+    (move & (MFLAGSWAP | MFLAGSUMN | MFLAGEP)) === 0
   ) {
     AddPiece(to, captured);
-    if (GameBoard.crazyHouse[GameBoard.side]) {
-      if (GameBoard.side === COLOURS.WHITE) {
-        whiteArcaneConfig[
-          `sumn${PceChar.split('')[captured].toUpperCase()}`
-        ] -= 1;
-      } else {
-        blackArcaneConfig[
-          `sumn${PceChar.split('')[captured].toUpperCase()}`
-        ] -= 1;
-      }
+    const pocketCap = getPocketCaptureEpsilon(move, GameBoard.side, captured);
+    if (
+      GameBoard.crazyHouse[GameBoard.side] &&
+      pocketCap !== PIECES.EMPTY &&
+      pocketCap !== TELEPORT_CONST &&
+      PieceCol[pocketCap] !== GameBoard.side
+    ) {
+      const key = `sumn${PceChar.charAt(pocketCap).toUpperCase()}`;
+      const cfg =
+        GameBoard.side === COLOURS.WHITE
+          ? whiteArcaneConfig
+          : blackArcaneConfig;
+      cfg[key] = (cfg[key] ?? 0) - 1;
     }
   }
 
   if (
     TOSQ(move) > 0 &&
-    pieceEpsilon !== PIECES.EMPTY &&
-    (move & MFLAGSHFT) === 0 &&
-    (move & MFLAGSUMN) === 0 &&
-    (move & MFLAGSWAP) === 0
+    promoEpsilon !== PIECES.EMPTY &&
+    !isShift(move) &&
+    !isSummon(move) &&
+    !isSwap(move)
   ) {
-    ClearPiece(from);
-    AddPiece(
-      from,
-      PieceCol[pieceEpsilon] === COLOURS.WHITE ? PIECES.wP : PIECES.bP
-    );
+    const L = PceChar.charAt(promoEpsilon).toUpperCase();
+    const expectedPromo =
+      GameBoard.side === COLOURS.WHITE ? PIECES[`w${L}`] : PIECES[`b${L}`];
+
+    if (GameBoard.pieces[from] === expectedPromo) {
+      ClearPiece(from);
+      AddPiece(from, GameBoard.side === COLOURS.WHITE ? PIECES.wP : PIECES.bP);
+    }
   } else if (TOSQ(move) > 0 && move & MFLAGSUMN) {
-    if (pieceEpsilon > 0) {
+    if (promoEpsilon > 0) {
       ClearPiece(to, true);
     }
-    if (GameBoard.side === COLOURS.WHITE) {
-      if (pieceEpsilon > 0 || captured > 0) {
-        whiteArcaneConfig[
-          `sumn${captured > 0 ? 'R' : ''}${
-            captured > 0
-              ? RtyChar.split('')[royaltyIndexMapRestructure[captured]]
-              : PceChar.split('')[pieceEpsilon].toUpperCase()
-          }`
-        ] += 1;
-      }
-    } else {
-      if (pieceEpsilon > 0 || captured > 0) {
-        blackArcaneConfig[
-          `sumn${captured > 0 ? 'R' : ''}${
-            captured > 0
-              ? RtyChar.split('')[royaltyIndexMapRestructure[captured]]
-              : PceChar.split('')[pieceEpsilon].toUpperCase()
-          }`
-        ] += 1;
-      }
-    }
   } else if (TOSQ(move) > 0 && move & MFLAGSWAP) {
-    const swapType = PROMOTED(move);
+    const putBack = GameBoard.pieces[from];
+
     ClearPiece(from);
     MovePiece(to, from);
-    AddPiece(to, captured);
+    AddPiece(to, putBack);
+
+    const swapType = isSwap(move) ? pieceEpsilon : PIECES.EMPTY;
     if (GameBoard.side === COLOURS.WHITE) {
-      if (swapType === ARCANE_BIT_VALUES.DEP) {
-        whiteArcaneConfig.swapDEP += 1;
-      }
-      if (swapType === ARCANE_BIT_VALUES.ADJ) {
-        whiteArcaneConfig.swapADJ += 1;
-      }
+      if (swapType === ARCANE_BIT_VALUES.DEP) whiteArcaneConfig.swapDEP += 1;
+      if (swapType === ARCANE_BIT_VALUES.ADJ) whiteArcaneConfig.swapADJ += 1;
     } else {
-      if (swapType === ARCANE_BIT_VALUES.DEP) {
-        blackArcaneConfig.swapDEP += 1;
-      }
-      if (swapType === ARCANE_BIT_VALUES.ADJ) {
-        blackArcaneConfig.swapADJ += 1;
-      }
+      if (swapType === ARCANE_BIT_VALUES.DEP) blackArcaneConfig.swapDEP += 1;
+      if (swapType === ARCANE_BIT_VALUES.ADJ) blackArcaneConfig.swapADJ += 1;
     }
   }
 

@@ -65,6 +65,8 @@ import {
 import { MakeMove, TakeMove } from './makemove';
 import { validMoves } from './gui.mjs';
 
+const EPSILON_MYRIAD_CONST = 30;
+
 const MvvLvaValue = [
   0, 100, 500, 600, 700, 1200, 1400, 100, 500, 600, 700, 1200, 1400, 0, 900,
   200, 1100, 1000, 1300, 900, 200, 1100, 1000, 1300, 400, 300, 400, 300, 800,
@@ -2393,7 +2395,6 @@ export function GenerateMoves(
           (pce === PIECES.wW || pce === PIECES.bW);
 
         const canQuiet = !capturesOnly && !herrings.length;
-        const herringSet = herrings.length && _.includes(herrings, t_sq);
 
         // for eclipse
         // how to add move
@@ -2404,36 +2405,44 @@ export function GenerateMoves(
             const targetSq = sq + getDir(i);
             if (SQOFFBOARD(targetSq) === BOOL.TRUE) continue;
 
-            const hasMyriadPath = currentArcanaSide[1] & 256;
-
+            const hasMyriadPath = (currentArcanaSide[1] & 256) !== 0;
             const targetPiece = pieces[targetSq];
 
+            // Your array-based herring filter (allow all if none provided)
+            const herringAllowed =
+              !herrings.length ||
+              (herrings.length && _.includes(herrings, targetSq));
+
+            // QUIET shift only if empty
             if (targetPiece === PIECES.EMPTY) {
-              if (canQuiet) {
+              if (canQuiet && herringAllowed) {
                 AddQuietMove(
                   MOVE(
                     sq,
                     targetSq,
                     PIECES.EMPTY,
-                    hasMyriadPath ? 30 : pce,
+                    hasMyriadPath ? EPSILON_MYRIAD_CONST : pce,
                     MFLAGSHFT
                   ),
                   capturesOnly
                 );
               }
+              continue; // don’t also consider capture on the same empty square
             }
+
+            // CAPTURE shift only if enemy present
             if (
               canCapture &&
               has5thDimensionSword &&
               PieceCol[targetPiece] !== side &&
-              (!herringSet || herringSet.has(targetSq))
+              herringAllowed
             ) {
               AddCaptureMove(
                 MOVE(
                   sq,
                   targetSq,
                   targetPiece,
-                  hasMyriadPath ? 30 : pce,
+                  hasMyriadPath ? EPSILON_MYRIAD_CONST : pce,
                   MFLAGSHFT
                 ),
                 false,

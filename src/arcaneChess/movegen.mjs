@@ -1233,7 +1233,7 @@ export function GenerateMoves(
       ) {
         // NORMAL PAWN MOVES
         if (GameBoard.pieces[sq + 10] === PIECES.EMPTY) {
-          AddWhitePawnQuietMove(sq, sq + 10, 0, capturesOnly);
+          AddWhitePawnQuietMove(sq, sq + 10, 0, 0, capturesOnly);
         }
         if (
           (GameBoard.pieces[sq + 10] === PIECES.EMPTY &&
@@ -1263,7 +1263,8 @@ export function GenerateMoves(
           }
           if (
             has5thDimensionSword &&
-            PieceCol[GameBoard.pieces[sq - 1]] === COLOURS.BLACK
+            (PieceCol[GameBoard.pieces[sq - 1]] === COLOURS.BLACK ||
+              GameBoard.pieces[sq - 1] === PIECES.EXILE)
           ) {
             AddWhitePawnCaptureMove(
               sq,
@@ -1286,7 +1287,8 @@ export function GenerateMoves(
           }
           if (
             has5thDimensionSword &&
-            PieceCol[GameBoard.pieces[sq + 1]] === COLOURS.BLACK
+            (PieceCol[GameBoard.pieces[sq + 1]] === COLOURS.BLACK ||
+              GameBoard.pieces[sq + 1] === PIECES.EXILE)
           ) {
             AddWhitePawnCaptureMove(
               sq,
@@ -1309,7 +1311,8 @@ export function GenerateMoves(
           }
           if (
             has5thDimensionSword &&
-            PieceCol[GameBoard.pieces[sq - 10]] === COLOURS.BLACK
+            (PieceCol[GameBoard.pieces[sq - 10]] === COLOURS.BLACK ||
+              GameBoard.pieces[sq - 10] === PIECES.EXILE)
           ) {
             AddWhitePawnCaptureMove(
               sq,
@@ -1337,7 +1340,8 @@ export function GenerateMoves(
             sq,
             sq + 9,
             GameBoard.pieces[sq + 9],
-            false,
+            0,
+            0,
             capturesOnly
           );
         }
@@ -1351,7 +1355,8 @@ export function GenerateMoves(
             sq,
             sq + 9,
             GameBoard.pieces[sq + 9],
-            true,
+            0,
+            MFLAGCNSM,
             capturesOnly
           );
         }
@@ -1370,7 +1375,8 @@ export function GenerateMoves(
             sq,
             sq + 11,
             GameBoard.pieces[sq + 11],
-            false,
+            0,
+            0,
             capturesOnly
           );
         }
@@ -1384,7 +1390,8 @@ export function GenerateMoves(
             sq,
             sq + 11,
             GameBoard.pieces[sq + 11],
-            true,
+            0,
+            MFLAGCNSM,
             capturesOnly
           );
         }
@@ -1580,7 +1587,7 @@ export function GenerateMoves(
       ) {
         // NORMAL PAWN MOVES
         if (GameBoard.pieces[sq - 10] === PIECES.EMPTY) {
-          AddBlackPawnQuietMove(sq, sq - 10, 0, capturesOnly);
+          AddBlackPawnQuietMove(sq, sq - 10, 0, 0, capturesOnly);
         }
         if (
           (GameBoard.pieces[sq - 10] === PIECES.EMPTY &&
@@ -1610,7 +1617,8 @@ export function GenerateMoves(
           }
           if (
             has5thDimensionSword &&
-            PieceCol[GameBoard.pieces[sq - 1]] === COLOURS.WHITE
+            (PieceCol[GameBoard.pieces[sq - 1]] === COLOURS.WHITE ||
+              GameBoard.pieces[sq - 1] === PIECES.EXILE)
           ) {
             AddBlackPawnCaptureMove(
               sq,
@@ -1633,7 +1641,8 @@ export function GenerateMoves(
           }
           if (
             has5thDimensionSword &&
-            PieceCol[GameBoard.pieces[sq + 1]] === COLOURS.WHITE
+            (PieceCol[GameBoard.pieces[sq + 1]] === COLOURS.WHITE ||
+              GameBoard.pieces[sq + 1] === PIECES.EXILE)
           ) {
             AddBlackPawnCaptureMove(
               sq,
@@ -1656,7 +1665,8 @@ export function GenerateMoves(
           }
           if (
             has5thDimensionSword &&
-            PieceCol[GameBoard.pieces[sq + 10]] === COLOURS.WHITE
+            (PieceCol[GameBoard.pieces[sq + 10]] === COLOURS.WHITE ||
+              GameBoard.pieces[sq + 10] === PIECES.EXILE)
           ) {
             AddBlackPawnCaptureMove(
               sq,
@@ -1684,7 +1694,8 @@ export function GenerateMoves(
             sq,
             sq - 9,
             GameBoard.pieces[sq - 9],
-            false,
+            0,
+            0,
             capturesOnly
           );
         }
@@ -1698,7 +1709,8 @@ export function GenerateMoves(
             sq,
             sq - 9,
             GameBoard.pieces[sq - 9],
-            true,
+            0,
+            MFLAGCNSM,
             capturesOnly
           );
         }
@@ -1716,7 +1728,8 @@ export function GenerateMoves(
             sq,
             sq - 11,
             GameBoard.pieces[sq - 11],
-            false,
+            0,
+            0,
             capturesOnly
           );
         }
@@ -1730,7 +1743,8 @@ export function GenerateMoves(
             sq,
             sq - 11,
             GameBoard.pieces[sq - 11],
-            true,
+            0,
+            MFLAGCNSM,
             capturesOnly
           );
         }
@@ -2434,6 +2448,7 @@ export function GenerateMoves(
             if (
               canCapture &&
               has5thDimensionSword &&
+              GameBoard.pieces[targetSq] !== PIECES.EMPTY &&
               PieceCol[targetPiece] !== side &&
               herringAllowed
             ) {
@@ -2640,6 +2655,7 @@ export function GenerateMoves(
                 rTargetPce !== PIECES.EMPTY &&
                 PieceCol[rTargetPce] !== GameBoard.side &&
                 has5thDimensionSword &&
+                GameBoard.pieces[t_sq] !== PIECES.EMPTY &&
                 rookCanShift &&
                 (!herrings.length || _.includes(herrings, shft_t_R_sq))
               ) {
@@ -2686,6 +2702,7 @@ export function GenerateMoves(
                 bTargetPce !== PIECES.EMPTY &&
                 PieceCol[bTargetPce] !== GameBoard.side &&
                 has5thDimensionSword &&
+                GameBoard.pieces[t_sq] !== PIECES.EMPTY &&
                 bishopCanShift &&
                 (!herrings.length || _.includes(herrings, shft_t_B_sq))
               ) {

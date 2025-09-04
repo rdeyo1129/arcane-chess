@@ -38,9 +38,11 @@ import {
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
 const royaltyIndexMapRestructure = [0, 30, 31, 32, 33, 34, 35, 36, 37];
+
 const TELEPORT_CONST = 30;
 const EPSILON_MYRIAD_CONST = 30;
 // const EPSILON_ECLIPSE_CONST = 31;
+// skip turn = 31 promo?
 
 export function ClearPiece(sq, summon = false) {
   let pce = GameBoard.pieces[sq];
@@ -175,15 +177,19 @@ export function MakeMove(move, moveType = '') {
   const isShift = (m) => (m & MFLAGSHFT) !== 0;
   const isSwap = (m) => (m & MFLAGSWAP) !== 0;
   const isSummon = (m) => (m & MFLAGSUMN) !== 0;
+  const isEp = (m) => (m & MFLAGEP) !== 0;
+  const isConsume = (move & MFLAGCNSM) !== 0;
 
   let promoEpsilon = !isShift(move) ? pieceEpsilon : PIECES.EMPTY;
 
-  // const pocketCap = getPocketCaptureEpsilon(move, side, captured);
   const sumnCap = getSumnCaptureForRoyalty(move, captured);
 
   const moverPiece = GameBoard.pieces[from];
   const targetPieceAtTo = GameBoard.pieces[to];
-  // const isConsume = (move & MFLAGCNSM) !== 0;
+
+  if (promoEpsilon === 31 && (from !== 0 || to !== 0)) {
+    promoEpsilon = PIECES.EMPTY;
+  }
 
   if (
     promoEpsilon !== PIECES.EMPTY &&
@@ -206,24 +212,30 @@ export function MakeMove(move, moveType = '') {
   const getBlackQueenRookPos = _.indexOf(GameBoard.pieces, 10, 92);
 
   if (move & MFLAGEP) {
-    // actually remove the pawn that was captured en passant
-    if (side === COLOURS.WHITE) ClearPiece(to - 10);
-    else ClearPiece(to + 10);
+    const epSq = side === COLOURS.WHITE ? to - 10 : to + 10;
+    const victim = side === COLOURS.WHITE ? PIECES.bP : PIECES.wP;
 
-    GameBoard.fiftyMove = 0;
-
-    // pocket credit (+1)
-    const epPocket = getPocketCaptureEpsilon(move, side, captured);
+    // Only clear if it really looks like EP
     if (
-      GameBoard.crazyHouse[side] &&
-      epPocket !== PIECES.EMPTY &&
-      epPocket !== TELEPORT_CONST &&
-      PieceCol[epPocket] !== side
+      GameBoard.pieces[to] === PIECES.EMPTY &&
+      GameBoard.pieces[epSq] === victim
     ) {
-      const key = `sumn${PceChar.charAt(epPocket).toUpperCase()}`;
-      const cfg =
-        side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
-      cfg[key] = (cfg[key] ?? 0) + 1;
+      ClearPiece(epSq);
+      GameBoard.fiftyMove = 0;
+
+      // pocket credit (+1) — unchanged
+      const epPocket = getPocketCaptureEpsilon(move, side, captured);
+      if (
+        GameBoard.crazyHouse[side] &&
+        epPocket !== PIECES.EMPTY &&
+        epPocket !== TELEPORT_CONST &&
+        PieceCol[epPocket] !== side
+      ) {
+        const key = `sumn${PceChar.charAt(epPocket).toUpperCase()}`;
+        const cfg =
+          side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+        cfg[key] = (cfg[key] ?? 0) + 1;
+      }
     }
   } else if ((move & MFLAGCA) !== 0) {
     // if black casts randomize on white
@@ -381,13 +393,12 @@ export function MakeMove(move, moveType = '') {
     }
   }
 
-  // NORMAL CAPTURE (not SWAP/SUMN/EP/teleport sentinel)
   const isNormalCapture =
     to > 0 &&
     (move & (MFLAGSWAP | MFLAGSUMN | MFLAGEP)) === 0 &&
     targetPieceAtTo !== PIECES.EMPTY &&
     targetPieceAtTo !== TELEPORT_CONST &&
-    PieceCol[targetPieceAtTo] !== side;
+    (PieceCol[targetPieceAtTo] !== side || isConsume);
 
   if (isNormalCapture) {
     ClearPiece(to);
@@ -411,19 +422,18 @@ export function MakeMove(move, moveType = '') {
     (move & MFLAGSUMN) === 0 &&
     (TOSQ(move) > 0 || CAPTURED(move) === TELEPORT_CONST) &&
     (ARCANEFLAG(move) === 0 ||
-      move & MFLAGCNSM ||
-      move & MFLAGSHFT ||
-      move & MFLAGEP)
+      isShift(move) ||
+      isEp(move) ||
+      (isConsume && !isShift(move)))
   ) {
     MovePiece(from, to);
   }
 
-  if (TOSQ(move) > 0 && move & MFLAGCNSM) {
-    if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig.modsCON -= 1;
-    } else {
-      blackArcaneConfig.modsCON -= 1;
-    }
+  if (TOSQ(move) > 0 && move & MFLAGCNSM && !isShift(move)) {
+    (side === COLOURS.WHITE
+      ? whiteArcaneConfig
+      : blackArcaneConfig
+    ).modsCON -= 1;
   }
 
   if (TOSQ(move) > 0 && move & MFLAGSUMN) {
@@ -702,6 +712,9 @@ export function TakeMove(wasDyadMove = false) {
   const isShift = (m) => (m & MFLAGSHFT) !== 0;
   const isSummon = (m) => (m & MFLAGSUMN) !== 0;
   const isSwap = (m) => (m & MFLAGSWAP) !== 0;
+  const isEp = (m) => (m & MFLAGEP) !== 0;
+  const isConsume = (move & MFLAGCNSM) !== 0;
+
   const promoEpsilon = !isShift(move) ? pieceEpsilon : PIECES.EMPTY;
 
   const cfg =
@@ -754,16 +767,29 @@ export function TakeMove(wasDyadMove = false) {
     return;
   }
 
-  if (TOSQ(move) > 0 && ARCANEFLAG(move) && move & MFLAGCNSM) {
-    if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig.modsCON += 1;
-    } else {
-      blackArcaneConfig.modsCON += 1;
-    }
+  if (TOSQ(move) > 0 && move & MFLAGCNSM && !isShift(move)) {
+    (GameBoard.side === COLOURS.WHITE
+      ? whiteArcaneConfig
+      : blackArcaneConfig
+    ).modsCON += 1;
   }
 
   if (move & MFLAGEP) {
-    // you already AddPiece(to±10, pawn) above
+    // side is already toggled back to the mover here
+    const moverPawn = GameBoard.side === COLOURS.WHITE ? PIECES.wP : PIECES.bP;
+    const epSq = GameBoard.side === COLOURS.WHITE ? to - 10 : to + 10;
+    const epPawn = GameBoard.side === COLOURS.WHITE ? PIECES.bP : PIECES.wP;
+
+    // Only restore if the shape matches a real EP position
+    const looksLikeEP =
+      GameBoard.pieces[to] === moverPawn &&
+      GameBoard.pieces[epSq] === PIECES.EMPTY;
+
+    if (looksLikeEP) {
+      AddPiece(epSq, epPawn);
+    }
+
+    // existing pocket rollback (unchanged)
     const epPocket = getPocketCaptureEpsilon(move, GameBoard.side, captured);
     if (
       GameBoard.crazyHouse[GameBoard.side] &&
@@ -803,11 +829,23 @@ export function TakeMove(wasDyadMove = false) {
     (move & MFLAGSUMN) === 0 &&
     (TOSQ(move) > 0 || CAPTURED(move) === TELEPORT_CONST) &&
     (ARCANEFLAG(move) === 0 ||
-      move & MFLAGCNSM ||
-      move & MFLAGSHFT ||
-      move & MFLAGEP)
+      isShift(move) ||
+      isEp(move) ||
+      (isConsume && !isShift(move)))
   ) {
     MovePiece(to, from);
+  }
+
+  if (
+    // eclipse here
+    CAPTURED(move) === TELEPORT_CONST &&
+    move & MFLAGSHFT
+  ) {
+    if (GameBoard.side === COLOURS.WHITE) {
+      whiteArcaneConfig[`shftT`] += 1;
+    } else {
+      blackArcaneConfig[`shftT`] += 1;
+    }
   }
 
   if (

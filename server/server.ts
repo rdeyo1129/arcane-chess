@@ -9,18 +9,25 @@ import crypto from 'crypto';
 import path from 'path';
 import { createServer } from 'http';
 import favicon from 'serve-favicon';
-import helmet from 'helmet'; // For setting security headers
-import rateLimit from 'express-rate-limit'; // For rate limiting
-import xss from 'xss'; // For XSS protection
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import xss from 'xss';
 
 import users from './api/users.js';
 import games from './api/games.js';
 import campaign from './api/campaign.js';
 import templates from './api/templates.js';
 import puzzles from './api/puzzles.js';
+import threads from './api/threads.js';
+import posts from './api/posts.js';
+import categories from './api/categories.js';
 
-import { Server } from 'socket.io';
-import registerSockets from './sockets/index.js';
+import errorHandler from './middleware/errorHandler.js';
+
+import { User } from './models/User.js';
+
+// import { Server } from 'socket.io';
+// import registerSockets from './sockets/index.js';
 
 // Load environment variables
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -43,18 +50,25 @@ if (!dbURI) {
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI || dbURI)
+  .connect(dbURI)
   .then(() => console.log('MongoDB successfully connected'))
-  .catch((err) => console.log('Error connecting to MongoDB:', err));
+  .then(async () => {
+    const { modifiedCount } = await User.updateMany(
+      { role: { $exists: false } },
+      { $set: { role: 'user' } }
+    );
+    console.log(`Backfilled role for ${modifiedCount} users`);
+  })
+  .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 // Express app setup
 const app = express();
 const server = createServer(app);
-const io = new Server(server, { cors: { origin: '*' } });
+// const io = new Server(server, { cors: { origin: '*' } });
 
-registerSockets(io);
+// registerSockets(io);
 
-// Security Middleware: Helmet for setting various HTTP headers
+// Security Middleware (Helmet CSP simplified for readability)
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -64,23 +78,21 @@ app.use(
   })
 );
 
-// Rate limiting middleware: limit the number of requests to prevent abuse
+// Rate limiting middleware
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 1000, // Limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000,
+  max: 1000,
   message: 'Too many requests from this IP, please try again later',
 });
 app.use(limiter);
 
-// Helper function to sanitize input (using XSS library)
+// Input Sanitization middleware
 const sanitizeInput = (req: Request, _res: Response, next: NextFunction) => {
   const sanitizeObject = (obj: Record<string, any>) => {
     for (const key in obj) {
-      if (typeof obj[key] === 'string') {
-        obj[key] = xss(obj[key]); // Sanitize strings
-      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-        sanitizeObject(obj[key]); // Recursively sanitize objects
-      }
+      if (typeof obj[key] === 'string') obj[key] = xss(obj[key]);
+      else if (typeof obj[key] === 'object' && obj[key] !== null)
+        sanitizeObject(obj[key]);
     }
   };
 
@@ -91,30 +103,34 @@ const sanitizeInput = (req: Request, _res: Response, next: NextFunction) => {
   next();
 };
 
-// Apply the XSS protection middleware globally
 app.use(sanitizeInput);
-
-// Use body parser with a request body size limit to prevent large payload attacks
 app.use(bodyParser.urlencoded({ extended: true, limit: '10kb' }));
 app.use(bodyParser.json({ limit: '10kb' }));
 
-// Serve static files
 app.use(express.static('dist/frontend'));
-if (process.env.NODE_ENV === 'production') {
+
+if (nodeEnv === 'production') {
   app.use(favicon(path.join(__dirname, '..', '..', 'favicon.ico')));
 }
 
-// Routes
+// EXISTING Routes
 app.use('/api/users', users);
 app.use('/api/games', games);
 app.use('/api/campaign', campaign);
 app.use('/api/templates', templates);
 app.use('/api/puzzles', puzzles);
 
-// Helper to generate nonce for CSP (Content Security Policy)
+// NEW FORUM Routes
+app.use('/api/threads', threads);
+app.use('/api/posts', posts);
+app.use('/api/categories', categories);
+
+app.use((_req, res) => res.status(404).json({ message: 'Not found' }));
+app.use(errorHandler);
+
+// CSP Nonce Middleware
 const generateNonce = () => crypto.randomBytes(16).toString('base64');
 
-// Middleware to inject CSP nonce
 app.use((_req, res, next) => {
   res.locals.nonce = generateNonce();
   next();
@@ -123,9 +139,8 @@ app.use((_req, res, next) => {
 const staticPath = path.join(__dirname, '..', 'frontend');
 const indexPath = path.join(staticPath, 'index.html');
 
-// Middleware to generate and inject nonce into CSP header
 const cspMiddleware = (_req: Request, res: Response, next: NextFunction) => {
-  const nonce = crypto.randomBytes(16).toString('base64');
+  const nonce = generateNonce();
   res.locals.nonce = nonce;
   res.setHeader(
     'Content-Security-Policy',
@@ -137,14 +152,12 @@ const cspMiddleware = (_req: Request, res: Response, next: NextFunction) => {
 
 app.use(cspMiddleware);
 
-// Modify the HTML serving route to inject nonce into script tags
 app.get('*', (_req, res) => {
   fs.readFile(indexPath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading index.html:', err);
       return res.status(500).send('Error serving the application');
     }
-    // Replace script tags with nonce
     const updatedData = data.replace(
       /<script.*?src="(.*?)".*?<\/script>/g,
       `<script src="$1" nonce="${res.locals.nonce}"></script>`
@@ -153,9 +166,9 @@ app.get('*', (_req, res) => {
   });
 });
 
-// Start server and listen globally (0.0.0.0) to allow access from any IP
+// Start Server
 const port = Number(process.env.PORT) || 8080;
-const host = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+const host = nodeEnv === 'production' ? '0.0.0.0' : 'localhost';
 server.listen(port, host, () => {
   console.log(`Server is listening on ${host}:${port}`);
 });

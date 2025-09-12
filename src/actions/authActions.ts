@@ -77,30 +77,31 @@ export const loginUser = (userData: any) => (dispatch: AppDispatch) => {
     axios
       .post('/api/users/login', userData)
       .then((res) => {
-        const { token } = res.data;
+        const { token, user } = res.data;
         localStorage.setItem('jwtToken', token);
         setAuthToken(token);
-        const decoded: object = jwt_decode(token);
-        dispatch(setCurrentUser(decoded));
+        const decoded: any = jwt_decode(token);
+        dispatch({ type: SET_CURRENT_USER, payload: decoded });
 
         const existingGuestUser = getGuestUserFromLocalStorage();
 
-        if (userData.guest || getLocalStorage(userData.username) === null) {
+        // note: use user.username as the key, not userData.username
+        if (userData.guest || getLocalStorage(user.username) === null) {
           if (
             existingGuestUser &&
             existingGuestUser.data.auth &&
             existingGuestUser.data.auth.user
           ) {
+            // update an already‐stored guest record
             const updatedGuestData = {
               ...existingGuestUser.data,
               auth: {
                 ...existingGuestUser.data.auth,
                 user: {
                   ...existingGuestUser.data.auth.user,
-                  id: res.data.id || '0',
+                  id: user.id,
                   username: existingGuestUser.data.auth.user.username,
                   campaign: {
-                    ...existingGuestUser.data.auth.user.campaign,
                     topScores: [
                       ...existingGuestUser.data.auth.user.campaign.topScores,
                     ] as number[],
@@ -110,29 +111,31 @@ export const loginUser = (userData: any) => (dispatch: AppDispatch) => {
             };
             setLocalStorage(updatedGuestData);
           } else {
+            // first time writing guest/user record
             setLocalStorage({
               auth: {
                 user: {
-                  id: res.data.id || '0',
-                  username: userData.username,
+                  id: user.id,
+                  username: user.username,
                   campaign: {
-                    topScores: [...res.data.campaign.topScores] as number[],
+                    topScores: [...user.campaign.topScores] as number[],
                   },
                 },
               },
             });
           }
         } else {
+          // existing non-guest user
           setLocalStorage({
-            ...getLocalStorage(userData.username),
+            ...getLocalStorage(user.username),
             auth: {
               user: {
-                id: res.data.id || '0',
-                username: userData.username,
+                id: user.id,
+                username: user.username,
                 campaign: {
                   topScores: userData.guest
                     ? [...Array(12).fill(0)]
-                    : ([...res.data.campaign.topScores] as number[]),
+                    : ([...user.campaign.topScores] as number[]),
                 },
               },
             },
@@ -143,15 +146,12 @@ export const loginUser = (userData: any) => (dispatch: AppDispatch) => {
         resolve({ success: true });
       })
       .catch((err) => {
-        console.error('Login Error: ', err);
-        const errorPayload = err.response
-          ? err.response.data
-          : { message: 'An error occurred. Please try again.' };
-        dispatch({
-          type: GET_ERRORS,
-          payload: errorPayload,
-        });
-        resolve({ success: false, error: errorPayload.message });
+        console.error('Login Error:', err);
+        const responseData = err.response?.data;
+        const fieldErrors = responseData?.errors ??
+          responseData ?? { message: 'An error occurred.' };
+        dispatch({ type: GET_ERRORS, payload: fieldErrors });
+        return { success: false, error: fieldErrors.message || 'Login failed' };
       });
   });
 };

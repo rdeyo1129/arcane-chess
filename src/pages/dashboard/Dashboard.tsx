@@ -29,7 +29,12 @@ const NAV_META: Record<string, { description: string; imageKey: string }> = {
   // Arena (parent + subs share the ARENA image)
   arena: {
     description: 'Battle modes vs the engine.',
-    imageKey: 'arena',
+    imageKey: 'quickplay',
+  },
+  quickplay: {
+    description:
+      'Master the arcana and challenge the engine with custom battles.',
+    imageKey: 'quickplay',
   },
   gauntlet: {
     description: 'Draft an army. Survive waves.',
@@ -196,7 +201,7 @@ export class UnwrappedDashboard extends React.Component<
 
             <Link
               className="nav-link"
-              to="/rankings"
+              to="/leaderboard"
               onMouseEnter={() => this.setHover('leaderboard2')}
               onFocus={() => this.setHover('leaderboard2')}
             >
@@ -248,6 +253,14 @@ export class UnwrappedDashboard extends React.Component<
                 aria-label="Arena submenu"
                 onClick={(e) => e.stopPropagation()}
               >
+                <Link
+                  to="/quickplay"
+                  onClick={(e) => e.preventDefault()}
+                  onMouseEnter={() => this.setHover('quickplay')}
+                  onFocus={() => this.setHover('quickplay')}
+                >
+                  QUICKPLAY
+                </Link>
                 <Link
                   // to="/gauntlet"
                   to="#"

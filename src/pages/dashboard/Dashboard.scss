@@ -87,7 +87,7 @@ body {
 
       .xp-left {
         display: grid;
-        gap: 12px;
+        gap: 8px;
         .xp-user {
           overflow: hidden;
           text-overflow: ellipsis;
@@ -369,7 +369,7 @@ body {
       align-content: start;
       gap: 8px;
       padding: 10px;
-      padding-right: 12px;
+      padding-right: 10px;
       box-sizing: border-box;
 
       /* ---------- header icons ---------- */
@@ -442,7 +442,6 @@ body {
           width: 100%;
           display: flex;
           flex-direction: row;
-          // grid-template-columns: 1fr;
           gap: 8px;
         }
         .desc-rail {

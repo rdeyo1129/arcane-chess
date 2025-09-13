@@ -1,128 +1,241 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { logoutUser } from '../../actions/authActions';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import './Dashboard.scss';
 
 type DashboardProps = { auth: { user: { username: string } } };
-type DashboardState = { openSubKey: string | null; hoverNav: string };
+type DashboardState = { openSubKey: string | null; hoverKey: string };
 
-const DESCRIPTIONS: { [k: string]: string } = {
-  campaign1: 'Story mode and progression.',
-  lexicon: 'Rules, strategy, and lore.',
-  leaderboard2: 'Global rankings and ladders.',
-  gauntlet: 'Arena hub for modes.',
-  skirmish: 'Quick tactical bouts.',
-  melee: 'Free-for-all chaos.',
-  forum: 'Community discussions.',
-  members: 'Meet players and clans.',
-  events: 'Tournaments and meetups.',
-  chat: 'Live rooms and DMs.',
-  manifest2: 'Inventory, spells, relics.',
-  inventory: 'Your items and gear.',
-  spells: 'Learn and equip spells.',
-  relics: 'Passive artifacts.',
-  settings: 'Profile and UI settings.',
-  logout: 'Sign out safely.',
+/** Each key gets:
+ *  - description: what to show in the desc rail
+ *  - imageKey: which image to use for the hover art (parents for subs)
+ */
+const NAV_META: Record<string, { description: string; imageKey: string }> = {
+  // Primary
+  campaign1: {
+    description: 'Collect arcana. Defeat bosses. Climb ranks.',
+    imageKey: 'campaign1',
+  },
+  lexicon: {
+    description: 'Reference rules, tactics, and lore.',
+    imageKey: 'lexicon',
+  },
+  leaderboard2: {
+    description: 'Global rankings and ladders.',
+    imageKey: 'leaderboard2',
+  },
+  // Arena (parent + subs share the ARENA image)
+  arena: {
+    description: 'Battle modes vs the engine.',
+    imageKey: 'arena',
+  },
+  gauntlet: {
+    description: 'Draft an army. Survive waves.',
+    imageKey: 'arena',
+  },
+  skirmish: {
+    description: 'Faction matchups with custom spells.',
+    imageKey: 'arena',
+  },
+  melee: {
+    description: 'Quickplay from a shared arcana pool.',
+    imageKey: 'arena',
+  },
+  // Forum (parent uses forum image; no visible subs yet)
+  forum: {
+    description: 'Community news and discussions.',
+    imageKey: 'forum',
+  },
+  // Manifest (parent + subs share the MANIFEST image)
+  manifest2: {
+    description: 'Pieces, spells, and site info.',
+    imageKey: 'manifest2',
+  },
+  about: {
+    description: 'About, mission, terms.',
+    imageKey: 'manifest2',
+  },
+  pieces: {
+    description: 'View all classic and new units.',
+    imageKey: 'manifest2',
+  },
+  arcana: {
+    description: 'Spell Chess details.',
+    imageKey: 'manifest2',
+  },
+  // Right rail
+  settings: {
+    description: 'Profile, preferences, UI.',
+    imageKey: 'settings',
+  },
+  logout: {
+    description: 'Save progress and sign out.',
+    imageKey: 'logout',
+  },
 };
 
 export class UnwrappedDashboard extends React.Component<
   DashboardProps,
   DashboardState
 > {
+  rootRef: React.RefObject<HTMLDivElement>;
   constructor(props: DashboardProps) {
     super(props);
-    this.state = { openSubKey: null, hoverNav: '' };
+    this.state = { openSubKey: null, hoverKey: '' };
     this.toggleSub = this.toggleSub.bind(this);
+    this.handleGlobalClick = this.handleGlobalClick.bind(this);
+    this.rootRef = React.createRef();
   }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleGlobalClick);
+    document.addEventListener('keydown', this.handleEscape);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleGlobalClick);
+    document.removeEventListener('keydown', this.handleEscape);
+  }
+
+  handleGlobalClick(e: MouseEvent) {
+    if (!this.rootRef.current) return;
+    if (!this.rootRef.current.contains(e.target as Node)) {
+      this.setState({ openSubKey: null });
+    }
+  }
+  handleEscape = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') this.setState({ openSubKey: null });
+  };
   toggleSub(key: string) {
     this.setState((prev) => ({
       openSubKey: prev.openSubKey === key ? null : key,
     }));
   }
+
+  setHover = (key: string) => this.setState({ hoverKey: key });
+
   render() {
-    const { openSubKey, hoverNav } = this.state;
+    const { openSubKey, hoverKey } = this.state;
+    const imageKey = (hoverKey && NAV_META[hoverKey]?.imageKey) || 'campaign1'; // default fallback
+    const desc = (hoverKey && NAV_META[hoverKey]?.description) || '';
+
     return (
-      <div className="dashboard">
+      <div className="dashboard" ref={this.rootRef}>
         <div className="dashboard-header">
           <div className="header-icons">
-            <img className="logo" src="/assets/logoall+.png" alt="" />
+            <Link
+              className="home-button"
+              to="/"
+              onMouseEnter={() => this.setHover('')}
+            >
+              <img className="logo" src="/assets/logoall+.png" alt="" />
+            </Link>
             <img className="avatar" src="/assets/avatars/normal.webp" alt="" />
           </div>
+
           <div className="xp-panel">
-            <div className="xp-meta">
+            <div className="xp-left">
               <div className="xp-user">{this.props.auth.user.username}</div>
-              <div className="xp-points">XP 1,240</div>
-              <div className="xp-level">LV 12</div>
+              <div className="xp-stats">
+                <div className="xp-points">XP 1,240</div>
+                <div className="xp-level">LV 12</div>
+              </div>
+              <div className="xp-bar">
+                <div className="xp-fill" style={{ width: '45%' }} />
+              </div>
             </div>
-            <div className="xp-bar">
-              <div className="xp-fill" style={{ width: '45%' }} />
-            </div>
+            <img
+              className="avatar-inline"
+              src="/assets/avatars/normal.webp"
+              alt=""
+            />
           </div>
+
           <div className="nav-right">
             <div className="right-actions">
-              <div
+              <Link
                 className="nav-item"
-                onMouseEnter={() => this.setState({ hoverNav: 'settings' })}
-                onFocus={() => this.setState({ hoverNav: 'settings' })}
-                tabIndex={0}
+                to="/settings"
+                onMouseEnter={() => this.setHover('settings')}
+                onFocus={() => this.setHover('settings')}
               >
                 SETTINGS
-              </div>
-              <div
+              </Link>
+              <Link
                 className="nav-item"
-                onMouseEnter={() => this.setState({ hoverNav: 'logout' })}
-                onFocus={() => this.setState({ hoverNav: 'logout' })}
-                tabIndex={0}
+                to="/logout"
+                onMouseEnter={() => this.setHover('logout')}
+                onFocus={() => this.setHover('logout')}
               >
                 LOGOUT
-              </div>
+              </Link>
             </div>
             <div className="desc-rail" aria-live="polite">
-              {(hoverNav && DESCRIPTIONS[hoverNav]) || ''}
+              {desc}
             </div>
           </div>
 
-          <img
-            className="avatar-inline"
-            src="/assets/avatars/normal.webp"
-            alt=""
-          />
-          <div className="nav-left">
-            <div
-              className="nav-item"
-              onMouseEnter={() => this.setState({ hoverNav: 'campaign1' })}
-              onFocus={() => this.setState({ hoverNav: 'campaign1' })}
-              tabIndex={0}
+          <div
+            className="nav-left"
+            onClick={() => this.setState({ openSubKey: null })}
+          >
+            <Link
+              className="nav-link"
+              to="/campaign"
+              onMouseEnter={() => this.setHover('campaign1')}
+              onFocus={() => this.setHover('campaign1')}
             >
-              CAMPAIGN
-            </div>
-            <div
-              className="nav-item"
-              onMouseEnter={() => this.setState({ hoverNav: 'lexicon' })}
-              onFocus={() => this.setState({ hoverNav: 'lexicon' })}
-              tabIndex={0}
+              <button
+                className="nav-btn"
+                aria-expanded={openSubKey === 'CAMPAIGN'}
+              >
+                CAMPAIGN
+              </button>
+            </Link>
+
+            <Link
+              className="nav-link"
+              to="/rankings"
+              onMouseEnter={() => this.setHover('leaderboard2')}
+              onFocus={() => this.setHover('leaderboard2')}
             >
-              LEXICON
-            </div>
-            <div
-              className="nav-item"
-              onMouseEnter={() => this.setState({ hoverNav: 'leaderboard2' })}
-              onFocus={() => this.setState({ hoverNav: 'leaderboard2' })}
-              tabIndex={0}
+              <button
+                className="nav-btn"
+                aria-expanded={openSubKey === 'RANKINGS'}
+              >
+                RANKINGS
+              </button>
+            </Link>
+
+            <Link
+              className="nav-link"
+              to="/lexicon"
+              onMouseEnter={() => this.setHover('lexicon')}
+              onFocus={() => this.setHover('lexicon')}
             >
-              RANKINGS
-            </div>
+              <button
+                className="nav-btn"
+                aria-expanded={openSubKey === 'LEXICON'}
+              >
+                LEXICON
+              </button>
+            </Link>
+
+            {/* ARENA + submenu */}
             <div
               className={`nav-item has-sub ${
                 openSubKey === 'ARENA' ? 'open' : ''
               }`}
-              onMouseEnter={() => this.setState({ hoverNav: 'gauntlet' })}
-              onFocus={() => this.setState({ hoverNav: 'gauntlet' })}
+              onMouseEnter={() => this.setHover('arena')}
+              onFocus={() => this.setHover('arena')}
             >
               <button
                 className="nav-btn"
-                onClick={() => this.toggleSub('ARENA')}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  this.toggleSub('ARENA');
+                }}
                 aria-expanded={openSubKey === 'ARENA'}
                 aria-controls="submenu-arena"
               >
@@ -133,42 +246,53 @@ export class UnwrappedDashboard extends React.Component<
                 className="sub-menu"
                 role="region"
                 aria-label="Arena submenu"
+                onClick={(e) => e.stopPropagation()}
               >
-                <div
-                  onMouseEnter={() => this.setState({ hoverNav: 'gauntlet' })}
-                  onFocus={() => this.setState({ hoverNav: 'gauntlet' })}
-                  tabIndex={0}
+                <Link
+                  // to="/gauntlet"
+                  to="#"
+                  onClick={(e) => e.preventDefault()}
+                  onMouseEnter={() => this.setHover('gauntlet')}
+                  onFocus={() => this.setHover('gauntlet')}
                 >
                   GAUNTLET
-                </div>
-                <div
-                  onMouseEnter={() => this.setState({ hoverNav: 'skirmish' })}
-                  onFocus={() => this.setState({ hoverNav: 'skirmish' })}
-                  tabIndex={0}
+                </Link>
+                <Link
+                  // to="/skirmish"
+                  to="#"
+                  onClick={(e) => e.preventDefault()}
+                  onMouseEnter={() => this.setHover('skirmish')}
+                  onFocus={() => this.setHover('skirmish')}
                 >
                   SKIRMISH
-                </div>
-                <div
-                  onMouseEnter={() => this.setState({ hoverNav: 'melee' })}
-                  onFocus={() => this.setState({ hoverNav: 'melee' })}
-                  tabIndex={0}
+                </Link>
+                <Link
+                  // to="/melee"
+                  to="#"
+                  onClick={(e) => e.preventDefault()}
+                  onMouseEnter={() => this.setHover('melee')}
+                  onFocus={() => this.setHover('melee')}
                 >
                   MELEE
-                </div>
+                </Link>
               </div>
             </div>
+
+            {/* FORUM (no visible subs yet) */}
             <div
               className={`nav-item has-sub ${
                 openSubKey === 'FORUM' ? 'open' : ''
               }`}
-              onMouseEnter={() => this.setState({ hoverNav: 'forum' })}
-              onFocus={() => this.setState({ hoverNav: 'forum' })}
+              onMouseEnter={() => this.setHover('forum')}
+              onFocus={() => this.setHover('forum')}
             >
               <button
                 className="nav-btn"
-                onClick={() => this.toggleSub('FORUM')}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  this.toggleSub('FORUM');
+                }}
                 aria-expanded={openSubKey === 'FORUM'}
-                aria-controls="submenu-forum"
               >
                 FORUM
               </button>
@@ -176,43 +300,27 @@ export class UnwrappedDashboard extends React.Component<
                 id="submenu-forum"
                 className="sub-menu"
                 role="region"
-                aria-label="Forum submenu"
+                onClick={(e) => e.stopPropagation()}
               >
-                <div
-                  onMouseEnter={() => this.setState({ hoverNav: 'members' })}
-                  onFocus={() => this.setState({ hoverNav: 'members' })}
-                  tabIndex={0}
-                >
-                  Members
-                </div>
-                <div
-                  onMouseEnter={() => this.setState({ hoverNav: 'events' })}
-                  onFocus={() => this.setState({ hoverNav: 'events' })}
-                  tabIndex={0}
-                >
-                  Events
-                </div>
-                <div
-                  onMouseEnter={() => this.setState({ hoverNav: 'chat' })}
-                  onFocus={() => this.setState({ hoverNav: 'chat' })}
-                  tabIndex={0}
-                >
-                  Chat
-                </div>
+                {/* future submenu items */}
               </div>
             </div>
+
+            {/* MANIFEST + submenu */}
             <div
               className={`nav-item has-sub ${
                 openSubKey === 'MANIFEST' ? 'open' : ''
               }`}
-              onMouseEnter={() => this.setState({ hoverNav: 'manifest2' })}
-              onFocus={() => this.setState({ hoverNav: 'manifest2' })}
+              onMouseEnter={() => this.setHover('manifest2')}
+              onFocus={() => this.setHover('manifest2')}
             >
               <button
                 className="nav-btn"
-                onClick={() => this.toggleSub('MANIFEST')}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  this.toggleSub('MANIFEST');
+                }}
                 aria-expanded={openSubKey === 'MANIFEST'}
-                aria-controls="submenu-manifest"
               >
                 MANIFEST
               </button>
@@ -220,40 +328,42 @@ export class UnwrappedDashboard extends React.Component<
                 id="submenu-manifest"
                 className="sub-menu"
                 role="region"
-                aria-label="Manifest submenu"
+                onClick={(e) => e.stopPropagation()}
               >
-                <div
-                  onMouseEnter={() => this.setState({ hoverNav: 'inventory' })}
-                  onFocus={() => this.setState({ hoverNav: 'inventory' })}
-                  tabIndex={0}
+                <Link
+                  to="/manifest?tab=about"
+                  onMouseEnter={() => this.setHover('about')}
+                  onFocus={() => this.setHover('about')}
                 >
-                  Inventory
-                </div>
-                <div
-                  onMouseEnter={() => this.setState({ hoverNav: 'spells' })}
-                  onFocus={() => this.setState({ hoverNav: 'spells' })}
-                  tabIndex={0}
+                  ABOUT
+                </Link>
+                <Link
+                  to="/manifest?tab=pieces"
+                  onMouseEnter={() => this.setHover('pieces')}
+                  onFocus={() => this.setHover('pieces')}
                 >
-                  Spells
-                </div>
-                <div
-                  onMouseEnter={() => this.setState({ hoverNav: 'relics' })}
-                  onFocus={() => this.setState({ hoverNav: 'relics' })}
-                  tabIndex={0}
+                  PIECES
+                </Link>
+                <Link
+                  to="/manifest?tab=arcana"
+                  onMouseEnter={() => this.setHover('arcana')}
+                  onFocus={() => this.setHover('arcana')}
                 >
-                  Relics
-                </div>
+                  ARCANA
+                </Link>
               </div>
             </div>
           </div>
-          {hoverNav && (
+
+          {imageKey && (
             <img
               className="hover-image"
-              src={`/assets/dashboard/${hoverNav}.webp`}
-              alt={hoverNav}
+              src={`/assets/dashboard/${imageKey}.webp`}
+              alt={hoverKey || 'hover-art'}
             />
           )}
         </div>
+
         <div className="dashboard-body">
           <div className="hero"></div>
           <div className="announcements"></div>
@@ -264,7 +374,7 @@ export class UnwrappedDashboard extends React.Component<
   }
 }
 
-function mapStateToProps({ auth }: { auth: object }) {
+function mapStateToProps({ auth }: { auth: any }) {
   return { auth };
 }
 export const Dashboard = connect(mapStateToProps, { logoutUser })(

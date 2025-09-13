@@ -1,18 +1,29 @@
 @import 'src/styles/main.scss';
 @import 'src/styles/_variables.scss';
+
+/* ---------- shared nav vars ---------- */
+$nav-bg: rgba(0, 0, 0, 0.55);
+$nav-bg-hover: rgba(0, 0, 0, 1);
+$nav-border: #2a2a2a;
+
+/* ---------- globals ---------- */
 html {
   overflow-y: scroll;
-  scrollbar-gutter: stable both-edges;
+  scrollbar-gutter: stable;
   overflow-x: hidden;
 }
 body {
   overflow-x: hidden;
+  margin: 0;
 }
+
+/* ---------- dashboard ---------- */
 .dashboard {
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
   font-size: 0.9rem;
+
   .dashboard-header {
     position: relative;
     overflow: visible;
@@ -20,10 +31,17 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto auto;
-    grid-template-areas: 'icons' 'xp' 'rightnav' 'avatar' 'mainnav';
+    grid-template-areas:
+      'icons'
+      'xp'
+      'rightnav'
+      'avatar'
+      'mainnav';
     gap: 8px;
     padding: 10px;
     align-content: start;
+
+    /* ---------- header icons ---------- */
     .header-icons {
       position: relative;
       z-index: 1;
@@ -31,67 +49,80 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      .home-button {
+        display: inline-flex;
+      }
       .logo {
-        width: 66px;
-        height: 66px;
-        border-radius: 8px;
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
         padding: 10px;
-        background: rgba(0, 0, 0, 0.4);
+        background: $nav-bg;
       }
       .avatar {
-        width: 66px;
-        height: 66px;
+        width: 80px;
+        height: 80px;
         border-radius: 9999px;
-        margin-right: 8px;
+        margin-right: 0; /* mobile: remove right margin */
         padding: 10px;
-        background: rgba(0, 0, 0, 0.4);
+        background: $nav-bg;
       }
     }
+
+    /* ---------- xp panel ---------- */
     .xp-panel {
       position: relative;
       z-index: 1;
       grid-area: xp;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      font-size: 0.8rem;
-      width: 220px;
-      margin: 10px 0 0 auto;
+      gap: 12px;
+      width: 200px;
+      margin: 0 0 0 auto;
       padding: 10px;
       border: 1px solid #333;
       border-radius: 6px;
-      background: rgba(0, 0, 0, 0.4);
-      .xp-meta {
+      background: $nav-bg;
+
+      .xp-left {
         display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
-        gap: 8px;
+        gap: 12px;
+        .xp-user {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .xp-stats {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          align-items: center;
+          gap: 8px;
+        }
+        .xp-level {
+          justify-self: end;
+          opacity: 0.9;
+        }
+        .xp-bar {
+          height: 10px;
+          background: #1f1f1f;
+          border-radius: 6px;
+          overflow: hidden;
+        }
+        .xp-fill {
+          height: 100%;
+          background: $B_MENU;
+        }
       }
-      .xp-user {
-        font-weight: 700;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .xp-points {
-        justify-self: center;
-        font-weight: 600;
-      }
-      .xp-level {
-        justify-self: end;
-        opacity: 0.8;
-      }
-      .xp-bar {
-        height: 10px;
-        background: #2a2a2a;
-        border-radius: 6px;
-        overflow: hidden;
-      }
-      .xp-fill {
-        height: 100%;
-        background: $B_MENU;
+      .avatar-inline {
+        position: relative;
+        z-index: 1;
+        grid-area: avatar;
+        display: none;
       }
     }
+
+    /* ---------- right nav (settings/logout + description) ---------- */
     .nav-right {
       position: relative;
       z-index: 1;
@@ -100,30 +131,35 @@ body {
       flex-direction: column;
       align-items: flex-end;
       gap: 8px;
+
       .right-actions {
-        width: 220px;
+        width: 200px;
+        max-width: calc(100vw - 20px);
         display: flex;
         flex-direction: column;
         gap: 8px;
+
         .nav-item {
           user-select: none;
           text-align: center;
           width: 100%;
           padding: 10px 14px;
-          border: 1px solid #333;
+          border: 1px solid $nav-border;
           border-radius: 6px;
-          background: rgba(0, 0, 0, 0.4);
+          background: $nav-bg;
           transition:
             background 0.15s,
             border-color 0.15s,
             box-shadow 0.15s;
+          color: #e6e6e6;
           cursor:
             url('/assets/images/cursors/pointer.svg') 12 4,
             pointer;
+          text-decoration: none;
         }
         .nav-item:hover,
         .nav-item:focus-visible {
-          background: #0f0f0f;
+          background: $nav-bg-hover;
           border-color: #555;
           box-shadow: 0 0 0 2px rgba(90, 179, 255, 0.15) inset;
           outline: none;
@@ -132,27 +168,24 @@ body {
           transform: translateY(1px);
         }
       }
+
       .desc-rail {
         align-self: flex-end;
-        width: 50vw; /* mobile: half screen width */
-        min-height: 64px; /* a bit more vertical space */
-        padding: 10px 12px;
+        width: 75vw;
+        max-width: calc(100vw - 20px);
+        min-height: 72px;
+        padding: 12px 12px;
         border: 1px solid #333;
         border-radius: 6px;
-        background: rgba(0, 0, 0, 0.4);
-        font-size: 0.9rem;
+        background: $nav-bg;
+        font-size: 0.92rem;
         opacity: 0.95;
         white-space: normal;
         overflow: hidden;
       }
     }
-    .avatar-inline {
-      position: relative;
-      z-index: 1;
-      grid-area: avatar;
-      display: none;
-      margin-right: 10px;
-    }
+
+    /* ---------- left nav (main) ---------- */
     .nav-left {
       position: relative;
       z-index: 1;
@@ -160,21 +193,26 @@ body {
       display: flex;
       flex-direction: column;
       gap: 8px;
+
       > .nav-item {
         user-select: none;
         text-align: center;
-        padding: 10px 14px;
-        border: 1px solid #333;
+        padding: 0;
+        border: 1px solid $nav-border;
         border-radius: 6px;
-        background: rgba(0, 0, 0, 0.4);
+        background: $nav-bg;
         transition:
           background 0.15s,
           border-color 0.15s,
           box-shadow 0.15s;
+        color: #e6e6e6;
+      }
+      > .link-wrap {
+        text-decoration: none;
       }
       > .nav-item:hover,
-      > .nav-item:focus-visible {
-        background: #0f0f0f;
+      > .nav-item:focus-within {
+        background: $nav-bg-hover;
         border-color: #555;
         box-shadow: 0 0 0 2px rgba(90, 179, 255, 0.15) inset;
         outline: none;
@@ -185,36 +223,46 @@ body {
       > .nav-item:active {
         transform: translateY(1px);
       }
+
+      .nav-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font: inherit;
+        background: $nav-bg;
+        color: #e6e6e6;
+        border: 1px solid $nav-border;
+        border-radius: 6px;
+        padding: 10px 14px;
+        cursor:
+          url('/assets/images/cursors/pointer.svg') 12 4,
+          pointer;
+        transition:
+          background 0.15s,
+          border-color 0.15s,
+          box-shadow 0.15s;
+        height: auto;
+      }
+
+      .nav-link {
+        text-decoration: none;
+      }
+      .nav-link:hover .nav-btn,
+      .nav-link:focus-within .nav-btn,
+      .nav-item.has-sub:hover .nav-btn,
+      .nav-item.has-sub:focus-within .nav-btn {
+        background: $nav-bg-hover;
+        border-color: #555;
+        box-shadow: 0 0 0 2px rgba(90, 179, 255, 0.15) inset;
+        outline: none;
+      }
+
       > .nav-item.has-sub {
         padding: 0;
         border: none;
         position: relative;
         background: transparent;
-        .nav-btn {
-          display: block;
-          width: 100%;
-          text-align: center;
-          font: inherit;
-          background: rgba(0, 0, 0, 0.4);
-          border: 1px solid #333;
-          border-radius: 6px;
-          padding: 10px 14px;
-          cursor:
-            url('/assets/images/cursors/pointer.svg') 12 4,
-            pointer;
-          transition:
-            background 0.15s,
-            border-color 0.15s,
-            box-shadow 0.15s;
-          height: auto;
-        }
-        &:hover .nav-btn,
-        &:focus-within .nav-btn {
-          background: #0f0f0f;
-          border-color: #555;
-          box-shadow: 0 0 0 2px rgba(90, 179, 255, 0.15) inset;
-          outline: none;
-        }
+
         .sub-menu {
           display: none;
           position: static;
@@ -226,12 +274,15 @@ body {
           border-radius: 0;
           background: transparent;
         }
-        .sub-menu > div {
+        .sub-menu > a {
+          display: block;
           user-select: none;
           text-align: center;
           padding: 8px;
           border-radius: 6px;
-          background: rgba(0, 0, 0, 0.4);
+          background: $nav-bg;
+          color: #e6e6e6;
+          text-decoration: none;
           transition:
             background 0.15s,
             box-shadow 0.15s;
@@ -239,12 +290,12 @@ body {
             url('/assets/images/cursors/pointer.svg') 12 4,
             pointer;
         }
-        .sub-menu > div + div {
+        .sub-menu > a + a {
           margin-top: 6px;
         }
-        .sub-menu > div:hover,
-        .sub-menu > div:focus-visible {
-          background: #0f0f0f;
+        .sub-menu > a:hover,
+        .sub-menu > a:focus-visible {
+          background: $nav-bg-hover;
           box-shadow: 0 0 0 2px rgba(90, 179, 255, 0.15) inset;
           outline: none;
         }
@@ -253,6 +304,8 @@ body {
         }
       }
     }
+
+    /* ---------- hover image ---------- */
     .hover-image {
       position: absolute;
       display: block;
@@ -260,8 +313,8 @@ body {
       left: 50%;
       transform: translateX(-50%);
       width: 100vw;
+      max-width: 100%;
       height: 100vh;
-      max-width: none;
       object-fit: cover;
       object-position: center;
       filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
@@ -282,6 +335,7 @@ body {
         rgba(0, 0, 0, 0) 100%
       );
     }
+
     &::after {
       content: '';
       position: absolute;
@@ -297,52 +351,108 @@ body {
     }
   }
 }
+
+/* ---------- tablet/desktop ---------- */
 @media (min-width: 768px) {
   .dashboard {
     .dashboard-header {
       min-height: 140vh;
-      grid-template-columns: auto 1fr auto auto;
+      grid-template-columns:
+        auto
+        minmax(380px, 1.45fr)
+        minmax(240px, 1fr);
       grid-template-rows: auto auto;
-      grid-template-areas: 'logo mainnav xp avatar' 'logo mainnav rightnav avatar';
+      grid-template-areas:
+        'logo mainnav xp'
+        'logo mainnav rightnav';
       align-items: start;
       align-content: start;
       gap: 8px;
       padding: 10px;
+      padding-right: 12px;
+      box-sizing: border-box;
+
+      /* ---------- header icons ---------- */
       .header-icons {
         grid-area: logo;
+
+        .avatar {
+          margin-right: 0;
+        }
       }
       .header-icons .avatar {
         display: none;
       }
+
+      /* ---------- xp panel (shares cell with avatar) ---------- */
       .xp-panel {
         grid-area: xp;
+        justify-self: end;
+        width: 100%;
+        max-width: 420px;
+        margin-right: 0;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: row;
         align-self: start;
-        width: 220px;
-        margin: 0 0 0 auto;
+        gap: 12px;
+
+        .xp-left {
+          flex: 1 1 auto;
+          min-width: 0;
+          .xp-user {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          .xp-bar {
+            width: 100%;
+          }
+        }
+        .avatar-inline {
+          grid-area: xp;
+          justify-self: end;
+          align-self: start;
+          display: inline-block;
+          flex: 0 0 80px;
+          width: 80px;
+          height: 80px;
+          border-radius: 9999px;
+          padding: 0;
+          background: transparent;
+          border: 0;
+          object-fit: cover;
+          margin-left: 0;
+        }
       }
+
+      /* ---------- right nav under XP+avatar ---------- */
       .nav-right {
+        grid-area: rightnav;
+        justify-self: end;
+        width: 100%;
+        max-width: 420px;
+        padding-right: 0;
+        box-sizing: border-box;
+        min-width: 0;
+        overflow: visible;
+
         .right-actions {
-          width: 220px;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          // grid-template-columns: 1fr;
           gap: 8px;
         }
         .desc-rail {
-          width: 220px;
-          min-height: 72px;
+          width: 100%;
+          min-height: 80px;
+          position: static;
         }
       }
-      .avatar-inline {
-        grid-area: avatar;
-        display: inline-block;
-        width: 66px;
-        height: 66px;
-        border-radius: 9999px;
-        align-self: start;
-        margin-right: 10px;
-        padding: 10px;
-        background: rgba(0, 0, 0, 0.4);
-      }
+
+      /* ---------- left nav ---------- */
       .nav-left {
         grid-area: mainnav;
         display: grid;
@@ -350,33 +460,17 @@ body {
         grid-auto-rows: auto;
         gap: 8px;
         align-items: center;
+        min-width: 0;
+
         > .nav-item {
-          padding: 10px 14px;
+          padding: 0;
         }
+
         > .nav-item.has-sub {
           padding: 0;
           border: none;
           position: relative;
-          .nav-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 14px;
-            border-radius: 6px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid #333;
-            transition:
-              background 0.15s,
-              border-color 0.15s,
-              box-shadow 0.15s;
-            height: 100%;
-          }
-          &:hover .nav-btn,
-          &:focus-within .nav-btn {
-            background: #0f0f0f;
-            border-color: #555;
-            box-shadow: 0 0 0 2px rgba(90, 179, 255, 0.15) inset;
-            outline: none;
-          }
+
           .sub-menu {
             position: absolute;
             top: 100%;
@@ -391,10 +485,12 @@ body {
             background: transparent;
             z-index: 1000;
           }
-          .sub-menu > div {
+          .sub-menu > a {
             padding: 8px;
             border-radius: 6px;
-            background: rgba(0, 0, 0, 0.4);
+            background: $nav-bg;
+            color: #e6e6e6;
+            text-decoration: none;
             transition:
               background 0.15s,
               box-shadow 0.15s;
@@ -402,34 +498,40 @@ body {
               url('/assets/images/cursors/pointer.svg') 12 4,
               pointer;
           }
-          .sub-menu > div + div {
+          .sub-menu > a + a {
             margin-top: 6px;
           }
-          .sub-menu > div:hover,
-          .sub-menu > div:focus-visible {
-            background: #0f0f0f;
+          .sub-menu > a:hover,
+          .sub-menu > a:focus-visible {
+            background: $nav-bg-hover;
             box-shadow: 0 0 0 2px rgba(90, 179, 255, 0.15) inset;
             outline: none;
           }
         }
+
         > .nav-item.has-sub:nth-child(3n) .sub-menu {
           left: auto;
           right: 0;
         }
       }
+
+      /* ---------- hover image ---------- */
       .hover-image {
-        height: auto;
+        height: 100vh;
         width: 100vw;
         object-fit: cover;
         object-position: center top;
       }
+
       .desc-rail {
-        right: calc(220px + 20px);
-        top: calc(10px + 66px + 8px);
+        right: auto;
+        top: auto;
       }
     }
   }
 }
+
+/* ---------- wide desktop tweaks if needed ---------- */
 @media (min-width: 1024px) {
   .dashboard {
     .dashboard-header {

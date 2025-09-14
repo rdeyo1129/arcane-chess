@@ -5,8 +5,21 @@ import { logoutUser } from '../../actions/authActions';
 import { withRouter } from 'src/components/withRouter/withRouter';
 import './Dashboard.scss';
 
-type DashboardProps = { auth: { user: { username: string } } };
-type DashboardState = { openSubKey: string | null; hoverKey: string };
+import { audioManager } from 'src/utils/audio/AudioManager';
+import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
+
+type DashboardProps = {
+  auth: { user: { username: string } };
+  navigate: (path: string) => void;
+  logoutUser: () => void;
+};
+type DashboardState = {
+  openSubKey: string | null;
+  hoverKey: string;
+  settingsOpen: boolean;
+  fadeIn: boolean;
+  fadeOut: boolean;
+};
 
 /** Each key gets:
  *  - description: what to show in the desc rail
@@ -88,13 +101,23 @@ export class UnwrappedDashboard extends React.Component<
   rootRef: React.RefObject<HTMLDivElement>;
   constructor(props: DashboardProps) {
     super(props);
-    this.state = { openSubKey: null, hoverKey: '' };
+    this.state = {
+      openSubKey: null,
+      hoverKey: '',
+      settingsOpen: false,
+      fadeIn: false,
+      fadeOut: false,
+    };
     this.toggleSub = this.toggleSub.bind(this);
     this.handleGlobalClick = this.handleGlobalClick.bind(this);
     this.rootRef = React.createRef();
   }
 
   componentDidMount() {
+    setTimeout(() => {
+      this.setState({ fadeIn: true });
+    }, 50);
+
     document.addEventListener('mousedown', this.handleGlobalClick);
     document.addEventListener('keydown', this.handleEscape);
   }
@@ -126,7 +149,13 @@ export class UnwrappedDashboard extends React.Component<
     const desc = (hoverKey && NAV_META[hoverKey]?.description) || '';
 
     return (
-      <div className="dashboard" ref={this.rootRef}>
+      <div
+        className={`dashboard ${this.state.fadeIn ? 'fade-in' : ''} ${
+          this.state.fadeOut ? 'fade-out' : ''
+        }`}
+        ref={this.rootRef}
+      >
+        <div className={`fade-overlay ${this.state.fadeOut ? 'active' : ''}`} />
         <div className="dashboard-header">
           <div className="header-icons">
             <Link
@@ -159,28 +188,45 @@ export class UnwrappedDashboard extends React.Component<
 
           <div className="nav-right">
             <div className="right-actions">
-              <Link
+              {/* <Link
                 className="nav-item"
                 to="/settings"
                 onMouseEnter={() => this.setHover('settings')}
                 onFocus={() => this.setHover('settings')}
+              > */}
+              <div
+                className="nav-item"
+                onClick={() => {
+                  this.setState({
+                    settingsOpen: this.state.settingsOpen ? false : true,
+                  });
+                }}
+                onMouseEnter={() => this.setHover('settings')}
+                onFocus={() => this.setHover('settings')}
               >
                 SETTINGS
-              </Link>
-              <Link
+              </div>
+              {this.state.settingsOpen && <GlobalVolumeControl />}
+              <div
                 className="nav-item"
-                to="/logout"
                 onMouseEnter={() => this.setHover('logout')}
                 onFocus={() => this.setHover('logout')}
+                onClick={() => {
+                  audioManager.playSFX('impact');
+                  this.setState({ fadeOut: true });
+                  setTimeout(() => {
+                    this.props.logoutUser();
+                    this.props.navigate('/login');
+                  }, 300);
+                }}
               >
                 LOGOUT
-              </Link>
+              </div>
             </div>
             <div className="desc-rail" aria-live="polite">
               {desc}
             </div>
           </div>
-
           <div
             className="nav-left"
             onClick={() => this.setState({ openSubKey: null })}

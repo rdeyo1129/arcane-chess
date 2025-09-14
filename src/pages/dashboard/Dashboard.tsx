@@ -233,7 +233,6 @@ export class UnwrappedDashboard extends React.Component<
                 openSubKey === 'ARENA' ? 'open' : ''
               }`}
               onMouseEnter={() => this.setHover('arena')}
-              onFocus={() => this.setHover('arena')}
             >
               <button
                 className="nav-btn"
@@ -255,7 +254,6 @@ export class UnwrappedDashboard extends React.Component<
               >
                 <Link
                   to="/quickplay"
-                  onClick={(e) => e.preventDefault()}
                   onMouseEnter={() => this.setHover('quickplay')}
                   onFocus={() => this.setHover('quickplay')}
                 >

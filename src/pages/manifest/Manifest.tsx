@@ -277,7 +277,7 @@ class UnwrappedManifest extends React.Component<RouterishProps, State> {
                   ensuring it continues to serve the global chess community
                   effectively.
                 </p>
-                <h2>Misson Statements:</h2>
+                <h2 style={{ marginTop: '30px' }}>Mission Statements:</h2>
                 <ol style={{ listStyleType: 'decimal' }}>
                   <li>
                     To create a free and open-source platform that empowers

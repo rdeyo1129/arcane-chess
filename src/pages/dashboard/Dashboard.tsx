@@ -299,6 +299,13 @@ export class UnwrappedDashboard extends React.Component<
                 onClick={(e) => e.stopPropagation()}
               >
                 <Link
+                  to="/skirmish"
+                  onMouseEnter={() => this.setHover('skirmish')}
+                  onFocus={() => this.setHover('skirmish')}
+                >
+                  SKIRMISH
+                </Link>
+                <Link
                   to="/quickplay"
                   onMouseEnter={() => this.setHover('quickplay')}
                   onFocus={() => this.setHover('quickplay')}
@@ -313,15 +320,6 @@ export class UnwrappedDashboard extends React.Component<
                   onFocus={() => this.setHover('gauntlet')}
                 >
                   GAUNTLET
-                </Link>
-                <Link
-                  // to="/skirmish"
-                  to="#"
-                  onClick={(e) => e.preventDefault()}
-                  onMouseEnter={() => this.setHover('skirmish')}
-                  onFocus={() => this.setHover('skirmish')}
-                >
-                  SKIRMISH
                 </Link>
                 <Link
                   // to="/melee"

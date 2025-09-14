@@ -1,0 +1,250 @@
+@import 'src/styles/_components.scss';
+@import 'src/styles/_variables.scss';
+
+/* Reuse the .nav-item visuals for our buttons */
+%navish-shared {
+  user-select: none;
+  text-align: center;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid $nav-border;
+  border-radius: 6px;
+  background: $nav-bg;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    box-shadow 0.15s;
+  color: #e6e6e6;
+  cursor:
+    url('/assets/images/cursors/pointer.svg') 12 4,
+    pointer;
+  text-decoration: none;
+
+  &:hover {
+    background: $nav-bg-hover;
+    border-color: lighten($nav-border, 8%);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05) inset;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.skirmish-modal {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 12px;
+  // padding: 12px;
+
+  .skirmish-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 12px;
+
+    .home-button .logo {
+      display: block;
+      height: 40px;
+      width: auto;
+    }
+
+    .description {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border: 1px solid $nav-border;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.35);
+      color: #d8d8d8;
+      font-size: 0.95rem;
+    }
+  }
+
+  /* ---- Buttons row: keep your provided structure ---- */
+  .buttons {
+    display: flex; /* flex row as requested */
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: stretch;
+
+    .engine-settings {
+      display: flex;
+      gap: 8px;
+      flex: 2 1 360px;
+
+      .engine-diff,
+      .engine-fact {
+        @extend %navish-shared;
+        flex: 1 1 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .swap-sides {
+      @extend %navish-shared;
+      flex: 1 1 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+  }
+
+  .hex-setups {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+
+    /* ---- Hex (now flex-based) ---- */
+    .hex {
+      --hex-gap: 10px; /* this drives BOTH row and column spacing */
+      --tile: 100px;
+
+      display: flex;
+      flex-direction: column;
+      row-gap: var(--hex-gap);
+      justify-content: center;
+
+      padding: 12px;
+      border: 1px solid $nav-border;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.35);
+
+      .hex-row {
+        display: flex;
+        justify-content: center;
+        column-gap: var(--hex-gap);
+      }
+
+      .hex-cell {
+        position: relative;
+        display: grid;
+        grid-template-rows: auto auto;
+        justify-items: center;
+        align-content: start;
+
+        .tile {
+          width: var(--tile);
+          height: var(--tile);
+          border-radius: 8px;
+          border: 5px solid $nav-border;
+          background: rgba(10, 10, 10, 0.6);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+          position: relative;
+          transition:
+            border-color 0.15s,
+            box-shadow 0.15s,
+            transform 0.1s;
+
+          .img-wrap {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 8px;
+              // opacity: 0.95;
+            }
+            .img-placeholder {
+              width: 60%;
+              height: 60%;
+              border-radius: 6px;
+              // border: 2px dashed rgba(255, 255, 255, 0.2);
+            }
+          }
+
+          .lock {
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            font-size: 16px;
+            opacity: 0.8;
+          }
+        }
+
+        .name {
+          font-size: 0.8rem;
+          color: #cfcfcf;
+          text-align: center;
+        }
+
+        &.is-unlocked:hover .tile {
+          border-color: lighten($nav-border, 12%);
+          box-shadow:
+            0 0 0 2px rgba(0, 180, 255, 0.18) inset,
+            0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        &.is-selected .tile {
+          border-color: rgba(0, 180, 255, 0.9);
+          box-shadow:
+            0 0 0 2px rgba(0, 180, 255, 0.38) inset,
+            0 12px 24px rgba(0, 0, 0, 0.5);
+        }
+        &.is-locked {
+          cursor: not-allowed;
+          .tile {
+            filter: grayscale(0.6) brightness(0.7);
+          }
+          .name {
+            opacity: 0.6;
+          }
+        }
+      }
+      .hex-cell:hover {
+        cursor:
+          url('/assets/images/cursors/pointer.svg') 12 4,
+          pointer;
+      }
+    }
+
+    /* ---- Setups panel ---- */
+    .setups {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+
+      .engine-setup,
+      .human-setup {
+        display: grid;
+        gap: 10px;
+
+        .arcana,
+        .army {
+          border: 1px solid $nav-border;
+          border-radius: 10px;
+          background: rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .skirmish-modal {
+    padding: 16px;
+
+    .buttons .engine-settings {
+      flex: 2 1 420px;
+    }
+
+    .hex-setups {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.9fr) 1.1fr;
+      align-items: start;
+      gap: 16px;
+
+      .hex {
+        --tile: 110px;
+        --hex-gap: 10px;
+      }
+    }
+  }
+}

@@ -41,6 +41,8 @@ import { Lexicon } from '././pages/lexicon/Lexicon';
 import { Manifest } from '././pages/manifest/Manifest';
 import { NotFound } from '././pages/notFound/NotFound';
 
+import { Skirmish } from '././pages/skirmish/Skirmish';
+
 import ReactDOM from 'react-dom/client';
 import Modal from 'react-modal';
 
@@ -180,6 +182,14 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <Lexicon />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/skirmish"
+        element={
+          <PrivateRoute>
+            <Skirmish />
           </PrivateRoute>
         }
       />

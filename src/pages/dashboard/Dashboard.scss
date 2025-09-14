@@ -1,11 +1,6 @@
 @import 'src/styles/main.scss';
 @import 'src/styles/_variables.scss';
 
-/* ---------- shared nav vars ---------- */
-$nav-bg: rgba(0, 0, 0, 0.7);
-$nav-bg-hover: rgba(0, 0, 0, 1);
-$nav-border: #2a2a2a;
-
 /* ---------- globals ---------- */
 html {
   overflow-y: scroll;

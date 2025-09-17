@@ -5,8 +5,8 @@ import './hero.scss';
 
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/chi.scss';
-import 'src/chessground/styles/mu.scss';
-import 'src/chessground/styles/nu.scss';
+import 'src/chessground/styles/psi.scss';
+import 'src/chessground/styles/gamma.scss';
 import 'src/chessground/styles/sigma.scss';
 import 'src/chessground/styles/omega.scss';
 import 'src/chessground/styles/lambda.scss';

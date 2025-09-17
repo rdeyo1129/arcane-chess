@@ -21,6 +21,8 @@ interface ArcanaSelectProps {
   updateInventory?: (inventory: ArcanaDetail[]) => void;
   updateHover?: (arcane: ArcanaDetail) => void;
   handleToggle?: () => void;
+  /** When true, disables hovering and clicking. */
+  readOnly?: boolean;
 }
 
 interface ArcanaSelectState {
@@ -47,9 +49,11 @@ export default class ArcanaSelect extends React.Component<
   }
 
   updateSlot = (newValue: ArcanaDetail) => {
-    const { inventory, updateInventory, handleToggle, updateHover } =
+    const { inventory, updateInventory, handleToggle, updateHover, readOnly } =
       this.props;
     const { currentInventorySlot } = this.state;
+
+    if (readOnly) return;
 
     const updatedInventory = [...inventory];
     updatedInventory[currentInventorySlot] = newValue;
@@ -65,8 +69,10 @@ export default class ArcanaSelect extends React.Component<
   };
 
   render() {
-    const { inventory, isOpen, updateHover, handleToggle } = this.props;
+    const { inventory, isOpen, updateHover, handleToggle, readOnly } = this.props;
     const { hoverId, currentInventorySlot } = this.state;
+    const cursorInteractive =
+      "url('/assets/images/cursors/pointer.svg') 12 4, pointer";
 
     return (
       <div className="arcane-select">
@@ -87,64 +93,87 @@ export default class ArcanaSelect extends React.Component<
                     }
                   : {}
               }
-              onMouseEnter={() => {
-                updateHover?.(arcane);
-                this.setState({
-                  hoverId: arcane.id,
-                  currentInventorySlot: key,
-                });
-              }}
-              onMouseLeave={() => {
-                updateHover?.({} as ArcanaDetail);
-                if (!isOpen) {
-                  this.setState({
-                    hoverId: '',
-                    currentInventorySlot: -1,
-                  });
-                }
-              }}
-              onClick={() => {
-                handleToggle?.();
-                this.setState({
-                  currentInventorySlot: key,
-                });
-              }}
+              onMouseEnter={
+                readOnly
+                  ? undefined
+                  : () => {
+                      updateHover?.(arcane);
+                      this.setState({
+                        hoverId: arcane.id,
+                        currentInventorySlot: key,
+                      });
+                    }
+              }
+              onMouseLeave={
+                readOnly
+                  ? undefined
+                  : () => {
+                      updateHover?.({} as ArcanaDetail);
+                      if (!isOpen) {
+                        this.setState({
+                          hoverId: '',
+                          currentInventorySlot: -1,
+                        });
+                      }
+                    }
+              }
+              onClick={
+                readOnly
+                  ? undefined
+                  : () => {
+                      handleToggle?.();
+                      this.setState({
+                        currentInventorySlot: key,
+                      });
+                    }
+              }
+              aria-disabled={readOnly || undefined}
             >
               <img
                 className="arcane"
                 src={`/assets/arcanaImages${arcane.imagePath}.svg`}
                 style={{
-                  cursor:
-                    "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
+                  cursor: readOnly ? 'default' : cursorInteractive,
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
                 }}
+                alt={arcane.name}
+                draggable={false}
               />
             </div>
           ))}
         </div>
 
         {isOpen && (
-          <div className="arcana-block">
+          <div className="arcana-block" aria-disabled={readOnly || undefined}>
             {_.map(arcana, (arcaneObject: ArcanaDetail, key: string) => (
               <img
                 key={key}
                 className={`arcane ${hoverId === key ? 'focus' : ''}`}
                 src={`/assets/arcanaImages${arcana[key].imagePath}.svg`}
                 style={{
-                  cursor:
-                    "url('/assets/images/cursors/pointer.svg') 12 4, pointer",
+                  cursor: readOnly ? 'default' : cursorInteractive,
                 }}
-                onMouseEnter={() => {
-                  updateHover?.(arcaneObject);
-                  this.setState({ hoverId: key });
-                }}
-                onMouseLeave={() => {
-                  updateHover?.({} as ArcanaDetail);
-                  this.setState({ hoverId: '' });
-                }}
-                onClick={() => this.updateSlot(arcaneObject)}
+                onMouseEnter={
+                  readOnly
+                    ? undefined
+                    : () => {
+                        updateHover?.(arcaneObject);
+                        this.setState({ hoverId: key });
+                      }
+                }
+                onMouseLeave={
+                  readOnly
+                    ? undefined
+                    : () => {
+                        updateHover?.({} as ArcanaDetail);
+                        this.setState({ hoverId: '' });
+                      }
+                }
+                onClick={readOnly ? undefined : () => this.updateSlot(arcaneObject)}
+                alt={arcaneObject.name}
+                draggable={false}
               />
             ))}
           </div>

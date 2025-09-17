@@ -4,8 +4,8 @@ import './Hero.scss';
 
 import 'src/chessground/styles/normal.scss';
 import 'src/chessground/styles/chi.scss';
-import 'src/chessground/styles/mu.scss';
-import 'src/chessground/styles/nu.scss';
+import 'src/chessground/styles/gamma.scss';
+import 'src/chessground/styles/psi.scss';
 import 'src/chessground/styles/sigma.scss';
 import 'src/chessground/styles/omega.scss';
 import 'src/chessground/styles/lambda.scss';
@@ -50,7 +50,7 @@ export default class Hero extends React.Component {
       'v-piece',
       'x-piece',
     ];
-    const faction = ['normal', 'chi', 'mu', 'nu', 'sigma', 'omega', 'lambda'];
+    const faction = ['tau', 'chi', 'psi', 'gamma', 'sigma', 'omega', 'lambda'];
 
     return {
       piece: piece[this.getRandomNumber(0, 13)],

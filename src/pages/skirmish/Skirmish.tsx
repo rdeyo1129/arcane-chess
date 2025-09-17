@@ -1289,11 +1289,15 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
               <div className="info-avatar">
                 <div className="avatar">
                   <img
-                    src={`/assets/avatars/${this.state.engineAvatar}.webp`}
+                    src={`/assets/factions/${
+                      this.state.playerColor === 'white'
+                        ? this.state.blackFaction
+                        : this.state.whiteFaction
+                    }.webp`}
                     style={{
                       height: '60px',
                       width: '60px',
-                      objectFit: 'contain',
+                      objectFit: 'cover',
                     }}
                   />
                 </div>
@@ -1353,8 +1357,16 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
                   // viewOnly={this.isCheckmate()}
                   fen={this.state.fen}
                   resizable={true}
-                  wFaction={this.state.whiteFaction}
-                  bFaction={this.state.blackFaction}
+                  wFaction={
+                    this.state.whiteFaction === 'tau'
+                      ? 'normal'
+                      : this.state.whiteFaction
+                  }
+                  bFaction={
+                    this.state.blackFaction === 'tau'
+                      ? 'normal'
+                      : this.state.blackFaction
+                  }
                   royalties={this.state.royalties}
                   wVisible={this.arcaneChess().getInvisibility()[0] <= 0}
                   bVisible={this.arcaneChess().getInvisibility()[1] <= 0}
@@ -1940,11 +1952,15 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
               <div className="info-avatar">
                 <div className="avatar">
                   <img
-                    src="/assets/avatars/normal.webp"
+                    src={`/assets/factions/${
+                      this.state.playerColor === 'white'
+                        ? this.state.whiteFaction
+                        : this.state.blackFaction
+                    }.webp`}
                     style={{
                       height: '60px',
                       width: '60px',
-                      objectFit: 'contain',
+                      objectFit: 'cover',
                     }}
                   />
                 </div>

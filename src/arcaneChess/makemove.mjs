@@ -169,6 +169,10 @@ function shiftKeyFromMove(move, moverPiece) {
     case PIECES.bW:
       return 'shftG';
 
+    case PIECES.wH:
+    case PIECES.bH:
+      return 'shftH';
+
     // Myriad epsilon magic
     case EPSILON_MYRIAD_CONST:
       return 'shftA';

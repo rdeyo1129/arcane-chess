@@ -116,13 +116,13 @@ interface State {
   };
   gameOver: boolean;
   gameOverType: string;
-  wArcana: {
+  whiteArcana: {
     [key: string]: number | string | undefined;
     modsIMP?: number | undefined;
     modsORA?: number | undefined;
     modsTEM?: number | undefined;
   };
-  bArcana: {
+  blackArcana: {
     [key: string]: number | string | boolean | undefined;
     modsIMP?: number | undefined;
     modsORA?: number | undefined;
@@ -245,8 +245,8 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
         e: { disabled: false, powers: {}, picks: 0 },
         f: { disabled: false, powers: {}, picks: 0 },
       },
-      wArcana: {},
-      bArcana: {},
+      whiteArcana: {},
+      blackArcana: {},
       placingPiece: 0,
       swapType: '',
       isTeleport: false,
@@ -808,7 +808,7 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
   }
 
   updateSkirmishState = (property: string, value: any) => {
-    if (property === 'wArcana' || property === 'bArcana') {
+    if (property === 'whiteArcana' || property === 'blackArcana') {
       this.setState((prevState) => ({
         ...prevState,
         [property]: {
@@ -1212,18 +1212,18 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
                 this.arcaneChess().init();
                 this.arcaneChess().startGame(
                   this.state.fen,
-                  this.state.wArcana,
-                  this.state.bArcana,
+                  this.state.whiteArcana,
+                  this.state.blackArcana,
                   this.state.royalties,
                   this.state.preset
                 );
                 this.setState(
                   {
                     turn: GameBoard.side === 0 ? 'white' : 'black',
-                    wArcana: {
+                    whiteArcana: {
                       ...whiteArcaneConfig,
                     },
-                    bArcana: {
+                    blackArcana: {
                       ...blackArcaneConfig,
                     },
                   },

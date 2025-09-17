@@ -1,7 +1,6 @@
 @import 'src/styles/main.scss';
 @import 'src/styles/_variables.scss';
 
-/* ---------- globals ---------- */
 html {
   overflow-y: scroll;
   scrollbar-gutter: stable;
@@ -12,7 +11,6 @@ body {
   margin: 0;
 }
 
-/* ---------- dashboard ---------- */
 .dashboard.fade-in {
   opacity: 1;
 }
@@ -23,7 +21,6 @@ body {
   overflow-x: hidden;
   font-size: 0.9rem;
 
-  // fading
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   .fade-overlay {
@@ -59,7 +56,6 @@ body {
     padding: 10px;
     align-content: start;
 
-    /* ---------- header icons ---------- */
     .header-icons {
       position: relative;
       z-index: 1;
@@ -82,13 +78,12 @@ body {
         width: 80px;
         height: 80px;
         border-radius: 9999px;
-        margin-right: 0; /* mobile: remove right margin */
+        margin-right: 0;
         padding: 10px;
         background: $nav-bg;
       }
     }
 
-    /* ---------- xp panel ---------- */
     .xp-panel {
       position: relative;
       z-index: 1;
@@ -140,7 +135,6 @@ body {
       }
     }
 
-    /* ---------- right nav (settings/logout + description) ---------- */
     .nav-right {
       position: relative;
       z-index: 1;
@@ -203,7 +197,6 @@ body {
       }
     }
 
-    /* ---------- left nav (main) ---------- */
     .nav-left {
       position: relative;
       z-index: 1;
@@ -322,8 +315,6 @@ body {
         }
       }
     }
-
-    /* ---------- hover image ---------- */
     .hover-image {
       position: absolute;
       display: block;
@@ -335,21 +326,20 @@ body {
       height: 100vh;
       object-fit: cover;
       object-position: center;
-      filter: brightness(0.5) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
       pointer-events: none;
       z-index: 0;
       -webkit-mask-image: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 1) 0%,
         rgba(0, 0, 0, 1) 35%,
-        rgba(0, 0, 0, 0.85) 70%,
+        rgba(0, 0, 0, 0.85) 40%,
         rgba(0, 0, 0, 0) 100%
       );
       mask-image: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 1) 0%,
         rgba(0, 0, 0, 1) 35%,
-        rgba(0, 0, 0, 0.85) 70%,
+        rgba(0, 0, 0, 0.85) 40%,
         rgba(0, 0, 0, 0) 100%
       );
     }
@@ -370,7 +360,6 @@ body {
   }
 }
 
-/* ---------- tablet/desktop ---------- */
 @media (min-width: 768px) {
   .dashboard {
     .dashboard-header {
@@ -390,7 +379,6 @@ body {
       padding-right: 10px;
       box-sizing: border-box;
 
-      /* ---------- header icons ---------- */
       .header-icons {
         grid-area: logo;
 
@@ -402,7 +390,6 @@ body {
         display: none;
       }
 
-      /* ---------- xp panel (shares cell with avatar) ---------- */
       .xp-panel {
         grid-area: xp;
         justify-self: end;
@@ -445,7 +432,6 @@ body {
         }
       }
 
-      /* ---------- right nav under XP+avatar ---------- */
       .nav-right {
         grid-area: rightnav;
         justify-self: end;
@@ -469,7 +455,6 @@ body {
         }
       }
 
-      /* ---------- left nav ---------- */
       .nav-left {
         grid-area: mainnav;
         display: grid;
@@ -532,7 +517,6 @@ body {
         }
       }
 
-      /* ---------- hover image ---------- */
       .hover-image {
         height: 100vh;
         width: 100vw;
@@ -548,7 +532,6 @@ body {
   }
 }
 
-/* ---------- wide desktop tweaks if needed ---------- */
 @media (min-width: 1024px) {
   .dashboard {
     .dashboard-header {

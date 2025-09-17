@@ -132,21 +132,28 @@ function sumnKeyFromMove(move) {
   return null;
 }
 
-function shiftKeyFromMove(move) {
+function shiftKeyFromMove(move, moverPiece) {
   if ((move & MFLAGSHFT) === 0) return null;
 
   if (CAPTURED(move) === TELEPORT_CONST) return 'shftT';
 
-  switch (PROMOTED(move)) {
+  const p = PROMOTED(move);
+  const piece = p || moverPiece || PIECES.EMPTY;
+
+  switch (piece) {
     case PIECES.wP:
     case PIECES.bP:
       return 'shftP';
+
     case PIECES.wB:
     case PIECES.bB:
       return 'shftB';
+
     case PIECES.wR:
     case PIECES.bR:
       return 'shftR';
+
+    // Knight-like (N/Z/U) grouped as "shftN"
     case PIECES.wN:
     case PIECES.wZ:
     case PIECES.wU:
@@ -154,13 +161,18 @@ function shiftKeyFromMove(move) {
     case PIECES.bZ:
     case PIECES.bU:
       return 'shftN';
+
+    // Guard-like (S/W) grouped as "shftG"
     case PIECES.wS:
     case PIECES.wW:
     case PIECES.bS:
     case PIECES.bW:
       return 'shftG';
+
+    // Myriad epsilon magic
     case EPSILON_MYRIAD_CONST:
       return 'shftA';
+
     default:
       return null;
   }
@@ -381,18 +393,6 @@ export function MakeMove(move, moveType = '') {
     }
   }
 
-  if (
-    // eclipse here
-    CAPTURED(move) === TELEPORT_CONST &&
-    move & MFLAGSHFT
-  ) {
-    if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig[`shftT`] -= 1;
-    } else {
-      blackArcaneConfig[`shftT`] -= 1;
-    }
-  }
-
   const isNormalCapture =
     to > 0 &&
     (move & (MFLAGSWAP | MFLAGSUMN | MFLAGEP)) === 0 &&
@@ -514,13 +514,11 @@ export function MakeMove(move, moveType = '') {
   const sKey = sumnKeyFromMove(move);
   if (sKey) cfg[sKey] = (cfg[sKey] ?? 0) - 1;
 
-  const shKey = shiftKeyFromMove(move);
+  const shKey = shiftKeyFromMove(move, moverPiece);
   if (shKey) cfg[shKey] = (cfg[shKey] ?? 0) - 1;
 
-  // should only ever be offering moves
   if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
     const promoted = PROMOTED(move);
-    // summon arcana being given
     const whitePieceToOfferings = {
       1: [PIECES.wH],
       2: [PIECES.wR, PIECES.wR],
@@ -728,11 +726,13 @@ export function TakeMove(wasDyadMove = false) {
 
   const promoEpsilon = !isShift(move) ? pieceEpsilon : PIECES.EMPTY;
 
+  const moverAtTo = GameBoard.pieces[to];
+
   const cfg =
     GameBoard.side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
   const sKey = sumnKeyFromMove(move);
   if (sKey) cfg[sKey] = (cfg[sKey] ?? 0) + 1;
-  const shKey = shiftKeyFromMove(move);
+  const shKey = shiftKeyFromMove(move, moverAtTo);
   if (shKey) cfg[shKey] = (cfg[shKey] ?? 0) + 1;
 
   if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
@@ -845,18 +845,6 @@ export function TakeMove(wasDyadMove = false) {
       (isConsume && !isShift(move)))
   ) {
     MovePiece(to, from);
-  }
-
-  if (
-    // eclipse here
-    CAPTURED(move) === TELEPORT_CONST &&
-    move & MFLAGSHFT
-  ) {
-    if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig[`shftT`] += 1;
-    } else {
-      blackArcaneConfig[`shftT`] += 1;
-    }
   }
 
   if (

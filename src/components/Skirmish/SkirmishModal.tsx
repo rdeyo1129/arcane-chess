@@ -93,7 +93,7 @@ const FACTIONS: Record<FactionId, Faction> = {
     id: 'chi',
     name: 'chi',
     army: 'RNBQKBNR',
-    arcana: [],
+    arcana: ['dyadB', 'modsGLU'],
     unlocked: true,
     image: '/assets/factions/chi.webp',
     description: 'Elusive control & vision denial. Punishes overextension.',
@@ -101,8 +101,8 @@ const FACTIONS: Record<FactionId, Faction> = {
   gamma: {
     id: 'gamma',
     name: 'gamma',
-    army: 'RNBQKBNR',
-    arcana: [],
+    army: 'RNBTKBNR',
+    arcana: ['shftP', 'modsDIM', 'shftT'],
     unlocked: true,
     image: '/assets/factions/gamma.webp',
     description: 'Pin-based tempo plays and angle traps.',
@@ -110,8 +110,8 @@ const FACTIONS: Record<FactionId, Faction> = {
   omega: {
     id: 'omega',
     name: 'omega',
-    army: 'RNBQKBNR',
-    arcana: [],
+    army: 'RNBMKBNR',
+    arcana: ['sumnRM', 'sumnRT', 'modsEXT'],
     unlocked: true,
     image: '/assets/factions/omega.webp',
     description: 'Clean strikes, promotions, explosive finishers.',
@@ -119,8 +119,8 @@ const FACTIONS: Record<FactionId, Faction> = {
   lambda: {
     id: 'lambda',
     name: 'lambda',
-    army: 'RNBQKBNR',
-    arcana: [],
+    army: 'RNWQKWNR',
+    arcana: ['modsREA'],
     unlocked: true,
     image: '/assets/factions/lambda.webp',
     description: 'Zone control & drag tactics; slow crush.',
@@ -128,8 +128,8 @@ const FACTIONS: Record<FactionId, Faction> = {
   sigma: {
     id: 'sigma',
     name: 'sigma',
-    army: 'WWWQKSSS',
-    arcana: [],
+    army: 'RNBMKBNR',
+    arcana: ['sumnRE', 'sumnRE', 'modsSIL'],
     unlocked: true,
     image: '/assets/factions/sigma.webp',
     description: 'Calculation & multi-step plans; precise bursts.',
@@ -137,8 +137,8 @@ const FACTIONS: Record<FactionId, Faction> = {
   psi: {
     id: 'psi',
     name: 'psi',
-    army: 'RNBQKBNR',
-    arcana: [],
+    army: 'RSBQKBSR',
+    arcana: ['modsBAN'],
     unlocked: true,
     image: '/assets/factions/psi.webp',
     description: 'Reactive counters; flows around pressure.',
@@ -146,8 +146,8 @@ const FACTIONS: Record<FactionId, Faction> = {
   tau: {
     id: 'tau',
     name: 'tau',
-    army: 'RNBQKBNR',
-    arcana: [],
+    army: '2WVKW2',
+    arcana: ['modsREA'],
     unlocked: true,
     image: '/assets/factions/tau.webp',
     description: 'Phasing & binds; strike where they least expect.',
@@ -358,10 +358,14 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
         ? this.state.whiteArcana
         : this.state.blackArcana;
 
-    const nextWhiteSetup =
-      nextPlayerColor === 'white' ? playerArmy : engineArmy;
-    const nextBlackSetup =
-      nextPlayerColor === 'black' ? playerArmy : engineArmy;
+    // enforce casing by color
+    const nextWhiteSetup = (
+      nextPlayerColor === 'white' ? playerArmy : engineArmy
+    ).toUpperCase();
+    const nextBlackSetup = (
+      nextPlayerColor === 'black' ? playerArmy : engineArmy
+    ).toLowerCase();
+
     const nextWhiteArc = nextPlayerColor === 'white' ? playerInv : engineInv;
     const nextBlackArc = nextPlayerColor === 'black' ? playerInv : engineInv;
 
@@ -377,10 +381,26 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
       () => {
         const wCounts = this.transformedInventory(this.state.whiteArcana);
         const bCounts = this.transformedInventory(this.state.blackArcana);
+
         this.props.updateConfig?.('whiteSetup', this.state.whiteSetup);
         this.props.updateConfig?.('blackSetup', this.state.blackSetup);
         this.props.updateConfig?.('whiteArcana', wCounts);
         this.props.updateConfig?.('blackArcana', bCounts);
+
+        const whiteFaction =
+          this.state.playerColor === 'white'
+            ? this.state.playerFactionId
+            : this.state.engineFactionId;
+
+        const blackFaction =
+          this.state.playerColor === 'black'
+            ? this.state.playerFactionId
+            : this.state.engineFactionId;
+
+        if (whiteFaction)
+          this.props.updateConfig?.('whiteFaction', whiteFaction);
+        if (blackFaction)
+          this.props.updateConfig?.('blackFaction', blackFaction);
       }
     );
   };

@@ -50,7 +50,7 @@ const NAV_META: Record<string, { description: string; imageKey: string }> = {
     imageKey: 'quickplay',
   },
   gauntlet: {
-    description: 'Draft an army. Survive waves.',
+    description: 'Draft an army. Survive waves. Coming soon.',
     imageKey: 'arena',
   },
   skirmish: {
@@ -58,12 +58,12 @@ const NAV_META: Record<string, { description: string; imageKey: string }> = {
     imageKey: 'arena',
   },
   melee: {
-    description: 'Quickplay from a shared arcana pool.',
+    description: 'Quickplay from a shared arcana pool. Coming soon.',
     imageKey: 'arena',
   },
   // Forum (parent uses forum image; no visible subs yet)
   forum: {
-    description: 'Community news and discussions.',
+    description: 'Community news and discussions. Coming soon.',
     imageKey: 'forum',
   },
   // Manifest (parent + subs share the MANIFEST image)

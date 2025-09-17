@@ -2505,28 +2505,28 @@ export function GenerateMoves(
             : GameBoard.blackArcane[4];
 
         if (origPce === PIECES.wV) {
-          if (arc4 & 2048) {
+          if (arc4 & 256) {
             slidePce = PIECES.wQ;
           } else {
             continue;
           }
         }
         if (origPce === PIECES.bV) {
-          if (arc4 & 2048) {
+          if (arc4 & 256) {
             slidePce = PIECES.bQ;
           } else {
             continue;
           }
         }
         if (origPce === PIECES.wW) {
-          if (arc4 & 2048) {
+          if (arc4 & 256) {
             slidePce = PIECES.wB;
           } else {
             continue;
           }
         }
         if (origPce === PIECES.bW) {
-          if (arc4 & 2048) {
+          if (arc4 & 256) {
             slidePce = PIECES.bB;
           } else {
             continue;

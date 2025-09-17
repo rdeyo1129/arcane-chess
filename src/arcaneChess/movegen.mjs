@@ -1037,9 +1037,8 @@ export function GenerateMoves(
     let summonFlag = loopSummonFlag[summonIndex++];
 
     const whiteLimit =
-      100 - 10 * (8 - (GameBoard.whiteArcane[4] & 4096 ? 8 : 6));
-    const blackLimit =
-      20 + 10 * (8 - (GameBoard.blackArcane[4] & 4096 ? 8 : 6));
+      100 - 10 * (8 - (GameBoard.whiteArcane[4] & 512 ? 8 : 6));
+    const blackLimit = 20 + 10 * (8 - (GameBoard.blackArcane[4] & 512 ? 8 : 6));
 
     GameBoard.summonRankLimits[0] = whiteLimit;
     GameBoard.summonRankLimits[1] = blackLimit;

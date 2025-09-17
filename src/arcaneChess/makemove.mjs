@@ -429,6 +429,17 @@ export function MakeMove(move, moveType = '') {
     MovePiece(from, to);
   }
 
+  if (
+    TOSQ(move) > 0 &&
+    promoEpsilon !== PIECES.EMPTY &&
+    !isShift(move) &&
+    !isSummon(move) &&
+    !isSwap(move)
+  ) {
+    ClearPiece(to);
+    AddPiece(to, promoEpsilon);
+  }
+
   if (TOSQ(move) > 0 && move & MFLAGCNSM && !isShift(move)) {
     (side === COLOURS.WHITE
       ? whiteArcaneConfig

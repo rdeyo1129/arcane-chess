@@ -44,9 +44,12 @@ const GlobalVolumeControl: React.FC = () => {
             step="0.01"
             value={musicVolume}
             onChange={handleMusicVolumeChange}
-            style={{
-              cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
-            }}
+            style={
+              {
+                '--fill': `${musicVolume * 100}%`,
+                cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
+              } as React.CSSProperties
+            }
             className="volume-slider"
           />
         </div>
@@ -62,9 +65,12 @@ const GlobalVolumeControl: React.FC = () => {
             step="0.01"
             value={sfxVolume}
             onChange={handleSFXVolumeChange}
-            style={{
-              cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
-            }}
+            style={
+              {
+                '--fill': `${sfxVolume * 100}%`,
+                cursor: `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
+              } as React.CSSProperties
+            }
             className="volume-slider"
           />
         </div>

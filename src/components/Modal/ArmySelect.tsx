@@ -1,44 +1,50 @@
+// ArmySelect.tsx
 import React from 'react';
-// import _ from 'lodash';
-
 import './ArmySelect.scss';
 
 import 'src/chessground/styles/normal.scss';
+import 'src/chessground/styles/chi.scss';
+import 'src/chessground/styles/lambda.scss';
+import 'src/chessground/styles/sigma.scss';
+import 'src/chessground/styles/omega.scss';
+import 'src/chessground/styles/psi.scss';
+import 'src/chessground/styles/gamma.scss';
 
 interface ArmySelectProps {
   army: string;
   isOpen: boolean;
   color: string;
-  updateArmy: (army: string) => void;
-  handleToggle: () => void;
-  updateHover: (id: string) => void;
+  faction?: FactionId;
+  updateArmy?: (army: string) => void;
+  handleToggle?: () => void;
+  updateHover?: (id: string) => void;
+  readOnly?: boolean;
 }
+
 interface ArmySelectState {
   hoverArmy: number;
   army: string;
 }
+
+type FactionId = 'chi' | 'gamma' | 'omega' | 'lambda' | 'sigma' | 'psi' | 'tau';
 
 export const armies = [
   'RNBQKBNR',
   'RNBTKBNR',
   'RNBMKBNR',
   'RNBVKBNR',
-  // sub N for S
   'RSBQKBSR',
   'RSBTKBSR',
   'RSBMKBSR',
   'RSBVKBSR',
-  // sub B for W
   'RNWQKWNR',
   'RNWTKWNR',
   'RNWMKWNR',
   'RNWVKWNR',
-  // sub B and N for W and S
   'RSWQKWSR',
   'RSWTKWSR',
   'RSWMKWSR',
   'RSWVKWSR',
-  // sudden death
   'TMQVKQMT',
 ];
 
@@ -55,85 +61,109 @@ export default class ArmySelect extends React.Component<
   }
 
   render() {
+    const {
+      army,
+      isOpen,
+      color,
+      faction,
+      updateArmy,
+      handleToggle,
+      updateHover,
+      readOnly,
+    } = this.props;
+    const cursorInteractive =
+      "url('/assets/images/cursors/pointer.svg') 12 4, pointer";
+
     return (
       <div className="army-select">
         <div
           className={`army ${this.state.hoverArmy === -1 ? 'hover-army' : ''}`}
-          onMouseEnter={() => {
-            this.setState({
-              hoverArmy: -1,
-            });
-            this.props.updateHover('army');
-          }}
-          onMouseLeave={() => {
-            this.setState({
-              hoverArmy: -2,
-            });
-            this.props.updateHover('');
-          }}
-          onClick={() => {
-            this.props.handleToggle();
-          }}
+          onMouseEnter={
+            readOnly
+              ? undefined
+              : () => {
+                  this.setState({ hoverArmy: -1 });
+                  updateHover?.('army');
+                }
+          }
+          onMouseLeave={
+            readOnly
+              ? undefined
+              : () => {
+                  this.setState({ hoverArmy: -2 });
+                  updateHover?.('');
+                }
+          }
+          onClick={readOnly ? undefined : () => handleToggle?.()}
+          aria-disabled={readOnly || undefined}
+          style={{ cursor: readOnly ? 'default' : cursorInteractive }}
         >
-          {this.props.army.split('').map((piece, index) => (
+          {army.split('').map((piece, index) => (
             <div
               key={index}
-              className={`${piece.toLowerCase()}-piece ${
-                this.props.color
-              } normal`}
-            ></div>
+              className={`${piece.toLowerCase()}-piece ${color} ${
+                faction === 'tau' ? 'normal' : faction
+              }`}
+            />
           ))}
         </div>
-        {this.props.isOpen ? (
-          <div className="army-block">
-            {armies.map((army, armyIndex) => (
+
+        {isOpen && (
+          <div className="army-block" aria-disabled={readOnly || undefined}>
+            {armies.map((armyCode, armyIndex) => (
               <div
                 key={armyIndex}
                 className={`army-item ${
                   this.state.hoverArmy === armyIndex ? 'hover-army' : ''
                 }`}
-                onMouseEnter={() => {
-                  this.setState({
-                    hoverArmy: armyIndex,
-                  });
-                  this.props.updateHover('army');
-                }}
-                onMouseLeave={() => {
-                  this.setState({
-                    hoverArmy: -2,
-                  });
-                  this.props.updateHover('');
-                }}
+                onMouseEnter={
+                  readOnly
+                    ? undefined
+                    : () => {
+                        this.setState({ hoverArmy: armyIndex });
+                        updateHover?.('army');
+                      }
+                }
+                onMouseLeave={
+                  readOnly
+                    ? undefined
+                    : () => {
+                        this.setState({ hoverArmy: -2 });
+                        updateHover?.('');
+                      }
+                }
+                style={{ cursor: readOnly ? 'default' : cursorInteractive }}
               >
-                {army.split('').map((piece, pieceIndex) => (
+                {armyCode.split('').map((piece, pieceIndex) => (
                   <div
                     key={pieceIndex}
-                    className={`${piece.toLowerCase()}-piece ${
-                      this.props.color
-                    } normal ${
+                    className={`${piece.toLowerCase()}-piece ${color} ${
+                      faction === 'tau' ? 'normal' : faction
+                    } ${
                       this.state.hoverArmy === armyIndex ? 'hover-army' : ''
                     }`}
-                    onClick={() => {
-                      this.props.updateArmy(
-                        this.props.color === 'white'
-                          ? armies[armyIndex]
-                          : armies[armyIndex].toLowerCase()
-                      );
-                      this.setState(
-                        {
-                          army: armies[armyIndex],
-                        },
-                        () => {
-                          this.props.handleToggle();
-                        }
-                      );
-                    }}
-                  ></div>
+                    onClick={
+                      readOnly
+                        ? undefined
+                        : () => {
+                            updateArmy?.(
+                              color === 'white'
+                                ? armies[armyIndex]
+                                : armies[armyIndex].toLowerCase()
+                            );
+                            this.setState(
+                              { army: armies[armyIndex] },
+                              () => handleToggle?.()
+                            );
+                          }
+                    }
+                    style={{ cursor: readOnly ? 'default' : cursorInteractive }}
+                  />
                 ))}
               </div>
             ))}
           </div>
-        ) : null}
+        )}
       </div>
     );
   }

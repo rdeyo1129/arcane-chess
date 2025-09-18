@@ -840,57 +840,55 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
     return _.map(
       color === 'white' ? whiteArcaneConfig : blackArcaneConfig,
       (value: number, key: string) => {
+        const entry = arcana[key]; // ← single lookup
+
+        // Skip unknown keys or missing metadata
+        if (!entry) return null;
+
+        // Only show non-inherent items when they have charges
+        const isInherent = entry.type === 'inherent';
+        if (!isInherent && (!value || value <= 0)) return null;
+
         const futureSightAvailable =
           this.state.history.length >= 4 && this.state.futureSightAvailable;
+
         const active = this.isArcaneActive(key);
         const trojanActive =
           this.arcaneChess().getIfTrojanGambitExists(this.state.engineColor) &&
           key === 'modsTRO';
-        if (!value || value <= 0 || !key) return;
+
+        // Common disabled state
+        const isDisabled =
+          this.state.playerColor !== color ||
+          this.state.thinking ||
+          (!futureSightAvailable && key === 'modsFUT');
+
         return (
           <div
             key={key}
-            style={{
-              position: 'relative',
-              display: 'inline-block',
-            }}
+            style={{ position: 'relative', display: 'inline-block' }}
           >
-            <div
-              style={{
-                position: 'absolute',
-              }}
-            >
-              {arcana[key].type === 'inherent' ? 'INH' : value}
+            <div style={{ position: 'absolute' }}>
+              {isInherent ? 'INH' : value}
             </div>
             <img
-              key={key}
-              className={`arcane ${active ? ' is-active' : ''} ${
-                trojanActive ? 'trojan-active' : ''
+              className={`arcane${active ? ' is-active' : ''}${
+                trojanActive
+                  ? ' trojan-active'
+                  : this.state.hoverArcane === key
+                  ? ' focus'
+                  : ''
               }`}
-              src={`${arcana[key].imagePath}${
-                this.state.hoverArcane === key ? '-hover' : ''
-              }.svg`}
+              src={`/assets/arcanaImages${entry.imagePath}.svg`}
               style={{
-                opacity:
-                  this.state.playerColor !== color ||
-                  this.state.thinking ||
-                  (!futureSightAvailable && key === 'modsFUT')
-                    ? 0.5
-                    : 1,
-                cursor:
-                  this.state.playerColor !== color ||
-                  this.state.thinking ||
-                  (!futureSightAvailable && key === 'modsFUT')
-                    ? 'not-allowed'
-                    : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
+                opacity: isDisabled ? 0.5 : 1,
+                cursor: isDisabled
+                  ? 'not-allowed'
+                  : `url('/assets/images/cursors/pointer.svg') 12 4, pointer`,
               }}
               onClick={() => {
-                if (
-                  this.state.playerColor !== color ||
-                  (!futureSightAvailable && key === 'modsFUT') ||
-                  this.state.thinking
-                )
-                  return;
+                if (isDisabled) return;
+
                 if (
                   this.state.placingPiece > 0 ||
                   this.state.swapType !== '' ||
@@ -1406,6 +1404,7 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
                               dests = this.arcaneChess().getOfferingMoves(
                                 this.state.offeringType
                               );
+                              console.log('offering dests', dests);
                             }
                           } else {
                             dests = this.arcaneChess().getSwapMoves(

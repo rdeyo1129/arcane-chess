@@ -42,7 +42,7 @@ const pieceList: PieceItem[] = [
   {
     name: 'Unicorn',
     description:
-      'Moves diagonally with teleport hops; leaps through pieces on the second bishop move. A mythical hunter of legends.',
+      'Close combat on orthognoal squares; leaps through pieces on the second bishop move. A mythical hunter of legends.',
     imagePath: '/assets/images/pieces/tactorius/normal/wU',
     family: 'Equus',
   },

@@ -325,10 +325,8 @@ export default class ArcanaSelect extends React.Component<
                     </div>
                     <img
                       key={key}
-                      className="arcane"
-                      src={`${arcana[key].imagePath}${
-                        hoverArcane === `${key}` ? '-hover' : ''
-                      }.svg`}
+                      className={`arcane ${hoverArcane === key ? 'focus' : ''}`}
+                      src={`/assets/arcanaImages${arcana[key].imagePath}.svg`}
                       style={{
                         opacity: isDisabled || isSelected ? 1 : 0.5,
                         cursor: isDisabled

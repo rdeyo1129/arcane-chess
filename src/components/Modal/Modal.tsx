@@ -410,12 +410,12 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           return (
                             <img
                               key={key}
-                              className="arcane"
-                              src={`${arcana[key].imagePath}${
+                              className={`arcane ${
                                 this.state.hoverArcane === `${key}`
-                                  ? '-hover'
+                                  ? 'focus'
                                   : ''
-                              }.svg`}
+                              }`}
+                              src={`/assets/arcanaImages${arcana[key].imagePath}.svg`}
                               onMouseEnter={() => this.toggleHover(`${key}`)}
                               onMouseLeave={() => this.toggleHover('')}
                             />

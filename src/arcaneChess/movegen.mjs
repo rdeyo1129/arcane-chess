@@ -43,6 +43,11 @@ import {
   BiDir,
   KiDir,
   KnDir,
+  WrDir,
+  SpDir,
+  HerShftDir,
+  BanDirSp,
+  BanDirWr,
   PCEINDEX,
   NOMOVE,
   MAXDEPTH,
@@ -59,6 +64,8 @@ import {
 } from './defs';
 import { MakeMove, TakeMove } from './makemove';
 import { validMoves } from './gui.mjs';
+
+const EPSILON_MYRIAD_CONST = 30;
 
 const MvvLvaValue = [
   0, 100, 500, 600, 700, 1200, 1400, 100, 500, 600, 700, 1200, 1400, 0, 900,
@@ -222,233 +229,84 @@ export function addOfferingMove(move) {
   GameBoard.moveListStart[GameBoard.ply + 1]++;
 }
 
-export function AddWhitePawnCaptureMove(from, to, cap, consume, capturesOnly) {
+export function AddWhitePawnCaptureMove(
+  from,
+  to,
+  cap,
+  eps,
+  flag,
+  capturesOnly
+) {
+  AddQuietMove(MOVE(from, to, cap, eps, flag), capturesOnly);
   if (GameBoard.whiteArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_7) {
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wQ, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wT, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wM, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wR, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wB, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wN, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wZ, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wU, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wS, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wW, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wQ, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wT, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wM, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wR, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wB, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wN, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wZ, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wU, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wS, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wW, flag), flag, capturesOnly);
   }
   if (RanksBrd[to] === RANKS.RANK_8) {
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wQ, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wT, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wM, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wR, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wB, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wZ, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wU, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wN, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wS, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.wW, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wQ, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wT, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wM, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wR, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wB, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wZ, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wU, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wN, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wS, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.wW, flag), flag, capturesOnly);
   } else {
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.EMPTY, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
+    AddCaptureMove(MOVE(from, to, cap, PIECES.EMPTY, flag), flag, capturesOnly);
   }
 }
 
-export function AddBlackPawnCaptureMove(from, to, cap, consume, capturesOnly) {
+export function AddBlackPawnCaptureMove(
+  from,
+  to,
+  cap,
+  eps,
+  flag,
+  capturesOnly
+) {
+  if (flag & MFLAGSHFT)
+    AddQuietMove(MOVE(from, to, cap, eps, flag), capturesOnly);
   if (GameBoard.blackArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_2) {
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bQ, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bT, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bM, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bR, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bB, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bN, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bZ, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bU, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bS, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bW, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bQ, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bT, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bM, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bR, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bB, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bN, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bZ, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bU, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bS, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bW, flag), flag, capturesOnly);
   }
   if (RanksBrd[to] === RANKS.RANK_1) {
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bQ, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bT, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bM, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bR, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bB, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bZ, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bU, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bN, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bS, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.bW, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bQ, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bT, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bM, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bR, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bB, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bZ, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bU, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bN, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bS, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, PIECES.bW, flag), flag, capturesOnly);
   } else {
-    AddCaptureMove(
-      MOVE(from, to, cap, PIECES.EMPTY, consume ? MFLAGCNSM : 0),
-      consume,
-      capturesOnly
-    );
+    AddCaptureMove(MOVE(from, to, cap, PIECES.EMPTY, flag), flag, capturesOnly);
   }
 }
 
-export function AddWhitePawnQuietMove(from, to, flag, capturesOnly) {
+export function AddWhitePawnQuietMove(from, to, eps, flag, capturesOnly) {
+  if (flag & MFLAGSHFT)
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, eps, flag), capturesOnly);
   if (GameBoard.whiteArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_7) {
     if (GameBoard.suspend > 0) return;
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wQ, flag), capturesOnly);
@@ -482,7 +340,9 @@ export function AddWhitePawnQuietMove(from, to, flag, capturesOnly) {
   }
 }
 
-export function AddBlackPawnQuietMove(from, to, flag, capturesOnly) {
+export function AddBlackPawnQuietMove(from, to, eps, flag, capturesOnly) {
+  if (flag & MFLAGSHFT)
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, eps, flag), capturesOnly);
   if (GameBoard.blackArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_2) {
     if (GameBoard.suspend > 0) return;
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bQ, flag), capturesOnly);
@@ -613,12 +473,12 @@ export const getHerrings = (color) => {
 
 export const whiteTeleports = [
   21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38, 41, 42, 43,
-  44, 45, 46, 47, 48,
+  44, 45, 46, 47, 48, 51, 52, 53, 54, 55, 56, 57, 58,
 ];
 
 export const blackTeleports = [
   71, 72, 73, 74, 75, 76, 77, 78, 81, 82, 83, 84, 85, 86, 87, 88, 91, 92, 93,
-  94, 95, 96, 97, 98,
+  94, 95, 96, 97, 98, 61, 62, 63, 64, 65, 66, 67, 68,
 ];
 
 export function GenerateMoves(
@@ -631,7 +491,6 @@ export function GenerateMoves(
   GameBoard.moveListStart[GameBoard.ply + 1] =
     GameBoard.moveListStart[GameBoard.ply];
 
-  let index;
   let pceType;
   let pceNum;
   let sq;
@@ -642,9 +501,24 @@ export function GenerateMoves(
   let dir;
   let dyad;
 
+  let currentArcanaSide =
+    GameBoard.side === 0 ? GameBoard.whiteArcane : GameBoard.blackArcane;
+  let hasMyriadPath = currentArcanaSide[1] & 256;
+
+  let has5thDimensionSword = currentArcanaSide[4] & 262144;
+  let hasHermit = currentArcanaSide[4] & 1048576;
+
+  let pawnCanShift = currentArcanaSide[1] & 1 || currentArcanaSide[1] & 256;
+  let equusCanShift = currentArcanaSide[1] & 2 || currentArcanaSide[1] & 256;
+  let bishopCanShift = currentArcanaSide[1] & 4 || currentArcanaSide[1] & 256;
+  let rookCanShift = currentArcanaSide[1] & 8 || currentArcanaSide[1] & 256;
+  let ghostCanShift = currentArcanaSide[1] & 32 || currentArcanaSide[1] & 256;
+  let herringCanShift = currentArcanaSide[1] & 64 || currentArcanaSide[1] & 256;
+
   const herringArray = getHerrings(GameBoard.side);
 
-  if (forcedMoves) {
+  // note might need to revisit for computer having a herring
+  if (forcedMoves && hasHermit) {
     const herringsAttacked = () => {
       const tempHerrings = [];
       _.forEach(herringArray, (herringSq) => {
@@ -868,28 +742,34 @@ export function GenerateMoves(
     if (type2 === 'ADJ' || type2 === 'DEP') return;
 
     if (!herrings.length && (type2 === 'TELEPORT' || type2 === 'COMP')) {
-      if (
-        (GameBoard.side === COLOURS.WHITE && GameBoard.whiteArcane[1] & 16) ||
-        (GameBoard.side === COLOURS.BLACK && GameBoard.blackArcane[1] & 16)
-      ) {
+      const side = GameBoard.side;
+      const arcanaOK =
+        (side === COLOURS.WHITE && GameBoard.whiteArcane[1] & 16) ||
+        (side === COLOURS.BLACK && GameBoard.blackArcane[1] & 16);
+
+      if (arcanaOK) {
         const teleportSquares =
-          GameBoard.side === COLOURS.WHITE ? whiteTeleports : blackTeleports;
+          side === COLOURS.WHITE ? whiteTeleports : blackTeleports;
 
-        for (let pce = PIECES.wP; pce <= PIECES.bK; pce++) {
-          if (PieceCol[pce] !== GameBoard.side) continue;
+        // Allowed pieces by side: N, U, Z, B, R
+        const allowedPieces =
+          side === COLOURS.WHITE
+            ? [PIECES.wN, PIECES.wU, PIECES.wZ, PIECES.wB, PIECES.wR]
+            : [PIECES.bN, PIECES.bU, PIECES.bZ, PIECES.bB, PIECES.bR];
 
-          for (let pceNum = 0; pceNum < GameBoard.pceNum[pce]; pceNum++) {
-            const sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
-            teleportSquares.forEach((toSq) => {
+        for (const pce of allowedPieces) {
+          const count = GameBoard.pceNum[pce] || 0;
+          for (let idx = 0; idx < count; idx++) {
+            const fromSq = GameBoard.pList[PCEINDEX(pce, idx)];
+
+            for (const toSq of teleportSquares) {
               if (GameBoard.pieces[toSq] === PIECES.EMPTY) {
-                const promotionPiece =
-                  GameBoard.side === COLOURS.WHITE ? PIECES.wT : PIECES.bT;
                 AddQuietMove(
-                  MOVE(sq, toSq, PIECES.EMPTY, promotionPiece, MFLAGSHFT),
+                  MOVE(fromSq, toSq, 30, 0, MFLAGSHFT),
                   capturesOnly
                 );
               }
-            });
+            }
           }
         }
         return;
@@ -1037,6 +917,111 @@ export function GenerateMoves(
                 addOfferingMove(MOVE(sq, 0, offeringPce, 14, 0));
               }
             }
+            // K
+            if (
+              offeringArcanaSide & 1024 &&
+              (('K' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'Q') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 15, 0));
+              }
+              if (offeringSymbol === 'T') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 16, 0));
+              }
+              if (offeringSymbol === 'M') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 17, 0));
+              }
+              if (offeringSymbol === 'V') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 18, 0));
+              }
+            }
+            // L
+            if (
+              offeringArcanaSide & 2048 &&
+              (('L' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'P') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 19, 0));
+              }
+            }
+            // M
+            if (
+              offeringArcanaSide & 4096 &&
+              (('M' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (
+                offeringSymbol === 'M' ||
+                offeringSymbol === 'Q' ||
+                offeringSymbol === 'T'
+              ) {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 20, 0));
+              }
+            }
+            // N
+            if (
+              offeringArcanaSide & 8192 &&
+              (('N' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (
+                offeringSymbol === 'M' ||
+                offeringSymbol === 'Q' ||
+                offeringSymbol === 'T'
+              ) {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 21, 0));
+              }
+            }
+            // O
+            if (
+              offeringArcanaSide & 16384 &&
+              (('O' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'Q') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 22, 0));
+              }
+              if (offeringSymbol === 'T') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 23, 0));
+              }
+              if (offeringSymbol === 'M') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 24, 0));
+              }
+            }
+            // Z
+            if (
+              offeringArcanaSide & 32768 &&
+              (('Z' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'V') {
+                addOfferingMove(
+                  MOVE(sq, 0, offeringPce, _.sample([25, 26]), 0)
+                );
+              }
+            }
+            // Q
+            if (
+              offeringArcanaSide & 65536 &&
+              (('Q' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'Q' || offeringSymbol === 'T') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 27, 0));
+              }
+            }
+            // R
+            if (
+              offeringArcanaSide & 131072 &&
+              (('R' === userSummonPceRty && type === 'OFFERING') ||
+                type !== 'OFFERING')
+            ) {
+              if (offeringSymbol === 'S' || offeringSymbol === 'W') {
+                addOfferingMove(MOVE(sq, 0, offeringPce, 28, 0));
+              }
+            }
           }
         }
         offeringPce = LoopPcePrime[offeringIndex];
@@ -1052,9 +1037,8 @@ export function GenerateMoves(
     let summonFlag = loopSummonFlag[summonIndex++];
 
     const whiteLimit =
-      100 - 10 * (8 - (GameBoard.whiteArcane[4] & 4096 ? 8 : 6));
-    const blackLimit =
-      20 + 10 * (8 - (GameBoard.blackArcane[4] & 4096 ? 8 : 6));
+      100 - 10 * (8 - (GameBoard.whiteArcane[4] & 512 ? 8 : 6));
+    const blackLimit = 20 + 10 * (8 - (GameBoard.blackArcane[4] & 512 ? 8 : 6));
 
     GameBoard.summonRankLimits[0] = whiteLimit;
     GameBoard.summonRankLimits[1] = blackLimit;
@@ -1248,7 +1232,7 @@ export function GenerateMoves(
       ) {
         // NORMAL PAWN MOVES
         if (GameBoard.pieces[sq + 10] === PIECES.EMPTY) {
-          AddWhitePawnQuietMove(sq, sq + 10, 0, capturesOnly);
+          AddWhitePawnQuietMove(sq, sq + 10, 0, 0, capturesOnly);
         }
         if (
           (GameBoard.pieces[sq + 10] === PIECES.EMPTY &&
@@ -1266,15 +1250,77 @@ export function GenerateMoves(
         }
 
         // note WHITE PAWN SHIFTS
-        if (GameBoard.whiteArcane[1] & 1) {
+        if (pawnCanShift) {
           if (GameBoard.pieces[sq - 1] === PIECES.EMPTY) {
-            AddWhitePawnQuietMove(sq, sq - 1, MFLAGSHFT, capturesOnly);
+            AddWhitePawnQuietMove(
+              sq,
+              sq - 1,
+              hasMyriadPath ? 30 : 1,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
+          if (
+            has5thDimensionSword &&
+            (PieceCol[GameBoard.pieces[sq - 1]] === COLOURS.BLACK ||
+              GameBoard.pieces[sq - 1] === PIECES.EXILE)
+          ) {
+            AddWhitePawnCaptureMove(
+              sq,
+              sq - 1,
+              GameBoard.pieces[sq - 1],
+              hasMyriadPath ? 30 : 1,
+              MFLAGSHFT,
+              capturesOnly
+            );
+          }
+
           if (GameBoard.pieces[sq + 1] === PIECES.EMPTY) {
-            AddWhitePawnQuietMove(sq, sq + 1, MFLAGSHFT, capturesOnly);
+            AddWhitePawnQuietMove(
+              sq,
+              sq + 1,
+              hasMyriadPath ? 30 : 1,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
+          if (
+            has5thDimensionSword &&
+            (PieceCol[GameBoard.pieces[sq + 1]] === COLOURS.BLACK ||
+              GameBoard.pieces[sq + 1] === PIECES.EXILE)
+          ) {
+            AddWhitePawnCaptureMove(
+              sq,
+              sq + 1,
+              GameBoard.pieces[sq + 1],
+              hasMyriadPath ? 30 : 1,
+              MFLAGSHFT,
+              capturesOnly
+            );
+          }
+
           if (GameBoard.pieces[sq - 10] === PIECES.EMPTY) {
-            AddWhitePawnQuietMove(sq, sq - 10, MFLAGSHFT, capturesOnly);
+            AddWhitePawnQuietMove(
+              sq,
+              sq - 10,
+              hasMyriadPath ? 30 : 1,
+              MFLAGSHFT,
+              capturesOnly
+            );
+          }
+          if (
+            has5thDimensionSword &&
+            (PieceCol[GameBoard.pieces[sq - 10]] === COLOURS.BLACK ||
+              GameBoard.pieces[sq - 10] === PIECES.EXILE)
+          ) {
+            AddWhitePawnCaptureMove(
+              sq,
+              sq - 10,
+              GameBoard.pieces[sq - 10],
+              hasMyriadPath ? 30 : 1,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
         }
       }
@@ -1293,7 +1339,8 @@ export function GenerateMoves(
             sq,
             sq + 9,
             GameBoard.pieces[sq + 9],
-            false,
+            0,
+            0,
             capturesOnly
           );
         }
@@ -1307,7 +1354,8 @@ export function GenerateMoves(
             sq,
             sq + 9,
             GameBoard.pieces[sq + 9],
-            true,
+            0,
+            MFLAGCNSM,
             capturesOnly
           );
         }
@@ -1326,7 +1374,8 @@ export function GenerateMoves(
             sq,
             sq + 11,
             GameBoard.pieces[sq + 11],
-            false,
+            0,
+            0,
             capturesOnly
           );
         }
@@ -1340,7 +1389,8 @@ export function GenerateMoves(
             sq,
             sq + 11,
             GameBoard.pieces[sq + 11],
-            true,
+            0,
+            MFLAGCNSM,
             capturesOnly
           );
         }
@@ -1536,7 +1586,7 @@ export function GenerateMoves(
       ) {
         // NORMAL PAWN MOVES
         if (GameBoard.pieces[sq - 10] === PIECES.EMPTY) {
-          AddBlackPawnQuietMove(sq, sq - 10, 0, capturesOnly);
+          AddBlackPawnQuietMove(sq, sq - 10, 0, 0, capturesOnly);
         }
         if (
           (GameBoard.pieces[sq - 10] === PIECES.EMPTY &&
@@ -1554,15 +1604,77 @@ export function GenerateMoves(
         }
 
         // note BLACK PAWN SHIFTS
-        if (GameBoard.blackArcane[1] & 1) {
+        if (pawnCanShift) {
           if (GameBoard.pieces[sq - 1] === PIECES.EMPTY) {
-            AddBlackPawnQuietMove(sq, sq - 1, MFLAGSHFT, capturesOnly);
+            AddBlackPawnQuietMove(
+              sq,
+              sq - 1,
+              hasMyriadPath ? 30 : 7,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
+          if (
+            has5thDimensionSword &&
+            (PieceCol[GameBoard.pieces[sq - 1]] === COLOURS.WHITE ||
+              GameBoard.pieces[sq - 1] === PIECES.EXILE)
+          ) {
+            AddBlackPawnCaptureMove(
+              sq,
+              sq - 1,
+              GameBoard.pieces[sq - 1],
+              hasMyriadPath ? 30 : 7,
+              MFLAGSHFT,
+              capturesOnly
+            );
+          }
+
           if (GameBoard.pieces[sq + 1] === PIECES.EMPTY) {
-            AddBlackPawnQuietMove(sq, sq + 1, MFLAGSHFT, capturesOnly);
+            AddBlackPawnQuietMove(
+              sq,
+              sq + 1,
+              hasMyriadPath ? 30 : 7,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
+          if (
+            has5thDimensionSword &&
+            (PieceCol[GameBoard.pieces[sq + 1]] === COLOURS.WHITE ||
+              GameBoard.pieces[sq + 1] === PIECES.EXILE)
+          ) {
+            AddBlackPawnCaptureMove(
+              sq,
+              sq + 1,
+              GameBoard.pieces[sq + 1],
+              hasMyriadPath ? 30 : 7,
+              MFLAGSHFT,
+              capturesOnly
+            );
+          }
+
           if (GameBoard.pieces[sq + 10] === PIECES.EMPTY) {
-            AddBlackPawnQuietMove(sq, sq + 10, MFLAGSHFT, capturesOnly);
+            AddBlackPawnQuietMove(
+              sq,
+              sq + 10,
+              hasMyriadPath ? 30 : 7,
+              MFLAGSHFT,
+              capturesOnly
+            );
+          }
+          if (
+            has5thDimensionSword &&
+            (PieceCol[GameBoard.pieces[sq + 10]] === COLOURS.WHITE ||
+              GameBoard.pieces[sq + 10] === PIECES.EXILE)
+          ) {
+            AddBlackPawnCaptureMove(
+              sq,
+              sq + 10,
+              GameBoard.pieces[sq + 10],
+              hasMyriadPath ? 30 : 7,
+              MFLAGSHFT,
+              capturesOnly
+            );
           }
         }
       }
@@ -1581,7 +1693,8 @@ export function GenerateMoves(
             sq,
             sq - 9,
             GameBoard.pieces[sq - 9],
-            false,
+            0,
+            0,
             capturesOnly
           );
         }
@@ -1595,7 +1708,8 @@ export function GenerateMoves(
             sq,
             sq - 9,
             GameBoard.pieces[sq - 9],
-            true,
+            0,
+            MFLAGCNSM,
             capturesOnly
           );
         }
@@ -1613,7 +1727,8 @@ export function GenerateMoves(
             sq,
             sq - 11,
             GameBoard.pieces[sq - 11],
-            false,
+            0,
+            0,
             capturesOnly
           );
         }
@@ -1627,7 +1742,8 @@ export function GenerateMoves(
             sq,
             sq - 11,
             GameBoard.pieces[sq - 11],
-            true,
+            0,
+            MFLAGCNSM,
             capturesOnly
           );
         }
@@ -2149,11 +2265,36 @@ export function GenerateMoves(
           dirArray = KnDir;
         }
 
-        let canShift = false;
-        if (pce === PIECES.wN) {
-          canShift = GameBoard.whiteArcane[1] & 2;
-        } else if (pce === PIECES.bN) {
-          canShift = GameBoard.blackArcane[1] & 2;
+        let eCanShift = false;
+        if (pce === PIECES.wN || pce === PIECES.wZ || pce === PIECES.wU) {
+          eCanShift = equusCanShift;
+        } else if (
+          pce === PIECES.bN ||
+          pce === PIECES.bZ ||
+          pce === PIECES.bU
+        ) {
+          eCanShift = equusCanShift;
+        }
+
+        let sCanShift = false;
+        if (pce === PIECES.wS) {
+          sCanShift = ghostCanShift;
+        } else if (pce === PIECES.bS) {
+          sCanShift = ghostCanShift;
+        }
+
+        let wCanShift = false;
+        if (pce === PIECES.wW) {
+          wCanShift = ghostCanShift;
+        } else if (pce === PIECES.bW) {
+          wCanShift = ghostCanShift;
+        }
+
+        let hCanShift = false;
+        if (pce === PIECES.wH) {
+          hCanShift = herringCanShift;
+        } else if (pce === PIECES.bH) {
+          hCanShift = herringCanShift;
         }
 
         for (let index = 0; index < dirVariants; index++) {
@@ -2173,6 +2314,11 @@ export function GenerateMoves(
             if (GameBoard.pieces[t_sq] !== PIECES.EMPTY) {
               const targetPieceColor = PieceCol[GameBoard.pieces[t_sq]];
 
+              if (
+                (pce === PIECES.wH || pce === PIECES.bH) &&
+                !(currentArcanaSide[4] & 1048576)
+              )
+                continue;
               if (
                 targetPieceColor !== GameBoard.side &&
                 targetPieceColor !== COLOURS.BOTH
@@ -2207,6 +2353,11 @@ export function GenerateMoves(
                     GameBoard.castlePerm & CASTLEBIT.BQCA
                   ));
 
+              if (
+                (pce === PIECES.wH || pce === PIECES.bH) &&
+                !(currentArcanaSide[4] & 1048576)
+              )
+                continue;
               if (canConsume) {
                 AddCaptureMove(
                   MOVE(
@@ -2238,32 +2389,92 @@ export function GenerateMoves(
           }
         }
 
-        if (canShift && (pce === PIECES.wN || pce === PIECES.bN)) {
-          for (let kIndex = 0; kIndex < 8; kIndex++) {
-            let kDir = KiDir[kIndex];
-            let shft_t_N_sq = sq + kDir;
+        const pieces = GameBoard.pieces;
+        const side = GameBoard.side;
 
-            if (SQOFFBOARD(shft_t_N_sq) === BOOL.TRUE) {
-              continue;
-            }
+        const wantE = eCanShift;
+        const wantS = sCanShift;
+        const wantW = wCanShift;
 
-            if (shft_t_N_sq < 0 || shft_t_N_sq > 119) continue;
+        const isHermit = (currentArcanaSide[4] & 1048576) !== 0;
+        const wantHerring = hCanShift && !isHermit;
+        const wantHermit = hCanShift && isHermit;
 
-            if (GameBoard.pieces[shft_t_N_sq] === PIECES.EMPTY) {
-              if (
-                (GameBoard.dyad === 0 ||
-                  GameBoard.dyad === 1 ||
-                  GameBoard.dyad === dyad) &&
-                !herrings.length
-              ) {
+        const wantBanS =
+          currentArcanaSide[4] & 2097152 &&
+          (pce === PIECES.wS || pce === PIECES.bS);
+        const wantBanW =
+          currentArcanaSide[4] & 2097152 &&
+          (pce === PIECES.wW || pce === PIECES.bW);
+
+        const canQuiet = !capturesOnly && !herrings.length;
+
+        // for eclipse
+        // how to add move
+        // captured === 31
+
+        const runShift = (dirCount, getDir, canCapture = true) => {
+          for (let i = 0; i < dirCount; i++) {
+            const targetSq = sq + getDir(i);
+            if (SQOFFBOARD(targetSq) === BOOL.TRUE) continue;
+
+            const hasMyriadPath = (currentArcanaSide[1] & 256) !== 0;
+            const targetPiece = pieces[targetSq];
+
+            // Your array-based herring filter (allow all if none provided)
+            const herringAllowed =
+              !herrings.length ||
+              (herrings.length && _.includes(herrings, targetSq));
+
+            // QUIET shift only if empty
+            if (targetPiece === PIECES.EMPTY) {
+              if (canQuiet && herringAllowed) {
                 AddQuietMove(
-                  MOVE(sq, shft_t_N_sq, PIECES.EMPTY, PIECES.EMPTY, MFLAGSHFT),
+                  MOVE(
+                    sq,
+                    targetSq,
+                    PIECES.EMPTY,
+                    hasMyriadPath ? EPSILON_MYRIAD_CONST : pce,
+                    MFLAGSHFT
+                  ),
                   capturesOnly
                 );
               }
+              continue; // don’t also consider capture on the same empty square
+            }
+
+            // CAPTURE shift only if enemy present
+            if (
+              canCapture &&
+              has5thDimensionSword &&
+              GameBoard.pieces[targetSq] !== PIECES.EMPTY &&
+              PieceCol[targetPiece] !== side &&
+              herringAllowed
+            ) {
+              AddCaptureMove(
+                MOVE(
+                  sq,
+                  targetSq,
+                  targetPiece,
+                  hasMyriadPath ? EPSILON_MYRIAD_CONST : pce,
+                  MFLAGSHFT
+                ),
+                false,
+                capturesOnly
+              );
             }
           }
-        }
+        };
+
+        if (wantE) runShift(8, (i) => KiDir[i]);
+        if (wantS) runShift(12, (i) => WrDir[i]);
+        if (wantW) runShift(12, (i) => SpDir[i]);
+
+        if (wantHerring) runShift(6, (i) => HerShftDir[i], false);
+        if (wantHermit) runShift(6, (i) => HerShftDir[i]);
+
+        if (wantBanS) runShift(12, (i) => BanDirSp[i], false);
+        if (wantBanW) runShift(12, (i) => BanDirWr[i], false);
       }
     }
     pce = LoopNonSlidePce[pceIndex];
@@ -2294,36 +2505,36 @@ export function GenerateMoves(
             : GameBoard.blackArcane[4];
 
         if (origPce === PIECES.wV) {
-          if (arc4 & 2048) {
+          if (arc4 & 256) {
             slidePce = PIECES.wQ;
           } else {
             continue;
           }
         }
         if (origPce === PIECES.bV) {
-          if (arc4 & 2048) {
+          if (arc4 & 256) {
             slidePce = PIECES.bQ;
           } else {
             continue;
           }
         }
         if (origPce === PIECES.wW) {
-          if (arc4 & 2048) {
+          if (arc4 & 256) {
             slidePce = PIECES.wB;
           } else {
             continue;
           }
         }
         if (origPce === PIECES.bW) {
-          if (arc4 & 2048) {
+          if (arc4 & 256) {
             slidePce = PIECES.bB;
           } else {
             continue;
           }
         }
 
-        for (let idx = 0; idx < DirNum[slidePce]; idx++) {
-          const dir = PceDir[slidePce][idx];
+        for (let index = 0; index < DirNum[slidePce]; index++) {
+          const dir = PceDir[slidePce][index];
           let t_sq = sq + dir;
           let rDir, bDir, shft_t_R_sq, shft_t_B_sq;
 
@@ -2410,88 +2621,101 @@ export function GenerateMoves(
             t_sq += dir;
           }
 
-          // note ROOK SHIFT
-          if (SQOFFBOARD(shft_t_R_sq) === BOOL.FALSE) {
-            if (
-              (GameBoard.dyad === 0 ||
-                GameBoard.dyad === 1 ||
-                GameBoard.dyad === dyad) &&
-              !herrings.length
-            ) {
-              if (GameBoard.pieces[shft_t_R_sq] === PIECES.EMPTY) {
-                if (
-                  GameBoard.pieces[sq] === PIECES.wR &&
-                  GameBoard.whiteArcane[1] & 8
-                ) {
-                  AddQuietMove(
-                    MOVE(
-                      sq,
-                      shft_t_R_sq,
-                      PIECES.EMPTY,
-                      PIECES.EMPTY,
-                      MFLAGSHFT
-                    ),
-                    capturesOnly
-                  );
-                }
-                if (
-                  GameBoard.pieces[sq] === PIECES.bR &&
-                  GameBoard.blackArcane[1] & 8
-                ) {
-                  AddQuietMove(
-                    MOVE(
-                      sq,
-                      shft_t_R_sq,
-                      PIECES.EMPTY,
-                      PIECES.EMPTY,
-                      MFLAGSHFT
-                    ),
-                    capturesOnly
-                  );
-                }
+          const moverPce = GameBoard.pieces[sq];
+          const dyadOk =
+            GameBoard.dyad === 0 ||
+            GameBoard.dyad === 1 ||
+            GameBoard.dyad === dyad;
+
+          if (moverPce === PIECES.wR || moverPce === PIECES.bR) {
+            if (SQOFFBOARD(shft_t_R_sq) === BOOL.FALSE) {
+              // quiet shift (side-aware, no duplicate branches)
+              if (
+                dyadOk &&
+                !herrings.length &&
+                GameBoard.pieces[shft_t_R_sq] === PIECES.EMPTY &&
+                rookCanShift
+              ) {
+                AddQuietMove(
+                  MOVE(
+                    sq,
+                    shft_t_R_sq,
+                    PIECES.EMPTY,
+                    hasMyriadPath ? 30 : pce,
+                    MFLAGSHFT
+                  ),
+                  capturesOnly
+                );
+              }
+
+              // 5th-D Sword capture shift
+              const rTargetPce = GameBoard.pieces[shft_t_R_sq];
+              if (
+                rTargetPce !== PIECES.EMPTY &&
+                PieceCol[rTargetPce] !== GameBoard.side &&
+                has5thDimensionSword &&
+                GameBoard.pieces[t_sq] !== PIECES.EMPTY &&
+                rookCanShift &&
+                (!herrings.length || _.includes(herrings, shft_t_R_sq))
+              ) {
+                AddCaptureMove(
+                  MOVE(
+                    sq,
+                    shft_t_R_sq,
+                    rTargetPce,
+                    hasMyriadPath ? 30 : pce,
+                    MFLAGSHFT
+                  ),
+                  false,
+                  capturesOnly
+                );
               }
             }
           }
 
-          // note BISHOP SHIFT
-          if (SQOFFBOARD(shft_t_B_sq) === BOOL.FALSE) {
-            if (
-              (GameBoard.dyad === 0 ||
-                GameBoard.dyad === 1 ||
-                GameBoard.dyad === dyad) &&
-              !herrings.length
-            ) {
-              if (GameBoard.pieces[shft_t_B_sq] === PIECES.EMPTY) {
-                if (
-                  GameBoard.pieces[sq] === PIECES.wB &&
-                  GameBoard.whiteArcane[1] & 4
-                ) {
-                  AddQuietMove(
-                    MOVE(
-                      sq,
-                      shft_t_B_sq,
-                      PIECES.EMPTY,
-                      PIECES.EMPTY,
-                      MFLAGSHFT
-                    ),
-                    capturesOnly
-                  );
-                }
-                if (
-                  GameBoard.pieces[sq] === PIECES.bB &&
-                  GameBoard.blackArcane[1] & 4
-                ) {
-                  AddQuietMove(
-                    MOVE(
-                      sq,
-                      shft_t_B_sq,
-                      PIECES.EMPTY,
-                      PIECES.EMPTY,
-                      MFLAGSHFT
-                    ),
-                    capturesOnly
-                  );
-                }
+          // --- BISHOP SHIFT (if the mover is a bishop) ---
+          if (moverPce === PIECES.wB || moverPce === PIECES.bB) {
+            if (SQOFFBOARD(shft_t_B_sq) === BOOL.FALSE) {
+              // quiet shift
+              if (
+                dyadOk &&
+                !herrings.length &&
+                GameBoard.pieces[shft_t_B_sq] === PIECES.EMPTY &&
+                bishopCanShift
+              ) {
+                AddQuietMove(
+                  MOVE(
+                    sq,
+                    shft_t_B_sq,
+                    GameBoard.pieces[shft_t_B_sq],
+                    hasMyriadPath ? 30 : pce,
+                    MFLAGSHFT
+                  ),
+                  capturesOnly
+                );
+              }
+
+              // 5th-D Sword capture shift
+              const bTargetPce = GameBoard.pieces[shft_t_B_sq];
+              if (
+                bTargetPce !== PIECES.EMPTY &&
+                PieceCol[bTargetPce] !== GameBoard.side &&
+                has5thDimensionSword &&
+                GameBoard.pieces[t_sq] !== PIECES.EMPTY &&
+                bishopCanShift &&
+                (!herrings.length || _.includes(herrings, shft_t_B_sq))
+              ) {
+                AddCaptureMove(
+                  MOVE(
+                    sq,
+                    shft_t_B_sq,
+                    GameBoard.pieces[shft_t_B_sq],
+                    hasMyriadPath ? 30 : pce,
+                    MFLAGSHFT
+                  ),
+                  false,
+                  capturesOnly
+                );
               }
             }
           }

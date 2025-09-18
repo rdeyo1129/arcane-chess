@@ -12,7 +12,17 @@
       .volume-slider {
         width: 120px;
         appearance: none;
-        background: #222222;
+        background: linear-gradient(
+          to right,
+          $B_MENU 0%,
+          $B_MENU var(--fill, 0%),
+          #222222 var(--fill, 0%),
+          #222222 100%
+        );
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-origin: content-box;
+        background-clip: content-box;
         border: none;
         height: 20px;
         margin: 0;

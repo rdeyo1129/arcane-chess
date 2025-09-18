@@ -8,6 +8,7 @@
 .module-board .cg-wrap,
 .tactorius-board .cg-wrap,
 .quickplay-tactorius-board .cg-wrap,
+.skirmish-tactorius-board .cg-wrap,
 .stackversus-tactorius-board .cg-wrap,
 .cg-wrap {
   // background-image:
@@ -267,6 +268,7 @@ cg-board square {
 .module-board cg-board square,
 .tactorius-board cg-board square,
 .quickplay-tactorius-board cg-board square,
+.skirmish-tactorius-board cg-board square,
 .stackversus-tactorius-board cg-board square,
 .creator-board cg-board square {
   width: 12.5%;
@@ -521,6 +523,7 @@ cg-board square.current-premove {
 .module-board .cg-wrap piece,
 .tactorius-board .cg-wrap piece,
 .quickplay-tactorius-board .cg-wrap piece,
+.skirmish-tactorius-board .cg-wrap piece,
 .stackversus-tactorius-board .cg-wrap piece,
 .creator-board .cg-wrap piece {
   width: 12.5%;

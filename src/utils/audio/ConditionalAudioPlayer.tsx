@@ -70,6 +70,7 @@ const ConditionalAudioPlayer: React.FC<{ location: any }> = ({ location }) => {
       '/temple',
       '/mission',
       '/quickplay',
+      '/skirmish',
       '/stacktadium',
       '/lexicon',
       '/lesson',

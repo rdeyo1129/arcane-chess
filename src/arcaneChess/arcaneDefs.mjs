@@ -84,14 +84,15 @@ export const activateDyad = () => {
 // 0011 1111 11411 0000 0000 0000 0000 0000 0000 0000 0000 0000 mods
 
 export const POWERBIT = {
-  // 6 active
+  // 0 dyad active 6
   dyadA: 1, // all
   dyadB: 2, // p h
   dyadC: 4, // b n z u r
   dyadD: 8, // s w
   dyadE: 16, // m t q
   dyadF: 32, // v k
-  // 22 active
+
+  // 3 summons active 26
   sumnP: 1,
   sumnS: 2,
   sumnH: 4,
@@ -114,8 +115,12 @@ export const POWERBIT = {
   sumnRY: 524288,
   sumnRZ: 1048576,
   sumnRA: 2097152,
-  // sumnRB hexweavers cross to converge on both diagonals?
-  // 7 active
+  sumnRB: 4194304,
+  sumnRC: 8388608,
+  sumnXY: 16777216,
+  sumnXZ: 33554432,
+
+  // 5 active 18
   offrA: 1,
   offrB: 2,
   offrC: 4,
@@ -126,16 +131,32 @@ export const POWERBIT = {
   offrH: 128,
   offrI: 256,
   offrJ: 512,
-  // 5 passive
+  offrK: 1024,
+  offrL: 2048,
+  offrM: 4096,
+  offrN: 8192,
+  offrO: 16384,
+  // don't use P, it gets replaced in chessground UI
+  offrZ: 32768,
+  offrQ: 65536,
+  offrR: 131072,
+
+  // 1 passive 9
   shftP: 1,
   shftN: 2,
   shftB: 4,
   shftR: 8,
   shftT: 16, // active
-  // 2 active
+  shftG: 32,
+  shftH: 64,
+  shftI: 128,
+  shftA: 256,
+
+  // 2 active 2
   swapDEP: 1,
   swapADJ: 2,
-  // 12
+
+  // 4 mods 25
   modsCON: 1, // passive
   modsAET: 2, // inherent
   modsFUG: 4, // inherent
@@ -144,10 +165,46 @@ export const POWERBIT = {
   modsSUS: 32, // active
   modsGLU: 64, // inherent
   modsFUT: 128, // active
-  modsREA: 2048, // inherent
-  modsEXT: 4096, // inherent
-  modsSKI: 16384, // active
-  modsTRO: 32768, // inherent
+  modsREA: 256, // inherent
+  modsEXT: 512, // inherent
+  modsSKI: 1024, // active
+  modsTRO: 2048, // inherent
+  modsREI: 4096, // inherent
+  modsSOV: 8192, // passive
+  modsDOP: 16384, // passive
+  modsMAG: 32768, // active
+  modsBLA: 65536, // active
+  modsSUR: 131072, // passive
+  modsDIM: 262144, // passive
+  modsRES: 524288, // passive
+  modsHER: 1048576, // inherent
+  modsBAN: 2097152, // inherent
+  modsFOG: 4194304, // passive
+  modsMIS: 8388608, // passive
+  modsHUR: 16777216, // passive
+
+  // 6 on your piece death 4
+  moriDYA: 1, // inherent
+  moriROY: 2, // inherent
+  moriPAW: 4, // inherent
+  moriNOR: 8, // inherent
+
+  // 7 on opponent piece death 4
+  moraDYA: 1, // inherent
+  moraROY: 2, // inherent
+  moraPAW: 4, // inherent
+  moraNOR: 8, // inherent
+
+  // 8 area inherent 4
+  areaC: 1,
+  areaM: 2,
+  areaT: 4,
+  areaQ: 8,
+
+  // 9 gain passive 3
+  gainDYA: 1,
+  gainVAL: 2,
+  gainPAW: 4,
 };
 
 export const varVars = {

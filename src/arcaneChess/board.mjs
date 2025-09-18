@@ -31,6 +31,7 @@ import {
   SpDir,
   WrDir,
   HrDir,
+  HerShftDir,
   ZeDir,
   UnDir,
   PieceValkyrie,
@@ -704,6 +705,45 @@ export let InCheck = () => {
   );
 };
 
+export let currentArcanaSide =
+  GameBoard.side === 0 ? GameBoard.whiteArcane : GameBoard.blackArcane;
+export let has5thDimensionSword = currentArcanaSide[4] & 262144;
+export let hasHermit = currentArcanaSide[4] & 1048576;
+
+export let pawnCanShift =
+  currentArcanaSide[1] & 1 || currentArcanaSide[1] & 256;
+export let equusCanShift =
+  currentArcanaSide[1] & 2 || currentArcanaSide[1] & 256;
+export let bishopCanShift =
+  currentArcanaSide[1] & 4 || currentArcanaSide[1] & 256;
+export let rookCanShift =
+  currentArcanaSide[1] & 8 || currentArcanaSide[1] & 256;
+export let ghostCanShift =
+  currentArcanaSide[1] & 32 || currentArcanaSide[1] & 256;
+export let herringCanShift =
+  currentArcanaSide[1] & 64 || currentArcanaSide[1] & 256;
+
+export let hasPawnShiftAttack = () => pawnCanShift && has5thDimensionSword;
+export let hasEquusShiftAttack = (pce) =>
+  equusCanShift &&
+  (PieceKnight[pce] === BOOL.TRUE ||
+    PieceZebra[pce] === BOOL.TRUE ||
+    PieceUnicorn === BOOL.TRUE) &&
+  has5thDimensionSword;
+export let hasBishopShiftAttack = (pce) =>
+  bishopCanShift && PieceBishopQueen[pce] === BOOL.TRUE && has5thDimensionSword;
+export let hasRookShiftAttack = (pce) =>
+  rookCanShift && PieceRookQueen[pce] === BOOL.TRUE && has5thDimensionSword;
+export let hasGhostShiftAttack = (pce) =>
+  ghostCanShift &&
+  (PieceSpectre[pce] === BOOL.TRUE || PieceWraith[pce] === BOOL.TRUE) &&
+  has5thDimensionSword;
+export let hasHermitShiftAttack = (pce) =>
+  herringCanShift &&
+  PieceHerring[pce] === BOOL.TRUE &&
+  has5thDimensionSword &&
+  hasHermit;
+
 export function SqAttacked(sq, side) {
   let pce;
   let dir;
@@ -717,7 +757,7 @@ export function SqAttacked(sq, side) {
     GameBoard.royaltyV[t_sq] > 0 ||
     GameBoard.royaltyE[t_sq] > 0;
 
-  // note OVERRIDES
+  // OVERRIDES - SQUARE CONDITION ATTACKS
 
   // note TEMPLAR MYSTIC
   for (index = 0; index < 8; index++) {
@@ -790,7 +830,7 @@ export function SqAttacked(sq, side) {
     }
   }
 
-  // NO OVERRIDE
+  // NON-OVERRIDES - PIECE ATTACKS
 
   // knight mystic templar
   for (index = 0; index < 8; index++) {
@@ -868,8 +908,8 @@ export function SqAttacked(sq, side) {
 
   // iron reach valkyrie
   if (
-    (side === COLOURS.WHITE && GameBoard.whiteArcane[4] & 2048) ||
-    (side === COLOURS.BLACK && GameBoard.blackArcane[4] & 2048)
+    (side === COLOURS.WHITE && GameBoard.whiteArcane[4] & 256) ||
+    (side === COLOURS.BLACK && GameBoard.blackArcane[4] & 256)
   ) {
     // Orthogonal (rook)
     for (index = 0; index < 4; index++) {
@@ -927,56 +967,73 @@ export function SqAttacked(sq, side) {
     ) {
       return BOOL.TRUE;
     }
-  }
-
-  // pawn
-  if (side === COLOURS.WHITE) {
     if (
-      (GameBoard.pieces[sq - 11] === PIECES.wP &&
-        !overridePresent(sq - 11) &&
-        !(GameBoard.royaltyE[sq - 11] > 0)) ||
-      (GameBoard.pieces[sq - 9] === PIECES.wP &&
-        !overridePresent(sq - 9) &&
-        !(GameBoard.royaltyE[sq - 9] > 0))
+      hasEquusShiftAttack(pce) ||
+      hasBishopShiftAttack(pce) ||
+      hasRookShiftAttack(pce)
     ) {
-      return BOOL.TRUE;
-    }
-  } else {
-    if (
-      (GameBoard.pieces[sq + 11] === PIECES.bP &&
-        !overridePresent(sq + 11) &&
-        !(GameBoard.royaltyE[sq + 11] > 0)) ||
-      (GameBoard.pieces[sq + 9] === PIECES.bP &&
-        !overridePresent(sq + 9) &&
-        !(GameBoard.royaltyE[sq + 9] > 0))
-    ) {
-      return BOOL.TRUE;
+      if (
+        pce !== SQUARES.OFFBOARD &&
+        PieceCol[pce] === side &&
+        !overridePresent(sq + KiDir[index]) &&
+        !(GameBoard.royaltyE[sq + KiDir[index]] > 0)
+      ) {
+        return BOOL.TRUE;
+      }
     }
   }
 
-  // spectre
-  for (index = 0; index < 6; index++) {
-    pce = GameBoard.pieces[sq + SpDir[index]];
-    if (
-      pce !== SQUARES.OFFBOARD &&
-      PieceCol[pce] === side &&
-      PieceSpectre[pce] === BOOL.TRUE &&
-      !overridePresent(sq + SpDir[index]) &&
-      !(GameBoard.royaltyE[sq + SpDir[index]] > 0)
-    ) {
-      return BOOL.TRUE;
-    }
+  const isFriendlyPawnAt = (t_sq, side) => {
+    const p = GameBoard.pieces[t_sq];
+    if (p === SQUARES.OFFBOARD) return false;
+    if (overridePresent(t_sq)) return false;
+    if (GameBoard.royaltyE[t_sq] > 0) return false;
+
+    return side === COLOURS.WHITE ? p === PIECES.wP : p === PIECES.bP;
+  };
+
+  const cfg =
+    GameBoard.side === COLOURS.WHITE
+      ? { diag: [-11, -9], shift: [1, -1, 10] }
+      : { diag: [11, 9], shift: [-1, 1, -10] };
+
+  // Diagonal captures
+  if (cfg.diag.some((d) => isFriendlyPawnAt(sq + d, GameBoard.side))) {
+    return BOOL.TRUE;
+  }
+
+  // Shift-attacks
+  if (
+    hasPawnShiftAttack() &&
+    cfg.shift.some((d) => isFriendlyPawnAt(sq + d, GameBoard.side))
+  ) {
+    return BOOL.TRUE;
   }
 
   // herring
   for (index = 0; index < 6; index++) {
     pce = GameBoard.pieces[sq + HrDir[index]];
     if (
+      hasHermit &&
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceHerring[pce] === BOOL.TRUE &&
       !overridePresent(sq + HrDir[index]) &&
       !(GameBoard.royaltyE[sq + HrDir[index]] > 0)
+    ) {
+      return BOOL.TRUE;
+    }
+  }
+
+  // hermit shift attack
+  for (index = 0; index < 6; index++) {
+    pce = GameBoard.pieces[sq + HerShftDir[index]];
+    if (
+      hasHermitShiftAttack(pce) &&
+      pce !== SQUARES.OFFBOARD &&
+      PieceCol[pce] === side &&
+      !overridePresent(sq + HerShftDir[index]) &&
+      !(GameBoard.royaltyE[sq + HerShftDir[index]] > 0)
     ) {
       return BOOL.TRUE;
     }
@@ -1010,7 +1067,7 @@ export function SqAttacked(sq, side) {
     }
   }
 
-  // Spectre
+  // Spectre (Wraith Shift with 5th Dimension Sword)
   for (index = 0; index < 12; index++) {
     pce = GameBoard.pieces[sq + SpDir[index]];
     if (
@@ -1022,15 +1079,33 @@ export function SqAttacked(sq, side) {
     ) {
       return BOOL.TRUE;
     }
+    if (
+      hasGhostShiftAttack(pce) &&
+      pce !== SQUARES.OFFBOARD &&
+      PieceCol[pce] === side &&
+      !overridePresent(sq + SpDir[index]) &&
+      !(GameBoard.royaltyE[sq + SpDir[index]] > 0)
+    ) {
+      return BOOL.TRUE;
+    }
   }
 
-  // Wraith
+  // Wraith (Spectre Shift with 5th Dimension Sword)
   for (index = 0; index < 12; index++) {
     pce = GameBoard.pieces[sq + WrDir[index]];
     if (
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceWraith[pce] === BOOL.TRUE &&
+      !overridePresent(sq + WrDir[index]) &&
+      !(GameBoard.royaltyE[sq + WrDir[index]] > 0)
+    ) {
+      return BOOL.TRUE;
+    }
+    if (
+      hasGhostShiftAttack(pce) &&
+      pce !== SQUARES.OFFBOARD &&
+      PieceCol[pce] === side &&
       !overridePresent(sq + WrDir[index]) &&
       !(GameBoard.royaltyE[sq + WrDir[index]] > 0)
     ) {

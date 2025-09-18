@@ -616,6 +616,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           });
                         }}
                         color={this.state.engineColor}
+                        faction="tau"
                         updateArmy={(army) => {
                           if (this.props.updateConfig) {
                             this.props.updateConfig(
@@ -882,6 +883,7 @@ class UnwrappedTactoriusModal extends React.Component<ModalProps, ModalState> {
                           });
                         }}
                         color={this.state.playerColor}
+                        faction="tau"
                         updateArmy={(army) => {
                           if (this.props.updateConfig) {
                             this.props.updateConfig(

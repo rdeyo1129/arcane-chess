@@ -661,10 +661,10 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                           return (
                             <img
                               key={key}
-                              className="arcane"
-                              src={`${arcana[key].imagePath}${
-                                this.state.hoverArcane === key ? '-hover' : ''
-                              }.svg`}
+                              className={`arcane ${
+                                this.state.hoverArcane === key ? 'focus' : ''
+                              }`}
+                              src={`/assets/arcanaImages${arcana[key].imagePath}.svg`}
                               onClick={() => {
                                 if (
                                   this.state.placingPiece > 0 ||

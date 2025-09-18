@@ -195,6 +195,34 @@
     "type": "active",
     "imagePath": "/sumnRA"
   },
+  "sumnRB": {
+    "id": "sumnRB",
+    "name": "Hexweaver's Chain",
+    "description": "",
+    "type": "active",
+    "imagePath": "/sumnRB"
+  },
+  "sumnRC": {
+    "id": "sumnRC",
+    "name": "Hexweaver's Fallout",
+    "description": "",
+    "type": "active",
+    "imagePath": "/sumnRC"
+  },
+  "sumnXY": {
+    "id": "sumnXY",
+    "name": "Tetra Apparition",
+    "description": "",
+    "type": "active",
+    "imagePath": "/sumnXY"
+  },
+  "sumnXZ": {
+    "id": "sumnXZ",
+    "name": "Spire Vision",
+    "description": "",
+    "type": "active",
+    "imagePath": "/sumnXZ"
+  },
   "offrA": {
     "id": "offrA",
     "name": "Masquerade",
@@ -370,6 +398,13 @@
     "type": "passive",
     "imagePath": "/shftH"
   },
+  "shftI": {
+    "id": "shftI",
+    "name": "Eclipse",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/shftI"
+  },
   "shftA": {
     "id": "shftA",
     "name": "Myriad Path",
@@ -510,6 +545,20 @@
     "type": "inherent",
     "imagePath": "/modsSIL"
   },
+  "modsRES": {
+    "id": "modsRES",
+    "name": "Resupply",
+    "description": "",
+    "type": "active",
+    "imagePath": "/modsRES"
+  },
+  "modsHER": {
+    "id": "modsHER",
+    "name": "The Hermit",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/modsHER"
+  },
   "modsBAN": {
     "id": "modsBAN",
     "name": "The Banshee",
@@ -517,12 +566,180 @@
     "type": "inherent",
     "imagePath": "/modsBAN"
   },
+  "modsMIS": {
+    "id": "modsMIS",
+    "name": "Blinding Mist",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/modsMIS"
+  },
+  "modsFOG": {
+    "id": "modsFOG",
+    "name": "Fog of War",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/modsFOG"
+  },
+  "modsHUR": {
+    "id": "modsHUR",
+    "name": "Hurricane",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/modsHUR"
+  },
+  "modsSOV": {
+    "id": "modsSOV",
+    "name": "Sovereign Dice",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/modsSOV"
+  },
+  "modsREI": {
+    "id": "modsREI",
+    "name": "Reincarnate",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/modsREI"
+  },
+  "modsDOP": {
+    "id": "modsDOP",
+    "name": "Doppelganger",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/modsDOP"
+  },
+  "modsMAG": {
+    "id": "modsMAG",
+    "name": "Gravity Well",
+    "description": "",
+    "type": "active",
+    "imagePath": "/modsMAG"
+  },
+  "modsBLA": {
+    "id": "modsBLA",
+    "name": "Black Hole",
+    "description": "",
+    "type": "active",
+    "imagePath": "/modsBLA"
+  },
+  "modsSUR": {
+    "id": "modsSUR",
+    "name": "Aether Surge",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/modsSUR"
+  },
   "modsDIM": {
     "id": "modsDIM",
     "name": "5th Dimension Steel",
     "description": "Capture pieces on shift moves.",
     "type": "inherent",
     "imagePath": "/modsDIM"
+  },
+  "moriDYA": {
+    "id": "moriDYA",
+    "name": "Letum Gemini",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/moriDYA"
+  },
+  "moriROY": {
+    "id": "moriROY",
+    "name": "Letum Vultus",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/moriROY"
+  },
+  "moriPAW": {
+    "id": "moriPAW",
+    "name": "Letum Bane",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/moriPAW"
+  },
+  "moriNOR": {
+    "id": "moriNOR",
+    "name": "Letum Anima",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/moriNOR"
+  },
+  "moraDYA": {
+    "id": "moraDYA",
+    "name": "Nex Gemini",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/moraDYA"
+  },
+  "moraROY": {
+    "id": "moraROY",
+    "name": "Nex Vultus",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/moraROY"
+  },
+  "moraPAW": {
+    "id": "moraPAW",
+    "name": "Nex Bane",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/moraPAW"
+  },
+  "moraNOR": {
+    "id": "moraNOR",
+    "name": "Nex Anima",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/moraNOR"
+  },
+  "areaC": {
+    "id": "areaC",
+    "name": "Hiding Lantern",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/areaC"
+  },
+  "areaM": {
+    "id": "areaM",
+    "name": "Mystical Battlecry",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/areaM"
+  },
+  "areaT": {
+    "id": "areaT",
+    "name": "Crusader's Battlecry",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/areaT"
+  },
+  "areaQ": {
+    "id": "areaQ",
+    "name": "Regal Battlecry",
+    "description": "",
+    "type": "inherent",
+    "imagePath": "/areaQ"
+  },
+  "gainDYA": {
+    "id": "gainDYA",
+    "name": "Dyad Reckoning",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/gainALL"
+  },
+  "gainVAL": {
+    "id": "gainVAL",
+    "name": "Titan's Reckoning",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/gainALL"
+  },
+  "gainPAW": {
+    "id": "gainPAW",
+    "name": "Soldier's Reckoning",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/gainALL"
   },
   "empty": {
     "id": "empty",

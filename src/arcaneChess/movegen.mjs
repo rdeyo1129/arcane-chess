@@ -47,7 +47,7 @@ import {
   SpDir,
   HerShftDir,
   BanDirSp,
-  BanDirWr,
+  // BanDirWr,
   PCEINDEX,
   NOMOVE,
   MAXDEPTH,
@@ -2403,9 +2403,9 @@ export function GenerateMoves(
         const wantBanS =
           currentArcanaSide[4] & 2097152 &&
           (pce === PIECES.wS || pce === PIECES.bS);
-        const wantBanW =
-          currentArcanaSide[4] & 2097152 &&
-          (pce === PIECES.wW || pce === PIECES.bW);
+        // const wantBanW =
+        //   currentArcanaSide[4] & 2097152 &&
+        //   (pce === PIECES.wW || pce === PIECES.bW);
 
         const canQuiet = !capturesOnly && !herrings.length;
 
@@ -2474,7 +2474,7 @@ export function GenerateMoves(
         if (wantHermit) runShift(6, (i) => HerShftDir[i]);
 
         if (wantBanS) runShift(12, (i) => BanDirSp[i], false);
-        if (wantBanW) runShift(12, (i) => BanDirWr[i], false);
+        // if (wantBanW) runShift(12, (i) => BanDirWr[i], false);
       }
     }
     pce = LoopNonSlidePce[pceIndex];

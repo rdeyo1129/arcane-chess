@@ -296,7 +296,7 @@
   "offrO": {
     "id": "offrO",
     "name": "Wandering Gambit",
-    "description": "Offer a friendly Q, T, or M to gain a Hermit summon, Jester moveset, and Regal Battlecry arcana.",
+    "description": "Offer a friendly Q, T, or M to gain a Herring summon, and Jester moveset",
     "type": "active",
     "imagePath": "/offrO"
   },

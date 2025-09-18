@@ -190,6 +190,8 @@ export function MakeMove(move, moveType = '') {
   let captured = CAPTURED(move);
   let pieceEpsilon = PROMOTED(move);
 
+  const commit = moveType === 'userMove';
+
   const isShift = (m) => (m & MFLAGSHFT) !== 0;
   const isSwap = (m) => (m & MFLAGSWAP) !== 0;
   const isSummon = (m) => (m & MFLAGSUMN) !== 0;
@@ -553,7 +555,7 @@ export function MakeMove(move, moveType = '') {
       22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
       23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
       24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
-      // Z
+      // Z (P is reserved)
       25: ['dyadD', 'sumnS', 'modsBAN'],
       26: ['dyadD', 'sumnW', 'modsBAN'],
       // Q
@@ -566,10 +568,10 @@ export function MakeMove(move, moveType = '') {
       2: [PIECES.bR, PIECES.bR],
       3: [PIECES.bN, PIECES.bZ, PIECES.bU],
       4: [PIECES.bR],
-      5: [PIECES.bT],
-      6: [PIECES.bQ],
-      7: [PIECES.bS],
-      8: [PIECES.bW],
+      5: [PIECES.bT, 'dyadD'],
+      6: [PIECES.bQ, 'dyadD'],
+      7: [PIECES.bS, 'dyadE'],
+      8: [PIECES.bW, 'dyadE'],
       9: [PIECES.bT],
       10: [PIECES.bQ],
       11: [PIECES.bS],
@@ -591,7 +593,7 @@ export function MakeMove(move, moveType = '') {
       22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
       23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
       24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
-      // Z
+      // Z (P is reserved)
       25: ['dyadD', 'sumnS', 'modsBAN'],
       26: ['dyadD', 'sumnW', 'modsBAN'],
       // Q
@@ -614,17 +616,35 @@ export function MakeMove(move, moveType = '') {
     if (Array.isArray(offeringNumbers) && offeringNumbers.length > 0) {
       const offerSymbol = offerString.charAt(promoted);
       const offrKey = `offr${offerSymbol}`;
-      arcaneConfig[offrKey] = arcaneConfig[offrKey] ?? 0;
+      const have = arcaneConfig[offrKey] ?? 0;
 
-      for (const gift of offeringNumbers) {
-        if (typeof gift === 'string') {
-          arcaneConfig[gift] = (arcaneConfig[gift] ?? 0) + 1;
-        } else {
-          const sumnKey = `sumn${PceChar.charAt(gift).toUpperCase()}`;
-          arcaneConfig[sumnKey] = (arcaneConfig[sumnKey] ?? 0) + 1;
-        }
+      if (have <= 0) {
+        // illegal: no token to redeem
+        AddPiece(from, captured);
+        return BOOL.FALSE;
       }
-      arcaneConfig[offrKey] -= 1;
+
+      // Only mutate configs on *committed* user moves
+      if (commit) {
+        arcaneConfig[offrKey] = have - 1; // spend first
+
+        for (const gift of offeringNumbers) {
+          if (typeof gift === 'string') {
+            arcaneConfig[gift] = (arcaneConfig[gift] ?? 0) + 1;
+          } else {
+            const sumnKey = `sumn${PceChar.charAt(gift).toUpperCase()}`;
+            arcaneConfig[sumnKey] = (arcaneConfig[sumnKey] ?? 0) + 1;
+          }
+        }
+
+        // mark that we actually redeemed, so TakeMove knows to undo
+        GameBoard.history[GameBoard.hisPly].offering = {
+          offrKey,
+          gifts: offeringNumbers.slice(),
+        };
+      }
+
+      // If not commit: we don’t touch arcaneConfig at all (search stays side-effect free)
     }
   }
 
@@ -912,101 +932,18 @@ export function TakeMove(wasDyadMove = false) {
 
   // should only ever be offering moves
   else if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
-    let promoted = PROMOTED(move);
-    const whitePieceToOfferings = {
-      1: [PIECES.wH],
-      2: [PIECES.wR, PIECES.wR],
-      3: [PIECES.wN, PIECES.wZ, PIECES.wU],
-      4: [PIECES.wR],
-      5: [PIECES.wT],
-      6: [PIECES.wQ],
-      7: [PIECES.wS],
-      8: [PIECES.wW],
-      9: [PIECES.wT],
-      10: [PIECES.wQ],
-      11: [PIECES.wS],
-      12: [PIECES.wW],
-      13: [captured],
-      14: ['dyadA'],
-      // K
-      15: ['sumnRQ', 'sumnRQ', 'sumnRQ'],
-      16: ['sumnRT', 'sumnRT', 'sumnRT'],
-      17: ['sumnRM', 'sumnRM', 'sumnRM'],
-      18: ['sumnRV', 'sumnRV', 'sumnRV'],
-      // L
-      19: ['shftT'],
-      // M
-      20: ['sumnRV', 'modsEXT', 'modsINH'],
-      // N
-      21: ['dyadA', 'modsGLU', 'modsINH'],
-      // O
-      22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
-      23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
-      24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
-      // Z
-      25: ['dyadD', 'sumnS', 'modsBAN'],
-      26: ['dyadD', 'sumnW', 'modsBAN'],
-      // Q
-      27: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
-      // R
-      28: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
-    };
-    const blackPieceToOfferings = {
-      1: [PIECES.bH],
-      2: [PIECES.bR, PIECES.bR],
-      3: [PIECES.bN, PIECES.bZ, PIECES.bU],
-      4: [PIECES.bR],
-      5: [PIECES.bT],
-      6: [PIECES.bQ],
-      7: [PIECES.bS],
-      8: [PIECES.bW],
-      9: [PIECES.bT],
-      10: [PIECES.bQ],
-      11: [PIECES.bS],
-      12: [PIECES.bW],
-      13: [captured],
-      14: ['dyadA'],
-      // K
-      15: ['sumnRQ', 'sumnRQ', 'sumnRQ'],
-      16: ['sumnRT', 'sumnRT', 'sumnRT'],
-      17: ['sumnRM', 'sumnRM', 'sumnRM'],
-      18: ['sumnRV', 'sumnRV', 'sumnRV'],
-      // L
-      19: ['shftT'],
-      // M
-      20: ['sumnRV', 'modsEXT', 'modsINH'],
-      // N
-      21: ['dyadA', 'modsGLU', 'modsINH'],
-      // O
-      22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
-      23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
-      24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
-      // Z
-      25: ['dyadD', 'sumnS', 'modsBAN'],
-      26: ['dyadD', 'sumnW', 'modsBAN'],
-      // Q
-      27: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
-      // R
-      28: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
-    };
-
-    const offerString = '.ABCDEEFFGGHHIJKKKKLMNOOOZZQR';
     const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
     const arcaneConfig =
       side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
-    const pieceToOfferings =
-      side === 'white' ? whitePieceToOfferings : blackPieceToOfferings;
-
-    const offeringNumbers = pieceToOfferings[promoted] || [];
 
     AddPiece(from, captured);
 
-    if (offeringNumbers.length > 0) {
-      const symbol = offerString.charAt(promoted);
-      const offrKey = `offr${symbol}`;
-      arcaneConfig[offrKey] = arcaneConfig[offrKey] ?? 0;
+    const h = GameBoard.history[GameBoard.hisPly];
+    if (h.offering) {
+      const { offrKey, gifts } = h.offering;
 
-      for (const gift of offeringNumbers) {
+      // remove gifts first
+      for (const gift of gifts) {
         if (typeof gift === 'string') {
           arcaneConfig[gift] = (arcaneConfig[gift] ?? 0) - 1;
         } else {
@@ -1014,7 +951,10 @@ export function TakeMove(wasDyadMove = false) {
           arcaneConfig[sumnKey] = (arcaneConfig[sumnKey] ?? 0) - 1;
         }
       }
-      arcaneConfig[offrKey] += 1;
+      // restore the token
+      arcaneConfig[offrKey] = (arcaneConfig[offrKey] ?? 0) + 1;
+
+      h.offering = undefined; // clear marker
     }
   }
 }

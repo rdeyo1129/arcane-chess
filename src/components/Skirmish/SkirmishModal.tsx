@@ -102,7 +102,7 @@ const FACTIONS: Record<FactionId, Faction> = {
     id: 'gamma',
     name: 'gamma',
     army: 'RNBTKBNR',
-    arcana: ['shftP', 'modsDIM', 'shftT'],
+    arcana: ['shftP', 'modsDIM'],
     unlocked: true,
     image: '/assets/factions/gamma.webp',
     description: 'Pin-based tempo plays and angle traps.',

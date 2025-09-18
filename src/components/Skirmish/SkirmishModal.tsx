@@ -155,9 +155,9 @@ const FACTIONS: Record<FactionId, Faction> = {
 };
 
 const HEX_ROWS: FactionId[][] = [
-  ['chi', 'sigma'],
-  ['lambda', 'tau', 'gamma'],
-  ['omega', 'psi'],
+  ['omega', 'sigma'],
+  ['chi', 'tau', 'lambda'],
+  ['psi', 'gamma'],
 ];
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;

@@ -42,7 +42,7 @@ body {
   .dashboard-header {
     position: relative;
     overflow: visible;
-    min-height: 120vh;
+    min-height: auto;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto auto;
@@ -54,6 +54,7 @@ body {
       'mainnav';
     gap: 8px;
     padding: 10px;
+    padding-bottom: 16px;
     align-content: start;
 
     .header-icons {
@@ -315,6 +316,11 @@ body {
         }
       }
     }
+
+    .dashboard-header::after {
+      display: none;
+    }
+
     .hover-image {
       position: absolute;
       display: block;
@@ -358,12 +364,70 @@ body {
       );
     }
   }
+
+  .news {
+    position: relative;
+    z-index: 3;
+    margin: 16px 10px 40px;
+    display: grid;
+    gap: 12px;
+    max-width: 980px;
+  }
+
+  .news-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #e6e6e6;
+    text-align: center;
+    padding-bottom: 6px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    margin: 0 0 10px 0;
+  }
+
+  .news-item {
+    position: relative;
+    border: 1px solid $nav-border;
+    border-radius: 8px;
+    background: rgba($nav-bg, 0.65);
+    padding: 18px 20px;
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.25),
+      0 0 0 2px rgba(255, 255, 255, 0.04) inset;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease,
+      background 0.15s ease;
+
+    h4 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 4px;
+    }
+
+    ul {
+      margin: 10px 0 0 20px;
+      padding: 0;
+      list-style-type: disc;
+    }
+
+    li {
+      margin: 4px 0;
+      line-height: 1.4;
+    }
+  }
 }
 
 @media (min-width: 768px) {
   .dashboard {
     .dashboard-header {
-      min-height: 140vh;
+      min-height: auto;
       grid-template-columns:
         auto
         minmax(380px, 1.45fr)
@@ -529,6 +593,19 @@ body {
         top: auto;
       }
     }
+
+    .dashboard-header::after {
+      display: none;
+    }
+
+    .news {
+      margin: 12px 10px 48px;
+      width: calc(100% - 360px);
+    }
+    .news-title {
+      font-size: 1.8rem;
+      letter-spacing: 1.5px;
+    }
   }
 }
 
@@ -536,6 +613,11 @@ body {
   .dashboard {
     .dashboard-header {
       gap: 8px;
+    }
+
+    .news {
+      margin: 12px 10px 48px;
+      width: calc(100% - 460px);
     }
   }
 }

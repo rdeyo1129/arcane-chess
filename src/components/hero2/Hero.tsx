@@ -103,7 +103,7 @@ export default class Hero extends React.Component<HeroProps> {
       <div
         className="arcana-display"
         style={{
-          backgroundImage: `url('${randomArcana.imagePath}.svg')`,
+          backgroundImage: `url('/assets/arcanaImages${randomArcana.imagePath}.svg')`,
           justifySelf: 'center',
           alignSelf: 'center',
           width: '50px',

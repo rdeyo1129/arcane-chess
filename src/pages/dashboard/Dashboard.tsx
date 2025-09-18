@@ -272,8 +272,6 @@ export class UnwrappedDashboard extends React.Component<
                 LEXICON
               </button>
             </Link>
-
-            {/* ARENA + submenu */}
             <div
               className={`nav-item has-sub ${
                 openSubKey === 'ARENA' ? 'open' : ''
@@ -332,8 +330,6 @@ export class UnwrappedDashboard extends React.Component<
                 </Link>
               </div>
             </div>
-
-            {/* FORUM (no visible subs yet) */}
             <div
               className={`nav-item has-sub ${
                 openSubKey === 'FORUM' ? 'open' : ''
@@ -356,12 +352,8 @@ export class UnwrappedDashboard extends React.Component<
                 className="sub-menu"
                 role="region"
                 onClick={(e) => e.stopPropagation()}
-              >
-                {/* future submenu items */}
-              </div>
+              ></div>
             </div>
-
-            {/* MANIFEST + submenu */}
             <div
               className={`nav-item has-sub ${
                 openSubKey === 'MANIFEST' ? 'open' : ''
@@ -420,8 +412,64 @@ export class UnwrappedDashboard extends React.Component<
         </div>
 
         <div className="dashboard-body">
-          <div className="hero"></div>
-          <div className="announcements"></div>
+          <div className="news">
+            <h1 className="news-title">News</h1>
+            <div className="news-item">
+              <h4>Skirmish: Faction Chess Now Live</h4>
+              <ul>
+                <li>Discover a new metagame</li>
+                <li>Arena &gt; Skirmish &gt; choose a faction &gt; START!</li>
+              </ul>
+            </div>
+            <div className="news-item">
+              <h4>Patch 2.4 Live: More Shifts and Offers</h4>
+              <ul>
+                <li>More alternate movesets for more pieces</li>
+                <li>More comprehensive gifts on piece offerings</li>
+              </ul>
+            </div>
+            <div className="news-item">
+              <h4>Patch 2.3 Live: Offers and Mods</h4>
+              <ul>
+                <li>Offer: sacrifice a piece for a greater spells</li>
+                <li>Gluttony: capture on dyad moves</li>
+                <li>Sixfold Silk: capture entangled pieces</li>
+                <li>Trojan Gambit: must capture on en passant</li>
+              </ul>
+            </div>
+            <div className="news-item">
+              <h4>Patch 2.2 Live: Dyads and Herrings</h4>
+              <ul>
+                <li>Dyads: move twice in one move</li>
+                <li>Herring: must be captured if attacked</li>
+              </ul>
+            </div>
+            <div className="news-item">
+              <h4>Patch 2.1 Live: New Units</h4>
+              <ul>
+                <li>Equus Piece Family: Zebra and Unicorn</li>
+                <li>Ghost Piece Family: Spectre and Wraith</li>
+                <li>Royalty Piece Family: Mystic, Templar, Valkyrie</li>
+              </ul>
+            </div>
+            <div className="news-item">
+              <h4>Patch 2.0 Live: Spells</h4>
+              <ul>
+                <li>Summon Units</li>
+                <li>Summon Exile: a blocked off square</li>
+                <li>
+                  Square Conditions: move like a queen on that square or
+                  entangle a piece
+                </li>
+                <li>Swap Units: adjacent or deploy a different fighter</li>
+                <li>Shifts: alternate movesets</li>
+                <li>
+                  General modifications: promote one rank early, move through
+                  check, and more
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div className="dashboard-footer"></div>
       </div>

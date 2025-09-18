@@ -387,14 +387,14 @@
   "shftG": {
     "id": "shftG",
     "name": "Mirage",
-    "description": "",
+    "description": "Spectre and Wraith gain the other's moveset, no capturing.",
     "type": "passive",
     "imagePath": "/shftG"
   },
   "shftH": {
     "id": "shftH",
     "name": "Jester",
-    "description": "",
+    "description": "Move a Herring or Hermit in the rotated hex pattern, no capturing.",
     "type": "passive",
     "imagePath": "/shftH"
   },
@@ -408,7 +408,7 @@
   "shftA": {
     "id": "shftA",
     "name": "Myriad Path",
-    "description": "",
+    "description": "Make any type of shift move, no capturing. Used prior to other shift types.",
     "type": "passive",
     "imagePath": "/shftA"
   },
@@ -562,7 +562,7 @@
   "modsBAN": {
     "id": "modsBAN",
     "name": "The Banshee",
-    "description": "",
+    "description": "Spectre move pattern is extended to the 7x7 square, non-capture moves only.",
     "type": "inherent",
     "imagePath": "/modsBAN"
   },
@@ -632,7 +632,7 @@
   "modsDIM": {
     "id": "modsDIM",
     "name": "5th Dimension Steel",
-    "description": "",
+    "description": "Capture pieces on shift moves.",
     "type": "inherent",
     "imagePath": "/modsDIM"
   },

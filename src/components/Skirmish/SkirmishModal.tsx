@@ -96,7 +96,7 @@ const FACTIONS: Record<FactionId, Faction> = {
     arcana: ['dyadB', 'modsGLU', 'offrM'],
     unlocked: true,
     image: '/assets/factions/chi.webp',
-    description: 'Elusive control & vision denial. Punishes overextension.',
+    description: 'Law-breaking Pawns, unpredictable Valkyrie impersonation.',
   },
   gamma: {
     id: 'gamma',
@@ -105,7 +105,8 @@ const FACTIONS: Record<FactionId, Faction> = {
     arcana: ['shftP', 'modsDIM', 'offrM'],
     unlocked: true,
     image: '/assets/factions/gamma.webp',
-    description: 'Pin-based tempo plays and angle traps.',
+    description:
+      'Dangerous, flexible Pawns, unpredictable Valkyrie impersonation',
   },
   omega: {
     id: 'omega',
@@ -114,7 +115,8 @@ const FACTIONS: Record<FactionId, Faction> = {
     arcana: ['sumnRQ', 'modsEXT', 'offrN'],
     unlocked: true,
     image: '/assets/factions/omega.webp',
-    description: 'Clean strikes, promotions, explosive finishers.',
+    description:
+      'Queen impersonation, flexible and dangerous double-moves at a price',
   },
   lambda: {
     id: 'lambda',
@@ -123,7 +125,8 @@ const FACTIONS: Record<FactionId, Faction> = {
     arcana: ['sumnRE', 'modsSIL', 'offrN'],
     unlocked: true,
     image: '/assets/factions/lambda.webp',
-    description: 'Zone control & drag tactics; slow crush.',
+    description:
+      'Trap and capture pieces in a web, flexible and dangerous double-moves at a price',
   },
   sigma: {
     id: 'sigma',
@@ -132,7 +135,7 @@ const FACTIONS: Record<FactionId, Faction> = {
     arcana: ['modsREA', 'offrR'],
     unlocked: true,
     image: '/assets/factions/sigma.webp',
-    description: 'Calculation & multi-step plans; precise bursts.',
+    description: 'Heavy-hitting Wraiths, trap pieces in multiple webs.',
   },
   psi: {
     id: 'psi',
@@ -141,7 +144,7 @@ const FACTIONS: Record<FactionId, Faction> = {
     arcana: ['modsBAN', 'offrR'],
     unlocked: true,
     image: '/assets/factions/psi.webp',
-    description: 'Reactive counters; flows around pressure.',
+    description: 'Buff Spectres, trap pieces in multiple webs.',
   },
   tau: {
     id: 'tau',
@@ -150,7 +153,7 @@ const FACTIONS: Record<FactionId, Faction> = {
     arcana: ['modsREA', 'shftG', 'dyadA', 'offrZ'],
     unlocked: true,
     image: '/assets/factions/tau.webp',
-    description: 'Phasing & binds; strike where they least expect.',
+    description: 'Small army with many spells.',
   },
 };
 

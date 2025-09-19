@@ -324,7 +324,7 @@
   "shftP": {
     "id": "shftP",
     "name": "Champion",
-    "description": "Move a Pawn one square backwards, left or right, no capturing.",
+    "description": "Move a Pawn one square backwards, left, or right, no capturing.",
     "type": "passive",
     "imagePath": "/shftP"
   },

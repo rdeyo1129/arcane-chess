@@ -273,18 +273,65 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
     }));
   };
 
+  randomizeAll = () => {
+    const unlocked = Object.values(FACTIONS)
+      .filter((f) => f.unlocked)
+      .map((f) => f.id) as FactionId[];
+    if (!unlocked.length) return;
+
+    const rnd = <T,>(arr: T[]) => arr[Math.floor(Math.random() * arr.length)];
+
+    const nextPlayerColor: 'white' | 'black' =
+      Math.random() < 0.5 ? 'white' : 'black';
+    const nextEngineColor: 'white' | 'black' =
+      nextPlayerColor === 'white' ? 'black' : 'white';
+
+    const playerFaction = rnd(unlocked);
+    const engineFaction = rnd(unlocked);
+
+    // set colors first, then set factions so setFactionForRole reads correct color
+    this.setState(
+      {
+        playerColor: nextPlayerColor,
+        engineColor: nextEngineColor,
+        hoverId: '',
+        // reset so UI reflects new picks after we set them below
+        playerFactionId: null,
+        engineFactionId: null,
+      },
+      () => {
+        this.setFactionForRole('player', playerFaction);
+        this.setFactionForRole('engine', engineFaction);
+      }
+    );
+  };
+
   descriptions = (): Record<string, string> => {
     const base = {
       engineDiff: 'Engine difficulty & knobs.',
       engineFact: 'Choose an Engine faction.',
+      randomize: 'Randomize colors & factions for both sides.',
       swapSides: `Swap sides: you are ${this.state.playerColor}.`,
       '': 'Choose a faction or adjust engine settings.',
     };
+
+    // faction hover: "faction:<id>"
     const factionDescs: Record<string, string> = {};
     Object.values(FACTIONS).forEach((f) => {
       factionDescs[`faction:${f.id}`] = `${f.name}: ${f.description}`;
     });
-    return { ...base, ...factionDescs };
+
+    // arcana hover: by raw arcana id (e.g., "sumnRQ")
+    const arcanaDescs: Record<string, string> = {};
+    Object.values(arcana).forEach((a) => {
+      if (a && a.id) {
+        const name = a.name || a.id;
+        const desc = a.description || '';
+        arcanaDescs[a.id] = desc ? `${name}: ${desc}` : name;
+      }
+    });
+
+    return { ...base, ...factionDescs, ...arcanaDescs };
   };
 
   setFactionForRole = (role: 'engine' | 'player', id: FactionId) => {
@@ -508,6 +555,22 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                     }
                   />
                 </div>
+                <button
+                  type="button"
+                  className="randomize-btn"
+                  onClick={this.randomizeAll}
+                  onMouseEnter={() => this.setState({ hoverId: 'randomize' })}
+                  onMouseLeave={() => this.setState({ hoverId: '' })}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      this.randomizeAll();
+                    }
+                  }}
+                  aria-label="Randomize colors and factions"
+                >
+                  <img src="/assets/icons/randomize.svg" alt="Randomize" />
+                </button>
               </div>
               <div
                 className="swap-sides"
@@ -616,6 +679,11 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                         color={this.state.engineColor}
                         isOpen={false}
                         readOnly
+                        updateHover={(arcaneObject) => {
+                          this.setState({
+                            hoverId: arcaneObject.id || '',
+                          });
+                        }}
                       />
                     </div>
                   </div>
@@ -666,6 +734,11 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                         color={this.state.playerColor}
                         isOpen={false}
                         readOnly
+                        updateHover={(arcaneObject) => {
+                          this.setState({
+                            hoverId: arcaneObject.id || '',
+                          });
+                        }}
                       />
                     </div>
                   </div>

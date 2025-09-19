@@ -69,7 +69,8 @@ export default class ArcanaSelect extends React.Component<
   };
 
   render() {
-    const { inventory, isOpen, updateHover, handleToggle, readOnly } = this.props;
+    const { inventory, isOpen, updateHover, handleToggle, readOnly } =
+      this.props;
     const { hoverId, currentInventorySlot } = this.state;
     const cursorInteractive =
       "url('/assets/images/cursors/pointer.svg') 12 4, pointer";
@@ -93,30 +94,22 @@ export default class ArcanaSelect extends React.Component<
                     }
                   : {}
               }
-              onMouseEnter={
-                readOnly
-                  ? undefined
-                  : () => {
-                      updateHover?.(arcane);
-                      this.setState({
-                        hoverId: arcane.id,
-                        currentInventorySlot: key,
-                      });
-                    }
-              }
-              onMouseLeave={
-                readOnly
-                  ? undefined
-                  : () => {
-                      updateHover?.({} as ArcanaDetail);
-                      if (!isOpen) {
-                        this.setState({
-                          hoverId: '',
-                          currentInventorySlot: -1,
-                        });
-                      }
-                    }
-              }
+              onMouseEnter={() => {
+                updateHover?.(arcane);
+                this.setState({
+                  hoverId: arcane.id,
+                  currentInventorySlot: key,
+                });
+              }}
+              onMouseLeave={() => {
+                updateHover?.({} as ArcanaDetail);
+                if (!isOpen) {
+                  this.setState({
+                    hoverId: '',
+                    currentInventorySlot: -1,
+                  });
+                }
+              }}
               onClick={
                 readOnly
                   ? undefined
@@ -133,7 +126,7 @@ export default class ArcanaSelect extends React.Component<
                 className="arcane"
                 src={`/assets/arcanaImages${arcane.imagePath}.svg`}
                 style={{
-                  cursor: readOnly ? 'default' : cursorInteractive,
+                  cursor: cursorInteractive,
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
@@ -153,7 +146,7 @@ export default class ArcanaSelect extends React.Component<
                 className={`arcane ${hoverId === key ? 'focus' : ''}`}
                 src={`/assets/arcanaImages${arcana[key].imagePath}.svg`}
                 style={{
-                  cursor: readOnly ? 'default' : cursorInteractive,
+                  cursor: cursorInteractive,
                 }}
                 onMouseEnter={
                   readOnly
@@ -171,7 +164,9 @@ export default class ArcanaSelect extends React.Component<
                         this.setState({ hoverId: '' });
                       }
                 }
-                onClick={readOnly ? undefined : () => this.updateSlot(arcaneObject)}
+                onClick={
+                  readOnly ? undefined : () => this.updateSlot(arcaneObject)
+                }
                 alt={arcaneObject.name}
                 draggable={false}
               />

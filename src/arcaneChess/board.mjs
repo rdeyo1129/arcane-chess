@@ -1115,8 +1115,8 @@ export function SqAttacked(sq, side) {
 
   // iron reach wraith
   if (
-    (side === COLOURS.WHITE && GameBoard.whiteArcane[4] & 2048) ||
-    (side === COLOURS.BLACK && GameBoard.blackArcane[4] & 2048)
+    (side === COLOURS.WHITE && GameBoard.whiteArcane[4] & 256) ||
+    (side === COLOURS.BLACK && GameBoard.blackArcane[4] & 256)
   ) {
     for (index = 0; index < 4; index++) {
       dir = BiDir[index];

@@ -96,7 +96,7 @@ export default class ArmySelect extends React.Component<
           }
           onClick={readOnly ? undefined : () => handleToggle?.()}
           aria-disabled={readOnly || undefined}
-          style={{ cursor: readOnly ? 'default' : cursorInteractive }}
+          style={{ cursor: cursorInteractive }}
         >
           {army.split('').map((piece, index) => (
             <div
@@ -132,7 +132,7 @@ export default class ArmySelect extends React.Component<
                         updateHover?.('');
                       }
                 }
-                style={{ cursor: readOnly ? 'default' : cursorInteractive }}
+                style={{ cursor: cursorInteractive }}
               >
                 {armyCode.split('').map((piece, pieceIndex) => (
                   <div
@@ -157,7 +157,7 @@ export default class ArmySelect extends React.Component<
                             );
                           }
                     }
-                    style={{ cursor: readOnly ? 'default' : cursorInteractive }}
+                    style={{ cursor: cursorInteractive }}
                   />
                 ))}
               </div>

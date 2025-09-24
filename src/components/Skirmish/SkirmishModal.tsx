@@ -149,7 +149,7 @@ const FACTIONS: Record<FactionId, Faction> = {
   tau: {
     id: 'tau',
     name: 'tau',
-    army: '2WVKW2',
+    army: '2VVKV2',
     arcana: ['modsREA', 'shftG', 'dyadA', 'offrZ'],
     unlocked: true,
     image: '/assets/factions/tau.webp',

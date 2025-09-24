@@ -119,23 +119,24 @@ export function AddCaptureMove(move, consume = false, capturesOnly = false) {
     GameBoard.side === 0 ? GameBoard.whiteArcane : GameBoard.blackArcane;
   let has5thDimensionSword = currentArcanaSide[4] & 262144;
 
-  if (capturedPiece === PIECES.wK || capturedPiece === PIECES.bK) {
-    return;
-  }
-
-  // exile non-capturing
   if (
     GameBoard.pieces[FROMSQ(move)] === PIECES.wX ||
     GameBoard.pieces[FROMSQ(move)] === PIECES.bX
-  )
+  ) {
     return;
-  // exile non-capturable
-  if (
-    !has5thDimensionSword &&
-    (GameBoard.pieces[TOSQ(move)] === PIECES.wX ||
-      GameBoard.pieces[TOSQ(move)] === PIECES.bX)
-  )
+  }
+
+  const isTargetExile =
+    GameBoard.pieces[TOSQ(move)] === PIECES.wX ||
+    GameBoard.pieces[TOSQ(move)] === PIECES.bX;
+
+  if (isTargetExile && !(has5thDimensionSword && move & MFLAGSHFT)) {
     return;
+  }
+
+  if (capturedPiece === PIECES.wK || capturedPiece === PIECES.bK) {
+    return;
+  }
 
   // gluttony
   if (

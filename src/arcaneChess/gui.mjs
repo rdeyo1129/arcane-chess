@@ -52,7 +52,7 @@ export const validSummonMoves = (piece) => {
 
   for (let move of validMovesReturn) {
     const from =
-      piece >= 30
+      piece >= 31
         ? `R${RtyChar.split('')[piece]}@`
         : `${PceChar.split('')[piece].toUpperCase()}@`;
     const to = PrMove(move, 'array')[1];

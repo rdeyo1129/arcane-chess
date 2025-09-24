@@ -923,7 +923,11 @@ class UnwrappedStackQuickplay extends React.Component<Props, State> {
                         placingPiece:
                           pieces[
                             key.split('sumn')[1].toUpperCase() === 'X'
-                              ? 'EXILE'
+                              ? `${
+                                  this.state.selectedSide === 'white'
+                                    ? 'w'
+                                    : 'b'
+                                }X`
                               : `${
                                   this.state.selectedSide === 'white'
                                     ? 'w'
@@ -1082,35 +1086,6 @@ class UnwrappedStackQuickplay extends React.Component<Props, State> {
                       });
                     }
                   }
-                  if (key === 'modsSKI') {
-                    const { parsed } = this.arcaneChess().makeUserMove(
-                      0,
-                      0,
-                      31,
-                      '',
-                      0
-                    );
-                    audioManager.playSFX('spell');
-                    if (parsed === 0) {
-                      console.log('parsed === 0');
-                    }
-                    this.setState(
-                      (prevState) => ({
-                        ...prevState,
-                        historyPly: prevState.historyPly + 1,
-                        history: [...prevState.history, 'pass'],
-                        fen: outputFenOfCurrentPosition(),
-                        fenHistory: [
-                          ...prevState.fenHistory,
-                          outputFenOfCurrentPosition(),
-                        ],
-                        lastMoveHistory: [...prevState.lastMoveHistory, []],
-                      }),
-                      () => {
-                        this.engineGo();
-                      }
-                    );
-                  }
                   if (key === 'modsGLI') {
                     audioManager.playSFX('spell');
                     arcaneChess().subtractArcanaUse(
@@ -1165,7 +1140,7 @@ class UnwrappedStackQuickplay extends React.Component<Props, State> {
     if (!id) return false;
     const pieceKey =
       id.toUpperCase() === 'X'
-        ? 'EXILE'
+        ? `${this.state.selectedSide === 'white' ? 'w' : 'b'}X`
         : `${this.state.selectedSide === 'white' ? 'w' : 'b'}${id}`;
 
     const expectedPiece = (PIECES as Record<string, number>)[pieceKey] ?? -1;

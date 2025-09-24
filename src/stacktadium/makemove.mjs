@@ -37,7 +37,7 @@ import {
 import { ARCANEFLAG } from './board.mjs';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
-const royaltyIndexMapRestructure = [0, 30, 31, 32, 33, 34, 35, 36, 37];
+const royaltyIndexMapRestructure = [0, 31, 31, 32, 33, 34, 35, 36, 38];
 
 export function ClearPiece(sq, summon = false) {
   let pce = GameBoard.pieces[sq];
@@ -221,36 +221,7 @@ export function MakeMove(move, moveType = '') {
   let captured = CAPTURED(move);
   let pieceEpsilon = PROMOTED(move);
 
-  const isPassMove =
-    TOSQ(move) === 0 &&
-    FROMSQ(move) === 0 &&
-    captured === 0 &&
-    pieceEpsilon === 31 &&
-    ARCANEFLAG(move) === 0;
-
   GameBoard.fiftyMove++;
-
-  if (isPassMove) {
-    if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig.modsSKI -= 1;
-    }
-    if (GameBoard.side === COLOURS.BLACK) {
-      blackArcaneConfig.modsSKI -= 1;
-    }
-
-    GameBoard.hisPly++;
-    GameBoard.ply++;
-
-    GameBoard.side ^= 1;
-    HASH_SIDE();
-
-    if (SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], side ^ 1)) {
-      TakeMove();
-      return BOOL.FALSE;
-    }
-
-    return BOOL.TRUE;
-  }
 
   if (
     TOSQ(move) > 0 &&
@@ -367,7 +338,7 @@ export function MakeMove(move, moveType = '') {
           if (GameBoard.royaltyT[sq] > 0) GameBoard.royaltyT[sq] = 0;
           if (GameBoard.royaltyM[sq] > 0) GameBoard.royaltyM[sq] = 0;
           if (GameBoard.royaltyV[sq] > 0) GameBoard.royaltyV[sq] = 0;
-          if (GameBoard.pieces[sq] === PIECES.EXILE) return;
+          if (GameBoard.pieces[sq] === PIECES.X) return;
           GameBoard.royaltyE[sq] = 7;
         });
       } else if (
@@ -611,23 +582,6 @@ export function TakeMove(wasDyadMove = false) {
 
   let captured = CAPTURED(move);
   let pieceEpsilon = PROMOTED(move);
-
-  const isPassMove =
-    TOSQ(move) === 0 &&
-    FROMSQ(move) === 0 &&
-    captured === 0 &&
-    pieceEpsilon === 31 &&
-    ARCANEFLAG(move) === 0;
-
-  if (isPassMove) {
-    if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig.modsSKI += 1;
-    }
-    if (GameBoard.side === COLOURS.BLACK) {
-      blackArcaneConfig.modsSKI += 1;
-    }
-    return;
-  }
 
   if (TOSQ(move) > 0 && ARCANEFLAG(move) && move & MFLAGCNSM) {
     if (GameBoard.side === COLOURS.WHITE) {

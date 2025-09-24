@@ -16438,7 +16438,7 @@
           "modsIMP": 1,
           "modsFUT": 1
         },
-        "blackArcane": { "modsPHA": 1, "modsSKI": 1, "shftB": 1, "sumnB": 2 },
+        "blackArcane": { "modsPHA": 1, "shftB": 1, "sumnB": 2 },
         "config": {},
         "correctMoves": [""],
         "viewOnly": true,

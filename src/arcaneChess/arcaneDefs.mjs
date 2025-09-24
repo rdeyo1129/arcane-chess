@@ -86,7 +86,7 @@ export const activateDyad = () => {
 export const POWERBIT = {
   // 0 dyad active 6
   dyadA: 1, // all
-  dyadB: 2, // p h
+  dyadB: 2, // p h x
   dyadC: 4, // b n z u r
   dyadD: 8, // s w
   dyadE: 16, // m t q
@@ -167,7 +167,7 @@ export const POWERBIT = {
   modsFUT: 128, // active
   modsREA: 256, // inherent
   modsEXT: 512, // inherent
-  modsSKI: 1024, // active
+  // modsSKI: 1024, // DEPRECATED
   modsTRO: 2048, // inherent
   modsREI: 4096, // inherent
   modsSOV: 8192, // passive

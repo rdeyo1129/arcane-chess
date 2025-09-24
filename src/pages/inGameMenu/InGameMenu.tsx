@@ -696,7 +696,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                                             key
                                               .split('sumn')[1]
                                               .toUpperCase() === 'X'
-                                              ? 'EXILE'
+                                              ? 'X'
                                               : `${
                                                   this.state.selectedSide ===
                                                   'W'
@@ -1813,7 +1813,7 @@ class UnwrappedInGameMenu extends React.Component<object, State> {
                     }}
                     onClick={() => {
                       this.setState({
-                        placingPiece: pieces.EXILE,
+                        placingPiece: pieces.X,
                         placingRoyalty: 0,
                       });
                     }}

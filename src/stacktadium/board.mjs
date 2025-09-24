@@ -551,7 +551,7 @@ export function ParseFen(fen, resetBoard = true) {
         piece = PIECES.wQ;
         break;
       case 'X':
-        piece = PIECES.EXILE;
+        piece = PIECES.wX;
         break;
       case 'S':
         piece = PIECES.wS;
@@ -600,6 +600,9 @@ export function ParseFen(fen, resetBoard = true) {
         break;
       case 'w':
         piece = PIECES.bW;
+        break;
+      case 'x':
+        piece = PIECES.bX;
         break;
 
       case '1':

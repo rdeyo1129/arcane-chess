@@ -37,9 +37,9 @@ import {
 } from './defs';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
-const royaltyIndexMapRestructure = [0, 30, 31, 32, 33, 34, 35, 36, 37];
+const royaltyIndexMapRestructure = [0, 31, 32, 33, 34, 35, 36, 37, 38];
 
-const TELEPORT_CONST = 30;
+const TELEPORT_CONST = 31;
 const EPSILON_MYRIAD_CONST = 30;
 // const EPSILON_ECLIPSE_CONST = 31;
 // skip turn = 31 promo?
@@ -205,9 +205,9 @@ export function MakeMove(move, moveType = '') {
   const moverPiece = GameBoard.pieces[from];
   const targetPieceAtTo = GameBoard.pieces[to];
 
-  if (promoEpsilon === 31 && (from !== 0 || to !== 0)) {
-    promoEpsilon = PIECES.EMPTY;
-  }
+  // if (promoEpsilon === 31 && (from !== 0 || to !== 0)) {
+  //   promoEpsilon = PIECES.EMPTY;
+  // }
 
   if (
     promoEpsilon !== PIECES.EMPTY &&
@@ -354,39 +354,6 @@ export function MakeMove(move, moveType = '') {
 
   HASH_CA();
 
-  const isPassMove =
-    FROMSQ(move) === 0 &&
-    TOSQ(move) === 0 &&
-    CAPTURED(move) === 0 &&
-    (move &
-      (MFLAGSHFT | MFLAGSUMN | MFLAGSWAP | MFLAGEP | MFLAGCA | MFLAGPS)) ===
-      0 &&
-    promoEpsilon === 31;
-
-  GameBoard.fiftyMove++;
-
-  if (isPassMove) {
-    if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig.modsSKI -= 1;
-    }
-    if (GameBoard.side === COLOURS.BLACK) {
-      blackArcaneConfig.modsSKI -= 1;
-    }
-
-    GameBoard.hisPly++;
-    GameBoard.ply++;
-
-    GameBoard.side ^= 1;
-    HASH_SIDE();
-
-    if (SqAttacked(GameBoard.pList[PCEINDEX(Kings[side], 0)], side ^ 1)) {
-      TakeMove();
-      return BOOL.FALSE;
-    }
-
-    return BOOL.TRUE;
-  }
-
   if (PiecePawn[GameBoard.pieces[from]] === BOOL.TRUE) {
     GameBoard.fiftyMove = 0;
     if ((move & MFLAGPS) !== 0) {
@@ -487,7 +454,8 @@ export function MakeMove(move, moveType = '') {
         if (GameBoard.royaltyT[sq] > 0) GameBoard.royaltyT[sq] = 0;
         if (GameBoard.royaltyM[sq] > 0) GameBoard.royaltyM[sq] = 0;
         if (GameBoard.royaltyV[sq] > 0) GameBoard.royaltyV[sq] = 0;
-        if (GameBoard.pieces[sq] === PIECES.EXILE) return;
+        if (GameBoard.pieces[sq] === PIECES.wEXILE) return;
+        if (GameBoard.pieces[sq] === PIECES.bEXILE) return;
         GameBoard.royaltyE[sq] = 7;
       });
     } else if (sumnCap > 0) {
@@ -782,25 +750,6 @@ export function TakeMove(wasDyadMove = false) {
   GameBoard.royaltyM = { ...GameBoard.history[GameBoard.hisPly].royaltyM };
   GameBoard.royaltyV = { ...GameBoard.history[GameBoard.hisPly].royaltyV };
   GameBoard.royaltyE = { ...GameBoard.history[GameBoard.hisPly].royaltyE };
-
-  const isPassMove =
-    FROMSQ(move) === 0 &&
-    TOSQ(move) === 0 &&
-    CAPTURED(move) === 0 &&
-    (move &
-      (MFLAGSHFT | MFLAGSUMN | MFLAGSWAP | MFLAGEP | MFLAGCA | MFLAGPS)) ===
-      0 &&
-    promoEpsilon === 31;
-
-  if (isPassMove) {
-    if (GameBoard.side === COLOURS.WHITE) {
-      whiteArcaneConfig.modsSKI += 1;
-    }
-    if (GameBoard.side === COLOURS.BLACK) {
-      blackArcaneConfig.modsSKI += 1;
-    }
-    return;
-  }
 
   if (TOSQ(move) > 0 && move & MFLAGCNSM && !isShift(move)) {
     (GameBoard.side === COLOURS.WHITE

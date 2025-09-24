@@ -46,7 +46,6 @@ export const unlockableArcana = [
     dyadB: 1,
     shftP: 1,
     modsFUT: 2,
-    modsSKI: 1,
   },
   // 2
   {

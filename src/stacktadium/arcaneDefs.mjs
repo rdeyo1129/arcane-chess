@@ -146,7 +146,7 @@ export const POWERBIT = {
   modsFUT: 128, // active // can be replaced I think
   modsREA: 2048, // inherent
   modsEXT: 4096, // inherent
-  modsSKI: 16384, // active // can be replace?
+  // modsSKI: 16384, // active // can be replace?
   modsTRO: 32768, // inherent
 };
 

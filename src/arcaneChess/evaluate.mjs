@@ -272,6 +272,30 @@ export function EvalPosition() {
     score -= KnightTable[MIRROR64(SQ64(sq))];
   }
 
+  pce = PIECES.wW;
+  for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+    sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+    score += KnightTable[SQ64(sq)];
+  }
+
+  pce = PIECES.bW;
+  for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+    sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+    score -= KnightTable[MIRROR64(SQ64(sq))];
+  }
+
+  pce = PIECES.wX;
+  for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+    sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+    score += RookTable[SQ64(sq)];
+  }
+
+  pce = PIECES.bX;
+  for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+    sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+    score -= RookTable[MIRROR64(SQ64(sq))];
+  }
+
   if (GameBoard.preset === 'THRONE') {
     pce = PIECES.wK;
     for (pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {

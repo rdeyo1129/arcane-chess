@@ -70,16 +70,16 @@ const EPSILON_MYRIAD_CONST = 30;
 const MvvLvaValue = [
   0, 100, 500, 600, 700, 1200, 1400, 100, 500, 600, 700, 1200, 1400, 0, 900,
   200, 1100, 1000, 1300, 900, 200, 1100, 1000, 1300, 400, 300, 400, 300, 800,
-  800,
+  800, 0,
 ];
-const MvvLvaScores = new Array(30 * 30);
+const MvvLvaScores = new Array(31 * 31);
 export function InitMvvLva() {
   let Attacker;
   let Victim;
 
   for (Attacker = PIECES.wP; Attacker <= PIECES.bW; Attacker++) {
     for (Victim = PIECES.wP; Victim <= PIECES.bW; Victim++) {
-      MvvLvaScores[Victim * 30 + Attacker] =
+      MvvLvaScores[Victim * 31 + Attacker] =
         MvvLvaValue[Victim] + 14 - MvvLvaValue[Attacker] / 100;
     }
   }
@@ -114,9 +114,28 @@ export function MOVE(from, to, captured, promoted, flag) {
 export function AddCaptureMove(move, consume = false, capturesOnly = false) {
   const targetSquare = TOSQ(move);
   const capturedPiece = GameBoard.pieces[targetSquare];
+
+  let currentArcanaSide =
+    GameBoard.side === 0 ? GameBoard.whiteArcane : GameBoard.blackArcane;
+  let has5thDimensionSword = currentArcanaSide[4] & 262144;
+
   if (capturedPiece === PIECES.wK || capturedPiece === PIECES.bK) {
     return;
   }
+
+  // exile non-capturing
+  if (
+    GameBoard.pieces[FROMSQ(move)] === PIECES.wX ||
+    GameBoard.pieces[FROMSQ(move)] === PIECES.bX
+  )
+    return;
+  // exile non-capturable
+  if (
+    !has5thDimensionSword &&
+    (GameBoard.pieces[TOSQ(move)] === PIECES.wX ||
+      GameBoard.pieces[TOSQ(move)] === PIECES.bX)
+  )
+    return;
 
   // gluttony
   if (
@@ -125,6 +144,7 @@ export function AddCaptureMove(move, consume = false, capturesOnly = false) {
       (GameBoard.side === COLOURS.BLACK && !(GameBoard.blackArcane[4] & 64)))
   )
     return;
+
   // sixfold silk
   if (
     GameBoard.royaltyE[TOSQ(move)] > 0 &&
@@ -765,7 +785,7 @@ export function GenerateMoves(
             for (const toSq of teleportSquares) {
               if (GameBoard.pieces[toSq] === PIECES.EMPTY) {
                 AddQuietMove(
-                  MOVE(fromSq, toSq, 30, 0, MFLAGSHFT),
+                  MOVE(fromSq, toSq, 31, 0, MFLAGSHFT),
                   capturesOnly
                 );
               }
@@ -1047,14 +1067,14 @@ export function GenerateMoves(
     if (!herrings.length) {
       // todo remove parent conditional with herring check because sumnE can block from a piece attacking herring
       const royaltyIndexes = {
-        30: 1,
-        31: 2,
-        32: 3,
-        33: 4,
-        34: 5,
-        35: 6,
-        36: 7,
-        37: 8,
+        31: 1,
+        32: 2,
+        33: 3,
+        34: 4,
+        35: 5,
+        36: 6,
+        37: 7,
+        38: 8,
       };
       if (
         userSummonPceRty > 0 ||
@@ -1263,7 +1283,7 @@ export function GenerateMoves(
           if (
             has5thDimensionSword &&
             (PieceCol[GameBoard.pieces[sq - 1]] === COLOURS.BLACK ||
-              GameBoard.pieces[sq - 1] === PIECES.EXILE)
+              GameBoard.pieces[sq - 1] === PIECES.bX)
           ) {
             AddWhitePawnCaptureMove(
               sq,
@@ -1287,7 +1307,7 @@ export function GenerateMoves(
           if (
             has5thDimensionSword &&
             (PieceCol[GameBoard.pieces[sq + 1]] === COLOURS.BLACK ||
-              GameBoard.pieces[sq + 1] === PIECES.EXILE)
+              GameBoard.pieces[sq + 1] === PIECES.bX)
           ) {
             AddWhitePawnCaptureMove(
               sq,
@@ -1311,7 +1331,7 @@ export function GenerateMoves(
           if (
             has5thDimensionSword &&
             (PieceCol[GameBoard.pieces[sq - 10]] === COLOURS.BLACK ||
-              GameBoard.pieces[sq - 10] === PIECES.EXILE)
+              GameBoard.pieces[sq - 10] === PIECES.bX)
           ) {
             AddWhitePawnCaptureMove(
               sq,
@@ -1617,7 +1637,7 @@ export function GenerateMoves(
           if (
             has5thDimensionSword &&
             (PieceCol[GameBoard.pieces[sq - 1]] === COLOURS.WHITE ||
-              GameBoard.pieces[sq - 1] === PIECES.EXILE)
+              GameBoard.pieces[sq - 1] === PIECES.wX)
           ) {
             AddBlackPawnCaptureMove(
               sq,
@@ -1641,7 +1661,7 @@ export function GenerateMoves(
           if (
             has5thDimensionSword &&
             (PieceCol[GameBoard.pieces[sq + 1]] === COLOURS.WHITE ||
-              GameBoard.pieces[sq + 1] === PIECES.EXILE)
+              GameBoard.pieces[sq + 1] === PIECES.wX)
           ) {
             AddBlackPawnCaptureMove(
               sq,
@@ -1665,7 +1685,7 @@ export function GenerateMoves(
           if (
             has5thDimensionSword &&
             (PieceCol[GameBoard.pieces[sq + 10]] === COLOURS.WHITE ||
-              GameBoard.pieces[sq + 10] === PIECES.EXILE)
+              GameBoard.pieces[sq + 10] === PIECES.wX)
           ) {
             AddBlackPawnCaptureMove(
               sq,

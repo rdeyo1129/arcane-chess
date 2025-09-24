@@ -419,13 +419,6 @@
     "type": "inherent",
     "imagePath": "/modsFUG"
   },
-  "modsSKI": {
-    "id": "modsSKI",
-    "name": "Meditate",
-    "description": "Skip your turn.",
-    "type": "active",
-    "imagePath": "/modsSKI"
-  },
   "modsTRO": {
     "id": "modsTRO",
     "name": "Trojan Gambit",

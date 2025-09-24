@@ -34,7 +34,7 @@ export function PrSq(sq) {
   return FileChar[FilesBrd[sq]] + RankChar[RanksBrd[sq]];
 }
 
-const royaltyMap = ['.', 30, 31, 32, 33, 34, 35, 36, 37];
+const royaltyMap = ['.', 31, 32, 33, 34, 35, 36, 37, 38];
 // todo update to allow swapping your pawns into promotion, but not your opponents
 
 const isInitPromotion = (move) => {

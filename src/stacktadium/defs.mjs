@@ -12,7 +12,7 @@ export const PIECES = {
   bR: 10,
   bQ: 11,
   bK: 12,
-  EXILE: 13,
+  wX: 13,
   wS: 14,
   wH: 15,
   wT: 16,
@@ -29,17 +29,18 @@ export const PIECES = {
   bU: 27,
   wW: 28,
   bW: 29,
+  bX: 30,
 };
 
 export const ARCANE_BIT_VALUES = {
-  RQ: 30,
-  RT: 31,
-  RM: 32,
-  RV: 33,
-  RE: 34,
-  RY: 35,
-  RZ: 36,
-  RA: 37,
+  RQ: 31,
+  RT: 32,
+  RM: 33,
+  RV: 34,
+  RE: 35,
+  RY: 36,
+  RZ: 37,
+  RA: 38,
   ATK: 8,
   DEP: 9,
   ADJ: 10,
@@ -123,8 +124,8 @@ export function updateStartFen(newFen) {
   START_FEN = newFen;
 }
 
-export let PceChar = '.PNBRQKpnbrqkXSHTMVshtmvZUzuWw';
-export let RtyChar = '.'.repeat(30) + 'QTMVEYZA';
+export let PceChar = '.PNBRQKpnbrqkXSHTMVshtmvZUzuWwx';
+export let RtyChar = '.'.repeat(31) + 'QTMVEYZA';
 export let SideChar = 'wb-';
 export let RankChar = '12345678';
 export let FileChar = 'abcdefgh';
@@ -162,6 +163,7 @@ export const PieceBig = [
   BOOL.TRUE,
   BOOL.TRUE,
   BOOL.TRUE,
+  BOOL.FALSE,
 ];
 export const PieceMaj = [
   BOOL.FALSE,
@@ -194,6 +196,7 @@ export const PieceMaj = [
   BOOL.FALSE,
   BOOL.TRUE,
   BOOL.TRUE,
+  BOOL.FALSE,
 ];
 export const PieceMin = [
   BOOL.FALSE,
@@ -226,10 +229,12 @@ export const PieceMin = [
   BOOL.TRUE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceVal = [
   0, 100, 300, 300, 550, 1100, 150000, 100, 300, 300, 550, 1100, 150000, 0, 800,
   200, 1000, 900, 1400, 800, 250, 1000, 900, 1400, 300, 300, 300, 300, 800, 800,
+  0,
 ];
 export const PieceCol = [
   COLOURS.BOTH,
@@ -245,22 +250,23 @@ export const PieceCol = [
   COLOURS.BLACK,
   COLOURS.BLACK,
   COLOURS.BLACK,
-  COLOURS.BOTH,
   COLOURS.WHITE,
   COLOURS.WHITE,
   COLOURS.WHITE,
   COLOURS.WHITE,
-  COLOURS.WHITE,
-  COLOURS.BLACK,
-  COLOURS.BLACK,
-  COLOURS.BLACK,
-  COLOURS.BLACK,
-  COLOURS.BLACK,
   COLOURS.WHITE,
   COLOURS.WHITE,
   COLOURS.BLACK,
   COLOURS.BLACK,
+  COLOURS.BLACK,
+  COLOURS.BLACK,
+  COLOURS.BLACK,
   COLOURS.WHITE,
+  COLOURS.WHITE,
+  COLOURS.BLACK,
+  COLOURS.BLACK,
+  COLOURS.WHITE,
+  COLOURS.BLACK,
   COLOURS.BLACK,
 ];
 
@@ -273,6 +279,7 @@ export const PiecePawn = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
+  BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -327,6 +334,7 @@ export const PieceSpectre = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceWraith = [
   BOOL.FALSE,
@@ -359,6 +367,7 @@ export const PieceWraith = [
   BOOL.FALSE,
   BOOL.TRUE,
   BOOL.TRUE,
+  BOOL.FALSE,
 ];
 export const PieceHerring = [
   BOOL.FALSE,
@@ -382,6 +391,7 @@ export const PieceHerring = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
+  BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -423,6 +433,7 @@ export const PieceKnight = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceKing = [
   BOOL.FALSE,
@@ -438,6 +449,7 @@ export const PieceKing = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
+  BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -487,6 +499,7 @@ export const PieceRookQueen = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceBishopQueen = [
   BOOL.FALSE,
@@ -519,6 +532,7 @@ export const PieceBishopQueen = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceExile = [
   BOOL.FALSE,
@@ -535,6 +549,7 @@ export const PieceExile = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.TRUE,
+  BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -583,6 +598,7 @@ export const PieceValkyrie = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceZebra = [
   BOOL.FALSE,
@@ -612,6 +628,7 @@ export const PieceZebra = [
   BOOL.TRUE,
   BOOL.FALSE,
   BOOL.TRUE,
+  BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
@@ -647,6 +664,7 @@ export const PieceUnicorn = [
   BOOL.TRUE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.FALSE,
 ];
 export const PieceSlides = [
   BOOL.FALSE,
@@ -679,6 +697,7 @@ export const PieceSlides = [
   BOOL.FALSE,
   BOOL.FALSE,
   BOOL.FALSE,
+  BOOL.FALSE,
 ];
 
 export let SpDir = [-21, -19, -12, -10, -8, -1, 1, 8, 10, 12, 19, 21];
@@ -699,9 +718,15 @@ export let VaDir = [
 export let ZeDir = [-20, -11, -9, -2, 2, 9, 11, 20];
 export let UnDir = [-22, -18, -10, -1, 1, 10, 18, 22];
 
+export let BanDirSp = [-32, -30, -28, -23, -17, -3, 3, 17, 23, 28, 30, 32];
+export let BanDirWr = [-33, -31, -29, -27, -13, -7, 7, 13, 27, 29, 31, 33];
+export let HerShftDir = [-20, -12, -8, 8, 12, 20];
+
+export let ExiDir = [-22, -20, -18, -10, -2, -1, 1, 2, 10, 18, 20, 22];
+
 export const DirNum = [
-  0, 0, 8, 4, 4, 8, 8, 0, 8, 4, 4, 8, 8, 0, 12, 6, 4, 4, 24, 12, 6, 4, 4, 24, 8,
-  8, 8, 8, 12, 12,
+  0, 0, 8, 4, 4, 8, 8, 0, 8, 4, 4, 8, 8, 12, 12, 6, 4, 4, 24, 12, 6, 4, 4, 24,
+  8, 8, 8, 8, 12, 12, 12,
 ];
 export const PceDir = [
   0,
@@ -717,7 +742,7 @@ export const PceDir = [
   RkDir,
   KiDir,
   KiDir,
-  0,
+  ExiDir,
   SpDir,
   HrDir,
   RkDir, // templar
@@ -734,6 +759,7 @@ export const PceDir = [
   UnDir,
   WrDir,
   WrDir,
+  ExiDir,
 ];
 export const LoopNonSlidePce = [
   PIECES.wN,
@@ -746,6 +772,7 @@ export const LoopNonSlidePce = [
   PIECES.wZ,
   PIECES.wU,
   PIECES.wW,
+  PIECES.wX,
   0,
   PIECES.bN,
   PIECES.bK,
@@ -757,12 +784,14 @@ export const LoopNonSlidePce = [
   PIECES.bZ,
   PIECES.bU,
   PIECES.bW,
+  PIECES.bX,
   0,
 ];
 export const LoopNonSlideDyad = [
-  4, 32, 8, 2, 16, 16, 32, 4, 4, 8, 0, 4, 32, 8, 2, 16, 16, 32, 4, 4, 8, 0,
+  4, 32, 8, 2, 16, 16, 32, 4, 4, 8, 2, 0, 4, 32, 8, 2, 16, 16, 32, 4, 4, 8, 2,
+  0,
 ];
-export const LoopNonSlideIndex = [0, 11];
+export const LoopNonSlideIndex = [0, 12];
 
 export const LoopSlidePce = [
   PIECES.wB,
@@ -803,6 +832,7 @@ export const LoopPcePrime = [
   PIECES.wZ,
   PIECES.wU,
   PIECES.wW,
+  PIECES.wX,
   0,
   PIECES.bP,
   PIECES.bN,
@@ -817,6 +847,7 @@ export const LoopPcePrime = [
   PIECES.bZ,
   PIECES.bU,
   PIECES.bW,
+  PIECES.bX,
   0,
 ];
 export const LoopPcePrimeSymbols = [
@@ -833,6 +864,7 @@ export const LoopPcePrimeSymbols = [
   'Z',
   'U',
   'W',
+  'X',
   '',
   'P',
   'N',
@@ -847,15 +879,10 @@ export const LoopPcePrimeSymbols = [
   'Z',
   'U',
   'W',
+  'X',
   '',
 ];
-export const LoopPcePrimeIndex = [0, 14];
-
-export const LoopDyadPrime = [
-  2, 16, 256, 4, 8, 512, 1024, 2048, 32, 64, 128, 4096, 8192, 16384, 0, 2, 16,
-  256, 4, 8, 512, 1024, 2048, 32, 64, 128, 4096, 8192, 16384, 0,
-];
-export const LoopIndexPrime = [0, 15];
+export const LoopPcePrimeIndex = [0, 15];
 
 export const royaltySliderMap = ['royaltyM', 'royaltyT', 'royaltyQ'];
 export const royaltyHopperMap = ['royaltyM', 'royaltyT', 'royaltyV'];
@@ -876,7 +903,7 @@ export const loopSummon = [
   PIECES.wZ,
   PIECES.wU,
   PIECES.wW,
-  PIECES.EXILE,
+  PIECES.wX,
   ARCANE_BIT_VALUES.RQ,
   ARCANE_BIT_VALUES.RT,
   ARCANE_BIT_VALUES.RM,
@@ -899,7 +926,7 @@ export const loopSummon = [
   PIECES.bZ,
   PIECES.bU,
   PIECES.bW,
-  PIECES.EXILE,
+  PIECES.bX,
   ARCANE_BIT_VALUES.RQ,
   ARCANE_BIT_VALUES.RT,
   ARCANE_BIT_VALUES.RM,

@@ -134,8 +134,8 @@ GameBoard.troActive = 0;
 GameBoard.castlePerm = 0;
 GameBoard.material = new Array(2); // WHITE, BLACK material of pieces
 // WHITE, BLACK material of pieces
-GameBoard.pceNum = new Array(30); // indexed by Pce
-GameBoard.pList = new Array(30 * 36);
+GameBoard.pceNum = new Array(31); // indexed by Pce
+GameBoard.pList = new Array(31 * 36);
 
 GameBoard.whiteArcane = [0, 0, 0, 0, 0, 0];
 GameBoard.blackArcane = [0, 0, 0, 0, 0, 0];
@@ -552,7 +552,7 @@ export function ParseFen(fen, resetBoard = true) {
         piece = PIECES.wQ;
         break;
       case 'X':
-        piece = PIECES.EXILE;
+        piece = PIECES.wX;
         break;
       case 'S':
         piece = PIECES.wS;
@@ -601,6 +601,9 @@ export function ParseFen(fen, resetBoard = true) {
         break;
       case 'w':
         piece = PIECES.bW;
+        break;
+      case 'x':
+        piece = PIECES.bX;
         break;
 
       case '1':

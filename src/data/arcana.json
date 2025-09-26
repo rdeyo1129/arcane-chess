@@ -482,12 +482,12 @@
     "type": "active",
     "imagePath": "/modsGLI"
   },
-  "modsAET": {
-    "id": "modsAET",
-    "name": "Aetherstep",
-    "description": "Friendly Pawns may can step through a piece on their first turn.",
-    "type": "inherent",
-    "imagePath": "/modsAET"
+  "modsSUR": {
+    "id": "modsSUR",
+    "name": "Aether Surge",
+    "description": "",
+    "type": "passive",
+    "imagePath": "/modsSUR"
   },
   "modsGLU": {
     "id": "modsGLU",

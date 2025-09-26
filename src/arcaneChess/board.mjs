@@ -727,6 +727,7 @@ export let herringCanShift =
   currentArcanaSide[1] & 64 || currentArcanaSide[1] & 256;
 
 export let hasPawnShiftAttack = () => pawnCanShift && has5thDimensionSword;
+export let hasAetherSurge = () => currentArcanaSide[4] & 131072;
 export let hasEquusShiftAttack = (pce) =>
   equusCanShift &&
   (PieceKnight[pce] === BOOL.TRUE ||
@@ -747,18 +748,56 @@ export let hasHermitShiftAttack = (pce) =>
   has5thDimensionSword &&
   hasHermit;
 
-export function SqAttacked(sq, side) {
-  let pce;
-  let dir;
-  let t_sq;
-  let index;
+// export function SqAttacked(sq, side) {
+//   let pce;
+//   let dir;
+//   let t_sq;
+//   let index;
 
-  let overridePresent = (t_sq) =>
+export function SqAttacked(sq, side) {
+  let pce, dir, t_sq, index;
+
+  const overridePresent = (t_sq) =>
     GameBoard.royaltyQ[t_sq] > 0 ||
     GameBoard.royaltyT[t_sq] > 0 ||
     GameBoard.royaltyM[t_sq] > 0 ||
     GameBoard.royaltyV[t_sq] > 0 ||
     GameBoard.royaltyE[t_sq] > 0;
+
+  const arc =
+    side === COLOURS.WHITE ? GameBoard.whiteArcane : GameBoard.blackArcane;
+
+  const has5th = (arc[4] & 262144) !== 0;
+  const hasHerm = (arc[4] & 1048576) !== 0;
+
+  const pawnShift = arc[1] & 1 || arc[1] & 256;
+  const equusShift = arc[1] & 2 || arc[1] & 256;
+  const bishopShift = arc[1] & 4 || arc[1] & 256;
+  const rookShift = arc[1] & 8 || arc[1] & 256;
+  const ghostShift = arc[1] & 32 || arc[1] & 256;
+  const herringShift = arc[1] & 64 || arc[1] & 256;
+
+  const hasPawnShiftAttack = () => pawnShift && has5th;
+
+  const hasEquusShiftAttack = (p) =>
+    equusShift &&
+    (PieceKnight[p] === BOOL.TRUE ||
+      PieceZebra[p] === BOOL.TRUE ||
+      PieceUnicorn[p] === BOOL.TRUE) && // ← FIXED: index with [p]
+    has5th;
+
+  const hasBishopShiftAttack = (p) =>
+    bishopShift && PieceBishopQueen[p] === BOOL.TRUE && has5th;
+  const hasRookShiftAttack = (p) =>
+    rookShift && PieceRookQueen[p] === BOOL.TRUE && has5th;
+
+  const hasGhostShiftAttack = (p) =>
+    ghostShift &&
+    (PieceSpectre[p] === BOOL.TRUE || PieceWraith[p] === BOOL.TRUE) &&
+    has5th;
+
+  const hasHermitShiftAttack = (p) =>
+    herringShift && PieceHerring[p] === BOOL.TRUE && has5th && hasHerm;
 
   // OVERRIDES - SQUARE CONDITION ATTACKS
 
@@ -958,7 +997,7 @@ export function SqAttacked(sq, side) {
     }
   }
 
-  // king
+  // KING + shift-helpers (uses local helpers)
   for (index = 0; index < 8; index++) {
     pce = GameBoard.pieces[sq + KiDir[index]];
     if (
@@ -967,9 +1006,9 @@ export function SqAttacked(sq, side) {
       PieceKing[pce] === BOOL.TRUE &&
       !overridePresent(sq + KiDir[index]) &&
       !(GameBoard.royaltyE[sq + KiDir[index]] > 0)
-    ) {
+    )
       return BOOL.TRUE;
-    }
+
     if (
       hasEquusShiftAttack(pce) ||
       hasBishopShiftAttack(pce) ||
@@ -980,55 +1019,48 @@ export function SqAttacked(sq, side) {
         PieceCol[pce] === side &&
         !overridePresent(sq + KiDir[index]) &&
         !(GameBoard.royaltyE[sq + KiDir[index]] > 0)
-      ) {
+      )
         return BOOL.TRUE;
-      }
     }
   }
 
-  const isFriendlyPawnAt = (t_sq, side) => {
+  // --- NEW: use attacker 'side' for pawn directions
+  const cfg =
+    side === COLOURS.WHITE
+      ? { diag: [-11, -9], shift: [1, -1, 10], surge: [20] }
+      : { diag: [11, 9], shift: [-1, 1, -10], surge: [-20] };
+
+  const isFriendlyPawnAt = (t_sq) => {
     const p = GameBoard.pieces[t_sq];
     if (p === SQUARES.OFFBOARD) return false;
     if (overridePresent(t_sq)) return false;
     if (GameBoard.royaltyE[t_sq] > 0) return false;
-
     return side === COLOURS.WHITE ? p === PIECES.wP : p === PIECES.bP;
   };
 
-  const cfg =
-    GameBoard.side === COLOURS.WHITE
-      ? { diag: [-11, -9], shift: [1, -1, 10] }
-      : { diag: [11, 9], shift: [-1, 1, -10] };
-
   // Diagonal captures
-  if (cfg.diag.some((d) => isFriendlyPawnAt(sq + d, GameBoard.side))) {
-    return BOOL.TRUE;
-  }
+  if (cfg.diag.some((d) => isFriendlyPawnAt(sq + d))) return BOOL.TRUE;
 
-  // Shift-attacks
-  if (
-    hasPawnShiftAttack() &&
-    cfg.shift.some((d) => isFriendlyPawnAt(sq + d, GameBoard.side))
-  ) {
+  // Shift-attacks (requires sword + shift)
+  if (hasPawnShiftAttack() && cfg.shift.some((d) => isFriendlyPawnAt(sq + d)))
     return BOOL.TRUE;
-  }
 
-  // herring
+  // Aether surge (counts as attacking the jumped-to square)
+  if (cfg.surge.some((d) => isFriendlyPawnAt(sq + d))) return BOOL.TRUE;
+
+  // Herring + Hermit shift — use local hasHerm/hasHermitShiftAttack
   for (index = 0; index < 6; index++) {
     pce = GameBoard.pieces[sq + HrDir[index]];
     if (
-      hasHermit &&
+      hasHerm &&
       pce !== SQUARES.OFFBOARD &&
       PieceCol[pce] === side &&
       PieceHerring[pce] === BOOL.TRUE &&
       !overridePresent(sq + HrDir[index]) &&
       !(GameBoard.royaltyE[sq + HrDir[index]] > 0)
-    ) {
+    )
       return BOOL.TRUE;
-    }
   }
-
-  // hermit shift attack
   for (index = 0; index < 6; index++) {
     pce = GameBoard.pieces[sq + HerShftDir[index]];
     if (
@@ -1037,9 +1069,8 @@ export function SqAttacked(sq, side) {
       PieceCol[pce] === side &&
       !overridePresent(sq + HerShftDir[index]) &&
       !(GameBoard.royaltyE[sq + HerShftDir[index]] > 0)
-    ) {
+    )
       return BOOL.TRUE;
-    }
   }
 
   // Zebra

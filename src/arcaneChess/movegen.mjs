@@ -258,7 +258,6 @@ export function AddWhitePawnCaptureMove(
   flag,
   capturesOnly
 ) {
-  AddQuietMove(MOVE(from, to, cap, eps, flag), capturesOnly);
   if (GameBoard.whiteArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_7) {
     AddCaptureMove(MOVE(from, to, cap, PIECES.wQ, flag), flag, capturesOnly);
     AddCaptureMove(MOVE(from, to, cap, PIECES.wT, flag), flag, capturesOnly);
@@ -283,7 +282,7 @@ export function AddWhitePawnCaptureMove(
     AddCaptureMove(MOVE(from, to, cap, PIECES.wS, flag), flag, capturesOnly);
     AddCaptureMove(MOVE(from, to, cap, PIECES.wW, flag), flag, capturesOnly);
   } else {
-    AddCaptureMove(MOVE(from, to, cap, PIECES.EMPTY, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, eps, flag), flag, capturesOnly);
   }
 }
 
@@ -295,8 +294,6 @@ export function AddBlackPawnCaptureMove(
   flag,
   capturesOnly
 ) {
-  if (flag & MFLAGSHFT)
-    AddQuietMove(MOVE(from, to, cap, eps, flag), capturesOnly);
   if (GameBoard.blackArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_2) {
     AddCaptureMove(MOVE(from, to, cap, PIECES.bQ, flag), flag, capturesOnly);
     AddCaptureMove(MOVE(from, to, cap, PIECES.bT, flag), flag, capturesOnly);
@@ -321,13 +318,11 @@ export function AddBlackPawnCaptureMove(
     AddCaptureMove(MOVE(from, to, cap, PIECES.bS, flag), flag, capturesOnly);
     AddCaptureMove(MOVE(from, to, cap, PIECES.bW, flag), flag, capturesOnly);
   } else {
-    AddCaptureMove(MOVE(from, to, cap, PIECES.EMPTY, flag), flag, capturesOnly);
+    AddCaptureMove(MOVE(from, to, cap, eps, flag), flag, capturesOnly);
   }
 }
 
 export function AddWhitePawnQuietMove(from, to, eps, flag, capturesOnly) {
-  if (flag & MFLAGSHFT)
-    AddQuietMove(MOVE(from, to, PIECES.EMPTY, eps, flag), capturesOnly);
   if (GameBoard.whiteArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_7) {
     if (GameBoard.suspend > 0) return;
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wQ, flag), capturesOnly);
@@ -354,16 +349,11 @@ export function AddWhitePawnQuietMove(from, to, eps, flag, capturesOnly) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wS, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wW, flag), capturesOnly);
   } else {
-    AddQuietMove(
-      MOVE(from, to, PIECES.EMPTY, PIECES.EMPTY, flag),
-      capturesOnly
-    );
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, eps, flag), capturesOnly);
   }
 }
 
 export function AddBlackPawnQuietMove(from, to, eps, flag, capturesOnly) {
-  if (flag & MFLAGSHFT)
-    AddQuietMove(MOVE(from, to, PIECES.EMPTY, eps, flag), capturesOnly);
   if (GameBoard.blackArcane[4] & 16 && RanksBrd[to] === RANKS.RANK_2) {
     if (GameBoard.suspend > 0) return;
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bQ, flag), capturesOnly);
@@ -390,10 +380,7 @@ export function AddBlackPawnQuietMove(from, to, eps, flag, capturesOnly) {
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bS, flag), capturesOnly);
     AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bW, flag), capturesOnly);
   } else {
-    AddQuietMove(
-      MOVE(from, to, PIECES.EMPTY, PIECES.EMPTY, flag),
-      capturesOnly
-    );
+    AddQuietMove(MOVE(from, to, PIECES.EMPTY, eps, flag), capturesOnly);
   }
 }
 
@@ -1018,9 +1005,7 @@ export function GenerateMoves(
                 type !== 'OFFERING')
             ) {
               if (offeringSymbol === 'V') {
-                addOfferingMove(
-                  MOVE(sq, 0, offeringPce, _.sample([25, 26]), 0)
-                );
+                addOfferingMove(MOVE(sq, 0, offeringPce, 25, 0));
               }
             }
             // Q
@@ -1030,7 +1015,7 @@ export function GenerateMoves(
                 type !== 'OFFERING')
             ) {
               if (offeringSymbol === 'Q' || offeringSymbol === 'T') {
-                addOfferingMove(MOVE(sq, 0, offeringPce, 27, 0));
+                addOfferingMove(MOVE(sq, 0, offeringPce, 26, 0));
               }
             }
             // R
@@ -1040,7 +1025,7 @@ export function GenerateMoves(
                 type !== 'OFFERING')
             ) {
               if (offeringSymbol === 'S' || offeringSymbol === 'W') {
-                addOfferingMove(MOVE(sq, 0, offeringPce, 28, 0));
+                addOfferingMove(MOVE(sq, 0, offeringPce, 27, 0));
               }
             }
           }
@@ -1255,14 +1240,8 @@ export function GenerateMoves(
         if (GameBoard.pieces[sq + 10] === PIECES.EMPTY) {
           AddWhitePawnQuietMove(sq, sq + 10, 0, 0, capturesOnly);
         }
-        if (
-          (GameBoard.pieces[sq + 10] === PIECES.EMPTY &&
-            GameBoard.pieces[sq + 20] === PIECES.EMPTY) ||
-          // aetherstep
-          (GameBoard.pieces[sq + 20] === PIECES.EMPTY &&
-            GameBoard.whiteArcane[4] & 2)
-        ) {
-          if (RanksBrd[sq] === RANKS.RANK_1 || RanksBrd[sq] === RANKS.RANK_2) {
+        if (RanksBrd[sq] === RANKS.RANK_1 || RanksBrd[sq] === RANKS.RANK_2) {
+          if (GameBoard.pieces[sq + 20] === PIECES.EMPTY) {
             AddQuietMove(
               MOVE(sq, sq + 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS),
               capturesOnly
@@ -1347,6 +1326,22 @@ export function GenerateMoves(
       }
 
       // note WHITE PAWN CAPTURES AND CONSUME
+
+      // aether surge
+      if (
+        !activeWhiteForcedEpCapture &&
+        GameBoard.whiteArcane[4] & 131072 &&
+        (RanksBrd[sq] === RANKS.RANK_2 || RanksBrd[sq] === RANKS.RANK_1) &&
+        GameBoard.pieces[sq + 10] === PIECES.EMPTY &&
+        (PieceCol[GameBoard.pieces[sq + 20]] === COLOURS.BLACK ||
+          GameBoard.pieces[sq + 20] === PIECES.bX) &&
+        (!herrings.length || _.includes(herrings, sq + 20))
+      ) {
+        AddCaptureMove(
+          MOVE(sq, sq + 20, GameBoard.pieces[sq + 20], PIECES.EMPTY, MFLAGPS),
+          capturesOnly
+        );
+      }
 
       if (
         !activeWhiteForcedEpCapture &&
@@ -1609,14 +1604,8 @@ export function GenerateMoves(
         if (GameBoard.pieces[sq - 10] === PIECES.EMPTY) {
           AddBlackPawnQuietMove(sq, sq - 10, 0, 0, capturesOnly);
         }
-        if (
-          (GameBoard.pieces[sq - 10] === PIECES.EMPTY &&
-            GameBoard.pieces[sq - 20] === PIECES.EMPTY) ||
-          // aetherstep
-          (GameBoard.pieces[sq - 20] === PIECES.EMPTY &&
-            GameBoard.blackArcane[4] & 2)
-        ) {
-          if (RanksBrd[sq] === RANKS.RANK_8 || RanksBrd[sq] === RANKS.RANK_7) {
+        if (RanksBrd[sq] === RANKS.RANK_8 || RanksBrd[sq] === RANKS.RANK_7) {
+          if (GameBoard.pieces[sq - 20] === PIECES.EMPTY) {
             AddQuietMove(
               MOVE(sq, sq - 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS),
               capturesOnly
@@ -1701,6 +1690,23 @@ export function GenerateMoves(
       }
 
       // note BLACK PAWN CAPTURES AND CONSUME
+
+      // aether surge
+      if (
+        !activeBlackForcedEpCapture &&
+        GameBoard.blackArcane[4] & 131072 &&
+        (RanksBrd[sq] === RANKS.RANK_7 || RanksBrd[sq] === RANKS.RANK_8) &&
+        GameBoard.pieces[sq - 10] === PIECES.EMPTY &&
+        (PieceCol[GameBoard.pieces[sq - 20]] === COLOURS.WHITE ||
+          GameBoard.pieces[sq - 20] === PIECES.wX) &&
+        (!herrings.length || _.includes(herrings, sq - 20))
+      ) {
+        AddCaptureMove(
+          MOVE(sq, sq - 20, GameBoard.pieces[sq - 20], PIECES.EMPTY, MFLAGPS),
+          capturesOnly
+        );
+      }
+
       if (
         (SQOFFBOARD(sq - 9) === BOOL.FALSE &&
           !herrings.length &&

@@ -222,6 +222,17 @@ export const modes: Record<string, GameModeType> = padModes({
       setup: 'rnbtkwsr',
     },
   },
+  aethersurge: {
+    name: 'surge check test',
+    white: {
+      arcana: [arcana.modsSUR],
+      setup: 'RNBTKWSR',
+    },
+    black: {
+      arcana: [arcana.modsSUR],
+      setup: 'rnbtkwsr',
+    },
+  },
   tutorial1: {
     name: 'Tutorial 1',
     white: {
@@ -247,7 +258,7 @@ export const modes: Record<string, GameModeType> = padModes({
   tutorial3: {
     name: 'Tutorial 3',
     white: {
-      arcana: [arcana.modsAET, arcana.modsORA, arcana.offrA],
+      arcana: [arcana.modsORA, arcana.offrA],
       setup: 'RSWQKWSR',
     },
     black: {
@@ -449,23 +460,11 @@ export const modes: Record<string, GameModeType> = padModes({
   stealthTraining: {
     name: 'Stealth Training',
     white: {
-      arcana: [
-        arcana.dyadB,
-        arcana.dyadB,
-        arcana.dyadB,
-        arcana.modsINH,
-        arcana.modsAET,
-      ],
+      arcana: [arcana.dyadB, arcana.dyadB, arcana.dyadB, arcana.modsINH],
       setup: 'RNBQKBNR',
     },
     black: {
-      arcana: [
-        arcana.dyadB,
-        arcana.dyadB,
-        arcana.dyadB,
-        arcana.modsINH,
-        arcana.modsAET,
-      ],
+      arcana: [arcana.dyadB, arcana.dyadB, arcana.dyadB, arcana.modsINH],
       setup: 'rnbqkbnr',
     },
   },
@@ -520,11 +519,11 @@ export const modes: Record<string, GameModeType> = padModes({
   cursedStack: {
     name: 'Cursed Stack',
     white: {
-      arcana: [arcana.modsAET, arcana.modsFUG, arcana.modsTRO, arcana.modsINH],
+      arcana: [arcana.modsFUG, arcana.modsTRO, arcana.modsINH],
       setup: 'RSBQKWNR',
     },
     black: {
-      arcana: [arcana.modsAET, arcana.modsFUG, arcana.modsTRO, arcana.modsINH],
+      arcana: [arcana.modsFUG, arcana.modsTRO, arcana.modsINH],
       setup: 'rsbqkwnr',
     },
   },
@@ -824,23 +823,11 @@ export const modes: Record<string, GameModeType> = padModes({
   pawnPhalanxCollapse: {
     name: 'Pawn Phalanx Collapse',
     white: {
-      arcana: [
-        arcana.shftP,
-        arcana.modsTRO,
-        arcana.modsAET,
-        arcana.modsINH,
-        arcana.sumnH,
-      ],
+      arcana: [arcana.shftP, arcana.modsTRO, arcana.modsINH, arcana.sumnH],
       setup: 'RSWTKWNR',
     },
     black: {
-      arcana: [
-        arcana.shftP,
-        arcana.modsTRO,
-        arcana.modsAET,
-        arcana.modsINH,
-        arcana.sumnH,
-      ],
+      arcana: [arcana.shftP, arcana.modsTRO, arcana.modsINH, arcana.sumnH],
       setup: 'rswtkwnr',
     },
   },

@@ -34,15 +34,29 @@ import {
   PieceCol,
   SQUARES,
   PceChar,
+  RANKS,
+  RanksBrd,
 } from './defs';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
 const royaltyIndexMapRestructure = [0, 31, 32, 33, 34, 35, 36, 37, 38];
 
+// cap 30 = cappable exile
+// cap 31 = teleport
 const TELEPORT_CONST = 31;
+// eps 30 = myriad
 const EPSILON_MYRIAD_CONST = 30;
-// const EPSILON_ECLIPSE_CONST = 31;
-// skip turn = 31 promo?
+// eps 31 = eclipse
+
+const HISTORY_CAP_PLY = 128;
+
+function trimHistory(commit) {
+  if (!commit) return;
+  if (GameBoard.hisPly <= HISTORY_CAP_PLY) return;
+  const drop = GameBoard.hisPly - HISTORY_CAP_PLY;
+  GameBoard.history.splice(0, drop);
+  GameBoard.hisPly -= drop;
+}
 
 export function ClearPiece(sq, summon = false) {
   let pce = GameBoard.pieces[sq];
@@ -356,13 +370,28 @@ export function MakeMove(move, moveType = '') {
 
   if (PiecePawn[GameBoard.pieces[from]] === BOOL.TRUE) {
     GameBoard.fiftyMove = 0;
+
     if ((move & MFLAGPS) !== 0) {
-      if (side === COLOURS.WHITE) {
-        GameBoard.enPas = from + 10;
-      } else {
-        GameBoard.enPas = from - 10;
+      const isTwoStep =
+        ((side === COLOURS.WHITE && to - from === 20) ||
+          (side === COLOURS.BLACK && from - to === 20)) &&
+        (move & (MFLAGSHFT | MFLAGSUMN | MFLAGSWAP | MFLAGEP)) === 0;
+
+      // Only from the actual pawn start rank:
+      const fromOnStart =
+        (side === COLOURS.WHITE &&
+          (RanksBrd[from] === RANKS.RANK_1 ||
+            RanksBrd[from] === RANKS.RANK_2)) ||
+        (side === COLOURS.BLACK &&
+          (RanksBrd[from] === RANKS.RANK_8 || RanksBrd[from] === RANKS.RANK_7));
+
+      if (isTwoStep && fromOnStart) {
+        const jumpedSq = side === COLOURS.WHITE ? from + 10 : from - 10;
+        if (GameBoard.pieces[jumpedSq] === PIECES.EMPTY) {
+          GameBoard.enPas = jumpedSq;
+          HASH_EP();
+        }
       }
-      HASH_EP();
     }
   }
 
@@ -374,8 +403,12 @@ export function MakeMove(move, moveType = '') {
     (PieceCol[targetPieceAtTo] !== side || isConsume);
 
   if (isNormalCapture) {
+    const cfg = side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+
     ClearPiece(to);
     GameBoard.fiftyMove = 0;
+
+    if (move & MFLAGPS) cfg['modsSUR'] -= 1;
 
     const pocketCapNow = getPocketCaptureEpsilon(move, side, captured);
     if (
@@ -385,8 +418,7 @@ export function MakeMove(move, moveType = '') {
       PieceCol[pocketCapNow] !== side
     ) {
       const key = `sumn${PceChar.charAt(pocketCapNow).toUpperCase()}`;
-      const cfg =
-        side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+
       cfg[key] = (cfg[key] ?? 0) + 1;
     }
   }
@@ -397,6 +429,7 @@ export function MakeMove(move, moveType = '') {
     (ARCANEFLAG(move) === 0 ||
       isShift(move) ||
       isEp(move) ||
+      (move & MFLAGPS) !== 0 ||
       (isConsume && !isShift(move)))
   ) {
     MovePiece(from, to);
@@ -525,11 +558,10 @@ export function MakeMove(move, moveType = '') {
       24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
       // Z (P is reserved)
       25: ['dyadD', 'sumnS', 'modsBAN'],
-      26: ['dyadD', 'sumnW', 'modsBAN'],
       // Q
-      27: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
+      26: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
       // R
-      28: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
+      27: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
     };
     const blackPieceToOfferings = {
       1: [PIECES.bH],
@@ -563,14 +595,13 @@ export function MakeMove(move, moveType = '') {
       24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
       // Z (P is reserved)
       25: ['dyadD', 'sumnS', 'modsBAN'],
-      26: ['dyadD', 'sumnW', 'modsBAN'],
       // Q
-      27: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
+      26: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
       // R
-      28: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
+      27: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
     };
 
-    const offerString = '.ABCDEEFFGGHHIJKKKKLMNOOOZZQR';
+    const offerString = '.ABCDEEFFGGHHIJKKKKLMNOOOZQR';
     const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
     const arcaneConfig =
       side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
@@ -627,6 +658,8 @@ export function MakeMove(move, moveType = '') {
 
   GameBoard.hisPly++;
   GameBoard.ply++;
+
+  trimHistory(moveType === 'userMove');
 
   if (moveType === 'userMove' && GameBoard.dyad > 0) {
     GameBoard.dyadClock++;
@@ -815,6 +848,7 @@ export function TakeMove(wasDyadMove = false) {
     (ARCANEFLAG(move) === 0 ||
       isShift(move) ||
       isEp(move) ||
+      (move & MFLAGPS) !== 0 ||
       (isConsume && !isShift(move)))
   ) {
     MovePiece(to, from);
@@ -828,6 +862,9 @@ export function TakeMove(wasDyadMove = false) {
   ) {
     AddPiece(to, captured);
     const pocketCap = getPocketCaptureEpsilon(move, GameBoard.side, captured);
+
+    if (move & MFLAGPS) cfg['modsSUR'] += 1;
+
     if (
       GameBoard.crazyHouse[GameBoard.side] &&
       pocketCap !== PIECES.EMPTY &&

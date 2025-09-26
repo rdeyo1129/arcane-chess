@@ -1212,20 +1212,33 @@ export function GenerateMoves(
         if (GameBoard.pieces[sq + 10] === PIECES.EMPTY) {
           AddWhitePawnQuietMove(sq, sq + 10, 0, capturesOnly);
         }
-        if (
-          (GameBoard.pieces[sq + 10] === PIECES.EMPTY &&
-            GameBoard.pieces[sq + 20] === PIECES.EMPTY) ||
-          // aetherstep
-          (GameBoard.pieces[sq + 20] === PIECES.EMPTY &&
-            GameBoard.whiteArcane[4] & 2)
-        ) {
-          if (RanksBrd[sq] === RANKS.RANK_1 || RanksBrd[sq] === RANKS.RANK_2) {
-            AddQuietMove(
-              MOVE(sq, sq + 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS),
+        // if (
+        //   (GameBoard.pieces[sq + 10] === PIECES.EMPTY &&
+        //     GameBoard.pieces[sq + 20] === PIECES.EMPTY) ||
+        //   // aetherstep - new default
+        //   GameBoard.pieces[sq + 20] === PIECES.EMPTY
+        //   // GameBoard.whiteArcane[4] & 2 - uncomment to bring this sepll back in
+        // ) {
+        if (RanksBrd[sq] === RANKS.RANK_1 || RanksBrd[sq] === RANKS.RANK_2) {
+          AddQuietMove(
+            MOVE(sq, sq + 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS),
+            capturesOnly
+          );
+          // aether surge
+          if (GameBoard.whiteArcane[4] & 131072) {
+            AddCaptureMove(
+              MOVE(
+                sq,
+                sq + 20,
+                GameBoard.pieces[sq + 20],
+                PIECES.EMPTY,
+                MFLAGPS
+              ),
               capturesOnly
             );
           }
         }
+        // }
 
         // note WHITE PAWN SHIFTS
         if (GameBoard.whiteArcane[1] & 1) {
@@ -1499,20 +1512,33 @@ export function GenerateMoves(
         if (GameBoard.pieces[sq - 10] === PIECES.EMPTY) {
           AddBlackPawnQuietMove(sq, sq - 10, 0, capturesOnly);
         }
-        if (
-          (GameBoard.pieces[sq - 10] === PIECES.EMPTY &&
-            GameBoard.pieces[sq - 20] === PIECES.EMPTY) ||
-          // aetherstep
-          (GameBoard.pieces[sq - 20] === PIECES.EMPTY &&
-            GameBoard.blackArcane[4] & 2)
-        ) {
-          if (RanksBrd[sq] === RANKS.RANK_8 || RanksBrd[sq] === RANKS.RANK_7) {
-            AddQuietMove(
-              MOVE(sq, sq - 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS),
+        // if (
+        //   (GameBoard.pieces[sq - 10] === PIECES.EMPTY &&
+        //     GameBoard.pieces[sq - 20] === PIECES.EMPTY) ||
+        //   // aetherstep - new default
+        //   GameBoard.pieces[sq - 20] === PIECES.EMPTY
+        //   // GameBoard.whiteArcane[4] & 2 - uncomment to bring this sepll back in
+        // ) {
+        if (RanksBrd[sq] === RANKS.RANK_8 || RanksBrd[sq] === RANKS.RANK_7) {
+          AddQuietMove(
+            MOVE(sq, sq - 20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS),
+            capturesOnly
+          );
+          // aether surge
+          if (GameBoard.blackArcane[4] & 131072) {
+            AddCaptureMove(
+              MOVE(
+                sq,
+                sq - 20,
+                GameBoard.pieces[sq - 20],
+                PIECES.EMPTY,
+                MFLAGPS
+              ),
               capturesOnly
             );
           }
         }
+        // }
 
         // note BLACK PAWN SHIFTS
         if (GameBoard.blackArcane[1] & 1) {

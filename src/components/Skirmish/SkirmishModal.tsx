@@ -500,7 +500,6 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
       ? GREEK_CAP[this.state.playerFactionId]
       : '';
 
-    console.log(this.state.engineFactionId);
     return (
       <div className="container">
         <Modal

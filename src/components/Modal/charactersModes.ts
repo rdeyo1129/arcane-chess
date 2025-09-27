@@ -204,6 +204,17 @@ const padModes = (modes: Record<string, GameModeType>) => {
 };
 
 export const modes: Record<string, GameModeType> = padModes({
+  fog: {
+    name: 'fog test',
+    white: {
+      arcana: [arcana.sumnRG, arcana.sumnRF],
+      setup: 'RNBTKWSR',
+    },
+    black: {
+      arcana: [arcana.sumnRG, arcana.sumnRF],
+      setup: 'rnbtkwsr',
+    },
+  },
   shifttest: {
     name: 'shift test',
     white: {

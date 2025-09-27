@@ -342,6 +342,7 @@ cg-board square.check {
 // M: 'green',
 // V: 'dark purple',
 // E: 'orange',
+// F: 'white',
 cg-board square.royaltyQ {
   background: radial-gradient(
     ellipse at center,
@@ -385,6 +386,15 @@ cg-board square.royaltyE {
     rgba(231, 151, 0, 1) 25%,
     rgba(169, 110, 0, 0) 89%,
     rgba(158, 105, 0, 0) 100%
+  );
+}
+cg-board square.royaltyF {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(200, 200, 200, 1) 25%,
+    rgba(169, 169, 169, 0) 89%,
+    rgba(158, 158, 158, 0) 100%
   );
 }
 
@@ -458,6 +468,20 @@ cg-board square.move-dest.royaltyE {
       rgba(0, 0, 0, 0) 0
     );
 }
+cg-board square.move-dest.royaltyF {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(200, 200, 200, 1) 25%,
+      rgba(169, 169, 169, 0) 89%,
+      rgba(158, 158, 158, 0) 100%
+    ),
+    radial-gradient(
+      rgba(255, 223, 0, 0.5) 22%,
+      rgba(0, 0, 0, 0.3) 0,
+      rgba(0, 0, 0, 0) 0
+    );
+}
 
 cg-board square.oc.move-dest.royaltyQ {
   background: radial-gradient(
@@ -506,6 +530,17 @@ cg-board square.oc.move-dest.royaltyE {
       rgba(231, 151, 0, 0.6) 25%,
       rgba(169, 110, 0, 0) 89%,
       rgba(158, 105, 0, 0) 100%
+    ),
+    radial-gradient(transparent 0%, transparent 80%, rgba(255, 223, 0, 0.5) 22%);
+}
+// todo: oc was removed here to show available squares in a fog of war area
+cg-board square.move-dest.royaltyF {
+  background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(200, 200, 200, 1) 25%,
+      rgba(169, 169, 169, 0) 89%,
+      rgba(158, 158, 158, 0) 100%
     ),
     radial-gradient(transparent 0%, transparent 80%, rgba(255, 223, 0, 0.5) 22%);
 }

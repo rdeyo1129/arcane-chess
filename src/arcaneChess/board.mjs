@@ -153,6 +153,7 @@ GameBoard.royaltyT = {};
 GameBoard.royaltyM = {};
 GameBoard.royaltyV = {};
 GameBoard.royaltyE = {};
+GameBoard.royaltyF = {};
 
 GameBoard.preset;
 

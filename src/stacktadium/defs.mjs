@@ -125,7 +125,7 @@ export function updateStartFen(newFen) {
 }
 
 export let PceChar = '.PNBRQKpnbrqkXSHTMVshtmvZUzuWwx';
-export let RtyChar = '.'.repeat(31) + 'QTMVEYZA';
+export let RtyChar = '.'.repeat(31) + 'QTMVEYZAFG';
 export let SideChar = 'wb-';
 export let RankChar = '12345678';
 export let FileChar = 'abcdefgh';

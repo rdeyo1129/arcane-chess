@@ -629,6 +629,9 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
             royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
               return typeof value === 'undefined' ? value : (value -= 1);
             }),
+            royaltyF: _.mapValues(prevState.royalties.royaltyF, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
             [`royalty${char}`]: {
               ...prevState.royalties[`royalty${char}`],
               [dest]: 8,
@@ -1528,7 +1531,8 @@ class UnwrappedStackVersus extends React.Component<Props, State> {
                             (this.state.royalties?.royaltyT?.[key] ?? 0) > 0 ||
                             (this.state.royalties?.royaltyM?.[key] ?? 0) > 0 ||
                             (this.state.royalties?.royaltyV?.[key] ?? 0) > 0 ||
-                            (this.state.royalties?.royaltyE?.[key] ?? 0) > 0
+                            (this.state.royalties?.royaltyE?.[key] ?? 0) > 0 ||
+                            (this.state.royalties?.royaltyF?.[key] ?? 0) > 0
                           ) {
                             this.setState({
                               placingRoyalty: this.state.placingRoyalty,

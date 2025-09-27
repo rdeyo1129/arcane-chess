@@ -1061,6 +1061,8 @@ export function GenerateMoves(
         36: 6,
         37: 7,
         38: 8,
+        39: 9,
+        40: 10,
       };
       if (
         userSummonPceRty > 0 ||
@@ -1123,7 +1125,8 @@ export function GenerateMoves(
                     GameBoard.royaltyT[sq] > 0 ||
                     GameBoard.royaltyM[sq] > 0 ||
                     GameBoard.royaltyV[sq] > 0 ||
-                    GameBoard.royaltyE[sq] > 0
+                    GameBoard.royaltyE[sq] > 0 ||
+                    GameBoard.royaltyF[sq] > 0
                   ) {
                     continue;
                   }
@@ -1165,7 +1168,8 @@ export function GenerateMoves(
                     GameBoard.royaltyT[sq] > 0 ||
                     GameBoard.royaltyM[sq] > 0 ||
                     GameBoard.royaltyV[sq] > 0 ||
-                    GameBoard.royaltyE[sq] > 0
+                    GameBoard.royaltyE[sq] > 0 ||
+                    GameBoard.royaltyF[sq] > 0
                   ) {
                     continue;
                   }
@@ -1587,7 +1591,8 @@ export function GenerateMoves(
         GameBoard.royaltyT[sq] > 0 ||
         GameBoard.royaltyM[sq] > 0 ||
         GameBoard.royaltyV[sq] > 0 ||
-        GameBoard.royaltyE[sq] > 0
+        GameBoard.royaltyE[sq] > 0 ||
+        GameBoard.royaltyF[sq] > 0
       ) {
         continue;
       }

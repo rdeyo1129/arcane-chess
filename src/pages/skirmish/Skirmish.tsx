@@ -686,6 +686,9 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
             royaltyE: _.mapValues(prevState.royalties.royaltyE, (value) => {
               return typeof value === 'undefined' ? value : (value -= 1);
             }),
+            royaltyF: _.mapValues(prevState.royalties.royaltyF, (value) => {
+              return typeof value === 'undefined' ? value : (value -= 1);
+            }),
             [`royalty${char}`]: {
               ...prevState.royalties[`royalty${char}`],
               [dest]: 8,

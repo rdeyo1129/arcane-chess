@@ -39,7 +39,7 @@ import {
 } from './defs';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
-const royaltyIndexMapRestructure = [0, 31, 32, 33, 34, 35, 36, 37, 38];
+const royaltyIndexMapRestructure = [0, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
 
 // cap 30 = cappable exile
 // cap 31 = teleport
@@ -49,6 +49,81 @@ const EPSILON_MYRIAD_CONST = 30;
 // eps 31 = eclipse
 
 const HISTORY_CAP_PLY = 128;
+
+const RTY_CHARS = RtyChar.split('');
+const THREE_SQUARE_OFFSETS = [-11, -10, -9, -1, 0, 1, 9, 10, 11];
+const FIVE_SQUARE_OFFSETS = [
+  -22, -21, -20, -19, -18, -12, -11, -10, -9, -8, -2, -1, 0, 1, 2, 12, 11, 10,
+  9, 8, 22, 21, 20, 19, 18,
+];
+const OFFER_STRING = '.ABCDEEFFGGHHIJKKKKLMNOOOZQR';
+const OFFER_CHARS = OFFER_STRING.split('');
+
+const WHITE_PIECE_TO_OFFERINGS = {
+  1: [PIECES.wH],
+  2: [PIECES.wR, PIECES.wR],
+  3: [PIECES.wN, PIECES.wZ, PIECES.wU],
+  4: [PIECES.wR],
+  5: [PIECES.wT],
+  6: [PIECES.wQ],
+  7: [PIECES.wS],
+  8: [PIECES.wW],
+  9: [PIECES.wT],
+  10: [PIECES.wQ],
+  11: [PIECES.wS],
+  12: [PIECES.wW],
+  13: [PIECES.EMPTY],
+  14: ['dyadA'],
+  15: ['sumnRQ', 'sumnRQ', 'sumnRQ'],
+  16: ['sumnRT', 'sumnRT', 'sumnRT'],
+  17: ['sumnRM', 'sumnRM', 'sumnRM'],
+  18: ['sumnRV', 'sumnRV', 'sumnRV'],
+  19: ['shftT'],
+  20: ['sumnRV', 'modsEXT', 'modsINH'],
+  21: ['dyadA', 'modsGLU', 'modsINH'],
+  22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
+  23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
+  24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
+  25: ['dyadD', 'sumnS', 'modsBAN'],
+  26: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
+  27: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
+};
+
+const BLACK_PIECE_TO_OFFERINGS = {
+  1: [PIECES.bH],
+  2: [PIECES.bR, PIECES.bR],
+  3: [PIECES.bN, PIECES.bZ, PIECES.bU],
+  4: [PIECES.bR],
+  5: [PIECES.bT, 'dyadD'],
+  6: [PIECES.bQ, 'dyadD'],
+  7: [PIECES.bS, 'dyadE'],
+  8: [PIECES.bW, 'dyadE'],
+  9: [PIECES.bT],
+  10: [PIECES.bQ],
+  11: [PIECES.bS],
+  12: [PIECES.bW],
+  13: [PIECES.EMPTY],
+  14: ['dyadA'],
+  15: ['sumnRQ', 'sumnRQ', 'sumnRQ'],
+  16: ['sumnRT', 'sumnRT', 'sumnRT'],
+  17: ['sumnRM', 'sumnRM', 'sumnRM'],
+  18: ['sumnRV', 'sumnRV', 'sumnRV'],
+  19: ['shftT'],
+  20: ['sumnRV', 'modsEXT', 'modsINH'],
+  21: ['dyadA', 'modsGLU', 'modsINH'],
+  22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
+  23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
+  24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
+  25: ['dyadD', 'sumnS', 'modsBAN'],
+  26: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
+  27: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
+};
+
+const isShift = (m) => (m & MFLAGSHFT) !== 0;
+const isSwap = (m) => (m & MFLAGSWAP) !== 0;
+const isSummon = (m) => (m & MFLAGSUMN) !== 0;
+const isEp = (m) => (m & MFLAGEP) !== 0;
+const isConsumeFlag = (m) => (m & MFLAGCNSM) !== 0;
 
 function trimHistory(commit) {
   if (!commit) return;
@@ -123,7 +198,6 @@ const getPocketCaptureEpsilon = (move, side, captured) => {
   if ((move & MFLAGSHFT) !== 0 && captured === TELEPORT_CONST) {
     return TELEPORT_CONST;
   }
-
   return captured;
 };
 
@@ -137,7 +211,7 @@ function sumnKeyFromMove(move) {
   const eps = PROMOTED(move);
   if (cap > 0) {
     const idx = royaltyIndexMapRestructure[cap];
-    const sym = RtyChar.split('')[idx];
+    const sym = RTY_CHARS[idx];
     return `sumnR${sym}`;
   }
   if (eps > 0) {
@@ -148,26 +222,19 @@ function sumnKeyFromMove(move) {
 
 function shiftKeyFromMove(move, moverPiece) {
   if ((move & MFLAGSHFT) === 0) return null;
-
   if (CAPTURED(move) === TELEPORT_CONST) return 'shftT';
-
   const p = PROMOTED(move);
   const piece = p || moverPiece || PIECES.EMPTY;
-
   switch (piece) {
     case PIECES.wP:
     case PIECES.bP:
       return 'shftP';
-
     case PIECES.wB:
     case PIECES.bB:
       return 'shftB';
-
     case PIECES.wR:
     case PIECES.bR:
       return 'shftR';
-
-    // Knight-like (N/Z/U) grouped as "shftN"
     case PIECES.wN:
     case PIECES.wZ:
     case PIECES.wU:
@@ -175,25 +242,88 @@ function shiftKeyFromMove(move, moverPiece) {
     case PIECES.bZ:
     case PIECES.bU:
       return 'shftN';
-
-    // Guard-like (S/W) grouped as "shftG"
     case PIECES.wS:
     case PIECES.wW:
     case PIECES.bS:
     case PIECES.bW:
       return 'shftG';
-
     case PIECES.wH:
     case PIECES.bH:
       return 'shftH';
-
-    // Myriad epsilon magic
     case EPSILON_MYRIAD_CONST:
       return 'shftA';
-
     default:
       return null;
   }
+}
+
+function decAllRoyaltyMaps() {
+  const q = GameBoard.royaltyQ;
+  const t = GameBoard.royaltyT;
+  const m = GameBoard.royaltyM;
+  const v = GameBoard.royaltyV;
+  const e = GameBoard.royaltyE;
+  const f = GameBoard.royaltyF;
+  for (const k in q) q[k] = q[k] === undefined ? 0 : q[k] - 1;
+  for (const k in t) t[k] = t[k] === undefined ? 0 : t[k] - 1;
+  for (const k in m) m[k] = m[k] === undefined ? 0 : m[k] - 1;
+  for (const k in v) v[k] = v[k] === undefined ? 0 : v[k] - 1;
+  for (const k in e) e[k] = e[k] === undefined ? 0 : e[k] - 1;
+  for (const k in f) f[k] = f[k] === undefined ? 0 : f[k] - 1;
+}
+
+function snapshotRoyaltyMapsTo(h) {
+  const hQ = h.royaltyQ || (h.royaltyQ = {});
+  const hT = h.royaltyT || (h.royaltyT = {});
+  const hM = h.royaltyM || (h.royaltyM = {});
+  const hV = h.royaltyV || (h.royaltyV = {});
+  const hE = h.royaltyE || (h.royaltyE = {});
+  const hF = h.royaltyF || (h.royaltyF = {});
+  const q = GameBoard.royaltyQ;
+  const t = GameBoard.royaltyT;
+  const m = GameBoard.royaltyM;
+  const v = GameBoard.royaltyV;
+  const e = GameBoard.royaltyE;
+  const f = GameBoard.royaltyF;
+  for (const k in hQ) delete hQ[k];
+  for (const k in q) hQ[k] = q[k];
+  for (const k in hT) delete hT[k];
+  for (const k in t) hT[k] = t[k];
+  for (const k in hM) delete hM[k];
+  for (const k in m) hM[k] = m[k];
+  for (const k in hV) delete hV[k];
+  for (const k in v) hV[k] = v[k];
+  for (const k in hE) delete hE[k];
+  for (const k in e) hE[k] = e[k];
+  for (const k in hF) delete hF[k];
+  for (const k in f) hF[k] = f[k];
+}
+
+function restoreRoyaltyMapsFrom(h) {
+  const q = GameBoard.royaltyQ;
+  const t = GameBoard.royaltyT;
+  const m = GameBoard.royaltyM;
+  const v = GameBoard.royaltyV;
+  const e = GameBoard.royaltyE;
+  const f = GameBoard.royaltyF;
+  const hQ = h.royaltyQ || {};
+  const hT = h.royaltyT || {};
+  const hM = h.royaltyM || {};
+  const hV = h.royaltyV || {};
+  const hE = h.royaltyE || {};
+  const hF = h.royaltyF || {};
+  for (const k in q) delete q[k];
+  for (const k in t) delete t[k];
+  for (const k in m) delete m[k];
+  for (const k in v) delete v[k];
+  for (const k in e) delete e[k];
+  for (const k in f) delete f[k];
+  for (const k in hQ) q[k] = hQ[k];
+  for (const k in hT) t[k] = hT[k];
+  for (const k in hM) m[k] = hM[k];
+  for (const k in hV) v[k] = hV[k];
+  for (const k in hE) e[k] = hE[k];
+  for (const k in hF) f[k] = hF[k];
 }
 
 export function MakeMove(move, moveType = '') {
@@ -205,12 +335,7 @@ export function MakeMove(move, moveType = '') {
   let pieceEpsilon = PROMOTED(move);
 
   const commit = moveType === 'userMove';
-
-  const isShift = (m) => (m & MFLAGSHFT) !== 0;
-  const isSwap = (m) => (m & MFLAGSWAP) !== 0;
-  const isSummon = (m) => (m & MFLAGSUMN) !== 0;
-  const isEp = (m) => (m & MFLAGEP) !== 0;
-  const isConsume = (move & MFLAGCNSM) !== 0;
+  const consume = isConsumeFlag(move);
 
   let promoEpsilon = !isShift(move) ? pieceEpsilon : PIECES.EMPTY;
 
@@ -218,10 +343,6 @@ export function MakeMove(move, moveType = '') {
 
   const moverPiece = GameBoard.pieces[from];
   const targetPieceAtTo = GameBoard.pieces[to];
-
-  // if (promoEpsilon === 31 && (from !== 0 || to !== 0)) {
-  //   promoEpsilon = PIECES.EMPTY;
-  // }
 
   if (
     promoEpsilon !== PIECES.EMPTY &&
@@ -231,31 +352,26 @@ export function MakeMove(move, moveType = '') {
     promoEpsilon = PIECES.EMPTY;
   }
 
-  GameBoard.history[GameBoard.hisPly].posKey = GameBoard.posKey;
-  GameBoard.history[GameBoard.hisPly].dyad = GameBoard.dyad;
-  GameBoard.history[GameBoard.hisPly].dyadClock = GameBoard.dyadClock;
+  const h = GameBoard.history[GameBoard.hisPly];
+  h.posKey = GameBoard.posKey;
+  h.dyad = GameBoard.dyad;
+  h.dyadClock = GameBoard.dyadClock;
 
-  // const getWhiteKingPos = _.indexOf(GameBoard.pieces, 6, 22);
   const getWhiteKingRookPos = _.lastIndexOf(GameBoard.pieces, 4);
   const getWhiteQueenRookPos = _.indexOf(GameBoard.pieces, 4, 22);
 
-  // const getBlackKingPos = _.indexOf(GameBoard.pieces, 12, 92);
   const getBlackKingRookPos = _.lastIndexOf(GameBoard.pieces, 10);
   const getBlackQueenRookPos = _.indexOf(GameBoard.pieces, 10, 92);
 
   if (move & MFLAGEP) {
     const epSq = side === COLOURS.WHITE ? to - 10 : to + 10;
     const victim = side === COLOURS.WHITE ? PIECES.bP : PIECES.wP;
-
-    // Only clear if it really looks like EP
     if (
       GameBoard.pieces[to] === PIECES.EMPTY &&
       GameBoard.pieces[epSq] === victim
     ) {
       ClearPiece(epSq);
       GameBoard.fiftyMove = 0;
-
-      // pocket credit (+1) — unchanged
       const epPocket = getPocketCaptureEpsilon(move, side, captured);
       if (
         GameBoard.crazyHouse[side] &&
@@ -270,7 +386,6 @@ export function MakeMove(move, moveType = '') {
       }
     }
   } else if ((move & MFLAGCA) !== 0) {
-    // if black casts randomize on white
     if (GameBoard.blackArcane[4] & 8) {
       switch (to) {
         case getWhiteQueenRookPos:
@@ -324,43 +439,14 @@ export function MakeMove(move, moveType = '') {
   GameBoard.invisibility[1] -= 1;
   GameBoard.suspend -= 1;
 
-  GameBoard.history[GameBoard.hisPly].royaltyQ = { ...GameBoard.royaltyQ };
-  GameBoard.history[GameBoard.hisPly].royaltyT = { ...GameBoard.royaltyT };
-  GameBoard.history[GameBoard.hisPly].royaltyM = { ...GameBoard.royaltyM };
-  GameBoard.history[GameBoard.hisPly].royaltyV = { ...GameBoard.royaltyV };
-  GameBoard.history[GameBoard.hisPly].royaltyE = { ...GameBoard.royaltyE };
+  snapshotRoyaltyMapsTo(h);
+  decAllRoyaltyMaps();
 
-  _.forEach(GameBoard.royaltyQ, (value, key) => {
-    value === undefined
-      ? (GameBoard.royaltyQ[key] = 0)
-      : (GameBoard.royaltyQ[key] -= 1);
-  });
-  _.forEach(GameBoard.royaltyT, (value, key) => {
-    value === undefined
-      ? (GameBoard.royaltyT[key] = 0)
-      : (GameBoard.royaltyT[key] -= 1);
-  });
-  _.forEach(GameBoard.royaltyM, (value, key) => {
-    value === undefined
-      ? (GameBoard.royaltyM[key] = 0)
-      : (GameBoard.royaltyM[key] -= 1);
-  });
-  _.forEach(GameBoard.royaltyV, (value, key) => {
-    value === undefined
-      ? (GameBoard.royaltyV[key] = 0)
-      : (GameBoard.royaltyV[key] -= 1);
-  });
-  _.forEach(GameBoard.royaltyE, (value, key) => {
-    value === undefined
-      ? (GameBoard.royaltyE[key] = 0)
-      : (GameBoard.royaltyE[key] -= 1);
-  });
-
-  GameBoard.history[GameBoard.hisPly].move = move;
-  GameBoard.history[GameBoard.hisPly].prettyHistory = [];
-  GameBoard.history[GameBoard.hisPly].fiftyMove = GameBoard.fiftyMove;
-  GameBoard.history[GameBoard.hisPly].enPas = GameBoard.enPas;
-  GameBoard.history[GameBoard.hisPly].castlePerm = GameBoard.castlePerm;
+  h.move = move;
+  h.prettyHistory = null;
+  h.fiftyMove = GameBoard.fiftyMove;
+  h.enPas = GameBoard.enPas;
+  h.castlePerm = GameBoard.castlePerm;
 
   GameBoard.castlePerm &= CastlePerm[from];
   GameBoard.castlePerm &= CastlePerm[to];
@@ -370,21 +456,17 @@ export function MakeMove(move, moveType = '') {
 
   if (PiecePawn[GameBoard.pieces[from]] === BOOL.TRUE) {
     GameBoard.fiftyMove = 0;
-
     if ((move & MFLAGPS) !== 0) {
       const isTwoStep =
         ((side === COLOURS.WHITE && to - from === 20) ||
           (side === COLOURS.BLACK && from - to === 20)) &&
         (move & (MFLAGSHFT | MFLAGSUMN | MFLAGSWAP | MFLAGEP)) === 0;
-
-      // Only from the actual pawn start rank:
       const fromOnStart =
         (side === COLOURS.WHITE &&
           (RanksBrd[from] === RANKS.RANK_1 ||
             RanksBrd[from] === RANKS.RANK_2)) ||
         (side === COLOURS.BLACK &&
           (RanksBrd[from] === RANKS.RANK_8 || RanksBrd[from] === RANKS.RANK_7));
-
       if (isTwoStep && fromOnStart) {
         const jumpedSq = side === COLOURS.WHITE ? from + 10 : from - 10;
         if (GameBoard.pieces[jumpedSq] === PIECES.EMPTY) {
@@ -400,16 +482,13 @@ export function MakeMove(move, moveType = '') {
     (move & (MFLAGSWAP | MFLAGSUMN | MFLAGEP)) === 0 &&
     targetPieceAtTo !== PIECES.EMPTY &&
     targetPieceAtTo !== TELEPORT_CONST &&
-    (PieceCol[targetPieceAtTo] !== side || isConsume);
+    (PieceCol[targetPieceAtTo] !== side || consume);
 
   if (isNormalCapture) {
     const cfg = side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
-
     ClearPiece(to);
     GameBoard.fiftyMove = 0;
-
     if (move & MFLAGPS) cfg['modsSUR'] -= 1;
-
     const pocketCapNow = getPocketCaptureEpsilon(move, side, captured);
     if (
       GameBoard.crazyHouse[side] &&
@@ -418,7 +497,6 @@ export function MakeMove(move, moveType = '') {
       PieceCol[pocketCapNow] !== side
     ) {
       const key = `sumn${PceChar.charAt(pocketCapNow).toUpperCase()}`;
-
       cfg[key] = (cfg[key] ?? 0) + 1;
     }
   }
@@ -430,7 +508,7 @@ export function MakeMove(move, moveType = '') {
       isShift(move) ||
       isEp(move) ||
       (move & MFLAGPS) !== 0 ||
-      (isConsume && !isShift(move)))
+      (consume && !isShift(move)))
   ) {
     MovePiece(from, to);
   }
@@ -446,67 +524,83 @@ export function MakeMove(move, moveType = '') {
     AddPiece(to, promoEpsilon);
   }
 
-  if (TOSQ(move) > 0 && move & MFLAGCNSM && !isShift(move)) {
+  if (TOSQ(move) > 0 && isConsumeFlag(move) && !isShift(move)) {
     (side === COLOURS.WHITE
       ? whiteArcaneConfig
       : blackArcaneConfig
     ).modsCON -= 1;
   }
 
-  if (TOSQ(move) > 0 && move & MFLAGSUMN) {
-    // SUMN path only
+  if (TOSQ(move) > 0 && isSummon(move)) {
     if (captured === 6) {
-      // file bind
       const onesDigit = to % 10;
-      _.times(8, (i) => {
+      for (let i = 0; i < 8; i++) {
         const rank = (i + 2) * 10;
         const square = rank + onesDigit;
         if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
         if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
         if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
         if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+        if (GameBoard.royaltyF[square] > 0) GameBoard.royaltyF[square] = 0;
         GameBoard.royaltyE[square] = 7;
-      });
+      }
     } else if (captured === 7) {
-      // rank bind
       const tensDigit = Math.floor(to / 10) * 10;
-      _.times(8, (i) => {
-        const onesDigit = i + 1;
-        const square = tensDigit + onesDigit;
+      for (let i = 0; i < 8; i++) {
+        const square = tensDigit + (i + 1);
         if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
         if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
         if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
         if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+        if (GameBoard.royaltyF[square] > 0) GameBoard.royaltyF[square] = 0;
         GameBoard.royaltyE[square] = 7;
-      });
+      }
     } else if (captured === 8) {
-      const tombSquare = [-11, -10, -9, -1, 0, 1, 9, 10, 11];
-      _.forEach(tombSquare, (offset) => {
-        const sq = to + offset;
-        if (GameBoard.royaltyQ[sq] > 0) GameBoard.royaltyQ[sq] = 0;
-        if (GameBoard.royaltyT[sq] > 0) GameBoard.royaltyT[sq] = 0;
-        if (GameBoard.royaltyM[sq] > 0) GameBoard.royaltyM[sq] = 0;
-        if (GameBoard.royaltyV[sq] > 0) GameBoard.royaltyV[sq] = 0;
-        if (GameBoard.pieces[sq] === PIECES.wEXILE) return;
-        if (GameBoard.pieces[sq] === PIECES.bEXILE) return;
-        GameBoard.royaltyE[sq] = 7;
-      });
+      for (let i = 0; i < THREE_SQUARE_OFFSETS.length; i++) {
+        const square = to + THREE_SQUARE_OFFSETS[i];
+        if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
+        if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
+        if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
+        if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+        if (GameBoard.royaltyF[square] > 0) GameBoard.royaltyF[square] = 0;
+        GameBoard.royaltyE[square] = 7;
+      }
+    } else if (captured === 9) {
+      for (let i = 0; i < THREE_SQUARE_OFFSETS.length; i++) {
+        const square = to + THREE_SQUARE_OFFSETS[i];
+        if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
+        if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
+        if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
+        if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+        if (GameBoard.royaltyE[square] > 0) GameBoard.royaltyE[square] = 0;
+        GameBoard.royaltyF[square] = 7;
+      }
+    } else if (captured === 10) {
+      for (let i = 0; i < FIVE_SQUARE_OFFSETS.length; i++) {
+        const square = to + FIVE_SQUARE_OFFSETS[i];
+        if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
+        if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
+        if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
+        if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+        if (GameBoard.royaltyE[square] > 0) GameBoard.royaltyE[square] = 0;
+        GameBoard.royaltyF[square] = 7;
+      }
     } else if (sumnCap > 0) {
       const idx = royaltyIndexMapRestructure[sumnCap];
-      const sym = RtyChar.split('')[idx];
+      const sym = RTY_CHARS[idx];
       const map = GameBoard[`royalty${sym}`];
       if (map && (map[to] === undefined || map[to] <= 0)) map[to] = 7;
     } else if (promoEpsilon > 0) {
       AddPiece(to, promoEpsilon, true);
     }
   }
-  if (TOSQ(move) > 0 && move & MFLAGSWAP) {
+
+  if (TOSQ(move) > 0 && isSwap(move)) {
     const fromPiece = GameBoard.pieces[from];
-    // const toPiece = GameBoard.pieces[to];
     ClearPiece(from);
     MovePiece(to, from);
     AddPiece(to, fromPiece);
-    const swapType = isSwap(move) ? pieceEpsilon : PIECES.EMPTY;
+    const swapType = pieceEpsilon;
     if (GameBoard.side === COLOURS.WHITE) {
       if (swapType === ARCANE_BIT_VALUES.DEP) whiteArcaneConfig.swapDEP -= 1;
       if (swapType === ARCANE_BIT_VALUES.ADJ) whiteArcaneConfig.swapADJ -= 1;
@@ -516,134 +610,49 @@ export function MakeMove(move, moveType = '') {
     }
   }
 
-  const cfg = side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
-
-  const sKey = sumnKeyFromMove(move);
-  if (sKey) cfg[sKey] = (cfg[sKey] ?? 0) - 1;
-
-  const shKey = shiftKeyFromMove(move, moverPiece);
-  if (shKey) cfg[shKey] = (cfg[shKey] ?? 0) - 1;
+  {
+    const cfg = side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+    const sKey = sumnKeyFromMove(move);
+    if (sKey) cfg[sKey] = (cfg[sKey] ?? 0) - 1;
+    const shKey = shiftKeyFromMove(move, moverPiece);
+    if (shKey) cfg[shKey] = (cfg[shKey] ?? 0) - 1;
+  }
 
   if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
     const promoted = PROMOTED(move);
-    const whitePieceToOfferings = {
-      1: [PIECES.wH],
-      2: [PIECES.wR, PIECES.wR],
-      3: [PIECES.wN, PIECES.wZ, PIECES.wU],
-      4: [PIECES.wR],
-      5: [PIECES.wT],
-      6: [PIECES.wQ],
-      7: [PIECES.wS],
-      8: [PIECES.wW],
-      9: [PIECES.wT],
-      10: [PIECES.wQ],
-      11: [PIECES.wS],
-      12: [PIECES.wW],
-      13: [captured],
-      14: ['dyadA'],
-      // K
-      15: ['sumnRQ', 'sumnRQ', 'sumnRQ'],
-      16: ['sumnRT', 'sumnRT', 'sumnRT'],
-      17: ['sumnRM', 'sumnRM', 'sumnRM'],
-      18: ['sumnRV', 'sumnRV', 'sumnRV'],
-      // L
-      19: ['shftT'],
-      // M
-      20: ['sumnRV', 'modsEXT', 'modsINH'],
-      // N
-      21: ['dyadA', 'modsGLU', 'modsINH'],
-      // O
-      22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
-      23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
-      24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
-      // Z (P is reserved)
-      25: ['dyadD', 'sumnS', 'modsBAN'],
-      // Q
-      26: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
-      // R
-      27: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
-    };
-    const blackPieceToOfferings = {
-      1: [PIECES.bH],
-      2: [PIECES.bR, PIECES.bR],
-      3: [PIECES.bN, PIECES.bZ, PIECES.bU],
-      4: [PIECES.bR],
-      5: [PIECES.bT, 'dyadD'],
-      6: [PIECES.bQ, 'dyadD'],
-      7: [PIECES.bS, 'dyadE'],
-      8: [PIECES.bW, 'dyadE'],
-      9: [PIECES.bT],
-      10: [PIECES.bQ],
-      11: [PIECES.bS],
-      12: [PIECES.bW],
-      13: [captured],
-      14: ['dyadA'],
-      // K
-      15: ['sumnRQ', 'sumnRQ', 'sumnRQ'],
-      16: ['sumnRT', 'sumnRT', 'sumnRT'],
-      17: ['sumnRM', 'sumnRM', 'sumnRM'],
-      18: ['sumnRV', 'sumnRV', 'sumnRV'],
-      // L
-      19: ['shftT'],
-      // M
-      20: ['sumnRV', 'modsEXT', 'modsINH'],
-      // N
-      21: ['dyadA', 'modsGLU', 'modsINH'],
-      // O
-      22: ['sumnH', 'shftH', 'areaQ', 'modsHER'],
-      23: ['sumnH', 'shftH', 'areaT', 'modsHER'],
-      24: ['sumnH', 'shftH', 'areaM', 'modsHER'],
-      // Z (P is reserved)
-      25: ['dyadD', 'sumnS', 'modsBAN'],
-      // Q
-      26: ['dyadC', 'sumnR', 'modsEXT', 'modsGLU'],
-      // R
-      27: ['sumnRE', 'sumnRE', 'sumnRE', 'modsSIL'],
-    };
-
-    const offerString = '.ABCDEEFFGGHHIJKKKKLMNOOOZQR';
-    const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
-    const arcaneConfig =
-      side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
-    const pieceToOfferings =
-      side === 'white' ? whitePieceToOfferings : blackPieceToOfferings;
-
+    const useWhite = GameBoard.side === COLOURS.WHITE;
+    const arcaneConfig = useWhite ? whiteArcaneConfig : blackArcaneConfig;
+    const pieceToOfferings = useWhite
+      ? WHITE_PIECE_TO_OFFERINGS
+      : BLACK_PIECE_TO_OFFERINGS;
     const offeringNumbers = pieceToOfferings[promoted];
 
     ClearPiece(from);
 
     if (Array.isArray(offeringNumbers) && offeringNumbers.length > 0) {
-      const offerSymbol = offerString.charAt(promoted);
+      const offerSymbol = OFFER_CHARS[promoted];
       const offrKey = `offr${offerSymbol}`;
       const have = arcaneConfig[offrKey] ?? 0;
 
       if (have <= 0) {
-        // illegal: no token to redeem
         AddPiece(from, captured);
         return BOOL.FALSE;
       }
 
-      // Only mutate configs on *committed* user moves
       if (commit) {
-        arcaneConfig[offrKey] = have - 1; // spend first
-
-        for (const gift of offeringNumbers) {
+        arcaneConfig[offrKey] = have - 1;
+        for (let i = 0; i < offeringNumbers.length; i++) {
+          const gift = offeringNumbers[i];
           if (typeof gift === 'string') {
             arcaneConfig[gift] = (arcaneConfig[gift] ?? 0) + 1;
-          } else {
+          } else if (gift !== PIECES.EMPTY) {
             const sumnKey = `sumn${PceChar.charAt(gift).toUpperCase()}`;
             arcaneConfig[sumnKey] = (arcaneConfig[sumnKey] ?? 0) + 1;
           }
         }
-
-        // mark that we actually redeemed, so TakeMove knows to undo
-        GameBoard.history[GameBoard.hisPly].offering = {
-          offrKey,
-          gifts: offeringNumbers.slice(),
-        };
+        h.offrKey = offrKey;
+        h.offrPromoted = promoted;
       }
-
-      // If not commit: we don’t touch arcaneConfig at all (search stays side-effect free)
     }
   }
 
@@ -668,7 +677,6 @@ export function MakeMove(move, moveType = '') {
       GameBoard.dyad = 0;
       GameBoard.dyadClock = 0;
       GameBoard.dyadName = '';
-
       GameBoard.side ^= 1;
       HASH_SIDE();
     }
@@ -743,22 +751,20 @@ export function TakeMove(wasDyadMove = false) {
   let captured = CAPTURED(move);
   let pieceEpsilon = PROMOTED(move);
 
-  const isShift = (m) => (m & MFLAGSHFT) !== 0;
-  const isSummon = (m) => (m & MFLAGSUMN) !== 0;
-  const isSwap = (m) => (m & MFLAGSWAP) !== 0;
-  const isEp = (m) => (m & MFLAGEP) !== 0;
-  const isConsume = (move & MFLAGCNSM) !== 0;
+  const consume = isConsumeFlag(move);
 
   const promoEpsilon = !isShift(move) ? pieceEpsilon : PIECES.EMPTY;
 
   const moverAtTo = GameBoard.pieces[to];
 
-  const cfg =
-    GameBoard.side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
-  const sKey = sumnKeyFromMove(move);
-  if (sKey) cfg[sKey] = (cfg[sKey] ?? 0) + 1;
-  const shKey = shiftKeyFromMove(move, moverAtTo);
-  if (shKey) cfg[shKey] = (cfg[shKey] ?? 0) + 1;
+  {
+    const cfg =
+      GameBoard.side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
+    const sKey = sumnKeyFromMove(move);
+    if (sKey) cfg[sKey] = (cfg[sKey] ?? 0) + 1;
+    const shKey = shiftKeyFromMove(move, moverAtTo);
+    if (shKey) cfg[shKey] = (cfg[shKey] ?? 0) + 1;
+  }
 
   if (GameBoard.enPas !== SQUARES.NO_SQ) HASH_EP();
   HASH_CA();
@@ -778,13 +784,10 @@ export function TakeMove(wasDyadMove = false) {
   if (GameBoard.invisibility[0] > 6) GameBoard.invisibility[0] = 0;
   if (GameBoard.invisibility[1] > 6) GameBoard.invisibility[1] = 0;
 
-  GameBoard.royaltyQ = { ...GameBoard.history[GameBoard.hisPly].royaltyQ };
-  GameBoard.royaltyT = { ...GameBoard.history[GameBoard.hisPly].royaltyT };
-  GameBoard.royaltyM = { ...GameBoard.history[GameBoard.hisPly].royaltyM };
-  GameBoard.royaltyV = { ...GameBoard.history[GameBoard.hisPly].royaltyV };
-  GameBoard.royaltyE = { ...GameBoard.history[GameBoard.hisPly].royaltyE };
+  const h = GameBoard.history[GameBoard.hisPly];
+  restoreRoyaltyMapsFrom(h);
 
-  if (TOSQ(move) > 0 && move & MFLAGCNSM && !isShift(move)) {
+  if (TOSQ(move) > 0 && isConsumeFlag(move) && !isShift(move)) {
     (GameBoard.side === COLOURS.WHITE
       ? whiteArcaneConfig
       : blackArcaneConfig
@@ -792,21 +795,15 @@ export function TakeMove(wasDyadMove = false) {
   }
 
   if (move & MFLAGEP) {
-    // side is already toggled back to the mover here
     const moverPawn = GameBoard.side === COLOURS.WHITE ? PIECES.wP : PIECES.bP;
     const epSq = GameBoard.side === COLOURS.WHITE ? to - 10 : to + 10;
     const epPawn = GameBoard.side === COLOURS.WHITE ? PIECES.bP : PIECES.wP;
-
-    // Only restore if the shape matches a real EP position
     const looksLikeEP =
       GameBoard.pieces[to] === moverPawn &&
       GameBoard.pieces[epSq] === PIECES.EMPTY;
-
     if (looksLikeEP) {
       AddPiece(epSq, epPawn);
     }
-
-    // existing pocket rollback (unchanged)
     const epPocket = getPocketCaptureEpsilon(move, GameBoard.side, captured);
     if (
       GameBoard.crazyHouse[GameBoard.side] &&
@@ -815,15 +812,13 @@ export function TakeMove(wasDyadMove = false) {
       PieceCol[epPocket] !== GameBoard.side
     ) {
       const key = `sumn${PceChar.charAt(epPocket).toUpperCase()}`;
-      const cfg =
+      const cfg2 =
         GameBoard.side === COLOURS.WHITE
           ? whiteArcaneConfig
           : blackArcaneConfig;
-      cfg[key] = (cfg[key] ?? 0) - 1;
+      cfg2[key] = (cfg2[key] ?? 0) - 1;
     }
   } else if ((MFLAGCA & move) !== 0) {
-    // get original rook positions? todo randomize
-    // this might be easy because the to square should always be the rook which gives you the original square in the move int
     switch (to) {
       case SQUARES.C1:
         MovePiece(SQUARES.D1, SQUARES.A1);
@@ -849,7 +844,7 @@ export function TakeMove(wasDyadMove = false) {
       isShift(move) ||
       isEp(move) ||
       (move & MFLAGPS) !== 0 ||
-      (isConsume && !isShift(move)))
+      (consume && !isShift(move)))
   ) {
     MovePiece(to, from);
   }
@@ -863,6 +858,8 @@ export function TakeMove(wasDyadMove = false) {
     AddPiece(to, captured);
     const pocketCap = getPocketCaptureEpsilon(move, GameBoard.side, captured);
 
+    const cfg =
+      GameBoard.side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
     if (move & MFLAGPS) cfg['modsSUR'] += 1;
 
     if (
@@ -872,11 +869,11 @@ export function TakeMove(wasDyadMove = false) {
       PieceCol[pocketCap] !== GameBoard.side
     ) {
       const key = `sumn${PceChar.charAt(pocketCap).toUpperCase()}`;
-      const cfg =
+      const cfg2 =
         GameBoard.side === COLOURS.WHITE
           ? whiteArcaneConfig
           : blackArcaneConfig;
-      cfg[key] = (cfg[key] ?? 0) - 1;
+      cfg2[key] = (cfg2[key] ?? 0) - 1;
     }
   }
 
@@ -895,18 +892,17 @@ export function TakeMove(wasDyadMove = false) {
       ClearPiece(from);
       AddPiece(from, GameBoard.side === COLOURS.WHITE ? PIECES.wP : PIECES.bP);
     }
-  } else if (TOSQ(move) > 0 && move & MFLAGSUMN) {
+  } else if (TOSQ(move) > 0 && isSummon(move)) {
     if (promoEpsilon > 0) {
       ClearPiece(to, true);
     }
-  } else if (TOSQ(move) > 0 && move & MFLAGSWAP) {
+  } else if (TOSQ(move) > 0 && isSwap(move)) {
     const putBack = GameBoard.pieces[from];
-
     ClearPiece(from);
     MovePiece(to, from);
     AddPiece(to, putBack);
 
-    const swapType = isSwap(move) ? pieceEpsilon : PIECES.EMPTY;
+    const swapType = pieceEpsilon;
     if (GameBoard.side === COLOURS.WHITE) {
       if (swapType === ARCANE_BIT_VALUES.DEP) whiteArcaneConfig.swapDEP += 1;
       if (swapType === ARCANE_BIT_VALUES.ADJ) whiteArcaneConfig.swapADJ += 1;
@@ -914,22 +910,22 @@ export function TakeMove(wasDyadMove = false) {
       if (swapType === ARCANE_BIT_VALUES.DEP) blackArcaneConfig.swapDEP += 1;
       if (swapType === ARCANE_BIT_VALUES.ADJ) blackArcaneConfig.swapADJ += 1;
     }
-  }
-
-  // should only ever be offering moves
-  else if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
-    const side = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
-    const arcaneConfig =
-      side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+  } else if (TOSQ(move) === 0 && FROMSQ(move) > 0 && CAPTURED(move) > 0) {
+    const useWhite = GameBoard.side === COLOURS.WHITE;
+    const arcaneConfig = useWhite ? whiteArcaneConfig : blackArcaneConfig;
 
     AddPiece(from, captured);
 
-    const h = GameBoard.history[GameBoard.hisPly];
-    if (h.offering) {
-      const { offrKey, gifts } = h.offering;
+    if (h.offrKey) {
+      const offrKey = h.offrKey;
+      const promoted = h.offrPromoted;
+      const gifts =
+        (useWhite ? WHITE_PIECE_TO_OFFERINGS : BLACK_PIECE_TO_OFFERINGS)[
+          promoted
+        ] || [];
 
-      // remove gifts first
-      for (const gift of gifts) {
+      for (let i = 0; i < gifts.length; i++) {
+        const gift = gifts[i];
         if (typeof gift === 'string') {
           arcaneConfig[gift] = (arcaneConfig[gift] ?? 0) - 1;
         } else {
@@ -937,10 +933,10 @@ export function TakeMove(wasDyadMove = false) {
           arcaneConfig[sumnKey] = (arcaneConfig[sumnKey] ?? 0) - 1;
         }
       }
-      // restore the token
       arcaneConfig[offrKey] = (arcaneConfig[offrKey] ?? 0) + 1;
 
-      h.offering = undefined; // clear marker
+      h.offrKey = undefined;
+      h.offrPromoted = undefined;
     }
   }
 }

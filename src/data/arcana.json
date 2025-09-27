@@ -195,6 +195,20 @@
     "type": "active",
     "imagePath": "/sumnRA"
   },
+  "sumnRF": {
+    "id": "sumnRF",
+    "name": "Hexweaver's Curtain",
+    "description": "3x3 fog of war",
+    "type": "active",
+    "imagePath": "/sumnRF"
+  },
+  "sumnRG": {
+    "id": "sumnRG",
+    "name": "Hexweaver's Fallout",
+    "description": "5x5 fog of war",
+    "type": "active",
+    "imagePath": "/sumnRG"
+  },
   "offrA": {
     "id": "offrA",
     "name": "Masquerade",

@@ -1027,14 +1027,16 @@ export function GenerateMoves(
     if (!herrings.length) {
       // todo remove parent conditional with herring check because sumnE can block from a piece attacking herring
       const royaltyIndexes = {
-        30: 1,
-        31: 2,
-        32: 3,
-        33: 4,
-        34: 5,
-        35: 6,
-        36: 7,
-        37: 8,
+        31: 1,
+        32: 2,
+        33: 3,
+        34: 4,
+        35: 5,
+        36: 6,
+        37: 7,
+        38: 8,
+        39: 9,
+        40: 10,
       };
       if (
         userSummonPceRty > 0 ||
@@ -1097,7 +1099,8 @@ export function GenerateMoves(
                     GameBoard.royaltyT[sq] > 0 ||
                     GameBoard.royaltyM[sq] > 0 ||
                     GameBoard.royaltyV[sq] > 0 ||
-                    GameBoard.royaltyE[sq] > 0
+                    GameBoard.royaltyE[sq] > 0 ||
+                    GameBoard.royaltyF[sq] > 0
                   ) {
                     continue;
                   }
@@ -1139,7 +1142,8 @@ export function GenerateMoves(
                     GameBoard.royaltyT[sq] > 0 ||
                     GameBoard.royaltyM[sq] > 0 ||
                     GameBoard.royaltyV[sq] > 0 ||
-                    GameBoard.royaltyE[sq] > 0
+                    GameBoard.royaltyE[sq] > 0 ||
+                    GameBoard.royaltyF[sq] > 0
                   ) {
                     continue;
                   }

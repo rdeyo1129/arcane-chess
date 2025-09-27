@@ -1614,7 +1614,8 @@ class UnwrappedStackQuickplay extends React.Component<Props, State> {
                             (this.state.royalties?.royaltyT?.[key] ?? 0) > 0 ||
                             (this.state.royalties?.royaltyM?.[key] ?? 0) > 0 ||
                             (this.state.royalties?.royaltyV?.[key] ?? 0) > 0 ||
-                            (this.state.royalties?.royaltyE?.[key] ?? 0) > 0
+                            (this.state.royalties?.royaltyE?.[key] ?? 0) > 0 ||
+                            (this.state.royalties?.royaltyF?.[key] ?? 0) > 0
                           ) {
                             this.setState({
                               placingRoyalty: this.state.placingRoyalty,

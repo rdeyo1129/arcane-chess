@@ -1125,8 +1125,7 @@ export function GenerateMoves(
                     GameBoard.royaltyT[sq] > 0 ||
                     GameBoard.royaltyM[sq] > 0 ||
                     GameBoard.royaltyV[sq] > 0 ||
-                    GameBoard.royaltyE[sq] > 0 ||
-                    GameBoard.royaltyF[sq] > 0
+                    GameBoard.royaltyE[sq] > 0
                   ) {
                     continue;
                   }

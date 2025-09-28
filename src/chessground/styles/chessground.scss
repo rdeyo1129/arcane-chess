@@ -534,6 +534,7 @@ cg-board square.oc.move-dest.royaltyE {
     radial-gradient(transparent 0%, transparent 80%, rgba(255, 223, 0, 0.5) 22%);
 }
 // todo: oc was removed here to show available squares in a fog of war area
+// probably leave this as a feature to help increase unawarness in the
 cg-board square.move-dest.royaltyF {
   background: radial-gradient(
       ellipse at center,

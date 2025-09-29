@@ -1063,6 +1063,7 @@ export function GenerateMoves(
         38: 8,
         39: 9,
         40: 10,
+        41: 11,
       };
       if (
         userSummonPceRty > 0 ||

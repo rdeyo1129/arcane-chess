@@ -117,8 +117,7 @@ export const POWERBIT = {
   sumnRA: 2097152,
   sumnRF: 4194304,
   sumnRG: 8388608,
-  sumnXY: 16777216,
-  sumnXZ: 33554432,
+  sumnRH: 16777216,
 
   // 5 active 18
   offrA: 1,

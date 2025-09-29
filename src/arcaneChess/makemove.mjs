@@ -39,7 +39,9 @@ import {
 } from './defs';
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
-const royaltyIndexMapRestructure = [0, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+const royaltyIndexMapRestructure = [
+  0, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+];
 
 // cap 30 = cappable exile
 // cap 31 = teleport
@@ -56,6 +58,8 @@ const FIVE_SQUARE_OFFSETS = [
   -22, -21, -20, -19, -18, -12, -11, -10, -9, -8, -2, -1, 0, 1, 2, 12, 11, 10,
   9, 8, 22, 21, 20, 19, 18,
 ];
+const FIVE_SQUARE_A = [-22, -20, -18, -11, -9, -2, 0, 2, 9, 11, 18, 20, 22];
+const FIVE_SQUARE_B = [-21, -19, -12, -10, -8, -1, 1, 8, 10, 12, 19, 21];
 const OFFER_STRING = '.ABCDEEFFGGHHIJKKKKLMNOOOZQR';
 const OFFER_CHARS = OFFER_STRING.split('');
 
@@ -584,6 +588,25 @@ export function MakeMove(move, moveType = '') {
         if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
         if (GameBoard.royaltyE[square] > 0) GameBoard.royaltyE[square] = 0;
         GameBoard.royaltyF[square] = 7;
+      }
+    } else if (captured === 11) {
+      for (let i = 0; i < FIVE_SQUARE_A.length; i++) {
+        const square = to + FIVE_SQUARE_A[i];
+        if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
+        if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
+        if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
+        if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+        if (GameBoard.royaltyE[square] > 0) GameBoard.royaltyE[square] = 0;
+        GameBoard.royaltyF[square] = 7;
+      }
+      for (let i = 0; i < FIVE_SQUARE_B.length; i++) {
+        const square = to + FIVE_SQUARE_B[i];
+        if (GameBoard.royaltyQ[square] > 0) GameBoard.royaltyQ[square] = 0;
+        if (GameBoard.royaltyT[square] > 0) GameBoard.royaltyT[square] = 0;
+        if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
+        if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
+        if (GameBoard.royaltyE[square] > 0) GameBoard.royaltyF[square] = 0;
+        GameBoard.royaltyE[square] = 7;
       }
     } else if (sumnCap > 0) {
       const idx = royaltyIndexMapRestructure[sumnCap];

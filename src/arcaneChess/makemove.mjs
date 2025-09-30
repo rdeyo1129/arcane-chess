@@ -40,10 +40,10 @@ import {
 import { ARCANE_BIT_VALUES, RtyChar } from './defs.mjs';
 
 const royaltyIndexMapRestructure = [
-  0, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+  0, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
 ];
 
-// cap 30 = cappable exile
+// cap 30 = capturable exile
 // cap 31 = teleport
 const TELEPORT_CONST = 31;
 // eps 30 = myriad
@@ -53,13 +53,16 @@ const EPSILON_MYRIAD_CONST = 30;
 const HISTORY_CAP_PLY = 128;
 
 const RTY_CHARS = RtyChar.split('');
+
 const THREE_SQUARE_OFFSETS = [-11, -10, -9, -1, 0, 1, 9, 10, 11];
 const FIVE_SQUARE_OFFSETS = [
   -22, -21, -20, -19, -18, -12, -11, -10, -9, -8, -2, -1, 0, 1, 2, 12, 11, 10,
   9, 8, 22, 21, 20, 19, 18,
 ];
+
 const FIVE_SQUARE_A = [-22, -20, -18, -11, -9, -2, 0, 2, 9, 11, 18, 20, 22];
 const FIVE_SQUARE_B = [-21, -19, -12, -10, -8, -1, 1, 8, 10, 12, 19, 21];
+
 const OFFER_STRING = '.ABCDEEFFGGHHIJKKKKLMNOOOZQR';
 const OFFER_CHARS = OFFER_STRING.split('');
 
@@ -546,7 +549,7 @@ export function MakeMove(move, moveType = '') {
         if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
         if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
         if (GameBoard.royaltyF[square] > 0) GameBoard.royaltyF[square] = 0;
-        GameBoard.royaltyE[square] = 7;
+        GameBoard.royaltyE[square] = 9;
       }
     } else if (captured === 7) {
       const tensDigit = Math.floor(to / 10) * 10;
@@ -557,7 +560,7 @@ export function MakeMove(move, moveType = '') {
         if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
         if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
         if (GameBoard.royaltyF[square] > 0) GameBoard.royaltyF[square] = 0;
-        GameBoard.royaltyE[square] = 7;
+        GameBoard.royaltyE[square] = 9;
       }
     } else if (captured === 8) {
       for (let i = 0; i < THREE_SQUARE_OFFSETS.length; i++) {
@@ -567,7 +570,7 @@ export function MakeMove(move, moveType = '') {
         if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
         if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
         if (GameBoard.royaltyF[square] > 0) GameBoard.royaltyF[square] = 0;
-        GameBoard.royaltyE[square] = 7;
+        GameBoard.royaltyE[square] = 9;
       }
     } else if (captured === 9) {
       for (let i = 0; i < THREE_SQUARE_OFFSETS.length; i++) {
@@ -577,7 +580,7 @@ export function MakeMove(move, moveType = '') {
         if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
         if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
         if (GameBoard.royaltyE[square] > 0) GameBoard.royaltyE[square] = 0;
-        GameBoard.royaltyF[square] = 7;
+        GameBoard.royaltyF[square] = 9;
       }
     } else if (captured === 10) {
       for (let i = 0; i < FIVE_SQUARE_OFFSETS.length; i++) {
@@ -587,7 +590,7 @@ export function MakeMove(move, moveType = '') {
         if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
         if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
         if (GameBoard.royaltyE[square] > 0) GameBoard.royaltyE[square] = 0;
-        GameBoard.royaltyF[square] = 7;
+        GameBoard.royaltyF[square] = 9;
       }
     } else if (captured === 11) {
       for (let i = 0; i < FIVE_SQUARE_A.length; i++) {
@@ -597,7 +600,7 @@ export function MakeMove(move, moveType = '') {
         if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
         if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
         if (GameBoard.royaltyE[square] > 0) GameBoard.royaltyE[square] = 0;
-        GameBoard.royaltyF[square] = 7;
+        GameBoard.royaltyF[square] = 9;
       }
       for (let i = 0; i < FIVE_SQUARE_B.length; i++) {
         const square = to + FIVE_SQUARE_B[i];
@@ -606,13 +609,28 @@ export function MakeMove(move, moveType = '') {
         if (GameBoard.royaltyM[square] > 0) GameBoard.royaltyM[square] = 0;
         if (GameBoard.royaltyV[square] > 0) GameBoard.royaltyV[square] = 0;
         if (GameBoard.royaltyE[square] > 0) GameBoard.royaltyF[square] = 0;
-        GameBoard.royaltyE[square] = 7;
+        GameBoard.royaltyE[square] = 9;
       }
+    } else if (captured === 12) {
+      if (GameBoard.royaltyQ[to] > 0) GameBoard.royaltyQ[to] = 0;
+      if (GameBoard.royaltyT[to] > 0) GameBoard.royaltyT[to] = 0;
+      if (GameBoard.royaltyM[to] > 0) GameBoard.royaltyM[to] = 0;
+      if (GameBoard.royaltyV[to] > 0) GameBoard.royaltyE[to] = 0;
+      if (GameBoard.royaltyE[to] > 0) GameBoard.royaltyF[to] = 0;
+      GameBoard.royaltyM[to - 11] = 9;
+      GameBoard.royaltyQ[to - 10] = 9;
+      GameBoard.royaltyM[to - 9] = 9;
+      GameBoard.royaltyT[to - 1] = 9;
+      GameBoard.royaltyV[to] = 9;
+      GameBoard.royaltyT[to + 1] = 9;
+      GameBoard.royaltyM[to + 9] = 9;
+      GameBoard.royaltyQ[to + 10] = 9;
+      GameBoard.royaltyM[to + 11] = 9;
     } else if (sumnCap > 0) {
       const idx = royaltyIndexMapRestructure[sumnCap];
       const sym = RTY_CHARS[idx];
       const map = GameBoard[`royalty${sym}`];
-      if (map && (map[to] === undefined || map[to] <= 0)) map[to] = 7;
+      if (map && (map[to] === undefined || map[to] <= 0)) map[to] = 9;
     } else if (promoEpsilon > 0) {
       AddPiece(to, promoEpsilon, true);
     }

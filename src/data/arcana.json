@@ -216,6 +216,13 @@
     "type": "active",
     "imagePath": "/sumnRH"
   },
+  "sumnRI": {
+    "id": "sumnRI",
+    "name": "Hexweaver's Scepter",
+    "description": "Summon a 3x3 grid containing all the royal square conditions.",
+    "type": "active",
+    "imagePath": "/sumnRI"
+  },
   "offrA": {
     "id": "offrA",
     "name": "Masquerade",

@@ -68,9 +68,9 @@ import { validMoves } from './gui.mjs';
 const EPSILON_MYRIAD_CONST = 30;
 
 const MvvLvaValue = [
-  0, 100, 500, 600, 700, 1200, 1400, 100, 500, 600, 700, 1200, 1400, 0, 900,
+  0, 100, 500, 600, 700, 1200, 1400, 100, 500, 600, 700, 1200, 1400, 300, 900,
   200, 1100, 1000, 1300, 900, 200, 1100, 1000, 1300, 400, 300, 400, 300, 800,
-  800, 0,
+  800, 300,
 ];
 const MvvLvaScores = new Array(31 * 31);
 export function InitMvvLva() {
@@ -1064,6 +1064,7 @@ export function GenerateMoves(
         39: 9,
         40: 10,
         41: 11,
+        42: 12,
       };
       if (
         userSummonPceRty > 0 ||

@@ -240,6 +240,24 @@ export const modes: Record<string, GameModeType> = padModes({
       setup: 'rnbtkwsr',
     },
   },
+  royaltest: {
+    name: 'royal test',
+    white: {
+      arcana: [
+        arcana.sumnRI,
+        arcana.sumnRI,
+        arcana.sumnRV,
+        arcana.sumnRG,
+        arcana.shftA,
+        arcana.modsDIM,
+      ],
+      setup: 'RNBTKWSR',
+    },
+    black: {
+      arcana: [arcana.sumnX, arcana.sumnX, arcana.sumnX],
+      setup: 'rnbtkwsr',
+    },
+  },
   aethersurge: {
     name: 'surge check test',
     white: {

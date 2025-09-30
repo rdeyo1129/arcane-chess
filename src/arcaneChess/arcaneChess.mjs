@@ -26,7 +26,7 @@ import {
   PreSearch,
   engineSuggestion,
 } from './gui';
-import { SearchPosition, gameSim } from './search.mjs';
+import { SearchPosition } from './search.mjs';
 
 import {
   whiteArcaneConfig,
@@ -34,12 +34,16 @@ import {
   setWhiteArcana,
   setBlackArcana,
   POWERBIT,
+  ArcanaProgression,
 } from './arcaneDefs.mjs';
 import { COLOURS, PIECES, prettyToSquare } from './defs.mjs';
 import { MakeMove, TakeMove } from './makemove.mjs';
 import { PrSq } from './io';
 
 export default function arcaneChess() {
+  // toggle to debug - turns off turn slot unlocks
+  let debugAllSpells = false;
+
   const init = () => {
     InitFilesRanksBrd();
     InitHashKeys();
@@ -64,12 +68,20 @@ export default function arcaneChess() {
     royalties,
     preset = 'CLEAR'
   ) => {
-    setWhiteArcana({
-      ...whiteConfig,
-    });
-    setBlackArcana({
-      ...blackConfig,
-    });
+    if (debugAllSpells) {
+      Object.assign(whiteArcaneConfig, whiteConfig);
+      Object.assign(blackArcaneConfig, blackConfig);
+    } else {
+      // Set how often arcana is granted
+      ArcanaProgression.setEvery(6);
+
+      setWhiteArcana({
+        ...whiteConfig,
+      });
+      setBlackArcana({
+        ...blackConfig,
+      });
+    }
 
     _.forEach(royalties, (value, key) => {
       GameBoard[key] = {};
@@ -283,9 +295,6 @@ export default function arcaneChess() {
       GameBoard.royaltyV = {};
       GameBoard.royaltyE = {};
       GameBoard.royaltyF = {};
-    },
-    gameSim: (thinkingTime) => {
-      return gameSim(thinkingTime);
     },
     changeVarVars: (varVar) => {
       if (varVar === 'NORMAL') {

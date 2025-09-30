@@ -1,66 +1,31 @@
-import _ from 'lodash';
+export const whiteArcaneConfig = {};
+export const blackArcaneConfig = {};
 
-export const whiteArcaneConfig = {
-  // dyadP: 3,
-  // dyadZ: 5,
-  // sumnR: 4,
-  // sumnRE: 4,
-  // sumnRT: 1,
-  // sumnRM: 1,
-  // sumnRV: 7,
-  // sumnP: 2,
-  // sumnX: 1,
-  // shftR: 4,
-  // shftN: 4,
-  // shftB: 4,
-  // shftR: 4,
-  // modsSIG: 2,
-  // modsCON: 4,
-  // swapADJ: 1,
-  // swapATK: 4,
-  // swapDEP: 1,
-  // modsRAN: 1,
-  // modsFUG: 1,
-  // modsINH: 1,
-  // note showEngineRating handicap (not recommended move? different from implant) for campaign power (for 3 turns?)
-};
+export const whiteArcaneInventory = {};
+export const blackArcaneInventory = {};
 
-export const blackArcaneConfig = {
-  // dyadP: 3,
-  // dyadZ: 5,
-  // sumnP: 2,
-  // sumnRV: 7,
-  // shftN: 4,
-  // modsSIG: 2,
-  // modsCON: 4,
-  // swapADJ: 1,
-  // sumnRM: 1,
-  // swapATK: 1,
-  // swapDEP: 1,
-  // modsCON: 4,
-  // modsFUG: 1,
-  // modsRAN: 1,
-  // modsQTY: 1,
-  // sumnRE: 1,
-  // sumnX: 1,
-};
-
-// tactorius: needs external defs in order to generate moves with
-// get status for each player from configs
-export const setWhiteArcana = (config) => {
-  // const config = {};
-  _.forOwn(config, (value, key) => {
-    whiteArcaneConfig[key] = value;
+export const setWhiteArcana = (pool) => {
+  Object.keys(whiteArcaneInventory).forEach(
+    (k) => delete whiteArcaneInventory[k]
+  );
+  Object.keys(pool || {}).forEach((k) => {
+    whiteArcaneInventory[k] = pool[k] | 0;
   });
-  return whiteArcaneConfig;
+  Object.keys(whiteArcaneConfig).forEach((k) => delete whiteArcaneConfig[k]);
+  ArcanaProgression.resetSide('white');
+  return whiteArcaneInventory;
 };
 
-export const setBlackArcana = (config) => {
-  // const config = {};
-  _.forOwn(config, (value, key) => {
-    blackArcaneConfig[key] = value;
+export const setBlackArcana = (pool) => {
+  Object.keys(blackArcaneInventory).forEach(
+    (k) => delete blackArcaneInventory[k]
+  );
+  Object.keys(pool || {}).forEach((k) => {
+    blackArcaneInventory[k] = pool[k] | 0;
   });
-  return blackArcaneConfig;
+  Object.keys(blackArcaneConfig).forEach((k) => delete blackArcaneConfig[k]);
+  ArcanaProgression.resetSide('black');
+  return blackArcaneInventory;
 };
 
 export const clearArcanaConfig = () => {
@@ -158,7 +123,7 @@ export const POWERBIT = {
 
   // 4 mods 25
   modsCON: 1, // passive
-  modsAET: 2, // inherent
+  // modsAET: 2, // ON BY DEFAULT
   modsFUG: 4, // inherent
   modsSIL: 8, // inherent
   modsINH: 16, // inherent
@@ -222,3 +187,171 @@ export const POWERS = (config) => {
     (config.offr << 56)
   );
 };
+
+// for timeslot unlocks
+const POWER_BY_KEY = {
+  dyadA: 1,
+  dyadB: 1,
+  dyadC: 2,
+  dyadD: 3,
+  dyadE: 3,
+  dyadF: 4,
+  shftP: 1,
+  shftN: 2,
+  shftB: 2,
+  shftR: 2,
+  shftT: 3,
+  shftG: 3,
+  shftH: 3,
+  shftI: 3,
+  shftA: 2,
+  swapDEP: 2,
+  swapADJ: 2,
+  sumnP: 1,
+  sumnS: 2,
+  sumnH: 2,
+  sumnN: 2,
+  sumnB: 2,
+  sumnR: 3,
+  sumnQ: 3,
+  sumnT: 3,
+  sumnM: 4,
+  sumnV: 4,
+  sumnZ: 4,
+  sumnU: 4,
+  sumnW: 4,
+  sumnX: 4,
+  sumnRQ: 4,
+  sumnRT: 4,
+  sumnRM: 5,
+  sumnRV: 5,
+  sumnRE: 5,
+  sumnRY: 5,
+  sumnRZ: 5,
+  sumnRA: 5,
+  sumnRF: 5,
+  sumnRG: 5,
+  sumnRH: 5,
+  sumnRI: 5,
+  modsCON: 1,
+  modsAET: 3,
+  modsFUG: 3,
+  modsSIL: 4,
+  modsINH: 4,
+  modsSUS: 2,
+  modsGLU: 3,
+  modsFUT: 3,
+  modsREA: 2,
+  modsEXT: 4,
+  modsTRO: 3,
+  modsREI: 3,
+  modsSOV: 2,
+  modsDOP: 2,
+  modsMAG: 3,
+  modsBLA: 3,
+  modsSUR: 1,
+  modsDIM: 2,
+  modsRES: 2,
+  modsHER: 4,
+  modsBAN: 5,
+  modsFOG: 2,
+  modsMIS: 2,
+  modsHUR: 3,
+  offrA: 1,
+  offrB: 1,
+  offrC: 1,
+  offrD: 2,
+  offrE: 2,
+  offrF: 2,
+  offrG: 2,
+  offrH: 2,
+  offrI: 3,
+  offrJ: 3,
+  offrK: 3,
+  offrL: 3,
+  offrM: 4,
+  offrN: 4,
+  offrO: 4,
+  offrZ: 4,
+  offrQ: 4,
+  offrR: 4,
+};
+
+function sideKey(x) {
+  return x === 0 || x === 'white' ? 'white' : 'black';
+}
+
+const ArcanaProgression = (() => {
+  let firstAt = 1;
+  let moveCount = { white: 0, black: 0 };
+  let grantsGiven = { white: 0, black: 0 };
+  let every = 6;
+
+  function setEvery(n) {
+    every = Math.max(1, n | 0);
+  }
+  function resetSide(s) {
+    moveCount[s] = 0;
+    grantsGiven[s] = 0;
+  }
+
+  function tier(s) {
+    const g = grantsGiven[s];
+    const t = 1 + Math.floor(g / 2);
+    return t > 6 ? 6 : t;
+  }
+
+  function remaining(s, k) {
+    const inv = s === 'white' ? whiteArcaneInventory : blackArcaneInventory;
+    const live = s === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+    return (inv[k] | 0) - (live[k] | 0);
+  }
+
+  function uni(s) {
+    const inv = s === 'white' ? whiteArcaneInventory : blackArcaneInventory;
+    return Object.keys(inv).filter((k) => (inv[k] | 0) > 0);
+  }
+
+  function grantOne(s) {
+    const live = s === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+    const t = tier(s);
+
+    let pool = uni(s).filter(
+      (k) => (POWER_BY_KEY[k] ?? 1) <= t && remaining(s, k) > 0
+    );
+    if (!pool.length) {
+      const all = uni(s).filter((k) => remaining(s, k) > 0);
+      if (!all.length) return null;
+      let minP = Infinity;
+      for (const k of all) {
+        const p = POWER_BY_KEY[k] ?? 1;
+        if (p < minP) minP = p;
+      }
+      pool = all.filter((k) => (POWER_BY_KEY[k] ?? 1) === minP);
+    }
+
+    let maxP = 1;
+    for (const k of pool) {
+      const p = POWER_BY_KEY[k] ?? 1;
+      if (p > maxP) maxP = p;
+    }
+    const strongest = pool.filter((k) => (POWER_BY_KEY[k] ?? 1) === maxP);
+    const key = strongest[(Math.random() * strongest.length) | 0];
+
+    live[key] = (live[key] || 0) + 1;
+    grantsGiven[s] += 1;
+    return key;
+  }
+
+  function onMoveCommitted(col) {
+    const s = sideKey(col);
+    moveCount[s] += 1;
+    const m = moveCount[s];
+    if (m < firstAt || (m - firstAt) % every !== 0) return null;
+    return grantOne(s);
+  }
+
+  return { setEvery, resetSide, onMoveCommitted };
+})();
+
+export { ArcanaProgression };

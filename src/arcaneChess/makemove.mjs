@@ -21,7 +21,11 @@ import {
   HASH_SIDE,
   SqAttacked,
 } from './board';
-import { whiteArcaneConfig, blackArcaneConfig } from './arcaneDefs';
+import {
+  whiteArcaneConfig,
+  blackArcaneConfig,
+  ArcanaProgression,
+} from './arcaneDefs';
 import {
   COLOURS,
   PIECES,
@@ -745,6 +749,22 @@ export function MakeMove(move, moveType = '') {
     return BOOL.FALSE;
   }
 
+  const isCommitted = moveType === 'userMove' || moveType === 'commit';
+
+  if (isCommitted) {
+    const sideKey = side === COLOURS.WHITE ? 'white' : 'black';
+    const grantedKey = ArcanaProgression.onMoveCommitted(sideKey);
+    if (grantedKey) {
+      const h =
+        GameBoard.history[GameBoard.hisPly - 1] ||
+        GameBoard.history[GameBoard.hisPly];
+      if (h) {
+        h.grantedArcanaKey = grantedKey;
+        h.grantedArcanaSide = sideKey;
+      }
+    }
+  }
+
   return BOOL.TRUE;
 }
 
@@ -826,7 +846,17 @@ export function TakeMove(wasDyadMove = false) {
   if (GameBoard.invisibility[1] > 6) GameBoard.invisibility[1] = 0;
 
   const h = GameBoard.history[GameBoard.hisPly];
+
   restoreRoyaltyMapsFrom(h);
+
+  if (h && h.grantedArcanaKey && h.grantedArcanaSide) {
+    const cfg =
+      h.grantedArcanaSide === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+    const k = h.grantedArcanaKey;
+    cfg[k] = Math.max(0, (cfg[k] || 0) - 1);
+    h.grantedArcanaKey = undefined;
+    h.grantedArcanaSide = undefined;
+  }
 
   if (TOSQ(move) > 0 && isConsumeFlag(move) && !isShift(move)) {
     (GameBoard.side === COLOURS.WHITE

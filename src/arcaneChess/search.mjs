@@ -6,8 +6,6 @@ import {
   FROMSQ,
   TOSQ,
   InCheck,
-  PrintBoard,
-  ParseFen,
 } from './board';
 import {
   BOOL,
@@ -25,8 +23,6 @@ import { generatePlayableOptions } from './movegen';
 import { MakeMove, TakeMove } from './makemove';
 import { PrMove } from './io';
 import { StorePvMove, ProbePvTable, GetPvLine } from './pvtable.mjs';
-import { GameController } from './board.mjs';
-import { CheckAndSet } from './gui.mjs';
 
 export const SearchController = { thinking: BOOL.FALSE, best: NOMOVE };
 
@@ -414,24 +410,4 @@ export function SearchPosition() {
     line: line,
     temporalPincer,
   };
-}
-
-export function gameSim(thinkingTime) {
-  const start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-
-  ParseFen(start);
-
-  while (GameController.GameOver === BOOL.FALSE) {
-    SearchController.depth = MAXDEPTH;
-    SearchController.time = thinkingTime;
-
-    // generatePowers();
-    // GenerateMoves(true, false, 'COMP', 'COMP');
-
-    const { bestMove } = SearchPosition();
-
-    MakeMove(bestMove);
-    CheckAndSet();
-    PrintBoard();
-  }
 }

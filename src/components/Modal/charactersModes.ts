@@ -80,7 +80,7 @@ const unpaddedCharacters = [
   },
   // {
   //   name: 'The Politician',
-  //   inventory: [arcana.modsSKI, arcana.modsINH, arcana.offrC],
+  //   inventory: [arcana.modsINH, arcana.offrC],
   //   setup: 'RNBVKBNR',
   //   imagePath: 'politician',
   //   color: R,
@@ -287,7 +287,7 @@ export const modes: Record<string, GameModeType> = padModes({
       setup: 'RNBVKBNR',
     },
     black: {
-      arcana: [arcana.modsSKI, arcana.modsCON, arcana.modsTRO],
+      arcana: [arcana.modsCON, arcana.modsTRO],
       setup: 'rnbvkbnr',
     },
   },
@@ -302,39 +302,39 @@ export const modes: Record<string, GameModeType> = padModes({
       setup: 'rswqkwsr',
     },
   },
-  senario2: {
-    name: 'Scenario 2',
-    white: {
-      arcana: [],
-      setup: 'RNBQKBNR',
-    },
-    black: {
-      arcana: [arcana.modsAET],
-      setup: 'rnbqkbnr',
-    },
-  },
-  secnario6: {
-    name: 'Scenario 6',
-    white: {
-      arcana: [arcana.modsAET],
-      setup: 'RNBQKBNR',
-    },
-    black: {
-      arcana: [arcana.dyadB],
-      setup: 'rnbqkbnr',
-    },
-  },
-  secnario7: {
-    name: 'Scenario 7',
-    white: {
-      arcana: [arcana.modsAET],
-      setup: 'RNBQKBNR',
-    },
-    black: {
-      arcana: [arcana.modsFUG],
-      setup: 'rnbqkbnr',
-    },
-  },
+  // senario2: {
+  //   name: 'Scenario 2',
+  //   white: {
+  //     arcana: [],
+  //     setup: 'RNBQKBNR',
+  //   },
+  //   black: {
+  //     arcana: [arcana.modsAET],
+  //     setup: 'rnbqkbnr',
+  //   },
+  // },
+  // secnario6: {
+  //   name: 'Scenario 6',
+  //   white: {
+  //     arcana: [arcana.modsAET],
+  //     setup: 'RNBQKBNR',
+  //   },
+  //   black: {
+  //     arcana: [arcana.dyadB],
+  //     setup: 'rnbqkbnr',
+  //   },
+  // },
+  // secnario7: {
+  //   name: 'Scenario 7',
+  //   white: {
+  //     arcana: [arcana.modsAET],
+  //     setup: 'RNBQKBNR',
+  //   },
+  //   black: {
+  //     arcana: [arcana.modsFUG],
+  //     setup: 'rnbqkbnr',
+  //   },
+  // },
   newClassic: {
     name: 'The New Classic',
     white: {
@@ -938,11 +938,11 @@ export const modes: Record<string, GameModeType> = padModes({
   timelessEquilibrium: {
     name: 'Timeless Equilibrium',
     white: {
-      arcana: [arcana.modsSKI, arcana.modsFUT, arcana.modsSUS, arcana.modsPHA],
+      arcana: [arcana.modsFUT, arcana.modsSUS, arcana.modsPHA],
       setup: 'RNWTKBSR',
     },
     black: {
-      arcana: [arcana.modsSKI, arcana.modsFUT, arcana.modsSUS, arcana.modsPHA],
+      arcana: [arcana.modsFUT, arcana.modsSUS, arcana.modsPHA],
       setup: 'rnwtkbsr',
     },
   },

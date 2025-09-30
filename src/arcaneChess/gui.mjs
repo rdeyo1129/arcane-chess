@@ -455,14 +455,14 @@ export function startSearch(thinkingTime, depth, engineColor) {
           `${engineColor} used bulletproof. No captures, checks, or promotions for 3 turns!`
         );
 
-        MakeMove(bestMove);
+        MakeMove(bestMove, 'commit');
         CheckAndSet();
         return { bestMove, bestScore, text };
       }
     }
   }
 
-  MakeMove(bestMove);
+  MakeMove(bestMove, 'commit');
   CheckAndSet();
   return { bestMove, bestScore, text };
 }

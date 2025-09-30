@@ -26,7 +26,7 @@ import {
   PreSearch,
   engineSuggestion,
 } from './gui';
-import { SearchPosition, gameSim } from './search.mjs';
+import { SearchPosition } from './search.mjs';
 
 import {
   whiteArcaneConfig,
@@ -270,9 +270,6 @@ export default function arcaneChess() {
       GameBoard.royaltyV = {};
       GameBoard.royaltyE = {};
       GameBoard.royaltyF = {};
-    },
-    gameSim: (thinkingTime) => {
-      return gameSim(thinkingTime);
     },
     changeVarVars: (varVar) => {
       if (varVar === 'NORMAL') {

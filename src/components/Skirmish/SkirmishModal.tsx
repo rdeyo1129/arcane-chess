@@ -93,7 +93,7 @@ const FACTIONS: Record<FactionId, Faction> = {
     id: 'chi',
     name: 'chi',
     army: 'RNBQKBNR',
-    arcana: ['dyadB', 'modsGLU', 'offrM'],
+    arcana: ['dyadB', 'modsGLU', 'offrM', 'sumnX'],
     unlocked: true,
     image: '/assets/factions/chi.webp',
     description: 'Law-breaking Pawns, unpredictable Valkyrie impersonation.',

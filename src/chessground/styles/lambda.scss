@@ -55,6 +55,10 @@
 .v-piece.white.lambda {
   background-image: url('/assets/images/pieces/tactorius/lambda/wV.svg');
 }
+.cg-wrap piece.x-piece.white.lambda,
+.x-piece.white.lambda {
+  background-image: url('/assets/images/pieces/tactorius/lambda/wX.svg');
+}
 
 // black
 .cg-wrap piece.p-piece.black.lambda,
@@ -112,4 +116,8 @@
 .cg-wrap piece.v-piece.black.lambda,
 .v-piece.black.lambda {
   background-image: url('/assets/images/pieces/tactorius/lambda/bV.svg');
+}
+.cg-wrap piece.x-piece.black.lambda,
+.x-piece.black.lambda {
+  background-image: url('/assets/images/pieces/tactorius/lambda/bX.svg');
 }

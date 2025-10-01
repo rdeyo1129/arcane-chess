@@ -55,6 +55,10 @@
 .v-piece.white.gamma {
   background-image: url('/assets/images/pieces/tactorius/gamma/wV.svg');
 }
+.cg-wrap piece.x-piece.white.gamma,
+.x-piece.white.gamma {
+  background-image: url('/assets/images/pieces/tactorius/gamma/wX.svg');
+}
 
 // black
 .cg-wrap piece.p-piece.black.gamma,
@@ -112,4 +116,8 @@
 .cg-wrap piece.v-piece.black.gamma,
 .v-piece.black.gamma {
   background-image: url('/assets/images/pieces/tactorius/gamma/bV.svg');
+}
+.cg-wrap piece.x-piece.black.gamma,
+.x-piece.black.gamma {
+  background-image: url('/assets/images/pieces/tactorius/gamma/bX.svg');
 }

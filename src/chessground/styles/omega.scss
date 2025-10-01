@@ -55,6 +55,10 @@
 .v-piece.white.omega {
   background-image: url('/assets/images/pieces/tactorius/omega/wV.svg');
 }
+.cg-wrap piece.x-piece.white.omega,
+.x-piece.white.omega {
+  background-image: url('/assets/images/pieces/tactorius/omega/wX.svg');
+}
 
 // black
 .cg-wrap piece.p-piece.black.omega,
@@ -112,4 +116,8 @@
 .cg-wrap piece.v-piece.black.omega,
 .v-piece.black.omega {
   background-image: url('/assets/images/pieces/tactorius/omega/bV.svg');
+}
+.cg-wrap piece.x-piece.black.omega,
+.x-piece.black.omega {
+  background-image: url('/assets/images/pieces/tactorius/omega/bX.svg');
 }

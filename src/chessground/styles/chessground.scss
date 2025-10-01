@@ -254,13 +254,6 @@ cg-board {
     grab;
 }
 
-.cg-wrap piece.x-piece.white {
-  background-image: url('/assets/images/pieces/tactorius/wX.svg');
-}
-.cg-wrap piece.x-piece.black {
-  background-image: url('/assets/images/pieces/tactorius/bX.svg');
-}
-
 cg-board square {
   position: absolute;
   top: 0;

@@ -113,12 +113,14 @@ export default function arcaneChess() {
     GameBoard.dyadName = type;
     GameBoard.dyad = POWERBIT[type];
     GameBoard.dyadClock = 0;
+    GameBoard.dyadOwner = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
   };
 
   const deactivateDyad = () => {
     GameBoard.dyad = 0;
     GameBoard.dyadClock = 0;
     GameBoard.dyadName = '';
+    GameBoard.dyadOwner = undefined;
   };
 
   return {

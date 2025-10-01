@@ -25,6 +25,9 @@ import {
   whiteArcaneConfig,
   blackArcaneConfig,
   ArcanaProgression,
+  incLiveArcana,
+  offerGrant,
+  offerRevert,
 } from './arcaneDefs';
 import {
   COLOURS,
@@ -345,7 +348,7 @@ export function MakeMove(move, moveType = '') {
   let captured = CAPTURED(move);
   let pieceEpsilon = PROMOTED(move);
 
-  const commit = moveType === 'userMove';
+  const commit = moveType === 'userMove' || moveType === 'commit';
   const consume = isConsumeFlag(move);
 
   let promoEpsilon = !isShift(move) ? pieceEpsilon : PIECES.EMPTY;
@@ -367,6 +370,7 @@ export function MakeMove(move, moveType = '') {
   h.posKey = GameBoard.posKey;
   h.dyad = GameBoard.dyad;
   h.dyadClock = GameBoard.dyadClock;
+  h.dyadOwner = GameBoard.dyadOwner;
 
   const getWhiteKingRookPos = _.lastIndexOf(GameBoard.pieces, 4);
   const getWhiteQueenRookPos = _.indexOf(GameBoard.pieces, 4, 22);
@@ -391,9 +395,8 @@ export function MakeMove(move, moveType = '') {
         PieceCol[epPocket] !== side
       ) {
         const key = `sumn${PceChar.charAt(epPocket).toUpperCase()}`;
-        const cfg =
-          side === COLOURS.WHITE ? whiteArcaneConfig : blackArcaneConfig;
-        cfg[key] = (cfg[key] ?? 0) + 1;
+        const sideKey = side === COLOURS.WHITE ? 'white' : 'black';
+        incLiveArcana(sideKey, key, +1);
       }
     }
   } else if ((move & MFLAGCA) !== 0) {
@@ -508,7 +511,8 @@ export function MakeMove(move, moveType = '') {
       PieceCol[pocketCapNow] !== side
     ) {
       const key = `sumn${PceChar.charAt(pocketCapNow).toUpperCase()}`;
-      cfg[key] = (cfg[key] ?? 0) + 1;
+      const sideKey = side === COLOURS.WHITE ? 'white' : 'black';
+      incLiveArcana(sideKey, key, +1);
     }
   }
 
@@ -686,17 +690,20 @@ export function MakeMove(move, moveType = '') {
 
       if (commit) {
         arcaneConfig[offrKey] = have - 1;
+        h.offrKey = offrKey;
+        h.offrPromoted = promoted;
+        h.offrGifts = [];
         for (let i = 0; i < offeringNumbers.length; i++) {
           const gift = offeringNumbers[i];
           if (typeof gift === 'string') {
-            arcaneConfig[gift] = (arcaneConfig[gift] ?? 0) + 1;
+            offerGrant(useWhite ? 'white' : 'black', gift, 1);
+            h.offrGifts.push(gift);
           } else if (gift !== PIECES.EMPTY) {
             const sumnKey = `sumn${PceChar.charAt(gift).toUpperCase()}`;
-            arcaneConfig[sumnKey] = (arcaneConfig[sumnKey] ?? 0) + 1;
+            offerGrant(useWhite ? 'white' : 'black', sumnKey, 1);
+            h.offrGifts.push(sumnKey);
           }
         }
-        h.offrKey = offrKey;
-        h.offrPromoted = promoted;
       }
     }
   }
@@ -715,13 +722,24 @@ export function MakeMove(move, moveType = '') {
 
   trimHistory(moveType === 'userMove');
 
-  if (moveType === 'userMove' && GameBoard.dyad > 0) {
+  if (
+    (moveType === 'userMove' || moveType === 'commit') &&
+    GameBoard.dyad > 0
+  ) {
     GameBoard.dyadClock++;
     if (GameBoard.dyadClock >= 2) {
-      whiteArcaneConfig[GameBoard.dyadName] -= 1;
+      const owner =
+        GameBoard.dyadOwner || (side === COLOURS.WHITE ? 'white' : 'black');
+      const cfg = owner === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+
+      if (GameBoard.dyadName)
+        cfg[GameBoard.dyadName] = (cfg[GameBoard.dyadName] | 0) - 1;
+
       GameBoard.dyad = 0;
       GameBoard.dyadClock = 0;
       GameBoard.dyadName = '';
+      GameBoard.dyadOwner = undefined;
+
       GameBoard.side ^= 1;
       HASH_SIDE();
     }
@@ -775,6 +793,7 @@ export function TakeMove(wasDyadMove = false) {
 
   GameBoard.dyad = GameBoard.history[GameBoard.hisPly].dyad;
   GameBoard.dyadClock = GameBoard.history[GameBoard.hisPly].dyadClock;
+  GameBoard.dyadOwner = GameBoard.history[GameBoard.hisPly].dyadOwner;
 
   if (wasDyadMove) {
     if (GameBoard.dyadClock > 0) {
@@ -782,13 +801,19 @@ export function TakeMove(wasDyadMove = false) {
         GameBoard.dyad = 0;
         GameBoard.dyadClock = 0;
         GameBoard.dyadName = '';
+        GameBoard.dyadOwner = undefined;
       } else {
         GameBoard.dyadClock++;
         if (GameBoard.dyadClock === 2) {
-          whiteArcaneConfig[GameBoard.dyadName] += 1;
+          const owner = GameBoard.dyadOwner || 'white';
+          const cfg = owner === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+          if (GameBoard.dyadName)
+            cfg[GameBoard.dyadName] = (cfg[GameBoard.dyadName] | 0) + 1;
+
           GameBoard.dyad = 0;
           GameBoard.dyadClock = 0;
           GameBoard.dyadName = '';
+          GameBoard.dyadOwner = undefined;
         }
       }
     }
@@ -796,6 +821,8 @@ export function TakeMove(wasDyadMove = false) {
     GameBoard.side ^= 1;
     HASH_SIDE();
   }
+
+  const sideStr = GameBoard.side === COLOURS.WHITE ? 'white' : 'black';
 
   if (
     SqAttacked(
@@ -854,6 +881,7 @@ export function TakeMove(wasDyadMove = false) {
       h.grantedArcanaSide === 'white' ? whiteArcaneConfig : blackArcaneConfig;
     const k = h.grantedArcanaKey;
     cfg[k] = Math.max(0, (cfg[k] || 0) - 1);
+    ArcanaProgression.revertGrant(h.grantedArcanaSide, k);
     h.grantedArcanaKey = undefined;
     h.grantedArcanaSide = undefined;
   }
@@ -989,25 +1017,16 @@ export function TakeMove(wasDyadMove = false) {
 
     if (h.offrKey) {
       const offrKey = h.offrKey;
-      const promoted = h.offrPromoted;
-      const gifts =
-        (useWhite ? WHITE_PIECE_TO_OFFERINGS : BLACK_PIECE_TO_OFFERINGS)[
-          promoted
-        ] || [];
+      const gifts = h.offrGifts || [];
 
       for (let i = 0; i < gifts.length; i++) {
-        const gift = gifts[i];
-        if (typeof gift === 'string') {
-          arcaneConfig[gift] = (arcaneConfig[gift] ?? 0) - 1;
-        } else {
-          const sumnKey = `sumn${PceChar.charAt(gift).toUpperCase()}`;
-          arcaneConfig[sumnKey] = (arcaneConfig[sumnKey] ?? 0) - 1;
-        }
+        offerRevert(sideStr, gifts[i], 1);
       }
       arcaneConfig[offrKey] = (arcaneConfig[offrKey] ?? 0) + 1;
 
       h.offrKey = undefined;
       h.offrPromoted = undefined;
+      h.offrGifts = undefined;
     }
   }
 }

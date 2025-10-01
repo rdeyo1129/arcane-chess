@@ -4,6 +4,8 @@ export const blackArcaneConfig = {};
 export const whiteArcaneInventory = {};
 export const blackArcaneInventory = {};
 
+const grantedByKey = { white: Object.create(null), black: Object.create(null) };
+
 export const setWhiteArcana = (pool) => {
   Object.keys(whiteArcaneInventory).forEach(
     (k) => delete whiteArcaneInventory[k]
@@ -12,6 +14,7 @@ export const setWhiteArcana = (pool) => {
     whiteArcaneInventory[k] = pool[k] | 0;
   });
   Object.keys(whiteArcaneConfig).forEach((k) => delete whiteArcaneConfig[k]);
+  grantedByKey.white = Object.create(null);
   ArcanaProgression.resetSide('white');
   return whiteArcaneInventory;
 };
@@ -24,6 +27,7 @@ export const setBlackArcana = (pool) => {
     blackArcaneInventory[k] = pool[k] | 0;
   });
   Object.keys(blackArcaneConfig).forEach((k) => delete blackArcaneConfig[k]);
+  grantedByKey.black = Object.create(null);
   ArcanaProgression.resetSide('black');
   return blackArcaneInventory;
 };
@@ -281,18 +285,86 @@ function sideKey(x) {
   return x === 0 || x === 'white' ? 'white' : 'black';
 }
 
+export function incLiveArcana(side, key, delta = 1) {
+  const inv = side === 'white' ? whiteArcaneInventory : blackArcaneInventory;
+  const live = side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+  const cap = inv[key] | 0;
+  const cur = live[key] | 0;
+  const next =
+    delta > 0 ? Math.min(cap, cur + delta) : Math.max(0, cur + delta);
+  live[key] = next;
+  return next !== cur;
+}
+
+export function offerGrant(side, key, qty = 1) {
+  const inv = side === 'white' ? whiteArcaneInventory : blackArcaneInventory;
+  const live = side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+
+  const curLive = live[key] | 0;
+  const curCap = inv[key] | 0;
+
+  if (isStackingKey(key)) {
+    const targetCap = Math.max(curCap, curLive + qty);
+    inv[key] = targetCap;
+    incLiveArcana(side, key, +qty);
+  } else {
+    inv[key] = Math.max(curCap, 1);
+    incLiveArcana(side, key, curLive >= 1 ? 0 : +1);
+  }
+}
+
+export function offerRevert(side, key, qty = 1) {
+  const inv = side === 'white' ? whiteArcaneInventory : blackArcaneInventory;
+  const live = side === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+
+  if (isStackingKey(key)) {
+    incLiveArcana(side, key, -qty);
+    const liveNow = live[key] | 0;
+    inv[key] = Math.max(liveNow, (inv[key] | 0) - qty);
+  } else {
+    if ((live[key] | 0) > 0) incLiveArcana(side, key, -1);
+    inv[key] = Math.max(live[key] | 0, 0);
+  }
+}
+
+const STACKING_PREFIXES = ['sumn', 'offr', 'shft', 'swap', 'dyad'];
+const STACKING_EXCEPTIONS = new Set([
+  'modsSUS',
+  'modsMAG',
+  'modsBLA',
+  'modsFUT',
+  'modsCON',
+  'modsSUR',
+]);
+
+function isStackingKey(key) {
+  if (!key) return false;
+  if (STACKING_EXCEPTIONS.has(key)) return true;
+  for (const p of STACKING_PREFIXES) if (key.startsWith(p)) return true;
+  return false;
+}
+
 const ArcanaProgression = (() => {
-  let firstAt = 1;
   let moveCount = { white: 0, black: 0 };
   let grantsGiven = { white: 0, black: 0 };
   let every = 6;
+  let enabled = true;
+  let firstAt = 1;
+
+  // how many times progression has handed out each key
+  const grantedByKey = {
+    white: Object.create(null),
+    black: Object.create(null),
+  };
 
   function setEvery(n) {
     every = Math.max(1, n | 0);
   }
+
   function resetSide(s) {
     moveCount[s] = 0;
     grantsGiven[s] = 0;
+    grantedByKey[s] = Object.create(null);
   }
 
   function tier(s) {
@@ -301,10 +373,10 @@ const ArcanaProgression = (() => {
     return t > 6 ? 6 : t;
   }
 
-  function remaining(s, k) {
+  function remainingByGrantCount(s, k) {
     const inv = s === 'white' ? whiteArcaneInventory : blackArcaneInventory;
-    const live = s === 'white' ? whiteArcaneConfig : blackArcaneConfig;
-    return (inv[k] | 0) - (live[k] | 0);
+    const given = grantedByKey[s][k] | 0;
+    return (inv[k] | 0) - given;
   }
 
   function uni(s) {
@@ -312,15 +384,17 @@ const ArcanaProgression = (() => {
     return Object.keys(inv).filter((k) => (inv[k] | 0) > 0);
   }
 
-  function grantOne(s) {
-    const live = s === 'white' ? whiteArcaneConfig : blackArcaneConfig;
+  function grantOne(s, excludeSet) {
     const t = tier(s);
 
     let pool = uni(s).filter(
-      (k) => (POWER_BY_KEY[k] ?? 1) <= t && remaining(s, k) > 0
+      (k) =>
+        (POWER_BY_KEY[k] ?? 1) <= t &&
+        remainingByGrantCount(s, k) > 0 &&
+        !(excludeSet && excludeSet.has(k))
     );
     if (!pool.length) {
-      const all = uni(s).filter((k) => remaining(s, k) > 0);
+      const all = uni(s).filter((k) => remainingByGrantCount(s, k) > 0);
       if (!all.length) return null;
       let minP = Infinity;
       for (const k of all) {
@@ -338,20 +412,33 @@ const ArcanaProgression = (() => {
     const strongest = pool.filter((k) => (POWER_BY_KEY[k] ?? 1) === maxP);
     const key = strongest[(Math.random() * strongest.length) | 0];
 
-    live[key] = (live[key] || 0) + 1;
+    // mark as granted regardless of current live
+    grantedByKey[s][key] = (grantedByKey[s][key] | 0) + 1;
     grantsGiven[s] += 1;
+    incLiveArcana(s, key, +1); // live count is capped
     return key;
   }
 
-  function onMoveCommitted(col) {
-    const s = sideKey(col);
-    moveCount[s] += 1;
-    const m = moveCount[s];
-    if (m < firstAt || (m - firstAt) % every !== 0) return null;
-    return grantOne(s);
+  function setEnabled(b) {
+    enabled = !!b;
   }
 
-  return { setEvery, resetSide, onMoveCommitted };
+  function onMoveCommitted(col, exclude = []) {
+    if (!enabled) return null;
+    const s = sideKey(col);
+    const m = ++moveCount[s];
+    if (m < firstAt || (m - firstAt) % every !== 0) return null;
+    return grantOne(s, new Set(exclude));
+  }
+
+  function revertGrant(side, key) {
+    const s = sideKey(side);
+    const cur = grantedByKey[s][key] | 0;
+    if (cur > 0) grantedByKey[s][key] = cur - 1;
+    if (grantsGiven[s] > 0) grantsGiven[s] -= 1;
+  }
+
+  return { setEvery, setEnabled, resetSide, onMoveCommitted, revertGrant };
 })();
 
 export { ArcanaProgression };

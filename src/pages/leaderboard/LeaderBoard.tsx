@@ -107,11 +107,11 @@ export class UnwrappedLeaderBoard extends React.Component<
           })}
         </div>
         {/* <div className="leaderboard-curtain"></div> */}
-        <img
+        {/* <img
           className="leaderboard-image-full"
           src={`/assets/dashboard/leaderboard2.webp`}
           alt={`leaderboard`}
-        />
+        /> */}
       </div>
     );
   }

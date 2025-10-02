@@ -445,8 +445,12 @@ class UnwrappedLexicon extends React.Component<Props, State> {
             background:
               this.state.theme === 'black'
                 ? '#000000cc'
-                : `linear-gradient(#000000AA, #000000AA), url(/assets/dashboard/lexicon.webp)`,
-            backgroundSize: this.state.theme === 'black' ? 'cover' : 'cover',
+                : `radial-gradient(
+          circle,
+          rgba(52, 170, 72, 0.8) 0%,  
+          rgba(0, 0, 0, 1) 80%    
+        )`,
+            backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
           }}

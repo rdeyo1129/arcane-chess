@@ -2,12 +2,19 @@
 
 .campaign {
   width: 100%;
-  // height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
+
+  background-image: radial-gradient(
+    circle,
+    rgba(221, 221, 221, 0.6) 0%,
+    rgba(17, 17, 17, 0.2) 80%
+  );
+
   .back {
     width: 815px;
     display: flex;

@@ -21,6 +21,12 @@ body {
   overflow-x: hidden;
   font-size: 0.9rem;
 
+  background: linear-gradient(to bottom, $B_MENU 0%, black 100%);
+
+  // Optional: add smoother feel
+  background-attachment: fixed;
+  background-size: cover;
+
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   .fade-overlay {

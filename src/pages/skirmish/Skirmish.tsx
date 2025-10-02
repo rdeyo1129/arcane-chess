@@ -1266,7 +1266,7 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
             <div className="opponent-dialogue-arcana">
               <div className="info-avatar">
                 <div className="avatar">
-                  <img
+                  {/* <img
                     src={`/assets/factions/${
                       this.state.playerColor === 'white'
                         ? this.state.blackFaction
@@ -1277,7 +1277,7 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
                       width: '60px',
                       objectFit: 'cover',
                     }}
-                  />
+                  /> */}
                 </div>
                 <div className="arcana-select">
                   {this.arcanaSelect(this.state.engineColor)}
@@ -1929,7 +1929,7 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
               </div>
               <div className="info-avatar">
                 <div className="avatar">
-                  <img
+                  {/* <img
                     src={`/assets/factions/${
                       this.state.playerColor === 'white'
                         ? this.state.whiteFaction
@@ -1940,7 +1940,7 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
                       width: '60px',
                       objectFit: 'cover',
                     }}
-                  />
+                  /> */}
                 </div>
                 <div className="arcana-select">
                   {this.arcanaSelect(this.state.playerColor)}

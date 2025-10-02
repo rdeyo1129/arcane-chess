@@ -185,7 +185,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
             <div className="difficulties">
               <img
                 className="level level-1"
-                src="/assets/levels/novice2.webp"
+                src="/assets/levels/novice.svg"
                 alt="novice"
                 onMouseEnter={() =>
                   this.setState({
@@ -199,10 +199,10 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                 }
                 style={{
                   overflow: 'hidden',
-                  objectFit: 'cover',
+                  // objectFit: 'cover',
                   outline:
                     this.state.hoverDifficulty === 'novice'
-                      ? '2px solid #dddddd'
+                      ? '2px solid #3f48cc'
                       : currLS.difficulty === 'novice'
                       ? '2px solid #3f48cc'
                       : 'none',
@@ -238,7 +238,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
               />
               <img
                 className="level level-2"
-                src="/assets/levels/intermediate2.webp"
+                src="/assets/levels/intermediate.svg"
                 alt="intermediate"
                 onMouseEnter={() =>
                   this.setState({
@@ -252,10 +252,10 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                 }
                 style={{
                   overflow: 'hidden',
-                  objectFit: 'cover',
+                  // objectFit: 'cover',
                   outline:
                     this.state.hoverDifficulty === 'intermediate'
-                      ? '2px solid #dddddd'
+                      ? '2px solid #34aa48'
                       : currLS.difficulty === 'intermediate'
                       ? '2px solid #34aa48'
                       : 'none',
@@ -291,7 +291,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
               />
               <img
                 className="level level-3"
-                src="/assets/levels/advanced2.webp"
+                src="/assets/levels/advanced.svg"
                 alt="advanced"
                 onMouseEnter={() =>
                   this.setState({
@@ -305,10 +305,10 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                 }
                 style={{
                   overflow: 'hidden',
-                  objectFit: 'cover',
+                  // objectFit: 'cover',
                   outline:
                     this.state.hoverDifficulty === 'advanced'
-                      ? '2px solid #dddddd'
+                      ? '2px solid #d9b800'
                       : currLS.difficulty === 'advanced'
                       ? '2px solid #d9b800'
                       : 'none',
@@ -344,7 +344,7 @@ class UnwrappedCampaignSettingsModal extends React.Component<
               />
               <img
                 className="level level-4"
-                src="/assets/levels/expert2.webp"
+                src="/assets/levels/expert.svg"
                 alt="expert"
                 onMouseEnter={() =>
                   this.setState({
@@ -358,10 +358,10 @@ class UnwrappedCampaignSettingsModal extends React.Component<
                 }
                 style={{
                   overflow: 'hidden',
-                  objectFit: 'cover',
+                  // objectFit: 'cover',
                   outline:
                     this.state.hoverDifficulty === 'expert'
-                      ? '2px solid #dddddd'
+                      ? '2px solid #c53939'
                       : currLS.difficulty === 'expert'
                       ? '2px solid #c53939'
                       : 'none',

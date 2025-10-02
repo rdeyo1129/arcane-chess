@@ -6,11 +6,13 @@
 }
 
 .endgame {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+  min-height: 100vh;
   gap: 10px;
   overflow-y: scroll;
   overflow-x: hidden;

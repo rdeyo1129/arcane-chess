@@ -544,12 +544,5 @@
     "description": "Capture pieces on shift moves.",
     "type": "inherent",
     "imagePath": "/modsDIM"
-  },
-  "empty": {
-    "id": "empty",
-    "name": "",
-    "description": "No arcane selected here. Click to choose one.",
-    "type": "",
-    "imagePath": "/empty"
   }
 }

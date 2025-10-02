@@ -259,6 +259,7 @@
     --arcana-w: 360px;
     --control-h: 60px;
 
+    position: relative;
     display: grid;
     grid-template-columns: 1fr var(--arcana-w);
     align-items: center;

@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .outer-leaderboard {
   width: 100vw;
   height: 100vh;
@@ -8,6 +10,9 @@
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
+
+  background: linear-gradient(to bottom, $V_MENU 0%, black 100%);
+
   .nav {
     position: fixed;
     top: 0;

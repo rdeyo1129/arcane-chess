@@ -185,22 +185,23 @@ export default class ArcanaSelect extends React.Component<
   handleArcanaClick = (key: string, value: number) => {
     const { selectedArcana, allowedArcana } = this.state;
     const { auth } = this.props;
+
+    const meta = this.getArcana(key);
+    if (!meta) return; // ← prevent crash if key missing
+
     const newSelectedArcana = { ...selectedArcana };
     const totalArcanaValue = Object.values(newSelectedArcana).reduce(
       (sum, count) => sum + count,
       0
     );
 
-    if (arcana[key].type === 'inherent' && selectedArcana[key]) return;
+    if (meta.type === 'inherent' && selectedArcana[key]) return; // ← use meta
     if (totalArcanaValue >= allowedArcana) return;
 
     newSelectedArcana[key] = (newSelectedArcana[key] || 0) + 1;
 
     this.handleMultiplierChange(-value);
-
-    this.setState({
-      selectedArcana: newSelectedArcana,
-    });
+    this.setState({ selectedArcana: newSelectedArcana });
 
     setLocalStorage({
       ...getLocalStorage(auth.user.username),
@@ -268,6 +269,20 @@ export default class ArcanaSelect extends React.Component<
       : totalEngineArcanaScore - totalLSArcanaScore;
   };
 
+  getArcana = (k: string) => (arcana && k in arcana ? arcana[k] : null);
+
+  getBadgeText = (
+    k: string,
+    hasMissionArcana: boolean,
+    missionArcana?: { [key: string]: number | string }
+  ) => {
+    const a = this.getArcana(k);
+    if (a?.type === 'inherent') return 'INH';
+    if (hasMissionArcana) return String(missionArcana?.[k] ?? '');
+    const LS = getLocalStorage(this.props.auth.user.username);
+    return String(LS?.arcana?.[k] ?? '');
+  };
+
   render() {
     const { auth, isPlayerArcana, isMission, missionArcana } = this.props;
     const { hoverArcane, selectedArcana } = this.state;
@@ -299,33 +314,25 @@ export default class ArcanaSelect extends React.Component<
             />
             <div className="arcana-picker">
               {_.map(arcanaObj, (value: number, key: string) => {
+                const meta = this.getArcana(key);
+                if (!meta) {
+                  return null;
+                }
+
                 const isSelected = _.includes(Object.keys(selectedArcana), key);
                 const isDisabled = !isPlayerArcana || hasMissionArcana;
+
                 return (
                   <div
                     key={key}
-                    style={{
-                      position: 'relative',
-                      display: 'inline-block',
-                    }}
+                    style={{ position: 'relative', display: 'inline-block' }}
                   >
-                    <div
-                      style={{
-                        position: 'absolute',
-                      }}
-                    >
-                      {arcana[key].type === 'inherent'
-                        ? 'INH'
-                        : hasMissionArcana
-                        ? missionArcana && missionArcana[key]
-                        : missionArcana && missionArcana[key]
-                        ? 'INH'
-                        : LS.arcana[key]}
+                    <div style={{ position: 'absolute' }}>
+                      {this.getBadgeText(key, hasMissionArcana, missionArcana)}
                     </div>
                     <img
-                      key={key}
                       className={`arcane ${hoverArcane === key ? 'focus' : ''}`}
-                      src={`/assets/arcanaImages${arcana[key].imagePath}.svg`}
+                      src={`/assets/arcanaImages${meta.imagePath}.svg`} // ← use meta
                       style={{
                         opacity: isDisabled || isSelected ? 1 : 0.5,
                         cursor: isDisabled
@@ -348,34 +355,37 @@ export default class ArcanaSelect extends React.Component<
         {!isPlayerArcana && (
           <div className="arcana-picker-wrapper">
             <div className="arcana-picker">
-              {_.map(this.props.engineArcana, (value: number, key: string) => (
-                <div
-                  key={key}
-                  style={{
-                    position: 'relative',
-                    display: 'inline-block',
-                  }}
-                >
-                  <div
-                    style={{
-                      position: 'absolute',
-                    }}
-                  >
-                    {arcana[key].type === 'inherent' ? 'INH' : value}
-                  </div>
-                  <img
-                    className="arcane"
-                    src={`${arcana[key].imagePath}.svg`}
-                    style={{
-                      opacity: 0.5,
-                      cursor: 'not-allowed',
-                    }}
-                    onMouseEnter={() => this.props.onToggleHover(`${key}`)}
-                    onMouseLeave={() => this.props.onToggleHover('')}
-                  />
-                </div>
-              ))}
+              {_.map(
+                this.props.engineArcana || {},
+                (value: number, key: string) => {
+                  const meta = this.getArcana(key);
+                  if (!meta) return null; // skip unknown keys so we don't crash
+
+                  return (
+                    <div
+                      key={key}
+                      style={{ position: 'relative', display: 'inline-block' }}
+                    >
+                      <div style={{ position: 'absolute' }}>
+                        {/* Engine badge: INH if inherent, otherwise the engine's count */}
+                        {meta.type === 'inherent' ? 'INH' : String(value)}
+                      </div>
+
+                      <img
+                        className={`arcane ${
+                          this.state.hoverArcane === key ? 'focus' : ''
+                        }`}
+                        src={`/assets/arcanaImages${meta.imagePath}.svg`}
+                        style={{ opacity: 0.5, cursor: 'not-allowed' }}
+                        onMouseEnter={() => this.props.onToggleHover(`${key}`)}
+                        onMouseLeave={() => this.props.onToggleHover('')}
+                      />
+                    </div>
+                  );
+                }
+              )}
             </div>
+
             <div
               style={{
                 height: '40px',

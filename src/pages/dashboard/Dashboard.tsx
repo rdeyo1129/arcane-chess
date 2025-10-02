@@ -145,7 +145,7 @@ export class UnwrappedDashboard extends React.Component<
 
   render() {
     const { openSubKey, hoverKey } = this.state;
-    const imageKey = (hoverKey && NAV_META[hoverKey]?.imageKey) || 'campaign1'; // default fallback
+    // const imageKey = (hoverKey && NAV_META[hoverKey]?.imageKey) || 'campaign1'; // default fallback
     const desc = (hoverKey && NAV_META[hoverKey]?.description) || '';
 
     return (
@@ -165,7 +165,7 @@ export class UnwrappedDashboard extends React.Component<
             >
               <img className="logo" src="/assets/logoall+.png" alt="" />
             </Link>
-            <img className="avatar" src="/assets/avatars/normal.webp" alt="" />
+            {/* <img className="avatar" src="/assets/avatars/normal.webp" alt="" /> */}
           </div>
 
           <div className="xp-panel">
@@ -179,11 +179,11 @@ export class UnwrappedDashboard extends React.Component<
                 <div className="xp-fill" style={{ width: '45%' }} />
               </div>
             </div>
-            <img
+            {/* <img
               className="avatar-inline"
               src="/assets/avatars/normal.webp"
               alt=""
-            />
+            /> */}
           </div>
 
           <div className="nav-right">
@@ -401,19 +401,42 @@ export class UnwrappedDashboard extends React.Component<
               </div>
             </div>
           </div>
-
-          {imageKey && (
+          {/* {imageKey && (
             <img
               className="hover-image"
               src={`/assets/dashboard/${imageKey}.webp`}
               alt={hoverKey || 'hover-art'}
             />
-          )}
+          )} */}
         </div>
-
         <div className="dashboard-body">
           <div className="news">
             <h1 className="news-title">News</h1>
+            <div className="news-item">
+              <h4>Removal of AI-Generated Content</h4>
+              <ul>
+                <li>
+                  After a long thought, I have decided to take an generated
+                  images and story down, as it no longer aligns with my values.
+                  A few thoughts come with this decision.
+                </li>
+                <li>
+                  It was too busy for the site, I wanted to make sure the main
+                  focus is Spell Chess, and the values we take away from it.
+                </li>
+                <li>
+                  While using a generator to make my vision come to life was fun
+                  and satisfying, I do not want to encourage taking market value
+                  away from self-made artists. Imagination belongs to humans,
+                  let us not outsource it.
+                </li>
+                <li>
+                  There still remains a complete story that I created by hand.
+                  My intent is to tell it alongside the campaign mode, but I
+                  wanted to tell it in the right way.
+                </li>
+              </ul>
+            </div>
             <div className="news-item">
               <h4>Skirmish: Faction Chess Now Live</h4>
               <ul>

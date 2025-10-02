@@ -565,10 +565,18 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              // background:
+              //   this.state.theme === 'black'
+              //     ? ''
+              //     : `url(/assets/pages/${this.state.theme}.webp)`,
               background:
                 this.state.theme === 'black'
-                  ? ''
-                  : `url(/assets/pages/${this.state.theme}.webp)`,
+                  ? '#000000cc'
+                  : `radial-gradient(
+          circle,
+         rgba(221, 221, 221, 0.6) 0%,
+          rgba(0, 0, 0, 1) 80%    
+        )`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -593,10 +601,18 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              // background:
+              //   this.state.theme === 'black'
+              //     ? ''
+              //     : `url(/assets/pages/${this.state.theme}.webp)`,
               background:
                 this.state.theme === 'black'
-                  ? ''
-                  : `url(/assets/pages/${this.state.theme}.webp)`,
+                  ? '#000000cc'
+                  : `radial-gradient(
+          circle,
+         rgba(221, 221, 221, 0.6) 0%,
+          rgba(0, 0, 0, 1) 80%    
+        )`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -615,12 +631,23 @@ class UnwrappedLessonView extends React.Component<Props, State> {
         ) : (
           <div
             style={{
-              height: '100vh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               width: '100vw',
+              height: '100vh',
+              // background:
+              //   this.state.theme === 'black'
+              //     ? ''
+              //     : `url(/assets/pages/${this.state.theme}.webp)`,
               background:
                 this.state.theme === 'black'
-                  ? ''
-                  : `url(/assets/pages/${this.state.theme}.webp)`,
+                  ? '#000000cc'
+                  : `radial-gradient(
+          circle,
+         rgba(221, 221, 221, 0.6) 0%,
+          rgba(0, 0, 0, 1) 80%    
+        )`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -643,7 +670,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
               <div className="opponent-arcana-volume">
                 <div className="info-avatar">
                   <div className="avatar">
-                    {this.state.opponent !== '' ? (
+                    {/* {this.state.opponent !== '' ? (
                       <img
                         src={`/assets/avatars/${this.state.opponent}.webp`}
                         style={{
@@ -652,7 +679,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                           objectFit: 'contain',
                         }}
                       />
-                    ) : null}
+                    ) : null} */}
                   </div>
                   <div className="arcana-select"></div>
                 </div>
@@ -755,7 +782,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                 </div>
                 <div className="info-avatar">
                   <div className="avatar">
-                    <img
+                    {/* <img
                       src={`assets/avatars/${
                         this.state.hero === '' ? 'hero' : this.state.hero
                       }.webp`}
@@ -764,7 +791,7 @@ class UnwrappedLessonView extends React.Component<Props, State> {
                         width: '60px',
                         objectFit: 'contain',
                       }}
-                    />
+                    /> */}
                   </div>
                   <div className="arcana-select"></div>
                 </div>

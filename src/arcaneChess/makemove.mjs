@@ -1,6 +1,5 @@
 import _ from 'lodash';
 
-// import all vars and functions from arcanechess folder that are not defined
 import {
   GameBoard,
   FROMSQ,

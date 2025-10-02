@@ -512,11 +512,11 @@ class UnwrappedManifest extends React.Component<RouterishProps, State> {
         </div>
 
         <div className="manifest-curtain"></div>
-        <img
+        {/* <img
           className="manifest-image-full"
           src={`/assets/dashboard/manifest2.webp`}
           alt={`manifest`}
-        />
+        /> */}
       </div>
     );
   }

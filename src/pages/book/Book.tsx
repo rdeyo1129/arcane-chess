@@ -378,12 +378,26 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
           <div
             className="completed-node"
             style={{
-              backgroundImage:
-                this.state.bookTheme === 'black'
-                  ? ''
-                  : `url(/assets/pages/${this.state.bookTheme}.webp)`,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100vw',
+              height: '100vh',
+              // background:
+              //   this.state.theme === 'black'
+              //     ? ''
+              //     : `url(/assets/pages/${this.state.theme}.webp)`,
+              background:
+                this.state.theme === 'black'
+                  ? '#000000cc'
+                  : `radial-gradient(
+          circle,
+         rgba(221, 221, 221, 0.6) 0%,
+          rgba(0, 0, 0, 1) 80%    
+        )`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
             }}
           >
             <Link to="/campaign">
@@ -400,12 +414,26 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
           <div
             className="outer-book"
             style={{
-              backgroundImage:
-                this.state.bookTheme === 'black'
-                  ? ''
-                  : `url(/assets/pages/${this.state.bookTheme}.webp)`,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100vw',
+              height: '100vh',
+              // background:
+              //   this.state.theme === 'black'
+              //     ? ''
+              //     : `url(/assets/pages/${this.state.theme}.webp)`,
+              background:
+                this.state.theme === 'black'
+                  ? '#000000cc'
+                  : `radial-gradient(
+          circle,
+         rgba(221, 221, 221, 0.6) 0%,
+          rgba(0, 0, 0, 1) 80%    
+        )`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
             }}
           >
             <TactoriusModal
@@ -496,7 +524,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                 </div>
                 <div className="right">
                   <div className="buttons">
-                    <div className="toggle-tab">
+                    {/* <div className="toggle-tab">
                       <Button
                         text={
                           this.state.selectedTab === 'chess' ? 'STORY' : 'CHESS'
@@ -507,7 +535,7 @@ export class UnwrappedBook extends React.Component<BookProps, BookState> {
                         backgroundColorOverride={'#33333388'}
                         onClick={this.toggleTab}
                       />
-                    </div>
+                    </div> */}
                     <Link to={`/${this.state.selectedSwatch.split('-')[0]}`}>
                       <Button
                         text="START"

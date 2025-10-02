@@ -547,20 +547,20 @@ class UnwrappedMissionView extends React.Component<Props, State> {
       }
     })
       .then((reply) => {
-        const { bestMove, text } = reply;
+        const { bestMove } = reply;
         this.setState(
           (prevState) => {
             const updatedDialogue = [
               ...prevState.dialogue,
-              ...text
-                .map((key: string) => {
-                  if (key in prevState.dialogueList) {
-                    const value = prevState.dialogueList[key];
-                    return !prevState.dialogue.includes(value) ? value : null;
-                  }
-                  return key;
-                })
-                .filter((value: string | null) => value),
+              // ...text
+              //   .map((key: string) => {
+              //     if (key in prevState.dialogueList) {
+              //       const value = prevState.dialogueList[key];
+              //       return !prevState.dialogue.includes(value) ? value : null;
+              //     }
+              //     return key;
+              //   })
+              //   .filter((value: string | null) => value),
             ];
             return {
               ...prevState,
@@ -1366,10 +1366,18 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              // background:
+              //   this.state.theme === 'black'
+              //     ? ''
+              //     : `url(/assets/pages/${this.state.theme}.webp)`,
               background:
                 this.state.theme === 'black'
-                  ? ''
-                  : `url(/assets/pages/${this.state.theme}.webp)`,
+                  ? '#000000cc'
+                  : `radial-gradient(
+          circle,
+         rgba(221, 221, 221, 0.6) 0%,
+          rgba(0, 0, 0, 1) 80%    
+        )`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -1394,10 +1402,18 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              // background:
+              //   this.state.theme === 'black'
+              //     ? ''
+              //     : `url(/assets/pages/${this.state.theme}.webp)`,
               background:
                 this.state.theme === 'black'
-                  ? ''
-                  : `url(/assets/pages/${this.state.theme}.webp)`,
+                  ? '#000000cc'
+                  : `radial-gradient(
+          circle,
+         rgba(221, 221, 221, 0.6) 0%,
+          rgba(0, 0, 0, 1) 80%    
+        )`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -1416,12 +1432,23 @@ class UnwrappedMissionView extends React.Component<Props, State> {
         ) : (
           <div
             style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               width: '100vw',
               height: '100vh',
+              // background:
+              //   this.state.theme === 'black'
+              //     ? ''
+              //     : `url(/assets/pages/${this.state.theme}.webp)`,
               background:
                 this.state.theme === 'black'
-                  ? ''
-                  : `url(/assets/pages/${this.state.theme}.webp)`,
+                  ? '#000000cc'
+                  : `radial-gradient(
+          circle,
+         rgba(221, 221, 221, 0.6) 0%,
+          rgba(0, 0, 0, 1) 80%    
+        )`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -1429,7 +1456,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
           >
             <TactoriusModal
               isOpen={this.state.gameOver}
-              // handleClose={() => this.handleModalClose()}
+              handleClose={() => this.setState({ gameOver: false })}
               // modalType={this.state.endScenario}
               message={`${this.state.gameOverType} 
                 ${
@@ -1452,7 +1479,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
               <div className="opponent-dialogue-arcana">
                 <div className="info-avatar">
                   <div className="avatar">
-                    {this.state.opponent !== '' ? (
+                    {/* {this.state.opponent !== '' ? (
                       <img
                         src={`/assets/avatars/${this.state.opponent}.webp`}
                         style={{
@@ -1461,7 +1488,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                           objectFit: 'contain',
                         }}
                       />
-                    ) : null}
+                    ) : null} */}
                   </div>
                   <div className="arcana-select">
                     {this.arcanaSelect(this.state.engineColor)}
@@ -2153,7 +2180,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                 </div>
                 <div className="info-avatar">
                   <div className="avatar">
-                    <img
+                    {/* <img
                       src={`assets/avatars/${
                         this.state.hero === '' ? 'hero' : this.state.hero
                       }.webp`}
@@ -2162,7 +2189,7 @@ class UnwrappedMissionView extends React.Component<Props, State> {
                         width: '60px',
                         objectFit: 'contain',
                       }}
-                    />
+                    /> */}
                   </div>
                   <div className="arcana-select">
                     {this.arcanaSelect(this.state.playerColor)}

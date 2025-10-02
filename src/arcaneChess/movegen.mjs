@@ -526,7 +526,7 @@ export function GenerateMoves(
   const herringArray = getHerrings(GameBoard.side);
 
   // note might need to revisit for computer having a herring
-  if (forcedMoves && hasHermit) {
+  if (forcedMoves && !hasHermit) {
     const herringsAttacked = () => {
       const tempHerrings = [];
       _.forEach(herringArray, (herringSq) => {

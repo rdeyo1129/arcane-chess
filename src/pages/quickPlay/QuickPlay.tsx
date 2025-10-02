@@ -1266,14 +1266,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
             <div className="opponent-dialogue-arcana">
               <div className="info-avatar">
                 <div className="avatar">
-                  <img
+                  {/* <img
                     src={`/assets/avatars/${this.state.engineAvatar}.webp`}
                     style={{
                       height: '60px',
                       width: '60px',
                       objectFit: 'contain',
                     }}
-                  />
+                  /> */}
                 </div>
                 <div className="arcana-select">
                   {this.arcanaSelect(this.state.engineColor)}
@@ -1918,14 +1918,14 @@ class UnwrappedQuickPlay extends React.Component<Props, State> {
               </div>
               <div className="info-avatar">
                 <div className="avatar">
-                  <img
+                  {/* <img
                     src="/assets/avatars/normal.webp"
                     style={{
                       height: '60px',
                       width: '60px',
                       objectFit: 'contain',
                     }}
-                  />
+                  /> */}
                 </div>
                 <div className="arcana-select">
                   {this.arcanaSelect(this.state.playerColor)}

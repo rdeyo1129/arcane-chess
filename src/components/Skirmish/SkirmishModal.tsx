@@ -86,6 +86,17 @@ type Faction = {
   unlocked: boolean;
   image?: string;
   description: string;
+  color: string;
+};
+
+const MENU_COLORS = {
+  S_MENU: '#808080',
+  R_MENU: '#c53939',
+  O_MENU: '#c77c35',
+  Y_MENU: '#d9b800',
+  G_MENU: '#34aa48',
+  B_MENU: '#3f48cc',
+  V_MENU: '#a043a2',
 };
 
 const FACTIONS: Record<FactionId, Faction> = {
@@ -95,8 +106,8 @@ const FACTIONS: Record<FactionId, Faction> = {
     army: 'RNBQKBNR',
     arcana: ['dyadB', 'modsGLU', 'offrM', 'sumnX'],
     unlocked: true,
-    image: '/assets/factions/chi.webp',
     description: 'Law-breaking Pawns, unpredictable Valkyrie impersonation.',
+    color: MENU_COLORS.R_MENU,
   },
   gamma: {
     id: 'gamma',
@@ -104,9 +115,9 @@ const FACTIONS: Record<FactionId, Faction> = {
     army: 'RNBTKBNR',
     arcana: ['shftP', 'modsDIM', 'offrM'],
     unlocked: true,
-    image: '/assets/factions/gamma.webp',
     description:
       'Dangerous, flexible Pawns, unpredictable Valkyrie impersonation',
+    color: MENU_COLORS.O_MENU,
   },
   omega: {
     id: 'omega',
@@ -114,9 +125,9 @@ const FACTIONS: Record<FactionId, Faction> = {
     army: 'RNBMKBNR',
     arcana: ['sumnRQ', 'modsEXT', 'offrN'],
     unlocked: true,
-    image: '/assets/factions/omega.webp',
     description:
       'Queen impersonation, flexible and dangerous double-moves at a price',
+    color: MENU_COLORS.Y_MENU,
   },
   lambda: {
     id: 'lambda',
@@ -124,9 +135,9 @@ const FACTIONS: Record<FactionId, Faction> = {
     army: '1SWTKWS1',
     arcana: ['sumnRE', 'modsSIL', 'offrN'],
     unlocked: true,
-    image: '/assets/factions/lambda.webp',
     description:
       'Trap and capture pieces in a web, flexible and dangerous double-moves at a price',
+    color: MENU_COLORS.G_MENU,
   },
   sigma: {
     id: 'sigma',
@@ -134,8 +145,8 @@ const FACTIONS: Record<FactionId, Faction> = {
     army: '1SWMKWS1',
     arcana: ['modsREA', 'offrR'],
     unlocked: true,
-    image: '/assets/factions/sigma.webp',
     description: 'Heavy-hitting Wraiths, trap pieces in multiple webs.',
+    color: MENU_COLORS.B_MENU,
   },
   psi: {
     id: 'psi',
@@ -143,8 +154,8 @@ const FACTIONS: Record<FactionId, Faction> = {
     army: '1SWQKWS1',
     arcana: ['modsBAN', 'offrR'],
     unlocked: true,
-    image: '/assets/factions/psi.webp',
     description: 'Buff Spectres, trap pieces in multiple webs.',
+    color: MENU_COLORS.V_MENU,
   },
   tau: {
     id: 'tau',
@@ -152,8 +163,8 @@ const FACTIONS: Record<FactionId, Faction> = {
     army: '2VVKV2',
     arcana: ['modsREA', 'shftG', 'dyadA', 'offrZ'],
     unlocked: true,
-    image: '/assets/factions/tau.webp',
     description: 'Small army with many spells.',
+    color: MENU_COLORS.S_MENU,
   },
 };
 
@@ -470,6 +481,8 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
   };
 
   render() {
+    const cap = (s: string) => (s ? s[0].toUpperCase() + s.slice(1) : s);
+
     const hoverText =
       this.descriptions()[this.state.hoverId] ?? this.descriptions()[''];
 
@@ -479,13 +492,12 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
 
     const engineFactionOptions = Object.values(FACTIONS)
       .filter((f) => f.unlocked)
-      .map((f) => f.name[0].toUpperCase() + f.name.slice(1));
+      .map((f) => cap(f.name));
     const factionIdByName = (name: string): FactionId =>
       name.toLowerCase() as FactionId;
 
     const engineFactionLabel = this.state.engineFactionId
-      ? FACTIONS[this.state.engineFactionId].name[0].toUpperCase() +
-        FACTIONS[this.state.engineFactionId].name.slice(1)
+      ? cap(FACTIONS[this.state.engineFactionId].name)
       : 'Select Engine Faction';
 
     const engineImg =
@@ -499,6 +511,20 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
     const playerGreek = this.state.playerFactionId
       ? GREEK_CAP[this.state.playerFactionId]
       : '';
+
+    const engineAccent = this.state.engineFactionId
+      ? FACTIONS[this.state.engineFactionId].color
+      : undefined;
+    const playerAccent = this.state.playerFactionId
+      ? FACTIONS[this.state.playerFactionId].color
+      : undefined;
+
+    const engineFactionName = this.state.engineFactionId
+      ? cap(FACTIONS[this.state.engineFactionId].name)
+      : 'Engine Faction';
+    const playerFactionName = this.state.playerFactionId
+      ? cap(FACTIONS[this.state.playerFactionId].name)
+      : 'Player Faction';
 
     return (
       <div className="container">
@@ -629,17 +655,25 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                             }
                           }}
                         >
-                          <div className="tile">
+                          <div
+                            className="tile"
+                            style={{
+                              borderColor: f.color,
+                              boxShadow: selectedAsPlayer
+                                ? `0 0 0 2px ${f.color}55 inset, 0 12px 24px rgba(0,0,0,.5)`
+                                : undefined,
+                            }}
+                          >
                             <div className="img-wrap">
-                              {f.image ? (
-                                <img src={f.image} alt="" />
-                              ) : (
-                                <div className="img-placeholder" />
-                              )}
                               <span className="faction-glyph large">
                                 {GREEK_CAP[id]}
                               </span>
                             </div>
+                            <span
+                              className="color-dot"
+                              style={{ background: f.color }}
+                              aria-hidden="true"
+                            />
                           </div>
                         </div>
                       );
@@ -647,7 +681,9 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                   </div>
                 ))}
               </div>
+
               <div className="setups">
+                {/* ENGINE */}
                 <div className="engine-setup">
                   <div
                     className="setup-row"
@@ -658,16 +694,42 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                       ['--arcana-w' as any]: '360px',
                     }}
                   >
-                    <div className="faction-img flex-fill">
+                    <div className="faction-img flex-fill" aria-live="polite">
+                      {/* background image/glyph block */}
                       {engineImg ? (
                         <>
-                          <img src={engineImg} alt="" />
                           <span className="faction-glyph">{engineGreek}</span>
                         </>
                       ) : (
                         <div className="img-placeholder-block" />
                       )}
+
+                      {/* NEW: visible faction badge */}
+                      <span
+                        className="faction-badge"
+                        style={
+                          engineAccent
+                            ? { borderColor: engineAccent, color: engineAccent }
+                            : {}
+                        }
+                        aria-label={
+                          this.state.engineFactionId
+                            ? `Engine faction: ${engineFactionName}`
+                            : 'Engine faction not selected'
+                        }
+                        title={
+                          this.state.engineFactionId
+                            ? `${engineFactionName}`
+                            : 'Select Engine Faction'
+                        }
+                      >
+                        <span className="badge-glyph">
+                          {engineGreek || '–'}
+                        </span>
+                        <span className="badge-name">{engineFactionName}</span>
+                      </span>
                     </div>
+
                     <div
                       className="arcana"
                       style={{ flex: '0 1 var(--arcana-w)' }}
@@ -682,13 +744,12 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                         isOpen={false}
                         readOnly
                         updateHover={(arcaneObject) => {
-                          this.setState({
-                            hoverId: arcaneObject.id || '',
-                          });
+                          this.setState({ hoverId: arcaneObject.id || '' });
                         }}
                       />
                     </div>
                   </div>
+
                   <div className="army" style={{ marginTop: 6 }}>
                     <ArmySelect
                       army={
@@ -703,6 +764,8 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                     />
                   </div>
                 </div>
+
+                {/* PLAYER */}
                 <div className="human-setup">
                   <div
                     className="setup-row"
@@ -713,16 +776,41 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                       ['--arcana-w' as any]: '360px',
                     }}
                   >
-                    <div className="faction-img flex-fill">
+                    <div className="faction-img flex-fill" aria-live="polite">
                       {playerImg ? (
                         <>
-                          <img src={playerImg} alt="" />
                           <span className="faction-glyph">{playerGreek}</span>
                         </>
                       ) : (
                         <div className="img-placeholder-block" />
                       )}
+
+                      {/* NEW: visible faction badge */}
+                      <span
+                        className="faction-badge"
+                        style={
+                          playerAccent
+                            ? { borderColor: playerAccent, color: playerAccent }
+                            : {}
+                        }
+                        aria-label={
+                          this.state.playerFactionId
+                            ? `Player faction: ${playerFactionName}`
+                            : 'Player faction not selected'
+                        }
+                        title={
+                          this.state.playerFactionId
+                            ? `${playerFactionName}`
+                            : 'Select Player Faction'
+                        }
+                      >
+                        <span className="badge-glyph">
+                          {playerGreek || '–'}
+                        </span>
+                        <span className="badge-name">{playerFactionName}</span>
+                      </span>
                     </div>
+
                     <div
                       className="arcana"
                       style={{ flex: '0 1 var(--arcana-w)' }}
@@ -737,13 +825,12 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                         isOpen={false}
                         readOnly
                         updateHover={(arcaneObject) => {
-                          this.setState({
-                            hoverId: arcaneObject.id || '',
-                          });
+                          this.setState({ hoverId: arcaneObject.id || '' });
                         }}
                       />
                     </div>
                   </div>
+
                   <div className="army" style={{ marginTop: 6 }}>
                     <ArmySelect
                       army={
@@ -759,7 +846,7 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                   </div>
                 </div>
 
-                {/* START */}
+                {/* START button unchanged */}
                 <div style={{ marginTop: 10 }}>
                   <button
                     type="button"

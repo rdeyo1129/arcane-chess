@@ -58,7 +58,7 @@ export class UnwrappedCampaign extends React.Component<
       <div
         className="campaign"
         style={{
-          background: `url(assets/dashboard/chapters.webp) no-repeat center center fixed`,
+          // background: `url(assets/dashboard/chapters.webp) no-repeat center center fixed`,
           backgroundSize: 'cover',
         }}
       >
@@ -177,7 +177,6 @@ export class UnwrappedCampaign extends React.Component<
           chapterNumber={this.state.chapter}
           isOpen={this.state.configModalOpen}
           type="bookSettings"
-          imgPath="/assets/treeBoat.jpg"
         />
       </div>
     );

@@ -171,13 +171,13 @@ export class UnwrappedDashboard extends React.Component<
           <div className="xp-panel">
             <div className="xp-left">
               <div className="xp-user">{this.props.auth.user.username}</div>
-              <div className="xp-stats">
+              {/* <div className="xp-stats">
                 <div className="xp-points">XP 1,240</div>
                 <div className="xp-level">LV 12</div>
               </div>
               <div className="xp-bar">
                 <div className="xp-fill" style={{ width: '45%' }} />
-              </div>
+              </div> */}
             </div>
             {/* <img
               className="avatar-inline"
@@ -416,7 +416,7 @@ export class UnwrappedDashboard extends React.Component<
               <h4>Removal of AI-Generated Content</h4>
               <ul>
                 <li>
-                  After a long thought, I have decided to take an generated
+                  After a long thought, I have decided to take AI-generated
                   images and story down, as it no longer aligned with my values.
                   A few thoughts came with this decision.
                 </li>

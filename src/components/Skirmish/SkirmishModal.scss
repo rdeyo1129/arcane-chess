@@ -136,7 +136,7 @@
         .tile {
           --accent: #00b4ff;
           --inner-gap: 6px;
-          --fill: color-mix(in srgb, var(--accent) 85%, white 15%);
+          --fill: var(--accent);
           position: relative;
           width: calc(var(--tile) - 2px);
           height: calc(var(--tile) - 2px);
@@ -174,9 +174,9 @@
           }
         }
 
-        &.is-unlocked:hover .tile {
-          transform: translateY(-2px);
-        }
+        // &.is-unlocked:hover .tile {
+        //   transform: translateY(-2px);
+        // }
         &.is-unlocked:hover .tile::before {
           border-color: var(--accent);
         }

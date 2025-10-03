@@ -513,7 +513,7 @@
   "modsSUR": {
     "id": "modsSUR",
     "name": "Aether Surge",
-    "description": "",
+    "description": "Friendly Pawns can capture on the first-turn, 2-square move.",
     "type": "passive",
     "imagePath": "/modsSUR"
   },

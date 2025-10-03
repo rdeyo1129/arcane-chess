@@ -38,9 +38,9 @@ class UnwrappedFrontPage extends React.Component<
   constructor(props: FrontPageProps) {
     super(props);
     this.slogans = [
-      'Your next blunder is just a plot twist.',
       'Principle. Preparation. Process.',
       'As in war, so in life.',
+      'Built for GMs, fun for aliens, instructive for all.',
       'Is this theory? Nope.',
       'Read. Recognize. React.',
       "Let's see a more advanced setup.",
@@ -52,7 +52,6 @@ class UnwrappedFrontPage extends React.Component<
       'Less doom scroll, more square control.',
       'Initiative. Formulation. Execution.',
       'Multiversal chess? Believe it.',
-      'Built for GMs, fun for aliens, instructive for all.',
       'Balanced but volatile.',
       'The war continues... so does your learning.',
     ];

@@ -734,14 +734,14 @@ class UnwrappedLexicon extends React.Component<Props, State> {
               </div>
               <div className="info-avatar">
                 <div className="avatar">
-                  <img
+                  {/* <img
                     src="/assets/avatars/hero.webp"
                     style={{
                       height: '60px',
                       width: '60px',
                       objectFit: 'contain',
                     }}
-                  />
+                  /> */}
                 </div>
                 <div className="arcana-select"></div>
               </div>

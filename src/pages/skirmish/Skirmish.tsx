@@ -14,7 +14,10 @@ import { audioManager } from 'src/utils/audio/AudioManager';
 
 import TactoriusModal from 'src/components/Modal/Modal';
 import PromotionModal from 'src/components/PromotionModal/PromotionModal';
-import SkirmishModal from 'src/components/Skirmish/SkirmishModal';
+import SkirmishModal, {
+  FACTIONS,
+  GREEK_CAP,
+} from 'src/components/Skirmish/SkirmishModal';
 
 import GlobalVolumeControl from 'src/utils/audio/GlobalVolumeControl';
 
@@ -1170,6 +1173,28 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
     const trojanActive = this.arcaneChess().getIfTrojanGambitExists(
       this.state.engineColor
     );
+    const mapFaction = (f: string) => (f === 'normal' ? 'tau' : f);
+
+    const engineAccent = this.state.engineColor
+      ? FACTIONS[
+          mapFaction(
+            this.state.engineColor === 'white'
+              ? this.state.whiteFaction
+              : this.state.blackFaction
+          ) as keyof typeof FACTIONS
+        ].color
+      : undefined;
+
+    const playerAccent = this.state.playerColor
+      ? FACTIONS[
+          mapFaction(
+            this.state.playerColor === 'white'
+              ? this.state.whiteFaction
+              : this.state.blackFaction
+          ) as keyof typeof FACTIONS
+        ].color
+      : undefined;
+
     return (
       <div className="skirmish-tactorius-board fade">
         <div
@@ -1266,18 +1291,28 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
             <div className="opponent-dialogue-arcana">
               <div className="info-avatar">
                 <div className="avatar">
-                  {/* <img
-                    src={`/assets/factions/${
+                  <div
+                    style={
+                      engineAccent
+                        ? { borderColor: engineAccent, color: engineAccent }
+                        : {}
+                    }
+                    title={`${
                       this.state.playerColor === 'white'
                         ? this.state.blackFaction
                         : this.state.whiteFaction
-                    }.webp`}
-                    style={{
-                      height: '60px',
-                      width: '60px',
-                      objectFit: 'cover',
-                    }}
-                  /> */}
+                    } faction`}
+                  >
+                    <span className="badge-glyph">
+                      {
+                        GREEK_CAP[
+                          (this.state.playerColor === 'white'
+                            ? this.state.blackFaction
+                            : this.state.whiteFaction) as keyof typeof GREEK_CAP
+                        ]
+                      }
+                    </span>
+                  </div>
                 </div>
                 <div className="arcana-select">
                   {this.arcanaSelect(this.state.engineColor)}
@@ -1929,18 +1964,28 @@ class UnwrappedSkirmish extends React.Component<Props, State> {
               </div>
               <div className="info-avatar">
                 <div className="avatar">
-                  {/* <img
-                    src={`/assets/factions/${
+                  <div
+                    style={
+                      playerAccent
+                        ? { borderColor: playerAccent, color: playerAccent }
+                        : {}
+                    }
+                    title={`${
                       this.state.playerColor === 'white'
                         ? this.state.whiteFaction
                         : this.state.blackFaction
-                    }.webp`}
-                    style={{
-                      height: '60px',
-                      width: '60px',
-                      objectFit: 'cover',
-                    }}
-                  /> */}
+                    } faction`}
+                  >
+                    <span className="badge-glyph">
+                      {
+                        GREEK_CAP[
+                          (this.state.playerColor === 'white'
+                            ? this.state.whiteFaction
+                            : this.state.blackFaction) as keyof typeof GREEK_CAP
+                        ]
+                      }
+                    </span>
+                  </div>
                 </div>
                 <div className="arcana-select">
                   {this.arcanaSelect(this.state.playerColor)}

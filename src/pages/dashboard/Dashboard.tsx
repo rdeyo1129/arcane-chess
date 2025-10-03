@@ -411,29 +411,55 @@ export class UnwrappedDashboard extends React.Component<
         </div>
         <div className="dashboard-body">
           <div className="news">
-            <h1 className="news-title">News</h1>
+            <h1 className="news-title">News & Announcements</h1>
             <div className="news-item">
               <h4>Removal of AI-Generated Content</h4>
               <ul>
                 <li>
                   After a long thought, I have decided to take an generated
-                  images and story down, as it no longer aligns with my values.
-                  A few thoughts come with this decision.
+                  images and story down, as it no longer aligned with my values.
+                  A few thoughts came with this decision.
                 </li>
                 <li>
-                  It was too busy for the site, I wanted to make sure the main
-                  focus is Spell Chess, and the values we take away from it.
+                  It was too busy for the site. I wanted to make sure the main
+                  focus was Spell Chess, and the values we take away from the
+                  general game of Chess itself.
                 </li>
                 <li>
                   While using a generator to make my vision come to life was fun
-                  and satisfying, I do not want to encourage taking market value
-                  away from self-made artists. Imagination belongs to humans,
-                  let us not outsource it.
+                  and satisfying, I did not want to encourage taking market
+                  value away from self-made artists. Imagination belongs to
+                  humans, let us not outsource it.
                 </li>
                 <li>
                   There still remains a complete story that I created by hand.
-                  My intent is to tell it alongside the campaign mode, but I
+                  My intent was to tell it alongside the campaign mode, but I
                   wanted to tell it in the right way.
+                </li>
+                <li>Your mind is the armory, use your imagination.</li>
+              </ul>
+            </div>
+            <div className="news-item">
+              <h4>Patch 2.5 Live: Hexweaver Update, Mana, Pawn Update</h4>
+              <ul>
+                <li>
+                  Fog of war square condition summons hides friendly pieces from
+                  your opponent. Hexweaver Scepter: a powerful square condition
+                  summon.
+                </li>
+                <li>
+                  Mana: unlockable time slots. Arcana in your inventory unlock
+                  incrementally after a certain number of turns automatically.
+                  Less overwhelming and promotes resource management.
+                </li>
+                <li>
+                  New default rule: No spell required - now on by default, any
+                  2-step Pawn move can move through a piece on that Pawns{"'"}s
+                  first turn.
+                </li>
+                <li>
+                  New Spell: Aether Surge - Friendly Pawns can capture on the
+                  first-turn, 2-square move.
                 </li>
               </ul>
             </div>

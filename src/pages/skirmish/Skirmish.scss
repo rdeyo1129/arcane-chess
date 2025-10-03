@@ -53,8 +53,13 @@
         .avatar {
           position: relative;
           background: rgba(34, 34, 34, 0.7);
-          width: 60px;
+          min-width: 60px;
           height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 48px;
+          text-transform: uppercase;
         }
         .arcana-select {
           display: flex;
@@ -201,8 +206,13 @@
         .avatar {
           position: relative;
           background: rgba(34, 34, 34, 0.7);
-          width: 60px;
+          min-width: 60px;
           height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 48px;
+          text-transform: uppercase;
         }
         .arcana-select {
           display: flex;

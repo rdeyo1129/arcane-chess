@@ -89,7 +89,7 @@ type Faction = {
   color: string;
 };
 
-const MENU_COLORS = {
+export const MENU_COLORS = {
   S_MENU: '#808080',
   R_MENU: '#c53939',
   O_MENU: '#c77c35',
@@ -99,7 +99,7 @@ const MENU_COLORS = {
   V_MENU: '#a043a2',
 };
 
-const FACTIONS: Record<FactionId, Faction> = {
+export const FACTIONS: Record<FactionId, Faction> = {
   chi: {
     id: 'chi',
     name: 'chi',
@@ -176,7 +176,7 @@ const HEX_ROWS: FactionId[][] = [
 
 const arcana: ArcanaMap = arcanaJson as ArcanaMap;
 
-const GREEK_CAP: Record<FactionId, string> = {
+export const GREEK_CAP: Record<FactionId, string> = {
   chi: 'Χ',
   gamma: 'Γ',
   omega: 'Ω',
@@ -657,12 +657,7 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                         >
                           <div
                             className="tile"
-                            style={{
-                              borderColor: f.color,
-                              boxShadow: selectedAsPlayer
-                                ? `0 0 0 2px ${f.color}55 inset, 0 12px 24px rgba(0,0,0,.5)`
-                                : undefined,
-                            }}
+                            style={{ ['--accent' as any]: f.color }}
                           >
                             <div className="img-wrap">
                               <span className="faction-glyph large">
@@ -681,7 +676,6 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                   </div>
                 ))}
               </div>
-
               <div className="setups">
                 {/* ENGINE */}
                 <div className="engine-setup">
@@ -726,7 +720,6 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                         <span className="badge-glyph">
                           {engineGreek || '–'}
                         </span>
-                        <span className="badge-name">{engineFactionName}</span>
                       </span>
                     </div>
 
@@ -807,10 +800,8 @@ class UnwrappedSkirmishModal extends React.Component<ModalProps, ModalState> {
                         <span className="badge-glyph">
                           {playerGreek || '–'}
                         </span>
-                        <span className="badge-name">{playerFactionName}</span>
                       </span>
                     </div>
-
                     <div
                       className="arcana"
                       style={{ flex: '0 1 var(--arcana-w)' }}
